@@ -10,7 +10,7 @@
 Coming Soon – Sito in costruzione
 ```
 
-Questo sito web presenta il materiale didattico dell'insegnamento di [Costruzione e validazione di strumenti di misura dell’efficacia dell’intervento psicologico in neuropsicologia](https://www.unifi.it/index.php?module=ofform2&mode=1&cmd=3&AA=2022&afId=600381) (A.A. 2022/2023) rivolto agli studenti del Corso di Laurea Magistrale in PSICOLOGIA CLINICA E DELLA SALUTE E NEUROPSICOLOGIA dell'Università degli Studi di Firenze.
+Questo sito web presenta il materiale didattico dell'insegnamento *Testing psicologico* (A.A. 2023/2024) rivolto agli studenti del Corso di Laurea Magistrale (LM-51) in PSICOLOGIA CLINICA E DELLA SALUTE E NEUROPSICOLOGIA dell'Università degli Studi di Firenze.
 
 ## License
 
