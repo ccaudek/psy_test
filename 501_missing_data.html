@@ -1,0 +1,924 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>26. Dati mancanti &#8212; cfa_book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '501_missing_data';</script>
+    <link rel="shortcut icon" href="_static/increasing.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="27. Introduzione ai modelli di equazioni struttural" href="316_sem_intro.html" />
+    <link rel="prev" title="25. Dati non gaussiani e categoriali" href="500_cat_data.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modello lineare</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05_intro_r.html">1. Linguaggio di programmazione R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_regression.html">2. L’analisi di regressione</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="035_ctt.html">3. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="037_err_std_mis.html">4. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="038_err_std_stima.html">5. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_exercises_ctt.html">6. Applicazioni della CTT</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="050_sviluppo_strumento.html">7. Utilizzo e costruzione di test psicometrici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="055_analisi_fattoriale_1.html">8. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="056_analisi_fattoriale_2.html">9. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="057_analisi_fattoriale_3.html">10. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="058_factor_scores.html">11. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="060_path_analysis.html">12. Visualizzare i modelli di equazioni strutturali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="062_constraints_on_parms.html">13. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="070_cfa_mod_comp.html">14. CFA: confronto tra modelli</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione di strumenti psicometrici</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="200_problema_strumento.html">15. Tipologie dei test psicometrici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="201_valutare_le_matrici.html">16. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="202_estrazione.html">17. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="203_numero_fattori.html">18. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="205_rotazione.html">19. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="206_valutare_sol_fattoriale.html">20. Valutare e rifinire la soluzione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="250_group_invariance.html">21. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="300_gof.html">22. Indici di bontà dell’adattamento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="310_refine_solution.html">23. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="315_mmm.html">24. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="500_cat_data.html">25. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">26. Dati mancanti</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="316_sem_intro.html">27. Introduzione ai modelli di equazioni struttural</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="320_lgm_intro.html">28. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="321_lgm_prelims.html">29. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="324_lgm_mixed.html">30. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="326_growth_1.html">31. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="327_growth_cont.html">32. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="328_time_inv_cov.html">33. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="329_growth_groups.html">34. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="330_bivariate_growth_models.html">35. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="331_inv_measurement.html">36. Invarianza di misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="332_latent_change.html">37. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="333_biv_change.html">38. Modello LCS bivariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="351_lgm_meas_inv.html">39. Invarianza fattoriale nei modelli LGM</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="z_biblio.html">40. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="900_lin_alg.html">41. Elementi di algebra lineare</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/cfa_book_2023" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/cfa_book_2023/issues/new?title=Issue%20on%20page%20%2F501_missing_data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/501_missing_data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Dati mancanti</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipologie-di-dati-mancanti">26.1. Tipologie di dati mancanti</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-gestione-dei-dati-mancanti">26.2. La gestione dei dati mancanti</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-direct-ml">26.2.1. Metodo Direct ML</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">26.2.2. Un esempio concreto</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dati-mancanti-in-r">26.3. Dati mancanti in R</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivazione">26.4. Motivazione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trattamento-dei-dati-mancanti">26.5. Trattamento dei dati mancanti</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="dati-mancanti">
+<span id="missing-data-notebook"></span><h1><span class="section-number">26. </span>Dati mancanti<a class="headerlink" href="#dati-mancanti" title="Permalink to this headline">#</a></h1>
+<p>Raramente un ricercatore si trova nella situazione fortunata nella quale un’analisi statistica (di tipo CFA o altro) può essere condotta utilizzando un set di dati in cui tutte le variabili sono state osservate su tutte le unità statistiche: nella pratica ricerca i dati mancanti sono la norma piuttosto che l’eccezione.</p>
+<section id="tipologie-di-dati-mancanti">
+<h2><span class="section-number">26.1. </span>Tipologie di dati mancanti<a class="headerlink" href="#tipologie-di-dati-mancanti" title="Permalink to this headline">#</a></h2>
+<p>Ci sono molti motivi che possono stare alla base dei dati mancanti. Ad esempio, i dati possono mancare per disegno dello studio (“mancanza pianificata”), come ad esempio nei progetti di ricerca in cui i partecipanti al campione vengono selezionati casualmente per completare sottoinsiemi diversi della batteria di valutazione (una scelta di questo tipo viene motivata, ad esempio, a causa di considerazioni pratiche come i vincoli di tempo). In tali condizioni, si presume che i dati mancanti si distribuiscano in un modo completamente casuale rispetto a tutte le altre variabili nello studio.</p>
+<p>In generale, i meccanismi che determinano la presenza di dati mancanti possono essere classificati in tre categorie:</p>
+<ol class="arabic simple">
+<li><p><em>valori mancanti completamente casuali</em> (<em>Missing Completely At Random</em>, MCAR). La probabilità di dati mancanti su una variabile non è collegata né al valore mancante sulla variabile, né al valore di ogni altra variabile presente nella matrice dati che si sta analizzando;</p></li>
+<li><p><em>valori mancanti casuali</em> (<em>Missing At Random</em>, MAR). I valori mancanti sono indipendenti dal valore che viene a mancare, ma dipendono da altre variabili, cioè i dati sulla variabile sono mancanti per categorie di partecipanti che potrebbero essere identificati dai valori assunti dalle altre variabili presenti nello studio;</p></li>
+<li><p><em>valori mancanti non ignorabili</em> (<em>Missing Not At Random</em>, MNAR). La mancanza di un dato può dipendere sia dal valore del dato stesso che dalle altre variabili. Per esempio, se si studia la salute mentale e le persone depresse riferiscono meno volentieri informazioni riguardanti il loro stato di salute, allora i dati non sono mancanti per caso.</p></li>
+</ol>
+</section>
+<section id="la-gestione-dei-dati-mancanti">
+<h2><span class="section-number">26.2. </span>La gestione dei dati mancanti<a class="headerlink" href="#la-gestione-dei-dati-mancanti" title="Permalink to this headline">#</a></h2>
+<p>Il passo successivo dopo la definizione dei meccanismi è quello della gestione dei dati mancanti. Sostanzialmente le scelte possibili sono due: l’eliminazione dei casi o la sostituzione dei dati mancanti. Un metodo semplice, indicato solo nel caso in cui l’ammontare dei dati mancanti è limitato e questi sono mancanti completamente a caso (MCAR), è quello di cancellare i casi con dati mancanti (<em>case deletion</em>).</p>
+<p>I modi per eliminare i casi sono due: <em>listwise deletion</em> e <em>pairwise deletion</em>. Nel primo caso si elimina dal campione ogni caso che ha dati mancanti. Le analisi avverranno quindi solo sui casi che hanno valori validi per tutte le variabili in esame. In questo modo si ottiene una maggiore semplicità di trattazione nell’analisi statistica, tuttavia non si utilizza tutta l’informazione osservata (si riduce la numerosità campionaria e, quindi, l’informazione). Il secondo metodo è la* pairwise deletio*n, che utilizza tutti i casi che hanno i dati validi su due variabili volta per volta. In questo modo si riesce a massimizzare la numerosità del campione da utilizzare, ma si tratta comunque di un metodo che presenta dei problemi, per esempio il fatto che con questo approccio i parametri del modello saranno basati su differenti insiemi di dati, con differenti numerosità campionarie e differenti errori standard.</p>
+<p>Quando i dati non sono MNAR è opportuno sostituirli con appropriate funzioni dei dati effettivamente osservati. Questa procedura è chiamata imputazione (<em>imputation</em>). Di seguito sono indicati alcuni metodi.</p>
+<ol class="arabic simple">
+<li><p><em>Mean Imputation</em>. Il dato mancante viene sostituito con la media della
+variabile. Questo metodo, utilizzato troppo spesso per la sua semplicità, riducendo la variabilità dei dati, ha invece effetti importanti su molte analisi dei dati e, in generale, dovrebbe essere evitato.</p></li>
+<li><p><em>Regression Imputation</em>. Si tratta di un approccio basato sulle informazioni disponibili per le altre variabili. Si stima una equazione di regressione lineare per ogni variabile utilizzando le altre come predittori. Questo metodo offre il vantaggio di poter utilizzare dei rapporti esistenti tra le variabili per effettuare le valutazioni dei dati mancanti; tuttavia esso è usato raramente, in quanto amplifica i rapporti di correlazione tra le variabili; quindi, se le analisi si baseranno su regressioni, questo metodo è sconsigliato.</p></li>
+<li><p><em>Multiple Imputation</em>. La tecnica di multiple imputation, applicabile in caso di MAR, prevede che un dato mancante su una variabile sia sostituito, sulla base dei dati esistenti anche sulle altre variabili, con un valore che però comprende anche una componente di errore ricavata dalla distribuzione dei residui della variabile.</p></li>
+<li><p><em>Expectation-Maximization</em>. Un altro approccio moderno del trattamento dei dati mancanti è l’applicazione dell’algoritmo Expectation Maximization (EM). La tecnica è quella di stimare i parametri sulla base dei dati osservati, e di stimare poi i dati mancanti sulla base di questi parametri (fase E). Poi i parametri vengono nuovamente stimati sulla base della nuova matrice di dati (fase M), e così via. Questo processo viene iterato fino a quando i valori stimati convergono. Tuttavia, una limitazione fondamentale dell’utilizzo dell’algoritmo EM per calcolare le matrici di input per le analisi CFA/SEM è che gli errori standard risultanti delle stime dei parametri non sono consistenti. Pertanto, gli intervalli di confidenza e i test di significatività possono risultare compromessi.</p></li>
+</ol>
+<section id="metodo-direct-ml">
+<h3><span class="section-number">26.2.1. </span>Metodo Direct ML<a class="headerlink" href="#metodo-direct-ml" title="Permalink to this headline">#</a></h3>
+<p>Benché vengano talvolta usati, i metodi precedenti sono stati presentati solo per ragioni storiche. Nella pratica concreta è preferibile usare il metodo <em>Direct ML</em>, conosciuto anche come “raw ML” o “full information ML” (FIML), in quanto è generalmente considerano come il metodo migliore per gestire i dati mancanti nella maggior parte delle applicazioni CFA e SEM. Direct ML è esente dai problemi associati all’utilizzo dell’algoritmo EM e produce stime consistenti sotto l’ipotesi di normalità multivariata per dati mancanti MAR.</p>
+<p>Intuitivamente, l’approccio utilizza la relazione tra le variabili per dedurre quali siano i valori mancanti con maggiore probabilità. Ad esempio, se due variabili, <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span>, sono correlate positivamente, allora se, per alcune osservazioni <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(X_i\)</span> è il valore più alto nella variabile, è probabile che anche il valore mancante <span class="math notranslate nohighlight">\(Y_i\)</span> sia un valore alto. FIML utilizza queste informazioni senza procedere all’imputazione dei valori mancanti, ma invece basandosi sulle stime più verosimili dei parametri della popolazione, ovvero massimizzando direttamente la verosimiglianza del modello specificato. Sotto l’assunzione di normalità multivariata, la funzione di verosimiglianza diventa</p>
+<div class="math notranslate nohighlight">
+\[
+L(\mu, \Sigma) = \prod_i f(y_i \mid \mu_i, \Sigma_i),
+\]</div>
+<p>laddove <span class="math notranslate nohighlight">\(y_i\)</span> sono i dati, <span class="math notranslate nohighlight">\(\mu_i\)</span> e <span class="math notranslate nohighlight">\(\Sigma_i\)</span> sono i parametri della popolazione se gli elementi mancanti in <span class="math notranslate nohighlight">\(y_i\)</span> vengono rimossi. Si cercano i valori <span class="math notranslate nohighlight">\(\mu\)</span> e <span class="math notranslate nohighlight">\(\Sigma\)</span> che massimizzano la verosimiglianza.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> l’applicazione di tale metodo si ottiene specificando l’argomento <code class="docutils literal notranslate"><span class="pre">missing</span> <span class="pre">=</span> <span class="pre">&quot;ml&quot;</span></code>.</p>
+</section>
+<section id="un-esempio-concreto">
+<h3><span class="section-number">26.2.2. </span>Un esempio concreto<a class="headerlink" href="#un-esempio-concreto" title="Permalink to this headline">#</a></h3>
+<p>Per applicare il metodo <em>direct ML</em>, <a href="#id1"><span class="problematic" id="id2">brown2015confirmatory</span></a> prende in esame i dati reali di un questionario (un singolo fattore, quattro item, una covarianza di errore) con dati mancanti (N = 650). Leggiamo i dati dell’esempio:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rio</span><span class="o">::</span><span class="nf">import</span><span class="p">(</span><span class="s">&quot;./data//brown_table_9_1.csv&quot;</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 5</caption>
+<thead>
+	<tr><th></th><th scope=col>subject</th><th scope=col>s1</th><th scope=col>s2</th><th scope=col>s3</th><th scope=col>s4</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>5760</td><td>2</td><td>0</td><td>1</td><td>NA</td></tr>
+	<tr><th scope=row>2</th><td>5761</td><td>3</td><td>3</td><td>3</td><td>NA</td></tr>
+	<tr><th scope=row>3</th><td>5763</td><td>2</td><td>4</td><td>4</td><td>NA</td></tr>
+	<tr><th scope=row>4</th><td>5761</td><td>2</td><td>0</td><td>0</td><td>NA</td></tr>
+	<tr><th scope=row>5</th><td>5769</td><td>2</td><td>1</td><td>1</td><td>NA</td></tr>
+	<tr><th scope=row>6</th><td>5771</td><td>4</td><td>3</td><td>3</td><td>NA</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Il modello viene specificato come segue <a href="#id3"><span class="problematic" id="id4">brown2015confirmatory</span></a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;</span>
+<span class="s">  esteem =~ s1 + s2 + s3 + s4</span>
+<span class="s">  s2 ~~ s4</span>
+<span class="s">&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo il modello ai dati:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cfa</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="n">missing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;fiml&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>È possibile identificare le configurazioni di risposte agli item che contengono dati mancanti:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span><span class="o">@</span><span class="n">Data</span><span class="o">@</span><span class="n">Mp</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span><span class="o">$</span><span class="n">npatterns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">5</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pats</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fit</span><span class="o">@</span><span class="n">Data</span><span class="o">@</span><span class="n">Mp</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span><span class="o">$</span><span class="n">pat</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">1L</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">pats</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fit</span><span class="o">@</span><span class="n">Data</span><span class="o">@</span><span class="n">ov.names</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">pats</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     s1 s2 s3 s4
+[1,]  1  1  1  1
+[2,]  1  1  1  0
+[3,]  0  1  1  1
+[4,]  1  0  1  1
+[5,]  1  1  0  1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Possiamo ora esaminare il livello di copertura della covarianza nei dati, ovvero la proporzione di dati disponibili per ciascun indicatore e per ciascuna coppia di indicatori:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">coverage</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fit</span><span class="o">@</span><span class="n">Data</span><span class="o">@</span><span class="n">Mp</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span><span class="o">$</span><span class="n">coverage</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">coverage</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rownames</span><span class="p">(</span><span class="n">coverage</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fit</span><span class="o">@</span><span class="n">Data</span><span class="o">@</span><span class="n">ov.names</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">coverage</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          s1        s2        s3        s4
+s1 0.9615385 0.9230769 0.9230769 0.6692308
+s2 0.9230769 0.9615385 0.9230769 0.6692308
+s3 0.9230769 0.9230769 0.9615385 0.6692308
+s4 0.6692308 0.6692308 0.6692308 0.7076923
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ad esempio, consideriamo l’item <code class="docutils literal notranslate"><span class="pre">s1</span></code>; se moltiplichiamo la copertura di questo elemento per la numerosità campionaria possiamo concludere che questa variabile contiene 25 osservazioni mancanti; e così via.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="m">650</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.9615385</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">625.000025</div></div>
+</div>
+<p>Procediamo poi come sempre per esaminare la soluzione ottenuta.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">effectsize</span><span class="o">::</span><span class="nf">interpret</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 10 × 4</caption>
+<thead>
+	<tr><th scope=col>Name</th><th scope=col>Value</th><th scope=col>Threshold</th><th scope=col>Interpretation</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;effctsz_&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>GFI  </td><td>0.999449432</td><td>0.95</td><td>satisfactory</td></tr>
+	<tr><td>AGFI </td><td>0.992292047</td><td>0.90</td><td>satisfactory</td></tr>
+	<tr><td>NFI  </td><td>0.999192581</td><td>0.90</td><td>satisfactory</td></tr>
+	<tr><td>NNFI </td><td>0.998977535</td><td>0.90</td><td>satisfactory</td></tr>
+	<tr><td>CFI  </td><td>0.999829589</td><td>0.90</td><td>satisfactory</td></tr>
+	<tr><td>RMSEA</td><td>0.020237880</td><td>0.05</td><td>satisfactory</td></tr>
+	<tr><td>SRMR </td><td>0.004853126</td><td>0.08</td><td>satisfactory</td></tr>
+	<tr><td>RFI  </td><td>0.995155487</td><td>0.90</td><td>satisfactory</td></tr>
+	<tr><td>PNFI </td><td>0.166532097</td><td>0.50</td><td>poor        </td></tr>
+	<tr><td>IFI  </td><td>0.999830133</td><td>0.90</td><td>satisfactory</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">standardizedSolution</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A lavaan.data.frame: 15 × 9</caption>
+<thead>
+	<tr><th scope=col>lhs</th><th scope=col>op</th><th scope=col>rhs</th><th scope=col>est.std</th><th scope=col>se</th><th scope=col>z</th><th scope=col>pvalue</th><th scope=col>ci.lower</th><th scope=col>ci.upper</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>esteem</td><td>=~</td><td>s1    </td><td> 0.7374475</td><td>0.01988465</td><td>37.086269</td><td>0.000000e+00</td><td> 0.6984743</td><td> 0.7764207</td></tr>
+	<tr><td>esteem</td><td>=~</td><td>s2    </td><td> 0.9204499</td><td>0.01340775</td><td>68.650575</td><td>0.000000e+00</td><td> 0.8941712</td><td> 0.9467286</td></tr>
+	<tr><td>esteem</td><td>=~</td><td>s3    </td><td> 0.8804116</td><td>0.01325286</td><td>66.431821</td><td>0.000000e+00</td><td> 0.8544365</td><td> 0.9063867</td></tr>
+	<tr><td>esteem</td><td>=~</td><td>s4    </td><td> 0.9045975</td><td>0.01632859</td><td>55.399610</td><td>0.000000e+00</td><td> 0.8725941</td><td> 0.9366010</td></tr>
+	<tr><td>s2    </td><td>~~</td><td>s4    </td><td>-0.8859917</td><td>0.21560986</td><td>-4.109236</td><td>3.969709e-05</td><td>-1.3085793</td><td>-0.4634042</td></tr>
+	<tr><td>s1    </td><td>~~</td><td>s1    </td><td> 0.4561711</td><td>0.02932777</td><td>15.554237</td><td>0.000000e+00</td><td> 0.3986898</td><td> 0.5136525</td></tr>
+	<tr><td>s2    </td><td>~~</td><td>s2    </td><td> 0.1527720</td><td>0.02468233</td><td> 6.189531</td><td>6.034349e-10</td><td> 0.1043956</td><td> 0.2011485</td></tr>
+	<tr><td>s3    </td><td>~~</td><td>s3    </td><td> 0.2248754</td><td>0.02333594</td><td> 9.636441</td><td>0.000000e+00</td><td> 0.1791378</td><td> 0.2706130</td></tr>
+	<tr><td>s4    </td><td>~~</td><td>s4    </td><td> 0.1817033</td><td>0.02954160</td><td> 6.150760</td><td>7.711243e-10</td><td> 0.1238028</td><td> 0.2396038</td></tr>
+	<tr><td>esteem</td><td>~~</td><td>esteem</td><td> 1.0000000</td><td>0.00000000</td><td>       NA</td><td>          NA</td><td> 1.0000000</td><td> 1.0000000</td></tr>
+	<tr><td>s1    </td><td>~1</td><td>      </td><td> 2.3753651</td><td>0.07760125</td><td>30.609882</td><td>0.000000e+00</td><td> 2.2232695</td><td> 2.5274608</td></tr>
+	<tr><td>s2    </td><td>~1</td><td>      </td><td> 1.8809244</td><td>0.06578470</td><td>28.592124</td><td>0.000000e+00</td><td> 1.7519887</td><td> 2.0098600</td></tr>
+	<tr><td>s3    </td><td>~1</td><td>      </td><td> 1.5838240</td><td>0.05914055</td><td>26.780676</td><td>0.000000e+00</td><td> 1.4679106</td><td> 1.6997373</td></tr>
+	<tr><td>s4    </td><td>~1</td><td>      </td><td> 1.8496616</td><td>0.07101084</td><td>26.047595</td><td>0.000000e+00</td><td> 1.7104829</td><td> 1.9888403</td></tr>
+	<tr><td>esteem</td><td>~1</td><td>      </td><td> 0.0000000</td><td>0.00000000</td><td>       NA</td><td>          NA</td><td> 0.0000000</td><td> 0.0000000</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+</section>
+<section id="dati-mancanti-in-r">
+<h2><span class="section-number">26.3. </span>Dati mancanti in R<a class="headerlink" href="#dati-mancanti-in-r" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="motivazione">
+<h2><span class="section-number">26.4. </span>Motivazione<a class="headerlink" href="#motivazione" title="Permalink to this headline">#</a></h2>
+<p>La pulizia dei dati (<em>data cleaning</em>) in <code class="docutils literal notranslate"><span class="pre">R</span></code> è fondamentale per effettuare qualsiasi analisi. Uno degli aspetti più importanti della pulizia dei dati è la gestione dei dati mancanti. I valori mancanti (<em>missing values</em>) vengono indicati dal codice <code class="docutils literal notranslate"><span class="pre">NA</span></code>, che significa <em>not available</em> — non disponibile.</p>
+</section>
+<section id="trattamento-dei-dati-mancanti">
+<h2><span class="section-number">26.5. </span>Trattamento dei dati mancanti<a class="headerlink" href="#trattamento-dei-dati-mancanti" title="Permalink to this headline">#</a></h2>
+<p>Se una variabile contiene valori mancanti, <code class="docutils literal notranslate"><span class="pre">R</span></code> non è in grado di applicare ad essa alcune Funzioni, come ad esempio la media. Per questa ragione, la gran parte delle funzioni di <code class="docutils literal notranslate"><span class="pre">R</span></code> prevedono modi specifici per trattare i valori mancanti.</p>
+<p>Ci sono diversi tipi di dati “mancanti” in <code class="docutils literal notranslate"><span class="pre">R</span></code>;</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NA</span></code> - generico dato mancante;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NaN</span></code> - il codice <code class="docutils literal notranslate"><span class="pre">NaN</span></code> (<em>Not a Number</em>) indica i valori numerici impossibili, quali ad esempio un valore 0/0;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Inf</span></code> e <code class="docutils literal notranslate"><span class="pre">-Inf</span></code> - Infinity, si verifca, ad esempio, quando si divide un numero per 0.</p></li>
+</ul>
+<p>La funzione <code class="docutils literal notranslate"><span class="pre">is.na()</span></code> ritorna un output che indica con TRUE le celle che contengono NA o NaN.</p>
+<p>Si noti che</p>
+<ul class="simple">
+<li><p>se <code class="docutils literal notranslate"><span class="pre">is.na(x)</span></code> è TRUE, allora <code class="docutils literal notranslate"><span class="pre">!is.na(x)</span></code> è FALSE;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">all(!is.na(x))</span></code> ritorna TRUE se tutti i valori <code class="docutils literal notranslate"><span class="pre">x</span></code> sono NOT NA;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">any(is.na(x))</span></code> risponde alla domanda: c’è qualche valore NA (almeno uno) in <code class="docutils literal notranslate"><span class="pre">x</span></code>?;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">complete.cases(x)</span></code> ritorna TRUE se ciascun elemento di <code class="docutils literal notranslate"><span class="pre">x</span></code> è is NOT NA; ritorna FALSE se almeno un elemento di <code class="docutils literal notranslate"><span class="pre">x</span></code> è NA;</p></li>
+</ul>
+<p>Le funzioni <code class="docutils literal notranslate"><span class="pre">R</span></code> <code class="docutils literal notranslate"><span class="pre">is.nan()</span></code> e <code class="docutils literal notranslate"><span class="pre">is.infinite()</span></code> si applicano ai tipi di dati <code class="docutils literal notranslate"><span class="pre">NaN</span></code> e <code class="docutils literal notranslate"><span class="pre">Inf</span></code>.</p>
+<p>Per esempio, consideriamo il seguente data.frame:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">tibble</span><span class="p">(</span>
+<span class="w">  </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">),</span><span class="w"> </span>
+<span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">,</span>
+<span class="w">  </span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">d</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 5 × 5</caption>
+<thead>
+	<tr><th scope=col>w</th><th scope=col>x</th><th scope=col>y</th><th scope=col>z</th><th scope=col>q</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td> 1</td><td>1</td><td>1</td><td> 2</td><td> 3</td></tr>
+	<tr><td> 2</td><td>2</td><td>1</td><td> 5</td><td>NA</td></tr>
+	<tr><td>NA</td><td>3</td><td>1</td><td>10</td><td> 5</td></tr>
+	<tr><td> 3</td><td>4</td><td>1</td><td>17</td><td> 1</td></tr>
+	<tr><td>NA</td><td>5</td><td>1</td><td>26</td><td> 4</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">is.na</span><span class="p">(</span><span class="n">d</span><span class="o">$</span><span class="n">w</span><span class="p">)</span>
+<span class="nf">is.na</span><span class="p">(</span><span class="n">d</span><span class="o">$</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>FALSE</li><li>FALSE</li><li>TRUE</li><li>FALSE</li><li>TRUE</li></ol>
+</div><div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li><li>FALSE</li></ol>
+</div></div>
+</div>
+<p>Per creare un nuovo Dataframe senza valori mancanti:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">d_clean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="nf">complete.cases</span><span class="p">(</span><span class="n">d</span><span class="p">),</span><span class="w"> </span><span class="p">]</span>
+<span class="n">d_clean</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 2 × 5</caption>
+<thead>
+	<tr><th scope=col>w</th><th scope=col>x</th><th scope=col>y</th><th scope=col>z</th><th scope=col>q</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>1</td><td>1</td><td> 2</td><td>3</td></tr>
+	<tr><td>3</td><td>4</td><td>1</td><td>17</td><td>1</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Oppure, se vogliamo eliminare le righe con NA solo in una variabile:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">d1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">d</span><span class="o">$</span><span class="n">q</span><span class="p">),</span><span class="w"> </span><span class="p">]</span>
+<span class="n">d1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 4 × 5</caption>
+<thead>
+	<tr><th scope=col>w</th><th scope=col>x</th><th scope=col>y</th><th scope=col>z</th><th scope=col>q</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td> 1</td><td>1</td><td>1</td><td> 2</td><td>3</td></tr>
+	<tr><td>NA</td><td>3</td><td>1</td><td>10</td><td>5</td></tr>
+	<tr><td> 3</td><td>4</td><td>1</td><td>17</td><td>1</td></tr>
+	<tr><td>NA</td><td>5</td><td>1</td><td>26</td><td>4</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Se vogliamo esaminare le righe con i dati mancanti in qualunque colonna:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">d_na</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="o">!</span><span class="nf">complete.cases</span><span class="p">(</span><span class="n">d</span><span class="p">),</span><span class="w"> </span><span class="p">]</span>
+<span class="n">d_na</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 3 × 5</caption>
+<thead>
+	<tr><th scope=col>w</th><th scope=col>x</th><th scope=col>y</th><th scope=col>z</th><th scope=col>q</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td> 2</td><td>2</td><td>1</td><td> 5</td><td>NA</td></tr>
+	<tr><td>NA</td><td>3</td><td>1</td><td>10</td><td> 5</td></tr>
+	<tr><td>NA</td><td>5</td><td>1</td><td>26</td><td> 4</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Spesso i valori mancanti vengono sostiuti con valori “ragionevoli”, come ad esempio la media dei valori in quella colonna del Dataframe.  Oppure, vengono considerati come “ragionevoli” i valori che vengono predetti conoscendo le altre variabili del Dataframe.  Questa procedura si chiama <em>imputazione multipla</em>.  Questo è però un argomento avanzato che non verrà trattato in questo insegnamento.  La cosa più semplice da fare, in presenza di dati mancanti, è semplicemente quella di escludere tutte le righe nelle quali ci sono degli NAs.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="500_cat_data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">25. </span>Dati non gaussiani e categoriali</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="316_sem_intro.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">27. </span>Introduzione ai modelli di equazioni struttural</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipologie-di-dati-mancanti">26.1. Tipologie di dati mancanti</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-gestione-dei-dati-mancanti">26.2. La gestione dei dati mancanti</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-direct-ml">26.2.1. Metodo Direct ML</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">26.2.2. Un esempio concreto</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dati-mancanti-in-r">26.3. Dati mancanti in R</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivazione">26.4. Motivazione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trattamento-dei-dati-mancanti">26.5. Trattamento dei dati mancanti</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
