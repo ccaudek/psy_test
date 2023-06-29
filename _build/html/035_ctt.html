@@ -1,0 +1,1203 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>3. Fondamenti teorici &#8212; cfa_book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '035_ctt';</script>
+    <link rel="shortcut icon" href="_static/increasing.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. L’errore standard della misurazione" href="037_err_std_mis.html" />
+    <link rel="prev" title="2. L’analisi di regressione" href="010_regression.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modello lineare</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05_intro_r.html">1. Linguaggio di programmazione R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_regression.html">2. L’analisi di regressione</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="037_err_std_mis.html">4. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="038_err_std_stima.html">5. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_exercises_ctt.html">6. Applicazioni della CTT</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="050_sviluppo_strumento.html">7. Utilizzo e costruzione di test psicometrici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="055_analisi_fattoriale_1.html">8. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="056_analisi_fattoriale_2.html">9. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="057_analisi_fattoriale_3.html">10. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="058_factor_scores.html">11. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="060_path_analysis.html">12. Visualizzare i modelli di equazioni strutturali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="062_constraints_on_parms.html">13. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="070_cfa_mod_comp.html">14. CFA: confronto tra modelli</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione di strumenti psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="200_problema_strumento.html">15. Tipologie dei test psicometrici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="201_valutare_le_matrici.html">16. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="202_estrazione.html">17. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="203_numero_fattori.html">18. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="205_rotazione.html">19. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="206_valutare_sol_fattoriale.html">20. Valutare e rifinire la soluzione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="250_group_invariance.html">21. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="300_gof.html">22. Indici di bontà dell’adattamento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="310_refine_solution.html">23. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="315_mmm.html">24. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="500_cat_data.html">25. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="501_missing_data.html">26. Dati mancanti</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="316_sem_intro.html">27. Introduzione ai modelli di equazioni struttural</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="320_lgm_intro.html">28. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="321_lgm_prelims.html">29. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="324_lgm_mixed.html">30. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="326_growth_1.html">31. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="327_growth_cont.html">32. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="328_time_inv_cov.html">33. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="329_growth_groups.html">34. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="330_bivariate_growth_models.html">35. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="331_inv_measurement.html">36. Invarianza di misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="332_latent_change.html">37. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="333_biv_change.html">38. Modello LCS bivariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="351_lgm_meas_inv.html">39. Invarianza fattoriale nei modelli LGM</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="z_biblio.html">40. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="900_lin_alg.html">41. Elementi di algebra lineare</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/cfa_book_2023" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/cfa_book_2023/issues/new?title=Issue%20on%20page%20%2F035_ctt.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/035_ctt.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Fondamenti teorici</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valutazione-psicometrica-come-ragionamento-inferenziale">3.1. Valutazione psicometrica come ragionamento inferenziale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-teoria-classica">3.2. La Teoria Classica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-due-componenti-del-punteggio-osservato">3.3. Le due componenti del punteggio osservato</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-punteggio-vero">3.3.1. Il punteggio vero</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#somministrazioni-ripetute">3.3.2. Somministrazioni ripetute</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-assunzioni-sul-punteggio-ottenuto">3.3.3. Le assunzioni sul punteggio ottenuto</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-errore-standard-della-misurazione-sigma-e">3.4. L’errore standard della misurazione <span class="math notranslate nohighlight">\(\sigma_E\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assiomi-della-teoria-classica">3.5. Assiomi della Teoria Classica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-attendibilita-del-test">3.6. L’attendibilità del test</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-varianza-del-punteggio-osservato">3.6.1. La varianza del punteggio osservato</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-covarianza-tra-punteggio-osservato-e-punteggio-vero">3.6.2. La covarianza tra punteggio osservato e punteggio vero</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlazione-tra-punteggio-osservato-e-punteggio-vero">3.6.3. Correlazione tra punteggio osservato e punteggio vero</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definizione-e-significato-dell-attendibilita">3.6.4. Definizione e significato dell’attendibilità</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attendibilita-e-modello-di-regressione-lineare">3.7. Attendibilità e modello di regressione lineare</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulazione">3.7.1. Simulazione</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#misurazioni-parallele-e-affidabilita">3.8. Misurazioni parallele e affidabilità</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-correlazione-tra-due-forme-parallele-del-test">3.8.1. La correlazione tra due forme parallele del test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-correlazione-tra-punteggio-osservato-e-punteggio-vero">3.8.2. La correlazione tra punteggio osservato e punteggio vero</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-fattori-che-influenzano-l-attendibilita">3.8.3. I fattori che influenzano l’attendibilità</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodi-alternativi-per-la-stima-del-coefficiente-di-attendibilita">3.9. Metodi alternativi per la stima del coefficiente di attendibilità</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="fondamenti-teorici">
+<span id="ctt-notebook"></span><h1><span class="section-number">3. </span>Fondamenti teorici<a class="headerlink" href="#fondamenti-teorici" title="Permalink to this headline">#</a></h1>
+<section id="valutazione-psicometrica-come-ragionamento-inferenziale">
+<h2><span class="section-number">3.1. </span>Valutazione psicometrica come ragionamento inferenziale<a class="headerlink" href="#valutazione-psicometrica-come-ragionamento-inferenziale" title="Permalink to this headline">#</a></h2>
+<p>Inizialmente, i test psicometrici possono sembrare semplici strumenti di valutazione. Tuttavia, la valutazione psicologica e neuropsicologica va ben oltre l’assegnazione di punteggi. Questa pratica implica l’analisi delle osservazioni sul comportamento, le parole e le azioni delle persone per ottenere una comprensione più profonda di aspetti che non possono essere direttamente osservati. In particolare, la valutazione psicologica e neuropsicologica utilizza modelli probabilistici per formulare spiegazioni, previsioni e conclusioni.</p>
+<p>Un secolo fa, la relazione tra le prestazioni osservate e l’abilità inosservabile del rispondente iniziò ad essere formalizzata in termini di errore di misurazione. <span id="id1">Gulliksen [<a class="reference internal" href="z_biblio.html#id32" title="Harold Gulliksen. Measurement of learning and mental abilities. Technical Report, Princeton University, 1961.">Gul61</a>]</span> descrisse il problema centrale della teoria dei test come la relazione tra l’abilità dell’individuo e il suo punteggio osservato sul test (p. 101). Questa caratterizzazione rimane valida ancora oggi, con una definizione adeguatamente ampia di “abilità” e “punteggio sul test” che possa comprendere le diverse forme di valutazione psicologica e neuropsicologica. Comprendere e rappresentare la relazione tra le prestazioni osservate e l’abilità soggiacente è quindi fondamentale per il ragionamento impiegato nella valutazione psicologica e neuropsicologica.</p>
+<p>A causa dell’errore di misurazione, il ragionamento impiegato nella valutazione psicologica e neuropsicologica è un esempio di ragionamento in condizioni di incertezza. La natura imperfetta della misurazione e l’incompletezza delle informazioni disponibili rendono le nostre inferenze incerte e sempre soggette a revisione. Il passaggio dalle osservazioni parziali (ciò che vediamo un paziente dire, fare o produrre) alle conclusioni generali (la “vera” abilità del paziente) è necessariamente incerto e le nostre inferenze sono sempre soggette ad errori.</p>
+<p>Per affrontare questa incertezza sulla relazione tra le prestazioni osservate e l’abilità soggiacente, molti progressi nella teoria psicometrica sono stati resi possibili trattando lo studio della relazione tra le risposte agli item di un test e il tratto ipotizzato di un individuo come un problema di inferenza statistica <span id="id2">[<a class="reference internal" href="z_biblio.html#id31" title="Charles Lewis. Test theory and psychometrika: the past twenty-five years. Psychometrika, 51(1):11–22, 1986.">Lew86</a>]</span>. <span id="id3">[<a class="reference internal" href="z_biblio.html#id30" title="Fumiko Samejima. Constant information model on the dichotomous response level. In New horizons in testing, pages 287–308. Elsevier, 1983.">Sam83</a>]</span> ha anche proposto una connessione diretta tra errore di misura e approccio probabilistico, sostenendo che la natura complessa dei fattori che influenzano le reazioni di uno studente a uno stimolo rende necessario gestire la situazione in termini di relazione probabilistica tra i due.</p>
+<p>Il punto di vista che sottolinea l’utilità di utilizzare il linguaggio e gli strumenti della teoria della probabilità per comunicare il carattere parziale dei dati e l’incertezza delle inferenze è diventato dominante nella psicometria moderna.</p>
+<p>I reattivi psicologici possono essere costruiti e validati mediante vari approcci probabilistici, tra cui la Teoria Classica dei Test (CTT) e la Teoria di Risposta all’Item (IRT). Recentemente, il problema della valutazione psicologica è stato anche formulato in un’ottica bayesiana. In questo corso esamineremo la CTT e i suoi sviluppi più recenti.</p>
+</section>
+<section id="la-teoria-classica">
+<h2><span class="section-number">3.2. </span>La Teoria Classica<a class="headerlink" href="#la-teoria-classica" title="Permalink to this headline">#</a></h2>
+<p>La CTT nasce alla fine dell’Ottocento (Alfred Binet e altri, 1894) allo scopo di studiare l’attendibilità (o affidabilità) e la validità dei risultati dei questionari utilizzati per valutare le caratteristiche psico-sociali, non direttamente osservabili, delle persone esaminate.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>L’<em>affidabilità</em> è stata definita alternativamente come la correlazione al quadrato tra i punteggi veri e osservati (ad esempio, <a href="#id4"><span class="problematic" id="id5">lord1968statistical</span></a>, p. 61) o come il rapporto tra la varianza del punteggio vero di una scala e la sua varianza totale (ad esempio, McDonald, 1999). Queste definizioni sono matematicamente equivalenti quando la varianza del punteggio osservato è positiva, e entrambe presuppongono l’accesso alla varianza del punteggio vero di una scala. Poiché la varianza del punteggio vero è sconosciuta e può essere solo stimata dai dati osservati, la maggior parte delle stime di affidabilità si basa sull’assunzione che le covarianze osservate rappresentino necessariamente la varianza del punteggio vero.</p></li>
+<li><p>La <em>validità</em> di un test psicometrico si riferisce alla misura in cui il test effettivamente misura ciò che si propone di misurare. La validità di un test è una valutazione della sua capacità di raggiungere i suoi obiettivi e può essere valutata attraverso una serie di evidenze empiriche. Alcuni tipi comuni di validità includono:</p>
+<ol class="arabic simple">
+<li><p>Validità di contenuto: si riferisce al grado in cui il contenuto del test rappresenta adeguatamente il costrutto che si intende misurare.</p></li>
+<li><p>Validità di criterio: si riferisce al grado di associazione tra i punteggi del test e un criterio esterno che dovrebbe essere correlato al costrutto misurato. Può essere divisa in due sottocategorie:</p>
+<ul>
+<li><p>Validità predittiva: si riferisce alla capacità del test di predire il comportamento o il risultato futuro correlato al costrutto in esame.</p></li>
+<li><p>Validità concurrente: si riferisce alla correlazione tra i punteggi del test e il criterio esterno che è contemporaneamente misurato.</p></li>
+</ul>
+</li>
+<li><p>Validità di costrutto: si riferisce alla capacità del test di misurare il costrutto o la caratteristica psicologica specifica che si intende valutare.</p></li>
+<li><p>Validità convergente e discriminante: si riferisce all’associazione del test con altre misure che dovrebbero essere correlate (validità di convergenza) o non correlate (validità di discriminazione) al costrutto misurato.</p></li>
+</ol>
+</li>
+</ul>
+</div>
+<p>L’impiego su vasta scala e lo sviluppo della CTT ha inizio negli anni Trenta, anche se il modello formale su cui tale teoria si basa viene proposta da Spearman all’inizio del Novecento <span id="id6">[<a class="reference internal" href="z_biblio.html#id29" title="C Spearman. General intelligence objectively determined and measured. American Journal of Psychology, 15:201–293, 1904.">Spe04</a>]</span>. La tecnica dell’analisi fattoriale esplorativa (<em>Exploratory Factor Analysis</em>, EFA), verrà poi affinata da <span id="id7">Thurstone [<a class="reference internal" href="z_biblio.html#id20">Thu47</a>]</span> alla fine della seconda guerra mondiale. Tra la fine degli anni ‘60 e gli inizi degli anni ‘70, <span id="id8">Jöreskog [<a class="reference internal" href="z_biblio.html#id19" title="Karl G Jöreskog. A general approach to confirmatory maximum likelihood factor analysis. Psychometrika, 34(2):183–202, 1969.">Joreskog69</a>]</span> sviluppa l’analisi fattoriale confermativa (<em>Confirmatory Factor Analysis</em>, CFA). Negli anni ‘70, l’analisi fattoriale viene integrata con la path analysis nel lavoro di <span id="id9">Jöreskog [<a class="reference internal" href="z_biblio.html#id17" title="Karl G Jöreskog. Structural analysis of covariance and correlation matrices. Psychometrika, 43(4):443–477, 1978.">Joreskog78</a>]</span> che dà origine ai modelli di equazioni strutturali (<em>Structural Equation Modeling</em>, SEM).</p>
+<p>Iniziamo qui ad esaminare queste tecniche psicometriche prendendo in esame, per prima, la teoria classica dei test. Seguiremo la trattazione proposta da <span id="id10">Lord and Novick [<a class="reference internal" href="z_biblio.html#id34" title="Frederic M Lord and Melvin R Novick. Statistical theories of mental test scores. Addison-Wesley, 1968.">LN68</a>]</span>.</p>
+<p>L’equazione fondamentale alla quale si riconduce la teoria classica dei test è quella che ipotizza una relazione lineare e additiva tra il punteggio osservato di un test (<span class="math notranslate nohighlight">\(X\)</span>), la misura della variabile latente (<span class="math notranslate nohighlight">\(T\)</span>) e la
+componente casuale dell’errore (<span class="math notranslate nohighlight">\(E\)</span>). L’aspetto cruciale nella CTT riguarda la varianza dell’errore. Minore è la varianza dell’errore, più accuratamente il punteggio reale viene riflesso dai nostri punteggi osservati. In un mondo perfetto, tutti i valori di errore sarebbero uguali a 0. Cioè, ogni partecipante otterrebbe il punteggio esatto. Questo però non è possibile. Pertanto, abbiamo una certa varianza negli errori. La corrispondente deviazione standard di tali errori ha il un nome: si chiama <em>errore standard di misurazione</em>, indicato da <span class="math notranslate nohighlight">\(\sigma_E\)</span>. Uno dei principali obiettivi della CTT è quello di ottenere una stima di <span class="math notranslate nohighlight">\(\sigma_E\)</span> in modo da potere valutare la qualità di una scala psicometrica.</p>
+</section>
+<section id="le-due-componenti-del-punteggio-osservato">
+<h2><span class="section-number">3.3. </span>Le due componenti del punteggio osservato<a class="headerlink" href="#le-due-componenti-del-punteggio-osservato" title="Permalink to this headline">#</a></h2>
+<p>CTT si occupa delle relazioni tra <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(T\)</span> ed <span class="math notranslate nohighlight">\(E\)</span>. La CTT si basa su un
+modello relativamente semplice in cui il punteggio osservato, il
+punteggio vero (cioè l’abilità inosservabile del rispondente) e l’errore
+aleatorio di misurazione sono legati da una relazione lineare. Indicati
+con <span class="math notranslate nohighlight">\(T_{\nu j}\)</span> (<em>true score</em>) l’abilità latente da misurare
+dell’individuo <span class="math notranslate nohighlight">\(\nu\)</span> nella prova <span class="math notranslate nohighlight">\(j\)</span>, con <span class="math notranslate nohighlight">\(X_{\nu j}\)</span> la variabile
+osservata (<em>observed score</em>) per l’individuo <span class="math notranslate nohighlight">\(\nu\)</span> nella prova <span class="math notranslate nohighlight">\(j\)</span> e con
+<span class="math notranslate nohighlight">\(E_{\nu j}\)</span> l’errore aleatorio di misurazione, il modello è</p>
+<div class="math notranslate nohighlight" id="equation-eq-observed-true-plus-error">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-eq-observed-true-plus-error" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+X_{\nu j} = T_{\nu} + E_{\nu j}. 
+\end{equation}
+\]</div>
+<p>Dunque, in base all’eq. <a class="reference internal" href="#equation-eq-observed-true-plus-error">(3.1)</a> il punteggio osservato
+<span class="math notranslate nohighlight">\(X_{\nu j}\)</span> differisce da quello vero <span class="math notranslate nohighlight">\(T_{\nu j}\)</span> a causa di una
+componente di errore casuale la quale viene assunta essere <span class="math notranslate nohighlight">\(E_{\nu j} \sim \mathcal{N}(0, \sigma_E)\)</span>. Uno degli obiettivi centrali della CTT è quello di quantificare l’entità di tale errore (ovvero, di stimare <span class="math notranslate nohighlight">\(\sigma_E\)</span>). Vedremo come questa quantificazione verrà fornita in due forme: l’attendibilità del
+test e la stima dell’errore standard della misurazione. Si notino le similarità tra queste due misure della CTT e le misure di bontà di adattamento del modello di regressione lineare.</p>
+<ul class="simple">
+<li><p>L’attendibilità (o affidabilità) rappresenta l’accuratezza con cui un test può misurare il punteggio vero (Coaley, 2014) e corrisponde al rapporto tra la varianza dei punteggi veri e la varianza dei punteggi osservati:</p>
+<ul>
+<li><p>se l’attendibilità è grande, <span class="math notranslate nohighlight">\(\sigma_E\)</span> è piccolo – <span class="math notranslate nohighlight">\(X\)</span> ha un piccolo errore di misurazione e sarà vicino a <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
+<li><p>se l’attendibilità è piccola, <span class="math notranslate nohighlight">\(\sigma_E\)</span> è grande – <span class="math notranslate nohighlight">\(X\)</span> presenta un grande errore di misurazione e si discosterà molto da <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
+</ul>
+</li>
+<li><p>La stima dell’errore standard della misurazione è una stima della deviazione standard della variabile casuale <span class="math notranslate nohighlight">\(E\)</span> (ovvero <span class="math notranslate nohighlight">\(\sigma_E\)</span>) che corrompe i punteggi veri.</p></li>
+</ul>
+<p>Vedremo in seguito in che senso l’attendibilità della CTT possa essere messa in relazione con il coefficiente di determinazione del modello statistico della regressione lineare e come l’errore standard della misurazione della CTT possa essere messo in relazione con l’errore standard della regressione.</p>
+<section id="il-punteggio-vero">
+<h3><span class="section-number">3.3.1. </span>Il punteggio vero<a class="headerlink" href="#il-punteggio-vero" title="Permalink to this headline">#</a></h3>
+<p>L’eq. <a class="reference internal" href="#equation-eq-observed-true-plus-error">(3.1)</a> ci dice che il punteggio osservato è dato dalla somma di due componenti: una componente
+sistematica (il punteggio vero) e una componente aleatoria (l’errore di misurazione). Ma che cos’è il punteggio vero? CTT attribuisce diverse interpretazioni al punteggio vero.</p>
+<ul class="simple">
+<li><p>La CTT considera un reattivo psicologico come una selezione casuale di item da un
+universo/popolazione di item attinenti al costrutto da misurare <span id="id11">Nunnally [<a class="reference internal" href="z_biblio.html#id28" title="Jum C Nunnally. Psychometric theory. McGraw-Hill, 1994.">Nun94</a>]</span>; <span id="id12">Kline [<a class="reference internal" href="z_biblio.html#id27" title="Paul Kline. Handbook of psychological testing. Routledge, 2013.">Kli13</a>]</span>. Se il reattivo psicologico viene
+concepito in questo modo, il punteggio vero diventa il punteggio che un
+rispondente otterrebbe se fosse misurato su tutto l’universo degli item del costrutto. In questo senso, l’errore di misurazione riflette il grado in cui gli item che costituiscono il test non riescono a
+rappresentare l’intero universo degli item attinenti al costrutto.</p></li>
+<li><p>In maniera equivalente, il punteggio vero può essere concepito come il
+punteggio non “distorto” da componenti estranee al costrutto, ovvero da
+effetti di apprendimento, fatica, memoria, motivazione, eccetera.
+Essendo concepita come del tutto casuale (ovvero, priva di qualunque
+natura sistematica), la componente aleatoria non introduce alcun bias
+nella tendenza centrale della misurazione (la media di <span class="math notranslate nohighlight">\(E\)</span> viene assunta essere uguale a 0).</p></li>
+<li><p>In termini puramente statistici, il punteggio vero è un punteggio inosservabile che corrisponde al valore atteso di infinite realizzazioni del punteggio
+ottenuto:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+T = \mathbb{E}(X) \equiv \mu_X \equiv \mu_{T}.
+\]</div>
+<p>Combinando la seconda e la terza definizione presentate sopra, <a href="#id13"><span class="problematic" id="id14">lord1968statistical</span></a> concepiscono il punteggio vero come la media dei punteggi che un soggetto
+otterrebbe se il test venisse somministrato ripetutamente nelle stesse
+condizioni, in assenza di effetti di apprendimento e/o fatica.</p>
+</section>
+<section id="somministrazioni-ripetute">
+<h3><span class="section-number">3.3.2. </span>Somministrazioni ripetute<a class="headerlink" href="#somministrazioni-ripetute" title="Permalink to this headline">#</a></h3>
+<p>Nella formulazione del modello della CTT si possono distinguere due tipi
+di esperimenti aleatori: uno che considera l’unità di osservazione
+(l’individuo) come campionaria, l’altro che considera il punteggio, per
+un determinato individuo, come una variabile casuale. Un importante risultato è
+dato dall’unione di questi due esperimenti casuali, ovvero dalla dimostrazione che i
+risultati della CTT, la quale è stata sviluppata ipotizzando ipotetiche
+somministrazioni ripetute del test allo stesso individuo sotto le
+medesime condizioni, si generalizzano al caso di una singola
+somministrazione del test ad un campione di individui <span id="id15">[<a class="reference internal" href="z_biblio.html#id26" title="Mary J Allen and Wendy M Yen. Introduction to measurement theory. Waveland Press, 2001.">AY01</a>]</span>. In base a questo risultato, se consideriamo la somministrazione del test ad una popolazione di individui, allora diventa più facile assegnare un contenuto empirico alle quantità discusse dalla CTT:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\sigma^2_X\)</span> è la varianza del punteggio osservato nella popolazione,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma^2_T\)</span> è la varianza dei punteggio vero nella popolazione,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma^2_E\)</span> è la varianza della componente d’errore nella popolazione.</p></li>
+</ul>
+</section>
+<section id="le-assunzioni-sul-punteggio-ottenuto">
+<h3><span class="section-number">3.3.3. </span>Le assunzioni sul punteggio ottenuto<a class="headerlink" href="#le-assunzioni-sul-punteggio-ottenuto" title="Permalink to this headline">#</a></h3>
+<p>La CTT <em>assume</em> che la media del punteggio osservato <span class="math notranslate nohighlight">\(X\)</span> sia uguale alla
+media del punteggio vero,</p>
+<div class="math notranslate nohighlight" id="equation-eq-assunzione-media-x-media-t">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-eq-assunzione-media-x-media-t" title="Permalink to this equation">#</a></span>\[
+\mu_X \equiv \mu_{T},
+\]</div>
+<p>in altri termini, assume che il punteggio osservato fornisca una stima statisticamente corretta dell’abilità latente (punteggio vero).</p>
+<p>In pratica, il punteggio osservato non sarà mai uguale all’abilità latente, ma corrisponde solo ad uno dei possibili punteggi che il soggetto può ottenere,
+subordinatamente alla sua abilità latente. L’errore della misura è la
+differenza tra il punteggio osservato e il punteggio vero:</p>
+<div class="math notranslate nohighlight">
+\[E \equiv X - T.\]</div>
+<p>In base all’assunzione secondo cui il valore atteso dei punteggi è uguale alla media del valore vero, segue che</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}(E) = \mathbb{E}(X - T) = \mathbb{E}(X) - \mathbb{E}(T) = \mu_{T} - \mu_{T} = 0,
+\]</div>
+<p>ovvero, il valore atteso degli errori è uguale a zero.</p>
+</section>
+</section>
+<section id="l-errore-standard-della-misurazione-sigma-e">
+<h2><span class="section-number">3.4. </span>L’errore standard della misurazione <span class="math notranslate nohighlight">\(\sigma_E\)</span><a class="headerlink" href="#l-errore-standard-della-misurazione-sigma-e" title="Permalink to this headline">#</a></h2>
+<p>La radice quadrata della varianza degli errori di misurazione, ovvero la deviazione standard degli errori, <span class="math notranslate nohighlight">\(\sigma_E\)</span>, è la quantità fondamentale della CTT ed è chiamata <em>errore standard della misurazione</em>. La stima dell’errore standard della
+misurazione costituisce uno degli obiettivi più importanti della
+CTT.</p>
+<p>Ricordiamo che la deviazione standard indica quanto i dati di una distribuzione si discostano dalla media di quella distribuzione. È simile allo scarto tipico, ovvero la distanza media tra i valori della distribuzione e la loro media. Possiamo dunque utilizzare questa proprietà per descrivere il modo in cui la CTT interpreta la quantità <span class="math notranslate nohighlight">\(\sigma_E\)</span>: l’errore standard della misurazione <span class="math notranslate nohighlight">\(\sigma_E\)</span> ci dice qual è, approssimativamente, la quantità attesa di variazione del punteggio osservato, se il test venisse somministrato ripetute volte al medesimo rispondente sotto le stesse condizioni (ovvero, in assenza di effetti di apprendimento o di fatica).</p>
+</section>
+<section id="assiomi-della-teoria-classica">
+<h2><span class="section-number">3.5. </span>Assiomi della Teoria Classica<a class="headerlink" href="#assiomi-della-teoria-classica" title="Permalink to this headline">#</a></h2>
+<p>La CTT <em>assume</em> che gli errori siano delle variabili casuali incorrelate tra loro</p>
+<div class="math notranslate nohighlight">
+\[
+\rho(E_i, E_k \mid T) = 0, \qquad\text{con}\; i \neq k,
+\]</div>
+<p>e incorrelate con il punteggio vero,</p>
+<div class="math notranslate nohighlight">
+\[
+\rho(E, T) = 0,
+\]</div>
+<p>le quali seguono una distribuzione gaussiana con media zero e deviazione standard
+pari a <span class="math notranslate nohighlight">\(\sigma_E\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+E \sim \mathcal{N}(0, \sigma_E).
+\]</div>
+<p>La quantità <span class="math notranslate nohighlight">\(\sigma_E\)</span> è appunto l’errore standard della misurazione. Sulla base di tali assunzioni la CTT deriva la formula dell’attendibilità di un test.</p>
+<p>Si noti che le assunzioni della CTT hanno una corrispondenza puntuale con le assunzioni su cui si basa il modello di regressione lineare.</p>
+</section>
+<section id="l-attendibilita-del-test">
+<h2><span class="section-number">3.6. </span>L’attendibilità del test<a class="headerlink" href="#l-attendibilita-del-test" title="Permalink to this headline">#</a></h2>
+<p>In questa sezione vedremo come il coefficiente di attendibilità (altri termini
+che vengono usati sono: affidabilità, costanza, credibilità) fornisce una
+stima della quota della varianza del punteggio osservato che può essere
+attribuita all’abilità latente (“punteggio vero”, cioè privo di errore
+di misurazione). In generale, un coefficiente di attendibilità maggiore
+di 0.80 viene ritenuto soddisfacente perché indica che l’80% o più della
+varianza dei punteggi ottenuti è causata da ciò che il test intende
+misurare, anziché dall’errore di misurazione.</p>
+<p>Per definire l’attendibilità, la CTT si serve di due quantità:</p>
+<ul class="simple">
+<li><p>la varianza del punteggio osservato,</p></li>
+<li><p>la correlazione tra punteggio osservato e punteggio vero.</p></li>
+</ul>
+<p>Vediamo ora come queste quantità possano essere ottenute sulla base delle
+assunzioni del modello statistico che sta alla base della CTT.</p>
+<section id="la-varianza-del-punteggio-osservato">
+<h3><span class="section-number">3.6.1. </span>La varianza del punteggio osservato<a class="headerlink" href="#la-varianza-del-punteggio-osservato" title="Permalink to this headline">#</a></h3>
+<p>La varianza del punteggio osservato <span class="math notranslate nohighlight">\(X\)</span> è uguale alla somma della
+varianza del punteggio vero e della varianza dell’errore di misurazione:</p>
+<div class="math notranslate nohighlight" id="equation-eq-var-sum">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-eq-var-sum" title="Permalink to this equation">#</a></span>\[
+\sigma^2_X =   \sigma_T^2 + \sigma_E^2.
+\]</div>
+<div class="proof admonition" id="proof">
+<p>Proof. La varianza del punteggio osservato è uguale a</p>
+<div class="math notranslate nohighlight" id="equation-eq-3-2-4">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-eq-3-2-4" title="Permalink to this equation">#</a></span>\[
+\sigma^2_X =  \mathbb{V}(T+E) =  \sigma_T^2 + \sigma_E^2 + 2 \sigma_{TE}.
+\]</div>
+<p>Dato che <span class="math notranslate nohighlight">\(\sigma_{TE}=\rho_{TE}\sigma_T \sigma_E=0\)</span>, in quanto <span class="math notranslate nohighlight">\(\rho_{TE}=0\)</span>, ne segue che</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma^2_X =   \sigma_T^2 + \sigma_E^2.
+\]</div>
+</div>
+</section>
+<section id="la-covarianza-tra-punteggio-osservato-e-punteggio-vero">
+<h3><span class="section-number">3.6.2. </span>La covarianza tra punteggio osservato e punteggio vero<a class="headerlink" href="#la-covarianza-tra-punteggio-osservato-e-punteggio-vero" title="Permalink to this headline">#</a></h3>
+<p>La covarianza tra punteggio osservato <span class="math notranslate nohighlight">\(X\)</span> e punteggio vero <span class="math notranslate nohighlight">\(T\)</span> è uguale alla varianza del punteggio vero:</p>
+<div class="math notranslate nohighlight" id="equation-eq-cov-obs-true">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-eq-cov-obs-true" title="Permalink to this equation">#</a></span>\[
+\sigma_{X T} = \sigma_T^2.
+\]</div>
+<div class="proof admonition" id="proof">
+<p>Proof. La covarianza tra punteggio osservato e punteggio vero è uguale a</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\sigma_{X T} &amp;= \mathbb{E}(XT) - \mathbb{E}(X)\mathbb{E}(T)\notag\\
+&amp;=  \mathbb{E}[(T+E)T] - \mathbb{E}(T+E)\mathbb{E}(T)\notag\\
+&amp;=  \mathbb{E}(T^2) + \underbrace{\mathbb{E}(ET)}_{=0} - [\mathbb{E}(T)]^2 -  \underbrace{\mathbb{E}(E)}_{=0} \mathbb{E}(T)\notag\\
+&amp;=\mathbb{E}(T^2) - [\mathbb{E}(T)]^2\notag \\
+&amp;= \sigma_T^2.
+\end{aligned}
+\end{split}\]</div>
+</div>
+</section>
+<section id="correlazione-tra-punteggio-osservato-e-punteggio-vero">
+<h3><span class="section-number">3.6.3. </span>Correlazione tra punteggio osservato e punteggio vero<a class="headerlink" href="#correlazione-tra-punteggio-osservato-e-punteggio-vero" title="Permalink to this headline">#</a></h3>
+<p>La correlazione tra punteggio osservato <span class="math notranslate nohighlight">\(X\)</span> e punteggio vero <span class="math notranslate nohighlight">\(T\)</span> è uguale al rapporto tra la covarianza tra <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(T\)</span> divisa per il prodotto delle due deviazioni standard:</p>
+<div class="math notranslate nohighlight" id="equation-eq-sd-ratio">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-eq-sd-ratio" title="Permalink to this equation">#</a></span>\[
+\rho_{XT} = \frac{\sigma_{XT}}{\sigma_X \sigma_T} = \frac{\sigma^2_{T}}{\sigma_X \sigma_T} = \frac{\sigma_{T}}{\sigma_X}.
+\]</div>
+<p>Dunque, la correlazione tra il punteggio osservato e il punteggio vero è uguale al rapporto tra la deviazione standard dei punteggi veri e la deviazione standard dei punteggi osservati.</p>
+</section>
+<section id="definizione-e-significato-dell-attendibilita">
+<h3><span class="section-number">3.6.4. </span>Definizione e significato dell’attendibilità<a class="headerlink" href="#definizione-e-significato-dell-attendibilita" title="Permalink to this headline">#</a></h3>
+<p>Sulla base della <span class="xref std std-ref">eq-sd-ratio</span> giungiamo alla definizione dell’attendibilità.
+La CTT definisce attendibilità di un test (o di un item) come il rapporto tra la varianza del punteggio vero e la varianza del punteggio osservato, ovvero come il
+quadrato della correlazione tra punteggio osservato <span class="math notranslate nohighlight">\(X\)</span> e punteggio vero
+<span class="math notranslate nohighlight">\(T\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-reliability-1">
+<span class="eqno">(3.7)<a class="headerlink" href="#equation-eq-reliability-1" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+\rho_{XT}^2 = \frac{\sigma_{T}^2}{\sigma_X^2}.
+\end{equation}
+\]</div>
+<p>Questa è la quantità fondamentale della CTT e misura il grado di variazione del punteggio vero rispetto alla variazione del punteggio osservato. Dato che <span class="math notranslate nohighlight">\(\sigma^2_X = \sigma_T^2 + \sigma_E^2\)</span>, in base alla <span class="xref std std-ref">eq-reliability-1</span> possiamo scrivere</p>
+<div class="math notranslate nohighlight" id="equation-eq-3-2-6">
+<span class="eqno">(3.8)<a class="headerlink" href="#equation-eq-3-2-6" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+\rho_{XT}^2 = \frac{\sigma_{T}^2}{\sigma_X^2} =\frac{\sigma_{X}^2 - \sigma^2_E}{\sigma_X^2} = 1-\frac{\sigma_{E}^2}{\sigma_X^2}.
+\end{equation}
+\]</div>
+<p>La <a class="reference internal" href="#equation-eq-3-2-6">(3.8)</a> ci dice che il coefficiente di attendibilità assume valore <span class="math notranslate nohighlight">\(1\)</span> se la varianza degli errori <span class="math notranslate nohighlight">\(\sigma_{E}^2\)</span> è nulla e assume valore <span class="math notranslate nohighlight">\(0\)</span> se la varianza degli errori è uguale alla varianza del punteggio osservato. Il coefficiente di attendibilità è dunque un numero puro contenuto nell’intervallo compreso tra <span class="math notranslate nohighlight">\(0\)</span> e <span class="math notranslate nohighlight">\(1\)</span>.</p>
+</section>
+</section>
+<section id="attendibilita-e-modello-di-regressione-lineare">
+<h2><span class="section-number">3.7. </span>Attendibilità e modello di regressione lineare<a class="headerlink" href="#attendibilita-e-modello-di-regressione-lineare" title="Permalink to this headline">#</a></h2>
+<p>In parole semplici, la CTT (Teoria Classica dei Test) si basa sul modello di regressione lineare, dove i punteggi osservati sono considerati come variabile dipendente e i punteggi veri come variabile indipendente. Il coefficiente di attendibilità <span class="math notranslate nohighlight">\(\rho_{XT}^2\)</span> rappresenta la proporzione di varianza nella variabile dipendente spiegata dalla variabile indipendente in un modello di regressione lineare con una pendenza unitaria e un’intercetta di zero. In altre parole, il coefficiente di attendibilità è equivalente al coefficiente di determinazione del modello di regressione.</p>
+<section id="simulazione">
+<h3><span class="section-number">3.7.1. </span>Simulazione<a class="headerlink" href="#simulazione" title="Permalink to this headline">#</a></h3>
+<p>Per dare un contenuto concreto alle affermazioni precedenti, consideriamo la seguente simulazione svolta in <span class="math notranslate nohighlight">\(\textsf{R}\)</span>. In tale simulazione il punteggio vero <span class="math notranslate nohighlight">\(T\)</span> e l’errore <span class="math notranslate nohighlight">\(E\)</span> sono creati in modo tale da soddisfare i vincoli della CTT: <span class="math notranslate nohighlight">\(T\)</span> e <span class="math notranslate nohighlight">\(E\)</span> sono variabili casuali gaussiane tra loro incorrelate. Nella simulazione generiamo 100 coppie di valori <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(T\)</span> con i seguenti parametri: <span class="math notranslate nohighlight">\(T \sim \mathcal{N}(\mu_T = 12, \sigma^2_T = 6)\)</span>, <span class="math notranslate nohighlight">\(E \sim \mathcal{N}(\mu_E = 0, \sigma^2_T = 3)\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">12345</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="s">&quot;MASS&quot;</span><span class="p">)</span>
+
+<span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">100</span>
+<span class="n">Sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="n">Sigma</span>
+<span class="n">mu</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+<span class="n">mu</span>
+<span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mvrnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">Sigma</span><span class="p">,</span><span class="w"> </span><span class="n">empirical</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="bp">T</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Y</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span>
+<span class="n">E</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Y</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: ‘MASS’
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following object is masked from ‘package:patchwork’:
+
+    area
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following object is masked from ‘package:dplyr’:
+
+    select
+</pre></div>
+</div>
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 2 × 2 of type dbl</caption>
+<tbody>
+	<tr><td>6</td><td>0</td></tr>
+	<tr><td>0</td><td>3</td></tr>
+</tbody>
+</table>
+</div><div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>12</li><li>0</li></ol>
+</div></div>
+</div>
+<p>Le istruzioni precedenti (<code class="docutils literal notranslate"><span class="pre">empirical</span> <span class="pre">=</span> <span class="pre">TRUE</span></code>) creano un campione di valori nei quali  le medie e la matrice di covarianze assumono esattamente i valori richiesti. Possiamo dunque immaginare tale insieme di dati come la “popolazione”.</p>
+<p>Secondo la CTT, il punteggio osservato è <span class="math notranslate nohighlight">\(X = T + E\)</span>. Simuliamo dunque
+il punteggio osservato <span class="math notranslate nohighlight">\(X\)</span> come:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="bp">T</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">E</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Le prime 6 osservazioni così ottenute sono:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span><span class="bp">T</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 6 × 3 of type dbl</caption>
+<thead>
+	<tr><th scope=col>T</th><th scope=col>E</th><th scope=col>X</th></tr>
+</thead>
+<tbody>
+	<tr><td>12.825569</td><td>-0.05019948</td><td>12.775370</td></tr>
+	<tr><td>11.888097</td><td> 2.26138690</td><td>14.149484</td></tr>
+	<tr><td>11.622652</td><td>-0.85584361</td><td>10.766808</td></tr>
+	<tr><td> 9.445738</td><td> 1.72023175</td><td>11.165970</td></tr>
+	<tr><td>12.794828</td><td> 0.09757963</td><td>12.892407</td></tr>
+	<tr><td> 7.425294</td><td>-0.50493930</td><td> 6.920355</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Un diagramma di dispersione è fornito nella figura seguente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">tibble</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="bp">T</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="bp">T</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/36de510aa33431d8fa8f6c77c9e22cc00cc0152eea2d84ea628c26a2a1f1232c.png" src="_images/36de510aa33431d8fa8f6c77c9e22cc00cc0152eea2d84ea628c26a2a1f1232c.png" />
+</div>
+</div>
+<p>Secondo la CTT, il valore atteso di <span class="math notranslate nohighlight">\(T\)</span> è uguale al valore atteso di
+<span class="math notranslate nohighlight">\(X\)</span>. Verifichiamo questa assunzione nei nostri dati:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">mean</span><span class="p">(</span><span class="bp">T</span><span class="p">)</span>
+<span class="nf">mean</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">12</div><div class="output text_html">12</div></div>
+</div>
+<p>L’errore deve avere media zero, varianza <span class="math notranslate nohighlight">\(\sigma_E^2\)</span> e deve essere
+incorrelato con <span class="math notranslate nohighlight">\(T\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">mean</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+<span class="nf">var</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+<span class="nf">cor</span><span class="p">(</span><span class="bp">T</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">9.27394012278926e-17</div><div class="output text_html">3</div><div class="output text_html">-1.53436207573137e-16</div></div>
+</div>
+<p>Ricordiamo che la radice quadrata della varianza degli errori è l’errore standard della misurazione, <span class="math notranslate nohighlight">\(\sigma_E\)</span>. La quantità <span class="math notranslate nohighlight">\(\sqrt{\sigma_E^2}\)</span> fornisce una misura della dispersione del punteggio osservato attorno al valore vero, nella condizione ipotetica di ripetute somministrazioni del test:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sqrt</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">1.73205080756888</div></div>
+</div>
+<p>Dato che <span class="math notranslate nohighlight">\(T\)</span> e <span class="math notranslate nohighlight">\(E\)</span> sono incorrelati, ne segue che la varianza del punteggio osservato <span class="math notranslate nohighlight">\(X\)</span> è uguale alla somma della varianza del punteggio vero <span class="math notranslate nohighlight">\(T\)</span> e della varianza degli errori <span class="math notranslate nohighlight">\(E\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">var</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nf">var</span><span class="p">(</span><span class="bp">T</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">9</div><div class="output text_html">9</div></div>
+</div>
+<p>La varianza del punteggio vero <span class="math notranslate nohighlight">\(T\)</span> è uguale alla covarianza tra il
+punteggio vero <span class="math notranslate nohighlight">\(T\)</span> e il punteggio osservato <span class="math notranslate nohighlight">\(X\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">var</span><span class="p">(</span><span class="bp">T</span><span class="p">)</span>
+<span class="nf">cov</span><span class="p">(</span><span class="bp">T</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">6</div><div class="output text_html">6</div></div>
+</div>
+<p>La correlazione tra punteggio osservato e punteggio vero è uguale al rapporto tra la deviazione standard del punteggio vero e la deviazione standard del punteggio osservato:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cor</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="bp">T</span><span class="p">)</span>
+<span class="nf">sd</span><span class="p">(</span><span class="bp">T</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sd</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.816496580927726</div><div class="output text_html">0.816496580927726</div></div>
+</div>
+<p>Per la CTT, l’attendibilità è uguale al quadrato del coefficiente di correlazione tra il punteggio vero <span class="math notranslate nohighlight">\(T\)</span> e il punteggio osservato <span class="math notranslate nohighlight">\(X\)</span>, ovvero:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cor</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="bp">T</span><span class="p">)</span><span class="o">^</span><span class="m">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.666666666666666</div></div>
+</div>
+<p>La motivazione di questa simulazione è quella di mettere in relazione il
+coefficiente di attendibilità, calcolato con la formula della CTT (come abbiamo fatto sopra), con il modello di regressione lineare. Analizziamo dunque i dati della
+simulazione mediante il seguente modello di regressione lineare:</p>
+<div class="math notranslate nohighlight">
+\[
+X = a + b T + E.
+\]</div>
+<p>Usando <span class="math notranslate nohighlight">\(\textsf{R}\)</span> otteniamo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="bp">T</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">fm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+lm(formula = X ~ T)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.2022 -1.0875 -0.0178  1.1394  3.7528 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 2.842e-15  8.746e-01       0        1    
+T           1.000e+00  7.143e-02      14   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.741 on 98 degrees of freedom
+Multiple R-squared:  0.6667,	Adjusted R-squared:  0.6633 
+F-statistic:   196 on 1 and 98 DF,  p-value: &lt; 2.2e-16
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si noti che la retta di regressione ha intercetta 0 e pendenza 1. Questo è coerente con l’assunzione <span class="math notranslate nohighlight">\(\mathbb{E}(X) = \mathbb{E}(T)\)</span>. Ma il risultato più importante di questa simulazione è che il coefficiente di determinazione (<span class="math notranslate nohighlight">\(R^2\)</span> = 0.67) del modello di regressione <span class="math notranslate nohighlight">\(X = 0 + 1 \times T + E\)</span> è identico al coefficiente di attendibilità calcolato con la formula <span class="math notranslate nohighlight">\(\rho_{XT}^2 = \frac{\sigma_{T}^2}{\sigma_X^2}\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">var</span><span class="p">(</span><span class="bp">T</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.666666666666667</div></div>
+</div>
+<p>Ciò ci consente di interpretare il coefficiente di attendibilità nel modo
+seguente: l’attendibilità di un test non è altro che la quota di varianza del punteggio osservato <span class="math notranslate nohighlight">\(X\)</span> che viene spiegata dalla regressione di <span class="math notranslate nohighlight">\(X\)</span> sul punteggio vero <span class="math notranslate nohighlight">\(T\)</span> in un modello di regressione lineare dove <span class="math notranslate nohighlight">\(\alpha\)</span> = 0 e <span class="math notranslate nohighlight">\(\beta\)</span> = 1.</p>
+</section>
+</section>
+<section id="misurazioni-parallele-e-affidabilita">
+<h2><span class="section-number">3.8. </span>Misurazioni parallele e affidabilità<a class="headerlink" href="#misurazioni-parallele-e-affidabilita" title="Permalink to this headline">#</a></h2>
+<p>L’equazione <span class="math notranslate nohighlight">\(\rho_{XT}^2 = \frac{\sigma_{T}^2}{\sigma_X^2}\)</span> definisce il
+coefficiente di attendibilità ma non ci fornisce gli strumenti per
+calcolarlo in pratica, dato che la varianza del punteggio vero <span class="math notranslate nohighlight">\(\sigma_{T}^2\)</span> è una
+quantità incognita. Il metodo utilizzato dalla CTT per ottenere una
+stima empirica dell’attendibilità è quello delle <em>forme parallele</em> del
+test: se è possibile elaborare versioni alternative dello stesso test
+che risultino equivalenti tra loro in termini di contenuto, modalità di
+risposta e caratteristiche statistiche, allora diventa anche possibile
+stimare il coefficiente di attendibilità.</p>
+<p>Secondo la CTT, due test <span class="math notranslate nohighlight">\(X=T+E\)</span> e <span class="math notranslate nohighlight">\(X^\prime=T^\prime+E^\prime\)</span> si dicono misurazioni
+parallele della stessa abilità latente se</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T = T^\prime\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{V}(E) = \mathbb{V}(E^\prime)\)</span>.</p></li>
+</ul>
+<p>Da tali assunzioni segue che <span class="math notranslate nohighlight">\(\mathbb{E}(X) = \mathbb{E}(X^\prime)\)</span>.</p>
+<div class="proof admonition" id="proof">
+<p>Proof. Dato che <span class="math notranslate nohighlight">\(\mathbb{E}(X) = T\)</span> e che <span class="math notranslate nohighlight">\(\mathbb{E}(X^\prime) = T\)</span>, è immediato vedere che <span class="math notranslate nohighlight">\(\mathbb{E}(X) =\mathbb{E}(X^\prime)\)</span> in quanto <span class="math notranslate nohighlight">\(\mathbb{E}(E) = \mathbb{E}(E^\prime) = 0\)</span>.</p>
+</div>
+<p>In maniera corrispondente, anche le varianze dei punteggi osservati di due misurazioni parallele devono essere uguali, <span class="math notranslate nohighlight">\(\mathbb{V}(X) = \mathbb{V}(X^\prime)\)</span>.</p>
+<div class="proof admonition" id="proof">
+<p>Proof. Per <span class="math notranslate nohighlight">\(X\)</span> abbiamo che <span class="math notranslate nohighlight">\(\mathbb{V}(X) = \mathbb{V}(T + E) = \mathbb{V}(T) + \mathbb{V}(E)\)</span>; per <span class="math notranslate nohighlight">\(X^\prime\)</span> abbiamo che <span class="math notranslate nohighlight">\(\mathbb{V}(X^\prime) = \mathbb{V}(T^\prime + E^\prime) = \mathbb{V}(T^\prime) + \mathbb{V}(E^\prime)\)</span>. Dato che <span class="math notranslate nohighlight">\(\mathbb{V}(E) = \mathbb{V}(E^\prime)\)</span> e che <span class="math notranslate nohighlight">\(T = T^\prime\)</span>, ne segue che <span class="math notranslate nohighlight">\(\mathbb{V}(X) = \mathbb{V}(X^\prime)\)</span>.</p>
+</div>
+<p>Per costruzione, inoltre, gli errori <span class="math notranslate nohighlight">\(E\)</span> e <span class="math notranslate nohighlight">\(E^\prime\)</span> devono essere incorrelati con <span class="math notranslate nohighlight">\(T\)</span> e tra loro.</p>
+<section id="la-correlazione-tra-due-forme-parallele-del-test">
+<h3><span class="section-number">3.8.1. </span>La correlazione tra due forme parallele del test<a class="headerlink" href="#la-correlazione-tra-due-forme-parallele-del-test" title="Permalink to this headline">#</a></h3>
+<p>Dimostriamo ora che, in base alle assunzioni della CTT, la correlazione tra  due forme parallele del test è uguale al rapporto tra la varianza del punteggio vero e la varianza del punteggio osservato.</p>
+<div class="proof admonition" id="proof">
+<p>Proof. Assumendo, senza perdita di generalità, che <span class="math notranslate nohighlight">\(\mathbb{E}(X)=\mathbb{E}(X')=\mathbb{E}(T)=0\)</span>, possiamo scrivere</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{aligned}
+\rho_{X X^\prime} &amp;= \frac{\sigma(X, X^\prime)}{\sigma(X) \sigma(X^\prime)}\notag\\
+&amp;= \frac{\mathbb{E}(XX^\prime)}{\sigma(X) \sigma(X^\prime)}\notag\\
+&amp;=\frac{\mathbb{E}[(T+E)(T+E^\prime)]}{\sigma(X) \sigma(X^\prime)}\notag\\
+&amp;=\frac{\mathbb{E}(T^2)+\mathbb{E}(TE^\prime)+\mathbb{E}(TE)+ \mathbb{E}(EE^\prime)}{\sigma(X) \sigma(X^\prime)}.\notag
+\end{aligned}
+\end{equation}
+\end{split}\]</div>
+<p>Ma <span class="math notranslate nohighlight">\(\mathbb{E}(TE) = \mathbb{E}(TE^\prime) = \mathbb{E}(EE^\prime)=0\)</span>. Inoltre, <span class="math notranslate nohighlight">\(\sigma(X) =\sigma(X^\prime)= \sigma_X\)</span>. Dunque,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+\rho_{X X^\prime} =\frac{\mathbb{E}(T^2)}{\sigma_X \sigma_X} = \frac{\sigma^2_T}{\sigma^2_X}.
+(\#eq:3-3-5)
+\end{equation}
+\]</div>
+</div>
+<p>Si noti come la &#64;ref(eq:3-3-5) e l’equazione che definisce il coefficiente di attendibilità, ovvero <span class="math notranslate nohighlight">\(\rho_{XT}^2 = \frac{\sigma_{T}^2}{\sigma_X^2}\)</span>, riportano tutte e due la stessa quantità a destra dell’uguale. Otteniamo così un importante risultato: il coefficiente di attendibilità, ovvero il quadrato del coefficiente di correlazione tra il punteggio osservato e il punteggio vero, è uguale alla correlazione tra il valore osservato di due misurazioni parallele:</p>
+<div class="math notranslate nohighlight" id="equation-eq-rho2xt-rhoxx">
+<span class="eqno">(3.9)<a class="headerlink" href="#equation-eq-rho2xt-rhoxx" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+\rho^2_{XT} =  \rho_{XX^\prime}.
+\end{equation}
+\]</div>
+<p>Tale risultato è importante perché consente di esprimere la quantità inosservabile <span class="math notranslate nohighlight">\(\rho^2_{XT}\)</span> nei termini della quantità <span class="math notranslate nohighlight">\(\rho_{XX^\prime}\)</span> che può essere calcolata sulla base dei punteggi osservati di due forme parallele del test. Quindi, la stima di <span class="math notranslate nohighlight">\(\rho^2_{XT}\)</span> si riduce alla stima di <span class="math notranslate nohighlight">\(\rho^2_{XX^\prime}\)</span>. Per questa ragione, la {}ref{eq-rho2xt-rhoxx} è forse la formula più importante della CTT. Inoltre, è importante notare che l’eq. <span class="xref std std-ref">eq:rho2xt-rhoxx</span> fornisce la giustificazione per l’utilizzo della correlazione split-half come misura di attendibilità.</p>
+</section>
+<section id="la-correlazione-tra-punteggio-osservato-e-punteggio-vero">
+<h3><span class="section-number">3.8.2. </span>La correlazione tra punteggio osservato e punteggio vero<a class="headerlink" href="#la-correlazione-tra-punteggio-osservato-e-punteggio-vero" title="Permalink to this headline">#</a></h3>
+<p>Consideriamo ora la correlazione tra punteggio osservato e punteggio vero. La <span class="xref std std-ref">eq-rho2xt-rhoxx</span> si può scrivere come</p>
+<div class="math notranslate nohighlight">
+\[
+\rho_{XT} = \sqrt{\rho_{XX^\prime}}.
+\]</div>
+<p>In altri termini: la radice quadrata del coefficiente di attendibilità è uguale alla correlazione tra il punteggio osservato e il punteggio vero.</p>
+</section>
+<section id="i-fattori-che-influenzano-l-attendibilita">
+<h3><span class="section-number">3.8.3. </span>I fattori che influenzano l’attendibilità<a class="headerlink" href="#i-fattori-che-influenzano-l-attendibilita" title="Permalink to this headline">#</a></h3>
+<p>Considerando le tre equazioni</p>
+<div class="math notranslate nohighlight">
+\[
+\rho^2_{XT} = \rho_{XX'},\quad
+\rho_{XT}^2 = \frac{\sigma_{T}^2}{\sigma_X^2}, \quad
+\rho_{XT}^2 = 1-\frac{\sigma_{E}^2}{\sigma_X^2},
+\]</div>
+<p>possiamo dire che ci sono tre modi equivalenti per concludere che l’attendibilità di un test è alta. La attendibilità di un test è considerata alta se si verificano le seguenti condizioni:</p>
+<p>-La correlazione tra le forme parallele del test è alta.</p>
+<ul class="simple">
+<li><p>La varianza del punteggio vero è grande rispetto alla varianza del punteggio osservato.</p></li>
+<li><p>La varianza dell’errore di misura è piccola rispetto alla varianza del punteggio osservato.</p></li>
+</ul>
+<p>Queste considerazioni sono importanti per la progettazione di un test. In particolare, l’equazione <span class="math notranslate nohighlight">\(\rho^2_{XT} = \rho_{XX'}\)</span> fornisce un criterio per la selezione degli item da includere nel test. Se interpretiamo <span class="math notranslate nohighlight">\(\rho_{XX'}\)</span> come la correlazione tra due item, allora gli item che hanno la correlazione più alta tra di loro dovrebbero essere inclusi nel test. In questo modo, l’attendibilità del test aumenta perché gli item inclusi sono maggiormente correlati con il punteggio vero.</p>
+</section>
+</section>
+<section id="metodi-alternativi-per-la-stima-del-coefficiente-di-attendibilita">
+<h2><span class="section-number">3.9. </span>Metodi alternativi per la stima del coefficiente di attendibilità<a class="headerlink" href="#metodi-alternativi-per-la-stima-del-coefficiente-di-attendibilita" title="Permalink to this headline">#</a></h2>
+<p>In pratica, come si stima l’affidabilità di un test? Per stimare l’affidabilità di un test, esistono diversi metodi. Uno di questi consiste nella somministrazione dello stesso test a un gruppo di individui in due momenti diversi, in modo da calcolare la correlazione dei punteggi totali ottenuti (<em>test-retest reliability</em>).Questo metodo può essere giustificato in due modi diversi <span class="xref std std-ref">mcdonald2013test</span>.</p>
+<ul class="simple">
+<li><p>Il primo si basa sull’assunzione che il valore vero non varia tra le due somministrazioni del test. In tal caso, gli errori commessi dai partecipanti durante le due somministrazioni sono indipendenti tra loro e la correlazione tra i punteggi totali ci fornisce una stima del coefficiente di correlazione tra gli item del test. Tuttavia, non è possibile distinguere questa situazione ideale dal caso in cui viene violata l’assunzione di invarianza del punteggio vero.</p></li>
+<li><p>Il secondo metodo si basa sulla definizione del punteggio vero di retest come la componente del punteggio osservato che non varia tra le due somministrazioni. In questo caso, il coefficiente di attendibilità viene concepito come un coefficiente di stabilità temporale, che diminuisce all’aumentare dell’intervallo di tempo tra le due somministrazioni.</p></li>
+</ul>
+<p>Il metodo test-retest ha il limite di fornire solo un sottoinsieme delle informazioni che verrebbero raccolte da uno studio longitudinale che copre un periodo di tempo maggiore. Se fosse possibile eseguire uno studio di questo tipo, potremmo trovare la funzione che descrive la variazione del punteggio osservato in funzione del tempo. In
+generale, tale funzione non può essere descritta da un singolo
+parametro. Resta dunque aperta la domanda di quale sia relazione tra questa
+funzione e il coefficiente di attendibilità.</p>
+<p>Se sono disponibili due forme parallele dello stesso test,
+l’affidabilità può essere calcolata mediante il coefficiente di
+correlazione dei punteggi totali dei due test (<em>parallel-forms
+reliability</em>), valendo l’uguaglianza <span class="math notranslate nohighlight">\(\rho_{XX^\prime} = \rho^2_{XT}\)</span>. Anche
+questo metodo, come il metodo del test-retest, non è esente da errori.</p>
+<p>Il metodo di stima più diffuso è quello dell’attendibilità come consistenza interna
+(<em>internal consistency reliability</em>), originariamente ricavato da <span id="id16">Kuder and Richardson [<a class="reference internal" href="z_biblio.html#id25" title="G Frederic Kuder and Marion W Richardson. The theory of the estimation of test reliability. Psychometrika, 2(3):151–160, 1937.">KR37</a>]</span> per item dicotomici e poi generalizzato da <span id="id17">Cronbach [<a class="reference internal" href="z_biblio.html#id24" title="Lee J Cronbach. Coefficient alpha and the internal structure of tests. psychometrika, 16(3):297–334, 1951.">Cro51</a>]</span> per item a risposte ordinali. L’idea su cui si basa consiste nel fatto che ogni singolo item del test, se confrontato con tutti gli altri, può essere usato per stimare l’affidabilità del test. L’analisi degli item valuta dunque quanto gli item del test misurano lo stesso costrutto.</p>
+<!-- [^2]: Vedremo in seguito -->
+<!--     (§ [\[ch:err_stnd_stima\]](#ch:err_stnd_stima){reference-type="ref" -->
+<!--     reference="ch:err_stnd_stima"}) come il livello di abilità latente -->
+<!--     (il punteggio vero) possa essere stimato con la formula di Kelley -->
+<!--     (1923), ovvero $$\begin{aligned} -->
+<!--     \hat{T}_i &= \rho_{XT} x_i + (1 - \rho_{XT})\mu_x\notag\\ -->
+<!--     &= \mu_x + \rho_{XT} (x_i - \mu_x),\notag\end{aligned}$$ dove -->
+<!--     $\mu_x$ è la media dei punteggio osservato e $\hat{T}_i$ è la stima -->
+<!--     del punteggio vero per l'$i$-esimo rispondente. -->
+<!-- [^3]:  --></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="010_regression.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>L’analisi di regressione</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="037_err_std_mis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>L’errore standard della misurazione</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valutazione-psicometrica-come-ragionamento-inferenziale">3.1. Valutazione psicometrica come ragionamento inferenziale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-teoria-classica">3.2. La Teoria Classica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-due-componenti-del-punteggio-osservato">3.3. Le due componenti del punteggio osservato</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-punteggio-vero">3.3.1. Il punteggio vero</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#somministrazioni-ripetute">3.3.2. Somministrazioni ripetute</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#le-assunzioni-sul-punteggio-ottenuto">3.3.3. Le assunzioni sul punteggio ottenuto</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-errore-standard-della-misurazione-sigma-e">3.4. L’errore standard della misurazione <span class="math notranslate nohighlight">\(\sigma_E\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assiomi-della-teoria-classica">3.5. Assiomi della Teoria Classica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-attendibilita-del-test">3.6. L’attendibilità del test</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-varianza-del-punteggio-osservato">3.6.1. La varianza del punteggio osservato</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-covarianza-tra-punteggio-osservato-e-punteggio-vero">3.6.2. La covarianza tra punteggio osservato e punteggio vero</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlazione-tra-punteggio-osservato-e-punteggio-vero">3.6.3. Correlazione tra punteggio osservato e punteggio vero</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definizione-e-significato-dell-attendibilita">3.6.4. Definizione e significato dell’attendibilità</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attendibilita-e-modello-di-regressione-lineare">3.7. Attendibilità e modello di regressione lineare</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulazione">3.7.1. Simulazione</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#misurazioni-parallele-e-affidabilita">3.8. Misurazioni parallele e affidabilità</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-correlazione-tra-due-forme-parallele-del-test">3.8.1. La correlazione tra due forme parallele del test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-correlazione-tra-punteggio-osservato-e-punteggio-vero">3.8.2. La correlazione tra punteggio osservato e punteggio vero</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-fattori-che-influenzano-l-attendibilita">3.8.3. I fattori che influenzano l’attendibilità</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodi-alternativi-per-la-stima-del-coefficiente-di-attendibilita">3.9. Metodi alternativi per la stima del coefficiente di attendibilità</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
