@@ -1,0 +1,592 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>3. Sviluppo dello strumento &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '006_development';</script>
+    <link rel="shortcut icon" href="_static/increasing.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. Fondamenti teorici" href="035_ctt.html" />
+    <link rel="prev" title="2. Tipologie dei test psicometrici" href="005_problema_strumento.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Test psicometrici</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">1. Prefazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="005_problema_strumento.html">2. Tipologie dei test psicometrici</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Sviluppo dello strumento</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="035_ctt.html">4. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="037_err_std_mis.html">5. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="038_err_std_stima.html">6. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="040_exercises_ctt.html">7. Applicazioni della CTT</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="050_sviluppo_strumento.html">8. Utilizzo e costruzione di test psicometrici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="055_analisi_fattoriale_1.html">9. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="056_analisi_fattoriale_2.html">10. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="057_analisi_fattoriale_3.html">11. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="058_factor_scores.html">12. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="060_path_analysis.html">13. Visualizzare i modelli di equazioni strutturali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="062_constraints_on_parms.html">14. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="063_total_score.html">15. Punteggio totale e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="070_cfa_mod_comp.html">16. CFA: confronto tra modelli</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione di strumenti psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="201_valutare_le_matrici.html">17. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="202_estrazione.html">18. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="203_numero_fattori.html">19. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="205_rotazione.html">20. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="206_valutare_sol_fattoriale.html">21. Valutare e rifinire la soluzione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="250_group_invariance.html">22. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="300_gof.html">23. Indici di bontà dell’adattamento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="310_refine_solution.html">24. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="315_mmm.html">25. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="500_cat_data.html">26. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="501_missing_data.html">27. Dati mancanti</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="316_sem_intro.html">28. Introduzione ai modelli di equazioni struttural</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="320_lgm_intro.html">29. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="321_lgm_prelims.html">30. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="324_lgm_mixed.html">31. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="326_growth_1.html">32. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="327_growth_cont.html">33. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="328_time_inv_cov.html">34. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="329_growth_groups.html">35. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="330_bivariate_growth_models.html">36. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="331_inv_measurement.html">37. Invarianza di misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="332_latent_change.html">38. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="333_biv_change.html">39. Modello LCS bivariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="351_lgm_meas_inv.html">40. Invarianza fattoriale nei modelli LGM</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="z_biblio.html">41. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05_intro_r.html">42. Linguaggio di programmazione R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_regression.html">43. L’analisi di regressione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="900_lin_alg.html">44. Elementi di algebra lineare</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test/issues/new?title=Issue%20on%20page%20%2F006_development.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/006_development.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Sviluppo dello strumento</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fasi-di-sviluppo">3.1. Fasi di sviluppo</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sviluppo-dello-strumento">
+<span id="sviluppo-notebook"></span><h1><span class="section-number">3. </span>Sviluppo dello strumento<a class="headerlink" href="#sviluppo-dello-strumento" title="Permalink to this headline">#</a></h1>
+<section id="fasi-di-sviluppo">
+<h2><span class="section-number">3.1. </span>Fasi di sviluppo<a class="headerlink" href="#fasi-di-sviluppo" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p>Scopo della scala: Affermare l’obiettivo della scala.
+Iniziamo dichiarando chiaramente il motivo per cui la scala è stata creata e quali sono gli scopi specifici per cui verrà utilizzata. Questo serve a fornire un contesto chiaro e una direzione per tutto il processo di sviluppo e validazione della scala.</p></li>
+<li><p>Identificare e definire il dominio del costrutto da misurare.
+Prima di procedere con la creazione della scala, è fondamentale identificare e definire con precisione il costrutto o la caratteristica psicologica che si intende misurare. Questo passaggio richiede un’analisi approfondita della letteratura scientifica e delle teorie esistenti riguardanti il costrutto, al fine di avere una base solida su cui costruire la scala.</p></li>
+<li><p>Verificare l’esistenza di misure già sviluppate.
+Prima di impegnarsi nello sforzo di creare una nuova scala, è essenziale esaminare se esistano già misure valide e affidabili per il costrutto di interesse. Una revisione sistematica della letteratura scientifica e dei test psicometrici disponibili può rivelare strumenti adeguati già esistenti, evitando il reinventare la ruota e fornendo inoltre un punto di riferimento per la comparazione e la validazione della scala in sviluppo.</p></li>
+<li><p>Determinare il formato degli item.
+In questa fase, vengono prese decisioni importanti riguardo alla struttura e al formato degli item che comporranno la scala. A seconda del costrutto e degli obiettivi della misurazione, potrebbero essere adottati formati come domande a scelta multipla, scala Likert o intervalli di valori. La scelta del formato può influenzare l’accuratezza e l’affidabilità della scala, quindi è fondamentale considerarla con attenzione.</p></li>
+<li><p>Sviluppare una struttura del test o obiettivi del test.
+Prima di procedere con la creazione dei singoli item della scala, è necessario stabilire una struttura organizzativa del test o definire gli obiettivi specifici che si intendono raggiungere attraverso la somministrazione della scala. Questo include il delineamento dei sottodomini o delle dimensioni che si vogliono misurare e l’indicazione di come questi contribuiranno alla valutazione complessiva del costrutto.</p></li>
+<li><p>Creare il pool iniziale di item.
+A questo punto, si procede a sviluppare una vasta gamma di item che coprano i diversi aspetti del costrutto di interesse. Questo pool iniziale di item dovrebbe essere variegato e ben bilanciato, rappresentando in modo adeguato la complessità del costrutto e i diversi livelli di abilità o atteggiamenti che si vogliono misurare.</p></li>
+<li><p>Condurre la revisione iniziale degli item (e apportare modifiche).
+Gli item raccolti nel pool iniziale vengono sottoposti a un esame attento da parte di esperti nel campo. Si valuta la pertinenza, la chiarezza, la coerenza e la validità dei singoli item. Sulla base dei feedback ricevuti dagli esperti, possono essere apportate modifiche o eliminati item problematici.</p></li>
+<li><p>Condurre un test di campo su larga scala degli item.
+Prima di stabilire la versione finale della scala, è necessario somministrare gli item ad un campione rappresentativo della popolazione di riferimento. Questa somministrazione aiuta a valutare l’efficacia degli item nel discriminare tra i partecipanti e identificare eventuali problemi o debolezze della scala.</p></li>
+<li><p>Analizzare gli item.
+I dati raccolti dal test di campo vengono analizzati utilizzando metodi statistici adeguati. Questo processo mira a identificare item che non funzionano correttamente, che mostrano una bassa discriminazione o che potrebbero causare distorsioni nelle risposte. Gli item che superano questa fase sono considerati per la versione finale della scala.</p></li>
+<li><p>Rivedere gli item.
+Sulla base dei risultati dell’analisi, gli item della scala possono essere rivisti o sostituiti, al fine di migliorarne l’accuratezza, la coerenza e l’affidabilità.</p></li>
+<li><p>Calcolare l’affidabilità.
+La consistenza interna della scala viene valutata tramite il calcolo dell’affidabilità, ad esempio utilizzando il coefficiente alpha di Cronbach. Questo passaggio assicura che gli item scelti per la scala si correlino tra loro in modo coerente, riflettendo così la coerenza delle misure.</p></li>
+<li><p>Condurre un secondo test di campo degli item.
+Una volta apportate le revisioni agli item, viene eseguita una seconda somministrazione per confermare l’efficacia delle modifiche e per valutare l’affidabilità della versione rivista della scala su un nuovo campione.</p></li>
+<li><p>Ripetere i passaggi 8-11, se necessario.
+Se durante la seconda somministrazione emergono ancora problemi o se l’affidabilità della scala non raggiunge i livelli desiderati, è necessario ripetere i passaggi 8-11 fino a raggiungere una versione della scala che soddisfi gli standard di qualità e affidabilità.</p></li>
+<li><p>Condurre studi di validazione.
+Al fine di dimostrare la validità della scala, è necessario condurre studi di validazione che mostrino come la scala sia in grado di misurare in modo accurato il costrutto di interesse. Ciò può includere l’analisi della relazione tra i punteggi della scala e altre misure correlate o il confronto tra gruppi noti per differire sul costrutto.</p></li>
+<li><p>Preparare linee guida per la somministrazione.
+Prima di rendere la scala disponibile per l’uso, è fondamentale fornire linee guida dettagliate per la corretta somministrazione e la valutazione dei punte</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="005_problema_strumento.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Tipologie dei test psicometrici</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="035_ctt.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Fondamenti teorici</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fasi-di-sviluppo">3.1. Fasi di sviluppo</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
