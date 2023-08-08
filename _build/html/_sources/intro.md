@@ -10,7 +10,7 @@
 Coming Soon – Sito in costruzione
 ```
 
-Questo sito web presenta il materiale didattico dell'insegnamento *Testing psicologico* (A.A. 2023/2024) rivolto agli studenti del Corso di Laurea Magistrale (LM-51) in PSICOLOGIA CLINICA E DELLA SALUTE E NEUROPSICOLOGIA dell'Università degli Studi di Firenze.
+Questo sito web mette a disposizione il materiale didattico dell'insegnamento *Testing psicologico*, per l'anno accademico 2023/2024, destinato agli studenti iscritti all Corso di Laurea Magistrale (LM-51) in Psicologia Clinica e della Salute e Neuropsicologia presso l'Università degli Studi di Firenze. Il contenuto qui presente tratta in particolare l'argomento della misurazione psicologica, nonché della costruzione e validazione delle scale psicologiche.
 
 ## License
 
