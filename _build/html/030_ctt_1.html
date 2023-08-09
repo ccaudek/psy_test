@@ -68,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="7. L’affidabilità del test" href="031_ctt_2.html" />
-    <link rel="prev" title="5. Valutazioni normative e criteriali" href="007_norms.html" />
+    <link rel="prev" title="5. Sviluppo dello strumento" href="010_development.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -163,9 +163,9 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="preface.html">1. Prefazione</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_measurement.html">2. Misurazione: affidabilità, validazione di costrutto e costruzione di Scale</a></li>
-<li class="toctree-l1"><a class="reference internal" href="005_problema_strumento.html">3. Tipologie dei test psicometrici</a></li>
-<li class="toctree-l1"><a class="reference internal" href="006_development.html">4. Sviluppo dello strumento</a></li>
-<li class="toctree-l1"><a class="reference internal" href="007_norms.html">5. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="005_tipologie_test.html">3. Tipologie dei test psicometrici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="007_norms.html">4. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_development.html">5. Sviluppo dello strumento</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
 <ul class="current nav bd-sidenav">
@@ -540,11 +540,122 @@ E \equiv X - T.
 \mathbb{E}(E) = \mathbb{E}(X - T) = \mathbb{E}(X) - \mathbb{E}(T) = \mu_{T} - \mu_{T} = 0,
 \]</div>
 <p>ovvero, il valore atteso degli errori è uguale a zero.</p>
+<p>Per dare un contenuto concreto alle affermazioni precedenti, consideriamo la seguente simulazione svolta in <span class="math notranslate nohighlight">\(\textsf{R}\)</span>. In tale simulazione il punteggio vero <span class="math notranslate nohighlight">\(T\)</span> e l’errore <span class="math notranslate nohighlight">\(E\)</span> sono creati in modo tale da soddisfare i vincoli della CTT: <span class="math notranslate nohighlight">\(T\)</span> e <span class="math notranslate nohighlight">\(E\)</span> sono variabili casuali gaussiane tra loro incorrelate. Nella simulazione generiamo 100 coppie di valori <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(T\)</span> con i seguenti parametri: <span class="math notranslate nohighlight">\(T \sim \mathcal{N}(\mu_T = 12, \sigma^2_T = 6)\)</span>, <span class="math notranslate nohighlight">\(E \sim \mathcal{N}(\mu_E = 0, \sigma^2_T = 3)\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">8394</span><span class="p">)</span>
+
+<span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">100</span>
+<span class="n">Sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="n">mu</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+<span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mvrnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="p">,</span><span class="w"> </span><span class="n">Sigma</span><span class="p">,</span><span class="w"> </span><span class="n">empirical</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="bp">T</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dat</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span>
+<span class="n">E</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dat</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Le istruzioni precedenti (<code class="docutils literal notranslate"><span class="pre">empirical</span> <span class="pre">=</span> <span class="pre">TRUE</span></code>) creano un campione di valori nei quali  le medie e la matrice di covarianze assumono esattamente i valori richiesti. Possiamo dunque immaginare tale insieme di dati come la “popolazione”.</p>
+<p>Secondo la CTT, il punteggio osservato è <span class="math notranslate nohighlight">\(X = T + E\)</span>. Simuliamo dunque
+il punteggio osservato <span class="math notranslate nohighlight">\(X\)</span> come:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="bp">T</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">E</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Le prime 6 osservazioni così ottenute sono:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">tibble</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="bp">T</span><span class="p">,</span><span class="w"> </span><span class="n">E</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 6 × 3</caption>
+<thead>
+	<tr><th scope=col>X</th><th scope=col>T</th><th scope=col>E</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>15.698623</td><td>16.765359</td><td>-1.0667358</td></tr>
+	<tr><td>13.657503</td><td>12.248096</td><td> 1.4094073</td></tr>
+	<tr><td> 6.731979</td><td> 7.852136</td><td>-1.1201563</td></tr>
+	<tr><td>14.621813</td><td>14.233699</td><td> 0.3881133</td></tr>
+	<tr><td>10.606647</td><td>10.187035</td><td> 0.4196115</td></tr>
+	<tr><td>12.370288</td><td>13.329971</td><td>-0.9596831</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Un diagramma di dispersione è fornito nella figura seguente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">tibble</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="bp">T</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="bp">T</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">position_jitter</span><span class="p">(</span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">3</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_abline</span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/cbdbc7f8f4c6f03aa6f72c4309b057318c0b10fb749c35cfbd8f9c30344b016a.png" src="_images/cbdbc7f8f4c6f03aa6f72c4309b057318c0b10fb749c35cfbd8f9c30344b016a.png" />
+</div>
+</div>
+<p>Secondo la CTT, il valore atteso di <span class="math notranslate nohighlight">\(T\)</span> è uguale al valore atteso di
+<span class="math notranslate nohighlight">\(X\)</span>. Verifichiamo questa assunzione nei nostri dati</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">mean</span><span class="p">(</span><span class="bp">T</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">TRUE</div></div>
+</div>
+<p>L’errore deve avere media zero:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">mean</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">-1.33660443824013e-17</div></div>
+</div>
+<p>Le varianze dei punteggi veri, dei punteggi osservati e degli errori sono rispettivamente uguali a:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">c</span><span class="p">(</span><span class="nf">var</span><span class="p">(</span><span class="bp">T</span><span class="p">),</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="n">X</span><span class="p">),</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="n">E</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>6</li><li>9</li><li>3</li></ol>
+</div></div>
+</div>
 </section>
 </section>
 <section id="l-errore-standard-della-misurazione-sigma-e">
 <h2><span class="section-number">6.3. </span>L’errore standard della misurazione <span class="math notranslate nohighlight">\(\sigma_E\)</span><a class="headerlink" href="#l-errore-standard-della-misurazione-sigma-e" title="Permalink to this headline">#</a></h2>
 <p>La radice quadrata della varianza degli errori di misurazione, ovvero la deviazione standard degli errori, <span class="math notranslate nohighlight">\(\sigma_E\)</span>, è la quantità fondamentale della CTT ed è chiamata <em>errore standard della misurazione</em>. La stima dell’errore standard della misurazione costituisce uno degli obiettivi più importanti della CTT.</p>
+<p>Nel caso presente, abbiamo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">var</span><span class="p">(</span><span class="n">E</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">1.73205080756888</div></div>
+</div>
 <p>Ricordiamo che la deviazione standard indica quanto i dati di una distribuzione si discostano dalla media di quella distribuzione. È simile allo scarto tipico, ovvero la distanza media tra i valori della distribuzione e la loro media. Possiamo dunque utilizzare questa proprietà per descrivere il modo in cui la CTT interpreta la quantità <span class="math notranslate nohighlight">\(\sigma_E\)</span>: l’errore standard della misurazione <span class="math notranslate nohighlight">\(\sigma_E\)</span> ci dice qual è, approssimativamente, la quantità attesa di variazione del punteggio osservato, se il test venisse somministrato ripetute volte al medesimo rispondente sotto le stesse condizioni (ovvero, in assenza di effetti di apprendimento o di fatica).</p>
 </section>
 <section id="assiomi-della-teoria-classica">
@@ -565,6 +676,27 @@ E \equiv X - T.
 E \sim \mathcal{N}(0, \sigma_E).
 \]</div>
 <p>La quantità <span class="math notranslate nohighlight">\(\sigma_E\)</span> è appunto l’errore standard della misurazione. Sulla base di tali assunzioni la CTT deriva la formula dell’attendibilità di un test. Si noti che le assunzioni della CTT hanno una corrispondenza puntuale con le assunzioni su cui si basa il modello di regressione lineare.</p>
+<p>Verifichiamo le assunzioni per i dati dell’esempio.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cor</span><span class="p">(</span><span class="n">E</span><span class="p">,</span><span class="w"> </span><span class="bp">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">-1.51925113354068e-17</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="nf">density</span><span class="p">(</span><span class="n">E</span><span class="p">))</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">E</span><span class="p">),</span><span class="w"> </span><span class="nf">sd</span><span class="p">(</span><span class="n">E</span><span class="p">)),</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/fd4d03b41cc5f78c65957cf0c51e8f23844a00e9f317c1e2dd2ae23488781ebe.png" src="_images/fd4d03b41cc5f78c65957cf0c51e8f23844a00e9f317c1e2dd2ae23488781ebe.png" />
+</div>
+</div>
 </section>
 <section id="misure-parallele-tau-equivalenti-essenzialmente-tau-equivalenti-e-congenetiche">
 <h2><span class="section-number">6.5. </span>Misure parallele, <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenti, essenzialmente <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenti e congenetiche<a class="headerlink" href="#misure-parallele-tau-equivalenti-essenzialmente-tau-equivalenti-e-congenetiche" title="Permalink to this headline">#</a></h2>
@@ -878,12 +1010,12 @@ t_i = a_{ij }+ b_{ij} * t_{j}.
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="007_norms.html"
+       href="010_development.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Valutazioni normative e criteriali</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Sviluppo dello strumento</p>
       </div>
     </a>
     <a class="right-next"

@@ -163,9 +163,9 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="preface.html">1. Prefazione</a></li>
 <li class="toctree-l1"><a class="reference internal" href="002_measurement.html">2. Misurazione: affidabilità, validazione di costrutto e costruzione di Scale</a></li>
-<li class="toctree-l1"><a class="reference internal" href="005_problema_strumento.html">3. Tipologie dei test psicometrici</a></li>
-<li class="toctree-l1"><a class="reference internal" href="006_development.html">4. Sviluppo dello strumento</a></li>
-<li class="toctree-l1"><a class="reference internal" href="007_norms.html">5. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="005_tipologie_test.html">3. Tipologie dei test psicometrici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="007_norms.html">4. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_development.html">5. Sviluppo dello strumento</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
 <ul class="current nav bd-sidenav">
@@ -446,7 +446,6 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-incertezza-della-misura">9.1. L’incertezza della misura</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione">9.1.1. Interpretazione</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulazione">9.1.2. Simulazione</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimostrazione">9.2. Dimostrazione</a></li>
@@ -465,45 +464,30 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="l-errore-standard-della-misurazione">
 <span id="err-std-mis-notebook"></span><h1><span class="section-number">9. </span>L’errore standard della misurazione<a class="headerlink" href="#l-errore-standard-della-misurazione" title="Permalink to this headline">#</a></h1>
-<p>Secondo <span id="id1">Lord and Novick [<a class="reference internal" href="z_biblio.html#id37" title="Frederic M Lord and Melvin R Novick. Statistical theories of mental test scores. Addison-Wesley, 1968.">LN68</a>]</span>, l’errore <span class="math notranslate nohighlight">\(E = X - T\)</span> rappresenta la variabile aleatoria di primario interesse per la CTT. Infatti, poiché lo scopo della CTT è di stimare il punteggio vero di ciascun rispondente e confrontare le stime ottenute per rispondenti diversi, la grandezza dell’errore <span class="math notranslate nohighlight">\(E\)</span> è un’informazione essenziale. La discrepanza tra il punteggio osservato e il punteggio vero può essere misurata utilizzando la deviazione standard di <span class="math notranslate nohighlight">\(E\)</span>, chiamata “errore standard della misurazione” o SEM. Pertanto, l’errore standard della misurazione è lo strumento utilizzato dalla CTT per stimare in che misura un punteggio osservato si discosta da un punteggio vero.</p>
-<p>In questo capitolo vedremo come si può stimare <span class="math notranslate nohighlight">\(\sigma_E\)</span>.</p>
+<p>Secondo <span id="id1">Lord and Novick [<a class="reference internal" href="z_biblio.html#id38" title="Frederic M Lord and Melvin R Novick. Statistical theories of mental test scores. Addison-Wesley, 1968.">LN68</a>]</span>, l’errore <span class="math notranslate nohighlight">\(E = X - T\)</span> rappresenta la variabile aleatoria di primario interesse per la CTT. Infatti, poiché lo scopo della CTT è di stimare il punteggio vero di ciascun rispondente e confrontare le stime ottenute per rispondenti diversi, la grandezza dell’errore <span class="math notranslate nohighlight">\(E\)</span> è un’informazione essenziale. La discrepanza tra il punteggio osservato e il punteggio vero può essere misurata utilizzando la deviazione standard di <span class="math notranslate nohighlight">\(E\)</span>, chiamata “errore standard della misurazione” o SEM. Pertanto, l’errore standard della misurazione è lo strumento utilizzato dalla CTT per stimare in che misura un punteggio osservato si discosta da un punteggio vero.</p>
+<p>In questo capitolo vedremo come si può stimare <span class="math notranslate nohighlight">\(\sigma_E\)</span> nel caso di un campione di osservazioni.</p>
 <section id="l-incertezza-della-misura">
 <h2><span class="section-number">9.1. </span>L’incertezza della misura<a class="headerlink" href="#l-incertezza-della-misura" title="Permalink to this headline">#</a></h2>
-<p>Secondo la CTT, l’errore standard della misurazione può essere stimato utilizzando una formula che richiede la conoscenza della deviazione standard della distribuzione dei punteggi del test e dell’affidabilità del test. Se questi valori sono noti (o possono essere calcolati), allora si può ottenere una stima dell’errore standard di un particolare punteggio. Tale misura di errore è utile per comprendere quanto il punteggio osservato si discosta dal vero punteggio del soggetto.</p>
-<p>Secondo la CTT, è possibile stimare l’errore standard della misurazione (<span class="math notranslate nohighlight">\(\sigma_E\)</span>) utilizzando l’equazione:</p>
+<p>In base alla CTT, è possibile stimare l’errore standard della misurazione utilizzando una formula che dipende dalla deviazione standard della distribuzione dei punteggi del test e dall’attendibilità del test. Mediante questa formula, è possibile ottenere una stima dell’errore standard associato a un singolo punteggio, il quale indica quanto il punteggio osservato può variare rispetto al vero punteggio di un individuo:</p>
 <div class="math notranslate nohighlight" id="equation-eq-err-stnd-mis">
 <span class="eqno">(9.1)<a class="headerlink" href="#equation-eq-err-stnd-mis" title="Permalink to this equation">#</a></span>\[
 \sigma_E = \sigma_X \sqrt{1 -\rho_{XX^\prime}},
 \]</div>
-<p>dove <span class="math notranslate nohighlight">\(\sigma_X\)</span> è la deviazione standard dei punteggi ottenuti in un campione di rispondenti e <span class="math notranslate nohighlight">\(\rho_{XX^\prime}\)</span> è il coefficiente di attendibilità. Per calcolare <span class="math notranslate nohighlight">\(\sigma_E\)</span>, si sottrae l’attendibilità del test da 1, si prende la radice quadrata della differenza e si moltiplica per la deviazione standard dei punteggi del test.</p>
-<p>L’errore standard della misurazione si basa sull’assunzione che, se una persona facesse un gran numero di test equivalenti, i punteggi di questi test sarebbero distribuiti normalmente, con il vero punteggio della persona come media. In altre parole, possiamo immaginare che la persona completi molte versioni identiche del test, senza ricordare le risposte precedenti e in condizioni simili ogni volta. In questo scenario ipotetico, l’errore standard della misurazione sarebbe semplicemente la deviazione standard di queste misurazioni ripetute.</p>
-<p>È importante notare che l’errore standard della misurazione <span class="math notranslate nohighlight">\(\sigma_E\)</span> è direttamente legato all’attendibilità del test: l’errore standard della misurazione diminuisce al crescere dell’attendibilità del test. Se l’attendibilità del test è uguale a 0 <span class="math notranslate nohighlight">\(\sigma_E\)</span> diventa uguale alla deviazione standard del punteggio osservato del test. Se l’attendibilità del test è uguale a 1 <span class="math notranslate nohighlight">\(\sigma_E\)</span> diventa uguale a zero: se il test è
-perfettamente affidabile non ci sono errori e <span class="math notranslate nohighlight">\(\sigma_E\)</span> è uguale a
-zero.</p>
+<p>dove <span class="math notranslate nohighlight">\(\sigma_X\)</span> rappresenta la deviazione standard dei punteggi ottenuti da un campione di soggetti e <span class="math notranslate nohighlight">\(\rho_{XX^\prime}\)</span> è il coefficiente di attendibilità. Attraverso questo calcolo, si ottiene l’errore standard della misurazione sottraendo l’attendibilità del test da 1, quindi calcolando la radice quadrata del risultato e moltiplicandolo per la deviazione standard dei punteggi del test.</p>
+<p>La logica alla base dell’errore standard della misurazione si fonda sull’assunzione che se una persona dovesse sostenere numerosi test equivalenti, i punteggi ottenuti seguirebbero una distribuzione normale con il vero punteggio dell’individuo come media. In altre parole, possiamo immaginare che l’individuo affronti ripetutamente versioni identiche del test, in circostanze simili e senza ricordare le risposte precedenti. In tale contesto ipotetico, l’errore standard della misurazione rappresenterebbe la deviazione standard tra queste misurazioni ripetute.</p>
+<p>La formula sopra indicata evidenzia come l’errore standard della misurazione (<span class="math notranslate nohighlight">\(\sigma_E\)</span>) sia strettamente correlato all’attendibilità del test: all’aumentare dell’attendibilità del test, l’errore standard della misurazione diminuisce. Se l’attendibilità del test si avvicina a 0, l’errore standard della misurazione tende a diventare uguale alla deviazione standard dei punteggi osservati del test. In contrasto, se l’attendibilità del test raggiunge 1, l’errore standard della misurazione si riduce a zero: in una situazione di perfetta affidabilità, in cui non vi è alcun errore di misurazione, <span class="math notranslate nohighlight">\(\sigma_E\)</span> assume valore zero.</p>
 <section id="interpretazione">
 <h3><span class="section-number">9.1.1. </span>Interpretazione<a class="headerlink" href="#interpretazione" title="Permalink to this headline">#</a></h3>
-<p>McDonald sostiene che il termine <span class="math notranslate nohighlight">\(E\)</span> segue una <em>propensity distribution</em>, che rappresenta le fluttuazioni casuali nel tempo di un individuo che risponde al test. Queste fluttuazioni possono essere causate da fattori come l’umore, la motivazione, ecc. L’errore standard di misura fornisce una stima della deviazione standard di tali punteggi, ovvero una stima della deviazione standard dei punteggi che un singolo individuo otterrebbe nel caso di infinite somministrazioni del test (o di forme parallele del test) sotto le stesse identiche condizioni, se il punteggio vero rimanesse costante.</p>
-<p>D’altra parte, la teoria classica dei test (CTT) presuppone che i punteggi ottenuti da un individuo in infinite somministrazioni del test nelle stesse identiche condizioni seguano una distribuzione normale centrata sul valore vero. L’errore standard di misura è quindi la stima della deviazione standard di tale distribuzione ipotetica di punteggi. Maggiore è l’errore standard di misura, maggiore è l’errore che si commette nell’utilizzo del test per valutare l’abilità latente del rispondente.</p>
-<p>Il coefficiente di attendibilità, la varianza dell’errore e l’errore
-standard della misurazione sono tutti indicatori diretti o indiretti
-della precisione del test. Tuttavia, questi indici forniscono
-informazioni diverse sul grado di precisione del test:</p>
+<p>Secondo la prospettiva di McDonald, il termine di errore (<span class="math notranslate nohighlight">\(E\)</span>) segue una “propensity distribution”, che riflette le fluttuazioni casuali nel tempo di un individuo nel rispondere al test. Queste fluttuazioni possono derivare da variabili come l’umore, la motivazione e altri fattori. L’errore standard di misura fornisce una stima della deviazione standard di tali punteggi, rappresentando la dispersione attesa dei punteggi che un singolo individuo otterrebbe in un numero infinito di somministrazioni del test (o di test paralleli) sotto identiche condizioni, nel caso in cui il vero punteggio rimanesse costante.</p>
+<p>D’altro canto, la CTT assume che i punteggi ottenuti da un individuo in infinite somministrazioni del test, nelle stesse condizioni, seguano una distribuzione normale centrata sul vero valore. L’errore standard di misura diviene, quindi, la stima della deviazione standard di questa distribuzione teorica di punteggi. Maggiore è l’errore standard di misura, maggiore è l’incertezza introdotta nel processo di utilizzo del test per valutare l’abilità latente del rispondente.</p>
+<p>Il coefficiente di attendibilità, la varianza dell’errore e l’errore standard di misura sono tutti indicatori diretti o indiretti della precisione del test. Tuttavia, ciascuno di essi fornisce un’informazione specifica sul livello di precisione del test:</p>
 <ul class="simple">
-<li><p>l’errore standard della misurazione ci consente di fare inferenze
-sulla precisione del punteggio osservato di un singolo rispondente,
-ma non è possibile assegnare tale interpretazione al coefficiente di
-attendibilità;</p></li>
-<li><p>l’errore standard della misurazione è espresso nella stessa unità di
-misura del punteggio osservato, mentre la varianza di <span class="math notranslate nohighlight">\(E\)</span> è espressa
-nei termini del quadrato del punteggio osservato;</p></li>
-<li><p>l’attendibilità corrisponde ad un rapporto tra varianze e dunque è
-un numero puro (privo di unità di misura).</p></li>
+<li><p>L’errore standard di misura permette di fare inferenze sulla precisione del singolo punteggio osservato di un partecipante, mentre il coefficiente di attendibilità non ha una rappresentazione diretta in questo senso.</p></li>
+<li><p>L’errore standard di misura è espresso nella stessa unità di misura del punteggio osservato, a differenza della varianza di <span class="math notranslate nohighlight">\(E\)</span>, che è espressa in termini del quadrato del punteggio osservato.</p></li>
+<li><p>L’attendibilità rappresenta un rapporto tra varianze ed è quindi un indice adimensionale.</p></li>
 </ul>
-<p><strong>Esempio 1.</strong> Supponiamo che un test di intelligenza produca un punteggio medio pari a
-100 con una deviazione standard di 15. Supponiamo inoltre che il test
-abbia una attendibilità pari a 0.73. Si calcoli l’errore standard della
-misurazione.</p>
-<p>Applicando la formula dell’errore standard della misurazione, otteniamo</p>
+<p><strong>Esempio 1.</strong> Consideriamo un esempio in cui un test di intelligenza fornisce un punteggio medio di 100 con una deviazione standard di 15. Supponiamo inoltre che l’attendibilità di questo test sia pari a 0.73. Vogliamo calcolare l’errore standard della misurazione.</p>
+<p>Utilizzando la formula dell’errore standard della misurazione, otteniamo:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{equation}
@@ -514,35 +498,23 @@ misurazione.</p>
 \end{aligned}
 \end{equation}
 \end{split}\]</div>
-<p>Il valore di 7.79 significa che, se immaginiamo di somministrare molte volte il test ad un rispondente, sotto le stesse identiche condizioni, ci aspettiamo che i valori
-ottenuti differiscano tra loro, in media, di circa 8 punti tra le
-successive somministrazioni del test. Inoltre, se immaginiamo di
-somministrare molte volte il test ad un rispondente, sotto le stesse
-identiche condizioni, ci aspettiamo che il 95% dei punteggi così
-ottenuti sia compreso nell’intervallo</p>
+<p>Il valore 7.79 rappresenta l’errore standard atteso nei punteggi ottenuti da un singolo individuo se il test fosse somministrato più volte sotto identiche condizioni. In altre parole, ci aspettiamo che i punteggi variino in media di circa 8 punti tra diverse somministrazioni del test.</p>
+<p>Inoltre, possiamo utilizzare l’errore standard della misurazione per calcolare un intervallo di confidenza intorno al vero punteggio del rispondente. Utilizzando la proprietà della distribuzione gaussiana, possiamo stimare che il 95% dei punteggi ottenuti da ripetute somministrazioni del test si troveranno nell’intervallo:</p>
 <div class="math notranslate nohighlight">
 \[
 \text{punteggio vero del rispondente} \pm 1.96 \cdot \text{errore standard della misurazione}. 
 \]</div>
-<p>Questa è una proprietà della distribuzione gaussiana.</p>
-<p>Per il caso presente, questo intervallo è uguale a <span class="math notranslate nohighlight">\(2 \cdot 1.96 \cdot 7.79 = 30.54\)</span> punti.</p>
-<p>In altre parole, ci possiamo aspettare che, nel caso di somministrazioni ripetute del test sotto le stesse identiche condizioni, i punteggi del QI di un singolo rispondente varino tra loro all’interno di un intervallo di 30 punti. Ciò significa
-che, se il test avesse un’attendibilità pari a 0.73, e se la deviazione
-standard dei punteggi del test nella popolazione fosse pari a 15, la
-somministrazione di un tale test ad un singolo individuo sarebbe di
-scarsa utilità, a causa dell’enorme errore di misurazione. Per fare un
-confronto con i dati di questo esempio, la Full Scale IQ (FSIQ) della
-WAIS-IV <span id="id2">[<a class="reference internal" href="z_biblio.html#id26" title="David Wechsler. Wechsler adult intelligence scale–fourth edition (wais–iv). San Antonio, TX: NCS Pearson, 22(498):816–827, 2008.">Wec08</a>]</span> ha un’attendibilità split-half pari a 0.98, con
-errore standard di misurazione pari a 2.16.</p>
-<p>Si noti che l’errore standard della misurazione può essere calcolato con la funzione <code class="docutils literal notranslate"><span class="pre">SE.Means()</span></code> del pacchetto <code class="docutils literal notranslate"><span class="pre">psychometric</span></code>.</p>
+<p>Nel nostro caso, questo intervallo sarebbe pari a <span class="math notranslate nohighlight">\(2 \cdot 1.96 \cdot 7.79 = 30.54\)</span> punti. Quindi, ci aspettiamo che i punteggi del QI di un singolo rispondente varino all’interno di un intervallo di 30 punti se il test fosse somministrato molte volte sotto le stesse condizioni.</p>
+<p>Questo esempio dimostra che se un test ha un’attendibilità di 0.73 e una deviazione standard dei punteggi di 15, la misurazione del test su un singolo individuo risulterebbe poco affidabile a causa dell’ampio errore di misurazione. A titolo di confronto, la Full Scale IQ (FSIQ) della WAIS-IV <span id="id2">[<a class="reference internal" href="z_biblio.html#id27" title="David Wechsler. Wechsler adult intelligence scale–fourth edition (wais–iv). San Antonio, TX: NCS Pearson, 22(498):816–827, 2008.">Wec08</a>]</span> ha un’attendibilità split-half di 0.98 e un errore standard di misurazione di 2.16.</p>
+<p>L’errore standard della misurazione può anche essere calcolato utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">SE.Means()</span></code> del pacchetto <code class="docutils literal notranslate"><span class="pre">psychometric</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">suppressWarnings</span><span class="p">(</span><span class="n">suppressMessages</span><span class="p">(</span><span class="n">library</span><span class="p">(</span><span class="s2">&quot;psychometric&quot;</span><span class="p">)))</span>
-
-<span class="n">SE</span><span class="o">.</span><span class="n">Meas</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mf">.73</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">SE.Meas</span><span class="p">(</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">73</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">7.79422863405995</div></div>
 </div>
 <p><strong>Esempio 2.</strong> Continuando con l’esempio precedente, per gli ipotetici dati riportati
 sopra, poniamoci ora la seguente domanda: qual è la probabilità che un
@@ -556,10 +528,12 @@ l’area sottesa alla normale <span class="math notranslate nohighlight">\(\math
 seguente:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pnorm</span><span class="p">(</span><span class="mi">116</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mf">7.79</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">pnorm</span><span class="p">(</span><span class="m">116</span><span class="p">,</span><span class="w"> </span><span class="m">120</span><span class="p">,</span><span class="w"> </span><span class="m">7.79</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.303808211691303</div></div>
 </div>
 <p>Se la variabile aleatorie corrispondente al punteggio osservato segue
 una distribuzione <span class="math notranslate nohighlight">\(\mathcal{N}(120, 7.79)\)</span>, la probabilità che il
@@ -570,242 +544,149 @@ test sotto le stesse identiche condizioni?</p>
 <p>Dobbiamo trovare i quantili della distribuzione <span class="math notranslate nohighlight">\(\mathcal{N}(120, 7.79)\)</span> a cui sono associate le probabilità di 0.025 e 0.975. La soluzione è dunque data da:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qnorm</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="mf">.025</span><span class="p">,</span> <span class="mf">.975</span><span class="p">),</span> <span class="mi">120</span><span class="p">,</span> <span class="mf">7.79</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">qnorm</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">.</span><span class="m">025</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">975</span><span class="p">),</span><span class="w"> </span><span class="m">120</span><span class="p">,</span><span class="w"> </span><span class="m">7.79</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>104.731880560433</li><li>135.268119439567</li></ol>
+</div></div>
 </div>
 <p>L’intervallo cercato è dunque <span class="math notranslate nohighlight">\([104.7, 135.3]\)</span>.</p>
-<p><strong>Esempio 4.</strong> Calcoliamo ora l’errore standard di misurazione utilizzando un set di dati grezzi.</p>
-<p>Iniziamo a definire una funzione che ritorna il coefficiente di attendibilità <span class="math notranslate nohighlight">\(\alpha\)</span> di Cronbach (questo argomento sarà discusso in un capitolo successivo).</p>
+<p><strong>Esempio 4.</strong> Calcoliamo ora l’errore standard di misurazione utilizzando un campione di dati grezzi. Esamineremo un set di dati discusso da <span id="id3">Brown [<a class="reference internal" href="z_biblio.html#id41" title="Timothy A Brown. Confirmatory factor analysis for applied research. Guilford publications, 2015.">Bro15</a>]</span>. I dati consisteono in 9 indicatori usati per misurare la depressione maggiore così come è definita nel DSM-IV:</p>
+<ul class="simple">
+<li><p>MDD1: depressed mood;</p></li>
+<li><p>MDD2: loss of interest in usual activities;</p></li>
+<li><p>MDD3: weight/appetite change;</p></li>
+<li><p>MDD4: sleep disturbance;</p></li>
+<li><p>MDD5: psychomotor agitation/retardation;</p></li>
+<li><p>MDD6: fatigue/loss of energy;</p></li>
+<li><p>MDD7: feelings of worthlessness/guilt;</p></li>
+<li><p>MDD8: concentration difficulties;</p></li>
+<li><p>MDD9: thoughts of death/suicidality.</p></li>
+</ul>
+<p>Importiamo i dati:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coeff</span><span class="o">.</span><span class="n">alpha</span> <span class="o">&lt;-</span> <span class="n">function</span><span class="p">(</span><span class="n">responses</span><span class="p">){</span>
-  <span class="c1"># Get number of items (N) and individuals</span>
-  <span class="n">n</span><span class="o">.</span><span class="n">items</span> <span class="o">&lt;-</span> <span class="n">ncol</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
-  <span class="n">n</span><span class="o">.</span><span class="n">persons</span> <span class="o">&lt;-</span> <span class="n">nrow</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
-  <span class="c1"># Get individual total scores</span>
-  <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">rowSums</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
-  <span class="c1"># Get observed-score variance of whole test (X)</span>
-  <span class="n">var</span><span class="o">.</span><span class="n">x</span> <span class="o">&lt;-</span> <span class="n">var</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">persons</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="o">.</span><span class="n">persons</span>
-  <span class="c1"># Get observed-score variance of each item (Y_j)</span>
-  <span class="n">var</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;-</span> <span class="n">numeric</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
-  <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="ow">in</span> <span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="o">.</span><span class="n">items</span><span class="p">){</span>
-    <span class="n">var</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">var</span><span class="p">(</span><span class="n">responses</span><span class="p">[,</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">persons</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="o">.</span><span class="n">persons</span>
-  <span class="p">}</span>
-  <span class="c1"># Apply the alpha formula</span>
-  <span class="n">alpha</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">items</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">items</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="n">var</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
-  <span class="k">return</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
-<span class="p">}</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readRDS</span><span class="p">(</span>
+<span class="w">    </span><span class="n">here</span><span class="o">::</span><span class="nf">here</span><span class="p">(</span><span class="s">&quot;data&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;mdd_sex.RDS&quot;</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="n">dplyr</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="n">sex</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Definiamo una funzione per calcolare l’errore standard di misurazione usando la formula che abbiamo discusso in questo capitolo.</p>
+<p>Ci sono 750 osservazioni:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">se</span><span class="o">.</span><span class="n">m</span> <span class="o">&lt;-</span> <span class="n">function</span><span class="p">(</span><span class="n">responses</span><span class="p">,</span> <span class="n">rel</span><span class="o">.</span><span class="n">est</span> <span class="o">=</span> <span class="s2">&quot;alpha&quot;</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1"># The number of subjects</span>
-  <span class="n">n</span><span class="o">.</span><span class="n">persons</span> <span class="o">&lt;-</span> <span class="n">nrow</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
-  <span class="c1"># Get the total score and its standard deviation</span>
-  <span class="n">total</span> <span class="o">&lt;-</span> <span class="n">rowSums</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
-  <span class="n">sd</span><span class="o">.</span><span class="n">x</span> <span class="o">&lt;-</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">var</span><span class="p">(</span><span class="n">total</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">persons</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span><span class="o">.</span><span class="n">persons</span><span class="p">)</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">rel</span><span class="o">.</span><span class="n">est</span> <span class="o">==</span> <span class="s2">&quot;alpha&quot;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">rel</span> <span class="o">&lt;-</span> <span class="n">coeff</span><span class="o">.</span><span class="n">alpha</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="n">error</span><span class="p">(</span><span class="s2">&quot;rel.est must be either alpha&quot;</span><span class="p">)</span>
-  <span class="p">}</span>
-  <span class="n">se</span><span class="o">.</span><span class="n">m</span> <span class="o">&lt;-</span> <span class="n">sd</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">rel</span><span class="p">)</span>
-  <span class="k">return</span><span class="p">(</span><span class="n">se</span><span class="o">.</span><span class="n">m</span><span class="p">)</span>
-<span class="p">}</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">dim</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>750</li><li>9</li></ol>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 9</caption>
+<thead>
+	<tr><th></th><th scope=col>mdd1</th><th scope=col>mdd2</th><th scope=col>mdd3</th><th scope=col>mdd4</th><th scope=col>mdd5</th><th scope=col>mdd6</th><th scope=col>mdd7</th><th scope=col>mdd8</th><th scope=col>mdd9</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>5</td><td>4</td><td>1</td><td>6</td><td>5</td><td>6</td><td>5</td><td>4</td><td>2</td></tr>
+	<tr><th scope=row>2</th><td>5</td><td>5</td><td>5</td><td>5</td><td>4</td><td>5</td><td>4</td><td>5</td><td>4</td></tr>
+	<tr><th scope=row>3</th><td>4</td><td>5</td><td>4</td><td>2</td><td>6</td><td>6</td><td>0</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>4</th><td>5</td><td>5</td><td>3</td><td>3</td><td>5</td><td>5</td><td>6</td><td>4</td><td>0</td></tr>
+	<tr><th scope=row>5</th><td>5</td><td>5</td><td>0</td><td>5</td><td>0</td><td>4</td><td>6</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>6</th><td>6</td><td>6</td><td>4</td><td>6</td><td>4</td><td>6</td><td>5</td><td>6</td><td>2</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Calcoliamo il coefficiente di attendibilità <span class="math notranslate nohighlight">\(\alpha\)</span> di Cronbach con la funzione <code class="docutils literal notranslate"><span class="pre">alpha()</span></code> del pacchetto <code class="docutils literal notranslate"><span class="pre">psych</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">psych</span><span class="o">::</span><span class="nf">alpha</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">alpha</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">res</span><span class="o">$</span><span class="n">total</span><span class="o">$</span><span class="n">raw_alpha</span>
+<span class="n">alpha</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.753150463775788</div></div>
+</div>
+<p>Calcoliamo un vettore che contiene il punteggio totale del test per ciascun individuo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">total_score</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rowSums</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Leggiamo ora un set di dati dal pacchetto <code class="docutils literal notranslate"><span class="pre">hemp</span></code>. Per l’installazione di <code class="docutils literal notranslate"><span class="pre">hemp</span></code> si procede nel modo seguente.</p>
+<p>Infine, troviamo l’errore standard di misurazione:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;devtools&quot;</span><span class="p">)</span>
-<span class="n">library</span><span class="p">(</span><span class="s2">&quot;devtools&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sd</span><span class="p">(</span><span class="n">total_score</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">alpha</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">5.29643177867088</div></div>
 </div>
+<p>Confrontiamo il risultato con quello ottenuto con la funzione <code class="docutils literal notranslate"><span class="pre">SE.Meas()</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">install_github</span><span class="p">(</span><span class="s2">&quot;cddesja/hemp&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">SE.Meas</span><span class="p">(</span><span class="nf">sd</span><span class="p">(</span><span class="n">total_score</span><span class="p">),</span><span class="w"> </span><span class="n">alpha</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-</div>
-<p>Carichiamo <code class="docutils literal notranslate"><span class="pre">hemp</span></code> e leggiamo i dati.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="s2">&quot;hemp&quot;</span><span class="p">)</span>
-<span class="n">data</span><span class="p">(</span><span class="n">SAPA</span><span class="p">)</span>
-<span class="n">head</span><span class="p">(</span><span class="n">SAPA</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Useremo qui i dati SAPA. Il set di dati SAPA è costituito da 1525 risposte a un test di abilità a scelta multipla di 16 item tratti da un progetto di valutazione della personalità  chiamato <em>Synthetic Aperture Personality Assessment</em> (SAPA). Gli item misurano il ragionamento di base, la manipolazione di serie alfanumeriche, il ragionamento con matrici e la capacità di rotazione mentale.</p>
-<p>Iniziamo con il verificare se ci sono dati mancanti.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_miss</span><span class="p">(</span><span class="n">SAPA</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Dato che ci sono solo pochi dati mancanti, rimuoviamo tutte le righe che contengono dati mancanti.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">&lt;-</span> <span class="n">na</span><span class="o">.</span><span class="n">omit</span><span class="p">(</span><span class="n">SAPA</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Possiamo ora usare la funzione <code class="docutils literal notranslate"><span class="pre">se.m()</span></code> che abbiamo definito sopra.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">se</span><span class="o">.</span><span class="n">m</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;alpha&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="simulazione">
-<h3><span class="section-number">9.1.2. </span>Simulazione<a class="headerlink" href="#simulazione" title="Permalink to this headline">#</a></h3>
-<p>Torniamo ora alla simulazione precedente in cui abbiamo messo in relazione il modello della CTT con il modello di regressione lineare. In base a tale simulazione, poniamoci lo scopo di chiarire il significato dell’errore standard della misurazione.</p>
-<p>Impostiamo la simulazione come abbiamo fatto in precedenza. Chiamiamo <span class="math notranslate nohighlight">\(X\)</span> il valore osservato in un test. Per la CTT, il punteggio osservato <span class="math notranslate nohighlight">\(X\)</span> è costituito da due componenti, la componente vera <span class="math notranslate nohighlight">\(T\)</span> e la componente d’errore <span class="math notranslate nohighlight">\(E\)</span>. Si suppone che gli errori siano gaussiani e incorrelati con la componente vera. Immaginiamo di somministrare 200 volte il test ad un individuo sotto le stesse identiche condizioni.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="s2">&quot;MASS&quot;</span><span class="p">)</span>
-<span class="n">library</span><span class="p">(</span><span class="s2">&quot;arm&quot;</span><span class="p">)</span>
-<span class="nb">set</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
-
-<span class="n">n</span> <span class="o">&lt;-</span> <span class="mi">200</span>
-<span class="n">Sigma</span> <span class="o">&lt;-</span> <span class="n">matrix</span><span class="p">(</span>
-    <span class="n">c</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> 
-       <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">byrow</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
-
-<span class="n">mu</span> <span class="o">&lt;-</span> <span class="n">c</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-
-<span class="n">Y</span> <span class="o">&lt;-</span> <span class="n">mvrnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">Sigma</span><span class="p">,</span> <span class="n">empirical</span><span class="o">=</span><span class="n">TRUE</span><span class="p">)</span>
-<span class="n">T</span> <span class="o">&lt;-</span> <span class="n">Y</span><span class="p">[,</span> <span class="mi">1</span><span class="p">]</span>
-<span class="n">E</span> <span class="o">&lt;-</span> <span class="n">Y</span><span class="p">[,</span> <span class="mi">2</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Verifichiamo l’incorrelazione tra <span class="math notranslate nohighlight">\(T\)</span> ed <span class="math notranslate nohighlight">\(E\)</span>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cor</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">E</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>I valori ottenuti sono la somma del valore vero e della componente
-d’errore:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">&lt;-</span> <span class="n">T</span> <span class="o">+</span> <span class="n">E</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Per questi dati, il coefficiente di attendibilità è uguale a:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rxx</span> <span class="o">&lt;-</span> <span class="n">cor</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span>
-<span class="n">rxx</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Possiamo ora calcolare l’errore standard della misurazione utilizzando
-la &#64;ref(eq:err-stnd-mis):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sd</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">rxx</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Si noti che tale valore non è altro che la deviazione standard degli
-errori della misurazione:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sd</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Verifichiamo ora quanto segue: nei termini del modello di regressione <span class="math notranslate nohighlight">\(X = 0 + 1 \cdot T + E\)</span>, l’errore standard della misurazione della CTT è uguale all’errore standard
-della regressione:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fm</span> <span class="o">&lt;-</span> <span class="n">lm</span><span class="p">(</span><span class="n">formula</span> <span class="o">=</span> <span class="n">X</span> <span class="o">~</span> <span class="n">T</span><span class="p">)</span>
-<span class="n">summary</span><span class="p">(</span><span class="n">fm</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
+<div class="cell_output docutils container">
+<div class="output text_html">5.29643177867088</div></div>
 </div>
 </section>
 </section>
 <section id="dimostrazione">
 <h2><span class="section-number">9.2. </span>Dimostrazione<a class="headerlink" href="#dimostrazione" title="Permalink to this headline">#</a></h2>
-<p>Poniamoci ora il problema di derivare la formula dell’errore standard
-della misurazione. Per derivare la formula <span class="math notranslate nohighlight">\(\sigma_E = \sigma_X \sqrt{1 -\rho_{XX^\prime}}\)</span> sono necessari due passi: prima dobbiamo trovare la varianza del punteggio vero; poi dobbiamo esprimere il punteggio osservato come la somma della varianza del punteggio vero e la varianza dell’errore.</p>
-<p>In base alla definizione del coefficiente di attendibilità <span class="math notranslate nohighlight">\(\rho_{XX^\prime} = \frac{\sigma^2_T}{\sigma^2_X}\)</span> possiamo scrivere <span class="math notranslate nohighlight">\(\sigma^2_T = \rho_{XX^\prime} \sigma^2_X\)</span>, dove <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(X^\prime\)</span> sono due forme parallele di un test. Ricordiamo che misurazioni parallele hanno le seguenti proprietà: <span class="math notranslate nohighlight">\(\mathbb{E}(X) = \mathbb{E}(X^\prime)\)</span> e <span class="math notranslate nohighlight">\(\mathbb{V}(X) = \mathbb{V}(X^\prime)\)</span>. Dato che <span class="math notranslate nohighlight">\(\sigma_{X}=\sigma_{X^\prime}\)</span>, l’equazione precedente diventa <span class="math notranslate nohighlight">\(\sigma^2_T = \rho_{XX^\prime} \sigma_X\sigma_{X^\prime}.\)</span> Utilizzando la definizione della covarianza tra <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(X^\prime\)</span>, ovvero, <span class="math notranslate nohighlight">\(\sigma_{XX^\prime}=\rho_{XX^\prime}\sigma_X\sigma_{X^\prime}\)</span>, possiamo concludere che la varianza del punteggio vero è uguale alla covarianza tra due misurazioni parallele:</p>
+<p>Esaminiamo ora la derivazione della formula per l’errore standard di misurazione, <span class="math notranslate nohighlight">\(\sigma_E = \sigma_X \sqrt{1 - \rho_{XX^\prime}}\)</span>. Per arrivare a questa formula, seguiremo due passaggi chiave: innanzitutto, calcoleremo la varianza del vero punteggio e successivamente rappresenteremo il punteggio osservato come la somma della varianza del vero punteggio e la varianza dell’errore.</p>
+<p>Iniziamo definendo il coefficiente di attendibilità come <span class="math notranslate nohighlight">\(\rho_{XX^\prime} = \frac{\sigma^2_T}{\sigma^2_X}\)</span>, in cui <span class="math notranslate nohighlight">\(\sigma^2_T\)</span> è la varianza del vero punteggio e <span class="math notranslate nohighlight">\(\sigma^2_X\)</span> è la varianza del punteggio osservato. Utilizzando questa definizione, possiamo riscrivere <span class="math notranslate nohighlight">\(\sigma^2_T\)</span> come <span class="math notranslate nohighlight">\(\sigma^2_T = \rho_{XX^\prime} \sigma^2_X\)</span>, considerando che <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(X^\prime\)</span> sono forme parallele di un test e con proprietà simili.</p>
+<p>Dato che <span class="math notranslate nohighlight">\(\sigma_X = \sigma_{X^\prime}\)</span>, possiamo semplificare l’equazione precedente in <span class="math notranslate nohighlight">\(\sigma^2_T = \rho_{XX^\prime} \sigma_X \sigma_{X^\prime}\)</span>. Inoltre, la covarianza tra <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(X^\prime\)</span> è definita come <span class="math notranslate nohighlight">\(\sigma_{XX^\prime} = \rho_{XX^\prime} \sigma_X \sigma_{X^\prime}\)</span>. Da qui, possiamo affermare che <span class="math notranslate nohighlight">\(\sigma^2_T = \sigma_{XX^\prime}\)</span>, dato che la varianza del vero punteggio equivale alla covarianza tra due misurazioni parallele.</p>
+<p>Ora, passiamo a calcolare la varianza dell’errore, <span class="math notranslate nohighlight">\(\sigma^2_E\)</span>. La varianza del punteggio osservato è espressa come <span class="math notranslate nohighlight">\(\sigma^2_X = \sigma^2_T + \sigma^2_E\)</span>. Utilizzando la definizione di attendibilità, possiamo riscrivere questa equazione come <span class="math notranslate nohighlight">\(\sigma^2_X = \rho_{XX^\prime} \sigma^2_X + \sigma^2_E\)</span>, da cui otteniamo:</p>
 <div class="math notranslate nohighlight">
-\[
-\sigma^2_T =  \sigma_{XX^\prime}.
-\]</div>
-<p>Essendo l’attendibilità del test il rapporto tra la varianza del punteggio vero e la varianza del punteggio osservato, ed essendo che la varianza del punteggio vero
-uguale alla covarianza tra due misurazioni parallele, possiamo
-concludere che l’attendibilità aumenta all’aumentare della covarianza
-media tra gli item del test. Si noti come questo importante risultato
-della CTT dipenda dall’ipotesi di omogeneità delle varianze degli item
-del test.</p>
-<p>Calcoliamo ora la varianza di <span class="math notranslate nohighlight">\(E\)</span>. La varianza del punteggio osservato è
-uguale a <span class="math notranslate nohighlight">\(\sigma^2_X = \sigma^2_T + \sigma^2_E.\)</span> Sulla base della
-definizione di attendibilità <span class="math notranslate nohighlight">\(\sigma^2_T = \rho_{XX^\prime} \sigma^2_X\)</span>, la
-varianza del punteggio osservato si può scrivere come
-<span class="math notranslate nohighlight">\(\sigma^2_X =\rho_{XX^\prime} \sigma^2_X + \sigma^2_E\)</span>, da cui</p>
-<p>\begin{equation}
+\[\begin{split}
+\begin{equation}
 \begin{aligned}
-\sigma^2_E &amp;= \sigma^2_X - \sigma^2_X\rho_{XX^\prime}\notag\
-&amp;= \sigma^2_X (1 -\rho_{XX^\prime}).
+\sigma^2_E &amp;= \sigma^2_X - \sigma^2_X \rho_{XX^\prime} \\
+&amp;= \sigma^2_X (1 - \rho_{XX^\prime}).
 \end{aligned}
-\end{equation}</p>
-<p>La varianza degli errori della misurazione <span class="math notranslate nohighlight">\(\sigma^2_E = \sigma^2_X (1 -\rho_{XX^\prime})\)</span> è dunque uguale al prodotto di due fattori: il primo fattore è la varianza del punteggio osservato; il secondo fattore è uguale a uno meno la
-correlazione tra due forme parallele del test. Possiamo così calcolare
-una quantità incognita, <span class="math notranslate nohighlight">\(\sigma^2_E\)</span>, nei termini di due quantità
-osservabili, <span class="math notranslate nohighlight">\(\sigma^2_X\)</span> e <span class="math notranslate nohighlight">\(\rho_{XX^\prime}\)</span>.</p>
+\end{equation}
+\end{split}\]</div>
+<p>Di conseguenza, la varianza dell’errore di misurazione, <span class="math notranslate nohighlight">\(\sigma^2_E\)</span>, può essere espressa come il prodotto di due fattori: il primo rappresenta la varianza del punteggio osservato, mentre il secondo equivale a uno meno la correlazione tra le due forme parallele del test (<span class="math notranslate nohighlight">\(\rho_{XX^\prime}\)</span>). In conclusione, abbiamo calcolato l’incognita <span class="math notranslate nohighlight">\(\sigma^2_E\)</span> in termini di due quantità osservabili, <span class="math notranslate nohighlight">\(\sigma^2_X\)</span> e <span class="math notranslate nohighlight">\(\rho_{XX^\prime}\)</span>.</p>
 </section>
 <section id="intervallo-di-confidenza-per-il-punteggio-vero-e-sigma-e">
 <h2><span class="section-number">9.3. </span>Intervallo di confidenza per il punteggio vero e <span class="math notranslate nohighlight">\(\sigma_E\)</span><a class="headerlink" href="#intervallo-di-confidenza-per-il-punteggio-vero-e-sigma-e" title="Permalink to this headline">#</a></h2>
-<p>Uno degli usi che vengono fatti dell’errore standard della misurazione è
-quello di costruire, con essi, gli intervalli di confidenza per il
-punteggio vero. Tale uso, però, non è corretto <span id="id3">[<a class="reference internal" href="z_biblio.html#id24" title="Richard A Charter. Revisiting the standard errors of measurement, estimate, and prediction and their application to test scores. Perceptual and Motor Skills, 82(3):1139–1144, 1996.">Cha96</a>]</span>.
-Gli intervalli di confidenza costruiti usando l’errore standard della
-misurazione vengono talvolta incorrettamente interpretati in modo tale
-da suggerire che l’intervallo di confidenza al <span class="math notranslate nohighlight">\((1 - \alpha)\%\)</span>
-identifica una gamma di valori, <em>centrata sul valore osservato</em>, entro
-il quale cadono i punteggi veri del test nel <span class="math notranslate nohighlight">\((1 - \alpha)\%\)</span> di
-ipotetiche somministrazioni ripetute del test. Ma le cose non stanno
-così. In realtà, come abbiamo detto sopra, l’errore standard della
-misurazione è la deviazione standard, calcolata rispetto al valore
-vero, di ipotetiche misurazioni ripetute dello stesso test. Si può
-ribadire questo concetto nel modo seguente: “In spite of <span id="id4">Dudek [<a class="reference internal" href="z_biblio.html#id25" title="Frank J Dudek. The continuing misinterpretation of the standard error of measurement. Psychological Bulletin, 86(2):335–-337, 1979.">Dud79</a>]</span>’s reminder that the SEM should not be used to construct confidence intervals, many test manuals, computer-scoring programs, and texts in psychology and education continue to do so. Because authors of many textbooks and manuals make these errors, it is understandable that those who learned from and look to these sources for guidance also make these errors. In summary, the SEM should not be used to construct confidence intervals for test scores” (p. 1141). Sembra piuttosto chiaro.</p>
+<p>L’errore standard della misurazione trova molteplici applicazioni, ma uno degli impieghi più comuni è nella creazione degli intervalli di confidenza per il punteggio vero. Tuttavia, è importante sottolineare che questa pratica non è corretta <span id="id4">[<a class="reference internal" href="z_biblio.html#id25" title="Richard A Charter. Revisiting the standard errors of measurement, estimate, and prediction and their application to test scores. Perceptual and Motor Skills, 82(3):1139–1144, 1996.">Cha96</a>]</span>. Gli intervalli di confidenza costruiti utilizzando l’errore standard della misurazione sono a volte interpretati in modo errato, dando l’idea che l’intervallo di confidenza al livello <span class="math notranslate nohighlight">\((1 - \alpha)%\)</span> definisca un intervallo di valori centrato sul valore osservato. Questo intervallo, secondo l’interpretazione errata, conterrebbe i punteggi veri del test nell’<span class="math notranslate nohighlight">\((1 - \alpha)%\)</span> delle ipotetiche somministrazioni ripetute del test. Tuttavia, tale interpretazione non è corretta e va chiarita. In realtà, come accennato precedentemente, l’errore standard della misurazione rappresenta la deviazione standard calcolata <em>rispetto al valore vero</em>, considerando le ipotetiche misurazioni ripetute dello stesso test. Si può ribadire questo concetto nel modo seguente: “In spite of <span id="id5">Dudek [<a class="reference internal" href="z_biblio.html#id26" title="Frank J Dudek. The continuing misinterpretation of the standard error of measurement. Psychological Bulletin, 86(2):335–-337, 1979.">Dud79</a>]</span>’s reminder that the SEM should not be used to construct confidence intervals, many test manuals, computer-scoring programs, and texts in psychology and education continue to do so. Because authors of many textbooks and manuals make these errors, it is understandable that those who learned from and look to these sources for guidance also make these errors. In summary, the SEM should not be used to construct confidence intervals for test scores” (p. 1141).</p>
 </section>
 <section id="conclusioni">
 <h2><span class="section-number">9.4. </span>Conclusioni<a class="headerlink" href="#conclusioni" title="Permalink to this headline">#</a></h2>
-<p>Le stime di affidabilità sono uno strumento utile nell’ambito della teoria classica dei test (CTT) per valutare la coerenza dei test. Tuttavia, quando si prendono decisioni importanti sul superamento o meno di un esame, ad esempio, è più utile fare ricorso all’errore standard di misurazione (SEM) per valutare la coerenza di una serie di punteggi del test. Il SEM fornisce una stima quantitativa del grado di variazione dei punteggi del test dovuto ad errori di misurazione all’interno di un insieme di punteggi.</p>
-<p>Il SEM è una stima dell’errore medio nei punteggi di tutti gli esaminati che hanno sostenuto il test. Utilizzando il SEM, possiamo calcolare fino a che punto i punteggi degli esaminati possono variare solo per caso con una certa probabilità. In particolare, possiamo prevedere che l’errore può far variare i punteggi degli esaminati all’interno di una banda di più o meno un SEM con una precisione del 68% (sulla base delle percentuali previste sotto la distribuzione normale dei punteggi dei test). Ad esempio, se il punteggio vero di un candidato è 65 e il SEM è di 2, possiamo stimare che i suoi punteggi potrebbero variare casualmente tra 63 e 67 punti (65 – 2 = 63; 65 + 2 = 67) con una precisione del 68% se dovesse sostenere il test più volte. Se vogliamo essere ancora più sicuri nella previsione dei suoi punteggi in somministrazioni ripetute, possiamo utilizzare due SEM (2 + 2 = 4) e affermare che i suoi punteggi potrebbero variare solo casualmente tra 61 e 69 punti (65 – 4 = 61; 65 + 4 = 69) con una precisione del 95%.</p>
-<p>Il SEM indica quanto i punteggi di un test possono fluttuare casualmente se lo stesso test viene ripetuto più volte dagli stessi esaminati. Un SEM di 2 punti indica che ci si può aspettare fluttuazioni relativamente basse nei punteggi, mentre un SEM di 15 punti indica fluttuazioni maggiori. In generale, più il SEM è piccolo, più stretta sarà la banda di fluttuazioni casuali, ovvero la differenza tra i punteggi veri degli esaminati e quelli osservati. Questo significa che, se il SEM è piccolo, i punteggi rappresenteranno in modo più coerente le vere abilità degli esaminati. Alcuni psicologi preferiscono utilizzare il SEM rispetto alle stime di affidabilità del test, in quanto il SEM rappresenta una banda di punteggio più facilmente interpretabile rispetto alle stime di affidabilità, che possono essere più astratte o basate sulla stabilità temporale del test.</p>
+<p>Nel contesto della CTT, le stime di affidabilità si rivelano uno strumento fondamentale per valutare la coerenza dei test. Tuttavia, quando si affrontano decisioni relative al singolo individuo, come ad esempio determinare se un candidato supera un esame, diventa più vantaggioso fare riferimento all’errore standard di misurazione (SEM). Il SEM rende evidente quanto i punteggi di un test siano suscettibili di fluttuazioni casuali se lo stesso test venisse ripetuto più volte dallo stesso esaminando. In generale, un SEM più ridotto corrisponde a un intervallo di fluttuazioni casuali più stretto. Ciò implica che, grazie a un SEM più basso, i punteggi rifletteranno in modo più coerente le vere capacità dell’esaminando.</p>
 </section>
 </section>
 
@@ -818,16 +699,16 @@ ribadire questo concetto nel modo seguente: “In spite of <span id="id4">Dudek 
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "r"
         },
         kernelOptions: {
-            name: "python3",
+            name: "ir",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'ir'</script>
 
                 </article>
               
@@ -878,7 +759,6 @@ ribadire questo concetto nel modo seguente: “In spite of <span id="id4">Dudek 
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-incertezza-della-misura">9.1. L’incertezza della misura</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione">9.1.1. Interpretazione</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulazione">9.1.2. Simulazione</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimostrazione">9.2. Dimostrazione</a></li>
