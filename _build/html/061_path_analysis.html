@@ -1,0 +1,939 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>17. Path analysis &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '061_path_analysis';</script>
+    <link rel="shortcut icon" href="_static/increasing.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="18. Utilizzo e costruzione di test psicometrici" href="150_sviluppo_strumento.html" />
+    <link rel="prev" title="16. Relazioni test-criterio" href="055_relations_to_other_vars.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Test psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">1. Prefazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_measurement.html">2. Misurazione: affidabilità, validazione di costrutto e costruzione di Scale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="005_tipologie_test.html">3. Tipologie dei test psicometrici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="007_norms.html">4. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_development.html">5. Sviluppo dello strumento</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="020_ctt_1.html">6. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_ctt_2.html">7. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_ctt_3.html">8. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="025_err_std_mis.html">9. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="026_err_std_stima.html">10. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="028_applications_ctt.html">11. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="E_ctt_1.html">12. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="031_interrater_reliability.html">13. L’affidabilità tra giudici</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="041_gtheory.html">14. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="051_validity.html">15. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="055_relations_to_other_vars.html">16. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">17. Path analysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="150_sviluppo_strumento.html">18. Utilizzo e costruzione di test psicometrici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="155_analisi_fattoriale_1.html">19. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="156_analisi_fattoriale_2.html">20. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="157_analisi_fattoriale_3.html">21. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="158_factor_scores.html">22. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="162_constraints_on_parms.html">23. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="163_total_score.html">24. Punteggio totale e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="170_cfa_mod_comp.html">25. CFA: confronto tra modelli</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione di strumenti psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="201_valutare_le_matrici.html">26. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="202_estrazione.html">27. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="203_numero_fattori.html">28. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="205_rotazione.html">29. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="206_valutare_sol_fattoriale.html">30. Valutare e rifinire la soluzione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="210_group_invariance.html">31. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="215_gof.html">32. Indici di bontà dell’adattamento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="220_refine_solution.html">33. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="225_mmm.html">34. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="230_cat_data.html">35. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="235_missing_data.html">36. Dati mancanti</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="351_sem_intro.html">37. Introduzione ai modelli di equazioni struttural</a></li>
+<li class="toctree-l1"><a class="reference internal" href="352_visualize_sem.html">38. Visualizzare i modelli di equazioni strutturali</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="401_irt.html">39. Modelli di risposta all’item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="701_lgm_intro.html">40. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="702_lgm_prelims.html">41. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="703_lgm_mixed.html">42. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="705_growth_1.html">43. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="706_growth_cont.html">44. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="710_time_inv_cov.html">45. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="711_growth_groups.html">46. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="715_bivariate_growth_models.html">47. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="720_inv_measurement.html">48. Invarianza di misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="750_latent_change.html">49. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="751_biv_change.html">50. Modello LCS bivariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="755_lgm_meas_inv.html">51. Invarianza fattoriale nei modelli LGM</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="z_biblio.html">52. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="901_intro_r.html">53. Linguaggio di programmazione R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="910_regression.html">54. L’analisi di regressione</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test/issues/new?title=Issue%20on%20page%20%2F061_path_analysis.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/061_path_analysis.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Path analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#path-diagram">17.1. Path diagram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-dei-percorsi-e-regressione-bivariata">17.2. Analisi dei percorsi e regressione bivariata</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-dei-percorsi-e-regressione-multipla">17.3. Analisi dei percorsi e regressione multipla</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#effetti-diretti-e-indiretti">17.4. Effetti diretti e indiretti</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-regole-di-wright">17.5. Le regole di Wright</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scomposizione-delle-correlazioni-covarianze">17.6. Scomposizione delle correlazioni/covarianze</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scomposizione-della-varianza">17.6.1. Scomposizione della varianza</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-finali">17.7. Commenti e considerazioni finali</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="path-analysis">
+<span id="path-analysis-notebook"></span><h1><span class="section-number">17. </span>Path analysis<a class="headerlink" href="#path-analysis" title="Permalink to this headline">#</a></h1>
+<!-- https://stats.oarc.ucla.edu/r/seminars/rsem/ --><p>Le visualizzazioni rivestono un ruolo fondamentale nel comunicare in modo chiaro e sintetico le intricate relazioni tra variabili. Questo è particolarmente evidente quando si opera con modelli di equazioni strutturali (SEM) che delineano una rete di interconnessioni tra variabili sia osservabili che latenti. In tali contesti, i ricercatori frequentemente si avvalgono di strumenti grafici per agevolare la specificazione e l’esplicitazione del modello, oltre che per presentare in maniera comprensibile i risultati ottenuti.</p>
+<p>L’analisi del percorso, comunemente denominata “path analysis,” costituisce una metodologia finalizzata alla disassemblaggio della correlazione o covarianza esistente tra variabili, con l’obiettivo di rivelare e descrivere le intricate relazioni tra di esse. Questo approccio si fonda sulla creazione di rappresentazioni grafiche che evidenziano le interrelazioni tra le variabili, offrendo una visualizzazione visuale di come i diversi fattori si influenzino reciprocamente. Inoltre, l’analisi del percorso prevede una scomposizione delle correlazioni o covarianze utilizzando i parametri del modello, trasformando dati complessi in una struttura più comprensibile.</p>
+<p>Sewall Wright, un genetista che operava presso il Dipartimento dell’Agricoltura degli Stati Uniti, fu il precursore nello sviluppo dei diagrammi di percorso per descrivere i modelli di equazioni strutturali già negli anni ‘20 del secolo scorso. Questa sua innovazione ha permesso di ottenere una rappresentazione visiva delle connessioni tra variabili, aprendo la strada all’analisi del percorso.</p>
+<p>Con il trascorrere del tempo, questa metodologia è stata adottata con successo come uno strumento efficace per discriminare gli effetti diretti da quelli indiretti nelle relazioni tra variabili. Inoltre, essa si è dimostrata di grande utilità nel valutare la solidità e la validità delle relazioni causali ipotizzate all’interno dei modelli di equazioni strutturali.</p>
+<section id="path-diagram">
+<h2><span class="section-number">17.1. </span>Path diagram<a class="headerlink" href="#path-diagram" title="Permalink to this headline">#</a></h2>
+<p>Il diagramma del percorso, noto anche come “path diagram,” costituisce uno strumento per la rappresentazione grafica delle relazioni tra variabili all’interno di un modello. All’interno di questo diagramma, le variabili latenti o non osservate sono rappresentate mediante cerchi o ellissi, mentre le variabili osservate sono rappresentate da quadrati o rettangoli.</p>
+<p>All’interno del path diagram, è possibile individuare due categorie di variabili: quelle che subiscono influenze da parte di altre variabili nel sistema e quelle che svolgono il ruolo di generatori di effetti. Nello specifico, le variabili esogene costituiscono elementi esterni al sistema in esame, operando in qualità di variabili indipendenti che generano effetti causalmente. Al contrario, le variabili endogene possono agire sia come risultati di altre variabili che come cause per ulteriori variabili, oppure possono essere strettamente variabili dipendenti. Le origini causali delle variabili endogene trovano collocazione all’interno del path diagram, mentre quelle delle variabili esogene si trovano esternamente al diagramma. Tale distinzione presenta affinità con la distinzione tra variabili indipendenti e dipendenti all’interno dei modelli lineari.</p>
+<p>Il diagramma di percorso mette in evidenza le interazioni tra le variabili d’interesse, sottolineando i legami causali o associativi che le connettono. Le frecce unidirezionali illustrano relazioni causali: una variabile subisce influenza da un’altra variabile collegata attraverso una freccia. Invece, le frecce curve bidirezionali denotano relazioni associative, senza implicare una causalità diretta tra le variabili. L’assenza di una freccia tra due variabili nel diagramma suggerisce l’assenza di correlazione tra di esse. Nel caso esemplificato, si illustrano le relazioni tra nove variabili osservate e tre variabili latenti mediante il path diagram.</p>
+<figure class="align-default" id="path-01-fig">
+<a class="reference internal image-reference" href="_images/path_01.png"><img alt="_images/path_01.png" src="_images/path_01.png" style="height: 450px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 17.1 </span><span class="caption-text">Diagramma di percorso per un modello a tre fattori comuni.</span><a class="headerlink" href="#path-01-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="analisi-dei-percorsi-e-regressione-bivariata">
+<h2><span class="section-number">17.2. </span>Analisi dei percorsi e regressione bivariata<a class="headerlink" href="#analisi-dei-percorsi-e-regressione-bivariata" title="Permalink to this headline">#</a></h2>
+<p>Cominciamo esaminando l’analisi dei percorsi partendo dall’esempio più semplice, ovvero il modello di regressione lineare. Il modello di regressione bivariata si esprime tramite l’equazione seguente:</p>
+<p>[ y_1 = b_0 + b_1 x_1 + \epsilon_1 ]</p>
+<p>Dove ( y ) rappresenta la variabile dipendente, ( b_0 ) rappresenta l’intercetta, ( b_1 ) rappresenta la pendenza della retta di regressione, ( x ) è la variabile indipendente e ( \epsilon ) è il termine di errore.</p>
+<p>Nell’ambito della descrizione delle relazioni tra variabili manifeste e latenti, si adotta spesso la notazione LISREL. In questa notazione, il modello presentato in precedenza può essere espresso come segue:</p>
+<p>[ y_1 = \alpha + \gamma x_1 + \zeta_1 ]</p>
+<p>Dove:</p>
+<ul class="simple">
+<li><p>( x_1 ): variabile esogena singola</p></li>
+<li><p>( y_1 ): variabile endogena singola</p></li>
+<li><p>( \alpha ): intercetta di ( y_1 )</p></li>
+<li><p>( \gamma_1 ): coefficiente di regressione</p></li>
+<li><p>( \zeta_1 ): termine di errore di ( y_1 )</p></li>
+<li><p>( \phi ): varianza o covarianza della variabile esogena</p></li>
+<li><p>( \psi ): varianza o covarianza residuale della variabile endogena</p></li>
+</ul>
+<p>Il diagramma di percorso per il modello di regressione bivariata è illustrato nella figura sottostante.</p>
+<figure class="align-default" id="lisrel-bivariate-reg-fig">
+<a class="reference internal image-reference" href="_images/lisrel_bivariate_reg.png"><img alt="_images/lisrel_bivariate_reg.png" src="_images/lisrel_bivariate_reg.png" style="height: 225px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 17.2 </span><span class="caption-text">Diagramma di percorso per il modello di regressione bivariato.</span><a class="headerlink" href="#lisrel-bivariate-reg-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Facciamo un esempio numerico. Simuliamo tre variabili: x1, x2, y.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span>
+<span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">100</span>
+<span class="n">x1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="m">90</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">)</span>
+<span class="n">x2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">30</span><span class="p">)</span>
+<span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">30</span><span class="p">)</span>
+
+<span class="nf">cor</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">))</span>
+
+<span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">    </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 3 × 3 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>x1</th><th scope=col>x2</th><th scope=col>y</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>x1</th><td>1.0000000</td><td>0.6244502</td><td>0.5493286</td></tr>
+	<tr><th scope=row>x2</th><td>0.6244502</td><td>1.0000000</td><td>0.7992614</td></tr>
+	<tr><th scope=row>y</th><td>0.5493286</td><td>0.7992614</td><td>1.0000000</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Consideriamo la relazione tra <code class="docutils literal notranslate"><span class="pre">x1</span></code> (variabile endogena) e <code class="docutils literal notranslate"><span class="pre">y</span></code> (variabile endogena). In R possiamo adattare ai dati un modello di regressione mediante la funzione <code class="docutils literal notranslate"><span class="pre">lm</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">m1a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">m1a</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+lm(formula = y ~ x1, data = dat)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-82.462 -29.539  -3.437  29.200 122.234 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  37.5974    18.9844   1.980   0.0505 .  
+x1            1.3286     0.2042   6.508 3.25e-09 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 42.31 on 98 degrees of freedom
+Multiple R-squared:  0.3018,	Adjusted R-squared:  0.2946 
+F-statistic: 42.35 on 1 and 98 DF,  p-value: 3.251e-09
+</pre></div>
+</div>
+</div>
+</div>
+<p>Usiamo ora lavaan per adattare lo stesso modello ai dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">m1b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">    y ~ 1 + x1</span>
+<span class="s">    x1 ~~ x1</span>
+<span class="s">&quot;</span>
+<span class="n">fit1b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sem</span><span class="p">(</span><span class="n">m1b</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat</span><span class="p">)</span>
+<span class="nf">parameterEstimates</span><span class="p">(</span><span class="n">fit1b</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  lhs op rhs      est      se      z pvalue ci.lower ci.upper
+1   y ~1       37.597  18.794  2.001  0.045    0.763   74.432
+2   y  ~  x1    1.329   0.202  6.574  0.000    0.933    1.725
+3  x1 ~~  x1  429.432  60.731  7.071  0.000  310.402  548.462
+4   y ~~   y 1754.100 248.067  7.071  0.000 1267.897 2240.303
+5  x1 ~1       90.650   2.072 43.744  0.000   86.589   94.712
+</pre></div>
+</div>
+</div>
+</div>
+<p>L’intercetta di <code class="docutils literal notranslate"><span class="pre">.y</span></code> (37.597) e il coefficiente di regressione di <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">~</span> <span class="pre">x1</span></code> (1.329) corrispondono all’output di <code class="docutils literal notranslate"><span class="pre">lm()</span></code> con piccoli errori di arrotondamento. Si noti che il punto (.) davanti al parametro indica una variabile endogena sotto <code class="docutils literal notranslate"><span class="pre">Intercepts</span></code> e una varianza residua se sotto <code class="docutils literal notranslate"><span class="pre">Variances</span></code> o <code class="docutils literal notranslate"><span class="pre">Covariances</span></code>. L’intercetta per <code class="docutils literal notranslate"><span class="pre">x1</span></code> (90.650) non ha un punto (.) né la sua varianza (429.432), indicando che si tratta di una media ed una varianza esogena. La media ed la varianza esogene corrispondono alla media e alla varianza univariate come mostrato di seguito:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">mean</span><span class="p">(</span><span class="n">dat</span><span class="o">$</span><span class="n">x1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">90.6502963122602</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">var</span><span class="p">(</span><span class="n">dat</span><span class="o">$</span><span class="n">x1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">dat</span><span class="o">$</span><span class="n">x1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">dat</span><span class="o">$</span><span class="n">x1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">429.432031274383</div></div>
+</div>
+<p>La funzione <code class="docutils literal notranslate"><span class="pre">semPaths</span></code> consente di creare un diagramma di percorso a partire dall’oggetto creato da <code class="docutils literal notranslate"><span class="pre">sem</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">semPlot</span><span class="o">::</span><span class="nf">semPaths</span><span class="p">(</span>
+<span class="w">    </span><span class="n">fit1b</span><span class="p">,</span>
+<span class="w">    </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;tree&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="n">sizeInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ram&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">residuals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">intAtSide</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">edge.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.15</span><span class="p">,</span>
+<span class="w">    </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;est&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nCharNodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">normalize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5e20269cc1393add8a8fd52ee72b2d13c37dda14797af9774794ebf5e379a9f7.png" src="_images/5e20269cc1393add8a8fd52ee72b2d13c37dda14797af9774794ebf5e379a9f7.png" />
+</div>
+</div>
+</section>
+<section id="analisi-dei-percorsi-e-regressione-multipla">
+<h2><span class="section-number">17.3. </span>Analisi dei percorsi e regressione multipla<a class="headerlink" href="#analisi-dei-percorsi-e-regressione-multipla" title="Permalink to this headline">#</a></h2>
+<!-- Vi è una stretta relazione tra path analysis e regressione multipla,
+tanto che la regressione può essere considerata un caso particolare di
+path analysis. Per semplicità, si supponga che le variabili siano state
+standardizzate, anche se la stessa analisi può essere condotta per
+variabili grezze. Il path diagram mostra la relazione tra tutte le
+variabili, comprendendo anche i fattori di disturbo, e fornisce dunque
+la rappresentazione grafica di un sistema di equazioni simultanee. Nel
+caso di due regressori, il modello di regressione multipla può essere
+rappresentato tramite il path diagram riportato nella
+figura seguente. -->
+<p>La regressione semplice è limitata a una sola variabile esogena. Nella pratica, un ricercatore può essere interessato a studiare come un gruppo di variabili esogene possano predire una variabile di esito. Supponiamo di avere ancora una sola variabile di esito endogena ma due predittori esogeni; questo caso è noto come regressione multipla:</p>
+<div class="math notranslate nohighlight">
+\[
+y_1 = \alpha_1 + \gamma_1 x_1 + \gamma_2 x_2 + \zeta_1
+\]</div>
+<p>Il diagramma di percorso mostra la relazione tra tutte le variabili, comprendendo anche i fattori di disturbo, e fornisce dunque la rappresentazione grafica dell’equazione precedente.</p>
+<figure class="align-default" id="lisrel-mr-fig">
+<a class="reference internal image-reference" href="_images/lisrel_mr.png"><img alt="_images/lisrel_mr.png" src="_images/lisrel_mr.png" style="height: 300px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 17.3 </span><span class="caption-text">Diagramma di percorso per il modello di regressione multipla.</span><a class="headerlink" href="#lisrel-mr-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>I coefficienti di percorso associati alle frecce orientate esprimono la portata del nesso causale e corrispondono ai pesi beta (ovvero ai coefficienti parziali di regressione standardizzati). Le frecce non orientate esprimono la portata della pura associazione tra variabili e dunque corrispondono alle correlazioni/covarianze.</p>
+<p>In un diagramma di percorso, il numero di equazioni corrisponde al numero di variabili endogene del modello. Nel caso specifico, poiché vi è una sola variabile endogena (ovvero <span class="math notranslate nohighlight">\(y\)</span>), esiste un’unica equazione che descrive le relazioni causalitiche interne al path diagram. All’interno di ciascuna equazione, inoltre, il numero di termini corrisponde al numero di frecce orientate che puntano verso la variabile endogena. Nell’esempio sopra citato, pertanto, la sola equazione del modello contiene tre termini, ciascuno associato ad una freccia orientata.</p>
+<p>Usando <code class="docutils literal notranslate"><span class="pre">lm</span></code> otteniamo la seguente stima dei coefficienti:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">m2a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat</span><span class="p">)</span>
+<span class="n">fit2a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">m2a</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+lm(formula = y ~ 1 + x1 + x2, data = dat)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-77.299 -19.856  -2.476  19.112  75.617 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  44.4537    13.6639   3.253  0.00157 ** 
+x1            0.1991     0.1879   1.060  0.29179    
+x2            1.0853     0.1127   9.628 8.54e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 30.41 on 97 degrees of freedom
+Multiple R-squared:  0.643,	Adjusted R-squared:  0.6356 
+F-statistic: 87.34 on 2 and 97 DF,  p-value: &lt; 2.2e-16
+</pre></div>
+</div>
+</div>
+</div>
+<p>Gli stessi risultati si ottengono con lavaan.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">m2b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">    y ~ 1 + x1 + x2</span>
+<span class="s">    x1 ~~ x1</span>
+<span class="s">    x2 ~~ x2</span>
+<span class="s">    x1 ~~ x2</span>
+<span class="s">&quot;</span>
+<span class="n">fit2b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sem</span><span class="p">(</span><span class="n">m2b</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat</span><span class="p">)</span>
+<span class="nf">parameterEstimates</span><span class="p">(</span><span class="n">fit2b</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  lhs op rhs      est      se      z pvalue ci.lower ci.upper
+1   y ~1       44.454  13.457  3.303  0.001   18.078   70.830
+2   y  ~  x1    0.199   0.185  1.076  0.282   -0.164    0.562
+3   y  ~  x2    1.085   0.111  9.775  0.000    0.868    1.303
+4  x1 ~~  x1  429.432  60.731  7.071  0.000  310.402  548.462
+5  x2 ~~  x2 1192.840 168.693  7.071  0.000  862.208 1523.472
+6  x1 ~~  x2  446.927  84.379  5.297  0.000  281.546  612.307
+7   y ~~   y  896.963 126.850  7.071  0.000  648.342 1145.584
+8  x1 ~1       90.650   2.072 43.744  0.000   86.589   94.712
+9  x2 ~1       88.026   3.454 25.487  0.000   81.257   94.795
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo il diagramma di percorso.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">semPlot</span><span class="o">::</span><span class="nf">semPaths</span><span class="p">(</span>
+<span class="w">    </span><span class="n">fit2b</span><span class="p">,</span>
+<span class="w">    </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;tree&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="n">sizeInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ram&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">residuals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">intAtSide</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">edge.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.15</span><span class="p">,</span>
+<span class="w">    </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;est&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nCharNodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">normalize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5bfffe27c7961492d1fb08c9617021debf53635bc38f4ca470abcf86f40a4b81.png" src="_images/5bfffe27c7961492d1fb08c9617021debf53635bc38f4ca470abcf86f40a4b81.png" />
+</div>
+</div>
+</section>
+<section id="effetti-diretti-e-indiretti">
+<h2><span class="section-number">17.4. </span>Effetti diretti e indiretti<a class="headerlink" href="#effetti-diretti-e-indiretti" title="Permalink to this headline">#</a></h2>
+<p>L’analisi del percorso offre un metodo essenziale per distinguere tra diverse tipologie di effetti che influenzano le variabili in esame: l’effetto diretto, l’effetto indiretto e l’effetto totale. Gli effetti diretti rappresentano l’influenza che una variabile esercita su un’altra senza mediazione di altre variabili intermedie. Gli effetti indiretti, invece, operano attraverso l’intermediazione di almeno una variabile aggiuntiva nel processo. L’effetto totale è la somma cumulativa degli effetti diretti e indiretti.</p>
+<p>Nella figura qui di seguito, la variabile <span class="math notranslate nohighlight">\(y_1\)</span> esercita un effetto diretto sulla variabile <span class="math notranslate nohighlight">\(y_2\)</span>. Allo stesso tempo, <span class="math notranslate nohighlight">\(y_1\)</span> produce un effetto indiretto sulla variabile <span class="math notranslate nohighlight">\(y_3\)</span>, poiché non esiste una connessione causale diretta tra <span class="math notranslate nohighlight">\(y_1\)</span> e <span class="math notranslate nohighlight">\(y_3\)</span>. Nel contesto rappresentato, la variabile <span class="math notranslate nohighlight">\(y_1\)</span> agisce come variabile esogena, mentre le variabili <span class="math notranslate nohighlight">\(y_2\)</span> e $y_3v fungono da variabili endogene.</p>
+<figure class="align-default" id="path-03-fig">
+<a class="reference internal image-reference" href="_images/path_03.png"><img alt="_images/path_03.png" src="_images/path_03.png" style="height: 100px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 17.4 </span><span class="caption-text">Diagramma di percorso per un modello a catena.</span><a class="headerlink" href="#path-03-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="le-regole-di-wright">
+<h2><span class="section-number">17.5. </span>Le regole di Wright<a class="headerlink" href="#le-regole-di-wright" title="Permalink to this headline">#</a></h2>
+<p>L’obiettivo primario dell’analisi del percorso consiste nella decomposizione della correlazione (o della covarianza) in base alla somma dei vari percorsi (diretti e indiretti) che collegano due variabili mediante coefficienti noti come “path coefficients.” Utilizzando il diagramma del percorso, Sewall Wright (1921, 1934) formulò le regole che, tramite le “tracing rules,” stabiliscono il collegamento tra le correlazioni (o covarianze) delle variabili e i parametri del modello. Le tracing rules si possono esprimere nei seguenti termini:</p>
+<ul class="simple">
+<li><p>È possibile procedere in avanti lungo una freccia e poi a ritroso, seguendo la direzione della freccia, ma non è permesso muoversi in avanti e poi tornare indietro.</p></li>
+<li><p>Un percorso composto non deve attraversare più di una volta la stessa variabile, cioè non possono esserci cicli.</p></li>
+<li><p>Un percorso non può contenere più di una linea curva.</p></li>
+</ul>
+<p>Il termine “percorso” fa riferimento al tracciato che connette due variabili e si compone di sequenze di frecce unidirezionali e curve non direzionali. A ciascun percorso valido (cioè conforme alle regole di Wright) viene assegnato un valore numerico che rappresenta il prodotto dei coefficienti presenti lungo il percorso stesso. I coefficienti di percorso possono essere coefficienti parziali di regressione standardizzati se il legame è unidirezionale, oppure coefficienti di correlazione se il legame è bidirezionale.</p>
+</section>
+<section id="scomposizione-delle-correlazioni-covarianze">
+<h2><span class="section-number">17.6. </span>Scomposizione delle correlazioni/covarianze<a class="headerlink" href="#scomposizione-delle-correlazioni-covarianze" title="Permalink to this headline">#</a></h2>
+<p>Il principio fondamentale è stato formulato da Sewall Wright (1934) nel seguente modo:</p>
+<blockquote>
+<div><p>Ogni correlazione tra variabili in una rete di relazioni sequenziali può essere analizzata nei contributi provenienti da tutti i percorsi (diretti o attraverso fattori comuni) con i quali le due variabili sono connesse. Ogni contributo ha un valore pari al prodotto dei coefficienti relativi ai percorsi elementari. Se sono presenti correlazioni residue (rappresentate da frecce bidirezionali), uno (ma mai più di uno) dei coefficienti moltiplicati per ottenere il contributo del percorso di connessione può essere un coefficiente di correlazione. Gli altri sono tutti coefficienti di percorso.</p>
+</div></blockquote>
+<p>Da questo principio possiamo derivare la regola di scomposizione della correlazione: la correlazione o covarianza tra due variabili può essere scomposta in un numero di termini uguale al numero di percorsi che le collegano. Ogni termine è ottenuto dal prodotto dei coefficienti associati alle variabili lungo il percorso. In altre parole, è possibile decomporre la correlazione o la covarianza tra due variabili in tanti contributi quanti sono i percorsi possibili che collegano le due variabili.</p>
+<section id="scomposizione-della-varianza">
+<h3><span class="section-number">17.6.1. </span>Scomposizione della varianza<a class="headerlink" href="#scomposizione-della-varianza" title="Permalink to this headline">#</a></h3>
+<p>La decomposizione della varianza di una variabile endogena può essere affrontata attraverso una suddivisione in due componenti: una componente spiegata, attribuibile alle variabili che esercitano un’influenza causale su di essa, e una componente non spiegata. La componente spiegata della varianza deriva dall’aggregazione degli effetti delle diverse variabili che sono connessi alla variabile endogena, rispettando le regole di tracciamento definite da Wright. Il numero di addendi corrisponde al numero di percorsi che collegano la variabile endogena a se stessa. In tal modo, la varianza spiegata rappresenta la parte della varianza totale della variabile endogena che può essere attribuita alle influenze delle variabili correlate attraverso i percorsi definibili all’interno del modello.</p>
+<p><strong>Esempio.</strong> Consideriamo nuovamente il modello di regressione multipla con due variabili esogene e una sola variabile endogena che è stato presentato sopra.</p>
+<p>La calcoliamo la covarianza tra <code class="docutils literal notranslate"><span class="pre">y</span></code> e <code class="docutils literal notranslate"><span class="pre">x1</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cov</span><span class="p">(</span><span class="n">dat</span><span class="o">$</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">dat</span><span class="o">$</span><span class="n">x1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">99</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">100</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">570.56471345413</div></div>
+</div>
+<p>può essere ricavata usando le regole di Wright nel modo seguente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="m">0.199</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">429.43</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1.085</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">446.93</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">570.37562</div></div>
+</div>
+<p>La quota di varianza non spiegata della variabile endogena è:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">var</span><span class="p">(</span><span class="n">dat</span><span class="o">$</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">99</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">100</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="m">0.199</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">429.43</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="m">1.085</span><span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">1192.84</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="m">0.199</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">1.085</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">446.93</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">897.936130308472</div></div>
+</div>
+</section>
+</section>
+<section id="commenti-e-considerazioni-finali">
+<h2><span class="section-number">17.7. </span>Commenti e considerazioni finali<a class="headerlink" href="#commenti-e-considerazioni-finali" title="Permalink to this headline">#</a></h2>
+<p>Nel corso di questo capitolo introduttivo sull’analisi dei percorsi, abbiamo esplorato un rilevante approccio statistico finalizzato alla comprensione e all’analisi delle interazioni tra variabili all’interno di un sistema. La decomposizione della correlazione o della covarianza attraverso l’analisi dei percorsi fornisce un metodo agevolmente utilizzabile per descrivere le associazioni tra variabili, tracciando le loro connessioni causali ipotizzate.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="055_relations_to_other_vars.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>Relazioni test-criterio</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="150_sviluppo_strumento.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>Utilizzo e costruzione di test psicometrici</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#path-diagram">17.1. Path diagram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-dei-percorsi-e-regressione-bivariata">17.2. Analisi dei percorsi e regressione bivariata</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-dei-percorsi-e-regressione-multipla">17.3. Analisi dei percorsi e regressione multipla</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#effetti-diretti-e-indiretti">17.4. Effetti diretti e indiretti</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#le-regole-di-wright">17.5. Le regole di Wright</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scomposizione-delle-correlazioni-covarianze">17.6. Scomposizione delle correlazioni/covarianze</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scomposizione-della-varianza">17.6.1. Scomposizione della varianza</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-finali">17.7. Commenti e considerazioni finali</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
