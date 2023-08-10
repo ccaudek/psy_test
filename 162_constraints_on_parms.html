@@ -1,0 +1,1188 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>23. Attendibilità e modello fattoriale &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '162_constraints_on_parms';</script>
+    <link rel="shortcut icon" href="_static/increasing.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="24. Punteggio totale e modello fattoriale" href="163_total_score.html" />
+    <link rel="prev" title="22. I punteggi fattoriali" href="158_factor_scores.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Test psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">1. Prefazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002_measurement.html">2. Misurazione: affidabilità, validazione di costrutto e costruzione di Scale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="005_tipologie_test.html">3. Tipologie dei test psicometrici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="007_norms.html">4. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_development.html">5. Sviluppo dello strumento</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="020_ctt_1.html">6. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_ctt_2.html">7. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_ctt_3.html">8. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="025_err_std_mis.html">9. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="026_err_std_stima.html">10. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="028_applications_ctt.html">11. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="E_ctt_1.html">12. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="031_interrater_reliability.html">13. L’affidabilità tra giudici</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="041_gtheory.html">14. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="051_validity.html">15. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="055_relations_to_other_vars.html">16. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="061_path_analysis.html">17. Path analysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="150_sviluppo_strumento.html">18. Utilizzo e costruzione di test psicometrici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="155_analisi_fattoriale_1.html">19. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="156_analisi_fattoriale_2.html">20. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="157_analisi_fattoriale_3.html">21. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="158_factor_scores.html">22. I punteggi fattoriali</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">23. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="163_total_score.html">24. Punteggio totale e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="170_cfa_mod_comp.html">25. CFA: confronto tra modelli</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione di strumenti psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="201_valutare_le_matrici.html">26. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="202_estrazione.html">27. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="203_numero_fattori.html">28. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="205_rotazione.html">29. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="206_valutare_sol_fattoriale.html">30. Valutare e rifinire la soluzione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="210_group_invariance.html">31. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="215_gof.html">32. Indici di bontà dell’adattamento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="220_refine_solution.html">33. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="225_mmm.html">34. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="230_cat_data.html">35. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="235_missing_data.html">36. Dati mancanti</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="351_sem_intro.html">37. Introduzione ai modelli di equazioni struttural</a></li>
+<li class="toctree-l1"><a class="reference internal" href="352_visualize_sem.html">38. Visualizzare i modelli di equazioni strutturali</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="401_irt.html">39. Modelli di risposta all’item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="701_lgm_intro.html">40. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="702_lgm_prelims.html">41. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="703_lgm_mixed.html">42. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="705_growth_1.html">43. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="706_growth_cont.html">44. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="710_time_inv_cov.html">45. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="711_growth_groups.html">46. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="715_bivariate_growth_models.html">47. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="720_inv_measurement.html">48. Invarianza di misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="750_latent_change.html">49. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="751_biv_change.html">50. Modello LCS bivariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="755_lgm_meas_inv.html">51. Invarianza fattoriale nei modelli LGM</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="z_biblio.html">52. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="901_intro_r.html">53. Linguaggio di programmazione R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="910_regression.html">54. L’analisi di regressione</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test/issues/new?title=Issue%20on%20page%20%2F162_constraints_on_parms.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/162_constraints_on_parms.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Attendibilità e modello fattoriale</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teoria-classica-dei-test-e-analisi-fattoriale">23.1. Teoria classica dei test e analisi fattoriale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-fattoriale-e-ctt">23.2. Modello fattoriale e CTT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classi-di-modelli">23.3. Classi di modelli</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indicatori-congenerici">23.3.1. Indicatori congenerici</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indicatori-tau-equivalenti">23.3.2. Indicatori tau-equivalenti</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indicatori-paralleli">23.3.3. Indicatori paralleli</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-dei-minimi-quadrati-non-pesati">23.4. Metodo dei minimi quadrati non pesati</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varianza-del-punteggio-totale-di-un-test">23.5. Varianza del punteggio totale di un test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stima-dell-attendibilita">23.6. Stima dell’attendibilità</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficiente-omega">23.6.1. Coefficiente Omega</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">23.6.1.1. Un esempio concreto</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficiente-omega-e-assunzioni-della-teoria-classica-dei-test">23.6.1.2. Coefficiente <span class="math notranslate nohighlight">\(\omega\)</span> e assunzioni della teoria classica dei test</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione">23.6.1.3. Interpretazione</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficienti-alpha-e-omega-nel-modello-tau-equivalente">23.6.2. Coefficienti <span class="math notranslate nohighlight">\(\alpha\)</span> e <span class="math notranslate nohighlight">\(\omega\)</span> nel modello <span class="math notranslate nohighlight">\(\tau\)</span>-equivalente</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">23.6.2.1. Un esempio concreto</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-formula-profetica-di-spearman-brown">23.6.3. La formula “profetica” di Spearman-Brown</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">23.6.3.1. Un esempio concreto</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-conclusive">23.7. Commenti e considerazioni conclusive</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="attendibilita-e-modello-fattoriale">
+<span id="reliability-fa-notebook"></span><h1><span class="section-number">23. </span>Attendibilità e modello fattoriale<a class="headerlink" href="#attendibilita-e-modello-fattoriale" title="Permalink to this headline">#</a></h1>
+<p>In questo capitolo esamineremo il problema relativo alla valutazione dell’affidabilità di uno strumento mediante l’impiego della tecnica dell’analisi fattoriale. Saranno differenziati tre distinti modelli che delineano le connessioni tra gli indicatori e il sottostante fattore latente comune (modelli congenerico, tau-equivalente, parallelo). Saranno presentati altresì tre diversi indici volti a caratterizzare l’affidabilità, intesa come coerenza interna, in accordo con il modello adottato. Tali indici includono l’indice omega di McDonald, l’indice alpha di Cronbach e l’indice rho, derivato dalla formula “profetica” di Spearman-Brown.</p>
+<p>Sarà evidente che l’utilizzo dell’indice alpha di Cronbach è giustificato soltanto se particolari condizioni specifiche vengono soddisfatte, circostanza che si verifica piuttosto raramente nei dati empirici. A causa di tale ragione, in linea generale, risulta più opportuno adottare l’indice omega di McDonald quale misura di coerenza interna.</p>
+<section id="teoria-classica-dei-test-e-analisi-fattoriale">
+<h2><span class="section-number">23.1. </span>Teoria classica dei test e analisi fattoriale<a class="headerlink" href="#teoria-classica-dei-test-e-analisi-fattoriale" title="Permalink to this headline">#</a></h2>
+<p><span id="id1">McDonald [<a class="reference internal" href="z_biblio.html#id37" title="Roderick P McDonald. Test theory: A unified treatment. Psychology Press, 2013.">McD13</a>]</span> illustra come la teoria classica dei test possa essere correlata al modello dell’analisi fattoriale. La figura rappresenta, attraverso i termini del modello fattoriale, la relazione che sussiste tra i punteggi <span class="math notranslate nohighlight">\(Y\)</span>, derivanti dalla somministrazione di un test composto da cinque item, e i punteggi veri.</p>
+<figure class="align-default" id="lcsm1-fig">
+<a class="reference internal image-reference" href="_images/factmod1.png"><img alt="_images/factmod1.png" src="_images/factmod1.png" style="height: 300px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 23.1 </span><span class="caption-text"><strong>Diagramma di percorso del modello monofattoriale.</strong></span><a class="headerlink" href="#lcsm1-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Esistono diverse strategie per stimare l’attendibilità in situazioni in cui viene somministrato un unico test. In questo contesto, analizzeremo tre metodologie che possono essere implementate attraverso l’analisi fattoriale: l’<span class="math notranslate nohighlight">\(\alpha\)</span> di Cronbach, l’<span class="math notranslate nohighlight">\(\omega\)</span> di McDonald e il metodo di Spearman-Brown.</p>
+<p>Il coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span> rappresenta il principale indice utilizzato per quantificare l’attendibilità come misura di coerenza interna o omogeneità. Approfondiremo come questo indice rappresenti il limite inferiore dell’attendibilità di un test, a condizione che siano soddisfatte alcune ipotesi. Tuttavia, se queste assunzioni non vengono rispettate, l’<span class="math notranslate nohighlight">\(\alpha\)</span> si rivela un stimatore distorto dell’attendibilità.</p>
+<p>Prima di esaminare le diverse metodologie per stimare l’attendibilità in termini di coerenza interna, è essenziale distinguere tra le tre diverse forme che il modello unifattoriale può assumere. Queste tre forme corrispondono al modello con indicatori congenerici, al modello <span class="math notranslate nohighlight">\(\tau\)</span>-equivalente e al modello parallelo.</p>
+</section>
+<section id="modello-fattoriale-e-ctt">
+<h2><span class="section-number">23.2. </span>Modello fattoriale e CTT<a class="headerlink" href="#modello-fattoriale-e-ctt" title="Permalink to this headline">#</a></h2>
+<p>Considerando un insieme di item osservati <span class="math notranslate nohighlight">\(X_1, X_2, \dots, X_p\)</span>, con <span class="math notranslate nohighlight">\(p&gt;2\)</span>, i punteggi ottenuti da questi item sono composti da due elementi distinti: una componente di punteggio reale e una componente di errore.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{aligned}
+X_1 &amp;=T_1+E_1,\notag\\ 
+X_2 &amp;=T_2+E_2,\notag\\ 
+&amp;\dots\notag\\ 
+X_p &amp;=T_p+E_p.\notag
+\end{aligned}
+\end{equation}
+\end{split}\]</div>
+<p>In linea con l’approccio delineato da <span id="id2">McDonald [<a class="reference internal" href="z_biblio.html#id37" title="Roderick P McDonald. Test theory: A unified treatment. Psychology Press, 2013.">McD13</a>]</span>, questa decomposizione tra la componente vera e quella di errore può essere formalizzata mediante l’utilizzo dei parametri del modello fattoriale. L’equazione <span class="math notranslate nohighlight">\(X_i = T_i + E_i\)</span> può quindi essere riformulata come segue:</p>
+<div class="math notranslate nohighlight">
+\[
+X_i = \lambda_i \xi + \delta_i, \quad{i=1, \dots, p},
+\]</div>
+<p>In questa equazione, <span class="math notranslate nohighlight">\(X_i\)</span> rappresenta il punteggio osservato per l’item <span class="math notranslate nohighlight">\(i\)</span>-esimo, <span class="math notranslate nohighlight">\(\lambda_i\)</span> è il carico fattoriale associato all’item <span class="math notranslate nohighlight">\(i\)</span>-esimo, <span class="math notranslate nohighlight">\(\xi\)</span> costituisce il fattore comune e <span class="math notranslate nohighlight">\(\delta_i\)</span> è la componente residuale del punteggio osservato per l’item <span class="math notranslate nohighlight">\(i\)</span>-esimo. Tale formulazione si basa sulle assunzioni del modello monofattoriale. Nello specifico, si ipotizza che <span class="math notranslate nohighlight">\(\xi\)</span> e <span class="math notranslate nohighlight">\(\delta_i\)</span> siano non correlati per ogni item <span class="math notranslate nohighlight">\(i\)</span>, e che <span class="math notranslate nohighlight">\(\delta_i\)</span> e <span class="math notranslate nohighlight">\(\delta_k\)</span> siano non correlati per ogni coppia <span class="math notranslate nohighlight">\(i \neq k\)</span>.</p>
+</section>
+<section id="classi-di-modelli">
+<h2><span class="section-number">23.3. </span>Classi di modelli<a class="headerlink" href="#classi-di-modelli" title="Permalink to this headline">#</a></h2>
+<p>All’interno del contesto del modello monofattoriale, è possibile individuare tre distinti scenari di rilievo:</p>
+<ol class="arabic simple">
+<li><p><strong>Modello con indicatori congenerici:</strong> Si tratta del caso più ampio e generale, dove non sono imposte restrizioni particolari sulla struttura degli indicatori.</p></li>
+<li><p><strong>Modello con indicatori <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenti:</strong> Questa è una situazione specifica in cui gli indicatori condividono la medesima variabilità, ma non necessariamente coincidono nei valori delle saturazioni fattoriali.</p></li>
+<li><p><strong>Modello con indicatori paralleli:</strong> In questo caso, gli indicatori sono perfettamente equivalenti tra loro in termini di saturazioni fattoriali, evidenziando una struttura più rigida rispetto al modello congenerico.</p></li>
+</ol>
+<p>Il modello con indicatori congenerici rappresenta il caso più generale, mentre le situazioni di indicatori <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenti e paralleli costituiscono delle situazioni specifiche, prodotte dall’introduzione di vincoli e restrizioni sul modello a indicatori congenerici.</p>
+<section id="indicatori-congenerici">
+<h3><span class="section-number">23.3.1. </span>Indicatori congenerici<a class="headerlink" href="#indicatori-congenerici" title="Permalink to this headline">#</a></h3>
+<p>Gli indicatori <em>congenerici</em> rappresentano misure di uno stesso costrutto, ma non è necessario che riflettano tale costrutto con la medesima intensità. Nel contesto degli indicatori congenerici all’interno del modello monofattoriale, non vengono introdotte limitazioni né sulle saturazioni fattoriali né sulle specificità:</p>
+<div class="math notranslate nohighlight">
+\[
+\lambda_1\neq \lambda_2 \neq \dots\neq \lambda_p,
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\psi_{11}\neq \psi_{22} \neq \dots\neq \psi_{pp}.
+\]</div>
+<p>Il modello mono-fattoriale con indicatori congenerici è dunque</p>
+<div class="math notranslate nohighlight" id="equation-eq-mod-tau-eq">
+<span class="eqno">(23.2)<a class="headerlink" href="#equation-eq-mod-tau-eq" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+X_i = \lambda_i \xi + \delta_i.
+\end{equation}
+\]</div>
+<p>Dalle assunzioni precedenti possiamo derivare la matrice <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}\)</span> riprodotta in base al modello congenerico la quale risulta essere uguale a</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\boldsymbol{\Sigma}=\left[
+      \begin{array}{ c c c c }
+        \sigma_{11} &amp; \sigma_{12} &amp; \dots &amp; \sigma_{1p}, \\
+        \sigma_{21} &amp; \sigma_{22} &amp; \dots &amp; \sigma_{2p}. \\
+        \vdots &amp; \vdots &amp; &amp; \vdots\\
+        \sigma_{p1} &amp; \sigma_{p2} &amp; \dots &amp; \sigma_{pp} 
+      \end{array} 
+    \right].
+\end{split}\]</div>
+<p>Si noti come tutte le varianze e tutte le covarianze siano tra loro diverse.</p>
+</section>
+<section id="indicatori-tau-equivalenti">
+<h3><span class="section-number">23.3.2. </span>Indicatori tau-equivalenti<a class="headerlink" href="#indicatori-tau-equivalenti" title="Permalink to this headline">#</a></h3>
+<p>Nel caso di indicatori <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenti, si ha che</p>
+<div class="math notranslate nohighlight">
+\[
+\lambda_1=\lambda_2=\dots=\lambda_p=\lambda,
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\psi_{11}\neq \psi_{22} \neq \dots\neq \psi_{pp}.
+\]</div>
+<p>Il modello monofattoriale con indicatori <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenti diventa dunque</p>
+<div class="math notranslate nohighlight" id="equation-eq-mod-tau-eq">
+<span class="eqno">(23.2)<a class="headerlink" href="#equation-eq-mod-tau-eq" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+X_i = \lambda \xi + \delta_i, 
+\end{equation}
+\]</div>
+<p>ovvero</p>
+<div class="math notranslate nohighlight" id="equation-eq-mod-tau-eq-b">
+<span class="eqno">(23.3)<a class="headerlink" href="#equation-eq-mod-tau-eq-b" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+X_i = \tau + \delta_i,
+\end{equation}
+\]</div>
+<p>dove <span class="math notranslate nohighlight">\(\tau=\lambda \xi\)</span> è l’attributo comune scalato nell’unità di misura dell’indicatore. Secondo il modello <a class="reference internal" href="#equation-eq-mod-tau-eq">(23.2)</a>, tutte le <span class="math notranslate nohighlight">\(p(p-1)\)</span> covarianze tra gli item
+del test devono essere uguali, ovvero</p>
+<div class="math notranslate nohighlight" id="equation-eq-cov-tau-eq">
+<span class="eqno">(23.4)<a class="headerlink" href="#equation-eq-cov-tau-eq" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+\sigma_{ik} = \lambda^2=\sigma^2_T,
+\end{equation}
+\]</div>
+<p>per <span class="math notranslate nohighlight">\(i\neq k\)</span>. Gli elementi sulla diagonale principale della matrice di varianze e covarianze saranno invece</p>
+<div class="math notranslate nohighlight" id="equation-eq-var-tau">
+<span class="eqno">(23.5)<a class="headerlink" href="#equation-eq-var-tau" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+\sigma_{ii} = \lambda^2 + \psi_{ii} =\sigma^2_T + \psi_{ii}.
+\end{equation}
+\]</div>
+<p>La matrice <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}\)</span> riprodotta in base al modello <span class="math notranslate nohighlight">\(\tau\)</span>-equivalente è dunque uguale a</p>
+<div class="math notranslate nohighlight" id="equation-eq-sigma-tau-eq">
+<span class="eqno">(23.6)<a class="headerlink" href="#equation-eq-sigma-tau-eq" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{equation}
+\boldsymbol{\Sigma}=\left[
+      \begin{array}{ c c c c }
+        \sigma_{T}^2 + \psi_{11} &amp; \sigma_{T}^2 &amp; \dots &amp; \sigma_{T}^2 \\
+        \sigma_{T}^2 &amp; \sigma_{T}^2 + \psi_{22} &amp; \dots &amp; \sigma_{T}^2 \\
+        \vdots &amp; \vdots &amp; &amp; \vdots\\
+        \sigma_{T}^2 &amp; \sigma_{T}^2 &amp; \dots &amp; \sigma_{T}^2 + \psi_{pp} 
+      \end{array} 
+    \right].
+\end{equation}
+\end{split}\]</div>
+<p>Tutte le covarianze sono uguali, mentre le varianze sono tra loro diverse.</p>
+</section>
+<section id="indicatori-paralleli">
+<h3><span class="section-number">23.3.3. </span>Indicatori paralleli<a class="headerlink" href="#indicatori-paralleli" title="Permalink to this headline">#</a></h3>
+<p>Nel caso di indicatori paralleli si ha che</p>
+<div class="math notranslate nohighlight">
+\[
+\lambda_1=\lambda_2=\dots=\lambda_p=\lambda,
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\psi_{11}=\psi_{22}=\dots=\psi_{pp}=\psi.
+\]</div>
+<p>Il modello costituito da indicatori paralleli impone dunque un’ulteriore restrizione che riguarda le varianze degli item, ovvero:</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma_{ii} = \lambda^2 + \psi =\sigma^2_T + \sigma^2.
+\]</div>
+<p>La struttura di varianze e covarianze imposta dal modello per indicatori paralleli è
+dunque tale da richiedere l’uguaglianza tra tutte le covarianze tra gli
+item e l’uguaglianza tra tutte le varianze degli item. La matrice
+<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}\)</span> riprodotta in base al modello con indicatori
+paralleli è dunque uguale a</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\boldsymbol{\Sigma}=\left[
+      \begin{array}{ c c c c }
+        \sigma_{T}^2 + \sigma^2 &amp; \sigma_{T}^2 &amp; \dots &amp; \sigma_{T}^2 \\
+        \sigma_{T}^2 &amp; \sigma_{T}^2 + \sigma^2 &amp; \dots &amp; \sigma_{T}^2 \\
+        \vdots &amp; \vdots &amp; &amp; \vdots\\
+        \sigma_{T}^2 &amp; \sigma_{T}^2 &amp; \dots &amp; \sigma_{T}^2 +\sigma^2 \notag
+      \end{array} 
+    \right].
+\end{split}\]</div>
+</section>
+</section>
+<section id="metodo-dei-minimi-quadrati-non-pesati">
+<h2><span class="section-number">23.4. </span>Metodo dei minimi quadrati non pesati<a class="headerlink" href="#metodo-dei-minimi-quadrati-non-pesati" title="Permalink to this headline">#</a></h2>
+<p>Nel contesto del modello unifattoriale, la varianza di ciascun indicatore è decomposta in due componenti: la componente <span class="math notranslate nohighlight">\(\sigma^2_T\)</span>, attribuibile all’effetto del fattore latente comune, e la componente <span class="math notranslate nohighlight">\(\psi\)</span>, riferita all’influenza del fattore specifico. <span id="id3">McDonald [<a class="reference internal" href="z_biblio.html#id37" title="Roderick P McDonald. Test theory: A unified treatment. Psychology Press, 2013.">McD13</a>]</span> dimostra come sia possibile ottenere stime di tali componenti dai dati osservati. Queste stime vengono successivamente impiegate per calcolare l’affidabilità interna del test mediante le formule degli indici <span class="math notranslate nohighlight">\(\alpha\)</span> di Cronbach e <span class="math notranslate nohighlight">\(\omega\)</span> di McDonald.</p>
+<p>In precedenza, abbiamo esaminato come la varianza del punteggio vero possa essere equivalente alla covarianza tra due forme parallele dello stesso test: <span class="math notranslate nohighlight">\(\sigma^2_T = \sigma_{XX^\prime}\)</span>. Nel caso di indicatori <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenti, la matrice <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}\)</span> prevista dal modello risulta essere:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\boldsymbol{\Sigma}=\left[
+      \begin{array}{ c c c c }
+        \sigma_{T}^2 + \psi_{11} &amp; \sigma_{T}^2 &amp; \dots &amp; \sigma_{T}^2 \\
+        \sigma_{T}^2 &amp; \sigma_{T}^2 + \psi_{22} &amp; \dots &amp; \sigma_{T}^2 \\
+        \vdots &amp; \vdots &amp; &amp; \vdots\\
+        \sigma_{T}^2 &amp; \sigma_{T}^2 &amp; \dots &amp; \sigma_{T}^2 + \psi_{pp} \notag
+      \end{array}
+    \right],
+\end{split}\]</div>
+<p>ossia, tutte le covarianze sono equivalenti tra loro. Nel caso degli indicatori <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenti, una stima <span class="math notranslate nohighlight">\(\hat{\sigma}^2_T\)</span> di <span class="math notranslate nohighlight">\(\sigma^2_T\)</span> è ottenuta calcolando la media delle covarianze della matrice <strong>S</strong>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-sigma-t">
+<span class="eqno">(23.7)<a class="headerlink" href="#equation-eq-sigma-t" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+\hat{\sigma}_T^2 = \frac{1}{p(p-1)} {\sum \sum}_{i \neq k} s_{ik}.
+\end{equation}
+\]</div>
+<p>Questo metodo di stima di <span class="math notranslate nohighlight">\(\sigma^2_T\)</span> è noto come “metodo dei minimi quadrati non pesati” <span id="id4">[<a class="reference internal" href="z_biblio.html#id37" title="Roderick P McDonald. Test theory: A unified treatment. Psychology Press, 2013.">McD13</a>]</span>.</p>
+<p>Inoltre, nel caso di indicatori <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenti, la stima di <span class="math notranslate nohighlight">\(\psi_{ii}\)</span> nell’eq. <a class="reference internal" href="#equation-eq-var-tau">(23.5)</a> è calcolata come:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\psi}_{ii }= s_{ii} - \hat{\sigma}_T^2,
+\]</div>
+<p>per ogni item <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>Per quanto riguarda gli <em>indicatori paralleli</em>, la stima di <span class="math notranslate nohighlight">\(\sigma^2_T\)</span> è ancora basata sull’eq. <a class="reference internal" href="#equation-eq-sigma-t">(23.7)</a>, ovvero sulla media delle covarianze della matrice <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}\)</span>. Tuttavia, la stima del valore costante <span class="math notranslate nohighlight">\(\psi\)</span> è ottenuta tramite l’equazione:</p>
+<div class="math notranslate nohighlight" id="equation-eq-psi-par-st">
+<span class="eqno">(23.8)<a class="headerlink" href="#equation-eq-psi-par-st" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+\hat{\psi} = \frac{1}{p} \sum_i (s_{ii} - \hat{\sigma}_T^2)
+\end{equation}
+\]</div>
+</section>
+<section id="varianza-del-punteggio-totale-di-un-test">
+<h2><span class="section-number">23.5. </span>Varianza del punteggio totale di un test<a class="headerlink" href="#varianza-del-punteggio-totale-di-un-test" title="Permalink to this headline">#</a></h2>
+<p>Il punteggio complessivo <span class="math notranslate nohighlight">\(Y\)</span> di un test omogeneo rappresenta la somma dei punteggi <span class="math notranslate nohighlight">\(X_i\)</span> relativi ai <span class="math notranslate nohighlight">\(p\)</span> item che costituiscono il test: <span class="math notranslate nohighlight">\(Y = \sum_{i=1}^p X_i\)</span>. Lo scopo è descrivere la varianza del punteggio totale del test sfruttando i parametri del modello unifattoriale.</p>
+<p>Nel contesto di un modello congenerico con un singolo fattore comune, il punteggio dell’item <span class="math notranslate nohighlight">\(i\)</span>-esimo può essere espresso come</p>
+<div class="math notranslate nohighlight">
+\[
+X_i = \lambda_i \xi + \delta_i,
+\]</div>
+<p>questa formulazione è coerente con l’equazione <span class="math notranslate nohighlight">\(X_i = T_i + E_i\)</span> nella teoria classica dei test. Il punteggio totale è dato dalla somma di tutti gli item, ovvero <span class="math notranslate nohighlight">\(\sum_i \left(\lambda_i \xi + \delta_i\right)\)</span>. Di conseguenza, la varianza del punteggio totale è</p>
+<div class="math notranslate nohighlight" id="equation-eq-var-y">
+<span class="eqno">(23.9)<a class="headerlink" href="#equation-eq-var-y" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+\mathbb{V}(Y) = \left( \sum_i \lambda_i\right)^2 + \sum_i \psi_{ii}.
+\end{equation}
+\]</div>
+<p>In altre parole, la varianza del punteggio totale <span class="math notranslate nohighlight">\(Y\)</span> del test può essere suddivisa in due componenti: il quadrato della somma delle saturazioni fattoriali, che riflette la variazione associata al vero punteggio (cioè la varianza legata all’attributo misurato dagli item), e la somma delle varianze specifiche dei <span class="math notranslate nohighlight">\(p\)</span> indicatori, che incarna la variazione dovuta agli errori di misurazione del punteggio totale del test.</p>
+<p>L’eq. <a class="reference internal" href="#equation-eq-var-y">(23.9)</a> può essere facilmente dimostrata nel contesto di un modello congenerico. Infatti, la varianza del punteggio totale <span class="math notranslate nohighlight">\(Y\)</span> equivale a <span class="math notranslate nohighlight">\(\mathbb{V}\left[ \sum_i \left(\lambda_i \xi + \delta_i\right) \right]\)</span>. Espandendo l’espressione si ottiene</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{aligned}
+  \mathbb{V}(Y) &amp;= \mathbb{V}\left[ \sum_i  \left(\lambda_i \xi + \delta_i\right)  \right]\notag\\
+  &amp;= \mathbb{V}\left[  (\lambda_1 \xi + \delta_1) + (\lambda_2 \xi + \delta_2) + \dots +  (\lambda_p \xi + \delta_p)  \right]\notag\\
+  &amp;= \mathbb{V}\left[ \left( \sum_i \lambda_i\right) \xi + \sum_i \delta_i\right]\notag\\
+  &amp;=  \left(\sum_i \lambda_i\right)^2 \underbrace{\mathbb{V}(\xi)}_{=1} +  \sum_i  \mathbb{V}(\delta_i)\notag\\
+  &amp;= \left(\sum_i \lambda_i\right)^2 + \sum_i \psi_{ii}.\notag
+\end{aligned}
+\end{equation}
+\end{split}\]</div>
+</section>
+<section id="stima-dell-attendibilita">
+<h2><span class="section-number">23.6. </span>Stima dell’attendibilità<a class="headerlink" href="#stima-dell-attendibilita" title="Permalink to this headline">#</a></h2>
+<section id="coefficiente-omega">
+<h3><span class="section-number">23.6.1. </span>Coefficiente Omega<a class="headerlink" href="#coefficiente-omega" title="Permalink to this headline">#</a></h3>
+<p>Avendo effettuato la decomposizione della varianza del punteggio totale di un test come indicato nell’eq. <a class="reference internal" href="#equation-eq-var-y">(23.9)</a>:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{V}(Y) = \left( \sum_i \lambda_i\right)^2 + \sum_i \psi_{ii},
+\]</div>
+<p><span id="id5">McDonald [<a class="reference internal" href="z_biblio.html#id37" title="Roderick P McDonald. Test theory: A unified treatment. Psychology Press, 2013.">McD13</a>]</span> introduce la definizione del coefficiente di affidabilità <span class="math notranslate nohighlight">\(\omega\)</span> quale rapporto tra la varianza “vera” (attribuibile all’attributo comune) e la varianza totale. Nella formulazione basata sui parametri del modello monofattoriale, il coefficiente <span class="math notranslate nohighlight">\(\omega\)</span> può essere espresso come:</p>
+<div class="math notranslate nohighlight" id="equation-eq-omega">
+<span class="eqno">(23.10)<a class="headerlink" href="#equation-eq-omega" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{equation}
+\begin{aligned}
+\omega &amp;= \frac{\left( \sum_{i=1}^p \lambda_i \right)^2}{\sigma_Y^2} \notag\\
+&amp;= \frac{\left( \sum_{i=1}^p \lambda_i \right)^2}{\left( \sum_{i=1}^p \lambda_i \right)^2  + \sum_{i=1}^p \psi_{ii}}
+\end{aligned}
+\end{equation}
+\end{split}\]</div>
+<p>Il coefficiente <span class="math notranslate nohighlight">\(\omega\)</span> fornisce pertanto una stima del grado di affidabilità, formulata sulla base dei parametri del modello fattoriale congenerico e sfruttando i dati raccolti in una singola somministrazione del test.</p>
+<section id="un-esempio-concreto">
+<h4><span class="section-number">23.6.1.1. </span>Un esempio concreto<a class="headerlink" href="#un-esempio-concreto" title="Permalink to this headline">#</a></h4>
+<p>Consideriamo nuovamente la scala <em>Openness</em> del dataframe <code class="docutils literal notranslate"><span class="pre">bfi</span></code> discussi nel capitolo <a class="reference internal" href="022_ctt_3.html#ctt-3-notebook"><span class="std std-ref">Metodi di stima dell’affidabilità</span></a>. Leggiamo i dati in R.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">data</span><span class="p">(</span><span class="n">bfi</span><span class="p">,</span><span class="w"> </span><span class="n">package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;psych&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>È necessario ricodificare due item.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">bfi</span><span class="o">$</span><span class="n">O2r</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bfi</span><span class="o">$</span><span class="n">O2</span>
+<span class="n">bfi</span><span class="o">$</span><span class="n">O5r</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bfi</span><span class="o">$</span><span class="n">O5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cor</span><span class="p">(</span><span class="n">bfi</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;O1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O2r&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O5r&quot;</span><span class="p">)],</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pairwise.complete.obs&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 5 × 5 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>O1</th><th scope=col>O2r</th><th scope=col>O3</th><th scope=col>O4</th><th scope=col>O5r</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>O1</th><td>1.00</td><td>0.21</td><td>0.40</td><td>0.18</td><td>0.24</td></tr>
+	<tr><th scope=row>O2r</th><td>0.21</td><td>1.00</td><td>0.26</td><td>0.07</td><td>0.32</td></tr>
+	<tr><th scope=row>O3</th><td>0.40</td><td>0.26</td><td>1.00</td><td>0.19</td><td>0.31</td></tr>
+	<tr><th scope=row>O4</th><td>0.18</td><td>0.07</td><td>0.19</td><td>1.00</td><td>0.18</td></tr>
+	<tr><th scope=row>O5r</th><td>0.24</td><td>0.32</td><td>0.31</td><td>0.18</td><td>1.00</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Eseguiamo l’analisi fattoriale confermativa con <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">    f =~ NA*O1 + O2r + O3 + O4 + O5r</span>
+<span class="s">    f ~~ 1*f</span>
+<span class="s">&quot;</span>
+
+<span class="n">fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cfa</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bfi</span><span class="p">,</span><span class="w"> </span><span class="n">std.ov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">std.lv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Estraiamo le saturazioni fattoriali e le specificità dall’oggetto <code class="docutils literal notranslate"><span class="pre">fit</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lambda</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">inspect</span><span class="p">(</span><span class="n">fit</span><span class="p">,</span><span class="w"> </span><span class="n">what</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;std&quot;</span><span class="p">)</span><span class="o">$</span><span class="n">lambda</span>
+<span class="n">psy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">diag</span><span class="p">(</span><span class="nf">inspect</span><span class="p">(</span><span class="n">fit</span><span class="p">,</span><span class="w"> </span><span class="n">what</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;est&quot;</span><span class="p">)</span><span class="o">$</span><span class="n">theta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calcoliamo il coefficiente <span class="math notranslate nohighlight">\(\omega\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\omega = \frac{\left( \sum_{i=1}^p \lambda_i \right)^2}{\left( \sum_{i=1}^p \lambda_i \right)^2  + \sum_{i=1}^p \psi_{ii}}
+\]</div>
+<p>usando i parametri del modello fattoriale.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sum</span><span class="p">(</span><span class="n">lambda</span><span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">lambda</span><span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">psy</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.618064541281703</div></div>
+</div>
+<p>Ripetiamo i calcoli usando la funzione <code class="docutils literal notranslate"><span class="pre">compRelSEM</span></code> del pacchetto <code class="docutils literal notranslate"><span class="pre">semTools</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">semTools</span><span class="o">::</span><span class="nf">compRelSEM</span><span class="p">(</span><span class="n">fit</span><span class="p">,</span><span class="w">  </span><span class="n">tau.eq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><strong>f:</strong> 0.61811088980665</div></div>
+</div>
+<p>Il coefficiente <span class="math notranslate nohighlight">\(\omega=0.62\)</span> può essere interpretato dicendo che il 62% della varianza del punteggio totale <span class="math notranslate nohighlight">\(Y\)</span> della sottoscala Openness viene spiegato dal fattore comune latente.</p>
+</section>
+<section id="coefficiente-omega-e-assunzioni-della-teoria-classica-dei-test">
+<h4><span class="section-number">23.6.1.2. </span>Coefficiente <span class="math notranslate nohighlight">\(\omega\)</span> e assunzioni della teoria classica dei test<a class="headerlink" href="#coefficiente-omega-e-assunzioni-della-teoria-classica-dei-test" title="Permalink to this headline">#</a></h4>
+<p>Il calcolo di <span class="math notranslate nohighlight">\(\omega\)</span> si basa sull’assunzione, conforme alla teoria classica dei test, che <span class="math notranslate nohighlight">\(\psi_{ik}=0\)</span> quando <span class="math notranslate nohighlight">\(i\neq k\)</span>. Tuttavia, in situazioni di dati empirici, questa assunzione potrebbe non essere rispettata. In tali circostanze, come evidenziato da Bollen (1980), l’eq. <a class="reference internal" href="#equation-eq-omega">(23.10)</a> diventa:</p>
+<div class="math notranslate nohighlight" id="equation-eq-omega2">
+<span class="eqno">(23.11)<a class="headerlink" href="#equation-eq-omega2" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+\omega = \frac{\left( \sum_{i=1}^p \lambda_i \right)^2}{\left( \sum_{i=1}^p \lambda_i \right)^2  + \sum_{i=1}^p \psi_{ii} + \sum_{i, k, i\neq k}^p \psi_{ik}}.
+\end{equation}
+\]</div>
+<p>La validità dell’assunzione sull’assenza di correlazione tra i fattori specifici può essere sottoposta a verifica mediante un’analisi fattoriale confermativa. Se emergono numerose coppie di fattori specifici correlati, potrebbe divenire necessario introdurre fattori aggiuntivi nel modello per tenere conto di queste covarianze. Questa eventualità potrebbe condurre a una struttura non più unidimensionale: la presenza di diversi fattori suggerisce l’esistenza di sottoscale multiple. Tuttavia, il problema esposto sopra non può sempre essere risolto con la semplice identificazione di sottoscale, poiché persino in questa situazione potrebbero permanere covarianze tra i fattori specifici che non sono spiegate dai fattori che delineano le sottoscale. In tali scenari, il calcolo di <span class="math notranslate nohighlight">\(\omega\)</span> richiederà l’utilizzo dell’eq. <a class="reference internal" href="#equation-eq-omega2">(23.11)</a>.</p>
+</section>
+<section id="interpretazione">
+<h4><span class="section-number">23.6.1.3. </span>Interpretazione<a class="headerlink" href="#interpretazione" title="Permalink to this headline">#</a></h4>
+<p><span id="id6">McDonald [<a class="reference internal" href="z_biblio.html#id37" title="Roderick P McDonald. Test theory: A unified treatment. Psychology Press, 2013.">McD13</a>]</span> fornisce le seguenti interpretazioni al coefficiente <span class="math notranslate nohighlight">\(\omega\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\omega\)</span> rappresenta il quadrato della correlazione tra <span class="math notranslate nohighlight">\(Y\)</span> e il fattore comune <span class="math notranslate nohighlight">\(\xi\)</span>, o equivalentemente tra <span class="math notranslate nohighlight">\(Y\)</span> e il punteggio vero (in accordo con la definizione di affidabilità: <span class="math notranslate nohighlight">\(\rho_{XT}^2=\sigma^2_{\tau}/\sigma^2_X\)</span>);</p></li>
+<li><p><span class="math notranslate nohighlight">\(\omega\)</span> corrisponde alla correlazione tra due test <span class="math notranslate nohighlight">\(Y\)</span> e <span class="math notranslate nohighlight">\(Y'\)</span> che condividono la stessa somma (o media) delle saturazioni nel modello a singolo fattore, e la stessa somma (o media) delle varianze specifiche nel modello a singolo fattore;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\omega\)</span> è il quadrato della correlazione tra il punteggio totale di <span class="math notranslate nohighlight">\(p\)</span> item e il punteggio medio di un insieme infinito di item in un dominio omogeneo, nel quale i <span class="math notranslate nohighlight">\(p\)</span> item costituiscono un sottoinsieme.</p></li>
+</ul>
+<p>In sostanza, il coefficiente <span class="math notranslate nohighlight">\(\omega\)</span> offre un quadro di riferimento per comprendere il legame tra il punteggio totale del test e il fattore sottostante, sia attraverso la correlazione, sia attraverso le caratteristiche di omogeneità e consistenza riscontrabili tra diversi test.</p>
+</section>
+</section>
+<section id="coefficienti-alpha-e-omega-nel-modello-tau-equivalente">
+<h3><span class="section-number">23.6.2. </span>Coefficienti <span class="math notranslate nohighlight">\(\alpha\)</span> e <span class="math notranslate nohighlight">\(\omega\)</span> nel modello <span class="math notranslate nohighlight">\(\tau\)</span>-equivalente<a class="headerlink" href="#coefficienti-alpha-e-omega-nel-modello-tau-equivalente" title="Permalink to this headline">#</a></h3>
+<p>Nei modelli monofattoriali, sia il coefficiente <span class="math notranslate nohighlight">\(\omega\)</span> che il coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span> forniscono stime dell’attendibilità, ma in differenti contesti. Il coefficiente <span class="math notranslate nohighlight">\(\omega\)</span> stima l’attendibilità nel caso di un modello con indicatori congenerici, mentre il coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span> fornisce una stima nell’ambito di un modello con indicatori <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenti.</p>
+<p>Se consideriamo <span class="math notranslate nohighlight">\(p\)</span> item che soddisfano il modello di <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenza, la varianza di ciascun item può essere scomposta in una componente attribuibile al valore vero e una componente d’errore, come espresso nell’eq. <a class="reference internal" href="#equation-eq-var-tau">(23.5)</a>, ovvero <span class="math notranslate nohighlight">\(\sigma_{ii} = \lambda^2 + \psi_{ii} = \sigma^2_T + \sigma^2_i\)</span>. In accordo con il principio di <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenza, le varianze e covarianze generabili dal modello monofattoriale rispondono alle caratteristiche descritte nella matrice <a class="reference internal" href="#equation-eq-sigma-tau-eq">(23.6)</a>. Considerando che tutti gli item presentano la medesima saturazione fattoriale <span class="math notranslate nohighlight">\(\lambda\)</span>, la formula di calcolo del coefficiente <span class="math notranslate nohighlight">\(\omega\)</span> si semplifica come segue:</p>
+<div class="math notranslate nohighlight">
+\[
+\omega = \frac{\left( \sum_i \lambda_i \right)^2}{\left( \sum_i \lambda_i \right)^2  + \sum_i \psi_{ii}} = \frac{p^2 \lambda^2}{\sigma^2_Y} = \frac{p^2 \sigma_T^2}{\sigma_Y^2}
+\]</div>
+<p>dove <span class="math notranslate nohighlight">\(Y\)</span> rappresenta il punteggio totale del test.</p>
+<p>Attraverso l’uso del metodo dei minimi quadrati non pesati, possiamo ottenere la seguente stima per <span class="math notranslate nohighlight">\(\omega\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-omega-firt-part">
+<span class="eqno">(23.12)<a class="headerlink" href="#equation-eq-omega-firt-part" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+\hat{\omega} = \frac{p^2 \hat{\sigma}_T^2}{s_Y^2}
+\end{equation}
+\]</div>
+<p>dove una stima di <span class="math notranslate nohighlight">\(\sigma_T^2\)</span> è data dall’eq. <a class="reference internal" href="#equation-eq-sigma-t">(23.7)</a>, ossia</p>
+<div class="math notranslate nohighlight" id="equation-eq-hat-sigma-tau2">
+<span class="eqno">(23.13)<a class="headerlink" href="#equation-eq-hat-sigma-tau2" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+\hat{\sigma}_T^2 = \frac{1}{p(p-1)} {\sum \sum}_{i \neq k} s_{ik}
+\end{equation}
+\]</div>
+<p>Sostituendo l’eq. <a class="reference internal" href="#equation-eq-hat-sigma-tau2">(23.13)</a> nell’eq. <a class="reference internal" href="#equation-eq-omega-firt-part">(23.12)</a>, otteniamo</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+\hat{\omega} = \frac{p}{p-1}\frac{{\sum \sum}_{i \neq k} s_{ik}}{s_Y^2}
+\end{equation}
+\]</div>
+<p>In sintesi, per indicatori <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenti, una stima di <span class="math notranslate nohighlight">\(\omega\)</span> è data da</p>
+<div class="math notranslate nohighlight" id="equation-eq-alpha-camp">
+<span class="eqno">(23.14)<a class="headerlink" href="#equation-eq-alpha-camp" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{equation}
+\begin{aligned}
+\hat{\omega} &amp;= \frac{p}{p-1}\frac{{\sum \sum}_{i \neq k} s_{ik}}{s_Y^2} \notag\\
+ &amp;= \frac{p}{p-1}\left(1-\frac{\sum_i s_{ii}}{s_Y^2}\right)
+\end{aligned}
+\end{equation}
+\end{split}\]</div>
+<p>La stima di attendibilità fornita dall’eq. <a class="reference internal" href="#equation-eq-alpha-camp">(23.14)</a> trova una sua controparte nei valori di popolazione nell’equazione seguente:</p>
+<div class="math notranslate nohighlight" id="equation-eq-alpha-pop">
+<span class="eqno">(23.15)<a class="headerlink" href="#equation-eq-alpha-pop" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+\begin{aligned}
+\alpha &amp;= \frac{p}{p-1}\left(1-\frac{\sum_{i=1}^p \sigma_{ii}}{\sigma_Y^2}\right)
+&amp;= \frac{p}{p-1}\frac{\sum_{i\neq k}^p \text{Cov}(X_i, X_k)}{\mathbb{V}(Y)}
+\end{aligned}
+\end{equation}
+\]</div>
+<p>L’eq. <a class="reference internal" href="#equation-eq-alpha-pop">(23.15)</a> definisce il coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
+<p>Se gli indicatori soddisfano le condizioni del modello <span class="math notranslate nohighlight">\(\tau\)</span>-equivalente, i coefficienti <span class="math notranslate nohighlight">\(\alpha\)</span> e <span class="math notranslate nohighlight">\(\omega\)</span> coincidono. Nel contesto di un modello <span class="math notranslate nohighlight">\(\tau\)</span>-equivalente adeguate, il coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span> rappresenta un limite inferiore di <span class="math notranslate nohighlight">\(\omega\)</span> (cioè, sottostima <span class="math notranslate nohighlight">\(\omega\)</span>): <span class="math notranslate nohighlight">\(\omega \geq \alpha\)</span>. Pertanto, data la natura conservativa della stima di attendibilità fornita da <span class="math notranslate nohighlight">\(\alpha\)</span>, alcuni studiosi preferiscono <span class="math notranslate nohighlight">\(\alpha\)</span> a <span class="math notranslate nohighlight">\(\omega\)</span>. È importante notare, però, che questa caratteristica conservativa di <span class="math notranslate nohighlight">\(\alpha\)</span> si applica solo quando le assunzioni del modello <span class="math notranslate nohighlight">\(\tau\)</span>-equivalente sono soddisfatte.</p>
+<section id="id7">
+<h4><span class="section-number">23.6.2.1. </span>Un esempio concreto<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h4>
+<p>Consideriamo la matrice di varianze e covarianze della sottoscala Openness.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cov</span><span class="p">(</span><span class="n">bfi</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;O1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O2r&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O5r&quot;</span><span class="p">)],</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pairwise.complete.obs&quot;</span><span class="p">)</span>
+<span class="n">C</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 5 × 5 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>O1</th><th scope=col>O2r</th><th scope=col>O3</th><th scope=col>O4</th><th scope=col>O5r</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>O1</th><td>1.28</td><td>0.38</td><td>0.54</td><td>0.25</td><td>0.36</td></tr>
+	<tr><th scope=row>O2r</th><td>0.38</td><td>2.45</td><td>0.50</td><td>0.13</td><td>0.67</td></tr>
+	<tr><th scope=row>O3</th><td>0.54</td><td>0.50</td><td>1.49</td><td>0.29</td><td>0.50</td></tr>
+	<tr><th scope=row>O4</th><td>0.25</td><td>0.13</td><td>0.29</td><td>1.49</td><td>0.29</td></tr>
+	<tr><th scope=row>O5r</th><td>0.36</td><td>0.67</td><td>0.50</td><td>0.29</td><td>1.76</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>In precedenza abbiamo visto come calcolare il coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span> usando l’eq. <a class="reference internal" href="#equation-eq-alpha-camp">(23.14)</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span>
+<span class="n">alpha</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">tr</span><span class="p">(</span><span class="n">C</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">C</span><span class="p">))</span>
+<span class="n">alpha</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.600172514820215</div></div>
+</div>
+</section>
+</section>
+<section id="la-formula-profetica-di-spearman-brown">
+<h3><span class="section-number">23.6.3. </span>La formula “profetica” di Spearman-Brown<a class="headerlink" href="#la-formula-profetica-di-spearman-brown" title="Permalink to this headline">#</a></h3>
+<p>La formula profetica di Spearman-Brown è utilizzata per valutare l’affidabilità in un modello di misurazione composto da indicatori paralleli. Immaginiamo di avere <span class="math notranslate nohighlight">\(p\)</span> item paralleli, dove <span class="math notranslate nohighlight">\(\lambda_1=\lambda_2=\dots=\lambda_p=\lambda\)</span> e <span class="math notranslate nohighlight">\(\psi_{11}=\psi_{22}=\dots=\psi_{pp}=\psi\)</span>. In questa situazione, la proporzione di varianza nel punteggio totale del test spiegata dalla variabile latente è uguale a</p>
+<div class="math notranslate nohighlight">
+\[
+\left(\sum_i \lambda_i \right)^2 = (p \lambda)^2 = p^2 \lambda^2.
+\]</div>
+<p>L’affidabilità di un singolo item, che chiameremo <span class="math notranslate nohighlight">\(\rho_1\)</span>, è definita come</p>
+<div class="math notranslate nohighlight">
+\[
+\rho_1 = \frac{\sigma_T^2}{\sigma_T^2+ \sigma_E^2} = \frac{\lambda^2}{\lambda^2 + \psi}.
+\]</div>
+<p>Per <span class="math notranslate nohighlight">\(p\)</span> item paralleli, otteniamo</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{aligned}
+  \rho_p &amp;= \frac{p^2 \lambda^2}{p^2 \lambda^2 + p \psi} \notag\\
+         &amp;= \frac{p^2 \lambda^2}{ p (p \lambda^2 + \psi)} \notag\\
+         &amp;= \frac{p \lambda^2}{ p \lambda^2 + \psi} \notag\\
+         &amp;= \frac{p \lambda^2}{(p-1) \lambda^2 + (\lambda^2 + \psi)}. \notag
+\end{aligned}
+\end{equation}
+\end{split}\]</div>
+<p>Ricordando che l’affidabilità di un singolo item è <span class="math notranslate nohighlight">\(\rho_1 = \frac{\lambda^2}{\lambda^2 + \psi}\)</span>, possiamo scrivere</p>
+<div class="math notranslate nohighlight" id="equation-eq-spearman-brown-der">
+<span class="eqno">(23.16)<a class="headerlink" href="#equation-eq-spearman-brown-der" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{equation}
+\begin{aligned}
+  \rho_p &amp;= \frac{p \frac{\lambda^2}{\lambda^2+\psi}}{(p-1) \frac{\lambda^2}{\lambda^2+\psi} + \frac{\lambda^2 + \psi}{\lambda^2+\psi}} \notag\\
+  &amp;= \frac{p \rho_1}{(p-1)\rho_1 + 1}.
+\end{aligned}
+\end{equation}
+\end{split}\]</div>
+<p>L’eq. <a class="reference internal" href="#equation-eq-spearman-brown-der">(23.16)</a> esprime l’affidabilità <span class="math notranslate nohighlight">\(\rho_p\)</span> di un test composto da <span class="math notranslate nohighlight">\(p\)</span> item paralleli come una funzione dell’affidabilità di un singolo item. Questa formula è conosciuta come la “formula di predizione” di Spearman-Brown (<em>Spearman-Brown prophecy formula</em>).</p>
+<p>Nel caso di item paralleli, possiamo notare che</p>
+<div class="math notranslate nohighlight">
+\[
+\omega=\alpha=\rho_p.
+\]</div>
+<section id="id8">
+<h4><span class="section-number">23.6.3.1. </span>Un esempio concreto<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h4>
+<p>Poniamoci il problema di calcolare l’attendibilità della sottoscala Openness utilizzando la formula di Spearman-Brown. Ipotizziamo dunque che gli item della scala Openness siano paralleli. La matrice di correlazione è:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cor</span><span class="p">(</span><span class="n">bfi</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;O1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O2r&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O5r&quot;</span><span class="p">)],</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pairwise.complete.obs&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Seguendo <span id="id9">McDonald [<a class="reference internal" href="z_biblio.html#id37" title="Roderick P McDonald. Test theory: A unified treatment. Psychology Press, 2013.">McD13</a>]</span>, supponiamo di calcolare l’attendibilità di un singolo item (<span class="math notranslate nohighlight">\(\rho_1\)</span>) come la correlazione media tra gli item:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">rr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NULL</span>
+<span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span>
+<span class="n">k</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">for </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nf">if </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">rr</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">ro_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">rr</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">ro_1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.236538319550859</div></div>
+</div>
+<p>Applicando la formula di Spearman-Brown, la stima dell’attendibilità del
+test diventa pari a</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ro_1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">((</span><span class="n">p</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ro_1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.60770732243972</div></div>
+</div>
+</section>
+</section>
+</section>
+<section id="commenti-e-considerazioni-conclusive">
+<h2><span class="section-number">23.7. </span>Commenti e considerazioni conclusive<a class="headerlink" href="#commenti-e-considerazioni-conclusive" title="Permalink to this headline">#</a></h2>
+<p>L’indice di affidabilità ampiamente utilizzato nell’ambito della psicometria è il coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span> di Cronbach. Tuttavia, per ottenere una stima attendibile dell’affidabilità del test tramite <span class="math notranslate nohighlight">\(\alpha\)</span>, è necessario che gli item siano <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenti. Questo significa che il modello di <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenza richiede che il tratto latente sia unidimensionale. Tuttavia, in pratica, spesso questa assunzione viene violata, poiché molti test misurano oltre al fattore generale, anche altri fattori. Addirittura, anche nel caso di un test unidimensionale, le comunalità degli item solitamente non sono uguali, infrangendo l’ipotesi di <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenza. In situazioni del genere, se l’assunzione di incorrelazione degli errori è rispettata, il coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span> tende a sottostimare l’affidabilità del test. D’altro canto, se l’assunzione di incorrelazione degli errori non è soddisfatta, il coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span> può sovrastimare l’affidabilità del test.</p>
+<p>Per queste ragioni, l’utilità del coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span> di Cronbach è limitata, e in generale, è preferibile adottare il coefficiente <span class="math notranslate nohighlight">\(\omega\)</span> introdotto da <span id="id10">McDonald [<a class="reference internal" href="z_biblio.html#id37" title="Roderick P McDonald. Test theory: A unified treatment. Psychology Press, 2013.">McD13</a>]</span>. Altre alternative ai coefficienti <span class="math notranslate nohighlight">\(\alpha\)</span> e <span class="math notranslate nohighlight">\(\omega\)</span> includono gli indici <span class="math notranslate nohighlight">\(glb\)</span> (<em>Greatest Lower Bound</em>), come discusso da Ten Berge e Sočan (2004), e l’indice <span class="math notranslate nohighlight">\(\beta\)</span> proposto da Revelle (1979).</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="158_factor_scores.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">22. </span>I punteggi fattoriali</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="163_total_score.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">24. </span>Punteggio totale e modello fattoriale</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teoria-classica-dei-test-e-analisi-fattoriale">23.1. Teoria classica dei test e analisi fattoriale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-fattoriale-e-ctt">23.2. Modello fattoriale e CTT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classi-di-modelli">23.3. Classi di modelli</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indicatori-congenerici">23.3.1. Indicatori congenerici</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indicatori-tau-equivalenti">23.3.2. Indicatori tau-equivalenti</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indicatori-paralleli">23.3.3. Indicatori paralleli</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-dei-minimi-quadrati-non-pesati">23.4. Metodo dei minimi quadrati non pesati</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varianza-del-punteggio-totale-di-un-test">23.5. Varianza del punteggio totale di un test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stima-dell-attendibilita">23.6. Stima dell’attendibilità</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficiente-omega">23.6.1. Coefficiente Omega</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">23.6.1.1. Un esempio concreto</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficiente-omega-e-assunzioni-della-teoria-classica-dei-test">23.6.1.2. Coefficiente <span class="math notranslate nohighlight">\(\omega\)</span> e assunzioni della teoria classica dei test</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione">23.6.1.3. Interpretazione</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficienti-alpha-e-omega-nel-modello-tau-equivalente">23.6.2. Coefficienti <span class="math notranslate nohighlight">\(\alpha\)</span> e <span class="math notranslate nohighlight">\(\omega\)</span> nel modello <span class="math notranslate nohighlight">\(\tau\)</span>-equivalente</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">23.6.2.1. Un esempio concreto</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-formula-profetica-di-spearman-brown">23.6.3. La formula “profetica” di Spearman-Brown</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">23.6.3.1. Un esempio concreto</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-conclusive">23.7. Commenti e considerazioni conclusive</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
