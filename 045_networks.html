@@ -1,0 +1,898 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>15. Network models &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/a11y.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/custom.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '045_networks';</script>
+    <link rel="shortcut icon" href="_static/increasing.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="16. La validità del test" href="051_validity.html" />
+    <link rel="prev" title="14. Teoria della generalizzabilità" href="041_gtheory.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Test psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="002_measurement.html">1. Misurazione: affidabilità, validazione di costrutto e costruzione di Scale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="005_tipologie_test.html">2. Introduzione alla valutazione psicometrica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="007_norms.html">3. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="010_development.html">4. Sviluppo dello strumento</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="020_ctt_1.html">5. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="021_ctt_2.html">6. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="022_ctt_3.html">7. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="025_err_std_mis.html">8. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="026_err_std_stima.html">9. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="028_applications_ctt.html">10. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="E_ctt_1.html">11. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="030_multilevel_1.html">12. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="031_interrater_reliability.html">13. L’affidabilità tra giudici</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="041_gtheory.html">14. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Network Psychometrics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">15. Network models</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="051_validity.html">16. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="055_relations_to_other_vars.html">17. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="061_path_analysis.html">18. Path analysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="150_sviluppo_strumento.html">19. Utilizzo e costruzione di test psicometrici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="155_analisi_fattoriale_1.html">20. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="156_analisi_fattoriale_2.html">21. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="157_analisi_fattoriale_3.html">22. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="158_factor_scores.html">23. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="162_constraints_on_parms.html">24. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="163_total_score.html">25. Punteggio totale e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="170_cfa_mod_comp.html">26. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="175_bifactor.html">27. Modello bifattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione di strumenti psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="201_valutare_le_matrici.html">28. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="202_estrazione.html">29. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="203_numero_fattori.html">30. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="205_rotazione.html">31. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="206_valutare_sol_fattoriale.html">32. Valutare e rifinire la soluzione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="210_group_invariance.html">33. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="215_gof.html">34. Indici di bontà dell’adattamento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="220_refine_solution.html">35. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="225_mmm.html">36. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="230_cat_data.html">37. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="235_missing_data.html">38. Dati mancanti</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="351_sem_intro.html">39. Introduzione ai modelli di equazioni struttural</a></li>
+<li class="toctree-l1"><a class="reference internal" href="352_visualize_sem.html">40. Visualizzare i modelli di equazioni strutturali</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="401_irt.html">41. Modelli di risposta all’item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="701_lgm_intro.html">42. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="702_lgm_prelims.html">43. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="703_lgm_mixed.html">44. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="705_growth_1.html">45. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="706_growth_cont.html">46. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="710_time_inv_cov.html">47. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="711_growth_groups.html">48. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="715_bivariate_growth_models.html">49. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="720_inv_measurement.html">50. Invarianza di misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="750_latent_change.html">51. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="751_biv_change.html">52. Modello LCS bivariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="755_lgm_meas_inv.html">53. Invarianza fattoriale nei modelli LGM</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="z_biblio.html">54. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="901_intro_r.html">55. Linguaggio di programmazione R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="910_regression.html">56. L’analisi di regressione</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test/issues/new?title=Issue%20on%20page%20%2F045_networks.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/045_networks.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Network models</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#network-psychometrics">15.1. Network psychometrics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limiti-della-network-analysis">15.2. Limiti della network analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelli-direzionali">15.3. Modelli direzionali</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">15.4. Un esempio concreto</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reti-di-correlazione">15.4.1. Reti di correlazione</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-conclusive">15.5. Commenti e considerazioni conclusive</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="network-models">
+<span id="networks-notebook"></span><h1><span class="section-number">15. </span>Network models<a class="headerlink" href="#network-models" title="Permalink to this heading">#</a></h1>
+<p>Nell’ambito della letteratura psicometrica recente, è emersa un’alternativa innovativa per la rappresentazione dei costrutti psicometrici. Lo scopo di questo capitolo è introdurre e illustrare alcuni concetti relativi ai modelli di reti applicati alla psicometria.</p>
+<section id="network-psychometrics">
+<h2><span class="section-number">15.1. </span>Network psychometrics<a class="headerlink" href="#network-psychometrics" title="Permalink to this heading">#</a></h2>
+<p>Invece di considerare le relazioni tra le variabili osservate come derivate da una variabile latente sottostante correlata a tutte le variabili osservate, si adotta l’idea di concepire il gruppo di variabili osservate come una rete in cui interazioni causali collegano tali variabili. Questo nuovo approccio rientra nel campo della “network psychometrics” (Marsman et al. 2018; Epskamp et al. 2018) e mira a estrarre modelli di rete da dati psicologici. Lo scopo è di mappare le complesse interazioni tra componenti psicologiche, biologiche, sociologiche e altre.</p>
+<p>All’interno di questi modelli di rete, le variabili osservate sono considerate nodi, mentre la forza dell’associazione condizionale tra due variabili, controllando tutte le altre variabili, viene rappresentata come archi. Parametri di un livello superiore, che possono rappresentare variabili latenti associate a persone e situazioni, influenzano le connessioni previste nella rete. In certi casi, le equazioni per le distribuzioni congiunte di probabilità delle variabili osservabili, date i parametri sottostanti in un modello di rete, risultano essere analoghe a quelle derivanti da un modello di teoria di risposta agli item (IRT) con variabili relative alla persona e al compito. Questi modelli combinano sviluppi psicometrici, ovvero i modelli IRT e l’analisi delle reti sociali.</p>
+<p>Per esemplificare, consideriamo gli elementi seguenti (adattati dalla scala di stabilità emotiva IPIP50):</p>
+<ul class="simple">
+<li><p>Item 1: “Mi sento in preda al panico facilmente.”</p></li>
+<li><p>Item 2: “Le emozioni mi travolgono spesso.”</p></li>
+<li><p>Item 3: “Mi lamento frequentemente delle cose.”</p></li>
+</ul>
+<p>L’analisi fattoriale ha dimostrato che questi (e altri) item misurano tutti lo stesso tratto; questi item sono correlati tra loro e quindi formano un fattore. Tuttavia, le correlazioni non implicano causalità e quindi i modelli di analisi fattoriale non possono evidenziare le relazioni di causalità tra gli item.</p>
+<p>Ad esempio, se qualcuno è fortemente d’accordo nel dire che si sente in preda al panico facilmente, logicamente dirà anche che le emozioni lo travolgono spesso. Il panico implica una risposta emotiva travolgente, quindi il modo in cui una persona risponde all’item 1 dovrebbe influenzare causalmente anche la risposta all’item 2. Tuttavia, il collegamento inverso è probabilmente meno forte. Solo poche persone che concordano nel sentirsi travolti dalle emozioni entreranno in panico. Potrebbero invece sentirsi depressi. L’item 3 probabilmente non ha un collegamento causale significativo né con l’item 1 né con l’item 2; provare panico o sentirsi travolti emotivamente non implica lamentele, né è evidente perché lamentarsi dovrebbe implicare sentimenti di panico o essere travolti dalle emozioni.</p>
+<p>Calcolando correlazioni parziali, l’analisi di rete dovrebbe essere in grado di identificare tali effetti, cosa che l’analisi fattoriale non può fare. Tuttavia, la domanda cruciale è se l’analisi di rete e l’analisi fattoriale producano risultati molto diversi quando applicate allo stesso insieme di dati.</p>
+</section>
+<section id="limiti-della-network-analysis">
+<h2><span class="section-number">15.2. </span>Limiti della network analysis<a class="headerlink" href="#limiti-della-network-analysis" title="Permalink to this heading">#</a></h2>
+<p>Esaminando le idee espresse, risulta pratica comune trattare le ridotte correlazioni parziali come se fossero nulle durante l’analisi delle reti. Ciò semplifica il diagramma, poiché le connessioni ritenute insignificanti possono essere omesse dalla rappresentazione grafica, evitando così che ogni nodo sia connesso a tutti gli altri nodi. Tale procedura è ampiamente eseguita attraverso la tecnica del “lasso” (least absolute shrinkage and selection operator). Qui si effettua una scelta in merito al valore di un parametro (lambda) e, tanto maggiore è il valore di lambda selezionato, tanto più archi il procedimento lasso forza a diventare nulli. Questo processo tecnico è noto come “render il modello più sparso”.</p>
+<p>Questo principio è analogo a trattare i piccoli carichi fattoriali come se fossero nulli durante l’interpretazione delle matrici di fattori rotati. Tuttavia, questo è altrettanto arbitrario, sia nella scelta del metodo che del valore di lambda utilizzato. Tale aspetto è motivo di preoccupazione poiché sorge la questione se la stessa struttura emerga quando lo stesso ricercatore analizza due campioni di dati provenienti dalla stessa popolazione.</p>
+<p>Un secondo problema riguarda la possibilità che un nodo possa essere influenzato da un elevato numero di altri nodi, ma ciascuna singola relazione sia di dimensioni ridotte e possa essere considerata nulla quando si rende la rete più sparsa. Un esempio chiaro si riferisce all’analisi delle influenze genetiche sull’intelligenza. Benché sia noto che l’intelligenza sia ampiamente influenzata dalla predisposizione genetica delle persone, ciò coinvolge un vasto numero di geni (altri nodi), ciascuno dei quali apporta un’influenza impercettibile. Individualmente, il loro contributo sarebbe minimo (e alcuni potrebbero facilmente essere posti a zero), ma considerati nel loro insieme, l’effetto può diventare significativo.</p>
+<p>Inoltre, rimane incerta la dimensione dei campioni necessaria. Ci sono regole empiriche: ad esempio, Epskamp et al. (2017) suggeriscono che il numero dei campioni non dovrebbe essere inferiore a n(n − 1), dove n è il numero dei nodi. Tuttavia, questi autori dimostrano che tale regola potrebbe ancora portare a stime instabili. In ogni caso, è probabile che la dimensione del campione necessaria sia correlata alla quantità di errore di misurazione associata a ciascuna variabile. Benché tali problemi siano stati trattati nell’ambito dell’analisi fattoriale, non sembra che siano stati esaminati dettagliatamente dagli analisti di reti.</p>
+<p>Un quarto problema riguarda la varietà di algoritmi sviluppati per rappresentare la struttura dei dati, quindi l’aspetto del grafico dipenderà in parte dalla scelta arbitraria compiuta. I diagrammi di rete possono apparire accattivanti, ma è essenziale studiare attentamente i dettagli di ciò che rappresentano in modo preciso.</p>
+</section>
+<section id="modelli-direzionali">
+<h2><span class="section-number">15.3. </span>Modelli direzionali<a class="headerlink" href="#modelli-direzionali" title="Permalink to this heading">#</a></h2>
+<p>Fino a questo punto, abbiamo esaminato i modelli di analisi delle reti basati su correlazioni, i quali prevedono al massimo un singolo collegamento tra ciascuna coppia di nodi. Questa limitazione deriva dal fatto che l’analisi parte da una matrice di correlazione, e all’interno del diagramma di rete, gli archi rappresentano correlazioni parziali: ovvero la forza della relazione tra due nodi dopo che tutte le altre correlazioni sono state corrette. Tuttavia, va tenuto presente che le interazioni tra i nodi non sono sempre simmetriche.</p>
+<p>Per esemplificare, consideriamo il caso in cui il quoziente di intelligenza (QI), misurato attraverso test di intelligenza, sia strettamente correlato al numero di anni di istruzione ricevuti da un individuo. Questa correlazione solleva una domanda: quale potrebbe essere il motivo sottostante? Una possibile spiegazione è che l’intelligenza possa influenzare il rendimento scolastico, in modo tale che individui con un QI elevato ottengano risultati migliori, ricevano rinforzi positivi attraverso voti alti e quindi scelgano di continuare gli studi il più a lungo possibile. Al contrario, è altrettanto possibile che frequentare la scuola possa influenzare l’intelligenza stimolando lo sviluppo del pensiero astratto e delle abilità linguistiche, tra gli altri fattori che migliorano le performance nei test di intelligenza. In questo scenario, un modello direzionale di rete che includa il QI e gli anni di istruzione come nodi potrebbe mostrare due collegamenti tra questi nodi, evidenziando collegamenti causali (con probabili dimensioni diverse) in entrambe le direzioni. Questo stesso principio può essere applicato anche agli elementi dei test.</p>
+<p>Un approccio alternativo consiste nell’utilizzare una matrice di similarità come base per un modello di rete. Questo approccio è spesso adottato quando si tratta di mappare reti sociali, utilizzando le persone come nodi. Ad esempio, consideriamo due individui, Claire e Ryan: mentre Claire potrebbe considerare Ryan un amico stretto, Ryan potrebbe invece percepire Claire come una semplice conoscenza. Questo esempio dimostra come una matrice di “similarità” possa rappresentare le relazioni in modo più flessibile rispetto alle tradizionali matrici di correlazione.</p>
+</section>
+<section id="un-esempio-concreto">
+<h2><span class="section-number">15.4. </span>Un esempio concreto<a class="headerlink" href="#un-esempio-concreto" title="Permalink to this heading">#</a></h2>
+<p>Consideriamo una rete sociale basata derivata da dati che forniscono informazioni relazionali, in cui delle persone interagiscono tra loro in qualche modo. Come esempio didattico, consideriamo quattro persone: Horst, Helga, Klaus e Gertrud. Nelle reti, ciascuno dei quattro attori sarà rappresentato da un nodo (o vertice). In questo esempio, le interazioni avvengono quando gli attori hanno un qualche scambio materiale (qui chiamato album). Supponiamo che Helga e Horst abbiano scambiato alcuni oggetti. In una rete, sono quindi collegati da un edge (o arco). Helga ha dato a Horst tre oggetti, mentre Horst ha dato due oggetti ad Helga. Abbiamo un edge Helga → Horst e un edge Horst → Helga. Il primo edge ha un peso di 3, e il secondo edge ha un peso di 2. L’intero insieme di scambi di oggetti può essere rappresentato da un elenco di edges. Utilizzando il pacchetto igraph (Csárdi e Nepusz, 2006; Kolaczyk e Csárdi, 2014), creiamo l’elenco corrispondente di edges e assegnamo i pesi agli edges come segue:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;igraph&quot;</span><span class="p">)</span>
+<span class="n">album_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;Helga&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Gertrud&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Horst&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Klaus&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;Horst&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Helga&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Gertrud&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Horst&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Klaus&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Horst&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;Horst&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Helga&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Helga&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Klaus&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Klaus&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Klaus&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;Gertrud&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Gertrud&quot;</span>
+<span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="n">album_el</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">graph.edgelist</span><span class="p">(</span><span class="n">album_df</span><span class="p">,</span><span class="w"> </span><span class="n">directed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">E</span><span class="p">(</span><span class="n">album_el</span><span class="p">)</span><span class="o">$</span><span class="n">weight</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: ‘igraph’
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following object is masked from ‘package:base’:
+
+    union
+</pre></div>
+</div>
+</div>
+</div>
+<p>Un secondo modo equivalente di rappresentare i dati di una rete è attraverso una matrice di adiacenza, in cui le righe riflettono il “da” e le colonne riflettono il “a”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">album_ad</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">get.adjacency</span><span class="p">(</span><span class="n">album_el</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sparse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">attr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;weight&quot;</span>
+<span class="p">)</span>
+<span class="n">album_ad</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 4 × 4 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>Helga</th><th scope=col>Horst</th><th scope=col>Gertrud</th><th scope=col>Klaus</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>Helga</th><td>0</td><td>2</td><td>0</td><td>1</td></tr>
+	<tr><th scope=row>Horst</th><td>3</td><td>0</td><td>7</td><td>5</td></tr>
+	<tr><th scope=row>Gertrud</th><td>0</td><td>3</td><td>0</td><td>7</td></tr>
+	<tr><th scope=row>Klaus</th><td>4</td><td>0</td><td>2</td><td>0</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Il grafo di rete corrispondente può essere prodotto nel seguente modo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">album_el</span><span class="p">,</span>
+<span class="w">    </span><span class="n">vertex.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">edge.arrow.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span>
+<span class="w">    </span><span class="n">vertex.label.dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="n">vertex.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">vertex.label.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">vertex.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/13e923d7ba13a7e983be2112dc694a9a1050ce312f105365ce77b0d4bd321220.png" src="_images/13e923d7ba13a7e983be2112dc694a9a1050ce312f105365ce77b0d4bd321220.png" />
+</div>
+</div>
+<p>Il diagramma presente nella figura rappresenta una rete diretta e ponderata, in quanto gli edge esprimono una relazione “da-a”, e i loro valori riflettono l’intensità della connessione. Sarebbe possibile trasformarlo agevolmente in una rete non ponderata sostituendo ciascun valore degli edge maggiore di 0 con 1 (cioè rappresentando uno scambio o l’assenza di scambio). Altresì, potremmo convertirlo in una rete non diretta in cui abbandoniamo la distinzione “da-a”, ottenendo la somma degli elementi corrispondenti nella parte triangolare superiore e inferiore della matrice di adiacenza, la quale diventerebbe simmetrica. Come si può osservare, emergono quattro tipi fondamentali di reti basati sulla combinazione di edge diretti/non diretti e pesati/non pesati.</p>
+<section id="reti-di-correlazione">
+<h3><span class="section-number">15.4.1. </span>Reti di correlazione<a class="headerlink" href="#reti-di-correlazione" title="Permalink to this heading">#</a></h3>
+<p>In psicologia, la raccolta di dati in forma relazionale è rara. Al contrario, si fa uso delle reti di correlazione, le quali si basano su una matrice di correlazione. Queste reti sono ampiamente utilizzate nell’ambito clinico, dove trovano applicazione, ad esempio, nella rilevazione di associazioni tra sintomi.</p>
+<p>In questa sezione illustreremo le reti di correlazione attraverso un insieme di dati proveniente da McNally et al. (2017). Questo dataset sulla comorbidità tra disturbo ossessivo-compulsivo (DOC) e depressione comprende 16 elementi relativi alla depressione (QIDS; scala a 5 punti) e 10 elementi relativi al disturbo DOC (Y-BOCS; scala a 4 punti). Il campione conta n = 408 pazienti. Come primo passo, procediamo al calcolo della matrice di correlazione R:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;MPsychoR&quot;</span><span class="p">)</span>
+
+<span class="nf">data</span><span class="p">(</span><span class="n">Rogers</span><span class="p">)</span>
+<span class="n">cormat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cor</span><span class="p">(</span><span class="n">Rogers</span><span class="p">)</span>
+<span class="n">cormat</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            onset middle  late hypersom  sad decappetite incappetite weightloss
+onset        1.00   0.28  0.31     0.00 0.20        0.11        0.09       0.06
+middle       0.28   1.00  0.34    -0.10 0.23        0.06        0.14       0.15
+late         0.31   0.34  1.00    -0.14 0.31        0.18        0.02       0.25
+hypersom     0.00  -0.10 -0.14     1.00 0.08       -0.05        0.16      -0.07
+sad          0.20   0.23  0.31     0.08 1.00        0.19        0.12       0.15
+decappetite  0.11   0.06  0.18    -0.05 0.19        1.00       -0.15       0.41
+incappetite  0.09   0.14  0.02     0.16 0.12       -0.15        1.00      -0.15
+weightloss   0.06   0.15  0.25    -0.07 0.15        0.41       -0.15       1.00
+weightgain   0.01   0.04 -0.02     0.10 0.01       -0.25        0.48      -0.31
+concen       0.19   0.19  0.21     0.07 0.37        0.20        0.19       0.12
+guilt        0.19   0.19  0.19     0.06 0.44        0.12        0.23       0.04
+suicide      0.05   0.14  0.19     0.08 0.40        0.04        0.20       0.00
+anhedonia    0.14   0.23  0.31     0.05 0.52        0.29        0.09       0.12
+fatigue      0.25   0.19  0.21     0.29 0.40        0.24        0.16       0.14
+retard       0.15   0.11  0.20     0.07 0.33        0.22        0.16       0.10
+agitation    0.13   0.12  0.22    -0.02 0.17        0.12        0.06       0.17
+obtime       0.18   0.13  0.09     0.00 0.27        0.11       -0.02       0.05
+obinterfer   0.11   0.07  0.17     0.12 0.31        0.19        0.05       0.08
+obdistress   0.16   0.07  0.12     0.06 0.38        0.15        0.02       0.12
+obresist     0.05   0.03  0.05     0.01 0.08        0.01        0.03      -0.04
+obcontrol    0.23   0.06  0.03     0.08 0.25        0.11        0.04       0.02
+comptime     0.18   0.11  0.00     0.07 0.06        0.09        0.01       0.04
+compinterf   0.11   0.07  0.05     0.13 0.09        0.12        0.06       0.03
+compdis      0.13   0.09  0.06     0.07 0.12        0.10        0.08       0.00
+compresis    0.08   0.01 -0.01     0.01 0.05        0.06        0.05      -0.03
+compcont     0.17   0.08  0.06     0.07 0.20        0.13        0.11       0.00
+            weightgain concen guilt suicide anhedonia fatigue retard agitation
+onset             0.01   0.19  0.19    0.05      0.14    0.25   0.15      0.13
+middle            0.04   0.19  0.19    0.14      0.23    0.19   0.11      0.12
+late             -0.02   0.21  0.19    0.19      0.31    0.21   0.20      0.22
+hypersom          0.10   0.07  0.06    0.08      0.05    0.29   0.07     -0.02
+sad               0.01   0.37  0.44    0.40      0.52    0.40   0.33      0.17
+decappetite      -0.25   0.20  0.12    0.04      0.29    0.24   0.22      0.12
+incappetite       0.48   0.19  0.23    0.20      0.09    0.16   0.16      0.06
+weightloss       -0.31   0.12  0.04    0.00      0.12    0.14   0.10      0.17
+weightgain        1.00   0.08  0.11    0.12      0.04    0.12   0.10     -0.07
+concen            0.08   1.00  0.38    0.20      0.43    0.48   0.48      0.30
+guilt             0.11   0.38  1.00    0.34      0.34    0.30   0.27      0.30
+suicide           0.12   0.20  0.34    1.00      0.27    0.24   0.26      0.08
+anhedonia         0.04   0.43  0.34    0.27      1.00    0.50   0.37      0.22
+fatigue           0.12   0.48  0.30    0.24      0.50    1.00   0.47      0.16
+retard            0.10   0.48  0.27    0.26      0.37    0.47   1.00      0.14
+agitation        -0.07   0.30  0.30    0.08      0.22    0.16   0.14      1.00
+obtime            0.01   0.26  0.25    0.17      0.22    0.19   0.16      0.19
+obinterfer        0.06   0.32  0.22    0.19      0.32    0.28   0.25      0.14
+obdistress       -0.03   0.24  0.33    0.26      0.25    0.24   0.23      0.19
+obresist         -0.04   0.12  0.14    0.08      0.10    0.05   0.02      0.05
+obcontrol         0.00   0.22  0.22    0.15      0.21    0.16   0.16      0.16
+comptime          0.04   0.17  0.14   -0.08      0.11    0.17   0.18      0.09
+compinterf        0.06   0.17  0.17    0.01      0.16    0.22   0.20      0.09
+compdis           0.08   0.15  0.20   -0.04      0.13    0.19   0.16      0.06
+compresis        -0.03   0.04  0.09    0.08      0.07    0.06   0.03     -0.02
+compcont          0.05   0.13  0.28    0.05      0.16    0.15   0.16      0.13
+            obtime obinterfer obdistress obresist obcontrol comptime compinterf
+onset         0.18       0.11       0.16     0.05      0.23     0.18       0.11
+middle        0.13       0.07       0.07     0.03      0.06     0.11       0.07
+late          0.09       0.17       0.12     0.05      0.03     0.00       0.05
+hypersom      0.00       0.12       0.06     0.01      0.08     0.07       0.13
+sad           0.27       0.31       0.38     0.08      0.25     0.06       0.09
+decappetite   0.11       0.19       0.15     0.01      0.11     0.09       0.12
+incappetite  -0.02       0.05       0.02     0.03      0.04     0.01       0.06
+weightloss    0.05       0.08       0.12    -0.04      0.02     0.04       0.03
+weightgain    0.01       0.06      -0.03    -0.04      0.00     0.04       0.06
+concen        0.26       0.32       0.24     0.12      0.22     0.17       0.17
+guilt         0.25       0.22       0.33     0.14      0.22     0.14       0.17
+suicide       0.17       0.19       0.26     0.08      0.15    -0.08       0.01
+anhedonia     0.22       0.32       0.25     0.10      0.21     0.11       0.16
+fatigue       0.19       0.28       0.24     0.05      0.16     0.17       0.22
+retard        0.16       0.25       0.23     0.02      0.16     0.18       0.20
+agitation     0.19       0.14       0.19     0.05      0.16     0.09       0.09
+obtime        1.00       0.41       0.51     0.22      0.40     0.38       0.23
+obinterfer    0.41       1.00       0.57     0.23      0.46     0.30       0.54
+obdistress    0.51       0.57       1.00     0.20      0.50     0.26       0.33
+obresist      0.22       0.23       0.20     1.00      0.37     0.15       0.22
+obcontrol     0.40       0.46       0.50     0.37      1.00     0.30       0.39
+comptime      0.38       0.30       0.26     0.15      0.30     1.00       0.58
+compinterf    0.23       0.54       0.33     0.22      0.39     0.58       1.00
+compdis       0.16       0.27       0.25     0.16      0.27     0.53       0.58
+compresis     0.12       0.12       0.17     0.64      0.29     0.20       0.22
+compcont      0.30       0.37       0.35     0.29      0.53     0.43       0.55
+            compdis compresis compcont
+onset          0.13      0.08     0.17
+middle         0.09      0.01     0.08
+late           0.06     -0.01     0.06
+hypersom       0.07      0.01     0.07
+sad            0.12      0.05     0.20
+decappetite    0.10      0.06     0.13
+incappetite    0.08      0.05     0.11
+weightloss     0.00     -0.03     0.00
+weightgain     0.08     -0.03     0.05
+concen         0.15      0.04     0.13
+guilt          0.20      0.09     0.28
+suicide       -0.04      0.08     0.05
+anhedonia      0.13      0.07     0.16
+fatigue        0.19      0.06     0.15
+retard         0.16      0.03     0.16
+agitation      0.06     -0.02     0.13
+obtime         0.16      0.12     0.30
+obinterfer     0.27      0.12     0.37
+obdistress     0.25      0.17     0.35
+obresist       0.16      0.64     0.29
+obcontrol      0.27      0.29     0.53
+comptime       0.53      0.20     0.43
+compinterf     0.58      0.22     0.55
+compdis        1.00      0.22     0.48
+compresis      0.22      1.00     0.38
+compcont       0.48      0.38     1.00
+</pre></div>
+</div>
+</div>
+</div>
+<p>Un problema che sorge dall’utilizzo di matrici di correlazione all’interno di un contesto di rete è che spesso portano a un grafo completamente connesso, poiché le correlazioni empiriche in generale non sono pari a 0. Approcci semplici per affrontare questa problematica includono l’eliminazione delle correlazioni basse attraverso la scelta di una soglia di correlazione o il mantenimento solamente delle correlazioni significative (dopo una correzione adeguata dei valori p dovuta al problema dei test multipli). Nel grafico di rete presente nella Figura seguente, generato tramite l’utilizzo del pacchetto <code class="docutils literal notranslate"><span class="pre">qgraph</span></code>, abbiamo impostato la soglia minima di correlazione assoluta a 0.2 (ovvero una dimensione dell’effetto di entità piccola). Più spesso è un edge, maggiore è la correlazione. Gli edge con correlazioni negative sono colorati in modo differente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;qgraph&quot;</span><span class="p">)</span>
+<span class="n">cornet</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">qgraph</span><span class="p">(</span><span class="n">cormat</span><span class="p">,</span><span class="w"> </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;spring&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">minimum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span>
+<span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;cor&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">groups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Depression</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="n">OCD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">17</span><span class="o">:</span><span class="m">26</span><span class="p">),</span>
+<span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;white&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;gray&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">Rogers</span><span class="p">),</span>
+<span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Depression/OCD Correlation Network&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a693244a136bc793681f3bb8f1ab05d1b5b9e08660e67f8e263e8e6e892795ad.png" src="_images/a693244a136bc793681f3bb8f1ab05d1b5b9e08660e67f8e263e8e6e892795ad.png" />
+</div>
+</div>
+<p>La figura mostra una rete di correlazione per gli item relativi alla depressione e al disturbo ossessivo-compulsivo (DOC). Le linee verdi indicano correlazioni positive, mentre le linee rosse indicano correlazioni negative.</p>
+<p>Il pacchetto <code class="docutils literal notranslate"><span class="pre">qgraph</span></code> offre diverse opzioni, implementate nella funzione di centralità, per analizzare l’importanza e l’influenza dei nodi all’interno di una rete. La centralità è un concetto fondamentale nell’analisi delle reti ed è utilizzata per valutare il grado di importanza di ciascun nodo in base alle sue connessioni e al suo ruolo nella rete. Le principali misure di centralità incluse sono:</p>
+<ul class="simple">
+<li><p><strong>Centralità di grado (strength)</strong>: Questa misura riflette il numero di lati (archi) connessi a ciascun nodo. I nodi con un alto grado di centralità hanno molte connessioni e possono essere considerati “hub” all’interno della rete.</p></li>
+<li><p><strong>Centralità di vicinanza</strong>: La centralità di vicinanza misura quanto è vicino un nodo a tutti gli altri nodi nella rete, basandosi sulla lunghezza dei percorsi più brevi tra i nodi. I nodi con una centralità di vicinanza elevata possono essere considerati “centrati” nella rete, poiché possono comunicare rapidamente con altri nodi.</p></li>
+<li><p><strong>Centralità di intermediazione</strong>: Questa misura valuta il ruolo di un nodo nel collegamento di altri nodi. I nodi con alta centralità di intermediazione si trovano spesso su percorsi di comunicazione critici tra altri nodi. In sostanza, agiscono da intermediari che controllano il flusso di informazioni o l’interazione tra altri nodi.</p></li>
+</ul>
+<p>Un grafico rappresentativo delle misure di centralità può essere creato per visualizzare in modo chiaro e intuitivo l’importanza relativa dei nodi nella rete.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">centralityPlot</span><span class="p">(</span><span class="n">cornet</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/99e86c9df56d61e8e53937935a79f415d6c70e4c3a5cf79322c71a131e4c7a48.png" src="_images/99e86c9df56d61e8e53937935a79f415d6c70e4c3a5cf79322c71a131e4c7a48.png" />
+</div>
+</div>
+<p>Per espandere questa semplice rete di correlazione, possiamo adottare le seguenti modifiche. In primo luogo, anziché utilizzare le tradizionali correlazioni di Pearson, optiamo per le correlazioni parziali. Una correlazione parziale coinvolge due nodi e considera l’influenza di tutti gli altri nodi presenti nella rete. Di conseguenza, gli archi inferiti riflettono in modo più accurato l’influenza diretta tra i nodi. In secondo luogo, invece di impiegare una soglia di correlazione arbitraria o un livello di significatività corretto con il metodo di Bonferroni, possiamo considerare l’approccio del “lasso grafico” (Friedman et al., 2008).</p>
+<p>Il pacchetto qgraph fornisce un’implementazione ad alto livello semplice da utilizzare per calcolare le correlazioni parziali regolarizzate. Il calcolo del “lasso grafico” in questo modo può essere eseguito come segue:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">qgraph</span><span class="p">(</span><span class="n">cormat</span><span class="p">,</span>
+<span class="w">    </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;spring&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sampleSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">Rogers</span><span class="p">),</span>
+<span class="w">    </span><span class="n">graph</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;glasso&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">groups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">Depression</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="n">OCD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">17</span><span class="o">:</span><span class="m">26</span><span class="p">),</span>
+<span class="w">    </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;white&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;gray&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">Rogers</span><span class="p">),</span>
+<span class="w">    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Depression/OCD Graphical Lasso&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ccce11efa4452f495c871ce2ab3a5adc7a249024c99879ccd8f81bbacef33ef1.png" src="_images/ccce11efa4452f495c871ce2ab3a5adc7a249024c99879ccd8f81bbacef33ef1.png" />
+</div>
+</div>
+<p>L’immagine illustra una rete di lasso grafico di correlazioni parziali che coinvolge gli elementi legati alla depressione e al disturbo ossessivo-compulsivo (DOC). Questo tipo di rete visualizza le relazioni tra gli elementi in modo più preciso, poiché le correlazioni parziali tengono conto dell’influenza degli altri nodi presenti nella rete. Le linee verdi rappresentano correlazioni parziali positive, suggerendo connessioni positive tra gli elementi. D’altra parte, le linee rosse indicano correlazioni parziali negative, evidenziando connessioni negative tra gli elementi.</p>
+<p>Un aspetto da considerare è che la distanza tra i nodi nei grafici di rete, come quelli mostrati nelle figure precedenti, non ha un significato intrinseco. I nodi sono disposti in modo da ottenere un’organizzazione esteticamente gradevole del grafico, e quindi la loro posizione non riflette una misura di similarità o distanza. In questo contesto, approcci di scalatura come il Multidimensional Scaling (MDS) sono particolarmente utili, poiché posizionano i nodi in base alla loro somiglianza. In altre parole, i nodi con correlazioni più elevate vengono posizionati più vicini l’uno all’altro. Questo approccio fornisce una rappresentazione visiva intuitiva delle relazioni tra gli elementi.</p>
+<p>Attraverso questa metodologia, le posizioni dei nodi risultanti possono essere ulteriormente oggetto di interpretazione. Ad esempio, i nodi che sono vicini tra loro potrebbero rappresentare elementi correlati in modo significativo, mentre quelli distanti potrebbero indicare elementi con correlazioni più deboli. Pertanto, oltre alla rappresentazione visiva, questa tecnica offre una base per ulteriori analisi e intuizioni nel contesto delle reti di correlazione.</p>
+</section>
+</section>
+<section id="commenti-e-considerazioni-conclusive">
+<h2><span class="section-number">15.5. </span>Commenti e considerazioni conclusive<a class="headerlink" href="#commenti-e-considerazioni-conclusive" title="Permalink to this heading">#</a></h2>
+<p>Va sottolineato che l’analisi delle reti può richiedere un approccio iterativo e impegnativo dal punto di vista computazionale. La scelta dell’algoritmo adeguato e dei parametri appropriati può avere un impatto significativo sui risultati ottenuti. In aggiunta, la selezione del modello definitivo può presentare una certa dose di arbitrarietà, poiché diversi modelli potrebbero adattarsi in modo simile ai dati osservati. Nonostante le sfide coinvolte in questo processo, l’analisi delle reti direzionali si presenta come un campo altamente promettente. Questo campo può aprire nuove prospettive nel modo in cui comprendiamo le intricate interazioni tra variabili complesse. Nel suo insieme, l’analisi delle reti offre la possibilità di rivelare strutture nascoste e dinamiche sottostanti che possono contribuire in modo significativo al nostro approccio alla comprensione dei fenomeni complessi nei contesti psicometrici e oltre.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="041_gtheory.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>Teoria della generalizzabilità</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="051_validity.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>La validità del test</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#network-psychometrics">15.1. Network psychometrics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limiti-della-network-analysis">15.2. Limiti della network analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelli-direzionali">15.3. Modelli direzionali</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">15.4. Un esempio concreto</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reti-di-correlazione">15.4.1. Reti di correlazione</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-conclusive">15.5. Commenti e considerazioni conclusive</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
