@@ -4,7 +4,7 @@ Traceback (most recent call last):
   File "/Users/corrado/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/nbclient/client.py", line 1305, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/corrado/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+  File "/Users/corrado/opt/anaconda3/envs/pymc_env/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 173, in wrapped
     return loop.run_until_complete(inner)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/Users/corrado/opt/anaconda3/envs/pymc_env/lib/python3.11/asyncio/base_events.py", line 653, in run_until_complete
@@ -18,29 +18,23 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-source("_common.R")
-suppressPackageStartupMessages(library(lme4))
+slp_dat <- read.csv("https://osf.io/download/p9gqk/")
+slp_vas_wide <- slp_dat |>
+    select(slpID, Speaker, slp_VAS) |>
+    pivot_wider(names_from = slpID, values_from = slp_VAS)
+head(slp_vas_wide)
 ------------------
 
+----- stderr -----
+Warning message in file(file, "rt"):
+“URL 'https://files.osf.io/v1/resources/sr9aw/providers/github/Manuscript%20Analysis/Shared%20Data/SLP_Correlation.csv': lo status era 'Couldn't connect to server'”
+------------------
 
-Error in library("ggExtra"): non c'è alcun pacchetto chiamato ‘ggExtra’
+Error in file(file, "rt"): non è possibile aprire la connessione a 'https://osf.io/download/p9gqk/'
 Traceback:
 
-1. source("_common.R")
-2. withVisible(eval(ei, envir))
-3. eval(ei, envir)
-4. eval(ei, envir)
-5. suppressPackageStartupMessages({
- .     library("here")
- .     library("tidyverse")
- .     library("scales")
- .     library("patchwork")
- .     library("bayesplot")
- .     library("ggExtra")
- .     library("ggpubr")
- .     library("viridis")
- .     library("ggokabeito")
- . })
-6. withCallingHandlers(expr, packageStartupMessage = function(c) tryInvokeRestart("muffleMessage"))
-7. library("ggExtra")
+1. read.csv("https://osf.io/download/p9gqk/")
+2. read.table(file = file, header = header, sep = sep, quote = quote, 
+ .     dec = dec, fill = fill, comment.char = comment.char, ...)
+3. file(file, "rt")
 
