@@ -474,7 +474,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficiente-alpha">11.2.1. Coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficiente-di-correlazione-intraclasse">11.2.2. Coefficiente di correlazione intraclasse</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anova-ad-una-via-per-disegni-nidificati">11.2.3. ANOVA ad una via per disegni nidificati</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anova-a-due-vie">11.2.4. ANOVA a due vie</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anova-a-due-vie-e-l-impatto-del-bias-dei-giudici">11.2.4. ANOVA a due vie e l’Impatto del Bias dei Giudici</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">11.3. Considerazioni conclusive</a></li>
@@ -492,6 +492,11 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="l-affidabilita-tra-giudici">
 <span id="interrater-reliability-notebook"></span><h1><span class="section-number">11. </span>L’affidabilità tra giudici<a class="headerlink" href="#l-affidabilita-tra-giudici" title="Permalink to this heading">#</a></h1>
 <p>L’affidabilità tra giudici (<em>Interrater Reliability</em>) si riferisce alla coerenza o concordanza tra due o più giudici che stanno valutando lo stesso fenomeno o campione. In altre parole, essa indica quanto siano simili i risultati ottenuti da diversi giudici quando esprimono giudizi o effettuano misurazioni simili.</p>
+<p>Ecco una proposta di modifica per integrare i suggerimenti nella sezione iniziale del capitolo:</p>
+<hr class="docutils" />
+<p><strong>Introduzione</strong></p>
+<p>L’affidabilità tra giudici è un aspetto fondamentale in molti ambiti della psicologia e della ricerca clinica. Consideriamo il caso di una diagnosi clinica. Quando diversi specialisti valutano i sintomi di un paziente, è essenziale che le loro valutazioni siano coerenti per garantire una diagnosi accurata. Ad esempio, nella valutazione dei disturbi dell’umore, psicologi e psichiatri devono giungere a conclusioni simili basandosi su sintomi osservabili e risposte del paziente a questionari standardizzati. Un esempio nella ricerca potrebbe essere uno studio sull’efficacia di una nuova terapia per l’ansia. Qui, vari terapeuti valutano il livello di ansia dei partecipanti prima e dopo il trattamento. L’affidabilità tra le valutazioni di questi terapeuti è cruciale per validare l’efficacia del trattamento.</p>
+<p>Questi esempi illustrano l’importanza dell’affidabilità tra giudici nella pratica clinica e nella ricerca psicologica, e forniscono il contesto per la discussione che segue sui metodi per misurare e analizzare questa affidabilità.</p>
 <p>Questo capitolo esamina l’affidabilità tra giudici in due contesti: con due giudici e con giudici molteplici. Nel primo caso, analizzeremo l’accordo nominale e il Kappa di Cohen. Nel secondo caso, useremo l’ICC, l’ANOVA ad una via e l’ANOVA a due vie. In questo contesto, i modelli a effetti misti si dimostrano fondamentali per gestire disegni con giudici molteplici, catturando le variazioni tra i giudici e tra i partecipanti e fornendo una visione completa dell’affidabilità delle valutazioni.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -979,23 +984,18 @@ ICC = \frac{\sigma^2_{\text{giudici}}} {\sigma^2_{\text{giudici}} + \sigma^2_E /
 </div>
 <p>Questa seconda formula calcola l’affidabilità per la media delle valutazioni di più giudici. È pertinente quando si ha a che fare con più valutazioni per ciascun soggetto e si vuole sapere l’affidabilità della media di queste valutazioni. Questa formula differisce dalla prima perché considera la riduzione dell’errore di misurazione che si verifica quando si calcola la media di più valutazioni.</p>
 </section>
-<section id="anova-a-due-vie">
-<h3><span class="section-number">11.2.4. </span>ANOVA a due vie<a class="headerlink" href="#anova-a-due-vie" title="Permalink to this heading">#</a></h3>
-<p>L’ANOVA a due vie è una tecnica statistica che ci consente di esaminare l’effetto di due o più variabili indipendenti (fattori) sulla variabile dipendente (risposta). Nel nostro caso, stiamo analizzando l’effetto dei giudici (raters) su una variabile dipendente.</p>
-<p>Nell’esaminare la consistenza delle misurazioni, ossia quando ci interessa l’ordine di classificazione delle risposte, il bias dei giudici non è considerato un errore. Ciò avviene poiché il bias, ovvero le tendenze o inclinazioni dei giudici nelle loro valutazioni, si applica in modo simile a tutti gli individui valutati e non modifica l’ordine relativo delle valutazioni. In altre parole, se un giudice tende a valutare più alti o più bassi rispetto agli altri giudici, questa tendenza si rifletterà in tutte le valutazioni, ma l’ordine dei valori rimarrà invariato.</p>
-<p>D’altra parte, quando valutiamo l’accordo tra i giudici, ossia quando ci interessa la concordanza delle misurazioni in termini di valori assoluti, il bias dei giudici è considerato un errore. Questo accade perché il bias, che potrebbe portare a differenze sistematiche nei punteggi assegnati, influisce direttamente sui valori numerici delle valutazioni. In questo caso, l’effetto del giudice contribuisce alla variabilità totale delle misurazioni, andando oltre la variabilità intrinseca delle risposte.</p>
-<p>In sintesi, il trattamento dell’effetto dei giudici come errore o non errore dipende dal contesto in cui vengono effettuate le valutazioni. Nell’analisi di consistenza (decisione relativa), dove l’ordine delle valutazioni è fondamentale, il bias del giudice non è considerato un errore. D’altro canto, nell’analisi di accordo (decisione assoluta), dove i valori numerici esatti delle misurazioni sono cruciali, il bias del giudice è trattato come errore poiché può influenzare direttamente i valori assoluti delle valutazioni.</p>
-<p>In sintesi, l’uso dell’ANOVA a due vie consente di analizzare l’affidabilità tra giudici e di distinguere tra il bias dei giudici come errore o non errore, a seconda del contesto di valutazione.</p>
-<ol class="arabic simple">
-<li><p><strong>Consistenza vs. Accordi</strong>: Ci sono due contesti di valutazione:</p>
+<section id="anova-a-due-vie-e-l-impatto-del-bias-dei-giudici">
+<h3><span class="section-number">11.2.4. </span>ANOVA a due vie e l’Impatto del Bias dei Giudici<a class="headerlink" href="#anova-a-due-vie-e-l-impatto-del-bias-dei-giudici" title="Permalink to this heading">#</a></h3>
+<p>L’ANOVA a due vie è uno strumento statistico fondamentale per analizzare l’effetto dei giudici e di altri fattori sulla variabile dipendente nelle valutazioni. È essenziale comprendere il ruolo del bias dei giudici e distinguere tra bias sistematico e variabilità intrinseca nelle valutazioni.</p>
+<p><strong>Bias dei Giudici</strong>: Il bias si manifesta quando un giudice tende sistematicamente a valutare più alto o più basso degli altri. Ad esempio, in una valutazione di presentazioni orali, un giudice che costantemente assegna punteggi elevati a tutte le presentazioni, indipendentemente dalla loro qualità, introduce un bias sistematico.</p>
+<p><strong>Variabilità Intrinseca</strong>: Rappresenta le differenze naturali nelle valutazioni che derivano da percezioni o interpretazioni soggettive dei giudici.</p>
+<p><strong>Contesto di Valutazione</strong>:</p>
 <ul class="simple">
-<li><p>Quando si valuta la <strong>consistenza</strong> (ordine di classificazione delle risposte), il bias del giudice non è considerato un errore. Questo perché il bias (tendenza a valutare più alto o più basso) non altera l’ordine relativo delle valutazioni.</p></li>
-<li><p>Nell’<strong>accordo</strong> (concordanza delle misurazioni in termini di valori assoluti), il bias del giudice è considerato un errore, poiché influenza i valori numerici assoluti delle valutazioni.</p></li>
+<li><p>In analisi di <strong>Consistenza</strong> (ordine di classificazione delle risposte), il bias del giudice non è considerato errore perché non influisce sull’ordine relativo delle valutazioni.</p></li>
+<li><p>In analisi di <strong>Accordo</strong> (concordanza delle misurazioni in termini di valori assoluti), il bias è visto come errore, influenzando direttamente i valori numerici delle valutazioni.</p></li>
 </ul>
-</li>
-<li><p><strong>Applicazione dell’ANOVA a due vie</strong>: L’ANOVA a due vie viene utilizzata per esaminare l’effetto dei giudici sulla variabile dipendente (le valutazioni). Questo modello permette di distinguere l’effetto del bias dei giudici (come variabile indipendente) dall’errore o dalla variabilità intrinseca nelle risposte.</p></li>
-</ol>
-<p>In questo contesto, dunque, il modello ANOVA a due vie viene usato per quantificare quanto dell’effetto osservato nelle valutazioni sia attribuibile ai giudici e quanto sia dovuto ad altre fonti di varianza. La distinzione sul trattamento del bias dei giudici come errore dipende dal tipo di analisi (consistenza o accordo) che si sta conducendo.</p>
+<p><strong>Applicazione dell’ANOVA a due vie</strong>: Questo modello ci permette di esaminare quanto dell’effetto osservato nelle valutazioni sia dovuto ai giudici (bias) e quanto ad altre fonti di varianza. In contesti di consistenza, il bias non altera l’ordine relativo delle valutazioni, mentre in quelli di accordo, esso è trattato come errore perché influisce sui valori numerici assoluti delle valutazioni.</p>
+<p>In conclusione, l’ANOVA a due vie ci fornisce una metodologia robusta per analizzare l’affidabilità tra giudici e distinguere l’effetto del bias dei giudici in diversi contesti di valutazione.</p>
 <p>Analizziamo i dati con <code class="docutils literal notranslate"><span class="pre">lmer()</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1065,6 +1065,13 @@ Fixed effects:
 </table>
 </div></div>
 </div>
+<p><strong>Esposizione dei Coefficienti ICC (Intraclass Correlation Coefficients)</strong></p>
+<p>I Coefficienti ICC sono cruciali per valutare l’affidabilità tra giudici. Ecco come interpretare i diversi valori di ICC nel contesto specifico dello studio:</p>
+<ul class="simple">
+<li><p><strong>ICC per Singole Valutazioni (Single Measures)</strong>: Questo tipo di ICC è utilizzato quando si considera la valutazione di un singolo giudice. Un ICC elevato indica che la valutazione di un giudice è affidabile e coerente con le valutazioni degli altri giudici.</p></li>
+<li><p><strong>ICC per Valutazioni Medie (Average Measures)</strong>: Quando si considerano le medie delle valutazioni di più giudici, l’ICC medio fornisce una misura dell’affidabilità complessiva. Un valore alto suggerisce che la media delle valutazioni dei giudici è consistente e affidabile.</p></li>
+</ul>
+<p>In termini di interpretazione, un ICC vicino a 1 indica un’elevata affidabilità, mentre un valore vicino a 0 suggerisce una bassa affidabilità. Nel contesto della nostra analisi, ad esempio, un ICC elevato in un contesto di valutazione delle presentazioni orali indicherebbe che i giudici hanno valutazioni consistenti su come gli oratori si sono esibiti, mentre un valore basso suggerirebbe un alto grado di disaccordo tra i giudici.</p>
 <p>Nell’analisi dell’affidabilità tra giudici, la seguente formula considera la varianza dovuta al soggetto valutato (<span class="math notranslate nohighlight">\(\sigma^2_{\text{ratee}}\)</span>), la varianza dovuta al giudice (<span class="math notranslate nohighlight">\(\sigma^2_{\text{rater}}\)</span>), e la varianza dell’errore (<span class="math notranslate nohighlight">\(\sigma^2_E\)</span>). In questa configurazione, l’ICC misura quanto le valutazioni dei singoli giudici sono affidabili in termini di valori assoluti (“Single_raters_absolute”).</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1258,7 +1265,7 @@ See the help file for a discussion of the other 4 McGraw and Wong estimates,
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficiente-alpha">11.2.1. Coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficiente-di-correlazione-intraclasse">11.2.2. Coefficiente di correlazione intraclasse</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anova-ad-una-via-per-disegni-nidificati">11.2.3. ANOVA ad una via per disegni nidificati</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anova-a-due-vie">11.2.4. ANOVA a due vie</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anova-a-due-vie-e-l-impatto-del-bias-dei-giudici">11.2.4. ANOVA a due vie e l’Impatto del Bias dei Giudici</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">11.3. Considerazioni conclusive</a></li>
