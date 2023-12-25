@@ -47,7 +47,7 @@ Per ottenere suggerimenti sulle modalità di studio, si prega di fare clic sul s
 
 ## 🗓️ Calendario
 
-La descrizione delle modalità d'esame è disponibile tramite il seguente [link](TODO).
+Per consultare il calendario delle lezioni, si prega di visitare il seguente [link](syllabus/calendar.ipynb).
 
 ## ✔ Modalità di verifica dell'apprendimento
 
