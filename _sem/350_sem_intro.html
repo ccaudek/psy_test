@@ -1,0 +1,1421 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>32. Introduzione ai Modelli SEM &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_sem/350_sem_intro';</script>
+    <link rel="shortcut icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="33. Preparazione dei Dati" href="351_data_preparation.html" />
+    <link rel="prev" title="31. CFA per matrici multi-tratto multi-metodo" href="../_psychometric_methods/225_mmm.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Test psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/002_measurement.html">1. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/007_norms.html">2. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/008_regression.html">3. L’analisi di regressione</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/020_ctt_1.html">4. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/021_ctt_2.html">5. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/022_ctt_3.html">6. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/025_err_std_mis.html">7. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/026_err_std_stima.html">8. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/028_applications_ctt.html">9. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E_ctt_1.html">10. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/030_multilevel_1.html">11. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/031_interrater_reliability.html">12. L’affidabilità tra giudici</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/041_gtheory.html">13. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/051_validity.html">14. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/055_relations_to_other_vars.html">15. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/061_path_analysis.html">16. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/150_intro_fa.html">17. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/155_analisi_fattoriale_1.html">18. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/156_analisi_fattoriale_2.html">19. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/157_analisi_fattoriale_3.html">20. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/158_factor_scores.html">21. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/162_constraints_on_parms.html">22. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/163_total_score.html">23. Punteggio totale e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/170_cfa_mod_comp.html">24. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/175_bifactor.html">25. Modello bifattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione di strumenti psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/201_valutare_le_matrici.html">26. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/202_estrazione.html">27. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/203_numero_fattori.html">28. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/205_rotazione.html">29. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/206_valutare_sol_fattoriale.html">30. Valutare e rifinire la soluzione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/225_mmm.html">31. CFA per matrici multi-tratto multi-metodo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">32. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="351_data_preparation.html">33. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="352_gof.html">34. Indici di bontà dell’adattamento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="353_refine_solution.html">35. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="354_mod_comp.html">36. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="355_group_invariance.html">37. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="356_cat_data.html">38. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="357_multilevel_sem.html">39. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="358_missing_data.html">40. Dati mancanti</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_irt/400_logistic_regr.html">41. Modello di regressione logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/401_irt.html">42. Modelli di risposta all’item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/501_development.html">43. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/502_tutorial.html">44. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/700_lgm_intro.html">45. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/701_time_effects.html">46. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/702_lgm_prelims.html">47. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/703_lgm_mixed.html">48. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/705_growth_1.html">49. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/706_growth_cont.html">50. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/710_time_inv_cov.html">51. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/711_growth_groups.html">52. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/715_bivariate_growth_models.html">53. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/720_inv_measurement.html">54. Invarianza di misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/750_latent_change.html">55. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/751_biv_change.html">56. Modello LCS bivariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/755_lgm_meas_inv.html">57. Invarianza fattoriale nei modelli LGM</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">58. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/901_intro_r.html">59. Linguaggio di programmazione R</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test/issues/new?title=Issue%20on%20page%20%2F_sem/350_sem_intro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_sem/350_sem_intro.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduzione ai Modelli SEM</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-regressione-multipla">32.1. Modello di Regressione Multipla</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-dei-minimi-quadrati">32.2. Metodo dei Minimi Quadrati</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-percorso">32.3. Modello di Percorso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#path-analysis-e-scomposizione-della-covarianza">32.4. Path Analysis e Scomposizione della Covarianza</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oltre-la-regressione-multipla">32.5. Oltre la regressione multipla</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">32.6. Considerazioni Conclusive</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduzione-ai-modelli-sem">
+<span id="sem-intro-notebook"></span><h1><span class="section-number">32. </span>Introduzione ai Modelli SEM<a class="headerlink" href="#introduzione-ai-modelli-sem" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">source</span><span class="p">(</span><span class="s">&quot;_common.R&quot;</span><span class="p">)</span>
+<span class="nf">suppressPackageStartupMessages</span><span class="p">({</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;lavaan&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;lavaanExtra&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;lavaanPlot&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;psych&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;dplyr&quot;</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;tidyr&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;knitr&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;mvnormalTest&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;semPlot&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;DiagrammeRsvg&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;rsvg&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;effectsize&quot;</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in file(filename, &quot;r&quot;, encoding = encoding):
+“non è possibile aprire il file &#39;_common.R&#39;: No such file or directory”
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="n">encoding</span><span class="p">):</span> <span class="n">non</span> <span class="n">è</span> <span class="n">possibile</span> <span class="n">aprire</span> <span class="n">la</span> <span class="n">connessione</span>
+<span class="ne">Traceback</span>:
+
+<span class="mi">1</span><span class="o">.</span> <span class="n">source</span><span class="p">(</span><span class="s2">&quot;_common.R&quot;</span><span class="p">)</span>
+<span class="mi">2</span><span class="o">.</span> <span class="n">file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="n">encoding</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dopo aver esplorato in dettaglio l’analisi fattoriale, sia esplorativa che confermativa, il presente capitolo si addentra nel mondo dei Modelli di Equazioni Strutturali (SEM), un avanzamento significativo nell’ambito dell’analisi multivariata. I SEM permettono non solo di identificare e misurare le variabili latenti, come nella analisi fattoriale, ma anche di esplorare e quantificare le relazioni di regressione che intercorrono tra di esse.</p>
+<p>Il fulcro dei SEM è testare una teoria specificando un modello che rappresenti le predizioni di questa teoria, utilizzando costrutti plausibili misurati con variabili osservate adeguate. In questo senso, i SEM rappresentano un ponte cruciale tra la teoria e l’osservazione, consentendo di tradurre concetti astratti in entità misurabili e di esaminare le interdipendenze tra di essi in maniera strutturata e teoricamente fondata.</p>
+<p>È fondamentale, tuttavia, mantenere una prospettiva critica riguardo all’utilizzo dei SEM. Come ogni modello statistico, anche i SEM sono basati su semplificazioni e approssimazioni della realtà. Questo porta al celebre adagio: “Tutti i modelli sono sbagliati, ma alcuni sono utili”. Questa affermazione sottolinea l’importanza di riconoscere che, sebbene un modello possa adattarsi bene ai dati, non è necessariamente una rappresentazione accurata della realtà.</p>
+<p>Spesso, modelli fortemente sbagliati possono mostrare un buon fit con i dati, portando a conclusioni errate o fuorvianti. Di conseguenza, la procedura di selezione dei modelli non è solo un esercizio statistico, ma diventa un metodo per sviluppare e affinare teorie migliori. La critica e la revisione dei modelli, basate su dati empirici e considerazioni teoriche, sono dunque componenti essenziali del processo scientifico nel campo della psicologia e delle scienze sociali.</p>
+<p>In conclusione, i SEM offrono un potente strumento per l’analisi e l’interpretazione dei dati in psicologia, ma il loro utilizzo richiede un attento equilibrio tra comprensione teorica, competenza statistica e senso critico. Attraverso un approccio ponderato e informato, i SEM possono contribuire significativamente allo sviluppo della ricerca psicologica, guidando verso una comprensione più profonda dei fenomeni studiati.</p>
+<p>Per introdurre i modelli SEM iniziamo a considerare il caso più semplice, ovvero il modello di regressione multipla espresso come un modello di equazioni strutturali. Utilizzeremo un campione di dati reali e ci concentreremo sulle 3 sottoscale del DASS-21: ansia, stress e depressione. Il campione è costituito da 526 studenti universitari di psicologia.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;data/dass_rosenberg_scs.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">dat</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 x 11</caption>
+<thead>
+	<tr><th></th><th scope=col>stress</th><th scope=col>anxiety</th><th scope=col>depression</th><th scope=col>rosenberg</th><th scope=col>self_kindness</th><th scope=col>common_humanity</th><th scope=col>mindfulness</th><th scope=col>self_judgment</th><th scope=col>isolation</th><th scope=col>over_identification</th><th scope=col>scs_ts</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td> 7</td><td> 6</td><td> 4</td><td>31</td><td>17</td><td>16</td><td>16</td><td>11</td><td> 8</td><td>10</td><td> 98</td></tr>
+	<tr><th scope=row>2</th><td> 3</td><td> 2</td><td> 1</td><td>32</td><td>14</td><td>14</td><td>16</td><td>16</td><td>11</td><td>13</td><td> 82</td></tr>
+	<tr><th scope=row>3</th><td> 1</td><td> 0</td><td> 1</td><td>31</td><td>20</td><td>16</td><td>16</td><td>13</td><td> 6</td><td> 9</td><td>102</td></tr>
+	<tr><th scope=row>4</th><td>12</td><td>11</td><td>13</td><td>34</td><td>12</td><td> 6</td><td> 6</td><td>10</td><td> 7</td><td>15</td><td> 70</td></tr>
+	<tr><th scope=row>5</th><td>10</td><td> 6</td><td>12</td><td>25</td><td>16</td><td>17</td><td>13</td><td>17</td><td>16</td><td>18</td><td> 73</td></tr>
+	<tr><th scope=row>6</th><td> 5</td><td> 1</td><td> 2</td><td>31</td><td>14</td><td>14</td><td>10</td><td>12</td><td> 8</td><td>11</td><td> 85</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">dim</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>526</li><li>11</li></ol>
+</div></div>
+</div>
+<p>Esaminiamo i diagrammi di dispersione tra le varie misure presenti nel campione per verificare che la relazione tra le variabili sia lineare.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">d_mr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dat</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="n">dplyr</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span><span class="n">stress</span><span class="p">,</span><span class="w"> </span><span class="n">anxiety</span><span class="p">,</span><span class="w"> </span><span class="n">depression</span><span class="p">,</span><span class="w"> </span><span class="n">rosenberg</span><span class="p">,</span><span class="w"> </span><span class="n">scs_ts</span><span class="p">)</span>
+
+<span class="nf">pairs</span><span class="p">(</span><span class="n">d_mr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d69a6a21b535ba69afbbc67e558dabac32dadc723338326114bb26fbc44f253d.png" src="../_images/d69a6a21b535ba69afbbc67e558dabac32dadc723338326114bb26fbc44f253d.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">d_mr</span><span class="o">$</span><span class="n">scs_ts</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">()</span>
+<span class="nf">dim</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>526</li><li>1</li></ol>
+</div></div>
+</div>
+<section id="modello-di-regressione-multipla">
+<h2><span class="section-number">32.1. </span>Modello di Regressione Multipla<a class="headerlink" href="#modello-di-regressione-multipla" title="Permalink to this heading">#</a></h2>
+<p>Il modello generale di regressione lineare multipla (MLR) può essere espresso tramite la seguente equazione:</p>
+<div class="math notranslate nohighlight">
+\[
+y_i = \beta_0 + \beta_1 x_{1i} + \cdots + \beta_p x_{pi} + \epsilon_i 
+\]</div>
+<p>dove <span class="math notranslate nohighlight">\( i = 1, \ldots, N \)</span> rappresenta l’osservazione <span class="math notranslate nohighlight">\(i\)</span>-esima, <span class="math notranslate nohighlight">\( \beta_0 \)</span> è il parametro di intercetta, <span class="math notranslate nohighlight">\( \beta_1, \ldots, \beta_p \)</span> sono i coefficienti di regressione, e <span class="math notranslate nohighlight">\( \epsilon_i \)</span> è un termine di errore per la risposta <span class="math notranslate nohighlight">\(i\)</span>. Inoltre, si assume che il termine di errore sia indipendente da tutte le variabili esplicative (o regressori) <span class="math notranslate nohighlight">\( X_s \)</span>.</p>
+<p>In questa formulazione, ogni <span class="math notranslate nohighlight">\( y_i \)</span> rappresenta il valore della variabile dipendente per l’osservazione <span class="math notranslate nohighlight">\(i\)</span>-esima, i <span class="math notranslate nohighlight">\( \beta \)</span> rappresentano i coefficienti che misurano l’impatto di ciascuna variabile esplicativa sulla variabile dipendente, e <span class="math notranslate nohighlight">\( \epsilon_i \)</span> cattura l’errore o la varianza non spiegata nella previsione di <span class="math notranslate nohighlight">\( y_i \)</span>. Questa struttura permette di modellare la relazione lineare tra una variabile dipendente e più variabili indipendenti.</p>
+<p>Il modello di regressione lineare multipla (MLR) espresso nell’equazione precedente viene spesso rappresentato nella seguente forma matriciale:</p>
+<div class="math notranslate nohighlight">
+\[
+y = X\beta + \epsilon 
+\]</div>
+<p>dove <span class="math notranslate nohighlight">\( y \)</span> è un vettore <span class="math notranslate nohighlight">\( N \times 1 \)</span> della variabile di risposta osservata, <span class="math notranslate nohighlight">\( X \)</span> è una matrice di progettazione (o design matrix) <span class="math notranslate nohighlight">\( N \times (p+1) \)</span> che include tutte le <span class="math notranslate nohighlight">\( p \)</span> variabili esplicative, con la prima colonna composta da 1 che rappresenta l’intercetta (cioè, <span class="math notranslate nohighlight">\( \beta_0 \)</span>), <span class="math notranslate nohighlight">\( \beta = (\beta_0, \beta_1, \ldots, \beta_p) \)</span> è un vettore di <span class="math notranslate nohighlight">\( (p+1) \)</span> parametri di regressione, e <span class="math notranslate nohighlight">\( \epsilon \)</span> è il termine di errore. Specificamente, la matrice <span class="math notranslate nohighlight">\( X \)</span> e i vettori <span class="math notranslate nohighlight">\( y \)</span> e <span class="math notranslate nohighlight">\( \epsilon \)</span> sono definiti come segue:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+y = 
+\begin{pmatrix}
+y_1 \\
+y_2 \\
+\vdots \\
+y_N
+\end{pmatrix}, \quad
+\epsilon = 
+\begin{pmatrix}
+\epsilon_1 \\
+\epsilon_2 \\
+\vdots \\
+\epsilon_N
+\end{pmatrix}, \quad
+X = 
+\begin{pmatrix}
+1 &amp; x_{11} &amp; \cdots &amp; x_{p1} \\
+1 &amp; x_{12} &amp; \cdots &amp; x_{p2} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+1 &amp; x_{1N} &amp; \cdots &amp; x_{pN}
+\end{pmatrix} 
+\end{split}\]</div>
+<p>In questa rappresentazione, ogni riga della matrice <span class="math notranslate nohighlight">\( X \)</span> corrisponde a un’osservazione e contiene i valori delle variabili esplicative per quell’osservazione, con una colonna aggiuntiva di 1 per l’intercetta. Il modello in forma matriciale consente un calcolo più efficiente dei parametri di regressione e una gestione più diretta delle relazioni tra variabili multiple.</p>
+</section>
+<section id="metodo-dei-minimi-quadrati">
+<h2><span class="section-number">32.2. </span>Metodo dei Minimi Quadrati<a class="headerlink" href="#metodo-dei-minimi-quadrati" title="Permalink to this heading">#</a></h2>
+<p>Fondamentalmente, stimando il parametro <span class="math notranslate nohighlight">\( \beta \)</span>, cerchiamo di trovare valori (cioè, stime) per gli elementi in <span class="math notranslate nohighlight">\( \beta \)</span> in modo tale che la componente sistematica (cioè, <span class="math notranslate nohighlight">\( X\beta \)</span>) spieghi quanto più possibile la variazione nella risposta (cioè, <span class="math notranslate nohighlight">\( y \)</span>). In un certo senso, si tratta di trovare valori dei parametri che rendano l’errore il più piccolo possibile. In statistica, questo viene definito come stima dei minimi quadrati, cioè trovare <span class="math notranslate nohighlight">\( \beta \)</span> in modo che la somma degli errori al quadrato sia il più piccola possibile. Matematicamente, la stima dei minimi quadrati (LSE) di <span class="math notranslate nohighlight">\( \beta \)</span>, indicata con <span class="math notranslate nohighlight">\( \hat{\beta} \)</span>, si ottiene minimizzando la somma degli errori al quadrato (SSE):</p>
+<div class="math notranslate nohighlight">
+\[
+\text{SSE} = \epsilon_i^2 = \epsilon' \epsilon = (y - X\beta)'(y - X\beta) = y'y - 2\beta X'y + \beta'X'X\beta
+\]</div>
+<p>Prendendo la derivata della somma degli errori al quadrato (SSE) rispetto a <span class="math notranslate nohighlight">\( \beta \)</span> e impostandola a zero, si ottiene:</p>
+<div class="math notranslate nohighlight">
+\[
+X'X\hat{\beta} = X'y \quad (1.5)
+\]</div>
+<p>Se <span class="math notranslate nohighlight">\( X'X \)</span> è invertibile, allora abbiamo:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\beta} = (X'X)^{-1}X'y
+\]</div>
+<p>In pratica, questo processo di minimizzazione degli errori al quadrato è fondamentale per la stima dei coefficienti nel modello di regressione lineare multipla. Lo scopo è di identificare i valori dei parametri che meglio descrivono la relazione tra le variabili indipendenti e la variabile dipendente, riducendo al minimo la discrepanza tra i valori osservati e quelli previsti dal modello.</p>
+<p>Esaminiamo questi calcoli nel caso dei dati in considerazione.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dass</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">d_mr</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="n">dplyr</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span><span class="n">depression</span><span class="p">,</span><span class="w"> </span><span class="n">anxiety</span><span class="p">,</span><span class="w"> </span><span class="n">stress</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">model.matrix</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">depression</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">anxiety</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">stress</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dass</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 6 x 4 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>(Intercept)</th><th scope=col>depression</th><th scope=col>anxiety</th><th scope=col>stress</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>1</td><td> 4</td><td> 6</td><td> 7</td></tr>
+	<tr><th scope=row>2</th><td>1</td><td> 1</td><td> 2</td><td> 3</td></tr>
+	<tr><th scope=row>3</th><td>1</td><td> 1</td><td> 0</td><td> 1</td></tr>
+	<tr><th scope=row>4</th><td>1</td><td>13</td><td>11</td><td>12</td></tr>
+	<tr><th scope=row>5</th><td>1</td><td>12</td><td> 6</td><td>10</td></tr>
+	<tr><th scope=row>6</th><td>1</td><td> 2</td><td> 1</td><td> 5</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">y</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                  [,1]
+(Intercept) 91.3611064
+depression  -1.4841573
+anxiety      1.0493140
+stress      -0.9733368
+</pre></div>
+</div>
+</div>
+</div>
+<p>Verifichiamo i calcoli eseguiti usando la funzione <code class="docutils literal notranslate"><span class="pre">lm()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">scs_ts</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">depression</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">anxiety</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">stress</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d_mr</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">coef</span><span class="p">(</span><span class="n">fm</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Intercept)  depression     anxiety      stress 
+ 91.3611064  -1.4841573   1.0493140  -0.9733368 
+</pre></div>
+</div>
+</div>
+</div>
+<p>I valori predetti sono calcolati come:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">yhat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">beta</span>
+<span class="nf">cor</span><span class="p">(</span><span class="n">yhat</span><span class="p">,</span><span class="w"> </span><span class="n">fm</span><span class="o">$</span><span class="n">fitted.values</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 1 x 1 of type dbl</caption>
+<tbody>
+	<tr><td>1</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>I residui si ottengono nel modo seguente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">d_mr</span><span class="o">$</span><span class="n">scs_ts</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">yhat</span>
+<span class="nf">cor</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="n">fm</span><span class="o">$</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 1 x 1 of type dbl</caption>
+<tbody>
+	<tr><td>1</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>La somma dei quadrati dei residui (Residual Sum of Squares, RSS) è definita nel modo seguente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">RSS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">e</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La stima della varianza dei residui è data da:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">var_e</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">RSS</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">dim</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="m">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>dove al denominatore abbiamo i gradi di libertà.</p>
+<p>L’errore standard della regressione è dunque dato da:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sqrt</span><span class="p">(</span><span class="n">var_e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 1 x 1 of type dbl</caption>
+<tbody>
+	<tr><td>15.70196</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Verifichiamo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">fm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+lm(formula = scs_ts ~ depression + anxiety + stress, data = d_mr)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-36.803 -12.000  -0.348  10.739  43.669 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  91.3611     1.6231  56.288  &lt; 2e-16 ***
+depression   -1.4842     0.2376  -6.247 8.69e-10 ***
+anxiety       1.0493     0.2103   4.990 8.22e-07 ***
+stress       -0.9733     0.2553  -3.813 0.000154 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 15.7 on 522 degrees of freedom
+Multiple R-squared:  0.247,	Adjusted R-squared:  0.2426 
+F-statistic: 57.06 on 3 and 522 DF,  p-value: &lt; 2.2e-16
+</pre></div>
+</div>
+</div>
+</div>
+<p>Infine, il coefficiente di determinazione nel modello di regressione multipla ha la stessa definizione di quello incontrato nella regressione bivariata:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">R2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="nf">sum</span><span class="p">((</span><span class="n">yhat</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">^</span><span class="m">2</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="nf">sum</span><span class="p">((</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">^</span><span class="m">2</span><span class="p">))</span><span class="w"> </span>
+<span class="n">R2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.246961854370469</div></div>
+</div>
+</section>
+<section id="modello-di-percorso">
+<h2><span class="section-number">32.3. </span>Modello di Percorso<a class="headerlink" href="#modello-di-percorso" title="Permalink to this heading">#</a></h2>
+<p>Formuliamo ora il modello di regressione multipla nei termini della path analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod_mr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">  scs_ts ~ anxiety + depression + stress</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo il modello ai dati usando <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit_mr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">sem</span><span class="p">(</span><span class="n">mod_mr</span><span class="p">,</span><span class="w"> </span><span class="n">d_mr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo i parametri ottenuti in questo modo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">parameterEstimates</span><span class="p">(</span><span class="n">fit_mr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A lavaan.data.frame: 10 x 9</caption>
+<thead>
+	<tr><th scope=col>lhs</th><th scope=col>op</th><th scope=col>rhs</th><th scope=col>est</th><th scope=col>se</th><th scope=col>z</th><th scope=col>pvalue</th><th scope=col>ci.lower</th><th scope=col>ci.upper</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>scs_ts    </td><td>~ </td><td>anxiety   </td><td>  1.0493140</td><td> 0.2094644</td><td> 5.009509</td><td>5.456903e-07</td><td>  0.6387713</td><td>  1.4598568</td></tr>
+	<tr><td>scs_ts    </td><td>~ </td><td>depression</td><td> -1.4841573</td><td> 0.2366792</td><td>-6.270754</td><td>3.593039e-10</td><td> -1.9480401</td><td> -1.0202745</td></tr>
+	<tr><td>scs_ts    </td><td>~ </td><td>stress    </td><td> -0.9733368</td><td> 0.2543128</td><td>-3.827321</td><td>1.295457e-04</td><td> -1.4717808</td><td> -0.4748928</td></tr>
+	<tr><td>scs_ts    </td><td>~~</td><td>scs_ts    </td><td>244.6766292</td><td>15.0874073</td><td>16.217275</td><td>0.000000e+00</td><td>215.1058543</td><td>274.2474041</td></tr>
+	<tr><td>anxiety   </td><td>~~</td><td>anxiety   </td><td> 32.0817418</td><td> 0.0000000</td><td>       NA</td><td>          NA</td><td> 32.0817418</td><td> 32.0817418</td></tr>
+	<tr><td>anxiety   </td><td>~~</td><td>depression</td><td> 24.5464225</td><td> 0.0000000</td><td>       NA</td><td>          NA</td><td> 24.5464225</td><td> 24.5464225</td></tr>
+	<tr><td>anxiety   </td><td>~~</td><td>stress    </td><td> 24.5381096</td><td> 0.0000000</td><td>       NA</td><td>          NA</td><td> 24.5381096</td><td> 24.5381096</td></tr>
+	<tr><td>depression</td><td>~~</td><td>depression</td><td> 31.4182365</td><td> 0.0000000</td><td>       NA</td><td>          NA</td><td> 31.4182365</td><td> 31.4182365</td></tr>
+	<tr><td>depression</td><td>~~</td><td>stress    </td><td> 25.6615608</td><td> 0.0000000</td><td>       NA</td><td>          NA</td><td> 25.6615608</td><td> 25.6615608</td></tr>
+	<tr><td>stress    </td><td>~~</td><td>stress    </td><td> 29.7137880</td><td> 0.0000000</td><td>       NA</td><td>          NA</td><td> 29.7137880</td><td> 29.7137880</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Si noti che i parametri stimati in questo modo sono praticamente identici a quelli trovati con il metodo della massima verosimiglianza.</p>
+</section>
+<section id="path-analysis-e-scomposizione-della-covarianza">
+<h2><span class="section-number">32.4. </span>Path Analysis e Scomposizione della Covarianza<a class="headerlink" href="#path-analysis-e-scomposizione-della-covarianza" title="Permalink to this heading">#</a></h2>
+<p>L’obiettivo principale dei modelli SEM (Structural Equation Modeling) è quello di identificare coefficienti di percorso che permettano di ricostruire le covarianze osservate nel modello. Questo viene fatto attraverso la somma degli effetti diretti e indiretti, come specificato dal modello. Per esemplificare, consideriamo la covarianza tra il punteggio totale di self-compassion e il livello di ansia, come indicato dal DASS-21.</p>
+<p>In questo contesto, l’effetto diretto si riferisce alla relazione diretta tra ansia e auto-compassione. Tuttavia, ci sono anche effetti indiretti che contribuiscono a questa relazione. Uno di questi effetti indiretti proviene dalla covarianza tra ansia e depressione, combinata con l’influenza della depressione sull’auto-compassione. Un altro effetto indiretto deriva dalla covarianza tra ansia e stress, combinata con l’effetto dello stress sull’auto-compassione.</p>
+<p>In sostanza, nel modello SEM, la covarianza totale tra self-compassion e ansia è quindi una funzione:</p>
+<ol class="arabic simple">
+<li><p>Dell’effetto diretto dell’ansia sull’auto-compassione.</p></li>
+<li><p>Dell’effetto combinato di ansia e depressione sull’auto-compassione.</p></li>
+<li><p>Dell’effetto combinato di ansia e stress sull’auto-compassione.</p></li>
+</ol>
+<p>Questi effetti vengono calcolati e sommati per fornire una stima complessiva della covarianza tra i due costrutti, offrendo una visione più olistica e dettagliata delle dinamiche psicologiche in gioco.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">semPaths</span><span class="p">(</span><span class="n">fit_mr</span><span class="p">,</span>
+<span class="w">    </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;est&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span>
+<span class="w">    </span><span class="n">edge.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.15</span><span class="p">,</span>
+<span class="w">    </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ram&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nCharNodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nCharEdges</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0e52f8c7ec12f87a9c4c6364ea5680299c13afabcd23a8e252c5a6b47db8e5dc.png" src="../_images/0e52f8c7ec12f87a9c4c6364ea5680299c13afabcd23a8e252c5a6b47db8e5dc.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Coefficients from the model</span>
+<span class="n">beta_anxiety_scs_ts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1.0493140</span><span class="w"> </span><span class="c1"># Coefficient for anxiety predicting scs_ts</span>
+<span class="n">beta_depression_scs_ts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">-1.4841573</span><span class="w"> </span><span class="c1"># Coefficient for depression predicting scs_ts</span>
+<span class="n">beta_stress_scs_ts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">-0.9733368</span><span class="w"> </span><span class="c1"># Coefficient for stress predicting scs_ts</span>
+
+<span class="c1"># Covariances from the model</span>
+<span class="n">cov_anxiety_depression</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">24.5464225</span>
+<span class="n">cov_anxiety_stress</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">24.5381096</span>
+<span class="n">cov_depression_stress</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">25.6615608</span>
+
+<span class="c1"># Assuming the variances of anxiety, depression, and stress</span>
+<span class="n">var_anxiety</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">32.0817418</span>
+<span class="n">var_depression</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">31.4182365</span>
+<span class="n">var_stress</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">29.7137880</span>
+
+<span class="c1"># Predicted covariance between anxiety and scs_ts</span>
+<span class="n">predicted_cov_anxiety_scs_ts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span>
+<span class="w">    </span><span class="n">beta_anxiety_scs_ts</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">var_anxiety</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">beta_depression_scs_ts</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cov_anxiety_depression</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="n">beta_stress_scs_ts</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cov_anxiety_stress</span>
+
+<span class="c1"># Output the predicted covariance</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">predicted_cov_anxiety_scs_ts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] -26.65078
+</pre></div>
+</div>
+</div>
+</div>
+<p>Verifichiamo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cov</span><span class="p">(</span><span class="n">d_mr</span><span class="o">$</span><span class="n">anxiety</span><span class="p">,</span><span class="w"> </span><span class="n">d_mr</span><span class="o">$</span><span class="n">scs_ts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">-26.7015390186493</div></div>
+</div>
+<p>Lo stesso procedimento si usa per le altre componenti della matrice di varianza/covarianza dei dati.</p>
+<p>Procediamo ora ad utilizzare le tre sotto-scale della DASS-21 (Depression, Anxiety, and Stress Scale) per costruire una variabile latente che rappresenti il malessere psicologico. In modo analogo, le sei sotto-scale della Self-Compassion Scale verranno impiegate per definire un fattore latente di autocompassione. Sulla base dell’ipotesi che l’autocompassione agisca come un fattore di protezione contro il malessere psicologico, introduciamo una relazione di regressione tra questi due fattori, con il fattore di malessere psicologico in qualità di variabile endogena e il fattore di autocompassione come variabile esogena. Prevediamo che il coefficiente di regressione associato a questa relazione sia negativo, riflettendo l’effetto mitigante dell’autocompassione sul malessere psicologico. Questa specificazione modellistica mira a esplorare e quantificare la natura della relazione tra autocompassione e benessere psicologico, fornendo un quadro più chiaro di come queste dinamiche interagiscono nel contesto psicologico.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod_sc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">  F =~ anxiety + depression + stress</span>
+<span class="s">  SC =~ self_kindness	+ common_humanity	+ mindfulness	+ self_judgment	+ isolation	+ over_identification</span>
+<span class="s">  F ~ SC </span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo il modello ai dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit_sc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">sem</span><span class="p">(</span><span class="n">mod_sc</span><span class="p">,</span><span class="w"> </span><span class="n">dat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo la soluzione ottenuta.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">standardizedSolution</span><span class="p">(</span><span class="n">fit_sc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A lavaan.data.frame: 21 x 9</caption>
+<thead>
+	<tr><th scope=col>lhs</th><th scope=col>op</th><th scope=col>rhs</th><th scope=col>est.std</th><th scope=col>se</th><th scope=col>z</th><th scope=col>pvalue</th><th scope=col>ci.lower</th><th scope=col>ci.upper</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>F                  </td><td>=~</td><td>anxiety            </td><td> 0.8472913</td><td>0.01448245</td><td> 58.504699</td><td>0.00000e+00</td><td> 0.81890621</td><td> 0.8756764</td></tr>
+	<tr><td>F                  </td><td>=~</td><td>depression         </td><td> 0.9093646</td><td>0.01102220</td><td> 82.502996</td><td>0.00000e+00</td><td> 0.88776151</td><td> 0.9309677</td></tr>
+	<tr><td>F                  </td><td>=~</td><td>stress             </td><td> 0.9294299</td><td>0.01010854</td><td> 91.945022</td><td>0.00000e+00</td><td> 0.90961756</td><td> 0.9492423</td></tr>
+	<tr><td>SC                 </td><td>=~</td><td>self_kindness      </td><td> 0.7571629</td><td>0.02227974</td><td> 33.984374</td><td>0.00000e+00</td><td> 0.71349538</td><td> 0.8008303</td></tr>
+	<tr><td>SC                 </td><td>=~</td><td>common_humanity    </td><td> 0.6205102</td><td>0.02998337</td><td> 20.695145</td><td>0.00000e+00</td><td> 0.56174384</td><td> 0.6792765</td></tr>
+	<tr><td>SC                 </td><td>=~</td><td>mindfulness        </td><td> 0.6889035</td><td>0.02625941</td><td> 26.234539</td><td>0.00000e+00</td><td> 0.63743598</td><td> 0.7403710</td></tr>
+	<tr><td>SC                 </td><td>=~</td><td>self_judgment      </td><td>-0.7700739</td><td>0.02151074</td><td>-35.799516</td><td>0.00000e+00</td><td>-0.81223418</td><td>-0.7279136</td></tr>
+	<tr><td>SC                 </td><td>=~</td><td>isolation          </td><td>-0.7702259</td><td>0.02150168</td><td>-35.821664</td><td>0.00000e+00</td><td>-0.81236837</td><td>-0.7280833</td></tr>
+	<tr><td>SC                 </td><td>=~</td><td>over_identification</td><td>-0.7674187</td><td>0.02166901</td><td>-35.415503</td><td>0.00000e+00</td><td>-0.80988921</td><td>-0.7249483</td></tr>
+	<tr><td>F                  </td><td>~ </td><td>SC                 </td><td>-0.4757573</td><td>0.03841285</td><td>-12.385370</td><td>0.00000e+00</td><td>-0.55104512</td><td>-0.4004695</td></tr>
+	<tr><td>anxiety            </td><td>~~</td><td>anxiety            </td><td> 0.2820975</td><td>0.02454171</td><td> 11.494616</td><td>0.00000e+00</td><td> 0.23399661</td><td> 0.3301983</td></tr>
+	<tr><td>depression         </td><td>~~</td><td>depression         </td><td> 0.1730560</td><td>0.02004640</td><td>  8.632770</td><td>0.00000e+00</td><td> 0.13376575</td><td> 0.2123462</td></tr>
+	<tr><td>stress             </td><td>~~</td><td>stress             </td><td> 0.1361600</td><td>0.01879036</td><td>  7.246268</td><td>4.28324e-13</td><td> 0.09933157</td><td> 0.1729884</td></tr>
+	<tr><td>self_kindness      </td><td>~~</td><td>self_kindness      </td><td> 0.4267044</td><td>0.03373877</td><td> 12.647300</td><td>0.00000e+00</td><td> 0.36057763</td><td> 0.4928312</td></tr>
+	<tr><td>common_humanity    </td><td>~~</td><td>common_humanity    </td><td> 0.6149671</td><td>0.03720997</td><td> 16.526945</td><td>0.00000e+00</td><td> 0.54203694</td><td> 0.6878973</td></tr>
+	<tr><td>mindfulness        </td><td>~~</td><td>mindfulness        </td><td> 0.5254120</td><td>0.03618040</td><td> 14.522008</td><td>0.00000e+00</td><td> 0.45449972</td><td> 0.5963243</td></tr>
+	<tr><td>self_judgment      </td><td>~~</td><td>self_judgment      </td><td> 0.4069862</td><td>0.03312971</td><td> 12.284627</td><td>0.00000e+00</td><td> 0.34205313</td><td> 0.4719192</td></tr>
+	<tr><td>isolation          </td><td>~~</td><td>isolation          </td><td> 0.4067521</td><td>0.03312230</td><td> 12.280312</td><td>0.00000e+00</td><td> 0.34183362</td><td> 0.4716706</td></tr>
+	<tr><td>over_identification</td><td>~~</td><td>over_identification</td><td> 0.4110685</td><td>0.03325840</td><td> 12.359838</td><td>0.00000e+00</td><td> 0.34588320</td><td> 0.4762537</td></tr>
+	<tr><td>F                  </td><td>~~</td><td>F                  </td><td> 0.7736550</td><td>0.03655039</td><td> 21.166806</td><td>0.00000e+00</td><td> 0.70201753</td><td> 0.8452924</td></tr>
+	<tr><td>SC                 </td><td>~~</td><td>SC                 </td><td> 1.0000000</td><td>0.00000000</td><td>        NA</td><td>         NA</td><td> 1.00000000</td><td> 1.0000000</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<ol class="arabic simple">
+<li><p><strong>Saturazioni Fattoriali (Loadings) per le Variabili Latenti:</strong></p>
+<ul class="simple">
+<li><p><strong>F:</strong> Le variabili osservate “anxiety”, “depression”, e “stress” hanno elevate saturazioni fattoriali sulla variabile latente “F”. Questo suggerisce che ciascuna di queste misure è un buon indicatore della variabile latente “F”.</p></li>
+<li><p><strong>SC:</strong> Le variabili “self_kindness”, “common_humanity”, “mindfulness”, “self_judgment”, “isolation”, e “over_identification” hanno anch’esse significative saturazioni sulla variabile latente “SC”. Si noti che “self_judgment”, “isolation”, e “over_identification” hanno saturazioni negative, indicando che queste variabili sono inversamente associate con “SC”.</p></li>
+</ul>
+</li>
+<li><p><strong>Regressione tra Variabili Latenti:</strong></p>
+<ul class="simple">
+<li><p>La relazione di regressione tra “F” e “SC” mostra un coefficiente negativo (-0.48), il che indica una relazione inversa tra queste due variabili latenti. Questo significa che livelli più alti di “SC” sono associati a livelli più bassi di “F”.</p></li>
+</ul>
+</li>
+<li><p><strong>Varianza delle Variabili Latenti:</strong></p>
+<ul class="simple">
+<li><p>La varianza di “F” e “SC” indica quanto della variazione nelle variabili latenti è spiegata dai loro rispettivi indicatori. La varianza di “F” (0.77) è relativamente alta, suggerendo che gli indicatori spiegano una buona parte della varianza in “F”. La varianza di “SC” è fissata a 1, un approccio comune per identificare il modello.</p></li>
+</ul>
+</li>
+<li><p><strong>Varianze Residue degli Indicatori:</strong></p>
+<ul class="simple">
+<li><p>Le varianze residue (ad esempio, “anxiety ~~ anxiety”) rappresentano la varianza non spiegata in ciascun indicatore dalle variabili latenti. Valori più bassi indicano che la variabile latente spiega una maggior parte della varianza dell’indicatore. Ad esempio, “anxiety” ha una varianza residua di 0.28, suggerendo che “F” spiega una buona parte, ma non tutta, della varianza in “anxiety”.</p></li>
+</ul>
+</li>
+</ol>
+<p>Generiamo una rappresentazione grafica del modello.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">semPaths</span><span class="p">(</span><span class="n">fit_sc</span><span class="p">,</span>
+<span class="w">    </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;std&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span>
+<span class="w">    </span><span class="n">edge.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.15</span><span class="p">,</span>
+<span class="w">    </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ram&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nCharNodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nCharEdges</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/433268f6c5589493354b39a697b7b7c69232f1c86b4d5b522cca734ec1b01510.png" src="../_images/433268f6c5589493354b39a697b7b7c69232f1c86b4d5b522cca734ec1b01510.png" />
+</div>
+</div>
+<p>I coefficienti stimati nel modello SEM appaiono coerenti e in linea con le aspettative, in particolare il coefficiente che descrive l’effetto “causale” del fattore dell’autocompassione sul malessere psicologico, che si attesta a -0.48. Questo valore negativo corrobora l’ipotesi secondo cui l’autocompassione svolge un ruolo di fattore protettivo contro il malessere psicologico. Tuttavia, prima di confermare definitivamente questa conclusione, è cruciale esaminare gli indici di bontà di adattamento del modello. Questi indici ci permetteranno di valutare quanto accuratamente il modello SEM si adatta ai dati osservati, fornendo un quadro più chiaro della validità delle nostre inferenze. In altre parole, sebbene il modello suggerisca una relazione negativa tra autocompassione e malessere psicologico, la conferma finale di questa associazione dipenderà dall’adeguatezza complessiva del modello rispetto ai dati. Questo argomento verrà affrontato nel prossimo capitolo.</p>
+</section>
+<section id="oltre-la-regressione-multipla">
+<h2><span class="section-number">32.5. </span>Oltre la regressione multipla<a class="headerlink" href="#oltre-la-regressione-multipla" title="Permalink to this heading">#</a></h2>
+<p>In generale, lo psicologo ha a che fare con diagrammi di percorso nei quali sono presenti variabili non osservabili (latenti) e quindi l’approccio della regressione multipla non può essere applicato, come nel caso precedente. Esaminiamo qui una secondo esempio. Weiss,  Forkus,  Contractor, e Schick (2018) esaminano con una path analisi la relazione tra la difficiltà di regolare le emozioni positive e l’abuso di alcol e di sostanze.</p>
+<ul class="simple">
+<li><p>La difficoltà di regolare le emozioni positive viene misurata con la  <em>Difficulties in Emotion Regulation Scale – Positive</em> (DERS-P; Weiss, Gratz, &amp; Lavender, 2015), che comprende le sottoscale di Acceptance, Impulse, e Goals.</p></li>
+<li><p>L’abuso di sostanze viene misurato con la <em>Drug Abuse Screening Test</em> (DAST; Skinner, 1982).</p></li>
+<li><p>L’abuso di alcol viene misurato con la <em>Alcohol Use Disorder Identification Test</em> (AUDIT; Saunders, Aasland, Babor, De la Fuente, &amp; Grant, 1993), con le sottoscale di Hazardous Consumption, Dependence, e Consequences.</p></li>
+</ul>
+<p>I dati di un campione di 284 partecipanti sono riportati nella forma di una matrice di correlazione.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lower</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">   1</span>
+<span class="s">   .38 1</span>
+<span class="s">   .41 .64 1</span>
+<span class="s">   .34 .44 .30 1</span>
+<span class="s">   .29 .12 .27 .06 1</span>
+<span class="s">   .29 .22 .20 .17 .54 1</span>
+<span class="s">   .30 .15 .23 .09 .73 .69 1</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dat_cov</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">getCov</span><span class="p">(</span>
+<span class="w">    </span><span class="n">lower</span><span class="p">,</span>
+<span class="w">    </span><span class="n">names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;dmis&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;con&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;dep&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;consu&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;acc&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;goal&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;imp&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">dat_cov</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      dmis  con  dep consu  acc goal  imp
+dmis  1.00 0.38 0.41  0.34 0.29 0.29 0.30
+con   0.38 1.00 0.64  0.44 0.12 0.22 0.15
+dep   0.41 0.64 1.00  0.30 0.27 0.20 0.23
+consu 0.34 0.44 0.30  1.00 0.06 0.17 0.09
+acc   0.29 0.12 0.27  0.06 1.00 0.54 0.73
+goal  0.29 0.22 0.20  0.17 0.54 1.00 0.69
+imp   0.30 0.15 0.23  0.09 0.73 0.69 1.00
+</pre></div>
+</div>
+</div>
+</div>
+<p>In questo studio, gli autori adottano due modelli SEM distinti per analizzare i dati. Nel primo modello, si postula che la difficoltà nella regolazione delle emozioni positive funzioni come variabile esogena, influenzando sia l’abuso di sostanze sia l’abuso di alcol. Inoltre, si ipotizza una correlazione tra abuso di sostanze e abuso di alcol, suggerendo una possibile interdipendenza tra questi due comportamenti problematici.</p>
+<p>Per quanto riguarda le variabili latenti specifiche, la difficoltà di regolare le emozioni positive, indicata come <code class="docutils literal notranslate"><span class="pre">drpe</span></code>, è rappresentata da una variabile latente che si basa su tre indicatori.Parallelamente, l’abuso di alcol, etichettato come <code class="docutils literal notranslate"><span class="pre">amis</span></code>, è concepito come una seconda variabile latente, anch’essa identificata tramite tre indicatori distinti.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">  drpe =~ NA*acc + goal + imp</span>
+<span class="s">  amis =~ NA*con + dep + consu</span>
+<span class="s">  amis ~ drpe</span>
+<span class="s">  dmis ~ drpe</span>
+<span class="s">  dmis ~~ amis</span>
+<span class="s">  drpe ~~ 1*drpe</span>
+<span class="s">  amis ~~ 1*amis</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo il modello ai dati con <code class="docutils literal notranslate"><span class="pre">sem()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">sem</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span><span class="w"> </span><span class="n">sample.cov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat_cov</span><span class="p">,</span><span class="w"> </span><span class="n">sample.nobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">284</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo i risultati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">standardizedSolution</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A lavaan.data.frame: 18 x 9</caption>
+<thead>
+	<tr><th scope=col>lhs</th><th scope=col>op</th><th scope=col>rhs</th><th scope=col>est.std</th><th scope=col>se</th><th scope=col>z</th><th scope=col>pvalue</th><th scope=col>ci.lower</th><th scope=col>ci.upper</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>drpe </td><td>=~</td><td>acc  </td><td>0.7700388</td><td>0.03082352</td><td>24.982180</td><td>0.000000e+00</td><td>0.70962576</td><td>0.8304517</td></tr>
+	<tr><td>drpe </td><td>=~</td><td>goal </td><td>0.7282107</td><td>0.03332909</td><td>21.849099</td><td>0.000000e+00</td><td>0.66288685</td><td>0.7935345</td></tr>
+	<tr><td>drpe </td><td>=~</td><td>imp  </td><td>0.9451388</td><td>0.02403591</td><td>39.321946</td><td>0.000000e+00</td><td>0.89802931</td><td>0.9922484</td></tr>
+	<tr><td>amis </td><td>=~</td><td>con  </td><td>0.8365272</td><td>0.03942689</td><td>21.217176</td><td>0.000000e+00</td><td>0.75925196</td><td>0.9138025</td></tr>
+	<tr><td>amis </td><td>=~</td><td>dep  </td><td>0.7561045</td><td>0.04104708</td><td>18.420423</td><td>0.000000e+00</td><td>0.67565373</td><td>0.8365553</td></tr>
+	<tr><td>amis </td><td>=~</td><td>consu</td><td>0.4943142</td><td>0.05237200</td><td> 9.438520</td><td>0.000000e+00</td><td>0.39166696</td><td>0.5969614</td></tr>
+	<tr><td>amis </td><td>~ </td><td>drpe </td><td>0.2539216</td><td>0.06573745</td><td> 3.862663</td><td>1.121576e-04</td><td>0.12507860</td><td>0.3827647</td></tr>
+	<tr><td>dmis </td><td>~ </td><td>drpe </td><td>0.3336113</td><td>0.05559128</td><td> 6.001144</td><td>1.959321e-09</td><td>0.22465436</td><td>0.4425682</td></tr>
+	<tr><td>amis </td><td>~~</td><td>dmis </td><td>0.4583453</td><td>0.05520089</td><td> 8.303223</td><td>0.000000e+00</td><td>0.35015356</td><td>0.5665371</td></tr>
+	<tr><td>drpe </td><td>~~</td><td>drpe </td><td>1.0000000</td><td>0.00000000</td><td>       NA</td><td>          NA</td><td>1.00000000</td><td>1.0000000</td></tr>
+	<tr><td>amis </td><td>~~</td><td>amis </td><td>0.9355238</td><td>0.03338432</td><td>28.022848</td><td>0.000000e+00</td><td>0.87009174</td><td>1.0009559</td></tr>
+	<tr><td>acc  </td><td>~~</td><td>acc  </td><td>0.4070403</td><td>0.04747061</td><td> 8.574575</td><td>0.000000e+00</td><td>0.31399963</td><td>0.5000810</td></tr>
+	<tr><td>goal </td><td>~~</td><td>goal </td><td>0.4697092</td><td>0.04854120</td><td> 9.676505</td><td>0.000000e+00</td><td>0.37457021</td><td>0.5648482</td></tr>
+	<tr><td>imp  </td><td>~~</td><td>imp  </td><td>0.1067126</td><td>0.04543455</td><td> 2.348710</td><td>1.883856e-02</td><td>0.01766251</td><td>0.1957627</td></tr>
+	<tr><td>con  </td><td>~~</td><td>con  </td><td>0.3002222</td><td>0.06596333</td><td> 4.551350</td><td>5.330288e-06</td><td>0.17093643</td><td>0.4295079</td></tr>
+	<tr><td>dep  </td><td>~~</td><td>dep  </td><td>0.4283060</td><td>0.06207176</td><td> 6.900174</td><td>5.193845e-12</td><td>0.30664754</td><td>0.5499644</td></tr>
+	<tr><td>consu</td><td>~~</td><td>consu</td><td>0.7556535</td><td>0.05177645</td><td>14.594541</td><td>0.000000e+00</td><td>0.65417351</td><td>0.8571335</td></tr>
+	<tr><td>dmis </td><td>~~</td><td>dmis </td><td>0.8887035</td><td>0.03709175</td><td>23.959600</td><td>0.000000e+00</td><td>0.81600503</td><td>0.9614020</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Creiamo un path diagram.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">semPaths</span><span class="p">(</span><span class="n">fit</span><span class="p">,</span>
+<span class="w">    </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;std&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span>
+<span class="w">    </span><span class="n">edge.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.15</span><span class="p">,</span>
+<span class="w">    </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ram&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nCharNodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nCharEdges</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7d2d7135cd999465a1cab71f6fe409397499b399e37da4d9d28f6410a31e5179.png" src="../_images/7d2d7135cd999465a1cab71f6fe409397499b399e37da4d9d28f6410a31e5179.png" />
+</div>
+</div>
+<p>Gli autori esplorano un modello alternativo nel quale le relazioni causali vengono rovesciate: in questo caso è la difficoltà di regolazione delle emozioni positive ad essere la variabile esogena, e l’abuso di sostanze e l’abuso di alcol sono le variabili esogene.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod_alt</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">  drpe =~ NA*acc + goal + imp</span>
+<span class="s">  amis =~ NA*con + dep + consu</span>
+<span class="s">  drpe ~ amis + dmis</span>
+<span class="s">  dmis ~~ amis</span>
+<span class="s">  drpe ~~ 1*drpe</span>
+<span class="s">  amis ~~ 1*amis</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit_alt</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sem</span><span class="p">(</span><span class="n">mod_alt</span><span class="p">,</span><span class="w"> </span><span class="n">sample.cov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat_cov</span><span class="p">,</span><span class="w"> </span><span class="n">sample.nobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">311</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">standardizedSolution</span><span class="p">(</span><span class="n">fit_alt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A lavaan.data.frame: 18 x 9</caption>
+<thead>
+	<tr><th scope=col>lhs</th><th scope=col>op</th><th scope=col>rhs</th><th scope=col>est.std</th><th scope=col>se</th><th scope=col>z</th><th scope=col>pvalue</th><th scope=col>ci.lower</th><th scope=col>ci.upper</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>drpe </td><td>=~</td><td>acc  </td><td>0.7700390</td><td>0.02945513</td><td>26.142778</td><td>0.000000e+00</td><td> 0.71230804</td><td>0.8277701</td></tr>
+	<tr><td>drpe </td><td>=~</td><td>goal </td><td>0.7282103</td><td>0.03184951</td><td>22.864099</td><td>0.000000e+00</td><td> 0.66578645</td><td>0.7906342</td></tr>
+	<tr><td>drpe </td><td>=~</td><td>imp  </td><td>0.9451387</td><td>0.02296887</td><td>41.148681</td><td>0.000000e+00</td><td> 0.90012057</td><td>0.9901569</td></tr>
+	<tr><td>amis </td><td>=~</td><td>con  </td><td>0.8365273</td><td>0.03767659</td><td>22.202841</td><td>0.000000e+00</td><td> 0.76268257</td><td>0.9103721</td></tr>
+	<tr><td>amis </td><td>=~</td><td>dep  </td><td>0.7561043</td><td>0.03922486</td><td>19.276153</td><td>0.000000e+00</td><td> 0.67922501</td><td>0.8329836</td></tr>
+	<tr><td>amis </td><td>=~</td><td>consu</td><td>0.4943142</td><td>0.05004701</td><td> 9.876996</td><td>0.000000e+00</td><td> 0.39622382</td><td>0.5924045</td></tr>
+	<tr><td>drpe </td><td>~ </td><td>amis </td><td>0.1153885</td><td>0.07450156</td><td> 1.548807</td><td>1.214282e-01</td><td>-0.03063185</td><td>0.2614089</td></tr>
+	<tr><td>drpe </td><td>~ </td><td>dmis </td><td>0.2756131</td><td>0.06578954</td><td> 4.189314</td><td>2.797988e-05</td><td> 0.14666793</td><td>0.4045582</td></tr>
+	<tr><td>amis </td><td>~~</td><td>dmis </td><td>0.5026364</td><td>0.04965885</td><td>10.121787</td><td>0.000000e+00</td><td> 0.40530679</td><td>0.5999659</td></tr>
+	<tr><td>drpe </td><td>~~</td><td>drpe </td><td>0.8787527</td><td>0.03718357</td><td>23.632821</td><td>0.000000e+00</td><td> 0.80587420</td><td>0.9516311</td></tr>
+	<tr><td>amis </td><td>~~</td><td>amis </td><td>1.0000000</td><td>0.00000000</td><td>       NA</td><td>          NA</td><td> 1.00000000</td><td>1.0000000</td></tr>
+	<tr><td>acc  </td><td>~~</td><td>acc  </td><td>0.4070399</td><td>0.04536321</td><td> 8.972907</td><td>0.000000e+00</td><td> 0.31812961</td><td>0.4959501</td></tr>
+	<tr><td>goal </td><td>~~</td><td>goal </td><td>0.4697097</td><td>0.04638629</td><td>10.126046</td><td>0.000000e+00</td><td> 0.37879424</td><td>0.5606251</td></tr>
+	<tr><td>imp  </td><td>~~</td><td>imp  </td><td>0.1067128</td><td>0.04341754</td><td> 2.457826</td><td>1.397807e-02</td><td> 0.02161596</td><td>0.1918096</td></tr>
+	<tr><td>con  </td><td>~~</td><td>con  </td><td>0.3002220</td><td>0.06303499</td><td> 4.762784</td><td>1.909405e-06</td><td> 0.17667572</td><td>0.4237683</td></tr>
+	<tr><td>dep  </td><td>~~</td><td>dep  </td><td>0.4283063</td><td>0.05931617</td><td> 7.220734</td><td>5.171419e-13</td><td> 0.31204871</td><td>0.5445638</td></tr>
+	<tr><td>consu</td><td>~~</td><td>consu</td><td>0.7556535</td><td>0.04947790</td><td>15.272547</td><td>0.000000e+00</td><td> 0.65867861</td><td>0.8526284</td></tr>
+	<tr><td>dmis </td><td>~~</td><td>dmis </td><td>1.0000000</td><td>0.00000000</td><td>       NA</td><td>          NA</td><td> 1.00000000</td><td>1.0000000</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">semPaths</span><span class="p">(</span><span class="n">fit_alt</span><span class="p">,</span>
+<span class="w">    </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;std&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span>
+<span class="w">    </span><span class="n">edge.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.15</span><span class="p">,</span>
+<span class="w">    </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ram&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nCharNodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nCharEdges</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/88a7ffe0ede9179ac1236873d4eae45c75cdeec22c17a014080c036d513e87e9.png" src="../_images/88a7ffe0ede9179ac1236873d4eae45c75cdeec22c17a014080c036d513e87e9.png" />
+</div>
+</div>
+<p>Vedremo in seguito come sia possibile eseguire un test statistico per stabilire quale di due modelli sia più appropriato.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">lavTestLRT</span><span class="p">(</span><span class="n">fit</span><span class="p">,</span><span class="w"> </span><span class="n">fit_alt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lavTestLRT(fit, fit_alt):
+&quot;lavaan WARNING: some models have the same degrees of freedom&quot;
+</pre></div>
+</div>
+<div class="output text_html"><table class="dataframe">
+<caption>A anova: 2 x 8</caption>
+<thead>
+	<tr><th></th><th scope=col>Df</th><th scope=col>AIC</th><th scope=col>BIC</th><th scope=col>Chisq</th><th scope=col>Chisq diff</th><th scope=col>RMSEA</th><th scope=col>Df diff</th><th scope=col>Pr(&gt;Chisq)</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>fit</th><td>12</td><td>4963.574</td><td>5021.958</td><td>38.21106</td><td>      NA</td><td>NA</td><td>NA</td><td>NA</td></tr>
+	<tr><th scope=row>fit_alt</th><td>12</td><td>5433.089</td><td>5492.925</td><td>41.84380</td><td>3.632742</td><td> 0</td><td> 0</td><td>NA</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="considerazioni-conclusive">
+<h2><span class="section-number">32.6. </span>Considerazioni Conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Permalink to this heading">#</a></h2>
+<p>Nel corso di questo capitolo, abbiamo esplorato la versatilità e la complessità dei Modelli di Equazioni Strutturali (SEM). Abbiamo appreso come i SEM siano strumenti potenti nell’analisi statistica, in grado di delineare relazioni non solo tra variabili manifeste, ma anche tra quelle latenti. Questi modelli si distinguono per la loro capacità di integrare il modello di misurazione, che definisce le relazioni tra gli indicatori e le variabili latenti, con il modello strutturale, che stabilisce le connessioni tra le variabili latenti stesse.</p>
+<p>Attraverso gli esempi presentati, è emerso chiaramente che i SEM superano i confini dei tradizionali modelli lineari, che si limitano alle relazioni tra variabili manifeste. La loro complessità va oltre quella dei semplici diagrammi di percorso, dato il loro coinvolgimento con variabili latenti. Inoltre, rispetto ai modelli fattoriali, i SEM offrono l’aggiunta significativa di poter esplorare relazioni causali o di regressione tra le variabili latenti, ampliando notevolmente il campo di applicazione e di interpretazione dei dati.</p>
+<p>Nel prosieguo del testo, affronteremo argomenti cruciali legati ai SEM. Tra questi, la valutazione della bontà di adattamento del modello ai dati assume un ruolo primario, poiché consente di verificare quanto efficacemente il modello rifletta la realtà osservata. Il confronto tra modelli alternativi sarà un altro punto focale, utile per determinare la configurazione più aderente alla struttura dei dati. Esamineremo inoltre l’adattamento dei modelli a gruppi diversi, un aspetto fondamentale per comprendere la generalizzabilità e la specificità dei modelli.</p>
+<p>La gestione di dati categoriali nei SEM, i modelli SEM multilivello, e il trattamento dei dati mancanti rappresentano ulteriori sfide metodologiche che affronteremo, ognuna delle quali porta con sé implicazioni significative per l’analisi e l’interpretazione dei risultati. Questi temi, insieme alle altre considerazioni metodologiche, costituiranno il fulcro delle prossime discussioni, mirando a fornire una comprensione più profonda e un’applicazione più efficace dei Modelli di Equazioni Strutturali.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_sem"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../_psychometric_methods/225_mmm.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">31. </span>CFA per matrici multi-tratto multi-metodo</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="351_data_preparation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">33. </span>Preparazione dei Dati</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-regressione-multipla">32.1. Modello di Regressione Multipla</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-dei-minimi-quadrati">32.2. Metodo dei Minimi Quadrati</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-percorso">32.3. Modello di Percorso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#path-analysis-e-scomposizione-della-covarianza">32.4. Path Analysis e Scomposizione della Covarianza</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oltre-la-regressione-multipla">32.5. Oltre la regressione multipla</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">32.6. Considerazioni Conclusive</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

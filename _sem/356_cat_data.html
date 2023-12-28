@@ -1,0 +1,1308 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>38. Dati non gaussiani e categoriali &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_sem/356_cat_data';</script>
+    <link rel="shortcut icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="39. Modelli di Equazioni Strutturali Multilivello" href="357_multilevel_sem.html" />
+    <link rel="prev" title="37. Invarianza di misura" href="355_group_invariance.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Test psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/002_measurement.html">1. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/007_norms.html">2. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/008_regression.html">3. L’analisi di regressione</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/020_ctt_1.html">4. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/021_ctt_2.html">5. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/022_ctt_3.html">6. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/025_err_std_mis.html">7. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/026_err_std_stima.html">8. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/028_applications_ctt.html">9. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E_ctt_1.html">10. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/030_multilevel_1.html">11. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/031_interrater_reliability.html">12. L’affidabilità tra giudici</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/041_gtheory.html">13. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/051_validity.html">14. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/055_relations_to_other_vars.html">15. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/061_path_analysis.html">16. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/150_intro_fa.html">17. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/155_analisi_fattoriale_1.html">18. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/156_analisi_fattoriale_2.html">19. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/157_analisi_fattoriale_3.html">20. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/158_factor_scores.html">21. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/162_constraints_on_parms.html">22. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/163_total_score.html">23. Punteggio totale e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/170_cfa_mod_comp.html">24. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/175_bifactor.html">25. Modello bifattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione di strumenti psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/201_valutare_le_matrici.html">26. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/202_estrazione.html">27. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/203_numero_fattori.html">28. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/205_rotazione.html">29. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/206_valutare_sol_fattoriale.html">30. Valutare e rifinire la soluzione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/225_mmm.html">31. CFA per matrici multi-tratto multi-metodo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="350_sem_intro.html">32. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="351_data_preparation.html">33. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="352_gof.html">34. Indici di bontà dell’adattamento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="353_refine_solution.html">35. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="354_mod_comp.html">36. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="355_group_invariance.html">37. Invarianza di misura</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">38. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="357_multilevel_sem.html">39. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="358_missing_data.html">40. Dati mancanti</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_irt/400_logistic_regr.html">41. Modello di regressione logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/401_irt.html">42. Modelli di risposta all’item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/701_lgm_intro.html">43. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/702_lgm_prelims.html">44. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/703_lgm_mixed.html">45. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/705_growth_1.html">46. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/706_growth_cont.html">47. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/710_time_inv_cov.html">48. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/711_growth_groups.html">49. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/715_bivariate_growth_models.html">50. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/720_inv_measurement.html">51. Invarianza di misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/750_latent_change.html">52. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/751_biv_change.html">53. Modello LCS bivariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/755_lgm_meas_inv.html">54. Invarianza fattoriale nei modelli LGM</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">55. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/901_intro_r.html">56. Linguaggio di programmazione R</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test/issues/new?title=Issue%20on%20page%20%2F_sem/356_cat_data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_sem/356_cat_data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Dati non gaussiani e categoriali</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dati-non-gaussiani">38.1. Dati non gaussiani</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dati-categoriali">38.2. Dati categoriali</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">38.2.1. Un esempio concreto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-modello-basato-sulle-soglie-per-risposte-categoriali-ordinate">38.2.2. Il Modello Basato sulle Soglie per Risposte Categoriali Ordinate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modellazione-di-variabili-categoriali-nei-modelli-sem">38.2.3. Modellazione di Variabili Categoriali nei Modelli SEM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adattamento-del-modello-con-lmer">38.2.4. Adattamento del Modello con <code class="docutils literal notranslate"><span class="pre">lmer</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">38.3. Considerazioni conclusive</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="dati-non-gaussiani-e-categoriali">
+<span id="cat-data-notebook"></span><h1><span class="section-number">38. </span>Dati non gaussiani e categoriali<a class="headerlink" href="#dati-non-gaussiani-e-categoriali" title="Permalink to this heading">#</a></h1>
+<p>Negli esempi precedenti di questa dispensa è stato utilizzato lo stimatore di massima verosimiglianza (ML). Molti dei modelli CFA e SEM riportati nella letteratura di ricerca applicata utilizzano infatti stime di ML. Tuttavia, lo stimatore ML è appropriata solo per dati multivariati normali a livello di scala a intervalli (cioè, quando la distribuzione congiunta delle variabili continue è distribuita normalmente). Quando i dati continui si discostano marcatamente dalla normalità (cioè, mostrano una forte asimmetria o curtosi), o quando alcuni degli indicatori non sono a livello di scala a intervalli (cioè, dati binari, politomici o ordinali), allora è preferibile usare uno stimatore diverso da quello di ML.</p>
+<section id="dati-non-gaussiani">
+<h2><span class="section-number">38.1. </span>Dati non gaussiani<a class="headerlink" href="#dati-non-gaussiani" title="Permalink to this heading">#</a></h2>
+<p>La ricerca ha evidenziato che la stima di massima verosimiglianza (ML) rimane robusta di fronte a piccole deviazioni dalla normalità. Tuttavia, in presenza di una non normalità più marcata, si rende necessario l’uso di stimatori alternativi a ML per garantire l’affidabilità statistica, sia in termini di accuratezza delle statistiche di bontà di adattamento sia per gli errori standard delle stime dei parametri. La stima ML è particolarmente vulnerabile in presenza di un’elevata curtosi.</p>
+<p>Utilizzare ML in condizioni di forte non normalità porta a conseguenze quali:</p>
+<ul class="simple">
+<li><p>Sovrastima della statistica chi-quadrato (<span class="math notranslate nohighlight">\(\chi^2\)</span>) del modello;</p></li>
+<li><p>Sottostima degli indici di bontà di adattamento come TLI (Tucker-Lewis Index) e CFI (Comparative Fit Index);</p></li>
+<li><p>Sottostima degli errori standard delle stime dei parametri.</p></li>
+</ul>
+<p>Questi effetti negativi sono amplificati quando la dimensione del campione è ridotta.</p>
+<p>Per mitigare queste conseguenze in situazioni di grave violazione dell’assunzione di normalità multivariata, si utilizzano stimatori differenti da ML. Tra questi, i più noti sono:</p>
+<p>Certamente, esaminerò ciascuno di questi stimatori in modo più approfondito, cercando di rendere la spiegazione tecnica più accessibile:</p>
+<ol class="arabic simple">
+<li><p><strong>GLS (Generalized Least Squares)</strong>:</p>
+<ul class="simple">
+<li><p><strong>Uso</strong>: Adatto per dati completi senza valori mancanti.</p></li>
+<li><p><strong>Funzione di Discrepanza</strong>: La funzione di discrepanza del GLS misura quanto la matrice di covarianza stimata dal modello (<span class="math notranslate nohighlight">\(\Sigma(\theta)\)</span>) si differenzia dalla matrice di covarianza osservata (<span class="math notranslate nohighlight">\(S\)</span>). La formula <span class="math notranslate nohighlight">\(F_{\text{GLS}}(S, \Sigma(\theta)) = \frac{1}{2} \text{traccia}(S - \Sigma(\theta))^2\)</span> utilizza la traccia (la somma degli elementi sulla diagonale principale della matrice) per quantificare questa differenza.</p></li>
+<li><p><strong>Interpretazione</strong>: Un valore più basso della funzione di discrepanza indica un migliore adattamento del modello ai dati.</p></li>
+</ul>
+</li>
+<li><p><strong>WLS (Weighted Least Squares)</strong>:</p>
+<ul class="simple">
+<li><p><strong>Uso</strong>: Conosciuto come stimatore Asintoticamente Libero da Distribuzione (ADF), utile per dati complessi.</p></li>
+<li><p><strong>Funzione di Discrepanza</strong>: <span class="math notranslate nohighlight">\(F_{\text{ADF}}(S, \Sigma(\theta)) = \text{vecs}(S - \Sigma(\theta))'W\text{vecs}(S - \Sigma(\theta))\)</span>. Qui, <code class="docutils literal notranslate"><span class="pre">vecs()</span></code> trasforma la matrice di covarianza in un vettore (prendendo solo la parte inferiore della matrice), e <code class="docutils literal notranslate"><span class="pre">W</span></code> è una matrice di pesi che dà diversa importanza ai vari elementi nel calcolo della discrepanza.</p></li>
+<li><p><strong>Interpretazione</strong>: Un valore più basso indica che il modello si adatta meglio ai dati, tenendo conto della ponderazione specifica di <code class="docutils literal notranslate"><span class="pre">W</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>DWLS (Diagonally Weighted Least Squares)</strong>:</p>
+<ul class="simple">
+<li><p><strong>Uso</strong>: Una versione semplificata di WLS.</p></li>
+<li><p><strong>Funzione di Discrepanza</strong>: <span class="math notranslate nohighlight">\(F_{\text{DWLS}}(S, \Sigma(\theta)) = \text{vecs}(S - \Sigma(\theta))'D\text{vecs}(S - \Sigma(\theta))\)</span>, dove <code class="docutils literal notranslate"><span class="pre">D</span></code> è una matrice di pesi diagonale.</p></li>
+<li><p><strong>Interpretazione</strong>: Simile a WLS, ma semplifica i calcoli usando solo una matrice di pesi diagonale, che considera solo gli elementi sulla diagonale della matrice di covarianza.</p></li>
+</ul>
+</li>
+<li><p><strong>ULS (Unweighted Least Squares)</strong>:</p>
+<ul class="simple">
+<li><p><strong>Uso</strong>: Considerato un caso speciale di WLS.</p></li>
+<li><p><strong>Funzione di Discrepanza</strong>: <span class="math notranslate nohighlight">\(F_{\text{ULS}}(S, \Sigma(\theta)) = \text{vecs}(S - \Sigma(\theta))'\text{vecs}(S - \Sigma(\theta))\)</span>. Qui, si utilizza una matrice di identità come peso, il che significa che tutti gli elementi hanno lo stesso peso nel calcolo della discrepanza.</p></li>
+<li><p><strong>Interpretazione</strong>: Un approccio più diretto rispetto a WLS, che non pondera gli elementi in modo diverso. Un valore più basso indica un migliore adattamento del modello.</p></li>
+</ul>
+</li>
+</ol>
+<p>In sintesi, questi stimatori vengono utilizzati per valutare quanto bene un modello SEM si adatti ai dati. Differiscono nel modo in cui trattano le discrepanze tra i dati osservati e quelli stimati dal modello, e ciascuno ha specifiche situazioni in cui risulta più appropriato.</p>
+<p>Oltre ai quattro metodi di stima già menzionati (GLS, WLS, DWLS, ULS), un altro stimatore importante nel contesto del Structural Equation Modeling (SEM) è il <strong>ML Robusto</strong> (Robust Maximum Likelihood). Questo stimatore è una variazione della stima di massima verosimiglianza tradizionale, progettato per essere più affidabile in presenza di violazioni dell’assunzione di normalità multivariata.</p>
+<p>Il ML Robusto si adatta a situazioni in cui la distribuzione dei dati non rispetta pienamente l’ipotesi di normalità, in particolare quando si verifica un eccesso di curtosi. Questo stimatore è utile perché:</p>
+<ul class="simple">
+<li><p><strong>Corregge la Sovrastima di Chi-Quadrato (<span class="math notranslate nohighlight">\(\chi^2\)</span>):</strong> Il ML tradizionale può portare a una sovrastima della statistica <span class="math notranslate nohighlight">\(\chi^2\)</span> in presenza di non normalità. Il ML Robusto fornisce una correzione a questo problema, offrendo una misura più accurata del fit del modello.</p></li>
+<li><p><strong>Errore Standard Affidabile:</strong> Fornisce stime degli errori standard dei parametri che sono più accurate in condizioni di non normalità, a differenza del ML tradizionale che tende a sottostimarli.</p></li>
+<li><p><strong>Miglioramento degli Indici di Bontà di Adattamento:</strong> Rispetto al ML tradizionale, il ML Robusto può offrire una valutazione più accurata degli indici di bontà di adattamento, come il Tucker-Lewis Index (TLI) e il Comparative Fit Index (CFI), che sono fondamentali per valutare la qualità del modello SEM.</p></li>
+</ul>
+<p>Il ML Robusto funziona modificando la stima degli errori standard e la statistica test del <span class="math notranslate nohighlight">\(\chi^2\)</span> per tener conto della non normalità. Questo approccio permette agli analisti di utilizzare la metodologia SEM in una gamma più ampia di scenari di dati, rendendo l’analisi più flessibile e robusta. Per questi motivi, il ML Robusto è diventato un’opzione popolare nell’analisi SEM, soprattutto quando i dati non rispettano perfettamente le assunzioni di normalità multivariata.</p>
+<p>I due stimatori più comunemente usati per dati continui non normali sono ML robusto e minimi quadrati ponderati (WLS). L’uso di WLS non è, in generale, raccomandato, a meno che le dimensioni del campione non siano molto grandi. Al contrario, la ricerca ha dimostrato che il metodo ML robusto fornisce uno stimatore adeguato rispetto a diversi livelli di non normalità.</p>
+<p>Esaminiamo qui un esempio discusso da <span id="id1">Brown [<a class="reference internal" href="../z_biblio.html#id46" title="Timothy A Brown. Confirmatory factor analysis for applied research. Guilford publications, 2015.">Bro15</a>]</span> nelle sue tabelle 9.5 – 9.7.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readRDS</span><span class="p">(</span><span class="n">here</span><span class="o">::</span><span class="nf">here</span><span class="p">(</span><span class="s">&quot;data&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;brown_table_9_5_data.RDS&quot;</span><span class="p">))</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 x 5</caption>
+<thead>
+	<tr><th></th><th scope=col>x1</th><th scope=col>x2</th><th scope=col>x3</th><th scope=col>x4</th><th scope=col>x5</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>2</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>3</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>4</th><td>4</td><td>2</td><td>2</td><td>1</td><td>1</td></tr>
+	<tr><th scope=row>5</th><td>1</td><td>0</td><td>1</td><td>6</td><td>0</td></tr>
+	<tr><th scope=row>6</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Le statistiche descrittive di questo campione di dati mostrano valori eccessivi di asimmetria e di curtosi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">psych</span><span class="o">::</span><span class="nf">describe</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A psych: 5 x 13</caption>
+<thead>
+	<tr><th></th><th scope=col>vars</th><th scope=col>n</th><th scope=col>mean</th><th scope=col>sd</th><th scope=col>median</th><th scope=col>trimmed</th><th scope=col>mad</th><th scope=col>min</th><th scope=col>max</th><th scope=col>range</th><th scope=col>skew</th><th scope=col>kurtosis</th><th scope=col>se</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>x1</th><td>1</td><td>870</td><td>1.4701149</td><td>2.172832</td><td>0</td><td>1.0086207</td><td>0</td><td>0</td><td>8</td><td>8</td><td>1.506406</td><td>1.252591</td><td>0.07366591</td></tr>
+	<tr><th scope=row>x2</th><td>2</td><td>870</td><td>0.8229885</td><td>1.601474</td><td>0</td><td>0.4152299</td><td>0</td><td>0</td><td>8</td><td>8</td><td>2.398394</td><td>5.670143</td><td>0.05429505</td></tr>
+	<tr><th scope=row>x3</th><td>3</td><td>870</td><td>1.2655172</td><td>2.070024</td><td>0</td><td>0.7772989</td><td>0</td><td>0</td><td>8</td><td>8</td><td>1.797942</td><td>2.343203</td><td>0.07018040</td></tr>
+	<tr><th scope=row>x4</th><td>4</td><td>870</td><td>1.0264368</td><td>1.928047</td><td>0</td><td>0.5359195</td><td>0</td><td>0</td><td>8</td><td>8</td><td>2.157445</td><td>3.977564</td><td>0.06536693</td></tr>
+	<tr><th scope=row>x5</th><td>5</td><td>870</td><td>0.6068966</td><td>1.519175</td><td>0</td><td>0.1839080</td><td>0</td><td>0</td><td>8</td><td>8</td><td>3.103965</td><td>9.373781</td><td>0.05150485</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Definiamo un modello ad un fattore e, seguendo <span id="id2">Brown [<a class="reference internal" href="../z_biblio.html#id46" title="Timothy A Brown. Confirmatory factor analysis for applied research. Guilford publications, 2015.">Bro15</a>]</span>, aggiungiamo una correlazione residua tra gli indicatori <code class="docutils literal notranslate"><span class="pre">X1</span></code> e <code class="docutils literal notranslate"><span class="pre">X3</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;</span>
+<span class="s">  f1 =~ x1 + x2 + x3 + x4 + x5</span>
+<span class="s">  x1 ~~ x3 </span>
+<span class="s">&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Procediamo alla stima dei parametri utilizzando uno stimatore di ML robusto. La sintassi <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> è la seguente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cfa</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="n">mimic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MPLUS&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">estimator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MLM&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Per esaminare la soluzione ottenuta ci focalizziamo sulla statistica <span class="math notranslate nohighlight">\(\chi^2\)</span> – si consideri la soluzione robusta fornita nell’output.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">out</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.16 ended normally after 28 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        16
+
+  Number of observations                           870
+
+Model Test User Model:
+                                               Standard      Scaled
+  Test Statistic                                 25.913      10.356
+  Degrees of freedom                                  4           4
+  P-value (Chi-square)                            0.000       0.035
+  Scaling correction factor                                   2.502
+    Satorra-Bentler correction (Mplus variant)                     
+
+Parameter Estimates:
+
+  Standard errors                           Robust.sem
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  f1 =~                                               
+    x1                1.000                           
+    x2                0.703    0.062   11.338    0.000
+    x3                1.068    0.044   24.304    0.000
+    x4                0.918    0.063   14.638    0.000
+    x5                0.748    0.055   13.582    0.000
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+ .x1 ~~                                               
+   .x3                0.655    0.143    4.579    0.000
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+   .x1                1.470    0.074   19.968    0.000
+   .x2                0.823    0.054   15.166    0.000
+   .x3                1.266    0.070   18.043    0.000
+   .x4                1.026    0.065   15.712    0.000
+   .x5                0.607    0.051   11.790    0.000
+    f1                0.000                           
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+   .x1                2.040    0.228    8.952    0.000
+   .x2                1.241    0.124   10.019    0.000
+   .x3                1.227    0.169    7.255    0.000
+   .x4                1.458    0.177    8.233    0.000
+   .x5                0.807    0.100    8.063    0.000
+    f1                2.675    0.289    9.273    0.000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Per fare un confronto, adattiamo lo stesso modello ai dati usando lo stimatore di ML.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cfa</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notiamo come il valore della statistica <span class="math notranslate nohighlight">\(\chi^2\)</span> ora ottenuto sia molto maggiore di quello trovato in precedenza.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">out</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">fit2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.16 ended normally after 28 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        11
+
+  Number of observations                           870
+
+Model Test User Model:
+                                                      
+  Test statistic                                25.913
+  Degrees of freedom                                 4
+  P-value (Chi-square)                           0.000
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  f1 =~                                               
+    x1                1.000                           
+    x2                0.703    0.035   20.133    0.000
+    x3                1.068    0.034   31.730    0.000
+    x4                0.918    0.042   21.775    0.000
+    x5                0.748    0.033   22.416    0.000
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+ .x1 ~~                                               
+   .x3                0.655    0.091    7.213    0.000
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+   .x1                2.040    0.128   15.897    0.000
+   .x2                1.241    0.070   17.671    0.000
+   .x3                1.227    0.095   12.942    0.000
+   .x4                1.458    0.090   16.135    0.000
+   .x5                0.807    0.053   15.119    0.000
+    f1                2.675    0.220   12.154    0.000
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dati-categoriali">
+<h2><span class="section-number">38.2. </span>Dati categoriali<a class="headerlink" href="#dati-categoriali" title="Permalink to this heading">#</a></h2>
+<p>Nella nostra discussione precedente, abbiamo esplorato il modello SEM partendo dall’ipotesi che i dati fossero continui e distribuiti secondo una normale multivariata congiunta. In questo capitolo, abbiamo allentato tale ipotesi e esaminato la stima robusta per dati non normalmente distribuiti. Tuttavia, è importante riconoscere che la maggior parte dei dati raccolti per l’analisi fattoriale confermativa (CFA) o SEM proviene da questionari e scale di tipo Likert, che generano dati categoriali (come binari, ordinali e nominali). Questi dati hanno una natura ordinale e non sono continui.</p>
+<p>Quando si lavora con almeno un indicatore categoriale (binario, politomico o ordinale), il metodo di massima verosimiglianza (ML) ordinario non dovrebbe essere impiegato per stimare i modelli CFA/SEM. Trattare variabili categoriali come se fossero continue può avere diverse conseguenze negative, tra cui:</p>
+<ul class="simple">
+<li><p><strong>Stime Attenuate delle Relazioni</strong>: Le relazioni tra gli indicatori possono risultare attenuate, specialmente in presenza di effetti pavimento o soffitto (floor or ceiling effects).</p></li>
+<li><p><strong>Emergenza di “Pseudo-Fattori”</strong>: Possono emergere fattori artefatti, non veri e propri costrutti, ma risultati del metodo statistico utilizzato.</p></li>
+<li><p><strong>Distorsione degli Indici di Bontà di Adattamento e delle Stime degli Errori Standard</strong>: Gli indici che valutano la qualità dell’adattamento del modello possono essere distorti, così come le stime degli errori standard.</p></li>
+<li><p><strong>Stime Errate dei Parametri</strong>: I parametri del modello potrebbero essere stimati in modo inaccurato.</p></li>
+</ul>
+<p>Per affrontare questi problemi, esistono vari stimatori specifici per i dati categoriali. Alcuni esempi includono:</p>
+<ul class="simple">
+<li><p><strong>WLS (Weighted Least Squares)</strong>: Adatto per dati categoriali, tenendo conto del loro peso specifico.</p></li>
+<li><p><strong>WLSMV (Weighted Least Squares Mean and Variance Adjusted)</strong>: Una versione modificata di WLS che si adatta meglio alle peculiarità dei dati categoriali.</p></li>
+<li><p><strong>ULS (Unweighted Least Squares)</strong>: Non prevede ponderazioni, utile per dati categoriali senza presupporre pesi specifici.</p></li>
+</ul>
+<p>Nelle sezioni successive, discuteremo in dettaglio l’approccio SEM per dati categoriali, evidenziando le specificità e le migliori pratiche per gestire questo tipo di dati nelle analisi SEM. Questo approccio ci permette di fare inferenze più accurate da dati categoriali, preservando l’integrità e la validità delle conclusioni tratte dalle analisi SEM.</p>
+<section id="un-esempio-concreto">
+<h3><span class="section-number">38.2.1. </span>Un esempio concreto<a class="headerlink" href="#un-esempio-concreto" title="Permalink to this heading">#</a></h3>
+<p>Nell’esempio discusso da <span id="id3">Brown [<a class="reference internal" href="../z_biblio.html#id46" title="Timothy A Brown. Confirmatory factor analysis for applied research. Guilford publications, 2015.">Bro15</a>]</span>, i ricercatori desiderano verificare un modello uni-fattoriale di dipendenza da alcol in un campione di 750 pazienti ambulatoriali. Gli indicatori di alcolismo sono item binari che riflettono la presenza/assenza di sei criteri diagnostici per l’alcolismo (0 = criterio non soddisfatto, 1 = criterio soddisfatto). I dati sono i seguenti:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">d1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readRDS</span><span class="p">(</span><span class="n">here</span><span class="o">::</span><span class="nf">here</span><span class="p">(</span><span class="s">&quot;data&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;brown_table_9_9_data.RDS&quot;</span><span class="p">))</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 x 6</caption>
+<thead>
+	<tr><th></th><th scope=col>y1</th><th scope=col>y2</th><th scope=col>y3</th><th scope=col>y4</th><th scope=col>y5</th><th scope=col>y6</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+	<tr><th scope=row>2</th><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+	<tr><th scope=row>3</th><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+	<tr><th scope=row>4</th><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+	<tr><th scope=row>5</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>6</th><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>È possibile evidenziare la natura ordinale dei dati esaminando le tabelle bivariate che mostrano la frequenza di combinazioni specifiche tra due variabili.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">xtabs</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">y1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y2</span><span class="p">,</span><span class="w"> </span><span class="n">d1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   y2
+y1    0   1
+  0 103  65
+  1 156 426
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">xtabs</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">y3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y4</span><span class="p">,</span><span class="w"> </span><span class="n">d1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   y4
+y3    0   1
+  0  41  39
+  1 119 551
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">xtabs</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">y5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y6</span><span class="p">,</span><span class="w"> </span><span class="n">d1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   y6
+y5    0   1
+  0  95 168
+  1  60 427
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nelle tabelle precedenti, possiamo vedere che ci sono più casi dove entrambe le variabili sono 1 rispetto a quando entrambe sono 0 o quando una è 1 e l’altra è 0. Questo indicare una relazione ordinale tra queste coppie di variabili nel dataset.</p>
+</section>
+<section id="il-modello-basato-sulle-soglie-per-risposte-categoriali-ordinate">
+<h3><span class="section-number">38.2.2. </span>Il Modello Basato sulle Soglie per Risposte Categoriali Ordinate<a class="headerlink" href="#il-modello-basato-sulle-soglie-per-risposte-categoriali-ordinate" title="Permalink to this heading">#</a></h3>
+<p>La teoria fondamentale dietro il modello basato sulle soglie per risposte categoriali ordinate si fonda sull’idea che le risposte di una variabile categoriale possano essere concepite come generate da una corrispondente variabile continua sottostante, normalmente distribuita. Questa variabile continua sottostante è una variabile latente e non osservata che rappresenta la propensione a rispondere in una certa direzione. Le risposte categoriali sono considerate misurazioni approssimative di queste variabili continue latenti non osservate.</p>
+<p>Le soglie (o punti di scala), che suddividono l’intera gamma della scala continua latente in un numero finito di categorie, sono utilizzate per definire la mappatura delle risposte di propensione latente alle risposte categoriali osservate.</p>
+<p>Per illustrare, prendiamo come esempio lo strumento di misurazione costituito da item strutturati su una scala Likert a 7 punti, rappresentando così una variabile categoriale con sette classi ordinali. Poniamo che I denoti genericamente un item, e I* rappresenti la variabile continua sottostante non osservata corrispondente a I. La relazione tra I e I* è descritta dal seguente insieme di equazioni:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+I &amp;= 1 \quad \text{se} \quad -\infty &lt; I^* \leq t_1 \\
+I &amp;= 2 \quad \text{se} \quad t_1 &lt; I^* \leq t_2 \\
+I &amp;= 3 \quad \text{se} \quad t_2 &lt; I^* \leq t_3 \\
+I &amp;= 4 \quad \text{se} \quad t_3 &lt; I^* \leq t_4 \\
+I &amp;= 5 \quad \text{se} \quad t_4 &lt; I^* \leq t_5 \\
+I &amp;= 6 \quad \text{se} \quad t_5 &lt; I^* \leq t_6 \\
+I &amp;= 7 \quad \text{se} \quad t_6 &lt; I^* &lt; \infty
+\end{align*}
+\end{split}\]</div>
+<p>dove <span class="math notranslate nohighlight">\(t_i (i = 1,\dots,6; −\infty &lt;t_1 &lt;t_2 &lt;t_3 &lt;t_4 &lt;t_5 &lt;t_6 &lt; \infty)\)</span> sono soglie che definiscono regioni di I* per produrre le risposte categoriali I. Il numero di soglie è sempre uno in meno rispetto al numero di categorie, simile al numero di variabili fittizie necessarie per codificare una variabile di classificazione nell’analisi di regressione classica.</p>
+<p>Il processo di categorizzazione di I* è anche illustrato graficamente nella seguente figura. In questa figura, la variabile continua latente sottostante I* è una distribuzione normale standard rappresentata dalla curva nera. Le sei linee verticali sono le soglie ipotetiche con t1 a t6 segnate in cima alle linee. Le possibili categorie di risposta vanno da I = 1 a I = 7. Il valore di I dipende quindi dalle regioni (demarcate dalle soglie) in cui I* cade.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definire le soglie</span>
+<span class="n">thresholds</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-3</span><span class="p">,</span><span class="w"> </span><span class="m">-2</span><span class="p">,</span><span class="w"> </span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+
+<span class="c1"># Creare un dataframe per la curva normale</span>
+<span class="n">x_values</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">-4</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">)</span>
+<span class="n">y_values</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x_values</span><span class="p">)</span>
+<span class="n">curve_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x_values</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y_values</span><span class="p">)</span>
+
+<span class="c1"># Creare il plot</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">curve_data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">thresholds</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">scale_y_continuous</span><span class="p">(</span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">scale_x_continuous</span><span class="p">(</span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">thresholds</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;t1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;t2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;t3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;t4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;t5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;t6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;t7&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">labs</span><span class="p">(</span>
+<span class="w">        </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Categorization of Latent Continuous Variable to Categorical Variable&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Latent Continuous Variable I*&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">theme_minimal</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/011b8b8585ebda78bb07348dfd94042305af0144ab69363fd5eddafeb4c3a8ff.png" src="../_images/011b8b8585ebda78bb07348dfd94042305af0144ab69363fd5eddafeb4c3a8ff.png" />
+</div>
+</div>
+<p>La categorizzazione di I* per produrre dati su scala Likert è soggetta a errori di misurazione e campionamento. Come sottolineato da O’Brien (1985), questo processo può produrre (1) errore di categorizzazione risultante dalla divisione della scala continua nella scala categoriale, e (2) errore di trasformazione risultante da categorie di larghezze disuguali. Pertanto, le soglie dovrebbero essere stimate insieme a tutti gli altri parametri nel modello di equazioni strutturali.</p>
+</section>
+<section id="modellazione-di-variabili-categoriali-nei-modelli-sem">
+<h3><span class="section-number">38.2.3. </span>Modellazione di Variabili Categoriali nei Modelli SEM<a class="headerlink" href="#modellazione-di-variabili-categoriali-nei-modelli-sem" title="Permalink to this heading">#</a></h3>
+<p>Quando si modellano variabili categoriali ordinate in SEM, l’approccio comune è quello di collegarle a una variabile latente sottostante, denominata I*. Questa variabile rappresenta una sorta di “propensione nascosta” che determina le risposte osservate nelle variabili categoriali.</p>
+<p>Ad esempio, la seguente equazione modella la variabile latente I* utilizzando una serie di p predittori (x1, x2, …, xp). Ogni predittore ha un effetto, misurato dai coefficienti β1, β2, …, βP:</p>
+<div class="math notranslate nohighlight">
+\[ 
+I^*_i = \beta_0 + \beta_1 x_{1i} + \dots + \beta_P x_{Pi} + e_i.
+\]</div>
+<p>Qui, <span class="math notranslate nohighlight">\( I^*_i \)</span> rappresenta la propensione latente per l’i-esimo osservatore o risposta. <span class="math notranslate nohighlight">\( \beta_0 \)</span> è un termine costante (intercetta), mentre <span class="math notranslate nohighlight">\( \beta_1, \dots, \beta_P \)</span> sono i coefficienti che quantificano l’effetto di ciascun predittore sul livello della propensione latente. Infine, <span class="math notranslate nohighlight">\( e_i \)</span> è il termine di errore che cattura le variazioni non spiegate dai predittori.</p>
+<p>Quando la variabile categoriale I è un indicatore di misurazione di un fattore latente (<span class="math notranslate nohighlight">\(\xi\)</span>) in un modello fattoriale confermativo, l’equazione si semplifica:</p>
+<div class="math notranslate nohighlight">
+\[ 
+I^*_i = \beta_0 + \beta_1 \xi_i + e_i.
+\]</div>
+<p>Qui, <span class="math notranslate nohighlight">\( \beta_1 \)</span> è il carico fattoriale, che misura quanto fortemente il fattore latente <span class="math notranslate nohighlight">\(\xi\)</span> influisce sulla variabile latente I*. Questa equazione è strutturata in modo simile a quelle utilizzate per modellare indicatori di misurazione continui in SEM.</p>
+<p>Questo approccio di modellazione riflette la teoria che le risposte categoriali osservate possono essere viste come manifestazioni esterne di una propensione latente interna. L’uso dei minimi quadrati ponderati (WLS) come metodo di stima è appropriato per questo tipo di modellazione. Tuttavia, è fondamentale ricordare che modellare risposte categoriali ordinate può richiedere passaggi aggiuntivi per gestire accuratamente la natura ordinale dei dati. Questi dettagli aggiuntivi saranno discussi nelle sezioni successive.</p>
+</section>
+<section id="adattamento-del-modello-con-lmer">
+<h3><span class="section-number">38.2.4. </span>Adattamento del Modello con <code class="docutils literal notranslate"><span class="pre">lmer</span></code><a class="headerlink" href="#adattamento-del-modello-con-lmer" title="Permalink to this heading">#</a></h3>
+<p>Specifichiamo il modello nel modo seguente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">model1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;</span>
+<span class="s">  etoh =~ y1 + y2 + y3 + y4 + y5 + y6</span>
+<span class="s">&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nel modellare i dati utilizzando scale ordinali, <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> adotta un approccio mirato che considera specificamente la natura dei dati categoriali. Questo viene fatto attraverso l’impiego dello stimatore WLSMV (Weighted Least Squares Mean and Variance Adjusted). In questo contesto, la stima dei parametri avviene mediante l’utilizzo dei minimi quadrati ponderati diagonalmente (DWLS), un metodo che si concentra sull’utilizzo delle componenti diagonali della matrice di peso. Questa scelta rende lo stimatore particolarmente efficace nel trattare dati non normali.</p>
+<p>Una delle caratteristiche salienti dello stimatore WLSMV è il calcolo di errori standard robusti. Questi vengono determinati con una metodologia che assicura l’affidabilità delle stime, anche quando i dati non rispettano le classiche assunzioni di normalità. Inoltre, le statistiche di test generate da WLSMV sono opportunamente aggiustate per riflettere variazioni nella media e nella varianza dei dati. Tale aggiustamento è fondamentale per garantire l’accuratezza e la validità delle statistiche di test, soprattutto in contesti dove la distribuzione dei dati si discosta dalla normalità.</p>
+<p>In sintesi, <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> propone una metodologia avanzata per la modellazione di dati categoriali, sfruttando lo stimatore WLSMV che si adatta efficacemente alle specificità di questi dati. Ciò si traduce in stime precise e statistiche di test attendibili, rendendo <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> uno strumento molto adeguato per l’analisi di dati categoriali complessi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cfa</span><span class="p">(</span>
+<span class="w">  </span><span class="n">model1</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d1</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">ordered</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">d1</span><span class="p">),</span><span class="w"> </span>
+<span class="w">  </span><span class="n">estimator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;WLSMVS&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">mimic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mplus&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo la soluzione ottenuta:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">fit1</span><span class="p">,</span><span class="w"> </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.16 ended normally after 16 iterations
+
+  Estimator                                       DWLS
+  Optimization method                           NLMINB
+  Number of model parameters                        12
+
+  Number of observations                           750
+
+Model Test User Model:
+                                                  Standard      Scaled
+  Test Statistic                                     5.651       9.540
+  Degrees of freedom                                     9           9
+  P-value (Chi-square)                               0.774       0.389
+  Scaling correction factor                                      0.592
+    mean and variance adjusted correction (WLSMV)                     
+
+Model Test Baseline Model:
+
+  Test statistic                              1155.845     694.433
+  Degrees of freedom                                15           9
+  P-value                                        0.000       0.000
+  Scaling correction factor                                  1.664
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    1.000       0.999
+  Tucker-Lewis Index (TLI)                       1.005       0.999
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.000       0.009
+  90 Percent confidence interval - lower         0.000       0.000
+  90 Percent confidence interval - upper         0.028       0.051
+  P-value H_0: RMSEA &lt;= 0.050                    0.999       0.944
+  P-value H_0: RMSEA &gt;= 0.080                    0.000       0.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.031       0.031
+
+Parameter Estimates:
+
+  Standard errors                           Robust.sem
+  Information                                 Expected
+  Information saturated (h1) model        Unstructured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  etoh =~                                             
+    y1                1.000                           
+    y2                0.822    0.072   11.392    0.000
+    y3                0.653    0.092    7.097    0.000
+    y4                1.031    0.075   13.703    0.000
+    y5                1.002    0.072   13.861    0.000
+    y6                0.759    0.076   10.011    0.000
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+   .y1                0.000                           
+   .y2                0.000                           
+   .y3                0.000                           
+   .y4                0.000                           
+   .y5                0.000                           
+   .y6                0.000                           
+    etoh              0.000                           
+
+Thresholds:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+    y1|t1            -0.759    0.051  -14.890    0.000
+    y2|t1            -0.398    0.047   -8.437    0.000
+    y3|t1            -1.244    0.061  -20.278    0.000
+    y4|t1            -0.795    0.051  -15.436    0.000
+    y5|t1            -0.384    0.047   -8.148    0.000
+    y6|t1            -0.818    0.052  -15.775    0.000
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+   .y1                0.399                           
+   .y2                0.594                           
+   .y3                0.744                           
+   .y4                0.361                           
+   .y5                0.397                           
+   .y6                0.653                           
+    etoh              0.601    0.063    9.596    0.000
+
+Scales y*:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+    y1                1.000                           
+    y2                1.000                           
+    y3                1.000                           
+    y4                1.000                           
+    y5                1.000                           
+    y6                1.000                           
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si presti particolare attenzione alla seguente porzione dell’output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">                   </span>Estimate<span class="w">  </span>Std.Err<span class="w">  </span>z-value<span class="w">  </span>P<span class="o">(</span>&gt;<span class="p">|</span>z<span class="p">|</span><span class="o">)</span>
+<span class="w">    </span>y1<span class="p">|</span>t1<span class="w">            </span>-0.759<span class="w">    </span><span class="m">0</span>.051<span class="w">  </span>-14.890<span class="w">    </span><span class="m">0</span>.000
+<span class="w">    </span>y2<span class="p">|</span>t1<span class="w">            </span>-0.398<span class="w">    </span><span class="m">0</span>.047<span class="w">   </span>-8.437<span class="w">    </span><span class="m">0</span>.000
+<span class="w">    </span>y3<span class="p">|</span>t1<span class="w">            </span>-1.244<span class="w">    </span><span class="m">0</span>.061<span class="w">  </span>-20.278<span class="w">    </span><span class="m">0</span>.000
+<span class="w">    </span>y4<span class="p">|</span>t1<span class="w">            </span>-0.795<span class="w">    </span><span class="m">0</span>.051<span class="w">  </span>-15.436<span class="w">    </span><span class="m">0</span>.000
+<span class="w">    </span>y5<span class="p">|</span>t1<span class="w">            </span>-0.384<span class="w">    </span><span class="m">0</span>.047<span class="w">   </span>-8.148<span class="w">    </span><span class="m">0</span>.000
+<span class="w">    </span>y6<span class="p">|</span>t1<span class="w">            </span>-0.818<span class="w">    </span><span class="m">0</span>.052<span class="w">  </span>-15.775<span class="w">    </span><span class="m">0</span>.000
+</pre></div>
+</div>
+<p>In questa porzione dell’output di <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> sono presentati i risultati per le “soglie” (thresholds) relative alle variabili categoriali ordinate utilizzate nel modello SEM. Ecco una spiegazione dettagliata:</p>
+<ol class="arabic simple">
+<li><p><strong>Thresholds (Soglie)</strong>:</p>
+<ul class="simple">
+<li><p>Ogni soglia rappresenta un punto di cutoff lungo la variabile continua latente (indicata in precedenza come I*), che determina le categorie della variabile categoriale osservata.</p></li>
+<li><p>Nell’output, <code class="docutils literal notranslate"><span class="pre">y1|t1</span></code>, <code class="docutils literal notranslate"><span class="pre">y2|t1</span></code>, ecc., rappresentano soglie per le variabili rispettive (y1, y2, …, y6). Il termine “t1” si riferisce alla prima soglia per ciascuna di queste variabili.</p></li>
+</ul>
+</li>
+<li><p><strong>Estimate (Stima)</strong>:</p>
+<ul class="simple">
+<li><p>Questi valori indicano la posizione della soglia sulla scala della variabile continua latente. Per esempio, la soglia per y1 è a -0.759. Questo significa che la divisione tra le prime due categorie di y1 si verifica a -0.759 sulla scala della variabile latente.</p></li>
+</ul>
+</li>
+<li><p><strong>Std.Err (Errore Standard)</strong>:</p>
+<ul class="simple">
+<li><p>L’errore standard della stima di ogni soglia. Ad esempio, per y1, l’errore standard è 0.051. Questo offre un’idea della variabilità o incertezza nella stima della soglia.</p></li>
+</ul>
+</li>
+<li><p><strong>z-value</strong>:</p>
+<ul class="simple">
+<li><p>Il valore z indica il rapporto tra la stima della soglia e il suo errore standard. Un valore z elevato suggerisce che la stima della soglia è significativamente diversa da zero (ovvero, la soglia è ben definita). Per esempio, per y1, il valore z è -14.890, che è statisticamente significativo.</p></li>
+</ul>
+</li>
+<li><p><strong>P(&gt;|z|)</strong>:</p>
+<ul class="simple">
+<li><p>Il p-value associato al valore z. Un p-value basso (ad esempio, 0.000) indica che la stima della soglia è statisticamente significativa. Questo significa che possiamo essere abbastanza sicuri che la posizione della soglia sulla variabile latente sia accurata e non dovuta al caso.</p></li>
+</ul>
+</li>
+</ol>
+<p>In sintesi, queste soglie consentono di trasformare la variabile latente continua in una variabile categoriale osservata nel modello. La stima di queste soglie e la loro significatività statistica sono cruciali per comprendere come la variabile latente si traduce nelle categorie osservate.</p>
+<p>Confrontiamo ora la soluzione ottenuta con lo stimatore WLSMVS con quella ottenuta mediante lo stimatore ML.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cfa</span><span class="p">(</span>
+<span class="w">  </span><span class="n">model1</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d1</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">out</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">fit2</span><span class="p">,</span><span class="w"> </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.16 ended normally after 35 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        12
+
+  Number of observations                           750
+
+Model Test User Model:
+                                                      
+  Test statistic                                14.182
+  Degrees of freedom                                 9
+  P-value (Chi-square)                           0.116
+
+Model Test Baseline Model:
+
+  Test statistic                               614.305
+  Degrees of freedom                                15
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.991
+  Tucker-Lewis Index (TLI)                       0.986
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -2087.600
+  Loglikelihood unrestricted model (H1)      -2080.508
+                                                      
+  Akaike (AIC)                                4199.199
+  Bayesian (BIC)                              4254.640
+  Sample-size adjusted Bayesian (SABIC)       4216.535
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.028
+  90 Percent confidence interval - lower         0.000
+  90 Percent confidence interval - upper         0.054
+  P-value H_0: RMSEA &lt;= 0.050                    0.914
+  P-value H_0: RMSEA &gt;= 0.080                    0.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.021
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  etoh =~                                             
+    y1                1.000                           
+    y2                0.934    0.093   10.057    0.000
+    y3                0.390    0.055    7.038    0.000
+    y4                1.008    0.087   11.541    0.000
+    y5                1.158    0.101   11.468    0.000
+    y6                0.700    0.077    9.142    0.000
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+   .y1                0.109    0.007   14.692    0.000
+   .y2                0.169    0.010   16.781    0.000
+   .y3                0.085    0.005   18.483    0.000
+   .y4                0.102    0.007   14.285    0.000
+   .y5                0.140    0.010   14.506    0.000
+   .y6                0.132    0.008   17.514    0.000
+    etoh              0.065    0.009    7.664    0.000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si noti che la soluzione ottenuta mediante lo stimatore WLSMVS produce indici di bontà di adattamento migliori e errori standard dei parametri più piccoli.</p>
+</section>
+</section>
+<section id="considerazioni-conclusive">
+<h2><span class="section-number">38.3. </span>Considerazioni conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Permalink to this heading">#</a></h2>
+<p>In questo capitolo, abbiamo illustrato la modellazione delle equazioni strutturali per dati non normalmente distribuiti. È importante sottolineare che, nella pratica analitica SEM, la presenza di dati non normalmente distribuiti dovrebbe essere considerata la norma. Di conseguenza, l’uso della massima verosimiglianza robusta (ML robusta) è raccomandato ogni volta che ci siano dubbi sulla violazione dell’assunzione di normalità dei dati.</p>
+<p>Alcune considerazioni importanti meritano attenzione. Innanzitutto, benché tutte queste versioni robuste di ML producano errori standard robusti e una statistica di test robusta (o scalata), le stime dei parametri ottenute rimangono quelle della stima ML originale. In secondo luogo, la robustezza di questi aggiustamenti riguarda la violazione dell’assunzione di normalità, ma non la presenza di valori anomali, che è un argomento a sé stante. Terzo, la robustezza di questi aggiustamenti non si estende alla violazione delle specifiche del modello, che è un altro tema studiato nella letteratura SEM.</p>
+<p>In questo capitolo, abbiamo inoltre introdotto lo stimatore WLSMV per dati categoriali, dimostrando che lo stimatore WLSMV è più efficiente con una stima dell’errore standard più piccola rispetto all’MLE di default e all’MLE robusta.</p>
+<p>Va sottolineato che lo stimatore WLSMV è un metodo generale per dati categoriali in SEM, implementato nella maggior parte dei software, come ad esempio MPlus. WLSMV è una parola chiave generale che richiede simultaneamente lo stimatore DWLS e una statistica di test del chi-quadro aggiustata per media e varianza (MV). Pertanto, in <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>, possiamo semplicemente utilizzare <code class="docutils literal notranslate"><span class="pre">lavaan(...,</span> <span class="pre">estimator</span> <span class="pre">=</span> <span class="pre">&quot;WLSMV&quot;)</span></code>, che è equivalente a <code class="docutils literal notranslate"><span class="pre">lavaan(...,</span> <span class="pre">estimator</span> <span class="pre">=</span> <span class="pre">&quot;DWLS&quot;,</span> <span class="pre">se</span> <span class="pre">=</span> <span class="pre">&quot;robust.sem&quot;,</span> <span class="pre">test</span> <span class="pre">=</span> <span class="pre">&quot;scaled.shifted&quot;)</span></code>.</p>
+<p>Oltre al WLSMV, <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> offre anche un estimatore sperimentale di massima verosimiglianza marginale (estimator = “MML”). L’MML può essere lento nella stima a causa dell’integrazione numerica associata a questo stimatore e più incline a problemi di convergenza. Un altro stimatore è l’ADF (estimator = “WLS”), che non fa alcuna specifica assunzione distributiva sui dati. Tuttavia, questo stimatore WLS richiede una dimensione del campione molto grande (N &gt; 5000) affinché la stima dei parametri (cioè stime dei parametri, SE e statistiche di test) possa essere considerata affidabile.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_sem"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="355_group_invariance.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">37. </span>Invarianza di misura</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="357_multilevel_sem.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">39. </span>Modelli di Equazioni Strutturali Multilivello</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dati-non-gaussiani">38.1. Dati non gaussiani</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dati-categoriali">38.2. Dati categoriali</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">38.2.1. Un esempio concreto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-modello-basato-sulle-soglie-per-risposte-categoriali-ordinate">38.2.2. Il Modello Basato sulle Soglie per Risposte Categoriali Ordinate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modellazione-di-variabili-categoriali-nei-modelli-sem">38.2.3. Modellazione di Variabili Categoriali nei Modelli SEM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adattamento-del-modello-con-lmer">38.2.4. Adattamento del Modello con <code class="docutils literal notranslate"><span class="pre">lmer</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">38.3. Considerazioni conclusive</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
