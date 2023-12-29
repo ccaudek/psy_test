@@ -1,0 +1,1014 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>42. Modello di Rasch &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_irt/401_rasch_model';</script>
+    <link rel="shortcut icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="43. Assunzioni e Proprietà del Modello di Rasch" href="402_assumptions.html" />
+    <link rel="prev" title="41. Modello di regressione logistica" href="400_logistic_regr.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Test psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/002_measurement.html">1. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/007_norms.html">2. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/008_regression.html">3. L’analisi di regressione</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/020_ctt_1.html">4. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/021_ctt_2.html">5. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/022_ctt_3.html">6. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/025_err_std_mis.html">7. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/026_err_std_stima.html">8. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/028_applications_ctt.html">9. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E_ctt_1.html">10. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/030_multilevel_1.html">11. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/031_interrater_reliability.html">12. L’affidabilità tra giudici</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/041_gtheory.html">13. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/051_validity.html">14. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/055_relations_to_other_vars.html">15. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/061_path_analysis.html">16. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/150_intro_fa.html">17. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/155_analisi_fattoriale_1.html">18. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/156_analisi_fattoriale_2.html">19. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/157_analisi_fattoriale_3.html">20. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/158_factor_scores.html">21. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/162_constraints_on_parms.html">22. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/163_total_score.html">23. Punteggio totale e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/170_cfa_mod_comp.html">24. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/175_bifactor.html">25. Modello bifattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione di strumenti psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/201_valutare_le_matrici.html">26. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/202_estrazione.html">27. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/203_numero_fattori.html">28. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/205_rotazione.html">29. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/206_valutare_sol_fattoriale.html">30. Valutare e rifinire la soluzione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/225_mmm.html">31. CFA per matrici multi-tratto multi-metodo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/350_sem_intro.html">32. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/351_data_preparation.html">33. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/352_gof.html">34. Indici di bontà dell’adattamento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/353_refine_solution.html">35. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/354_mod_comp.html">36. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/355_group_invariance.html">37. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/356_cat_data.html">38. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/357_multilevel_sem.html">39. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/358_missing_data.html">40. Dati mancanti</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="400_logistic_regr.html">41. Modello di regressione logistica</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">42. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="402_assumptions.html">43. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="403_estimation.html">44. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="430_implementation.html">45. Implementazione</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/501_development.html">46. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/502_tutorial.html">47. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/700_lgm_intro.html">48. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/701_lgm_prelims.html">49. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/702_time_effects.html">50. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/703_intro_panel.html">51. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/704_lgm_mixed.html">52. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/705_growth_1.html">53. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/706_growth_cont.html">54. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/710_time_inv_cov.html">55. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/711_growth_groups.html">56. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/715_bivariate_growth_models.html">57. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/720_inv_measurement.html">58. Invarianza di misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/750_latent_change.html">59. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/751_biv_change.html">60. Modello LCS bivariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/755_lgm_meas_inv.html">61. Invarianza fattoriale nei modelli LGM</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">62. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/901_intro_r.html">63. Linguaggio di programmazione R</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test/issues/new?title=Issue%20on%20page%20%2F_irt/401_rasch_model.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_irt/401_rasch_model.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modello di Rasch</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduzione-alla-teoria-della-risposta-all-item">42.1. Introduzione alla Teoria della Risposta all’Item</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-scala-di-guttman">42.2. La scala di Guttman</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-modello-di-rasch">42.3. Il Modello di Rasch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curva-caratteristica-dell-item">42.4. Curva Caratteristica dell’Item</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-modello-di-rasch-per-risposte-binarie">42.5. Il Modello di Rasch per Risposte Binarie</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discriminazione">42.6. Discriminazione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-funzione-logistica">42.7. La funzione Logistica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilita-di-una-risposta-errata">42.8. Probabilità di una Risposta Errata</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilita-di-una-risposta-arbitraria">42.9. Probabilità di una Risposta Arbitraria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rappresentazione-alternativa-della-funzione-logistica">42.10. Rappresentazione Alternativa della Funzione Logistica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-modello-di-rasch-e-l-analisi-fattoriale">42.11. Il Modello di Rasch e l’Analisi Fattoriale</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modello-di-rasch">
+<span id="rasch-model-notebook"></span><h1><span class="section-number">42. </span>Modello di Rasch<a class="headerlink" href="#modello-di-rasch" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">suppressPackageStartupMessages</span><span class="p">({</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;tidyverse&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;ltm&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;mirt&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;grid&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;TAM&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="c1"># devtools::install_github(&quot;masurp/ggmirt&quot;)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;ggmirt&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;latex2exp&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="introduzione-alla-teoria-della-risposta-all-item">
+<h2><span class="section-number">42.1. </span>Introduzione alla Teoria della Risposta all’Item<a class="headerlink" href="#introduzione-alla-teoria-della-risposta-all-item" title="Permalink to this heading">#</a></h2>
+<p>La psicometria, disciplina focalizzata sulla misurazione quantitativa delle abilità, atteggiamenti e tratti psicologici, ha subìto un’evoluzione significativa grazie all’emergere della Teoria della Risposta all’Item (IRT). Questo modello, fondamentale nel campo dell’analisi psicometrica, si distingue per la sua capacità di affrontare e conceptualizzare gli errori di misurazione, inevitabili nelle risposte umane, in modo più efficace rispetto ai metodi tradizionali. In questo capitolo, esploreremo le basi dell’IRT, le sue applicazioni e l’importanza nel contesto della psicometria moderna.</p>
+<p>La misurazione in psicometria si occupa di quantificare costrutti non osservabili, come l’intelligenza, la personalità e gli atteggiamenti. Tali misurazioni sono spesso soggette a errori, dovuti alla variabilità intrinseca delle risposte umane. Tradizionalmente, la psicometria si è affidata a teorie come la Classical Test Theory (CTT), che, pur efficaci, presentano limitazioni, soprattutto nella gestione degli errori di misurazione e nella loro assunzione di uniformità tra gli item di un test.</p>
+<p>L’IRT rappresenta un cambiamento paradigmatico nella misurazione psicometrica. A differenza della CTT, che si concentra sul punteggio totale di un test, l’IRT si focalizza sulle risposte a singoli item, permettendo un’analisi più dettagliata e accurata delle capacità di un individuo. L’essenza dell’IRT sta nella sua capacità di modellare la probabilità che un individuo risponda correttamente a un item specifico, basandosi sulle caratteristiche dell’item e sul livello di abilità dell’individuo.</p>
+<p>Uno degli aspetti distintivi dell’IRT è la sua applicabilità alle risposte categoriali, comuni nei test psicometrici, dove gli individui selezionano risposte da un insieme di categorie predefinite. Questo approccio è cruciale in test come quelli di intelligenza, dove le risposte non sono solo giuste o sbagliate, ma possono riflettere diversi livelli di comprensione o abilità.</p>
+<p>L’IRT trova applicazione in una vasta gamma di contesti. È fondamentale nello sviluppo di test standardizzati, nella valutazione della qualità degli item di un test, e nella costruzione di punteggi compositi basati su risposte a più item. Inoltre, l’IRT è impiegata per sviluppare strumenti di valutazione più equi e validi, offrendo una migliore comprensione delle abilità o tratti misurati.</p>
+<p>L’aspetto unico dell’IRT è la sua capacità di analizzare l’interazione tra le caratteristiche degli item e le abilità degli individui. Questo permette una comprensione più approfondita di come diversi tipi di item influenzino le risposte degli individui, consentendo una misurazione più accurata e personalizzata.</p>
+<p>Nonostante i suoi numerosi vantaggi, l’implementazione dell’IRT presenta sfide, come la necessità di grandi campioni di dati e la complessità nella modellizzazione statistica. Tuttavia, con l’avanzamento della tecnologia e la crescente disponibilità di dati, l’IRT continua a evolversi, offrendo nuove opportunità per affinare ulteriormente la misurazione psicometrica.</p>
+<p>In conclusione, la Teoria della Risposta all’Item è un pilastro fondamentale nella misurazione psicometrica moderna. La sua capacità di affrontare i limiti delle teorie tradizionali e di fornire una comprensione più profonda e dettagliata delle risposte umane la rende uno strumento indispensabile per i ricercatori e i professionisti del settore. Con le sue applicazioni in continua espansione e il suo impatto sullo sviluppo di strumenti di valutazione più accurati e validi, l’IRT si configura come una teoria essenziale per il futuro della psicometria.</p>
+<p>Nella seguente discussione dei modelli IRT seguiremo da vicino l’esposizione fornita da <span id="id1">Debelak <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id2" title="Rudolf Debelak, Carolin Strobl, and Matthew D Zeigenfuse. An introduction to the rasch model with examples in r. Crc Press, 2022.">DSZ22</a>]</span> a cui si rimanda per ulteriori approfondimenti.</p>
+</section>
+<section id="la-scala-di-guttman">
+<h2><span class="section-number">42.2. </span>La scala di Guttman<a class="headerlink" href="#la-scala-di-guttman" title="Permalink to this heading">#</a></h2>
+<p>Prima di esplorare l’IRT, è importante comprendere lo scaling di Guttman, che stabilisce una relazione tra il livello di abilità di un rispondente e le sue risposte agli item. La Scala di Guttman, proposta da Louis Guttman, collega le abilità delle persone alla difficoltà degli item di un test. Questa scala viene rappresentata graficamente, mostrando come la probabilità di rispondere correttamente a un item vari con il livello di abilità del rispondente. Le <em>curve caratteristiche degli item</em> (ICC) illustrano questa probabilità.</p>
+<p>Sull’asse verticale del grafico si posiziona la probabilità di rispondere correttamente a un elemento, che Guttman sostiene essere o zero o 1.0. L’asse orizzontale rappresenta le abilità delle persone che affrontano il test. Le cinque frecce indicano cinque persone con diversi livelli di abilità.</p>
+<p>Le linee nel grafico, note come curve caratteristiche degli item, mostrano la probabilità che una persona con un determinato livello di abilità risponda correttamente a ciascun elemento.</p>
+<p>Ad esempio, una persona con un livello di abilità molto basso (indicato dalla prima freccia a sinistra) avrebbe una probabilità zero di rispondere correttamente a qualsiasi elemento. Persone con abilità leggermente superiori (rappresentate dalle successive frecce) avrebbero probabilità diverse di rispondere correttamente agli item, a seconda della loro posizione rispetto alla difficoltà di ciascun item. La quinta persona (indicata dalla freccia più a destra) risponderebbe correttamente a tutti e tre gli elementi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">abilita</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span>
+<span class="n">difficolta_item_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span>
+<span class="n">difficolta_item_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span>
+<span class="n">difficolta_item_3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">3</span>
+<span class="n">probabilita_item_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">abilita</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">difficolta_item_1</span><span class="p">)</span>
+<span class="n">probabilita_item_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">abilita</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">difficolta_item_2</span><span class="p">)</span>
+<span class="n">probabilita_item_3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">abilita</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">difficolta_item_3</span><span class="p">)</span>
+<span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">abilita</span><span class="p">,</span><span class="w"> </span><span class="n">probabilita_item_1</span><span class="p">,</span><span class="w"> </span><span class="n">probabilita_item_2</span><span class="p">,</span><span class="w"> </span><span class="n">probabilita_item_3</span><span class="p">)</span>
+
+<span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abilita</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">probabilita_item_1</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">probabilita_item_2</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">probabilita_item_3</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;green&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">labs</span><span class="p">(</span>
+<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Abilità dei partecipanti&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Probabilità di risposta corretta&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Modello di Guttman per la Scala degli Item&quot;</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">theme_minimal</span><span class="p">()</span>
+
+<span class="n">y_posizione_frecce</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">-0.15</span><span class="w"> </span>
+
+<span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">geom_segment</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y_posizione_frecce</span><span class="p">,</span><span class="w"> </span><span class="n">xend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">yend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">arrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">arrow</span><span class="p">(),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># Persona con bassa abilità</span>
+<span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">geom_segment</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y_posizione_frecce</span><span class="p">,</span><span class="w"> </span><span class="n">xend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span><span class="n">yend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">arrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">arrow</span><span class="p">(),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># Seconda persona</span>
+<span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">geom_segment</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2.5</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y_posizione_frecce</span><span class="p">,</span><span class="w"> </span><span class="n">xend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2.5</span><span class="p">,</span><span class="w"> </span><span class="n">yend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">arrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">arrow</span><span class="p">(),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># Terza persona</span>
+<span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">geom_segment</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3.5</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y_posizione_frecce</span><span class="p">,</span><span class="w"> </span><span class="n">xend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3.5</span><span class="p">,</span><span class="w"> </span><span class="n">yend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">arrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">arrow</span><span class="p">(),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># Quarta persona</span>
+<span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">geom_segment</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4.5</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y_posizione_frecce</span><span class="p">,</span><span class="w"> </span><span class="n">xend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4.5</span><span class="p">,</span><span class="w"> </span><span class="n">yend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">arrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">arrow</span><span class="p">(),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># Quinta persona</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4a7aa92c151b3373a218d8a8ffbcf44b8f747929623ebe6f06ccdc1868f1b883.png" src="../_images/4a7aa92c151b3373a218d8a8ffbcf44b8f747929623ebe6f06ccdc1868f1b883.png" />
+</div>
+</div>
+<p>Il modello di Guttman, nel contesto della testistica psicologica, si basa su un’ipotesi fondamentale nella somma dei punteggi ottenuti dai partecipanti in un test. Secondo questa ipotesi, se un individuo risponde correttamente a un item di difficile risoluzione, si presume che abbia anche risposto correttamente a tutti gli item precedenti, di difficoltà inferiore. Questo principio implica che la capacità di rispondere a domande più difficili include implicitamente l’abilità di rispondere a quelle più semplici. Pertanto, il punteggio totale ottenuto in un test viene considerato un indicatore affidabile dell’abilità complessiva della persona.</p>
+<p>Tuttavia, il modello di Guttman presenta alcune limitazioni. Una delle critiche principali è che raramente gli item di abilità formano scale di Guttman pure. In altre parole, non è sempre vero che i test seguano un andamento così rigido e prevedibile come quello proposto da Guttman. Infatti, nella realtà, la probabilità di rispondere correttamente a un item non sempre aumenta bruscamente da 0 a 1 al raggiungimento di una certa soglia di abilità, ma può variare più gradualmente nei termini di una funzione sigmoidale. Inoltre, è anche possibile ipotizzare che la ripidità delle ICC si differenzi per i diversi item di un test.</p>
+</section>
+<section id="il-modello-di-rasch">
+<h2><span class="section-number">42.3. </span>Il Modello di Rasch<a class="headerlink" href="#il-modello-di-rasch" title="Permalink to this heading">#</a></h2>
+<p>Supponiamo di voler misurare le competenze matematiche di un gruppo di individui. Sebbene non possiamo osservare direttamente la competenza matematica, possiamo dedurne l’esistenza attraverso osservazioni comportamentali. Pertanto, la competenza matematica è considerata una variabile latente e, nel contesto attuale, ciò significa che è concettualizzata come un continuum latente. Per valutare le competenze matematiche degli individui, viene somministrato loro uno strumento contenente cinque item. Le loro risposte a questo strumento costituiscono le nostre osservazioni comportamentali. Gli item dello strumento sono posizionati in vari punti lungo il continuum che rappresenta la competenza matematica.</p>
+<p>Supponiamo di voler rappresentare sia la difficoltà degli item di un test che le abilità dei rispondenti sullo stesso continuum. L’estremità superiore del continuum indica una maggiore competenza matematica rispetto all’estremità inferiore. Questo significa che gli item situati verso il lato destro richiedono una maggiore competenza per ottenere una risposta corretta rispetto agli item situati verso il lato sinistro. Gli item sono posizionati lungo tutto il continuum, alcuni sopra lo 0 e altri sotto lo 0. Ad esempio, il primo item è situato a -2, il secondo a -1, e così via. Utilizziamo la lettera greca <span class="math notranslate nohighlight">\(\beta\)</span> per rappresentare la posizione di un item e <span class="math notranslate nohighlight">\(\beta_i\)</span> per la posizione dell’i-esimo item su questo continuum. Inoltre, la lettera greca <span class="math notranslate nohighlight">\(\theta\)</span> è usata per rappresentare la posizione della persona su questo continuum. La posizione di una persona riflette la sua competenza matematica.</p>
+<p>Una conseguenza di posizionare sia le persone che gli item sullo stesso continuum è che è possibile fare affermazioni comparative su come una persona tipica potrebbe rispondere a un item. Per esempio, poiché l’estremità inferiore del continuum rappresenta una competenza matematica minore rispetto all’estremità superiore, gli item situati nell’estremità inferiore richiedono meno competenza per ottenere una risposta corretta rispetto a quelli nell’estremità superiore. Di conseguenza, è probabile che una persona situata a 0 risponda correttamente agli item situati nell’estremità inferiore del continuum (ad esempio, l’item 1 con <span class="math notranslate nohighlight">\(\beta_1\)</span> = -2). Tuttavia, se somministriamo un item situato più vicino allo 0, diciamo l’item 2 con <span class="math notranslate nohighlight">\(\beta_2\)</span> = -1, allora c’è una buona possibilità che la persona risponda correttamente, ma riconosciamo che c’è una maggiore possibilità che possa rispondere in modo errato. Allo stesso modo, somministrare un item, come l’item 4 (<span class="math notranslate nohighlight">\(\beta_4\)</span> = 1), a una persona situata a 0, probabilmente risulterà in una risposta errata, ma c’è ancora una possibilità considerevole che possa rispondere correttamente all’item a causa della vicinanza nella competenza richiesta dall’item e quella posseduta dalla persona. In altre parole, maggiore è la distanza tra le posizioni di persona e item, maggiore è la certezza che abbiamo su come ci si aspetta che la persona risponda all’item. Tuttavia, man mano che questa distanza si avvicina a zero, più è probabile che si dica che c’è una probabilità del 50-50 che la persona risponda correttamente all’item. Le aspettative su come una persona risponderà sono dunque espresse in termini probabilistici (cioè, “le probabilità di una risposta corretta sono…”).</p>
+<p>Anche se quanto detto sopra può sembrare intuitivo, si potrebbe chiedere: “Ci sono dati che supportano un modello di probabilità crescente di una risposta corretta all’aumentare della posizione della persona sul continuum latete?” Esaminiamo dei dati reali che mostrano la proporzione di individui che rispondono correttamente a un item come funzione dei loro punteggio standard su un test. In questo caso, ai partecipanti sono stati somministrati 5 item per valutare le loro competenze matematiche.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">math_dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rio</span><span class="o">::</span><span class="nf">import</span><span class="p">(</span><span class="s">&quot;../data/deAyala/Math.txt&quot;</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">math_dat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 5</caption>
+<thead>
+	<tr><th></th><th scope=col>V1</th><th scope=col>V2</th><th scope=col>V3</th><th scope=col>V4</th><th scope=col>V5</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>2</th><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>3</th><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>4</th><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>5</th><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+	<tr><th scope=row>6</th><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the total score for each subject</span>
+<span class="n">math_dat</span><span class="o">$</span><span class="n">total_score</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rowSums</span><span class="p">(</span><span class="n">math_dat</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">])</span>
+
+<span class="c1"># Standardize the total scores (z-scores)</span>
+<span class="n">math_dat</span><span class="o">$</span><span class="n">standard_score</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">math_dat</span><span class="o">$</span><span class="n">total_score</span><span class="p">)</span>
+
+<span class="c1"># Prepare data for plotting</span>
+<span class="n">plot_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lapply</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">math_dat</span><span class="p">)[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">],</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">item</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">math_dat</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">        </span><span class="nf">group_by</span><span class="p">(</span><span class="n">standard_score</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">        </span><span class="nf">summarise</span><span class="p">(</span><span class="n">proportion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="nf">get</span><span class="p">(</span><span class="n">item</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">        </span><span class="nf">mutate</span><span class="p">(</span><span class="n">item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">item</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="n">plot_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">do.call</span><span class="p">(</span><span class="n">rbind</span><span class="p">,</span><span class="w"> </span><span class="n">plot_data</span><span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">standard_score</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">proportion</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">item</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">item</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">labs</span><span class="p">(</span>
+<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Z-Value (Standard Score)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Proportion Correct&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Proportion of Correct Responses by Standard Score&quot;</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">theme_minimal</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a9e63341a2b691ba344cd9637b9d1584534ab75f9cd96defd804d09c14e884fb.png" src="../_images/a9e63341a2b691ba344cd9637b9d1584534ab75f9cd96defd804d09c14e884fb.png" />
+</div>
+</div>
+<p>Nell’esame di questo campione di dati reali, osserviamo un risultato in linea con le nostre aspettative: la probabilità di fornire una risposta corretta a un item cresce all’aumentare delle competenze complessive della persona. Questo andamento conferma l’ipotesi che maggiore è l’abilità generale di un individuo, maggiori sono le sue possibilità di rispondere correttamente agli item del test.</p>
+</section>
+<section id="curva-caratteristica-dell-item">
+<h2><span class="section-number">42.4. </span>Curva Caratteristica dell’Item<a class="headerlink" href="#curva-caratteristica-dell-item" title="Permalink to this heading">#</a></h2>
+<p>Oltre a una semplice descrizione delle tendenze osservate nelle risposte, come abbiamo già fatto, miriamo a sviluppare un modello che incorpori la nostra comprensione di come la posizione di un individuo su un continuum latente influenzi le sue risposte. La manifesta non linearità, come dimostrato nella figura precedente, suggerisce che un modello di regressione lineare non sarebbe adatto a questo scopo. Data la presenza di un pattern ogivale nelle distribuzioni cumulative, come nella distribuzione normale cumulativa o in quella logistica, è opportuno valutare l’uso di una di queste distribuzioni per la nostra modellazione. Pertanto, optiamo per la funzione logistica, grazie alla sua semplicità concettuale ed operativa. Questo metodo ci consente di tracciare la cosiddetta “curva caratteristica dell’item” (<em>Item Characterisric Curve</em>, ICC), detta anche <em>funzione caratteristica dell’item</em>, che descrive la probabilità di risposta corretta a un item specifico in relazione all’abilità latente del rispondente.</p>
+<p>La curva caratteristica dell’item  può essere vista come un affinamento del modello di Guttman. In questo modello avanzato, la probabilità di fornire una risposta corretta a un item non subisce necessariamente un incremento improvviso da 0 a 1 al superamento di una determinata soglia di abilità. Piuttosto, tale probabilità varia in maniera più graduale, descrivendo una curva sigmoidale. Ciò offre una rappresentazione più sfumata e dettagliata del processo di risposta.</p>
+<p>A differenza dello scaling di Guttman, la Teoria della Risposta all’Item (IRT) propone dunque un modello statistico per descrivere l’ICC. All’interno dell’ampio spettro dei modelli IRT, il modello di Rasch si distingue per la sua semplicità. Esso assume che tutte le curve caratteristiche degli item siano parallele, condividendo la stessa inclinazione. Questo presupposto implica che la difficoltà di ogni item è l’unica variabile che influenza la forma della curva, fornendo un quadro chiaro della relazione tra la probabilità di una risposta corretta e l’abilità latente del rispondente.</p>
+<p>Una rappresentazione grafica delle ICC di cinque item nel caso del modello di Rash è fornita nella figura successiva. L’asse orizzontale (asse x) rappresenta l’abilità latente <span class="math notranslate nohighlight">\(\theta\)</span> dei rispondenti, mentre l’asse verticale (asse y) indica la probabilità di una risposta corretta. Le curve sigmoidali, ciascuna in un colore diverso, rappresentano i diversi item. Si noti che le curve sono parallele. Queste curve mostrano come la probabilità di rispondere correttamente a ogni item varia in funzione dell’abilità del rispondente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">math_dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rio</span><span class="o">::</span><span class="nf">import</span><span class="p">(</span><span class="s">&quot;../data/deAyala/Math.txt&quot;</span><span class="p">)</span>
+
+<span class="c1"># Adatta il modello di Rasch</span>
+<span class="n">rasch_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rasch</span><span class="p">(</span><span class="n">math_dat</span><span class="p">)</span>
+
+<span class="c1"># Crea le curve caratteristiche degli item</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">rasch_model</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ICC&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c679aa7248e349748e3c7a85a7d4a34ca148f742a90e212748d9170d90141f66.png" src="../_images/c679aa7248e349748e3c7a85a7d4a34ca148f742a90e212748d9170d90141f66.png" />
+</div>
+</div>
+<p>La formulazione del modello di Rasch si differenzia dalla teoria classica dei test (CTT) in diversi modi cruciali.</p>
+<p>Nel modello di Rasch, l’analisi è condotta sia a livello di singolo item sia a livello dello strumento di misurazione nel suo complesso. Questo è in contrasto con la teoria classica dei test, dove l’analisi si concentra principalmente a livello dello strumento di misurazione nel suo complesso. Nella teoria classica dei test, il punteggio totale su uno strumento (<span class="math notranslate nohighlight">\(X\)</span>), come espresso nell’equazione <span class="math notranslate nohighlight">\(X = T + E\)</span>, è definito in termini di <span class="math notranslate nohighlight">\(T\)</span> (abilità vera) ed <span class="math notranslate nohighlight">\(E\)</span> (errore). Invece, nel modello di Rasch, ciò che viene modellato è la risposta all’item specifico, seguendo così la tradizione focalizzata sull’item di Guttman.</p>
+<p>Il modello di Rasch include sia un parametro della persona sia parametri dell’item. Questo approccio rende il modello di Rasch un modello multi-livello, dove vengono considerati sia i fattori relativi all’individuo che quelli specifici di ciascun item.</p>
+<p>Il modello di Rasch si concentra sulla modellazione della probabilità delle risposte osservate, piuttosto che sulla somma delle risposte, come avviene nella teoria classica dei test. Questo approccio rappresenta una significativa deviazione dalla CTT. Mentre la CTT si concentra sui punteggi totali e la loro distribuzione, il modello di Rasch si focalizza sulle probabilità delle risposte individuali, offrendo una comprensione più dettagliata delle prestazioni dei rispondenti e delle caratteristiche degli item.</p>
+<p>In sintesi, il modello di Rasch fornisce un’analisi che tiene conto sia delle caratteristiche dei rispondenti sia delle proprietà degli item e si concentra sulla probabilità di ogni singola risposta piuttosto che sulla somma totale delle risposte. Assume che tutte le ICC siano parallele. Altri modelli IRT assumono invece che le ICC abbiano pendenze diverse.</p>
+</section>
+<section id="il-modello-di-rasch-per-risposte-binarie">
+<h2><span class="section-number">42.5. </span>Il Modello di Rasch per Risposte Binarie<a class="headerlink" href="#il-modello-di-rasch-per-risposte-binarie" title="Permalink to this heading">#</a></h2>
+<p>Il Modello di Rasch esplora la relazione tra l’abilità latente di un individuo (<span class="math notranslate nohighlight">\(\theta\)</span>) e le sue risposte osservate, delineando una caratteristica di curva degli item (ICC) necessariamente monotona. In questo modello, un incremento dell’abilità latente <span class="math notranslate nohighlight">\(\theta_p\)</span> di una persona p comporta un aumento nella probabilità di fornire una risposta corretta all’item <span class="math notranslate nohighlight">\(i\)</span>. Questa relazione è descritta attraverso la funzione logit, impiegata anche nella regressione logistica:</p>
+<div class="math notranslate nohighlight">
+\[ 
+\text{Pr}(U_{i} = 1 \mid \theta) = \frac{e^z}{1 + e^z},
+\]</div>
+<p>dove <span class="math notranslate nohighlight">\(\text{Pr}(U_{i} = 1 \mid \theta)\)</span> rappresenta la probabilità di una risposta corretta all’item <span class="math notranslate nohighlight">\(i\)</span>, data l’abilità latente <span class="math notranslate nohighlight">\(\theta\)</span>. La variabile <span class="math notranslate nohighlight">\(z\)</span> è una funzione dell’abilità latente <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<p>Per una definizione più precisa di <span class="math notranslate nohighlight">\(z\)</span>, consideriamo come determinante la distanza tra la posizione della persona <span class="math notranslate nohighlight">\(p\)</span> (<span class="math notranslate nohighlight">\(\theta_p\)</span>) e quella dell’item <span class="math notranslate nohighlight">\(i\)</span> (<span class="math notranslate nohighlight">\(\beta_i\)</span>). Definendo quindi <span class="math notranslate nohighlight">\(z = \theta_p - \beta_i\)</span>, formuliamo un modello che predice la probabilità di una risposta corretta in funzione della posizione dell’item e della persona.</p>
+<p>Sostituendo <span class="math notranslate nohighlight">\(\theta_p - \beta_i\)</span> per <span class="math notranslate nohighlight">\(z\)</span> nella funzione logistica, otteniamo:</p>
+<div class="math notranslate nohighlight" id="equation-eq-rasch-model">
+<span class="eqno">(42.1)<a class="headerlink" href="#equation-eq-rasch-model" title="Permalink to this equation">#</a></span>\[ 
+\text{Pr}(U_{pi} = 1 \mid \theta_p, \beta_i) = \frac{\exp(\theta_p - \beta_i)}{1 + \exp(\theta_p - \beta_i)} = \frac{1}{1 + \exp(-(\theta_p - \beta_i))}. 
+\]</div>
+<p>Questa formula, <span class="math notranslate nohighlight">\(\text{Pr}(U_{pi} = 1 \mid \theta_p, \beta_i)\)</span>, indica la probabilità che un individuo, con un livello di abilità <span class="math notranslate nohighlight">\(\theta_p\)</span>, risponda correttamente all’item <span class="math notranslate nohighlight">\(i\)</span>. Il rapporto fra l’abilità <span class="math notranslate nohighlight">\(\theta_p\)</span> del rispondente e la difficoltà <span class="math notranslate nohighlight">\(\beta_i\)</span> dell’item influenza direttamente tale probabilità. Più la differenza è marcata a favore dell’abilità, maggiore sarà la probabilità di una risposta corretta, riflettendo il principio che individui più abili tendono a rispondere correttamente anche agli item più difficili.</p>
+<p>In termini semplificati, la formula stabilisce che la probabilità di fornire una risposta di tipo 1 (cioè una risposta corretta) per l’item i è funzione della distanza tra la posizione di una persona <span class="math notranslate nohighlight">\(p\)</span> (<span class="math notranslate nohighlight">\(\theta_p\)</span>) e quella dell’item <span class="math notranslate nohighlight">\(i\)</span> (<span class="math notranslate nohighlight">\(\beta_i\)</span>). Il lato destro dell’equazione converte la distanza (potenzialmente infinita) tra posizione della persona e quella dell’item in una probabilità compresa nell’intervallo [0, 1].</p>
+<p>È importante notare che, sebbene le posizioni teoriche degli item (<span class="math notranslate nohighlight">\(\beta_i\)</span>) e delle persone (<span class="math notranslate nohighlight">\(\theta_p\)</span>) varino da <span class="math notranslate nohighlight">\(-\infty\)</span> a <span class="math notranslate nohighlight">\(+\infty\)</span>, tipicamente esse si collocano tra -3 e +3. Nei test di competenza, le posizioni degli item sono interpretate come livelli di difficoltà. Item situati al di sotto di 0.0 sono considerati “facili” (ad esempio, sotto -2.0), mentre quelli al di sopra di 0.0 sono “difficili” (ad esempio, oltre +2.0). Gli item intorno allo 0.0 hanno una difficoltà media: quelli “facili” sono generalmente risposti correttamente da persone con abilità inferiore, mentre quelli “difficili” tendono ad essere corretti solo da coloro con abilità superiore.</p>
+</section>
+<section id="discriminazione">
+<h2><span class="section-number">42.6. </span>Discriminazione<a class="headerlink" href="#discriminazione" title="Permalink to this heading">#</a></h2>
+<p>Il concetto di “discriminazione” in psicometria, specialmente nel contesto del Modello di Rasch e altri modelli di risposta all’item (IRT), si riferisce alla capacità di un item di distinguere tra individui con abilità leggermente superiore e quelli con abilità leggermente inferiore rispetto alla difficoltà dell’item stesso. Questa capacità discriminante è generalmente caratterizzata dalla pendenza della curva caratteristica dell’item (ICC) “nel mezzo”, ovvero per livelli di abilità vicini alla difficoltà dell’item, con discriminazioni più elevate che corrispondono a pendenze più ripide.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definizione della funzione sigmoide per rappresentare le ICC</span>
+<span class="n">sigmoid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="o">-</span><span class="n">beta</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">0</span><span class="p">)))</span>
+<span class="p">}</span>
+
+<span class="c1"># Creazione di una sequenza di livelli di abilità</span>
+<span class="n">abilities</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">-2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span>
+
+<span class="c1"># Calcolo delle probabilità per due item con diversi valori di discriminazione</span>
+<span class="c1"># Per l&#39;item di sinistra (discriminazione inferiore, beta=1)</span>
+<span class="n">probabilities_left</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sigmoid</span><span class="p">(</span><span class="n">abilities</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+
+<span class="c1"># Per l&#39;item di destra (discriminazione superiore, beta=2)</span>
+<span class="n">probabilities_right</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sigmoid</span><span class="p">(</span><span class="n">abilities</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+
+<span class="c1"># Creazione del dataframe per ggplot</span>
+<span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Ability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="n">abilities</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
+<span class="w">    </span><span class="n">Probability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">probabilities_left</span><span class="p">,</span><span class="w"> </span><span class="n">probabilities_right</span><span class="p">),</span>
+<span class="w">    </span><span class="n">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Lower Discrimination (beta=1)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Higher Discrimination (beta=2)&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">each</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Creazione del grafico</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Probability</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Item</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;orange&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span>
+<span class="w">        </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">            </span><span class="n">Ability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">-0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span>
+<span class="w">            </span><span class="n">Probability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">sigmoid</span><span class="p">(</span><span class="m">-0.5</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="nf">sigmoid</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="nf">sigmoid</span><span class="p">(</span><span class="m">-0.5</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="nf">sigmoid</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)),</span>
+<span class="w">            </span><span class="n">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Lower Discrimination (beta=1)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Lower Discrimination (beta=1)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Higher Discrimination (beta=2)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Higher Discrimination (beta=2)&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">),</span>
+<span class="w">        </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Probability</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Item</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Item Characteristic Curves (ICCs) for Different Discriminations&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">xlab</span><span class="p">(</span><span class="s">&quot;Ability (theta)&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">ylab</span><span class="p">(</span><span class="s">&quot;Probability of Correct Response&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">theme_minimal</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e338db1aa0ccf6d49144d21317b188923cd1e9f03388b1868c2c88bef37037d1.png" src="../_images/e338db1aa0ccf6d49144d21317b188923cd1e9f03388b1868c2c88bef37037d1.png" />
+</div>
+</div>
+<p>Consideriamo due diverse ICC per items con difficoltà zero. Le probabilità che persone con abilità di −0.5 e +0.5 risolvano correttamente l’item sono approssimativamente 0.38 e 0.62 per l’item di sinistra e 0.27 e 0.73 per quello di destra. Questo significa che due persone con una differenza di 1 nella loro abilità mostrano una differenza di 0.24 nella loro probabilità di risolvere correttamente l’item di sinistra e una differenza di 0.46 per l’item di destra.</p>
+<p>La pendenza al centro dell’ICC, dove è praticamente lineare, può essere approssimata da questa differenza sull’asse y divisa per la differenza sull’asse x come 0.24 per l’item rappresentato dalla curva blu e 0.46 per quello rappresentato dalla curva arancione, rispettivamente. In termini più semplici, la pendenza è una misura di quanto rapidamente la probabilità di risposta corretta aumenta (o diminuisce) in relazione a un cambiamento nell’abilità dell’individuo. Una pendenza più ripida (come nell’item “blu”) indica una maggiore discriminazione, ovvero l’item è più efficace nel distinguere tra persone con abilità leggermente differenti.</p>
+<p>Nel Modello di Rasch, si assume che tutti gli item abbiano la stessa discriminazione, con una pendenza di 1. Questo è evidente dalla formula del modello, dove l’unico parametro per ciascun item <span class="math notranslate nohighlight">\(i\)</span> è la sua difficoltà <span class="math notranslate nohighlight">\(\beta_i\)</span>, senza parametri aggiuntivi per modellare la discriminazione. Tuttavia, questo approccio è spesso considerato troppo rigido dal punto di vista della modellazione, poiché molti test reali contengono item con discriminazioni disuguali. In contrasto, il modello logistico a due parametri (2PL) di Birnbaum incorpora un parametro di pendenza, permettendo a ciascun item di avere una discriminazione diversa.</p>
+<p>In sintesi, la discriminazione in un test psicometrico è un concetto chiave che descrive quanto efficacemente un item può differenziare tra rispondenti con abilità simili ma non identiche. Maggiore è la discriminazione, più efficacemente l’item può identificare le differenze sottili nelle abilità dei rispondenti.</p>
+</section>
+<section id="la-funzione-logistica">
+<h2><span class="section-number">42.7. </span>La funzione Logistica<a class="headerlink" href="#la-funzione-logistica" title="Permalink to this heading">#</a></h2>
+<p>Il Modello di Rasch impiega la funzione logistica per correlare abilità e difficoltà con la probabilità di una risposta corretta. La funzione logistica è solitamente definita come:</p>
+<div class="math notranslate nohighlight">
+\[ f(x) = \frac{\exp(x)}{1 + \exp(x)} \]</div>
+<p>Possiamo ottenere il Modello di Rasch sostituendo <span class="math notranslate nohighlight">\( \theta_p - \beta_i \)</span> per <span class="math notranslate nohighlight">\( x \)</span> in questa equazione. Questo significa che possiamo calcolare la probabilità di una risposta corretta nel Modello di Rasch applicando la funzione logistica alla differenza tra <span class="math notranslate nohighlight">\( \theta_p \)</span> e <span class="math notranslate nohighlight">\( \beta_i \)</span>, ovvero <span class="math notranslate nohighlight">\( \text{Pr}(U_{pi} = 1 \mid \theta_p, \beta_i) = f(\theta_p - \beta_i) \)</span>. La funzione logistica trasforma i logit, o log-odds, in probabilità.</p>
+<p>Le quote esprimono la probabilità relativa di una risposta corretta rispetto a una risposta errata, e il cosiddetto logit è il logaritmo naturale delle quote. Ad esempio, quote di tre indicano che una risposta corretta è tre volte più probabile di una risposta errata, mentre quote di 1/3 indicano che una risposta corretta è tre volte meno probabile di una risposta errata. Se la probabilità di una risposta corretta è data da <span class="math notranslate nohighlight">\( \pi \)</span>, la probabilità di una risposta errata è <span class="math notranslate nohighlight">\( 1-\pi \)</span>, e le quote sono <span class="math notranslate nohighlight">\( O = \frac{\pi}{1-\pi} \)</span>. Qualsiasi quota <span class="math notranslate nohighlight">\( O \)</span> corrisponde a un unico logit <span class="math notranslate nohighlight">\( \log(O) \)</span> e a una unica probabilità <span class="math notranslate nohighlight">\( \pi \)</span>. Questo ci permette di definire il Modello di Rasch usando il logit, che è un’alternativa all’uso della probabilità, come abbiamo fatto sopra. Per un parametro di abilità <span class="math notranslate nohighlight">\( \theta_p \)</span> e un parametro di difficoltà <span class="math notranslate nohighlight">\( \beta_i \)</span>, si può dimostrare che i log-odds sono <span class="math notranslate nohighlight">\( \theta_p - \beta_i \)</span>. Questo porta alla forma logit del Modello di Rasch:</p>
+<p>Questo porta alla forma logit del modello di Rasch,</p>
+<div class="math notranslate nohighlight" id="equation-eq-rasch-logit">
+<span class="eqno">(42.2)<a class="headerlink" href="#equation-eq-rasch-logit" title="Permalink to this equation">#</a></span>\[ 
+\log \left( \frac{\text{Pr}(U_{pi} = 1 | \theta_p, \beta_i)}{\text{Pr}(U_{pi} = 0 | \theta_p, \beta_i)} \right) = \theta_p - \beta_i. 
+\]</div>
+<p>Possiamo dimostrarlo come segue. Come notato sopra, le quote sono definite per essere <span class="math notranslate nohighlight">\( O = \frac{\pi}{1 - \pi} \)</span> per il modello di Rasch, dove</p>
+<div class="math notranslate nohighlight">
+\[ 
+\pi = \frac{\exp(\theta_p - \beta_i)}{1 + \exp(\theta_p - \beta_i)}. 
+\]</div>
+<p>Come deriveremo in dettaglio nella Sezione <a class="reference internal" href="#sec-rasch-prob-risp-errata"><span class="std std-ref">Probabilità di una Risposta Errata</span></a>,</p>
+<div class="math notranslate nohighlight">
+\[ 1 - \pi = 1 - \frac{\exp(\theta_p - \beta_i)}{1 + \exp(\theta_p - \beta_i)} = \frac{1}{1 + \exp(\theta_p - \beta_i)}. \]</div>
+<p>Sostituendo questi termini nella definizione di <span class="math notranslate nohighlight">\( O \)</span> e cancellando i termini comuni otteniamo</p>
+<div class="math notranslate nohighlight">
+\[ O = \frac{\exp(\theta_p - \beta_i)}{1 + \exp(\theta_p - \beta_i)} = \exp(\theta_p - \beta_i). \]</div>
+<p>Quindi,</p>
+<div class="math notranslate nohighlight">
+\[ \log(O) = \theta_p - \beta_i. \]</div>
+<p>Questa equazione dimostra che, nella scala dei logit, la probabilità di fornire una risposta corretta all’item i è direttamente proporzionale alla differenza tra il livello di abilità <span class="math notranslate nohighlight">\( \theta_p \)</span> del rispondente e la difficoltà dell’item <span class="math notranslate nohighlight">\( \beta_i \)</span>. Una maggiore differenza tra <span class="math notranslate nohighlight">\( \theta_p \)</span> e <span class="math notranslate nohighlight">\( \beta_i \)</span> implica una più alta probabilità di risposta corretta, <span class="math notranslate nohighlight">\( \text{Pr}(U_{pi} = 1 \mid \theta_p) = 1 \)</span>, in confronto alla probabilità di una risposta errata. Di conseguenza, valori elevati sulla scala dei logit indicano una discrepanza significativa a favore dell’abilità del rispondente rispetto alla difficoltà dell’item, e quindi una maggiore probabilità di ottenere una risposta corretta.</p>
+<p>Un ulteriore vantaggio della forma logit è che offre una semplice interpretazione di <span class="math notranslate nohighlight">\( \theta_p - \beta_i \)</span> come il logit della probabilità che la persona <span class="math notranslate nohighlight">\(p\)</span> risponda correttamente all’item <span class="math notranslate nohighlight">\(i\)</span>. Questo significa che il logit è lineare in <span class="math notranslate nohighlight">\( \theta_p \)</span>, con intercetta y pari a <span class="math notranslate nohighlight">\( -\beta_i \)</span> e pendenza uno. La figura seguente dimostra ciò per due item <span class="math notranslate nohighlight">\(i\)</span> e <span class="math notranslate nohighlight">\(j\)</span> con difficoltà <span class="math notranslate nohighlight">\( \beta_i = -1 \)</span> e <span class="math notranslate nohighlight">\( \beta_j = 1 \)</span>. Vediamo che le due linee sono parallele, una conseguenza dell’avere la stessa pendenza. L’unica differenza tra le linee è dove esse intersecano l’asse y: <span class="math notranslate nohighlight">\( -\beta_i \)</span> nel caso dell’item <span class="math notranslate nohighlight">\(i\)</span>, e <span class="math notranslate nohighlight">\( -\beta_j \)</span> nel caso dell’item <span class="math notranslate nohighlight">\(j\)</span>. In questa rappresentazione, è direttamente visibile che le ICC del Modello di Rasch sono parallele, mentre sulla scala delle probabilità ciò è evidente solo nella loro sezione centrale (sebbene si possa notare che esse non si incrociano).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creazione di un dataframe con i valori di abilità (theta_p) e le difficoltà degli item (beta)</span>
+<span class="n">theta_p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">-3</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span>
+<span class="n">beta_i</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">-1</span>
+<span class="n">beta_j</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span>
+
+<span class="c1"># Calcolo dei logit per gli item i e j</span>
+<span class="n">logit_i</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">theta_p</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">beta_i</span>
+<span class="n">logit_j</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">theta_p</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">beta_j</span>
+
+<span class="c1"># Creazione del dataframe per il plot</span>
+<span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Ability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">theta_p</span><span class="p">,</span><span class="w"> </span><span class="n">theta_p</span><span class="p">),</span>
+<span class="w">    </span><span class="n">Logit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">logit_i</span><span class="p">,</span><span class="w"> </span><span class="n">logit_j</span><span class="p">),</span>
+<span class="w">    </span><span class="n">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;Item i (beta_i = -1)&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">theta_p</span><span class="p">)),</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;Item j (beta_j = 1)&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">theta_p</span><span class="p">))))</span>
+<span class="p">)</span>
+
+<span class="c1"># Creazione del grafico</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Logit</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Item</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">ggtitle</span><span class="p">(</span><span class="nf">TeX</span><span class="p">(</span><span class="s">&quot;Parallel Lines for Item i and j in the Rasch Model&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">xlab</span><span class="p">(</span><span class="nf">TeX</span><span class="p">(</span><span class="s">&quot;Ability ($\\theta_p$)&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">ylab</span><span class="p">(</span><span class="nf">TeX</span><span class="p">(</span><span class="s">&quot;Logit Probability&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">theme_minimal</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9b046488eabd7935f5def8e5ef555796489ae74a090d0d58b33ce574f748df33.png" src="../_images/9b046488eabd7935f5def8e5ef555796489ae74a090d0d58b33ce574f748df33.png" />
+</div>
+</div>
+<p>Il fatto che le due linee siano parallele significa che la differenza tra il logit della probabilità di rispondere correttamente all’item <span class="math notranslate nohighlight">\(i\)</span> e il logit della probabilità di rispondere correttamente all’item <span class="math notranslate nohighlight">\(j\)</span> è la stessa per ogni livello di abilità. Questo è un modo per comprendere l’oggettività specifica, una proprietà importante del Modello di Rasch che discuteremo in seguito.</p>
+</section>
+<section id="probabilita-di-una-risposta-errata">
+<span id="sec-rasch-prob-risp-errata"></span><h2><span class="section-number">42.8. </span>Probabilità di una Risposta Errata<a class="headerlink" href="#probabilita-di-una-risposta-errata" title="Permalink to this heading">#</a></h2>
+<p>Il modello di Rasch non ammette il credito parziale. Pertanto, <span class="math notranslate nohighlight">\( U_{pi} \)</span> è o zero o uno per ogni persona e item del test, e le probabilità di questi due possibili esiti devono sommarsi a uno, il che significa</p>
+<div class="math notranslate nohighlight">
+\[ \text{Pr}(U_{pi} = 1 | \theta_p, \beta_i) + \text{Pr}(U_{pi} = 0 | \theta_p, \beta_i) = 1. \]</div>
+<p>Risolvendo per <span class="math notranslate nohighlight">\( \text{Pr}(U_{pi} = 0 | \theta_p, \beta_i) \)</span>, otteniamo</p>
+<div class="math notranslate nohighlight">
+\[ \text{Pr}(U_{pi} = 0 | \theta_p, \beta_i) = 1 - \text{Pr}(U_{pi} = 1 | \theta_p, \beta_i) = 1 - \frac{\exp(\theta_p - \beta_i)}{1 + \exp(\theta_p - \beta_i)} \]</div>
+<p>dopo aver sostituito l’eq. <a class="reference internal" href="#equation-eq-rasch-logit">(42.2)</a> per <span class="math notranslate nohighlight">\( \text{Pr}(U_{pi} = 1 | \theta_p, \beta_i) \)</span>. Possiamo semplificare l’ultima espressione espandendo il 1 per ottenere</p>
+<div class="math notranslate nohighlight">
+\[ \text{Pr}(U_{pi} = 0 | \theta_p, \beta_i) = \frac{1 + \exp(\theta_p - \beta_i) - \exp(\theta_p - \beta_i)}{1 + \exp(\theta_p - \beta_i)} = \frac{1}{1 + \exp(\theta_p - \beta_i)}. \]</div>
+</section>
+<section id="probabilita-di-una-risposta-arbitraria">
+<h2><span class="section-number">42.9. </span>Probabilità di una Risposta Arbitraria<a class="headerlink" href="#probabilita-di-una-risposta-arbitraria" title="Permalink to this heading">#</a></h2>
+<p>In questa sezione, calcoleremo la probabilità di una risposta arbitraria <span class="math notranslate nohighlight">\(\text{Pr}(U_{pi} = u_{pi} | \theta_p, \beta_i)\)</span>, che combina espressioni separate per <span class="math notranslate nohighlight">\(\text{Pr}(U_{pi} = 1 | \theta_p, \beta_i)\)</span> e <span class="math notranslate nohighlight">\(\text{Pr}(U_{pi} = 0 | \theta_p, \beta_i)\)</span> in un’unica formula. Avere una singola espressione è utile per scrivere le probabilità dei pattern di risposta e delle intere matrici di dati. Per il modello di Rasch, questa espressione è</p>
+<div class="math notranslate nohighlight" id="equation-eq-rasch-2-3">
+<span class="eqno">(42.3)<a class="headerlink" href="#equation-eq-rasch-2-3" title="Permalink to this equation">#</a></span>\[ 
+\text{Pr}(U_{pi} = u_{pi} | \theta_p, \beta_i) = \frac{\exp\{u_{pi} \cdot (\theta_p - \beta_i)\}}{1 + \exp(\theta_p - \beta_i)}, 
+\]</div>
+<p>dove rimane aperta la questione se <span class="math notranslate nohighlight">\( u_{pi} \)</span> assumerà il valore zero o uno.</p>
+<p>Possiamo verificare che le due equazioni separate per entrambi i casi siano coperte dall’Eq. <a class="reference internal" href="#equation-eq-rasch-2-3">(42.3)</a> sostituendo ciascuno dei due possibili valori di <span class="math notranslate nohighlight">\( u_{pi} \)</span>. Quando <span class="math notranslate nohighlight">\( u_{pi} = 1 \)</span>, l’espressione si riduce a</p>
+<div class="math notranslate nohighlight">
+\[ \frac{\exp\{1 \cdot (\theta_p - \beta_i)\}}{1 + \exp(\theta_p - \beta_i)} = \frac{\exp(\theta_p - \beta_i)}{1 + \exp(\theta_p - \beta_i)}, \]</div>
+<p>che è la probabilità di una risposta corretta.</p>
+<p>Quando <span class="math notranslate nohighlight">\( u_{pi} = 0 \)</span> si ottiene</p>
+<div class="math notranslate nohighlight">
+\[ 
+\frac{\exp\{0 \cdot (\theta_p - \beta_i)\}}{1 + \exp(\theta_p - \beta_i)} = \frac{\exp(0)}{1 + \exp(\theta_p - \beta_i)} = \frac{1}{1 + \exp(\theta_p - \beta_i)}, 
+\]</div>
+<p>che è la probabilità di una risposta errata, poiché <span class="math notranslate nohighlight">\( \exp(0) = 1 \)</span>.</p>
+<p>Quindi, l’Eq. <a class="reference internal" href="#equation-eq-rasch-2-3">(42.3)</a> fornisce effettivamente un modo per calcolare la probabilità di entrambi i tipi di risposte (corretta o errata) in base al valore di <span class="math notranslate nohighlight">\( u_{pi} \)</span>, rendendola una formula versatile per il modello di Rasch.</p>
+<p>In alcune letterature, in particolare nella letteratura relativa all’IRT bayesiana, viene utilizzata un’espressione combinata differente. Questa espressione si basa sulla distribuzione di Bernoulli, così chiamata in onore del matematico svizzero Jacob Bernoulli. La distribuzione di Bernoulli fornisce le probabilità di qualsiasi variabile casuale con due esiti, come le risposte nel modello di Rasch. Ha un singolo parametro, che indica la probabilità che la variabile casuale sia uno. Per il modello di Rasch, questo parametro è</p>
+<div class="math notranslate nohighlight">
+\[ 
+\pi_{pi} = \text{Pr}(U_{pi} = 1 | \theta_p, \beta_i) = \frac{\exp(\theta_p - \beta_i)}{1 + \exp(\theta_p - \beta_i)}. 
+\]</div>
+<p>Dato <span class="math notranslate nohighlight">\( \pi_{pi} \)</span>, la probabilità di risposta <span class="math notranslate nohighlight">\( u_{pi} \)</span> è</p>
+<div class="math notranslate nohighlight" id="equation-eq-rasch-2-4">
+<span class="eqno">(42.4)<a class="headerlink" href="#equation-eq-rasch-2-4" title="Permalink to this equation">#</a></span>\[ 
+\text{Pr}(U_{pi} = u_{pi} | \theta_p, \beta_i) = \pi_{pi}^{u_{pi}} \cdot (1 - \pi_{pi})^{1-u_{pi}}. 
+\]</div>
+<p>La base del secondo termine, <span class="math notranslate nohighlight">\( 1-\pi_{pi} \)</span>, è uguale alla probabilità di una risposta errata <span class="math notranslate nohighlight">\( \text{Pr}(U_{pi} = 0 | \theta_p, \beta_i) \)</span>. Così, la probabilità di una risposta corretta è elevata alla potenza <span class="math notranslate nohighlight">\( u_{pi} \)</span>, mentre la probabilità di una risposta errata è elevata alla potenza <span class="math notranslate nohighlight">\( 1 - u_{pi} \)</span>.</p>
+<p>Questa espressione è davvero solo un trucco notazionale che sfrutta il fatto che <span class="math notranslate nohighlight">\( a^0 = 1 \)</span> per qualsiasi <span class="math notranslate nohighlight">\( a \)</span>. I termini <span class="math notranslate nohighlight">\( u_{pi} \)</span> e <span class="math notranslate nohighlight">\( 1-u_{pi} \)</span> agiscono come interruttori. Quando <span class="math notranslate nohighlight">\( u_{pi} = 1 \)</span>, <span class="math notranslate nohighlight">\( 1-u_{pi} = 0 \)</span>, quindi la probabilità di una risposta corretta è attivata mentre la probabilità di una risposta errata è disattivata essendo impostata a uno. Possiamo vedere questo meccanismo nelle equazioni sostituendo 1 per <span class="math notranslate nohighlight">\( u_{pi} \)</span>. Questo dà <span class="math notranslate nohighlight">\( \pi_{pi}^{1} \cdot (1-\pi_{pi})^{1-1} = \pi_{pi}^{1} \cdot (1-\pi_{pi})^{0} = \pi_{pi} \cdot 1 = \pi_{pi} \)</span>. Impostando <span class="math notranslate nohighlight">\( u_{pi} = 0 \)</span>, gli interruttori si invertono: la probabilità di una risposta corretta è disattivata, mentre quella di una risposta errata è attivata.</p>
+<p>Un vantaggio dell’uso dell’eq. <a class="reference internal" href="#equation-eq-rasch-2-4">(42.4)</a> per descrivere il modello di Rasch è che non dipende dalla forma specifica dell’ICC. Nella teoria classica del Modello di Rasch, la Curva Caratteristica dell’Item (ICC) descrive la probabilità di una risposta corretta in funzione dell’abilità del rispondente e della difficoltà dell’item. Questa curva ha una forma specifica determinata dalla formulazione matematica del modello di Rasch. L’eq. <a class="reference internal" href="#equation-eq-rasch-2-4">(42.4)</a>, basata sulla distribuzione di Bernoulli, non è vincolata a una specifica forma dell’ICC del modello di Rasch. In altre parole, questa formulazione è più flessibile e può adattarsi a modelli diversi dal modello di Rasch standard, come il modello 1PNO, pur mantenendo la sua validità. Il modello 1PNO (One-Parameter Normal Ogive) è un altro modello nella teoria della risposta all’item. Anche se ha delle somiglianze con il modello di Rasch, utilizza una formulazione diversa per la probabilità di una risposta corretta. Utilizzando l’equazione Bernoulli (eq. <a class="reference internal" href="#equation-eq-rasch-2-4">(42.4)</a>), è possibile creare un’equazione unificata che può descrivere le probabilità di risposta sia nel modello di Rasch che nel modello 1PNO. Questo viene fatto definendo <span class="math notranslate nohighlight">\( \pi_{pi} \)</span> (la probabilità di successo in un’item per un individuo) secondo la formulazione specifica del modello 1PNO anziché quella del modello di Rasch.</p>
+<p>Un secondo vantaggio è che ci permette di usare una scorciatoia statistica per nascondere i suoi dettagli matematici in molte situazioni. Quando vogliamo dire che la variabile casuale <span class="math notranslate nohighlight">\( U_{pi} \)</span> segue una distribuzione di Bernoulli con parametro <span class="math notranslate nohighlight">\( \pi_{pi} \)</span>, è comune scrivere <span class="math notranslate nohighlight">\( U_{pi} \sim \text{Bernoulli}(\pi_{pi}) \)</span>. Il simbolo “∼” può essere letto come “è distribuito come”. In questa notazione, che è comune nell’IRT bayesiano, possiamo scrivere il modello di Rasch come</p>
+<div class="math notranslate nohighlight">
+\[ 
+U_{pi} \sim \text{Bernoulli}(\pi_{pi}), \quad \pi_{pi} = \frac{\exp(\theta_p - \beta_i)}{1 + \exp(\theta_p - \beta_i)}. 
+\]</div>
+</section>
+<section id="rappresentazione-alternativa-della-funzione-logistica">
+<h2><span class="section-number">42.10. </span>Rappresentazione Alternativa della Funzione Logistica<a class="headerlink" href="#rappresentazione-alternativa-della-funzione-logistica" title="Permalink to this heading">#</a></h2>
+<p>La funzione logistica utilizzata nel modello di Rasch può essere scritta in due modi: con la funzione esponenziale sia al numeratore sia al denominatore, come facciamo nella maggior parte del libro (a sinistra), oppure equivalentemente con la funzione esponenziale solo al denominatore, seguita dal suo argomento negativo (a destra):</p>
+<div class="math notranslate nohighlight">
+\[ 
+\frac{\exp(\theta_p - \beta_i)}{1 + \exp(\theta_p - \beta_i)} = \frac{1}{1 + \exp(-(\theta_p - \beta_i))} 
+\]</div>
+<p>Per dimostrare l’equivalenza delle due espressioni della funzione logistica nel modello di Rasch, seguiamo i seguenti  passaggi algebrici. Per semplificare il lato destro, utilizziamo la proprietà dell’esponenziale che afferma <span class="math notranslate nohighlight">\( e^{-x} = \frac{1}{e^x} \)</span>. Quindi, riscriviamo <span class="math notranslate nohighlight">\( \exp(-(\theta_p - \beta_i)) \)</span> come <span class="math notranslate nohighlight">\( \frac{1}{\exp(\theta_p - \beta_i)} \)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \frac{1}{1 + \frac{1}{\exp(\theta_p - \beta_i)}} \]</div>
+<p>Il denominatore del lato destro diventa <span class="math notranslate nohighlight">\( 1 + \frac{1}{\exp(\theta_p - \beta_i)} \)</span>. Per combinare i termini nel denominatore, otteniamo un denominatore comune:</p>
+<div class="math notranslate nohighlight">
+\[ \frac{1}{\frac{\exp(\theta_p - \beta_i) + 1}{\exp(\theta_p - \beta_i)}} \]</div>
+<p>Simplificando ulteriormente, il denominatore diventa <span class="math notranslate nohighlight">\( \exp(\theta_p - \beta_i) + 1 \)</span>, quindi l’intera espressione diventa:</p>
+<div class="math notranslate nohighlight">
+\[ \frac{1}{\exp(\theta_p - \beta_i) + 1} \]</div>
+<p>Possiamo ora invertire la frazione per ottenere il lato sinistro dell’equazione originale:</p>
+<div class="math notranslate nohighlight">
+\[ \frac{\exp(\theta_p - \beta_i)}{\exp(\theta_p - \beta_i) + 1} \]</div>
+<p>Quindi, abbiamo dimostrato che il lato sinistro e il lato destro dell’equazione originale sono effettivamente equivalenti.</p>
+</section>
+<section id="il-modello-di-rasch-e-l-analisi-fattoriale">
+<h2><span class="section-number">42.11. </span>Il Modello di Rasch e l’Analisi Fattoriale<a class="headerlink" href="#il-modello-di-rasch-e-l-analisi-fattoriale" title="Permalink to this heading">#</a></h2>
+<p>Per una migliore comprensione del Modello di Rasch, è utile confrontarlo con l’Analisi Fattoriale. Nonostante le loro differenze come metodologie statistiche, entrambi cercano un obiettivo comune: comprendere le dimensioni latenti sottostanti alle risposte osservate nei dati. Questo parallelo aiuta a mettere in luce le somiglianze e le differenze tra i due approcci.</p>
+<p>Nell’Analisi Fattoriale, il modello tipico è espresso come <span class="math notranslate nohighlight">\(Y_i = \lambda_i \xi + \delta_i\)</span>, dove <span class="math notranslate nohighlight">\(Y_i\)</span> è il punteggio osservato per l’item i-esimo, <span class="math notranslate nohighlight">\(\lambda_i\)</span> rappresenta la saturazione fattoriale che indica quanto l’item è influenzato dal fattore latente <span class="math notranslate nohighlight">\(\xi\)</span>, e <span class="math notranslate nohighlight">\(\delta_i\)</span> è il termine di errore specifico per quell’item. L’idea centrale è che, controllando per <span class="math notranslate nohighlight">\(\xi\)</span>, le correlazioni tra gli item <span class="math notranslate nohighlight">\(Y_i\)</span> diventano nulle, poiché qualsiasi associazione comune è spiegata dal fattore latente.</p>
+<p>D’altra parte, il Modello di Rasch adotta un approccio leggermente diverso, ma con lo stesso obiettivo fondamentale: identificare e gestire l’influenza di una dimensione latente (spesso chiamata abilità) sulle risposte agli item. In questo contesto, si considerano risposte dicotomiche (0 o 1), e si presume che la probabilità di una risposta corretta a un item sia una funzione logistica dell’abilità del rispondente <span class="math notranslate nohighlight">\(\theta\)</span> e della difficoltà dell’item <span class="math notranslate nohighlight">\(\delta_i\)</span>.</p>
+<p>La principale differenza tra il Modello di Rasch e l’Analisi Fattoriale risiede nella formulazione dei parametri. Mentre l’Analisi Fattoriale stima le saturazioni fattoriali per ciascun item, il Modello di Rasch assume che tutti gli item abbiano lo stesso potere discriminante, cioè sono ugualmente efficaci nel distinguere tra rispondenti con diversi livelli di abilità. Invece di concentrarsi sulle saturazioni fattoriali, il Modello di Rasch si concentra sulla stima dell’abilità dei rispondenti <span class="math notranslate nohighlight">\(\theta\)</span> e sulla difficoltà degli item <span class="math notranslate nohighlight">\(\delta_i\)</span>, presupponendo che gli item siano equivalenti in termini di discriminazione.</p>
+<p>In conclusione, sia il Modello di Rasch che l’Analisi Fattoriale mirano a isolare e controllare l’effetto di una dimensione latente sull’associazione tra gli item, cercando di spiegare le risposte osservate attraverso questa dimensione. Mentre l’Analisi Fattoriale si concentra sulla stima delle saturazioni fattoriali e sull’identificazione di fattori latenti comuni tra gli item, il Modello di Rasch si focalizza sulla stima dell’abilità dei rispondenti e sulla difficoltà degli item, fornendo un quadro più specifico e dettagliato delle dinamiche che influenzano le risposte agli item.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_irt"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="400_logistic_regr.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">41. </span>Modello di regressione logistica</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="402_assumptions.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">43. </span>Assunzioni e Proprietà del Modello di Rasch</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduzione-alla-teoria-della-risposta-all-item">42.1. Introduzione alla Teoria della Risposta all’Item</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-scala-di-guttman">42.2. La scala di Guttman</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-modello-di-rasch">42.3. Il Modello di Rasch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curva-caratteristica-dell-item">42.4. Curva Caratteristica dell’Item</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-modello-di-rasch-per-risposte-binarie">42.5. Il Modello di Rasch per Risposte Binarie</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discriminazione">42.6. Discriminazione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-funzione-logistica">42.7. La funzione Logistica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilita-di-una-risposta-errata">42.8. Probabilità di una Risposta Errata</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilita-di-una-risposta-arbitraria">42.9. Probabilità di una Risposta Arbitraria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rappresentazione-alternativa-della-funzione-logistica">42.10. Rappresentazione Alternativa della Funzione Logistica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-modello-di-rasch-e-l-analisi-fattoriale">42.11. Il Modello di Rasch e l’Analisi Fattoriale</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
