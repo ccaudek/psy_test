@@ -1,0 +1,1095 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>44. Stima &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_irt/403_estimation';</script>
+    <link rel="shortcut icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="45. Implementazione" href="430_implementation.html" />
+    <link rel="prev" title="43. Assunzioni e Proprietà del Modello di Rasch" href="402_assumptions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Test psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/002_measurement.html">1. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/007_norms.html">2. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/008_regression.html">3. L’analisi di regressione</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/020_ctt_1.html">4. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/021_ctt_2.html">5. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/022_ctt_3.html">6. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/025_err_std_mis.html">7. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/026_err_std_stima.html">8. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/028_applications_ctt.html">9. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E_ctt_1.html">10. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/030_multilevel_1.html">11. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/031_interrater_reliability.html">12. L’affidabilità tra giudici</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/041_gtheory.html">13. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/051_validity.html">14. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/055_relations_to_other_vars.html">15. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/061_path_analysis.html">16. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/150_intro_fa.html">17. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/155_analisi_fattoriale_1.html">18. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/156_analisi_fattoriale_2.html">19. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/157_analisi_fattoriale_3.html">20. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/158_factor_scores.html">21. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/162_constraints_on_parms.html">22. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/163_total_score.html">23. Punteggio totale e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/170_cfa_mod_comp.html">24. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/175_bifactor.html">25. Modello bifattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione di strumenti psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/201_valutare_le_matrici.html">26. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/202_estrazione.html">27. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/203_numero_fattori.html">28. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/205_rotazione.html">29. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/206_valutare_sol_fattoriale.html">30. Valutare e rifinire la soluzione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/225_mmm.html">31. CFA per matrici multi-tratto multi-metodo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/350_sem_intro.html">32. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/351_data_preparation.html">33. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/352_gof.html">34. Indici di bontà dell’adattamento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/353_refine_solution.html">35. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/354_mod_comp.html">36. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/355_group_invariance.html">37. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/356_cat_data.html">38. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/357_multilevel_sem.html">39. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/358_missing_data.html">40. Dati mancanti</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="400_logistic_regr.html">41. Modello di regressione logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="401_rasch_model.html">42. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="402_assumptions.html">43. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">44. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="430_implementation.html">45. Implementazione</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/501_development.html">46. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/502_tutorial.html">47. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/700_lgm_intro.html">48. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/701_lgm_prelims.html">49. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/702_time_effects.html">50. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/703_intro_panel.html">51. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/704_lgm_mixed.html">52. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/705_growth_1.html">53. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/706_growth_cont.html">54. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/710_time_inv_cov.html">55. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/711_growth_groups.html">56. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/715_bivariate_growth_models.html">57. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/720_inv_measurement.html">58. Invarianza di misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/750_latent_change.html">59. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/751_biv_change.html">60. Modello LCS bivariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/755_lgm_meas_inv.html">61. Invarianza fattoriale nei modelli LGM</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">62. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/901_intro_r.html">63. Linguaggio di programmazione R</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test/issues/new?title=Issue%20on%20page%20%2F_irt/403_estimation.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_irt/403_estimation.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Stima</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-funzione-di-verosimiglianza">44.1. La Funzione di Verosimiglianza</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stima-della-massima-verosimiglianza-congiunta">44.2. Stima della Massima Verosimiglianza Congiunta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stima-della-massima-verosimiglianza-condizionale">44.3. Stima della Massima Verosimiglianza Condizionale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stima-della-massima-verosimiglianza-marginale">44.4. Stima della Massima Verosimiglianza Marginale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stima-bayesiana">44.5. Stima Bayesiana</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esempio-concreto">44.5.1. Esempio Concreto</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#informazioni-degli-item-e-del-test">44.6. Informazioni degli Item e del Test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grandezza-del-campione">44.7. Grandezza del Campione</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="stima">
+<span id="rasch-estimation-notebook"></span><h1><span class="section-number">44. </span>Stima<a class="headerlink" href="#stima" title="Permalink to this heading">#</a></h1>
+<p>Per valutare e applicare il modello di Rasch nella ricerca pratica, è necessario essere in grado di stimare i parametri del modello basandosi su dati empirici. Presenteremo diversi approcci per stimare i parametri del modello di Rasch a partire dai dati dei test osservati. Tutti questi approcci possono essere utilizzati per stimare sia i parametri degli item sia quelli delle persone, ma lo fanno in modi diversi. Due degli approcci – la massima verosimiglianza congiunta e l’inferenza bayesiana – stimano i parametri delle persone e degli item simultaneamente. Gli altri due approcci – la massima verosimiglianza condizionale e la massima verosimiglianza marginale – li stimano separatamente, con i parametri delle persone che seguono in un secondo passaggio.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">suppressPackageStartupMessages</span><span class="p">({</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;tidyverse&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;grid&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;latex2exp&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;mirt&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;TAM&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="c1"># devtools::install_github(&quot;masurp/ggmirt&quot;)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;ggmirt&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;cmdstanr&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;posterior&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">options</span><span class="p">(</span><span class="n">posterior.num_args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">sigfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">))</span><span class="w"> </span><span class="c1"># by default summaries with 2 significant digits</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;rstan&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;bayesplot&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">color_scheme_set</span><span class="p">(</span><span class="s">&quot;brightblue&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="la-funzione-di-verosimiglianza">
+<h2><span class="section-number">44.1. </span>La Funzione di Verosimiglianza<a class="headerlink" href="#la-funzione-di-verosimiglianza" title="Permalink to this heading">#</a></h2>
+<p>Tutti gli approcci per la stima dei parametri del modello di Rasch si basano sulla funzione di verosimiglianza, che è la probabilità dei dati osservati, espressa come funzione dei parametri del modello sconosciuti.</p>
+<p>La verosimiglianza della risposta della persona p all’item i nel modello di Rasch è data da (eq. <a class="reference internal" href="430_implementation.html#equation-eq-rasch-model">(45.1)</a>):</p>
+<div class="math notranslate nohighlight">
+\[ 
+L_{upi}(\theta_p, \beta_i) = \text{Pr}(U_{pi} = u_{pi} | \theta_p, \beta_i) = \frac{\exp\{u_{pi} \cdot (\theta_p - \beta_i)\}}{1 + \exp(\theta_p - \beta_i)}. 
+\]</div>
+<p>Possiamo calcolare la verosimiglianza delle risposte della persona p a tutti gli item del test <span class="math notranslate nohighlight">\(i = 1, ..., I\)</span> moltiplicando le verosimiglianze di tutte le sue risposte, ovvero:</p>
+<div class="math notranslate nohighlight" id="equation-eq-rasch-likelihood">
+<span class="eqno">(44.1)<a class="headerlink" href="#equation-eq-rasch-likelihood" title="Permalink to this equation">#</a></span>\[\begin{split} 
+\begin{align}
+L_{up}(\theta_p, \beta) &amp;= \prod_{i=1}^{I} \frac{\exp\{u_{pi} \cdot (\theta_p - \beta_i)\}}{1 + \exp(\theta_p - \beta_i)} \notag\\
+&amp;= \frac{\exp(rp \cdot \theta_p - \sum_{i=1}^{I} u_{pi} \cdot \beta_i)}{\prod_{i=1}^{I} [1 + \exp(\theta_p - \beta_i)]}.  
+\end{align}
+\end{split}\]</div>
+<p>Questo è il punto di partenza per tutti gli approcci di stima presentati. Tuttavia, il modo in cui vengono trattati i parametri delle persone dipende dall’approccio specifico utilizzato. In pratica, questo significa che la metodologia scelta per l’analisi dei dati determinerà come i parametri relativi alle abilità delle persone (<span class="math notranslate nohighlight">\(\theta_p\)</span>) e le difficoltà degli item (<span class="math notranslate nohighlight">\(\beta_i\)</span>) vengono stimati e interpretati.</p>
+</section>
+<section id="stima-della-massima-verosimiglianza-congiunta">
+<h2><span class="section-number">44.2. </span>Stima della Massima Verosimiglianza Congiunta<a class="headerlink" href="#stima-della-massima-verosimiglianza-congiunta" title="Permalink to this heading">#</a></h2>
+<p>Nella stima della massima verosimiglianza congiunta (spesso abbreviata con JML), troviamo i parametri delle persone e degli item che massimizzano la verosimiglianza congiunta nella Eq. <a class="reference internal" href="#equation-eq-rasch-likelihood">(44.1)</a>. Ha senso selezionare i parametri che massimizzano la verosimiglianza congiunta, perché questi parametri sono i più probabili ad aver generato i dati osservati.</p>
+<p>Nonostante sia un metodo diretto, la stima della massima verosimiglianza congiunta (JML) è raramente utilizzata, poiché generalmente non fornisce stime consistenti dei parametri degli item di un test, anche se il numero di persone tende all’infinito.</p>
+<p>Nel software statistico <code class="docutils literal notranslate"><span class="pre">R</span></code>, la verosimiglianza congiunta può essere massimizzata numericamente utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">tam.jml()</span></code> nel pacchetto <code class="docutils literal notranslate"><span class="pre">TAM</span></code>, così come con funzioni di uso generale per la stima di modelli lineari generalizzati. Tuttavia, l’uso di questa metodologia di stima non è generalmente raccomandato a causa delle sue limitazioni nella fornitura di stime affidabili e consistenti dei parametri degli item.</p>
+</section>
+<section id="stima-della-massima-verosimiglianza-condizionale">
+<h2><span class="section-number">44.3. </span>Stima della Massima Verosimiglianza Condizionale<a class="headerlink" href="#stima-della-massima-verosimiglianza-condizionale" title="Permalink to this heading">#</a></h2>
+<p>Una soluzione al problema descritto sopra è quella di stimare i parametri delle persone e degli item utilizzando un approccio in due fasi. Nel primo passo, condizioniamo sui parametri sufficienti delle persone. Questo ci permette di stimare i parametri degli item senza conoscere i parametri delle persone. Nel secondo passo, i parametri delle persone possono essere stimati utilizzando i parametri degli item stimati nella prima fase. Un’importante assunzione di questa procedura è che i parametri degli item vengano stimati con sufficiente precisione nel primo passo per poterli utilizzare nel secondo passo.</p>
+<p>Inizialmente, concentriamo l’analisi sui parametri degli item, ignorando temporaneamente i parametri delle persone. Ciò è possibile grazie all’utilizzo delle statistiche sufficienti relative alle persone, che consentono di isolare la stima dei parametri degli item.</p>
+<p>Una volta ottenuti i parametri degli item, questi vengono utilizzati per stimare i parametri delle persone. In questa fase, si assume che i parametri degli item siano stati stimati con un grado di precisione tale da renderli affidabili per la stima dei parametri delle persone.</p>
+<p>L’accuratezza della stima dei parametri delle persone nel secondo passo dipende fortemente dalla precisione con cui i parametri degli item sono stati stimati nel primo passo. Se i parametri degli item non sono stimati accuratamente, la stima dei parametri delle persone potrebbe non essere affidabile.</p>
+<p>In sintesi, la stima della massima verosimiglianza condizionale fornisce un approccio sequenziale e focalizzato che affronta le limitazioni della stima congiunta massimizzando prima la verosimiglianza degli item e poi quella delle persone.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">R</span></code>, possiamo utilizzare la funzione <code class="docutils literal notranslate"><span class="pre">RM()</span></code> nel pacchetto <code class="docutils literal notranslate"><span class="pre">eRm</span></code> (Mair, Hatzinger e Maier, 2021).</p>
+</section>
+<section id="stima-della-massima-verosimiglianza-marginale">
+<h2><span class="section-number">44.4. </span>Stima della Massima Verosimiglianza Marginale<a class="headerlink" href="#stima-della-massima-verosimiglianza-marginale" title="Permalink to this heading">#</a></h2>
+<p>La stima della massima verosimiglianza condizionale sostituisce il parametro della persona di ogni partecipante al test con il loro corrispondente punteggio totale. Questo consente di stimare in modo consistente sia i parametri delle persone che quelli degli item. Un altro approccio per “eliminare” i parametri delle persone nella stima dei parametri degli item è la stima della massima verosimiglianza marginale. In questo approccio, i parametri delle persone vengono “mediati” fuori dalla verosimiglianza congiunta.</p>
+<p>La stima della massima verosimiglianza marginale richiede una distribuzione marginale, o di popolazione, per i parametri delle persone. Questa distribuzione esprime la probabilità relativa di ciascun possibile parametro di abilità. Come sottolineato da De Ayala (2009), la stima della massima verosimiglianza marginale tratta le abilità come effetti casuali nel senso dei modelli misti (o multilivello), mentre la stima della massima verosimiglianza congiunta li tratta come effetti fissi.</p>
+<p>Una scelta comune per la distribuzione di popolazione dei parametri delle persone è la distribuzione normale. Questo ha senso quando possiamo ragionevolmente assumere una distribuzione simmetrica in cui la maggior parte delle persone ha parametri di persona vicini alla media, con solo poche persone che hanno valori molto alti o molto bassi. L’intelligenza è un buon esempio di ciò, poiché la maggior parte delle persone ha un’intelligenza media e solo poche hanno un’intelligenza molto alta o molto bassa.</p>
+<p>In sintesi, la stima della massima verosimiglianza marginale fornisce un metodo per incorporare considerazioni sulla distribuzione di abilità nella popolazione, consentendo una stima più realistica e precisa dei parametri degli item, soprattutto in contesti dove le abilità variano in modo continuo e seguono una distribuzione nota o ipotizzata.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">R</span></code>, la stima della massima verosimiglianza marginale è fornita sia dal pacchetto <code class="docutils literal notranslate"><span class="pre">mirt</span></code> (Chalmers, 2021) che dal pacchetto <code class="docutils literal notranslate"><span class="pre">TAM</span></code> (Robitzsch et al., 2021). Esiste anche un pacchetto più vecchio che utilizza la stima della massima verosimiglianza marginale, <code class="docutils literal notranslate"><span class="pre">ltm</span></code> (Rizopoulos, 2006), ma non è più mantenuto.</p>
+<p>Come nella stima della massima verosimiglianza condizionale, anche nell’approccio di massima verosimiglianza marginale i parametri delle persone devono essere stimati in un secondo passaggio, spesso denominato “scoring” (punteggio).</p>
+</section>
+<section id="stima-bayesiana">
+<h2><span class="section-number">44.5. </span>Stima Bayesiana<a class="headerlink" href="#stima-bayesiana" title="Permalink to this heading">#</a></h2>
+<p>La stima bayesiana sta diventando un metodo sempre più popolare per stimare i parametri del modello di Rasch. Come la stima della massima verosimiglianza congiunta, la stima bayesiana stima simultaneamente sia i parametri delle persone che quelli degli item. Tuttavia, mentre la stima della massima verosimiglianza congiunta trova i valori di <span class="math notranslate nohighlight">\( \theta \)</span> e <span class="math notranslate nohighlight">\( \beta \)</span> massimizzando la verosimiglianza congiunta, la stima bayesiana utilizza la regola di Bayes per trovare la densità a posteriori, <span class="math notranslate nohighlight">\( f(\theta,\beta \mid u) \)</span>. Per un’introduzione all’inferenza bayesiana, si veda l’Appendice B.1.4.</p>
+<p>Nel modello di Rasch, la regola di Bayes afferma che:</p>
+<div class="math notranslate nohighlight">
+\[ 
+f(\theta,\beta \mid u) = \frac{\text{Pr}(u \mid \theta,\beta)f(\theta,\beta)}{\text{Pr}(u)}. 
+\]</div>
+<p>Il primo termine nel numeratore, <span class="math notranslate nohighlight">\( \text{Pr}(u | \theta, \beta) \)</span>, è la verosimiglianza congiunta. Il secondo è la distribuzione a priori congiunta per <span class="math notranslate nohighlight">\( \theta \)</span> e <span class="math notranslate nohighlight">\( \beta \)</span>. Il denominatore è la probabilità media dei dati osservati rispetto alla distribuzione a priori congiunta.</p>
+<p>A differenza della stima della massima verosimiglianza, che si concentra sulla massimizzazione della verosimiglianza, la stima bayesiana integra le informazioni a priori con i dati osservati. La regola di Bayes combina la verosimiglianza dei dati osservati (la probabilità di osservare i dati dati i parametri) con la distribuzione a priori (le nostre credenze sui parametri prima di osservare i dati) per produrre una distribuzione a posteriori (le nostre credenze aggiornate sui parametri dopo aver osservato i dati). La densità a posteriori <span class="math notranslate nohighlight">\( f(\theta,\beta \mid u) \)</span> ci fornisce una stima completa dei parametri, considerando sia i dati osservati sia le informazioni a priori.</p>
+<p>In pratica, la stima bayesiana fornisce un approccio flessibile e informativo alla stima dei parametri nel modello di Rasch, consentendo l’integrazione di conoscenze pregresse e osservazioni attuali.</p>
+<section id="esempio-concreto">
+<h3><span class="section-number">44.5.1. </span>Esempio Concreto<a class="headerlink" href="#esempio-concreto" title="Permalink to this heading">#</a></h3>
+<p>Esaminiamo un’applicazione della stima Bayesiana usando il linguaggio probabilistico Stan. Il modello di Rasch è implementato nel file <code class="docutils literal notranslate"><span class="pre">rasch_model.stan</span></code> utilizzando le distribuzioni a priori specificate da <span id="id1">Debelak <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id2" title="Rudolf Debelak, Carolin Strobl, and Matthew D Zeigenfuse. An introduction to the rasch model with examples in r. Crc Press, 2022.">DSZ22</a>]</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">stan_file</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;../code/rasch_model.stan&quot;</span>
+<span class="n">mod</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cmdstan_model</span><span class="p">(</span><span class="n">stan_file</span><span class="p">)</span>
+<span class="n">mod</span><span class="o">$</span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>data {
+  int&lt;lower=1&gt; num_person;
+  int&lt;lower=1&gt; num_item;
+  array[num_person, num_item] int&lt;lower=0, upper=1&gt; U;
+}
+parameters {
+  vector[num_person] theta;
+  vector[num_item] beta;
+  real mu_beta;
+  real&lt;lower=0&gt; sigma2_theta;
+  real&lt;lower=0&gt; sigma2_beta;
+}
+transformed parameters {
+  array[num_person, num_item] real&lt;lower=0, upper=1&gt; prob_solve;
+  for (p in 1:num_person) 
+    for (i in 1:num_item) 
+      prob_solve[p, i] = inv_logit(theta[p] - beta[i]);
+}
+model {
+  for (p in 1:num_person) 
+    for (i in 1:num_item) 
+      U[p, i] ~ bernoulli(prob_solve[p, i]);
+  theta ~ normal(0, sqrt(sigma2_theta));
+  beta ~ normal(mu_beta, sqrt(sigma2_beta));
+  sigma2_theta ~ inv_chi_square(0.5);
+  sigma2_beta ~ inv_chi_square(0.5);
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compiliamo il modello usando CmdStan:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span><span class="o">$</span><span class="nf">compile</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Definiamo i dati nel formato appropriato per Stan:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">data</span><span class="p">(</span><span class="n">data.fims.Aus.Jpn.scored</span><span class="p">,</span><span class="w"> </span><span class="n">package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;TAM&quot;</span><span class="p">)</span>
+<span class="n">people</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">400</span>
+<span class="n">responses</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.fims.Aus.Jpn.scored</span><span class="p">[</span><span class="n">people</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="o">:</span><span class="m">15</span><span class="p">]</span>
+<span class="n">responses</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="nf">sapply</span><span class="p">(</span><span class="n">responses</span><span class="p">,</span><span class="w"> </span><span class="n">as.integer</span><span class="p">))</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">gsub</span><span class="p">(</span><span class="s">&quot;M1PTI&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;I&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">responses</span><span class="p">))</span>
+
+<span class="n">stan_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span>
+<span class="w">    </span><span class="n">num_person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">responses</span><span class="p">),</span>
+<span class="w">    </span><span class="n">num_item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ncol</span><span class="p">(</span><span class="n">responses</span><span class="p">),</span>
+<span class="w">    </span><span class="n">U</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">responses</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Eseguiamo il campionamento MCMC per ottenere la distribuzione a posteriori dei parametri.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mod</span><span class="o">$</span><span class="nf">sample</span><span class="p">(</span>
+<span class="w">    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stan_data</span><span class="p">,</span>
+<span class="w">    </span><span class="n">chains</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="c1"># Number of MCMC chains</span>
+<span class="w">    </span><span class="n">parallel_chains</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="c1"># Number of chains to run in parallel </span>
+<span class="w">    </span><span class="n">iter_warmup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2000</span><span class="p">,</span><span class="w"> </span><span class="c1"># Number of warmup iterations per chain</span>
+<span class="w">    </span><span class="n">iter_sampling</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2000</span><span class="p">,</span><span class="w"> </span><span class="c1"># Number of sampling iterations per chain</span>
+<span class="w">    </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1234</span><span class="w"> </span><span class="c1"># Set a seed for reproducibility</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running MCMC with 4 chains, at most 2 in parallel...
+
+Chain 1 Iteration:    1 / 4000 [  0%]  (Warmup) 
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chain 1 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chain 1 Exception: normal_lpdf: Scale parameter is 0, but must be positive! (in &#39;/var/folders/cl/wwjrsxdd5tz7y9jr82nd5hrw0000gn/T/RtmpNDB3FZ/model-a4fc65a663ef.stan&#39;, line 23, column 2 to column 40)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chain 1 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chain 1 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chain 1 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chain 2 Iteration:    1 / 4000 [  0%]  (Warmup) 
+Chain 2 Iteration:  100 / 4000 [  2%]  (Warmup) 
+Chain 1 Iteration:  100 / 4000 [  2%]  (Warmup) 
+Chain 2 Iteration:  200 / 4000 [  5%]  (Warmup) 
+Chain 1 Iteration:  200 / 4000 [  5%]  (Warmup) 
+Chain 2 Iteration:  300 / 4000 [  7%]  (Warmup) 
+Chain 1 Iteration:  300 / 4000 [  7%]  (Warmup) 
+Chain 2 Iteration:  400 / 4000 [ 10%]  (Warmup) 
+Chain 1 Iteration:  400 / 4000 [ 10%]  (Warmup) 
+Chain 2 Iteration:  500 / 4000 [ 12%]  (Warmup) 
+Chain 1 Iteration:  500 / 4000 [ 12%]  (Warmup) 
+Chain 2 Iteration:  600 / 4000 [ 15%]  (Warmup) 
+Chain 1 Iteration:  600 / 4000 [ 15%]  (Warmup) 
+Chain 2 Iteration:  700 / 4000 [ 17%]  (Warmup) 
+Chain 1 Iteration:  700 / 4000 [ 17%]  (Warmup) 
+Chain 2 Iteration:  800 / 4000 [ 20%]  (Warmup) 
+Chain 1 Iteration:  800 / 4000 [ 20%]  (Warmup) 
+Chain 2 Iteration:  900 / 4000 [ 22%]  (Warmup) 
+Chain 1 Iteration:  900 / 4000 [ 22%]  (Warmup) 
+Chain 2 Iteration: 1000 / 4000 [ 25%]  (Warmup) 
+Chain 1 Iteration: 1000 / 4000 [ 25%]  (Warmup) 
+Chain 2 Iteration: 1100 / 4000 [ 27%]  (Warmup) 
+Chain 1 Iteration: 1100 / 4000 [ 27%]  (Warmup) 
+Chain 2 Iteration: 1200 / 4000 [ 30%]  (Warmup) 
+Chain 1 Iteration: 1200 / 4000 [ 30%]  (Warmup) 
+Chain 2 Iteration: 1300 / 4000 [ 32%]  (Warmup) 
+Chain 1 Iteration: 1300 / 4000 [ 32%]  (Warmup) 
+Chain 2 Iteration: 1400 / 4000 [ 35%]  (Warmup) 
+Chain 1 Iteration: 1400 / 4000 [ 35%]  (Warmup) 
+Chain 2 Iteration: 1500 / 4000 [ 37%]  (Warmup) 
+Chain 1 Iteration: 1500 / 4000 [ 37%]  (Warmup) 
+Chain 2 Iteration: 1600 / 4000 [ 40%]  (Warmup) 
+Chain 1 Iteration: 1600 / 4000 [ 40%]  (Warmup) 
+Chain 2 Iteration: 1700 / 4000 [ 42%]  (Warmup) 
+Chain 1 Iteration: 1700 / 4000 [ 42%]  (Warmup) 
+Chain 2 Iteration: 1800 / 4000 [ 45%]  (Warmup) 
+Chain 1 Iteration: 1800 / 4000 [ 45%]  (Warmup) 
+Chain 2 Iteration: 1900 / 4000 [ 47%]  (Warmup) 
+Chain 1 Iteration: 1900 / 4000 [ 47%]  (Warmup) 
+Chain 2 Iteration: 2000 / 4000 [ 50%]  (Warmup) 
+Chain 2 Iteration: 2001 / 4000 [ 50%]  (Sampling) 
+Chain 1 Iteration: 2000 / 4000 [ 50%]  (Warmup) 
+Chain 1 Iteration: 2001 / 4000 [ 50%]  (Sampling) 
+Chain 2 Iteration: 2100 / 4000 [ 52%]  (Sampling) 
+Chain 1 Iteration: 2100 / 4000 [ 52%]  (Sampling) 
+Chain 2 Iteration: 2200 / 4000 [ 55%]  (Sampling) 
+Chain 1 Iteration: 2200 / 4000 [ 55%]  (Sampling) 
+Chain 2 Iteration: 2300 / 4000 [ 57%]  (Sampling) 
+Chain 1 Iteration: 2300 / 4000 [ 57%]  (Sampling) 
+Chain 2 Iteration: 2400 / 4000 [ 60%]  (Sampling) 
+Chain 1 Iteration: 2400 / 4000 [ 60%]  (Sampling) 
+Chain 2 Iteration: 2500 / 4000 [ 62%]  (Sampling) 
+Chain 1 Iteration: 2500 / 4000 [ 62%]  (Sampling) 
+Chain 2 Iteration: 2600 / 4000 [ 65%]  (Sampling) 
+Chain 1 Iteration: 2600 / 4000 [ 65%]  (Sampling) 
+Chain 2 Iteration: 2700 / 4000 [ 67%]  (Sampling) 
+Chain 1 Iteration: 2700 / 4000 [ 67%]  (Sampling) 
+Chain 2 Iteration: 2800 / 4000 [ 70%]  (Sampling) 
+Chain 1 Iteration: 2800 / 4000 [ 70%]  (Sampling) 
+Chain 2 Iteration: 2900 / 4000 [ 72%]  (Sampling) 
+Chain 1 Iteration: 2900 / 4000 [ 72%]  (Sampling) 
+Chain 2 Iteration: 3000 / 4000 [ 75%]  (Sampling) 
+Chain 1 Iteration: 3000 / 4000 [ 75%]  (Sampling) 
+Chain 2 Iteration: 3100 / 4000 [ 77%]  (Sampling) 
+Chain 1 Iteration: 3100 / 4000 [ 77%]  (Sampling) 
+Chain 2 Iteration: 3200 / 4000 [ 80%]  (Sampling) 
+Chain 1 Iteration: 3200 / 4000 [ 80%]  (Sampling) 
+Chain 2 Iteration: 3300 / 4000 [ 82%]  (Sampling) 
+Chain 1 Iteration: 3300 / 4000 [ 82%]  (Sampling) 
+Chain 2 Iteration: 3400 / 4000 [ 85%]  (Sampling) 
+Chain 1 Iteration: 3400 / 4000 [ 85%]  (Sampling) 
+Chain 2 Iteration: 3500 / 4000 [ 87%]  (Sampling) 
+Chain 1 Iteration: 3500 / 4000 [ 87%]  (Sampling) 
+Chain 2 Iteration: 3600 / 4000 [ 90%]  (Sampling) 
+Chain 1 Iteration: 3600 / 4000 [ 90%]  (Sampling) 
+Chain 2 Iteration: 3700 / 4000 [ 92%]  (Sampling) 
+Chain 1 Iteration: 3700 / 4000 [ 92%]  (Sampling) 
+Chain 2 Iteration: 3800 / 4000 [ 95%]  (Sampling) 
+Chain 1 Iteration: 3800 / 4000 [ 95%]  (Sampling) 
+Chain 2 Iteration: 3900 / 4000 [ 97%]  (Sampling) 
+Chain 1 Iteration: 3900 / 4000 [ 97%]  (Sampling) 
+Chain 2 Iteration: 4000 / 4000 [100%]  (Sampling) 
+Chain 2 finished in 18.4 seconds.
+Chain 3 Iteration:    1 / 4000 [  0%]  (Warmup) 
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chain 3 Informational Message: The current Metropolis proposal is about to be rejected because of the following issue:
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chain 3 Exception: normal_lpdf: Scale parameter is 0, but must be positive! (in &#39;/var/folders/cl/wwjrsxdd5tz7y9jr82nd5hrw0000gn/T/RtmpNDB3FZ/model-a4fc65a663ef.stan&#39;, line 23, column 2 to column 40)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chain 3 If this warning occurs sporadically, such as for highly constrained variable types like covariance matrices, then the sampler is fine,
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chain 3 but if this warning occurs often then your model may be either severely ill-conditioned or misspecified.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chain 3 
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>Esaminiamo le tracce per due parametri.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit_draws</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fit</span><span class="o">$</span><span class="nf">draws</span><span class="p">()</span><span class="w"> </span><span class="c1"># extract the posterior draws</span>
+<span class="nf">mcmc_trace</span><span class="p">(</span><span class="n">fit_draws</span><span class="p">,</span><span class="w"> </span><span class="n">pars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;beta[1]&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/af1ee2907fc37f14f266f6908731810afca8fcdeb73bb6cf92b7d0387702f404.png" src="../_images/af1ee2907fc37f14f266f6908731810afca8fcdeb73bb6cf92b7d0387702f404.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">mcmc_trace</span><span class="p">(</span><span class="n">fit_draws</span><span class="p">,</span><span class="w"> </span><span class="n">pars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;theta[1]&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/90c0e804addcdd44c0abe6c384a6b668f98ff9dde76bec1229ebcba9723cc4e8.png" src="../_images/90c0e804addcdd44c0abe6c384a6b668f98ff9dde76bec1229ebcba9723cc4e8.png" />
+</div>
+</div>
+<p>Focalizziamoci sulla stima dei parametri degli item.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">parameters</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;beta[1]&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;beta[2]&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;beta[3]&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;beta[4]&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;beta[5]&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="s">&quot;beta[6]&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;beta[7]&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;beta[8]&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;beta[9]&quot;</span><span class="p">,</span><span class="s">&quot;beta[10]&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;beta[11]&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;beta[12]&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;beta[13]&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;beta[14]&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo la statistica rhat.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">rhats</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rhat</span><span class="p">(</span><span class="n">fit</span><span class="p">,</span><span class="w"> </span><span class="n">pars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parameters</span><span class="p">)</span>
+<span class="nf">mcmc_rhat</span><span class="p">(</span><span class="n">rhats</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo l’effect ratio:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">eff_ratio</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">neff_ratio</span><span class="p">(</span><span class="n">fit</span><span class="p">,</span><span class="w"> </span><span class="n">pars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parameters</span><span class="p">)</span>
+<span class="n">eff_ratio</span>
+<span class="nf">mcmc_neff</span><span class="p">(</span><span class="n">eff_ratio</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>beta[1]</dt><dd>1.27384727698487</dd><dt>beta[2]</dt><dd>1.40746201873175</dd><dt>beta[3]</dt><dd>1.42823311410417</dd><dt>beta[4]</dt><dd>1.41445661308879</dd><dt>beta[5]</dt><dd>1.50446967035573</dd><dt>beta[6]</dt><dd>1.24879028994029</dd><dt>beta[7]</dt><dd>1.34497958132239</dd><dt>beta[8]</dt><dd>1.27676328553061</dd><dt>beta[9]</dt><dd>1.37767522115248</dd><dt>beta[10]</dt><dd>1.38195982371607</dd><dt>beta[11]</dt><dd>1.20975779190011</dd><dt>beta[12]</dt><dd>1.37288866090829</dd><dt>beta[13]</dt><dd>1.44651557146736</dd><dt>beta[14]</dt><dd>1.53196953594611</dd></dl>
+</div><img alt="../_images/c87e7fa36dd58188b26ac99740f491e1b6b47a43c585ea202e896583231a03ea.png" src="../_images/c87e7fa36dd58188b26ac99740f491e1b6b47a43c585ea202e896583231a03ea.png" />
+</div>
+</div>
+<p>Esaminiamo l’autocorrelazione.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">mcmc_acf</span><span class="p">(</span><span class="n">fit_draws</span><span class="p">,</span><span class="w"> </span><span class="n">pars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parameters</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bcb6180013742d569877a12d4c532be6c0dd240eb60095ba7f96de35a94ea8ea.png" src="../_images/bcb6180013742d569877a12d4c532be6c0dd240eb60095ba7f96de35a94ea8ea.png" />
+</div>
+</div>
+<p>Otteniamo le statistiche riassuntive delle distribuzioni a posteriori dei parametri degli item.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span><span class="o">$</span><span class="nf">summary</span><span class="p">(</span>
+<span class="w">    </span><span class="n">variables</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parameters</span><span class="p">,</span>
+<span class="w">    </span><span class="n">posterior</span><span class="o">::</span><span class="nf">default_summary_measures</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">extra_quantiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">posterior</span><span class="o">::</span><span class="nf">quantile2</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">probs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">.</span><span class="m">0275</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">975</span><span class="p">))</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A draws_summary: 14 x 9</caption>
+<thead>
+	<tr><th scope=col>variable</th><th scope=col>mean</th><th scope=col>median</th><th scope=col>sd</th><th scope=col>mad</th><th scope=col>q5</th><th scope=col>q95</th><th scope=col>q2.75</th><th scope=col>q97.5</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>beta[1] </td><td>-1.09521476</td><td>-1.09537000</td><td>0.1304091</td><td>0.1312842</td><td>-1.3092705</td><td>-0.8820211</td><td>-1.3443603</td><td>-0.8388891</td></tr>
+	<tr><td>beta[2] </td><td>-1.24253352</td><td>-1.24135500</td><td>0.1313470</td><td>0.1309506</td><td>-1.4615260</td><td>-1.0269185</td><td>-1.4992133</td><td>-0.9863208</td></tr>
+	<tr><td>beta[3] </td><td>-2.02671281</td><td>-2.02360000</td><td>0.1567218</td><td>0.1539977</td><td>-2.2923890</td><td>-1.7737775</td><td>-2.3393100</td><td>-1.7265945</td></tr>
+	<tr><td>beta[4] </td><td>-0.04414424</td><td>-0.04340395</td><td>0.1205291</td><td>0.1193946</td><td>-0.2387502</td><td> 0.1589901</td><td>-0.2784402</td><td> 0.1968133</td></tr>
+	<tr><td>beta[5] </td><td> 2.51568910</td><td> 2.51373000</td><td>0.1816456</td><td>0.1800395</td><td> 2.2202780</td><td> 2.8257825</td><td> 2.1728542</td><td> 2.8841950</td></tr>
+	<tr><td>beta[6] </td><td>-1.24166937</td><td>-1.24235500</td><td>0.1332769</td><td>0.1306690</td><td>-1.4602125</td><td>-1.0211415</td><td>-1.4975705</td><td>-0.9790221</td></tr>
+	<tr><td>beta[7] </td><td> 0.81428138</td><td> 0.81290700</td><td>0.1219776</td><td>0.1212544</td><td> 0.6174932</td><td> 1.0195295</td><td> 0.5845436</td><td> 1.0573417</td></tr>
+	<tr><td>beta[8] </td><td>-0.49011747</td><td>-0.48967750</td><td>0.1201932</td><td>0.1213716</td><td>-0.6849435</td><td>-0.2975304</td><td>-0.7213573</td><td>-0.2559937</td></tr>
+	<tr><td>beta[9] </td><td> 1.32575024</td><td> 1.32513000</td><td>0.1321416</td><td>0.1334859</td><td> 1.1095705</td><td> 1.5428550</td><td> 1.0748981</td><td> 1.5843330</td></tr>
+	<tr><td>beta[10]</td><td>-0.39311204</td><td>-0.39369100</td><td>0.1198255</td><td>0.1194027</td><td>-0.5933331</td><td>-0.1987933</td><td>-0.6245982</td><td>-0.1660548</td></tr>
+	<tr><td>beta[11]</td><td> 2.05500739</td><td> 2.05350000</td><td>0.1557002</td><td>0.1566441</td><td> 1.8039720</td><td> 2.3120310</td><td> 1.7638200</td><td> 2.3627235</td></tr>
+	<tr><td>beta[12]</td><td> 1.75129381</td><td> 1.74995500</td><td>0.1463978</td><td>0.1482971</td><td> 1.5151870</td><td> 1.9897810</td><td> 1.4783232</td><td> 2.0384270</td></tr>
+	<tr><td>beta[13]</td><td> 2.39898786</td><td> 2.39673000</td><td>0.1769980</td><td>0.1816185</td><td> 2.1103300</td><td> 2.6936995</td><td> 2.0672940</td><td> 2.7506437</td></tr>
+	<tr><td>beta[14]</td><td>-1.91978490</td><td>-1.91762000</td><td>0.1533697</td><td>0.1481266</td><td>-2.1737230</td><td>-1.6687450</td><td>-2.2171139</td><td>-1.6229758</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>I risultati ottenuti replicano quelli riportati da <span id="id2">Debelak <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id2" title="Rudolf Debelak, Carolin Strobl, and Matthew D Zeigenfuse. An introduction to the rasch model with examples in r. Crc Press, 2022.">DSZ22</a>]</span>.</p>
+</section>
+</section>
+<section id="informazioni-degli-item-e-del-test">
+<h2><span class="section-number">44.6. </span>Informazioni degli Item e del Test<a class="headerlink" href="#informazioni-degli-item-e-del-test" title="Permalink to this heading">#</a></h2>
+<p>La Curva Caratteristica dell’Item (ICC) del modello di Rasch mostra che la pendenza dell’ICC è più ripida al centro, cioè dove l’abilità è uguale alla difficoltà dell’item. Maggiore è la pendenza dell’ICC, maggiore è la differenza nella probabilità per una data differenza di abilità. Queste maggiori differenze nella probabilità ci permettono di stimare con maggiore precisione l’abilità del partecipante al test quando è vicina alla difficoltà dell’item rispetto a quando non lo è. Questo principio è formalmente catturato dall’informazione di un item.</p>
+<p>Ciò significa anche che saremo più certi delle stime dei parametri delle persone vicino alla difficoltà dell’item. La nostra certezza su una stima del parametro di una persona è indicata dall’ampiezza del suo intervallo di confidenza per i massimi verosimili o dall’intervallo di densità più alta (HPD) per lo stimatore bayesiano. L’intervallo di credibilità per il parametro della persona stimato è costruito in modo da coprire il vero valore del parametro della persona il 95% delle volte. L’intervallo HPD è l’intervallo più breve che contiene il 95% della densità posteriore.</p>
+<p>L’informazione è additiva rispetto agli item e l’informazione fornita da un singolo item <span class="math notranslate nohighlight">\( i \)</span> è data da <span class="math notranslate nohighlight">\( I_i(\theta_p) \)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-rasch-3-5">
+<span class="eqno">(44.2)<a class="headerlink" href="#equation-eq-rasch-3-5" title="Permalink to this equation">#</a></span>\[ 
+I_i(\theta_p) = \text{Pr}(U_{pi} = 1 | \theta_p, \beta_i) \cdot (1 - \text{Pr}(U_{pi} = 1 | \theta_p, \beta_i)) 
+\]</div>
+<p>Per il modello di Rasch, l’informazione è equivalente alla prima derivata, cioè la pendenza, dell’ICC di un item. Come abbiamo già intuitivamente discusso, l’informazione è massima al centro, dove sia la probabilità di risolvere che di non risolvere l’item sono 0.5, dando 0.25 quando moltiplicati. In qualsiasi altra posizione, il prodotto delle due probabilità è inferiore.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definizione di un range di abilità</span>
+<span class="n">theta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">-4</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span>
+
+<span class="c1"># Definizione di un parametro di difficoltà dell&#39;item</span>
+<span class="n">beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+
+<span class="c1"># Calcolo delle probabilità di risposta corretta per ciascun valore di abilità usando la funzione logistica</span>
+<span class="n">prob_correct</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="n">theta</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">beta</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="n">theta</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">beta</span><span class="p">))</span>
+
+<span class="c1"># Calcolo dell&#39;informazione dell&#39;item</span>
+<span class="n">item_info</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">prob_correct</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">prob_correct</span><span class="p">)</span>
+
+<span class="c1"># Creazione della prima grafica (ICC)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="w"> </span><span class="n">prob_correct</span><span class="p">,</span>
+<span class="w">    </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="w">    </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Abilita&#39; theta&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Probabilita&#39; di Risposta Corretta&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Curva Caratteristica dell&#39;Item (ICC) e Informazione dell&#39;Item&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Aggiunta di un secondo asse y per l&#39;informazione</span>
+<span class="nf">par</span><span class="p">(</span><span class="n">new</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="w"> </span><span class="n">item_info</span><span class="p">,</span>
+<span class="w">    </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="w">    </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">axes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">ann</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span>
+<span class="p">)</span>
+
+<span class="c1"># Aggiungere l&#39;asse y di destra per l&#39;informazione</span>
+<span class="nf">axis</span><span class="p">(</span><span class="n">side</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">pretty</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="n">item_info</span><span class="p">)))</span>
+<span class="nf">mtext</span><span class="p">(</span><span class="s">&quot;Informazione&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">side</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+
+<span class="c1"># Aggiunta della legenda</span>
+<span class="nf">legend</span><span class="p">(</span><span class="s">&quot;topright&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;ICC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Informazione&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b063849968afb72509a7fbe4a2055d948e8d7283479533e67b0651fdfabbd3c5.png" src="../_images/b063849968afb72509a7fbe4a2055d948e8d7283479533e67b0651fdfabbd3c5.png" />
+</div>
+</div>
+<p>Possiamo vedere nella figura precedente che la forma dell’informazione dell’item è simmetrica e approssimativamente a forma di campana, simile a una distribuzione normale. Ricordiamo che abbiamo già discusso che la funzione di distribuzione cumulativa della distribuzione normale standard, utilizzata nel modello 1PNO, ha una forma molto simile a quella dell’ICC logistica del modello di Rasch. Di conseguenza, la derivata dell’ICC logistica assomiglia molto a una distribuzione normale. Il suo valore massimo è nel punto di difficoltà dell’item ed è più alto nelle vicinanze di questo punto.</p>
+<p>Abbiamo visto in precedenza che l’informazione del test completo è la somma delle informazioni fornite dai singoli item in una certa posizione (eq. <a class="reference internal" href="#equation-eq-rasch-3-5">(44.2)</a>). Ciò deriva dall’indipendenza delle singole risposte. Praticamente, questo significa che un test fornisce più informazioni nelle aree del continuum di abilità dove sono situati molti item. Ci dice anche che per posizioni di item comparabili, un test più lungo porterà più informazioni rispetto a un test più breve.</p>
+<p>Molti test contengono principalmente item di difficoltà moderata e solo pochi item molto facili o molto difficili. Ne consegue che forniranno più informazioni sui partecipanti al test di abilità media rispetto a quelli con abilità molto alta o molto bassa. La distribuzione posteriore bayesiana è anche influenzata dall’informazione in un test. In questo caso, la distribuzione posteriore del partecipante medio avrà una varianza minore rispetto alla distribuzione posteriore di un partecipante con un alto livello di abilità. Ciò porta a intervalli HPD più brevi per i partecipanti tipici rispetto ai partecipanti estremi. Per campioni molto grandi, l’intervallo HPD per il parametro della persona sarà simile all’intervallo di confidenza per il parametro della persona. Tuttavia, per la maggior parte dei test, i due intervalli differiranno a causa della distribuzione a priori.</p>
+<p>Possiamo anche invertire i ruoli di item e partecipanti al test e definire l’informazione fornita da un campione di persone per la stima di un parametro dell’item. Poiché item e partecipanti al test hanno ruoli analoghi nel modello di Rasch, i principali risultati ottenuti sopra valgono anche sotto questa prospettiva. Come primo risultato importante, otteniamo che l’informazione fornita da un campione è semplicemente la somma delle informazioni fornite dai singoli partecipanti al test. Concettualmente, ciò segue perché le risposte dei singoli intervistati possono essere considerate indipendenti nel modello di Rasch. Un secondo risultato importante è che l’informazione fornita da un singolo partecipante al test <span class="math notranslate nohighlight">\( p \)</span> sull’item <span class="math notranslate nohighlight">\( i \)</span> aumenta quando l’abilità del partecipante è vicina alla difficoltà dell’item. Di conseguenza, troviamo che la stima di un parametro dell’item <span class="math notranslate nohighlight">\( \beta_i \)</span> è più precisa in campioni dove molti partecipanti al test hanno parametri di abilità vicini a <span class="math notranslate nohighlight">\( \beta_i \)</span>.</p>
+</section>
+<section id="grandezza-del-campione">
+<h2><span class="section-number">44.7. </span>Grandezza del Campione<a class="headerlink" href="#grandezza-del-campione" title="Permalink to this heading">#</a></h2>
+<p>La stima dei parametri degli item basata su un campione osservato di risposte è spesso definita come la <em>calibrazione degli item</em>. Generalmente, un campione di calibrazione più ampio consente una stima più accurata dei parametri degli item, sebbene altri fattori influenzino anch’essi l’accuratezza della stima. Ad esempio, la difficoltà di un item può essere stimata con maggiore precisione se l’item non è né troppo facile né troppo difficile per il campione di partecipanti al test. Pertanto, i fattori che influenzano l’accuratezza della stima includono l’allineamento e la forma delle distribuzioni dei parametri degli item e delle persone, il numero di item e la tecnica di stima utilizzata.</p>
+<p>Diverse pubblicazioni hanno affrontato la questione della dimensione del campione tipicamente necessaria per lavorare con il modello di Rasch e come questa sia influenzata da questi e altri fattori. Ad esempio, De Ayala (2009) fornisce la linea guida generale che un campione di calibrazione dovrebbe contenere almeno diverse centinaia di rispondenti e cita, tra le altre referenze, un articolo precedente di Wright (1977) che afferma che un campione di calibrazione di 500 sarebbe più che adeguato. De Ayala (2009) suggerisce anche che 250 o più rispondenti sono necessari per adattare un modello di Partial Credit. Poiché il modello di Partial Credit è una generalizzazione del modello di Rasch con più parametri degli item, ciò implica che la dimensione del campione suggerita di 250 dovrebbe essere sufficiente anche per adattare un modello di Rasch. Studi più recenti hanno indagato l’applicazione del modello di Rasch con dimensioni del campione di soli 100 rispondenti (ad esempio, Steinfeld &amp; Robitzsch, 2021; Suárez-Falcón &amp; Glas, 2003). Tali linee guida non devono essere interpretate come regole fisse, ma solo come indicazioni generali in quanto una dimensione del campione adeguata dipende dalle condizioni e dagli obiettivi dell’analisi.</p>
+<p>Un metodo più elaborato per determinare la dimensione del campione necessaria è l’analisi della potenza statistica. Qui, l’accuratezza della stima desiderata o il rischio di falsi positivi e falsi negativi devono essere formalizzati prima dell’analisi. La dimensione del campione necessaria viene quindi determinata in base a queste considerazioni.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_irt"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="402_assumptions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">43. </span>Assunzioni e Proprietà del Modello di Rasch</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="430_implementation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">45. </span>Implementazione</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-funzione-di-verosimiglianza">44.1. La Funzione di Verosimiglianza</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stima-della-massima-verosimiglianza-congiunta">44.2. Stima della Massima Verosimiglianza Congiunta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stima-della-massima-verosimiglianza-condizionale">44.3. Stima della Massima Verosimiglianza Condizionale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stima-della-massima-verosimiglianza-marginale">44.4. Stima della Massima Verosimiglianza Marginale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stima-bayesiana">44.5. Stima Bayesiana</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esempio-concreto">44.5.1. Esempio Concreto</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#informazioni-degli-item-e-del-test">44.6. Informazioni degli Item e del Test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grandezza-del-campione">44.7. Grandezza del Campione</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
