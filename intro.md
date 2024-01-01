@@ -16,7 +16,7 @@ Si prega di notare che questo sito web verrà aggiornato frequentemente durante 
 
 **Codice**: B033288 - TESTING PSICOLOGICO </br>
 **Modulo**: B033288 - TESTING PSICOLOGICO (Cognomi A-K) </br>
-**Corso di laurea**:  Laurea Magistrale in PSICOLOGIA CLINICA E DELLA SALUTE E NEUROPSICOLOGIA </br>
+**Corso di laurea**: Laurea Magistrale in PSICOLOGIA CLINICA E DELLA SALUTE E NEUROPSICOLOGIA </br>
 **Anno Accademico**: 2023-2024 </br>
 **Calendario**: Il corso si terrà dal 4 marzo al 31 maggio 2024.</br>
 **Orario delle lezioni**: Le lezioni si svolgeranno il martedì dalle 10:30 alle 13:30 e il giovedì dalle 8:30 alle 11:30.</br>
@@ -35,11 +35,11 @@ Per accedere al syllabus del corso, si prega di fare clic sul seguente [link](sy
 
 **Libro di testo:**
 
-- Bandalos, D. L. (2018). [Measurement Theory and Applications for the Social Sciences](https://www.guilford.com/books/Measurement-Theory-and-Applications-for-the-Social-Sciences/Deborah-Bandalos/9781462532131).  New York:  Guildford.
+- Bandalos, D. L. (2018). [Measurement Theory and Applications for the Social Sciences](https://www.guilford.com/books/Measurement-Theory-and-Applications-for-the-Social-Sciences/Deborah-Bandalos/9781462532131). New York: Guildford.
 
 **Letture supplementari:**
 
-- American Educational Research Association, American Psychological Association & National Council on Measurement in Education (2014).  [Standards for educational and psychological testing](https://www.aera.net/Publications/Books/Standards-for-Educational-Psychological-Testing-2014-Edition).  Washington, DC:  AERA. </br>
+- American Educational Research Association, American Psychological Association & National Council on Measurement in Education (2014). [Standards for educational and psychological testing](https://www.aera.net/Publications/Books/Standards-for-Educational-Psychological-Testing-2014-Edition). Washington, DC: AERA. </br>
 
 ## 💭 Come studiare
 
