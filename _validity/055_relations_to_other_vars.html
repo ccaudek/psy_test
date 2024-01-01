@@ -478,9 +478,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidenze-basate-sulla-relazione-con-altre-variabili">17.1. Evidenze basate sulla relazione con altre variabili</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">17.1.1. Relazioni test-criterio</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regressione-logistica">17.1.2. Regressione logistica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-della-relazione-test-criterio-mediante-la-regressione-logistica">17.1. Analisi della Relazione Test-Criterio mediante la Regressione Logistica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#categorie-di-evidenze-basate-su-relazioni-con-altre-variabili">17.1.1. Categorie di Evidenze basate su Relazioni con Altre Variabili</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-pratico">17.1.2. Un Esempio Pratico</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuratezza-della-classificazione">17.1.3. Accuratezza della classificazione</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pacchetto-rocit">17.1.3.1. Pacchetto ROCit</a></li>
 </ul>
@@ -501,6 +501,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="relazioni-test-criterio">
 <span id="relations-to-other-variables-notebook"></span><h1><span class="section-number">17. </span>Relazioni test-criterio<a class="headerlink" href="#relazioni-test-criterio" title="Permalink to this heading">#</a></h1>
+<p>In questo capitolo, ci focalizziamo su un aspetto specifico della validità precedentemente menzionato: la relazione test-criterio. Per esplorare più a fondo questo concetto, adotteremo un approccio quantitativo, utilizzando la regressione logistica come strumento di indagine. Questo metodo ci permette di valutare in modo dettagliato e preciso come i punteggi di un test possano essere correlati o predittivi rispetto a un determinato criterio esterno, offrendo così una visione più approfondita della validità di un dato strumento di valutazione psicometrica.</p>
 <!-- [^2]: Vedremo in seguito -->
 <!--     (§ [\[ch:err_stnd_stima\]](#ch:err_stnd_stima){reference-type="ref" -->
 <!--     reference="ch:err_stnd_stima"}) come il livello di abilità latente -->
@@ -510,23 +511,36 @@ document.write(`
 <!--     &= \mu_x + \rho_{XT} (x_i - \mu_x),\notag\end{aligned}$$ dove -->
 <!--     $\mu_x$ è la media dei punteggio osservato e $\hat{T}_i$ è la stima -->
 <!--     del punteggio vero per l'$i$-esimo rispondente. -->
-<!-- [^3]:  --><section id="evidenze-basate-sulla-relazione-con-altre-variabili">
-<h2><span class="section-number">17.1. </span>Evidenze basate sulla relazione con altre variabili<a class="headerlink" href="#evidenze-basate-sulla-relazione-con-altre-variabili" title="Permalink to this heading">#</a></h2>
-<p>In molti casi, l’interpretazione e l’utilizzo dei punteggi dei test dipendono dalla loro relazione con altre variabili. Ad esempio, un test può essere utilizzato per prevedere quali candidati a un lavoro avranno successo come dipendenti. Oppure la teoria alla base di un test potrebbe suggerire che coloro che hanno una specifica diagnosi psicologica, come la depressione, otterranno punteggi più alti rispetto a coloro che non hanno tale diagnosi. Queste relazioni vengono misurate tramite coefficienti di correlazione o regressione lineare o logistica, oppure mediante test delle differenze medie nei punteggi dei test tra gruppi, a seconda dei tipi di variabili coinvolte.</p>
-<p>Le categorie di prove discusse negli standard includono le relazioni tra il test e un criterio, le differenze tra gruppi e le prove di convergenza e discriminazione. La relazione tra il test e un criterio riguarda situazioni in cui i punteggi del test vengono utilizzati per prevedere il rendimento futuro o lo stato attuale di una persona in un determinato criterio. Ad esempio, un test potrebbe essere utilizzato per selezionare gli studenti per un corso di studi superiore sulla base del punteggio ottenuto, presupponendo che gli studenti con punteggi alti avranno successo.</p>
-<p>La validità di un test dipende dal grado in cui le previsioni o gli utilizzi ipotizzati si verificano effettivamente. Ad esempio, se i punteggi del test vengono utilizzati per assegnare persone a diversi trattamenti o programmi educativi, è fondamentale che i benefici ipotizzati si verifichino effettivamente.</p>
-<p>Alcuni argomenti di validità si basano sulle ipotesi che le persone appartenenti a gruppi diversi dovrebbero ottenere punteggi diversi. Ad esempio, un test progettato per identificare una particolare condizione psicologica dovrebbe mostrare differenze nei punteggi tra coloro che sono stati diagnosticati con tale condizione e coloro che non lo sono.</p>
-<p>Gli argomenti di validità che coinvolgono prove di convergenza e discriminazione sostengono che i punteggi dei test dovrebbero essere correlati con i punteggi di altri test che misurano lo stesso o un concetto simile (validità convergente) e dovrebbero avere una correlazione più debole con i punteggi di test che misurano concetti diversi (validità discriminante). Ciò aiuta a confermare se il test misura effettivamente ciò che si suppone di misurare e non è influenzato da altre variabili o costrutti diversi.</p>
-<section id="id1">
-<h3><span class="section-number">17.1.1. </span>Relazioni test-criterio<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
-<p>Un problema comune relativo alle prove basate sulle relazioni tra test e criteri riguarda la selezione di un criterio appropriato. Quando si propone un nuovo test come sostituto di un test esistente, come nelle situazioni di validità concorrente, la scelta del criterio è semplice poiché il criterio corrisponde semplicemente al test esistente. Le prove per le relazioni tra test e criteri assumono tipicamente la forma di un coefficiente di correlazione o di regressione e, pertanto, sono soggette ai fattori che influenzano tali coefficienti. Questo presuppone che sia il punteggio del test che il criterio possano essere trattati come variabili continue. Tuttavia, in alcune situazioni, l’esito da prevedere assume la forma di categorie, ad esempio se una persona passa o fallisce, risponde o meno al trattamento, appartiene o meno a un gruppo diagnostico.</p>
-<p>Con esiti categorici, l’argomento generale di validità è che il test sia in grado di classificare con precisione i partecipanti nella categoria corretta. Per ottenere prove a sostegno di questo argomento, i ricercatori somministrano il test ai partecipanti e ottengono informazioni sul loro stato rispetto alla variabile categorica. Un metodo di regressione come la regressione logistica, che è adatto per esiti categorici, può quindi essere utilizzato per determinare il grado in cui il test predice accuratamente l’esito. Questo è l’argomento che verrà approfondito in questo capitolo.</p>
-</section>
-<section id="regressione-logistica">
-<h3><span class="section-number">17.1.2. </span>Regressione logistica<a class="headerlink" href="#regressione-logistica" title="Permalink to this heading">#</a></h3>
-<p>Iniziamo fornendo i concetti di base del modello di regressione logistica. La regressione logistica è una tecnica statistica utilizzata per modellare la relazione tra una variabile dipendente binaria (variabile di risultato con due categorie, come “passa” o “fallisce”, “sopravvive” o “non sopravvive”, ecc.) e una o più variabili indipendenti (variabili predittive). La regressione logistica stima la probabilità che un’osservazione appartenga a una delle categorie di risultato, in base ai valori delle variabili indipendenti.</p>
-<p>Supponiamo che la variabile risposta assuma due sole modalità, convenzionalmente chiamate successo e insuccesso. Indichiamo <span class="math notranslate nohighlight">\(Y_i\)</span> l’osservazione <span class="math notranslate nohighlight">\(i\)</span>-esima (<span class="math notranslate nohighlight">\(i=1, \dots, n\)</span>) sulla variabile risposta e supponiamo che le risposte siano indipendenti. Spesso ogni unitè è associata a un vettore (<span class="math notranslate nohighlight">\(x_1, \dots, x_p\)</span>) di variabili esplicative. Qui considereremo solo il caso di un’unica variabile indipendente.</p>
-<p>L’obiettivo della regressione logistica è studiare la relazione tra la probabilità di risposta</p>
+<!-- [^3]:  --><section id="analisi-della-relazione-test-criterio-mediante-la-regressione-logistica">
+<h2><span class="section-number">17.1. </span>Analisi della Relazione Test-Criterio mediante la Regressione Logistica<a class="headerlink" href="#analisi-della-relazione-test-criterio-mediante-la-regressione-logistica" title="Permalink to this heading">#</a></h2>
+<p>In questo capitolo, esploriamo approfonditamente la relazione tra i punteggi dei test e vari criteri esterni, focalizzandoci su come i test possono predire o differenziare fenomeni specifici. Questo tipo di analisi è cruciale per valutare la validità dei test in contesti pratici e teorici.</p>
+<section id="categorie-di-evidenze-basate-su-relazioni-con-altre-variabili">
+<h3><span class="section-number">17.1.1. </span>Categorie di Evidenze basate su Relazioni con Altre Variabili<a class="headerlink" href="#categorie-di-evidenze-basate-su-relazioni-con-altre-variabili" title="Permalink to this heading">#</a></h3>
+<p>In psicometria, vengono utilizzate diverse categorie di prove per valutare le relazioni dei punteggi dei test con altre variabili:</p>
+<ol class="arabic simple">
+<li><p><strong>Relazioni Test-Criterio:</strong></p>
+<ul class="simple">
+<li><p>Queste si concentrano sull’uso dei punteggi dei test per prevedere il rendimento o lo stato attuale in vari ambiti, come l’adattamento accademico o lavorativo.</p></li>
+</ul>
+</li>
+<li><p><strong>Differenze tra Gruppi:</strong></p>
+<ul class="simple">
+<li><p>Analizziamo se i test evidenziano differenze significative nei punteggi tra gruppi definiti da criteri specifici, come la presenza o assenza di una diagnosi clinica.</p></li>
+</ul>
+</li>
+<li><p><strong>Prove di Convergenza e Discriminazione:</strong></p>
+<ul class="simple">
+<li><p>Esploriamo se i punteggi di un test sono correlati a quelli di altri test che misurano costrutti simili (validità convergente) e se sono meno correlati a test che misurano costrutti diversi (validità discriminante).</p></li>
+</ul>
+</li>
+</ol>
+<p>Quando si affronta la questione delle relazioni test-criterio, un aspetto cruciale è la selezione di un criterio appropriato e la valutazione quantitativa della relazione tra il test e il criterio. In situazioni dove il criterio è di natura categorica, come il superamento o il fallimento di un test, la regressione logistica diventa uno strumento essenziale.</p>
+<p>La regressione logistica è un metodo statistico usato per analizzare la relazione tra una variabile dipendente binaria e una o più variabili indipendenti. Questa tecnica stima la probabilità che un’osservazione appartenga a una delle categorie della variabile dipendente, basandosi sui valori delle variabili indipendenti.</p>
+<p>Supponiamo che una variabile risposta <span class="math notranslate nohighlight">\(Y_i\)</span> (per l’osservazione <span class="math notranslate nohighlight">\(i\)</span>-esima, con <span class="math notranslate nohighlight">\(i = 1, \dots, n\)</span>) assuma due modalità, definite come successo e insuccesso. Ogni osservazione può essere associata a un vettore di variabili esplicative (<span class="math notranslate nohighlight">\(x_1, \dots, x_p\)</span>), ma per semplicità, considereremo il caso di una singola variabile indipendente.</p>
+<p>Nella regressione logistica, il logaritmo delle probabilità delle due categorie è modellato come una funzione lineare delle variabili indipendenti. Questo ci permette di esaminare come i cambiamenti nelle variabili indipendenti influenzino la probabilità di successo o insuccesso.</p>
+<p>Nel contesto dei test psicometrici, la regressione logistica può essere usata per determinare il grado in cui i punteggi di un test sono predittivi di un risultato categorico. Ad esempio, possiamo valutare la probabilità che gli studenti con determinati punteggi ad un test di ammissione universitario riescano o meno nel loro primo anno accademico.</p>
+<p>Questo metodo fornisce un quadro più chiaro della validità di un test nel predire risultati specifici, migliorando così l’affidabilità e l’applicabilità dei test in vari contesti. Attraverso l’uso della regressione logistica, possiamo quindi formulare interpretazioni più precise e informate dei risultati dei test, contribuendo a una migliore comprensione della validità di uno strumento psicometrico.</p>
+<p>Nello specifico, possiamo dire che l’obiettivo della regressione logistica è studiare la relazione tra la probabilità di risposta</p>
 <div class="math notranslate nohighlight">
 \[
 Pr(Y=1 | X=x_i) \equiv Pr(Y_i) \equiv \pi_i
@@ -552,7 +566,10 @@ Y_i \sim Bin(n_i, \pi_i),
 \end{equation}
 \]</div>
 <p>In sintesi, la regressione logistica è una tecnica statistica che stima la probabilità che l’evento <span class="math notranslate nohighlight">\(Y = 1\)</span> si verifichi per ciascun valore della variabile indipendente <span class="math notranslate nohighlight">\(X\)</span>.</p>
-<p>Per fare un esempio, consideriamo i dati dello studio <a class="reference external" href="https://journals.sagepub.com/doi/10.1177/07342829211067128">Pitfalls When Using Area Under the Curve to Evaluate Item Content for Early Screening Tests for Autism</a> di Lucas, Brewer e Young (2022).</p>
+</section>
+<section id="un-esempio-pratico">
+<h3><span class="section-number">17.1.2. </span>Un Esempio Pratico<a class="headerlink" href="#un-esempio-pratico" title="Permalink to this heading">#</a></h3>
+<p>Per fare un esempio pratico, consideriamo i dati dello studio <a class="reference external" href="https://journals.sagepub.com/doi/10.1177/07342829211067128">Pitfalls When Using Area Under the Curve to Evaluate Item Content for Early Screening Tests for Autism</a> di Lucas, Brewer e Young (2022).</p>
 <p>Il campione raccolto da Nah et al. (2018) include 270 bambini di età compresa tra 12 e 36 mesi (M = 25.4, SD = 7.0). Sulla base di una diagnosi clinica eseguita secondo il DSM-5, 106 bambini sono stati diagnosticati con ASD (<em>Autism Spectrum Disorder</em>, Disturbo dello Spettro Autistico), 86 erano in sviluppo non tipico (non-TD) e 78 erano considerati in sviluppo tipico (TD). Qui considereremo solo i gruppi ASD e non-TD.</p>
 <p>Il test di interesse è l’<em>Autism Detection in Early Childhood</em> (ADEC). Si tratta di una checklist comportamentale composta da 16 item, appositamente sviluppata per rilevare comportamenti pre-verbali che possono essere predittivi dell’autismo nei bambini di età inferiore ai tre anni (Young, 2007).</p>
 <p>Leggiamo i dati.</p>
@@ -916,9 +933,9 @@ Number of Fisher Scoring iterations: 6
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evidenze-basate-sulla-relazione-con-altre-variabili">17.1. Evidenze basate sulla relazione con altre variabili</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">17.1.1. Relazioni test-criterio</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regressione-logistica">17.1.2. Regressione logistica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-della-relazione-test-criterio-mediante-la-regressione-logistica">17.1. Analisi della Relazione Test-Criterio mediante la Regressione Logistica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#categorie-di-evidenze-basate-su-relazioni-con-altre-variabili">17.1.1. Categorie di Evidenze basate su Relazioni con Altre Variabili</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-pratico">17.1.2. Un Esempio Pratico</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuratezza-della-classificazione">17.1.3. Accuratezza della classificazione</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pacchetto-rocit">17.1.3.1. Pacchetto ROCit</a></li>
 </ul>
@@ -950,7 +967,7 @@ By Corrado Caudek
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024.
       <br/>
     
   </p>
