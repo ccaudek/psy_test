@@ -18,22 +18,19 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-source("_common.R")
-suppressPackageStartupMessages({
-    library("lavaan")
-    library("semTools")
-})
-set.seed(42)
+dat <- read.table("data/BULLY.dat", header = FALSE)
+names(dat) <- c("IDCNTRY", "R09A", "R09B", "R09C", "R09D")
+head(dat)
 ------------------
 
 ----- stderr -----
-Warning message in file(filename, "r", encoding = encoding):
-“non è possibile aprire il file '_common.R': No such file or directory”
+Warning message in file(file, "rt"):
+“non è possibile aprire il file 'data/BULLY.dat': No such file or directory”
 ------------------
 
-Error in file(filename, "r", encoding = encoding): non è possibile aprire la connessione
+Error in file(file, "rt"): non è possibile aprire la connessione
 Traceback:
 
-1. source("_common.R")
-2. file(filename, "r", encoding = encoding)
+1. read.table("data/BULLY.dat", header = FALSE)
+2. file(file, "rt")
 
