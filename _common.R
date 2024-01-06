@@ -2,6 +2,8 @@
 suppressPackageStartupMessages({
   library("here")
   library("tidyverse")
+  library("knitr")
+  library("markdown")
   library("scales")
   library("patchwork")
   library("bayesplot")
@@ -14,10 +16,14 @@ suppressPackageStartupMessages({
 set.seed(42)
 SEED <- 42 # set random seed for reproducibility
 
-theme_set(bayesplot::theme_default(base_family = "sans"))
-# bayesplot::color_scheme_set("gray")
+theme_set(bayesplot::theme_default(base_size = 14, base_family = "sans"))
 
 # knitr chunk options ----------------------------------------------------------
+
+# Set default figure dimensions
+my_fig_height <- 4 # in inches
+aspect_ratio <- 0.618
+my_fig_width <- my_fig_height * aspect_ratio
 
 knitr::opts_chunk$set(
   comment = "#>",
@@ -25,14 +31,9 @@ knitr::opts_chunk$set(
   message = FALSE,
   warning = FALSE,
   error = FALSE,
-  fig.align = "center",
-  fig.width = 6,
-  fig.asp = 0.618, # 1 / phi
-  # fig.show = "hold",
-  dpi = 300,
-  # fig.pos = "h", # pdf mode
-  # cache.extra = knitr::rand_seed,
-  # tidy.opts = list(width.cutoff = 76),
+  # fig.align = "center",
+  fig.width = my_fig_height, 
+  fig.height = my_fig_height,
   tidy = "styler"
 )
 
