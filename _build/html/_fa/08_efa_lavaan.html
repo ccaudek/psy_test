@@ -1,0 +1,989 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>26. EFA con lavaan &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_fa/08_efa_lavaan';</script>
+    <link rel="shortcut icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="27. Valutazione della matrice di correlazione" href="../_psychometric_methods/01_valutare_le_matrici.html" />
+    <link rel="prev" title="25. Punteggio totale e modello fattoriale" href="07_total_score.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Test psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/01_measurement.html">1. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/02_norms.html">2. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/03_expval_var.html">3. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/04_joint_prob.html">4. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/05_regression.html">5. L’analisi di regressione</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/020_ctt_1.html">6. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/021_ctt_2.html">7. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/022_ctt_3.html">8. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/025_err_std_mis.html">9. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/026_err_std_stima.html">10. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/028_applications_ctt.html">11. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E_ctt_1.html">12. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/030_multilevel_1.html">13. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/031_interrater_reliability.html">14. L’affidabilità tra giudici</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/041_gtheory.html">15. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/01_validity.html">16. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/02_relations_to_other_vars.html">17. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">18. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_intro_fa.html">19. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_analisi_fattoriale_1.html">20. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_analisi_fattoriale_2.html">21. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_analisi_fattoriale_3.html">22. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_factor_scores.html">23. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_constraints_on_parms.html">24. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_total_score.html">25. Punteggio totale e modello fattoriale</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">26. EFA con <code class="docutils literal notranslate"><span class="pre">lavaan</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione di strumenti psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">27. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">28. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">29. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">30. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">31. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/01_cfa.html">32. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/E_01.html">33. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/02_cfa_mod_comp.html">34. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/03_cat_data.html">35. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/04_mmm.html">36. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/05_bifactor.html">37. Modello bifattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/350_sem_intro.html">38. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/351_data_preparation.html">39. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/E_sem_350.html">40. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/352_gof.html">41. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/353_mod_comp.html">42. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/354_refine_solution.html">43. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/355_group_invariance.html">44. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/358_multilevel_sem.html">45. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/359_structural_regr.html">46. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/360_missing_data.html">47. Dati mancanti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/361_small_samples.html">48. Modellizzazione SEM in Piccoli Campioni</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_irt/400_logistic_regr.html">49. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/E_400.html">50. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/401_rasch_model.html">51. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/402_assumptions.html">52. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/403_estimation.html">53. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/405_1pl_2pl_3pl.html">54. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/410_implementation.html">55. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/415_polytomous.html">56. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/501_development.html">57. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/502_tutorial.html">58. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/700_lgm_intro.html">59. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/701_lgm_prelims.html">60. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/702_time_effects.html">61. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/703_intro_panel.html">62. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/704_lgm_mixed.html">63. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/705_growth_1.html">64. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/706_growth_cont.html">65. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/710_time_inv_cov.html">66. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/711_growth_groups.html">67. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/715_bivariate_growth_models.html">68. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/720_inv_measurement.html">69. Invarianza di misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/750_latent_change.html">70. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/751_biv_change.html">71. Modello LCS bivariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/755_lgm_meas_inv.html">72. Invarianza fattoriale nei modelli LGM</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">73. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/901_intro_r.html">74. Linguaggio di programmazione R</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test/issues/new?title=Issue%20on%20page%20%2F_fa/08_efa_lavaan.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_fa/08_efa_lavaan.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>EFA con lavaan</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otto-misure-di-personalita">26.1. Otto Misure di Personalità</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="efa-con-lavaan">
+<span id="efa-lavaan-notebook"></span><h1><span class="section-number">26. </span>EFA con <code class="docutils literal notranslate"><span class="pre">lavaan</span></code><a class="headerlink" href="#efa-con-lavaan" title="Permalink to this heading">#</a></h1>
+<p>Una funzionalità sperimentale di <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> (ancora non ufficiale) è quella che consente di svolgere l’analisi fattoriale esplorativa con la funzione <code class="docutils literal notranslate"><span class="pre">efa()</span></code>.</p>
+<section id="otto-misure-di-personalita">
+<h2><span class="section-number">26.1. </span>Otto Misure di Personalità<a class="headerlink" href="#otto-misure-di-personalita" title="Permalink to this heading">#</a></h2>
+<p>Consideriamo nuovamente i dati di <span id="id1">Brown [<a class="reference internal" href="../z_biblio.html#id54" title="Timothy A Brown. Confirmatory factor analysis for applied research. Guilford publications, 2015.">Bro15</a>]</span>, ovvero otto misure di personalità raccolte su un campione di 250 pazienti che hanno concluso un programma di psicoterapia:</p>
+<ul class="simple">
+<li><p>anxiety (N1),</p></li>
+<li><p>hostility (N2),</p></li>
+<li><p>depression (N3),</p></li>
+<li><p>self-consciousness (N4),</p></li>
+<li><p>warmth (E1),</p></li>
+<li><p>gregariousness (E2),</p></li>
+<li><p>assertiveness (E3),</p></li>
+<li><p>positive emotions (E4).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">varnames</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;N1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;N2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;N3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;N4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;E1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;E2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;E3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;E4&quot;</span><span class="p">)</span>
+<span class="n">sds</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;5.7  5.6  6.4  5.7  6.0  6.2  5.7  5.6&quot;</span>
+
+<span class="n">cors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s"> 1.000</span>
+<span class="s"> 0.767  1.000</span>
+<span class="s"> 0.731  0.709  1.000</span>
+<span class="s"> 0.778  0.738  0.762  1.000</span>
+<span class="s">-0.351  -0.302  -0.356  -0.318  1.000</span>
+<span class="s">-0.316  -0.280  -0.300  -0.267  0.675  1.000</span>
+<span class="s">-0.296  -0.289  -0.297  -0.296  0.634  0.651  1.000</span>
+<span class="s">-0.282  -0.254  -0.292  -0.245  0.534  0.593  0.566  1.000&quot;</span>
+
+<span class="n">psychot_cor_mat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">getCov</span><span class="p">(</span><span class="n">cors</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">varnames</span><span class="p">)</span>
+<span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">250</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Definiamo un modello ad un solo fattore comune.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1-factor model</span>
+<span class="n">f1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;</span>
+<span class="s">    efa(&quot;efa&quot;)*f1 =~ N1 + N2 + N3 + N4 + E1 + E2 + E3 + E4</span>
+<span class="s">&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Definiamo un modello con due fattori comuni.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2-factor model</span>
+<span class="n">f2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;</span>
+<span class="s">    efa(&quot;efa&quot;)*f1 +</span>
+<span class="s">    efa(&quot;efa&quot;)*f2 =~ N1 + N2 + N3 + N4 + E1 + E2 + E3 + E4</span>
+<span class="s">&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo ai dati il modello ad un fattore comune.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">efa_f1</span><span class="w"> </span><span class="o">&lt;-</span><span class="nf">cfa</span><span class="p">(</span>
+<span class="w">    </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f1</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.cov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">psychot_cor_mat</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.nobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">250</span><span class="p">,</span>
+<span class="w">    </span><span class="n">rotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;oblimin&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo la soluzione ottenuta.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span>
+<span class="w">    </span><span class="n">efa_f1</span><span class="p">,</span>
+<span class="w">    </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">standardized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">rsquare</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span>
+<span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 2 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        16
+
+  Rotation method                      OBLIMIN OBLIQUE
+  Oblimin gamma                                      0
+  Rotation algorithm (rstarts)                GPA (30)
+  Standardized metric                             TRUE
+  Row weights                                     None
+
+  Number of observations                           250
+
+Model Test User Model:
+                                                      
+  Test statistic                               375.327
+  Degrees of freedom                                20
+  P-value (Chi-square)                           0.000
+
+Model Test Baseline Model:
+
+  Test statistic                              1253.791
+  Degrees of freedom                                28
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.710
+  Tucker-Lewis Index (TLI)                       0.594
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -2394.637
+  Loglikelihood unrestricted model (H1)      -2206.974
+                                                      
+  Akaike (AIC)                                4821.275
+  Bayesian (BIC)                              4877.618
+  Sample-size adjusted Bayesian (SABIC)       4826.897
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.267
+  90 Percent confidence interval - lower         0.243
+  90 Percent confidence interval - upper         0.291
+  P-value H_0: RMSEA &lt;= 0.050                    0.000
+  P-value H_0: RMSEA &gt;= 0.080                    1.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.187
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  f1 =~ efa                                                             
+    N1                0.879    0.051   17.333    0.000    0.879    0.880
+    N2                0.841    0.052   16.154    0.000    0.841    0.842
+    N3                0.841    0.052   16.175    0.000    0.841    0.843
+    N4                0.870    0.051   17.065    0.000    0.870    0.872
+    E1               -0.438    0.062   -7.041    0.000   -0.438   -0.439
+    E2               -0.398    0.063   -6.327    0.000   -0.398   -0.398
+    E3               -0.398    0.063   -6.342    0.000   -0.398   -0.399
+    E4               -0.364    0.063   -5.746    0.000   -0.364   -0.364
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .N1                0.224    0.028    7.915    0.000    0.224    0.225
+   .N2                0.289    0.033    8.880    0.000    0.289    0.290
+   .N3                0.288    0.032    8.866    0.000    0.288    0.289
+   .N4                0.239    0.029    8.174    0.000    0.239    0.240
+   .E1                0.804    0.073   10.963    0.000    0.804    0.807
+   .E2                0.838    0.076   11.008    0.000    0.838    0.841
+   .E3                0.837    0.076   11.007    0.000    0.837    0.841
+   .E4                0.864    0.078   11.041    0.000    0.864    0.867
+    f1                1.000                               1.000    1.000
+
+R-Square:
+                   Estimate
+    N1                0.775
+    N2                0.710
+    N3                0.711
+    N4                0.760
+    E1                0.193
+    E2                0.159
+    E3                0.159
+    E4                0.133
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo ai dati il modello a due fattori comuni.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">efa_f2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cfa</span><span class="p">(</span>
+<span class="w">    </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f2</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.cov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">psychot_cor_mat</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.nobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">250</span><span class="p">,</span>
+<span class="w">    </span><span class="n">rotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;oblimin&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo la soluzione ottenuta.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span>
+<span class="w">    </span><span class="n">efa_f2</span><span class="p">,</span>
+<span class="w">    </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">standardized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">rsquare</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span>
+<span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 1 iteration
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        23
+
+  Rotation method                      OBLIMIN OBLIQUE
+  Oblimin gamma                                      0
+  Rotation algorithm (rstarts)                GPA (30)
+  Standardized metric                             TRUE
+  Row weights                                     None
+
+  Number of observations                           250
+
+Model Test User Model:
+                                                      
+  Test statistic                                 9.811
+  Degrees of freedom                                13
+  P-value (Chi-square)                           0.709
+
+Model Test Baseline Model:
+
+  Test statistic                              1253.791
+  Degrees of freedom                                28
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    1.000
+  Tucker-Lewis Index (TLI)                       1.006
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -2211.879
+  Loglikelihood unrestricted model (H1)      -2206.974
+                                                      
+  Akaike (AIC)                                4469.758
+  Bayesian (BIC)                              4550.752
+  Sample-size adjusted Bayesian (SABIC)       4477.840
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.000
+  90 Percent confidence interval - lower         0.000
+  90 Percent confidence interval - upper         0.048
+  P-value H_0: RMSEA &lt;= 0.050                    0.957
+  P-value H_0: RMSEA &gt;= 0.080                    0.001
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.010
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  f1 =~ efa                                                             
+    N1                0.874    0.053   16.592    0.000    0.874    0.876
+    N2                0.851    0.055   15.551    0.000    0.851    0.853
+    N3                0.826    0.054   15.179    0.000    0.826    0.828
+    N4                0.896    0.053   16.802    0.000    0.896    0.898
+    E1               -0.046    0.040   -1.138    0.255   -0.046   -0.046
+    E2                0.035    0.034    1.030    0.303    0.035    0.035
+    E3                0.000    0.040    0.010    0.992    0.000    0.000
+    E4               -0.006    0.049   -0.131    0.896   -0.006   -0.006
+  f2 =~ efa                                                             
+    N1               -0.017    0.032   -0.539    0.590   -0.017   -0.017
+    N2                0.011    0.035    0.322    0.748    0.011    0.011
+    N3               -0.035    0.036   -0.949    0.343   -0.035   -0.035
+    N4                0.031    0.031    0.994    0.320    0.031    0.031
+    E1                0.776    0.059   13.125    0.000    0.776    0.778
+    E2                0.854    0.058   14.677    0.000    0.854    0.855
+    E3                0.785    0.060   13.106    0.000    0.785    0.787
+    E4                0.695    0.063   10.955    0.000    0.695    0.697
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  f1 ~~                                                                 
+    f2               -0.432    0.059   -7.345    0.000   -0.432   -0.432
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .N1                0.218    0.028    7.790    0.000    0.218    0.219
+   .N2                0.279    0.032    8.693    0.000    0.279    0.280
+   .N3                0.287    0.032    8.907    0.000    0.287    0.289
+   .N4                0.216    0.029    7.578    0.000    0.216    0.217
+   .E1                0.361    0.044    8.226    0.000    0.361    0.362
+   .E2                0.292    0.043    6.787    0.000    0.292    0.293
+   .E3                0.379    0.046    8.315    0.000    0.379    0.381
+   .E4                0.509    0.053    9.554    0.000    0.509    0.511
+    f1                1.000                               1.000    1.000
+    f2                1.000                               1.000    1.000
+
+R-Square:
+                   Estimate
+    N1                0.781
+    N2                0.720
+    N3                0.711
+    N4                0.783
+    E1                0.638
+    E2                0.707
+    E3                0.619
+    E4                0.489
+</pre></div>
+</div>
+</div>
+</div>
+<p>Anche se abbiamo introdotto finora soltanto la misura di bontà di adattamento del chi-quadrato, aggiungiamo qui il calcolo di altre misure di bontà di adattamento che discuteremo in seguito.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit_measures_robust</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;chisq&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;df&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;pvalue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cfi&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rmsea&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;srmr&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Confrontiamo le misure di bontà di adattamento del modello che ipotizza un solo fattore comune e il modello che ipotizza la presenza di due fattori comuni.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># collect them for each model</span>
+<span class="nf">rbind</span><span class="p">(</span>
+<span class="w">    </span><span class="nf">fitmeasures</span><span class="p">(</span><span class="n">efa_f1</span><span class="p">,</span><span class="w"> </span><span class="n">fit_measures_robust</span><span class="p">),</span>
+<span class="w">    </span><span class="nf">fitmeasures</span><span class="p">(</span><span class="n">efa_f2</span><span class="p">,</span><span class="w"> </span><span class="n">fit_measures_robust</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="c1"># wrangle</span>
+<span class="w">    </span><span class="nf">data.frame</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">mutate</span><span class="p">(</span>
+<span class="w">        </span><span class="n">chisq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">chisq</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">),</span>
+<span class="w">        </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.integer</span><span class="p">(</span><span class="n">df</span><span class="p">),</span>
+<span class="w">        </span><span class="n">pvalue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">pvalue</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt; .001&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pvalue</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">mutate_at</span><span class="p">(</span><span class="nf">vars</span><span class="p">(</span><span class="n">cfi</span><span class="o">:</span><span class="n">srmr</span><span class="p">),</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 2 × 6</caption>
+<thead>
+	<tr><th scope=col>chisq</th><th scope=col>df</th><th scope=col>pvalue</th><th scope=col>cfi</th><th scope=col>rmsea</th><th scope=col>srmr</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>375</td><td>20</td><td><span style=white-space:pre-wrap>&lt; .001           </span></td><td>0.71</td><td>0.267</td><td>0.187</td></tr>
+	<tr><td> 10</td><td>13</td><td>0.709310449320098</td><td>1.00</td><td>0.000</td><td>0.010</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>L’evidenza empirica supporta la superiorità del modello a due fattori rispetto a quello ad un solo fattore comune. In particolare, l’analisi fattoriale esplorativa svolta mediante la funzione <code class="docutils literal notranslate"><span class="pre">efa()</span></code> evidenzia la capacità del modello a due fattori di fornire una descrizione adeguata della struttura dei dati e di distinguere in modo sensato tra i due fattori ipotizzati.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_fa"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="07_total_score.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">25. </span>Punteggio totale e modello fattoriale</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../_psychometric_methods/01_valutare_le_matrici.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">27. </span>Valutazione della matrice di correlazione</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otto-misure-di-personalita">26.1. Otto Misure di Personalità</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

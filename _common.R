@@ -5,6 +5,9 @@ suppressPackageStartupMessages({
   library("knitr")
   library("markdown")
   library("scales")
+  library("psych")
+  library("lavaan")
+  library("semPlot")
   library("patchwork")
   library("bayesplot")
   library("ggExtra")
@@ -32,11 +35,12 @@ knitr::opts_chunk$set(
   warning = FALSE,
   error = FALSE,
   # fig.align = "center",
-  fig.width = my_fig_height, 
+  fig.width = my_fig_height,
   fig.height = my_fig_height,
   tidy = "styler"
 )
 
 # dplyr options ----------------------------------------------------------------
 
-options(dplyr.print_min = 8, dplyr.print_max = 8)
+options(repr.plot.width = 6, repr.plot.height = 6)
+set.seed(42)
