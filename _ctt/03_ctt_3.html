@@ -1,0 +1,1181 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>8. Metodi di stima dell’affidabilità &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_ctt/03_ctt_3';</script>
+    <link rel="shortcut icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9. L’errore standard della misurazione" href="04_err_std_mis.html" />
+    <link rel="prev" title="7. L’affidabilità del test" href="02_ctt_2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Test psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/01_measurement.html">1. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/02_norms.html">2. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/03_expval_var.html">3. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/04_joint_prob.html">4. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/05_regression.html">5. L’analisi di regressione</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_ctt_1.html">6. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_ctt_2.html">7. L’affidabilità del test</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_err_std_mis.html">9. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_err_std_stima.html">10. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_applications_ctt.html">11. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="E_ctt_1.html">12. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/01_multilevel_1.html">13. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/02_interrater_reliability.html">14. L’affidabilità tra giudici</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/01_gtheory.html">15. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/01_validity.html">16. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/02_relations_to_other_vars.html">17. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">18. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale esplorativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/01_intro_fa.html">19. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/02_analisi_fattoriale_1.html">20. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/03_analisi_fattoriale_2.html">21. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/04_analisi_fattoriale_3.html">22. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/05_factor_scores.html">23. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/06_constraints_on_parms.html">24. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/07_total_score.html">25. Punteggio totale e modello fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione di strumenti psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">26. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">27. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">28. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">29. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">30. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/01_cfa.html">31. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/E_01.html">32. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/03_cat_data.html">33. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/04_mmm.html">34. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/05_bifactor.html">35. Modello bifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/06_efa_lavaan.html">36. Analisi Fattoriale Esplorativa</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/01_sem_intro.html">37. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/02_data_preparation.html">38. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/E_01.html">39. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/03_gof.html">40. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/04_mod_comp.html">41. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/05_cfa_mod_comp.html">42. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/06_refine_solution.html">43. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/07_group_invariance.html">44. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/08_multilevel_sem.html">45. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/09_structural_regr.html">46. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/10_missing_data.html">47. Dati mancanti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/11_small_samples.html">48. Modellizzazione SEM in Piccoli Campioni</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_irt/01_logistic_regr.html">49. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/E_01.html">50. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/02_rasch_model.html">51. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/03_assumptions.html">52. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/04_estimation.html">53. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/05_1pl_2pl_3pl.html">54. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/06_implementation.html">55. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/07_polytomous.html">56. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/01_development.html">57. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/02_tutorial.html">58. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/700_lgm_intro.html">59. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/701_lgm_prelims.html">60. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/702_time_effects.html">61. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/703_intro_panel.html">62. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/704_lgm_mixed.html">63. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/705_growth_1.html">64. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/706_growth_cont.html">65. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/710_time_inv_cov.html">66. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/711_growth_groups.html">67. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/715_bivariate_growth_models.html">68. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/720_inv_measurement.html">69. Invarianza di misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/750_latent_change.html">70. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/751_biv_change.html">71. Modello LCS bivariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/755_lgm_meas_inv.html">72. Invarianza fattoriale nei modelli LGM</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">73. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/901_intro_r.html">74. Linguaggio di programmazione R</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test/issues/new?title=Issue%20on%20page%20%2F_ctt/03_ctt_3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_ctt/03_ctt_3.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Metodi di stima dell’affidabilità</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficienti-di-consistenza-interna">8.1. Coefficienti di consistenza interna</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulazione">8.1.1. Simulazione</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#test-paralleli">8.1.1.1. Test paralleli</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#test-tau-equivalenti">8.1.1.2. Test <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenti</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#test-congenerici">8.1.1.3. Test congenerici</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficiente-alpha-di-cronbach">8.1.2. Coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span> di Cronbach</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodi-alternativi-per-la-stima-del-coefficiente-di-attendibilita">8.1.3. Metodi alternativi per la stima del coefficiente di attendibilità</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficiente-kr-20">8.1.3.1. Coefficiente KR-20</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficiente-kr-21">8.1.3.2. Coefficiente KR-21</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-formula-profetica-di-spearman-brown">8.1.4. La formula “profetica” di Spearman-Brown</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forme-parallele-del-test">8.2. Forme parallele del test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attendibilita-test-retest">8.3. Attendibilità test-retest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusioni">8.4. Conclusioni</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="metodi-di-stima-dell-affidabilita">
+<span id="ctt-3-notebook"></span><h1><span class="section-number">8. </span>Metodi di stima dell’affidabilità<a class="headerlink" href="#metodi-di-stima-dell-affidabilita" title="Permalink to this heading">#</a></h1>
+<p>Come evidenziato nel capitolo precedente, i punteggi dei test possono variare in varie situazioni. Ad esempio, potrebbe interessare quanto i punteggi differiscano tra diversi insiemi di item o misurare l’incoerenza tra diverse somministrazioni o valutazioni. Pertanto, sono stati sviluppati vari metodi per valutare l’affidabilità, ciascuno tenendo conto di diversi tipi di errori casuali.</p>
+<p>In questo capitolo, esploreremo i coefficienti di affidabilità della CTT adatti a valutare le discrepanze o gli errori casuali derivanti dalle differenze tra gli item, le somministrazioni e le forme del test. Questi coefficienti sono noti come coefficienti di consistenza interna.</p>
+<p>Per iniziare, esamineremo tre scenari distinti che illustrano le possibili relazioni tra gli item di un test: quelli con indicatori congenerici, tau-equivalenti e paralleli. All’interno della CTT, sono disponibili due indicatori principali per valutare l’affidabilità in termini di coerenza interna, a seconda del tipo di relazione tra gli item che si presume: l’indice alpha di Cronbach per gli item tau-equivalenti e l’indice di Spearman-Brown per gli item paralleli.</p>
+<section id="coefficienti-di-consistenza-interna">
+<h2><span class="section-number">8.1. </span>Coefficienti di consistenza interna<a class="headerlink" href="#coefficienti-di-consistenza-interna" title="Permalink to this heading">#</a></h2>
+<p>La CTT presenta il metodo delle forme parallele come un approccio parziale per stimare l’attendibilità dei test. Questo metodo prevede la somministrazione di due test distinti, indicati come <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(X^\prime\)</span>, che valutano lo stesso costrutto, a un campione di individui nello stesso momento. In questo contesto, la correlazione tra i punteggi totali dei due test, <span class="math notranslate nohighlight">\(\rho^2_{XT} = \rho_{XX^\prime}\)</span>, rappresenta l’indicatore principale dell’attendibilità. Tuttavia, è cruciale che le due versioni del test siano effettivamente parallele, secondo la definizione fornita dalla teoria classica dei test, affinché questa relazione sia valida.</p>
+<p>Nella pratica, risulta impraticabile somministrare lo stesso test due volte agli stessi partecipanti “nelle stesse condizioni”, come richiesto dal metodo delle forme parallele. Di conseguenza, la stima dell’attendibilità deve basarsi sui dati raccolti attraverso una singola somministrazione del test. La CTT risponde a questa sfida introducendo specifici indicatori di coerenza interna, mirati a valutare l’affidabilità.</p>
+<p>Questi indicatori di coerenza interna costituiscono la soluzione proposta dalla CTT per affrontare tale problematica. La loro logica si basa sull’idea che una correlazione tra i punteggi di diversi item che misurano lo stesso costrutto rifletta la varianza condivisa del punteggio reale, anziché la varianza condivisa dell’errore. Considerando che gli errori casuali dovrebbero mancare di una varianza condivisa, i coefficienti di coerenza interna riflettono la correlazione tra gli item all’interno del test, offrendo così un’indicazione dell’affidabilità generale della scala di misurazione.</p>
+<p>Oltre a questo, gli item stessi possono rappresentare una fonte di errore nei punteggi dei test. Problemi come formulazioni confuse, item non coerenti con il costrutto, linguaggio poco comprensibile o item con risposte ambigue possono emergere quando gli item non sono formulati in modo adeguato. Tali problemi possono portare a risposte inconsistenti per due ragioni: innanzitutto, i partecipanti potrebbero reagire in modi diversi agli item problematici; in secondo luogo, tali item interferiscono con la capacità dei partecipanti di esprimere il loro reale livello del costrutto.</p>
+<p>Per valutare la coerenza delle risposte tra gli item all’interno di una scala, vengono impiegati i coefficienti di consistenza interna. Questi coefficienti si basano sull’assunto che una correlazione tra due punteggi osservati, che misurano lo stesso costrutto, rifletta la varianza condivisa del punteggio reale, non la varianza condivisa dell’errore. Dal momento che gli errori casuali dovrebbero mancare di varianza condivisa, i coefficienti di consistenza interna riflettono la correlazione tra gli item del test e forniscono un’indicazione dell’affidabilità complessiva della scala.</p>
+<p>Quando si valuta l’attendibilità con una singola somministrazione del test, sono disponibili vari approcci. In questo capitolo, esamineremo due metodi proposti dalla CTT: l’indice <span class="math notranslate nohighlight">\(\alpha\)</span> di Cronbach e il metodo di Spearman-Brown. L’indice <span class="math notranslate nohighlight">\(\alpha\)</span> è l’indicatore più comunemente usato per valutare l’attendibilità in termini di coerenza interna o omogeneità. Analizzeremo come questo indice rappresenta il valore minimo possibile dell’attendibilità di un test, sotto determinate ipotesi soddisfatte, e come, allo stesso tempo, può fornire una valutazione distorta dell’attendibilità se le assunzioni che delineeremo non sono rispettate.</p>
+<p>Tuttavia, prima di esplorare dettagliatamente questi due diversi metodi di stima dell’attendibilità come coerenza interna, è essenziale distinguere tra tre diverse tipologie di relazioni tra gli item: item congenerici, item <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenti e item paralleli.</p>
+<section id="simulazione">
+<h3><span class="section-number">8.1.1. </span>Simulazione<a class="headerlink" href="#simulazione" title="Permalink to this heading">#</a></h3>
+<section id="test-paralleli">
+<h4><span class="section-number">8.1.1.1. </span>Test paralleli<a class="headerlink" href="#test-paralleli" title="Permalink to this heading">#</a></h4>
+<p>Simuliamo i punteggi di due test paralleli.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">2237</span><span class="p">)</span><span class="w"> </span><span class="c1"># setting the seed ensure reproducibility</span>
+<span class="n">num_person</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="c1"># number of respondents</span>
+<span class="c1"># True scores for Test 1</span>
+<span class="n">t1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">num_person</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">)</span>
+<span class="c1"># Error scores for Test 1</span>
+<span class="n">e1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">num_person</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="c1"># Observed scores for Test 1</span>
+<span class="n">x1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e1</span>
+<span class="c1"># True scores for Test 2</span>
+<span class="n">t2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="c1"># parallel tests have equal true scores</span>
+<span class="c1"># Error scores for Test 2</span>
+<span class="n">e2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">num_person</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="c1"># Observed scores for Test 2</span>
+<span class="n">x2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e2</span>
+
+<span class="c1"># Merge into a data frame</span>
+<span class="n">test_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">)</span>
+
+<span class="n">mv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">datasummary</span><span class="p">(</span><span class="n">x1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x2</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Var</span><span class="p">,</span>
+<span class="w">    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_df</span><span class="p">,</span>
+<span class="w">    </span><span class="n">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;data.frame&quot;</span>
+<span class="p">)</span>
+<span class="n">mv</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Correlation</span>
+<span class="nf">cor</span><span class="p">(</span><span class="n">test_df</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In conclusione, per test paralleli:</p>
+<ul class="simple">
+<li><p>le medie e le varianze dei punteggi osservati sono statisticamente uguali;</p></li>
+<li><p>la correlazione è uguale all’attendibilità.</p></li>
+</ul>
+</section>
+<section id="test-tau-equivalenti">
+<h4><span class="section-number">8.1.1.2. </span>Test <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenti<a class="headerlink" href="#test-tau-equivalenti" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># True scores for Test 3</span>
+<span class="n">t3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="c1"># essentially tau-equivalent tests</span>
+<span class="c1"># Error scores for Test 3 (larger error SDs)</span>
+<span class="n">e3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">num_person</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
+<span class="c1"># Observed scores for Test 2</span>
+<span class="n">x3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e3</span>
+
+<span class="c1"># Merge into a data frame</span>
+<span class="n">test_df2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x3</span><span class="p">)</span>
+<span class="c1"># Get means and variances</span>
+<span class="n">mv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">datasummary</span><span class="p">(</span><span class="n">x1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x3</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Var</span><span class="p">,</span>
+<span class="w">    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_df2</span><span class="p">,</span>
+<span class="w">    </span><span class="n">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;data.frame&quot;</span>
+<span class="p">)</span>
+<span class="n">mv</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Correlation</span>
+<span class="nf">cor</span><span class="p">(</span><span class="n">test_df2</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se conosciamo i punteggi veri, l’attendibilità di X3 si trova come</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reliability for x3</span>
+<span class="nf">var</span><span class="p">(</span><span class="n">t3</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="n">x3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In conclusione, per test tau-equivalenti:</p>
+<ul class="simple">
+<li><p>le medie e le varianze dei punteggi osservati sono diverse;</p></li>
+<li><p>correlazione <span class="math notranslate nohighlight">\(\neq\)</span> attendibilità.</p></li>
+</ul>
+</section>
+<section id="test-congenerici">
+<h4><span class="section-number">8.1.1.3. </span>Test congenerici<a class="headerlink" href="#test-congenerici" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># True scores for Test 4</span>
+<span class="n">t4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.8</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">t1</span>
+<span class="c1"># Error scores for Test 4 (larger error SDs)</span>
+<span class="n">e4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">num_person</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+<span class="c1"># Observed scores for Test 2</span>
+<span class="n">x4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">t4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e4</span>
+
+<span class="c1"># Merge into a data frame</span>
+<span class="n">test_df3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x4</span><span class="p">)</span>
+<span class="c1"># Get means and variances</span>
+<span class="n">mv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">datasummary</span><span class="p">(</span><span class="n">x1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x4</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Var</span><span class="p">,</span>
+<span class="w">    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_df3</span><span class="p">,</span>
+<span class="w">    </span><span class="n">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;data.frame&quot;</span>
+<span class="p">)</span>
+<span class="n">mv</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Correlation</span>
+<span class="nf">cor</span><span class="p">(</span><span class="n">test_df3</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se conosciamo i punteggi veri, l’attendibilità di X4 si trova come</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reliability for x4</span>
+<span class="nf">var</span><span class="p">(</span><span class="n">t4</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="n">x4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In conclusione, per test congenerici:</p>
+<ul class="simple">
+<li><p>le medie e le varianze dei punteggi osservati sono diverse;</p></li>
+<li><p>correlazione <span class="math notranslate nohighlight">\(\neq\)</span> attendibilità;</p></li>
+<li><p>sono necessari più di due test per distinguere test congenerici e test <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenti.</p></li>
+</ul>
+</section>
+</section>
+<section id="coefficiente-alpha-di-cronbach">
+<h3><span class="section-number">8.1.2. </span>Coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span> di Cronbach<a class="headerlink" href="#coefficiente-alpha-di-cronbach" title="Permalink to this heading">#</a></h3>
+<p>Il coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span> consente la stima dell’affidabilità nel contesto di indicatori <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenti. In queste circostanze, l’attendibilità viene valutata utilizzando l’equazione:</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha = \frac{{k}}{{k-1}} \left( 1 - \frac{{\sum_{i=1}^{k} \sigma_{X_i}^{2}}}{{\sigma_{X}^{2}}} \right)
+\]</div>
+<p>dove:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(k\)</span> è il numero di item nel test,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_{i}^{2}\)</span> rappresenta la varianza del punteggio dell’item (i),</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_{X}^{2}\)</span> è la varianza totale dei punteggi del test.</p></li>
+</ul>
+<p>Una derivazione della formula del coefficiente alpha di Cronbach è fornita nel capitolo <a class="reference internal" href="../_fa/07_total_score.html#reliability-fa-notebook"><span class="std std-ref">Punteggio totale e modello fattoriale</span></a>.</p>
+<p>Fu Guttman nel 1945 a scoprire questo coefficiente, anche se erroneamente attribuito a Cronbach. È spesso noto come coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span> di Guttman-Cronbach o G-C <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
+<p>Quando il modello di <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenza è applicabile, il coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span> costituisce un limite inferiore dell’affidabilità, in altri termini, il coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span> offre una stima prudente dell’affidabilità. Questa caratteristica è considerata uno dei principali vantaggi di questo indice. Tuttavia, è fondamentale notare che questa natura conservativa del coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span> vale solo se le ipotesi del modello <span class="math notranslate nohighlight">\(\tau\)</span>-equivalente sono rispettate.</p>
+<p>Il coefficiente di attendibilità <span class="math notranslate nohighlight">\(\alpha\)</span> è ampiamente utilizzato nell’ambito della psicometria. Tuttavia, come menzionato in precedenza, quando l’assunzione di <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenza non è valida, <span class="math notranslate nohighlight">\(\alpha\)</span> può perdere la sua proprietà conservativa e sovrastimare l’attendibilità del test (Sijtsma, 2009). In tal caso, è necessario valutare attentamente l’adeguatezza dell’utilizzo del coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span> come indicatore di affidabilità.</p>
+<p><strong>Esempio.</strong> Per illustrare la procedura di calcolo del coefficiente <span class="math notranslate nohighlight">\(\omega\)</span>, useremo i dati <code class="docutils literal notranslate"><span class="pre">bfi</span></code> contenuti nel pacchetto <code class="docutils literal notranslate"><span class="pre">psych</span></code>. Il dataframe <code class="docutils literal notranslate"><span class="pre">bfi</span></code> comprende 25 item di autovalutazione della personalità. Sono riportati i dati di 2800 soggetti. Ci concentreremo qui sulla sottoscala <em>Openness</em>.</p>
+<ul class="simple">
+<li><p>O1: <em>Am full of ideas</em>;</p></li>
+<li><p>O2: <em>Avoid difficult reading material</em>;</p></li>
+<li><p>O3: <em>Carry the conversation to a higher level</em>;</p></li>
+<li><p>O4: <em>Spend time reflecting on things</em>;</p></li>
+<li><p>O5: <em>Will not probe deeply into a subject</em>.</p></li>
+</ul>
+<p>Leggiamo i dati in R.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">data</span><span class="p">(</span><span class="n">bfi</span><span class="p">,</span><span class="w"> </span><span class="n">package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;psych&quot;</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">bfi</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;O1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O5&quot;</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 5</caption>
+<thead>
+	<tr><th></th><th scope=col>O1</th><th scope=col>O2</th><th scope=col>O3</th><th scope=col>O4</th><th scope=col>O5</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>61617</th><td>3</td><td>6</td><td>3</td><td>4</td><td>3</td></tr>
+	<tr><th scope=row>61618</th><td>4</td><td>2</td><td>4</td><td>3</td><td>3</td></tr>
+	<tr><th scope=row>61620</th><td>4</td><td>2</td><td>5</td><td>5</td><td>2</td></tr>
+	<tr><th scope=row>61621</th><td>3</td><td>3</td><td>4</td><td>3</td><td>5</td></tr>
+	<tr><th scope=row>61622</th><td>3</td><td>3</td><td>4</td><td>3</td><td>3</td></tr>
+	<tr><th scope=row>61623</th><td>4</td><td>3</td><td>5</td><td>6</td><td>1</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Esaminiamo la correlazione tra gli item della sottoscale Openness.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cor</span><span class="p">(</span><span class="n">bfi</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;O1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O5&quot;</span><span class="p">)],</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pairwise.complete.obs&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 5 × 5 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>O1</th><th scope=col>O2</th><th scope=col>O3</th><th scope=col>O4</th><th scope=col>O5</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>O1</th><td> 1.00</td><td>-0.21</td><td> 0.40</td><td> 0.18</td><td>-0.24</td></tr>
+	<tr><th scope=row>O2</th><td>-0.21</td><td> 1.00</td><td>-0.26</td><td>-0.07</td><td> 0.32</td></tr>
+	<tr><th scope=row>O3</th><td> 0.40</td><td>-0.26</td><td> 1.00</td><td> 0.19</td><td>-0.31</td></tr>
+	<tr><th scope=row>O4</th><td> 0.18</td><td>-0.07</td><td> 0.19</td><td> 1.00</td><td>-0.18</td></tr>
+	<tr><th scope=row>O5</th><td>-0.24</td><td> 0.32</td><td>-0.31</td><td>-0.18</td><td> 1.00</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>È necessario ricodificare due item.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">bfi</span><span class="o">$</span><span class="n">O2r</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bfi</span><span class="o">$</span><span class="n">O2</span>
+<span class="n">bfi</span><span class="o">$</span><span class="n">O5r</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bfi</span><span class="o">$</span><span class="n">O5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cor</span><span class="p">(</span><span class="n">bfi</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;O1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O2r&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O5r&quot;</span><span class="p">)],</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pairwise.complete.obs&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 5 × 5 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>O1</th><th scope=col>O2r</th><th scope=col>O3</th><th scope=col>O4</th><th scope=col>O5r</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>O1</th><td>1.00</td><td>0.21</td><td>0.40</td><td>0.18</td><td>0.24</td></tr>
+	<tr><th scope=row>O2r</th><td>0.21</td><td>1.00</td><td>0.26</td><td>0.07</td><td>0.32</td></tr>
+	<tr><th scope=row>O3</th><td>0.40</td><td>0.26</td><td>1.00</td><td>0.19</td><td>0.31</td></tr>
+	<tr><th scope=row>O4</th><td>0.18</td><td>0.07</td><td>0.19</td><td>1.00</td><td>0.18</td></tr>
+	<tr><th scope=row>O5r</th><td>0.24</td><td>0.32</td><td>0.31</td><td>0.18</td><td>1.00</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Consideriamo la matrice di varianze e covarianze della sottoscala Openness.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cov</span><span class="p">(</span><span class="n">bfi</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;O1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O2r&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O5r&quot;</span><span class="p">)],</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pairwise.complete.obs&quot;</span><span class="p">)</span>
+<span class="n">C</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 5 × 5 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>O1</th><th scope=col>O2r</th><th scope=col>O3</th><th scope=col>O4</th><th scope=col>O5r</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>O1</th><td>1.28</td><td>0.38</td><td>0.54</td><td>0.25</td><td>0.36</td></tr>
+	<tr><th scope=row>O2r</th><td>0.38</td><td>2.45</td><td>0.50</td><td>0.13</td><td>0.67</td></tr>
+	<tr><th scope=row>O3</th><td>0.54</td><td>0.50</td><td>1.49</td><td>0.29</td><td>0.50</td></tr>
+	<tr><th scope=row>O4</th><td>0.25</td><td>0.13</td><td>0.29</td><td>1.49</td><td>0.29</td></tr>
+	<tr><th scope=row>O5r</th><td>0.36</td><td>0.67</td><td>0.50</td><td>0.29</td><td>1.76</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Calcoliamo alpha:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span>
+<span class="n">alpha</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">tr</span><span class="p">(</span><span class="n">C</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">C</span><span class="p">))</span>
+<span class="n">alpha</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.600172514820215</div></div>
+</div>
+<p>Lo stesso risultato si ottiene utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">alpha()</span></code>
+contenuta nel pacchetto <code class="docutils literal notranslate"><span class="pre">psych</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">psych</span><span class="o">::</span><span class="nf">alpha</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Reliability analysis   
+Call: psych::alpha(x = C)
+
+  raw_alpha std.alpha G6(smc) average_r S/N median_r
+       0.6      0.61    0.57      0.24 1.5     0.23
+
+    95% confidence boundaries 
+      lower alpha upper
+Feldt -0.49   0.6  0.95
+
+ Reliability if an item is dropped:
+    raw_alpha std.alpha G6(smc) average_r S/N  var.r med.r
+O1       0.53      0.53    0.48      0.22 1.1 0.0092  0.23
+O2r      0.57      0.57    0.51      0.25 1.3 0.0076  0.22
+O3       0.50      0.50    0.44      0.20 1.0 0.0071  0.20
+O4       0.61      0.62    0.56      0.29 1.6 0.0044  0.29
+O5r      0.51      0.53    0.47      0.22 1.1 0.0115  0.20
+
+ Item statistics 
+       r r.cor r.drop
+O1  0.65  0.52   0.39
+O2r 0.60  0.43   0.33
+O3  0.69  0.59   0.45
+O4  0.52  0.29   0.22
+O5r 0.66  0.52   0.42
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="metodi-alternativi-per-la-stima-del-coefficiente-di-attendibilita">
+<h3><span class="section-number">8.1.3. </span>Metodi alternativi per la stima del coefficiente di attendibilità<a class="headerlink" href="#metodi-alternativi-per-la-stima-del-coefficiente-di-attendibilita" title="Permalink to this heading">#</a></h3>
+<p>Ci sono altri coefficienti di consistenza interna oltre al coefficiente alpha di Cronbach. Alcuni esempi includono il coefficiente KR-20 e il coefficiente KR-21, che vengono utilizzati con item  dicotomici (ossia con risposte a due alternative, come vero/falso).</p>
+<section id="coefficiente-kr-20">
+<h4><span class="section-number">8.1.3.1. </span>Coefficiente KR-20<a class="headerlink" href="#coefficiente-kr-20" title="Permalink to this heading">#</a></h4>
+<p>La formula di Kuder-Richardson-20 (KR-20) è un caso particolare del coefficiente α. Se ogni item è dicotomico, il coefficiente α diventa il KR-20. Il coefficiente Coefficiente KR-20 si calcola con la formula:</p>
+<div class="math notranslate nohighlight">
+\[
+KR\_20 = \frac{{k}}{{k-1}} \left( 1 - \frac{{p(1-p)}}{{\sigma_{X}^{2}}} \right) 
+\]</div>
+<p>dove:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(k\)</span> è il numero di item nel test,</p></li>
+<li><p><span class="math notranslate nohighlight">\(p\)</span> è la proporzione di individui che rispondono correttamente all’item,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_{X}^{2}\)</span> è la varianza totale dei punteggi del test.</p></li>
+</ul>
+<p><strong>Esempio.</strong> Per fare un esempio, consideriamo il data-set <code class="docutils literal notranslate"><span class="pre">LSAT</span></code> contenuto nel pacchetto <code class="docutils literal notranslate"><span class="pre">ltm</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">KR20</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1"># Get number of items (N) and individuals</span>
+<span class="w">    </span><span class="n">n.items</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ncol</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
+<span class="w">    </span><span class="n">n.persons</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
+<span class="w">    </span><span class="c1"># get p_j for each item</span>
+<span class="w">    </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">colMeans</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
+<span class="w">    </span><span class="c1"># Get total scores (X)</span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rowSums</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
+<span class="w">    </span><span class="c1"># observed score variance</span>
+<span class="w">    </span><span class="n">var.x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">n.persons</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">n.persons</span>
+<span class="w">    </span><span class="c1"># Apply KR-20 formula</span>
+<span class="w">    </span><span class="n">rel</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">n.items</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">n.items</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">p</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">var.x</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">rel</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">data</span><span class="p">(</span><span class="n">LSAT</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">LSAT</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 5</caption>
+<thead>
+	<tr><th></th><th scope=col>Item 1</th><th scope=col>Item 2</th><th scope=col>Item 3</th><th scope=col>Item 4</th><th scope=col>Item 5</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>2</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>3</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+	<tr><th scope=row>4</th><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+	<tr><th scope=row>5</th><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+	<tr><th scope=row>6</th><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">KR20</span><span class="p">(</span><span class="n">LSAT</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.294997192215944</div></div>
+</div>
+</section>
+<section id="coefficiente-kr-21">
+<h4><span class="section-number">8.1.3.2. </span>Coefficiente KR-21<a class="headerlink" href="#coefficiente-kr-21" title="Permalink to this heading">#</a></h4>
+<p>Il coefficiente Coefficiente KR-21 si calcola con la formula:</p>
+<div class="math notranslate nohighlight">
+\[
+KR\_21 = \frac{{k}}{{k-1}} \left( 1 - \frac{{\frac{{\sum_{i=1}^{k} p_{i}(1-p_{i})}}{{\sigma_{X}^{2}}}}}{{1 - \frac{{\sum_{i=1}^{k} p_{i}}}{k}}} \right) 
+\]</div>
+<p>dove:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(k\)</span> è il numero di item nel test,</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_{i}\)</span> è la proporzione di individui che rispondono correttamente all’item (i),</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_{X}^{2}\)</span> è la varianza totale dei punteggi del test.</p></li>
+</ul>
+</section>
+</section>
+<section id="la-formula-profetica-di-spearman-brown">
+<h3><span class="section-number">8.1.4. </span>La formula “profetica” di Spearman-Brown<a class="headerlink" href="#la-formula-profetica-di-spearman-brown" title="Permalink to this heading">#</a></h3>
+<p>L’indice di Spearman-Brown stima l’attendibilità nel caso di <span class="math notranslate nohighlight">\(p\)</span> indicatori paralleli:</p>
+<div class="math notranslate nohighlight" id="equation-eq-spearman-brown-der">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-eq-spearman-brown-der" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+  \rho_p = \frac{p \rho_1}{(p-1)\rho_1 + 1},
+\end{equation}
+\]</div>
+<p>dove <span class="math notranslate nohighlight">\(\rho_1\)</span> rappresenta l’attendibilità di un singolo elemento.</p>
+<p>Una derivazione della formula Spearman-Brown è fornita nel capitolo <a class="reference internal" href="../_fa/07_total_score.html#reliability-fa-notebook"><span class="std std-ref">Punteggio totale e modello fattoriale</span></a>.</p>
+<p>L’equazione <a class="reference internal" href="#equation-eq-spearman-brown-der">(8.1)</a> esprime l’attendibilità <span class="math notranslate nohighlight">\(\rho_p\)</span> di un test composto da <span class="math notranslate nohighlight">\(p\)</span> elementi paralleli in termini dell’attendibilità di un singolo elemento. Questa equazione è universalmente riconosciuta come la formula “profetica” di Spearman-Brown (<em>Spearman-Brown prophecy formula</em>).</p>
+<p>Per fare un esempio concreto, poniamoci il problema di calcolare l’attendibilità della sottoscala Openness utilizzando la formula di Spearman-Brown. Ipotizziamo dunque che gli item della scala Openness siano paralleli. La matrice di correlazione è:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cor</span><span class="p">(</span><span class="n">bfi</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;O1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O2r&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;O5r&quot;</span><span class="p">)],</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pairwise.complete.obs&quot;</span><span class="p">)</span>
+<span class="n">R</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 5 × 5 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>O1</th><th scope=col>O2r</th><th scope=col>O3</th><th scope=col>O4</th><th scope=col>O5r</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>O1</th><td>1.00</td><td>0.21</td><td>0.40</td><td>0.18</td><td>0.24</td></tr>
+	<tr><th scope=row>O2r</th><td>0.21</td><td>1.00</td><td>0.26</td><td>0.07</td><td>0.32</td></tr>
+	<tr><th scope=row>O3</th><td>0.40</td><td>0.26</td><td>1.00</td><td>0.19</td><td>0.31</td></tr>
+	<tr><th scope=row>O4</th><td>0.18</td><td>0.07</td><td>0.19</td><td>1.00</td><td>0.18</td></tr>
+	<tr><th scope=row>O5r</th><td>0.24</td><td>0.32</td><td>0.31</td><td>0.18</td><td>1.00</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Supponiamo di calcolare l’attendibilità di un singolo item (<span class="math notranslate nohighlight">\(\rho_1\)</span>) come la correlazione media tra gli item:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">rr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NULL</span>
+<span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span>
+<span class="n">k</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nf">for </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nf">if </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">rr</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">ro_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">rr</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">ro_1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.236538319550859</div></div>
+</div>
+<p>Applicando la formula di Spearman-Brown, la stima dell’attendibilità del
+test diventa pari a</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ro_1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">((</span><span class="n">p</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ro_1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.60770732243972</div></div>
+</div>
+</section>
+</section>
+<section id="forme-parallele-del-test">
+<h2><span class="section-number">8.2. </span>Forme parallele del test<a class="headerlink" href="#forme-parallele-del-test" title="Permalink to this heading">#</a></h2>
+<p>In alcune situazioni, è possibile avere a disposizione diverse versioni di un test che sono progettate per essere interscambiabili, in modo tale che la specifica versione del test non influenzi i punteggi ottenuti dai partecipanti. Queste forme alternative del test sono comuni soprattutto nel campo dell’educazione, dove spesso vengono preparate diverse versioni al fine di prevenire frodi o imbrogli. Inoltre, anche i ricercatori possono adottare forme alternative in studi che coinvolgono pre-test e post-test, al fine di evitare che i partecipanti beneficiino degli effetti di pratica o memoria. Tuttavia, è di fondamentale importanza determinare se i punteggi ottenuti da queste diverse versioni sono coerenti, poiché la mancanza di equivalenza tra le forme potrebbe condurre a conclusioni errate riguardo alle variazioni dei punteggi.</p>
+<p>Le principali fonti di errore di misurazione per le forme alternative di test cognitivi derivano dalle differenze nei contenuti, nella difficoltà e nella complessità cognitiva degli item. Per quanto riguarda i test non-cognitivi, le differenze nei contenuti e nell’intensità degli item sono motivo di attenzione. Gli sviluppatori di forme alternative adottano diverse procedure al fine di garantire l’equivalenza tra le varie versioni, basandosi sulla stessa tabella di specifiche che stabilisce la proporzione di item per i diversi domini di contenuto e i livelli cognitivi o non-cognitivi. Inoltre, vengono appaiati gli item in base alla loro difficoltà e alla loro capacità discriminante.</p>
+<p>I coefficienti di equivalenza, noti anche come affidabilità delle forme alternative, valutano la similitudine tra due o più versioni di un test. Per calcolare questi coefficienti, le diverse forme vengono somministrate agli stessi partecipanti e i punteggi ottenuti vengono correlati. Tuttavia, vi sono alcune considerazioni legate alla somministrazione dei test e alla possibile fatica dei partecipanti. Al fine di affrontare tali problematiche, possono essere adottate strategie come il bilanciamento dell’ordine di somministrazione e l’introduzione di un breve intervallo di tempo tra le diverse versioni. Inoltre, è importante considerare gli effetti della pratica o della memoria, i quali potrebbero influenzare i punteggi ottenuti nel secondo test somministrato. L’impiego del bilanciamento tra gruppi può contribuire a controllare tali effetti.</p>
+</section>
+<section id="attendibilita-test-retest">
+<h2><span class="section-number">8.3. </span>Attendibilità test-retest<a class="headerlink" href="#attendibilita-test-retest" title="Permalink to this heading">#</a></h2>
+<p>Infine, esaminiamo il concetto di “affidabilità test-retest”, che si riferisce alla coerenza o stabilità dei punteggi di un test in diverse occasioni nel corso del tempo. Questo tipo di affidabilità riveste una particolare importanza nelle situazioni in cui i punteggi vengono ottenuti in momenti diversi e confrontati, come nel caso di test effettuati prima e dopo un intervento. Inoltre, è di rilievo quando i punteggi del test vengono utilizzati per prendere decisioni diagnostiche, di selezione o di collocazione. Tuttavia, è importante sottolineare che l’affidabilità test-retest non è adatta per valutare costrutti che non sono noti per la loro stabilità nel tempo. Ciò deriva dal fatto che l’analisi della stabilità di un test potrebbe essere influenzata da effettivi cambiamenti nei livelli veri del costrutto tra i partecipanti. Di conseguenza, è essenziale che i ricercatori siano consapevoli in anticipo della stabilità del costrutto che intendono misurare. È importante notare che molti costrutti di interesse nelle scienze sociali sono generalmente considerati stabili nel tempo, come ad esempio la creatività, l’abilità cognitiva e alcune caratteristiche della personalità.</p>
+</section>
+<section id="conclusioni">
+<h2><span class="section-number">8.4. </span>Conclusioni<a class="headerlink" href="#conclusioni" title="Permalink to this heading">#</a></h2>
+<p>In conclusione, la valutazione dell’affidabilità di un test richiede l’impiego di diversi coefficienti che tengono conto delle varie fonti di errore. I coefficienti di consistenza interna si concentrano sull’errore derivante dalle fluttuazioni delle risposte tra gli item, mentre quelli di equivalenza esaminano la coerenza dei punteggi tra diverse versioni del test. I coefficienti di stabilità misurano la coerenza dei punteggi nel corso del tempo. È di fondamentale importanza selezionare il tipo di affidabilità appropriato in base allo scopo del test, al fine di ottenere informazioni affidabili e utili per le decisioni basate sui punteggi ottenuti dal test.</p>
+<!-- [^2]: Vedremo in seguito -->
+<!--     (§ [\[ch:err_stnd_stima\]](#ch:err_stnd_stima){reference-type="ref" -->
+<!--     reference="ch:err_stnd_stima"}) come il livello di abilità latente -->
+<!--     (il punteggio vero) possa essere stimato con la formula di Kelley -->
+<!--     (1923), ovvero $$\begin{aligned} -->
+<!--     \hat{T}_i &= \rho_{XT} x_i + (1 - \rho_{XT})\mu_x\notag\\ -->
+<!--     &= \mu_x + \rho_{XT} (x_i - \mu_x),\notag\end{aligned}$$ dove -->
+<!--     $\mu_x$ è la media dei punteggio osservato e $\hat{T}_i$ è la stima -->
+<!--     del punteggio vero per l'$i$-esimo rispondente. -->
+<!-- [^3]:  --></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_ctt"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_ctt_2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>L’affidabilità del test</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04_err_std_mis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>L’errore standard della misurazione</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficienti-di-consistenza-interna">8.1. Coefficienti di consistenza interna</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulazione">8.1.1. Simulazione</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#test-paralleli">8.1.1.1. Test paralleli</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#test-tau-equivalenti">8.1.1.2. Test <span class="math notranslate nohighlight">\(\tau\)</span>-equivalenti</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#test-congenerici">8.1.1.3. Test congenerici</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficiente-alpha-di-cronbach">8.1.2. Coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span> di Cronbach</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodi-alternativi-per-la-stima-del-coefficiente-di-attendibilita">8.1.3. Metodi alternativi per la stima del coefficiente di attendibilità</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficiente-kr-20">8.1.3.1. Coefficiente KR-20</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficiente-kr-21">8.1.3.2. Coefficiente KR-21</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-formula-profetica-di-spearman-brown">8.1.4. La formula “profetica” di Spearman-Brown</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forme-parallele-del-test">8.2. Forme parallele del test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attendibilita-test-retest">8.3. Attendibilità test-retest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusioni">8.4. Conclusioni</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

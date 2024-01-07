@@ -1,0 +1,682 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>19. Introduzione all’analisi fattoriale &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_fa/01_intro_fa';</script>
+    <link rel="shortcut icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="20. Il modello unifattoriale" href="02_analisi_fattoriale_1.html" />
+    <link rel="prev" title="18. Analisi dei percorsi" href="../_path_analysis/01_path_analysis.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Test psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/01_measurement.html">1. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/02_norms.html">2. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/03_expval_var.html">3. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/04_joint_prob.html">4. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/05_regression.html">5. L’analisi di regressione</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/020_ctt_1.html">6. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/021_ctt_2.html">7. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/022_ctt_3.html">8. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/025_err_std_mis.html">9. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/026_err_std_stima.html">10. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/028_applications_ctt.html">11. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E_ctt_1.html">12. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/030_multilevel_1.html">13. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/031_interrater_reliability.html">14. L’affidabilità tra giudici</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/041_gtheory.html">15. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/01_validity.html">16. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/02_relations_to_other_vars.html">17. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">18. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">19. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_analisi_fattoriale_1.html">20. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_analisi_fattoriale_2.html">21. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_analisi_fattoriale_3.html">22. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_factor_scores.html">23. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_constraints_on_parms.html">24. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_total_score.html">25. Punteggio totale e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_efa_lavaan.html">26. EFA con <code class="docutils literal notranslate"><span class="pre">lavaan</span></code></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione di strumenti psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">27. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">28. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">29. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">30. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">31. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/01_cfa.html">32. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/E_01.html">33. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/02_cfa_mod_comp.html">34. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/03_cat_data.html">35. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/04_mmm.html">36. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/05_bifactor.html">37. Modello bifattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/350_sem_intro.html">38. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/351_data_preparation.html">39. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/E_sem_350.html">40. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/352_gof.html">41. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/353_mod_comp.html">42. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/354_refine_solution.html">43. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/355_group_invariance.html">44. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/358_multilevel_sem.html">45. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/359_structural_regr.html">46. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/360_missing_data.html">47. Dati mancanti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/361_small_samples.html">48. Modellizzazione SEM in Piccoli Campioni</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_irt/400_logistic_regr.html">49. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/E_400.html">50. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/401_rasch_model.html">51. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/402_assumptions.html">52. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/403_estimation.html">53. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/405_1pl_2pl_3pl.html">54. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/410_implementation.html">55. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/415_polytomous.html">56. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/501_development.html">57. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/502_tutorial.html">58. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/700_lgm_intro.html">59. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/701_lgm_prelims.html">60. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/702_time_effects.html">61. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/703_intro_panel.html">62. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/704_lgm_mixed.html">63. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/705_growth_1.html">64. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/706_growth_cont.html">65. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/710_time_inv_cov.html">66. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/711_growth_groups.html">67. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/715_bivariate_growth_models.html">68. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/720_inv_measurement.html">69. Invarianza di misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/750_latent_change.html">70. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/751_biv_change.html">71. Modello LCS bivariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/755_lgm_meas_inv.html">72. Invarianza fattoriale nei modelli LGM</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">73. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/901_intro_r.html">74. Linguaggio di programmazione R</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test/issues/new?title=Issue%20on%20page%20%2F_fa/01_intro_fa.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_fa/01_intro_fa.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduzione all’analisi fattoriale</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caratteristiche-dell-analisi-fattoriale">19.1. Caratteristiche dell’analisi fattoriale</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l-analisi-fattoriale-esplorativa-e-confermativa">19.1.1. L’analisi fattoriale esplorativa e confermativa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assunzioni-dell-analisi-fattoriale">19.1.2. Assunzioni dell’analisi fattoriale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sviluppo-storico-dell-analisi-fattoriale">19.1.3. Sviluppo storico dell’analisi fattoriale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fasi-dell-analisi-fattoriale">19.1.4. Fasi dell’analisi fattoriale</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduzione-all-analisi-fattoriale">
+<span id="intro-fa-notebook"></span><h1><span class="section-number">19. </span>Introduzione all’analisi fattoriale<a class="headerlink" href="#introduzione-all-analisi-fattoriale" title="Permalink to this heading">#</a></h1>
+<section id="caratteristiche-dell-analisi-fattoriale">
+<h2><span class="section-number">19.1. </span>Caratteristiche dell’analisi fattoriale<a class="headerlink" href="#caratteristiche-dell-analisi-fattoriale" title="Permalink to this heading">#</a></h2>
+<p>La teoria psicometrica rappresenta il principale strumento a disposizione per la creazione di strumenti di misurazione attendibili e validi nell’ambito dell’assessment psicologico e neuropsicologico. Tale disciplina si basa su due diversi approcci metodologici per la costruzione dei reattivi psicologici: la teoria classica dei test e la teoria di risposta all’item, nota come <em>item response theory</em> (IRT). Nel presente capitolo, esamineremo come l’analisi fattoriale possa essere utilizzata per rispondere alle domande che sono state affrontate nel capitolo precedente, in cui abbiamo esaminato la teoria classica dei test.</p>
+<!-- Se vogliamo costruire un test psicometrico per la valutazione di un -->
+<!-- particolare deficit psicologico o neuropsicologico, prima di iniziare lo -->
+<!-- studio, dobbiamo fornire una risposta ad una serie di domande. Per -->
+<!-- esempio, come dobbiamo selezionare gli item? Gli item scelti coprono -->
+<!-- tutto il dominio del fenomeno considerato? Quanti item dobbiamo usare? A -->
+<!-- quanti soggetti dobbiamo somministrare lo strumento? Quali analisi -->
+<!-- statistiche dobbiamo svolgere sui dati raccolti? -->
+<p>L’analisi fattoriale rappresenta uno strumento statistico utile per trovare le risposte alle domande sollevate in precedenza riguardo alla teoria classica dei test. Tuttavia, va sottolineato che si tratta di una tecnica statistica complessa che richiede l’uso di specifici software. Nel contesto di questo insegnamento, utilizzeremo il pacchetto “lavaan” del linguaggio statistico R per condurre l’analisi fattoriale.</p>
+<p>L’analisi fattoriale è una tecnica statistica che consente di identificare variabili latenti a partire da un insieme di variabili osservate. La distinzione tra variabili latenti e osservate si basa sulla loro osservabilità empirica: le prime rappresentano concetti generali o complessi che non possono essere misurati direttamente, mentre le seconde possono essere facilmente rilevate. Tuttavia, entrambe le tipologie di variabili possono essere definite in modo operazionale. Ciò significa che, anche per le variabili latenti, è possibile identificare indicatori misurabili che ne forniscono una rappresentazione concreta e quantificabile.</p>
+<p>Ma cos’è esattamente una variabile latente o un fattore? Un fattore può essere definito come una combinazione lineare di variabili osservate tra loro correlate, che rappresentano una specifica dimensione di un costrutto psicologico distinta da altre dimensioni dello stesso costrutto o da dimensioni di costrutti diversi (Tabachnick e Fidell, 2001). Ad esempio, la Wechsler Adult Intelligence Scale – Fourth Edition (WAIS-IV) valuta le capacità cognitive di adolescenti e adulti, distinguendo tra quattro dimensioni dell’intelligenza: comprensione verbale, ragionamento visuo-percettivo, memoria di lavoro e velocità di elaborazione.</p>
+<p>L’analisi fattoriale viene impiegata per diversi scopi nel campo della psicometria, tra cui lo sviluppo e la validazione di strumenti di valutazione psicologica e la determinazione della validità di costrutto di uno strumento per una particolare popolazione. Una volta che la struttura interna di un costrutto è stata definita, l’analisi fattoriale può essere utilizzata per identificare le variabili esterne (ad esempio, il genere o il livello di istruzione) che sono associate alle diverse dimensioni del costrutto di interesse (Nunnally &amp; Bernstein, 1994).</p>
+<section id="l-analisi-fattoriale-esplorativa-e-confermativa">
+<h3><span class="section-number">19.1.1. </span>L’analisi fattoriale esplorativa e confermativa<a class="headerlink" href="#l-analisi-fattoriale-esplorativa-e-confermativa" title="Permalink to this heading">#</a></h3>
+<p>L’analisi fattoriale, nei suoi primi modelli matematici, era principalmente una tecnica di analisi esplorativa che permetteva di scoprire le relazioni nascoste tra un gran numero di variabili. In seguito, con lo sviluppo delle tecniche delle equazioni strutturali, l’analisi fattoriale ha dato vita ad una tecnica di analisi confermativa, che permette di verificare se i fattori ipotizzati spiegano effettivamente le variabili misurate. Più recentemente, si è notato che i vincoli posti dai modelli SEM possono essere troppo restrittivi, e pertanto le tecniche dell’analisi fattoriale esplorativa vengono integrate con i modelli di equazioni strutturali, dando vita ad un nuovo approccio alla definizione delle variabili latenti, chiamato modelli ESEM (Exploratory Structural Equation Modeling).</p>
+</section>
+<section id="assunzioni-dell-analisi-fattoriale">
+<h3><span class="section-number">19.1.2. </span>Assunzioni dell’analisi fattoriale<a class="headerlink" href="#assunzioni-dell-analisi-fattoriale" title="Permalink to this heading">#</a></h3>
+<p>L’analisi fattoriale esplorativa si basa sull’assunzione che un insieme di variabili osservate possa essere spiegato da un insieme più piccolo di fattori latenti che rappresentano le interrelazioni tra di esse. Per poter condurre l’analisi fattoriale, molte delle assunzioni che stanno alla base del calcolo delle correlazioni devono essere rispettate, come ad esempio la normalità multivariata delle variabili considerate. Tuttavia, spesso questa assunzione viene violata quando le variabili osservate derivano da risposte a questionari che utilizzano scale di tipo Likert. In questi casi, si può superare il problema utilizzando le correlazioni policoriche. In generale, l’analisi fattoriale esplorativa permette di esplorare e comprendere le relazioni nascoste tra le variabili osservate, mentre l’analisi fattoriale di tipo confermativo e i modelli ESEM consentono di verificare se i fattori ipotizzati spiegano effettivamente le variabili misurate.</p>
+</section>
+<section id="sviluppo-storico-dell-analisi-fattoriale">
+<h3><span class="section-number">19.1.3. </span>Sviluppo storico dell’analisi fattoriale<a class="headerlink" href="#sviluppo-storico-dell-analisi-fattoriale" title="Permalink to this heading">#</a></h3>
+<p>L’analisi fattoriale è una tecnica di analisi multivariata che, storicamente, è stata strettamente legata ai modelli psicometrici. I concetti di fonte comune e componenti principali, che sono alla base dell’analisi fattoriale, possono essere trovati nei lavori di Galton e Pearson. Tuttavia, il primo modello di analisi fattoriale è stato elaborato da Spearman, il quale ha proposto che le risposte ad un insieme di test di abilità sono riconducibili ad un unico fattore generale di intelligenza.</p>
+<p>Tra l’inizio del ‘900 e il 1930, diversi gruppi di psicologi inglesi e americani svilupparono una serie di tecniche statistiche per determinare le dimensioni dell’intelligenza. In Inghilterra, Spearman e i suoi colleghi svilupparono la teoria dei due fattori dell’intelligenza umana, secondo cui esiste un fattore generale (g) che esprime l’intelligenza generale, e tanti fattori specifici (s) che rappresentano l’acquisizione specifica attraverso l’apprendimento e l’esperienza. Thurstone generalizzò il modello fattoriale al caso in cui sono presenti più fattori comuni.</p>
+<p>Thurstone e i suoi collaboratori applicarono la teoria dei fattori multipli a vari problemi psicometrici, diventando ben presto il riferimento più importante per lo sviluppo delle procedure dell’analisi fattoriale. Successivamente, un numero di importanti psicometristi europei contribuì a spostare il focus dell’assessment psicologico dall’approccio esplorativo a quello confermativo. I contributi di Jöreskog e Sörbom hanno contribuito a sviluppare i modelli di equazioni strutturali (Structural Equation Models, SEM), i quali costituiscono una delle tecniche più utilizzate per l’analisi dei dati nelle discipline psicologiche e sociali.</p>
+<p>Negli anni ‘30, Sewall Wright sviluppò una linea di ricerca nella biometria che utilizzava modelli di equazioni simultanee per analizzare schemi di rappresentazione dei nessi di influenza tra variabili, noti come analisi dei percorsi. Negli anni ‘50, l’analisi fattoriale divenne uno dei metodi di analisi dati più utilizzati in psicologia, soprattutto per la costruzione dei reattivi psicologici, grazie alla diffusione dei centri calcolo. Le tradizioni di ricerca dei modelli di equazioni simultanee e di quelli strutturali rimasero separate fino agli anni ‘60, quando gli studiosi delle scienze sociali iniziarono a sottolineare i vantaggi della combinazione di entrambi i metodi. La path analysis rappresentava i nessi di influenza tra variabili tramite diagrammi, mentre le equazioni simultanee specificavano sia variabili osservate che latenti. La disponibilità di programmi per computer semplificò la risoluzione simultanea di sistemi di equazioni lineari con variabili latenti, rendendo più facile la diffusione dell’analisi fattoriale confermativa. Negli anni ‘60, l’approccio confermativo si sviluppò ulteriormente grazie a Karl Jöreskog, orientandosi soprattutto all’esame di ipotesi teoriche.</p>
+<p>L’analisi fattoriale confermativa (CFA) è vista come un modo per creare modelli di misurazione parsimoniosi, ma spesso questi modelli includono un certo livello di errore di misurazione sistemico dovuto al fatto che gli item non sono indicatori puri dei corrispondenti costrutti. Ci si può aspettare quindi una certa associazione rilevante per il costrutto anche tra item e costrutti non target ma concettualmente associati. Quando tali associazioni non sono considerate nel modello a causa dei vincoli restrittivi dell’approccio CFA, i risultati dell’analisi possono essere sistematicamente distorti, con una sovrastima delle associazioni tra i fattori. Inoltre, i vincoli eccessivamente restrittivi dei modelli CFA possono minare la bontà di adattamento dei modelli e la validità discriminante dei fattori. Per affrontare questi problemi, i modelli ESEM contemporanei sono stati sviluppati.</p>
+</section>
+<section id="fasi-dell-analisi-fattoriale">
+<h3><span class="section-number">19.1.4. </span>Fasi dell’analisi fattoriale<a class="headerlink" href="#fasi-dell-analisi-fattoriale" title="Permalink to this heading">#</a></h3>
+<p>Indipendentemente dal software statistico utilizzato e dal livello di esperienza del ricercatore, lo sviluppo di un test psicometrico inizia con l’analisi fattoriale esplorativa. Tale analisi si compone di otto stadi successivi:</p>
+<ol class="arabic simple">
+<li><p>specificazione del problema,</p></li>
+<li><p>scelta degli item,</p></li>
+<li><p>verifica dell’adeguatezza della matrice di correlazione,</p></li>
+<li><p>estrazione iniziale dei fattori,</p></li>
+<li><p>rotazione dei fattori,</p></li>
+<li><p>ulteriore selezione degli item,</p></li>
+<li><p>interpretazione dei risultati,</p></li>
+<li><p>costruzione di un report della ricerca,</p></li>
+<li><p>validazione dei risultati.</p></li>
+</ol>
+<p>Nelle seguenti dispense verranno discussi in dettaglio questi diversi stadi della costruzione e validazione di un reattivo psicologico.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_fa"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../_path_analysis/01_path_analysis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>Analisi dei percorsi</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_analisi_fattoriale_1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">20. </span>Il modello unifattoriale</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caratteristiche-dell-analisi-fattoriale">19.1. Caratteristiche dell’analisi fattoriale</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l-analisi-fattoriale-esplorativa-e-confermativa">19.1.1. L’analisi fattoriale esplorativa e confermativa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assunzioni-dell-analisi-fattoriale">19.1.2. Assunzioni dell’analisi fattoriale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sviluppo-storico-dell-analisi-fattoriale">19.1.3. Sviluppo storico dell’analisi fattoriale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fasi-dell-analisi-fattoriale">19.1.4. Fasi dell’analisi fattoriale</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
