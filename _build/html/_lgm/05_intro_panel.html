@@ -1,0 +1,2528 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>64. Specificare e Interpretare un Modello Longitudinale &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_lgm/05_intro_panel';</script>
+    <link rel="shortcut icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="65. LGM e modelli misti" href="06_lgm_mixed.html" />
+    <link rel="prev" title="63. Invarianza Fattoriale Longitudinale" href="04_invariance.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Test psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/01_measurement.html">1. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/02_norms.html">2. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/03_expval_var.html">3. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/04_joint_prob.html">4. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/05_regression.html">5. L’analisi di regressione</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/01_ctt_1.html">6. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/02_ctt_2.html">7. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/03_ctt_3.html">8. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/04_err_std_mis.html">9. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/05_err_std_stima.html">10. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/06_applications_ctt.html">11. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E_ctt_1.html">12. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/01_multilevel_1.html">13. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/02_interrater_reliability.html">14. L’affidabilità tra giudici</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/01_gtheory.html">15. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/01_validity.html">16. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/02_relations_to_other_vars.html">17. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">18. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale esplorativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/01_intro_fa.html">19. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/02_analisi_fattoriale_1.html">20. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/03_analisi_fattoriale_2.html">21. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/04_analisi_fattoriale_3.html">22. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/05_factor_scores.html">23. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/06_constraints_on_parms.html">24. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/07_total_score.html">25. Punteggio totale e modello fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione di strumenti psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">26. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">27. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">28. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">29. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">30. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/01_cfa.html">31. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/E_01.html">32. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/02_meanstructure.html">33. La struttura delle medie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/03_cat_data.html">34. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/04_mmm.html">35. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/05_bifactor.html">36. Modello bifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/06_efa_lavaan.html">37. Analisi Fattoriale Esplorativa</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/01_sem_intro.html">38. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/02_data_preparation.html">39. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/E_01.html">40. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/03_gof.html">41. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/04_mod_comp.html">42. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/05_cfa_mod_comp.html">43. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/06_refine_solution.html">44. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/07_group_invariance.html">45. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/08_multilevel_sem.html">46. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/09_structural_regr.html">47. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/10_missing_data.html">48. Dati mancanti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/11_small_samples.html">49. Modellizzazione SEM in Piccoli Campioni</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_irt/01_logistic_regr.html">50. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/E_01.html">51. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/02_rasch_model.html">52. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/03_assumptions.html">53. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/04_estimation.html">54. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/05_1pl_2pl_3pl.html">55. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/06_implementation.html">56. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/07_polytomous.html">57. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/01_development.html">58. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/02_tutorial.html">59. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_lgm_intro.html">60. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_lgm_prelims.html">61. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_time_effects.html">62. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_invariance.html">63. Invarianza Fattoriale Longitudinale</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">64. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_lgm_mixed.html">65. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_growth_1.html">66. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_growth_cont.html">67. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_time_inv_cov.html">68. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_growth_groups.html">69. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_bivariate_tvc_models.html">70. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="720_inv_measurement.html">71. Invarianza di misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="750_latent_change.html">72. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="751_biv_change.html">73. Modello LCS bivariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="755_lgm_meas_inv.html">74. Invarianza fattoriale nei modelli LGM</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">75. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/901_intro_r.html">76. Linguaggio di programmazione R</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test/issues/new?title=Issue%20on%20page%20%2F_lgm/05_intro_panel.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_lgm/05_intro_panel.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Specificare e Interpretare un Modello Longitudinale</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basi-di-un-modello-panel">64.1. Basi di un Modello Panel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-processo-di-cambiamento-simplex">64.2. Il Processo di Cambiamento Simplex</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-simplex-per-il-mescolamento-di-carte">64.3. Modello Simplex per il Mescolamento di Carte</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-panel-per-affetto-positivo-e-negativo">64.4. Modello Panel per Affetto Positivo e Negativo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-sem-iniziale">64.4.1. Modello SEM Iniziale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-invarianza-configurale">64.4.2. Modello di Invarianza Configurale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-invarianza-debole">64.4.3. Modello di Invarianza Debole</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">64.5. Considerazioni Conclusive</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="specificare-e-interpretare-un-modello-longitudinale">
+<span id="intro-panel-model-notebook"></span><h1><span class="section-number">64. </span>Specificare e Interpretare un Modello Longitudinale<a class="headerlink" href="#specificare-e-interpretare-un-modello-longitudinale" title="Permalink to this heading">#</a></h1>
+<p>Nel presente capitolo, approfondiremo l’analisi e l’interpretazione dei modelli panel longitudinali tradizionali. Questo ambito richiede una conoscenza dettagliata di diversi fattori cruciali nella formulazione del modello. In particolare, ci concentreremo sulla struttura simplex, tipica nei dataset longitudinali, e discuteremo il processo di “potatura” del modello, ovvero la sua semplificazione e ottimizzazione per una maggiore efficacia. Esamineremo inoltre le tecniche per valutare gli effetti indiretti e le strategie per l’integrazione delle covariate nel modello.</p>
+<p>I termini “modello panel” e “SEM longitudinale” sono frequentemente usati in modo intercambiabile nel contesto dei modelli di Structural Equation Modeling (SEM). Entrambi questi approcci si concentrano sulle relazioni predittive e su come le variazioni individuali in costrutti latenti (ad esempio, atteggiamenti o abilità) cambiano nel tempo. Tuttavia, è fondamentale distinguere questi modelli dai modelli di Confirmatory Factor Analysis (CFA) longitudinali. Mentre i modelli CFA longitudinali si focalizzano primariamente sui livelli medi dei costrutti e su come questi rimangono consistenti o cambiano nel tempo, i modelli panel mettono in evidenza le relazioni dinamiche tra le variabili e come queste interagiscono e covariano nel corso del tempo.</p>
+<p>Per quanto riguarda l’analisi dei livelli medi nei modelli panel, spesso si ricorre al modello CFA, specialmente in presenza di un’assunzione di invarianza fattoriale forte. Ciò significa che, anche se il focus principale dei modelli panel è esplorare come le relazioni tra variabili cambiano nel tempo, l’uso del CFA permette di valutare la stabilità o il cambiamento dei livelli medi dei costrutti attraverso diverse misurazioni temporali. In contrasto, i modelli di curva di crescita latente hanno come obiettivo primario l’analisi diretta di come i livelli medi di un costrutto evolvono nel tempo. Questi modelli sono centrati sulla modellazione delle traiettorie di crescita di un costrutto, come ad esempio il monitoraggio dello sviluppo di una competenza specifica nei bambini, per capire il ritmo e la natura di tale evoluzione nel tempo.</p>
+<p>In sintesi, mentre i modelli panel (o SEM longitudinali) esaminano le relazioni tra variabili nel tempo e possono utilizzare CFA longitudinali per valutare la stabilità dei livelli medi dei costrutti, i modelli di curva di crescita latente si concentrano specificamente sulla modellazione dell’evoluzione temporale dei livelli medi di un costrutto.</p>
+<p>Un elemento fondamentale dei modelli panel longitudinali è che le loro relazioni di regressione predittiva suggeriscono un’interpretazione causale. Tuttavia, è necessario procedere con cautela in tali interpretazioni, poiché molti di questi modelli non permettono conclusioni di causalità diretta a causa della natura osservazionale dei dati. La causalità è implicata quando si osservano effetti predittivi stabili e coerenti nel tempo. In questi modelli, l’intervallo temporale tra le misurazioni determina la direzione degli effetti predittivi.</p>
+<p>È cruciale riconoscere che il modello panel è uno strumento statistico per l’analisi dei dati e che, per affermare una causalità, i dati devono essere raccolti con appropriati controlli e rigorose manipolazioni sperimentali. Solo con dati raccolti in modo idoneo è possibile specificare il modello statistico adeguato per testare ipotesi causali.</p>
+<p>Un fattore chiave per una corretta inferenza è il controllo statistico delle variabili confondenti. In questo capitolo, esploreremo cinque metodi diversi per includere le covariate in un modello, mostrando come queste possano essere utilizzate per interpretare i dati analizzati. Questi approcci forniscono una comprensione più approfondita dei modelli panel e del loro potenziale nel fornire intuizioni significative dai dati longitudinali.</p>
+<section id="basi-di-un-modello-panel">
+<h2><span class="section-number">64.1. </span>Basi di un Modello Panel<a class="headerlink" href="#basi-di-un-modello-panel" title="Permalink to this heading">#</a></h2>
+<p>Per iniziare con un modello panel, la maggior parte delle associazioni non direzionali tra i tempi del modello CFA vengono trasformate in relazioni di regressione dirette, oppure i collegamenti tra i costrutti vengono rimossi (ovvero, impostati a zero). Quando le associazioni tra i tempi vengono specificate come percorsi di regressione (rappresentati graficamente nel path diagram come frecce direzionali), le associazioni longitudinali vengono stimate, controllando per tutti gli altri percorsi di regressione specificati. Tipicamente, solo le associazioni entro lo stesso tempo vengono ancora definite come relazioni di covarianza non direzionali (frecce bidirezionali).</p>
+<p>Nel modello longitudinale, le covarianze tra le variabili al Tempo 1 sono spesso associazioni di ordine zero (cioè, quando non si controllano covariate). Nei tempi successivi, le associazioni all’interno del tempo sono considerate associazioni residue o covarianze tra fattori di disturbo. Un fattore di disturbo è semplicemente la varianza residua di un costrutto dopo aver stimato gli effetti del punto temporale precedente.</p>
+<p>La figura successiva illustra un diagramma di percorso per un modello panel. In tale diagramma, un percorso che connette una variabile latente al Tempo 1 con la sua versione al Tempo 2 è denominato percorso autoregressivo. Il termine “autoregressivo” indica che il percorso ha una direzione e un potenziale predittivo; “auto” implica che il percorso coinvolge lo stesso costrutto in momenti diversi. I collegamenti longitudinali, ovvero nel tempo, tra due costrutti differenti sono noti come effetti incrociati ritardati (o cross-lagged). Questa terminologia fa riferimento al fatto che un percorso di regressione si estende da un costrutto all’altro, separati da un intervallo temporale specifico. Sia i percorsi incrociati ritardati che quelli autoregressivi rappresentano effetti predittivi, nei quali si tiene conto degli effetti di altre variabili che influenzano lo stesso costrutto.</p>
+<figure class="align-default" id="little-fig7-1-fig">
+<a class="reference internal image-reference" href="../_images/little_fig7_1.png"><img alt="../_images/little_fig7_1.png" src="../_images/little_fig7_1.png" style="height: 550px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 64.1 </span><span class="caption-text">Etichette dei parametri per tre punti temporali con affetto positivo e affetto negativo: Un’analisi di base del modello panel direzionale. Nota. Si consente l’associazione delle varianze residue tra gli indicatori corrispondenti nel tempo.  (Figura adattata da <span id="id1">Little [<a class="reference internal" href="../z_biblio.html#id7" title="Todd D Little. Longitudinal structural equation modeling. Guilford Press, 2023.">Lit23</a>]</span>).</span><a class="headerlink" href="#little-fig7-1-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Nell’ambito di studi che prevedono multiple rilevazioni temporali, è possibile valutare un ampio insieme di relazioni temporali. Se tutti i possibili percorsi di regressione direzionale da un punto temporale a tutti i successivi vengono stimati, il modello longitudinale viene definito come saturato. Tuttavia, un modello strutturale saturato spesso non è informativo in quanto non fornisce una rappresentazione concisa e parsimoniosa di come le associazioni predittive si evolvono nel tempo. Lo scopo di un modello SEM longitudinale è identificare un gruppo ristretto di percorsi strutturali che possono spiegare le associazioni nei dati nel tempo altrettanto efficacemente quanto il modello saturato. Questo insieme ristretto di percorsi rappresenta un modello più sintetico e teoricamente informativo dei processi sottostanti ai dati. Tale modello parsimonioso non dovrebbe mostrare differenze significative rispetto al modello saturato.</p>
+</section>
+<section id="il-processo-di-cambiamento-simplex">
+<h2><span class="section-number">64.2. </span>Il Processo di Cambiamento Simplex<a class="headerlink" href="#il-processo-di-cambiamento-simplex" title="Permalink to this heading">#</a></h2>
+<p>Il modello simplex rappresenta un punto di partenza efficace per numerosi modelli panel longitudinali. Basato sull’ipotesi che gli individui cambino a un ritmo costante e che le influenze esterne su tale cambiamento siano minime, il modello simplex prevede un pattern specifico di correlazioni tra i diversi punti temporali. In sostanza, si aspetta che il cambiamento sia graduale e coerente.</p>
+<p>**Tabella 1. ** Esempi di Strutture di Correlazione Simplex.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>T1</p></th>
+<th class="head"><p>T2</p></th>
+<th class="head"><p>T3</p></th>
+<th class="head"><p>T4</p></th>
+<th class="head"><p>T5</p></th>
+<th class="head"><p>T6</p></th>
+<th class="head"><p>T7</p></th>
+<th class="head"><p>T8</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>T1</p></td>
+<td><p>–</p></td>
+<td><p>.800</p></td>
+<td><p>.640</p></td>
+<td><p>.512</p></td>
+<td><p>.410</p></td>
+<td><p>.328</p></td>
+<td><p>.262</p></td>
+<td><p>.210</p></td>
+</tr>
+<tr class="row-odd"><td><p>T2</p></td>
+<td><p>.528</p></td>
+<td><p>–</p></td>
+<td><p>.800</p></td>
+<td><p>.640</p></td>
+<td><p>.512</p></td>
+<td><p>.410</p></td>
+<td><p>.328</p></td>
+<td><p>.262</p></td>
+</tr>
+<tr class="row-even"><td><p>T3</p></td>
+<td><p>.279</p></td>
+<td><p>.528</p></td>
+<td><p>–</p></td>
+<td><p>.800</p></td>
+<td><p>.640</p></td>
+<td><p>.512</p></td>
+<td><p>.410</p></td>
+<td><p>.328</p></td>
+</tr>
+<tr class="row-odd"><td><p>T4</p></td>
+<td><p>.147</p></td>
+<td><p>.279</p></td>
+<td><p>.528</p></td>
+<td><p>–</p></td>
+<td><p>.800</p></td>
+<td><p>.640</p></td>
+<td><p>.512</p></td>
+<td><p>.410</p></td>
+</tr>
+<tr class="row-even"><td><p>T5</p></td>
+<td><p>.078</p></td>
+<td><p>.147</p></td>
+<td><p>.279</p></td>
+<td><p>.528</p></td>
+<td><p>–</p></td>
+<td><p>.800</p></td>
+<td><p>.640</p></td>
+<td><p>.512</p></td>
+</tr>
+<tr class="row-odd"><td><p>T6</p></td>
+<td><p>.041</p></td>
+<td><p>.078</p></td>
+<td><p>.147</p></td>
+<td><p>.279</p></td>
+<td><p>.528</p></td>
+<td><p>–</p></td>
+<td><p>.800</p></td>
+<td><p>.640</p></td>
+</tr>
+<tr class="row-even"><td><p>T7</p></td>
+<td><p>.022</p></td>
+<td><p>.041</p></td>
+<td><p>.078</p></td>
+<td><p>.147</p></td>
+<td><p>.279</p></td>
+<td><p>.528</p></td>
+<td><p>–</p></td>
+<td><p>.800</p></td>
+</tr>
+<tr class="row-odd"><td><p>T8</p></td>
+<td><p>.011</p></td>
+<td><p>.022</p></td>
+<td><p>.041</p></td>
+<td><p>.078</p></td>
+<td><p>.147</p></td>
+<td><p>.279</p></td>
+<td><p>.528</p></td>
+<td><p>–</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Nota: Le correlazioni sopra la diagonale sono basate sull’analogia del mescolamento delle carte con una correlazione autoregressiva di .528. Le correlazioni sotto la diagonale si basano su una stabilità iniziale più elevata (.80), indicando una persistenza più forte nel tempo.</em></p>
+<p>Il modello simplex, pur essendo semplice, possiede proprietà note utili come aspettative di base per modelli di cambiamento evolutivo e altri costrutti distribuiti lungo un continuum.</p>
+<p>Per comprendere il cambiamento costante e la struttura simplex, si può immaginare un mazzo di carte e una macchina che le mescola perfettamente, tagliando il mazzo esattamente a metà e intercalando le carte una sull’altra. Se si codifica la “posizione” di ogni carta nel mazzo prima della mescolata e poi si correla questa posizione con la posizione ordinata delle carte nel mazzo dopo la mescolata, la correlazione sarebbe di .528. Con una nuova mescolata perfetta, la correlazione tra l’ordine nel secondo e nel terzo mazzo sarebbe ancora di .528. La correlazione tra l’ordine delle carte nel primo e nel terzo mazzo, tuttavia, sarebbe ora di .279, perché sono avvenute due mescolate. Con tre mescolate perfette, la correlazione tra il primo e il quarto mazzo sarebbe ora di .147. Interessante notare che, con questa stabilità di mescolamento, occorrono circa sette mescolate per ritornare a un ordine essenzialmente casuale nel mazzo di carte, dove la correlazione è statisticamente 0.</p>
+<p>Nella Tabella 1 è rappresentata la struttura di correlazione simplex per il mazzo di carte dopo sette mescolate. Queste correlazioni sono riportate nel quadrante superiore sopra la diagonale. Nel quadrante inferiore sotto la diagonale, è rappresentata una struttura simplex basata su una relazione di stabilità iniziale molto più forte di .80. Lo scopo di questi due insiemi di correlazioni è dimostrare il “tasso” di riduzione nelle correlazioni nel tempo a seconda del livello di stabilità tra i punti temporali adiacenti e, implicitamente, la lunghezza del tempo che intercorre tra ogni occasione di misurazione.</p>
+<p>Se le misurazioni in un modello panel longitudinale vengono effettuate con una frequenza che si allinea alla “velocità” del processo di cambiamento studiato (analogamente alla velocità con cui una macchina mescola un mazzo di carte), il modello predittivo risultante sarà in grado di catturare con precisione il ritmo di questo cambiamento. Questo è rappresentato dal coefficiente di stabilità, che nell’esempio del mazzo di carte è .528.</p>
+<p>Nel contesto di molti studi sui processi di cambiamento evolutivo, si parte dal presupposto che il cambiamento avvenga a un ritmo costante. In termini statistici, questo è rappresentato da una struttura simplex. La struttura simplex di Guttman, o semplicemente una struttura simplex, descrive un modello in cui ogni punto temporale è correlato in modo prevedibile con il punto temporale precedente, in un modo che riflette un cambiamento graduale e costante.</p>
+<p>In altre parole, se immaginiamo un processo di cambiamento come il mescolamento continuo di un mazzo di carte, una struttura simplex rappresenterebbe la correlazione prevedibile e diminuente tra la disposizione delle carte in ogni successivo “round” di mescolamento. Questo modello offre una rappresentazione semplificata ma efficace del modo in cui i cambiamenti si verificano nel tempo in un contesto longitudinale, consentendo di prevedere e comprendere meglio i modelli di cambiamento evolutivo.</p>
+<figure class="align-default" id="little-fig-simplex">
+<a class="reference internal image-reference" href="../_images/little_fig_simplex.png"><img alt="../_images/little_fig_simplex.png" src="../_images/little_fig_simplex.png" style="height: 200px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 64.2 </span><span class="caption-text">Stime dei parametri standardizzati dal modello simplex di mazzi di carte mescolati consecutivamente. Nota. Queste stime dei parametri provengono da un modello adattato ai dati nella tabella precedente. Questo modello ha 21 gradi di libertà e un adattamento perfetto del modello. Le correlazioni tra i mazzi separati da più di una mescolata sono riprodotte tracciando i percorsi di regressione tra ciascun mazzo consecutivo. Le linee tratteggiate mostrano le correlazioni riprodotte con l’ordine iniziale del mazzo. (Figura tratta da <span id="id2">Little [<a class="reference internal" href="../z_biblio.html#id7" title="Todd D Little. Longitudinal structural equation modeling. Guilford Press, 2023.">Lit23</a>]</span>).</span><a class="headerlink" href="#little-fig-simplex" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>La struttura Simplex può essere considerata un’istanza specifica di una struttura autoregressiva discreta di primo ordine, nota come modello AR1 (AutoRegressive of order 1). Questo tipo di modello è solo uno dei numerosi approcci autoregressivi utilizzati in statistica. Nel modello AR1, ciascun punto dati in una serie temporale è correlato direttamente e esclusivamente con il suo predecessore immediato. Ciò significa che il valore corrente è principalmente influenzato dal valore immediatamente precedente.</p>
+<p>Per illustrare il concetto con un esempio concreto, si può pensare a un mazzo di carte. Mescolando il mazzo una sola volta e confrontando l’ordine delle carte dopo il mescolamento con l’ordine originale, si ottiene una correlazione che rappresenta il modello AR1. In questo scenario, il grado di correlazione dipende sostanzialmente da quanto è stata modificata la disposizione iniziale delle carte durante il mescolamento. In altre parole, il modello AR1 cattura l’impatto immediato e diretto di un cambiamento (il mescolamento delle carte) sullo stato successivo (l’ordine delle carte dopo il mescolamento).</p>
+<p>Se l’ordine delle carte, dopo essere stato mescolato una o più volte, mantiene una correlazione con l’ordine originale superiore a quella che si otterrebbe con un modello autoregressivo di primo ordine (AR1), allora si parla di una struttura autoregressiva di secondo ordine (AR2). A differenza del modello AR1, in cui ogni dato è direttamente correlato al suo predecessore immediato, il modello AR2 considera l’influenza non solo del dato precedente, ma anche di quello che lo precede ulteriormente. Questo suggerisce una persistenza o un’influenza che si estende oltre una singola fase, indicando una correlazione più forte e duratura nel tempo rispetto a un semplice modello AR1.</p>
+<p>Utilizzando nuovamente l’esempio del mazzo di carte, se dopo due mescolate l’ordine delle carte è più simile all’ordine originale rispetto a quello che ci si aspetterebbe basandosi solo sull’effetto della prima mescolata (AR1), ciò indica una dinamica AR2. Questo implica che l’effetto della prima mescolata non solo si mantiene, ma continua ad avere un impatto sull’ordine delle carte anche dopo la seconda mescolata, portando a una correlazione più marcata tra l’ordine originale e quello successivo alle mescolate.</p>
+<p>Nella ricerca psicologica e nelle scienze sociali, il modello simplex è comunemente utilizzato per studiare il cambiamento nel tempo in gruppi di individui. Questo modello si distingue per la sua semplicità e la capacità di tracciare coerentemente i cambiamenti, risultando spesso più appropriato delle strutture autoregressive di ordine superiore al primo (come AR2). Nel contesto dei modelli AR2, gli effetti osservati sono tipicamente interpretati come influenze contestuali, emerse durante misurazioni effettuate in momenti temporali differenti.</p>
+<p>È stato notato che strutture autoregressive più complicate possono essere assimilate a un processo simplex, con l’aggiunta di influenze contestuali. Questo suggerisce che il modello simplex, integrato da questi elementi aggiuntivi, è abbastanza flessibile per rappresentare un’ampia varietà di processi evolutivi.</p>
+</section>
+<section id="modello-simplex-per-il-mescolamento-di-carte">
+<h2><span class="section-number">64.3. </span>Modello Simplex per il Mescolamento di Carte<a class="headerlink" href="#modello-simplex-per-il-mescolamento-di-carte" title="Permalink to this heading">#</a></h2>
+<p>Esaminiamo qui di seguto l’implementazione del modello Simplex proposta da <span id="id3">Little [<a class="reference internal" href="../z_biblio.html#id7" title="Todd D Little. Longitudinal structural equation modeling. Guilford Press, 2023.">Lit23</a>]</span> per i dati relativi all’esempio del mazzo di carte discusso in precedenza.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">tri_corr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">),</span>
+<span class="w">    </span><span class="m">0.523</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">),</span>
+<span class="w">    </span><span class="m">0.279</span><span class="p">,</span><span class="w"> </span><span class="m">0.523</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">),</span>
+<span class="w">    </span><span class="m">0.147</span><span class="p">,</span><span class="w"> </span><span class="m">0.279</span><span class="p">,</span><span class="w"> </span><span class="m">0.523</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span>
+<span class="w">    </span><span class="m">0.078</span><span class="p">,</span><span class="w"> </span><span class="m">0.147</span><span class="p">,</span><span class="w"> </span><span class="m">0.279</span><span class="p">,</span><span class="w"> </span><span class="m">0.523</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
+<span class="w">    </span><span class="m">0.041</span><span class="p">,</span><span class="w"> </span><span class="m">0.078</span><span class="p">,</span><span class="w"> </span><span class="m">0.147</span><span class="p">,</span><span class="w"> </span><span class="m">0.279</span><span class="p">,</span><span class="w"> </span><span class="m">0.523</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
+<span class="w">    </span><span class="m">0.022</span><span class="p">,</span><span class="w"> </span><span class="m">0.041</span><span class="p">,</span><span class="w"> </span><span class="m">0.078</span><span class="p">,</span><span class="w"> </span><span class="m">0.147</span><span class="p">,</span><span class="w"> </span><span class="m">0.279</span><span class="p">,</span><span class="w"> </span><span class="m">0.523</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span>
+<span class="w">    </span><span class="m">0.011</span><span class="p">,</span><span class="w"> </span><span class="m">0.022</span><span class="p">,</span><span class="w"> </span><span class="m">0.041</span><span class="p">,</span><span class="w"> </span><span class="m">0.078</span><span class="p">,</span><span class="w"> </span><span class="m">0.147</span><span class="p">,</span><span class="w"> </span><span class="m">0.279</span><span class="p">,</span><span class="w"> </span><span class="m">0.523</span><span class="p">,</span><span class="w"> </span><span class="m">1</span>
+<span class="p">)</span>
+<span class="n">upper</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">tri_corr</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+<span class="n">lower</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="n">tri_corr</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">mycorr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">upper</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lower</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">diag</span><span class="p">(</span><span class="m">8</span><span class="p">)</span>
+
+<span class="nf">rownames</span><span class="p">(</span><span class="n">mycorr</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Time1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Time2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Time3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Time4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Time5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Time6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Time7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Time8&quot;</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">mycorr</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Time1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Time2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Time3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Time4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Time5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Time6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Time7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Time8&quot;</span><span class="p">)</span>
+<span class="n">mynob</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">166</span>
+
+<span class="n">mycorr</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      Time1 Time2 Time3 Time4 Time5 Time6 Time7 Time8
+Time1 1.000 0.523 0.279 0.147 0.078 0.041 0.022 0.011
+Time2 0.523 1.000 0.523 0.279 0.147 0.078 0.041 0.022
+Time3 0.279 0.523 1.000 0.523 0.279 0.147 0.078 0.041
+Time4 0.147 0.279 0.523 1.000 0.523 0.279 0.147 0.078
+Time5 0.078 0.147 0.279 0.523 1.000 0.523 0.279 0.147
+Time6 0.041 0.078 0.147 0.279 0.523 1.000 0.523 0.279
+Time7 0.022 0.041 0.078 0.147 0.279 0.523 1.000 0.523
+Time8 0.011 0.022 0.041 0.078 0.147 0.279 0.523 1.000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod6_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">    Time2 ~ Time1</span>
+<span class="s">    Time3 ~ Time2</span>
+<span class="s">    Time4 ~ Time3</span>
+<span class="s">    Time5 ~ Time4</span>
+<span class="s">    Time6 ~ Time5</span>
+<span class="s">    Time7 ~ Time6</span>
+<span class="s">    Time8 ~ Time7</span>
+
+<span class="s">    Time1 ~~ 1*Time1</span>
+<span class="s">    Time2 ~~ Time2</span>
+<span class="s">    Time3 ~~ Time3</span>
+<span class="s">    Time4 ~~ Time4</span>
+<span class="s">    Time5 ~~ Time5</span>
+<span class="s">    Time6 ~~ Time6</span>
+<span class="s">    Time7 ~~ Time7</span>
+<span class="s">    Time8 ~~ Time8</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit6_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lavaan</span><span class="p">(</span><span class="n">mod6_2</span><span class="p">,</span><span class="w"> </span><span class="n">sample.cov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mycorr</span><span class="p">,</span><span class="w"> </span><span class="n">sample.nobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mynob</span><span class="p">,</span><span class="w"> </span><span class="n">fixed.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">parameterEstimates</span><span class="p">(</span><span class="n">fit6_2</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     lhs op   rhs   est    se     z pvalue ci.lower ci.upper
+1  Time2  ~ Time1 0.523 0.066 7.930      0    0.394    0.652
+2  Time3  ~ Time2 0.523 0.066 7.912      0    0.393    0.653
+3  Time4  ~ Time3 0.523 0.066 7.908      0    0.393    0.653
+4  Time5  ~ Time4 0.523 0.066 7.906      0    0.393    0.653
+5  Time6  ~ Time5 0.523 0.066 7.906      0    0.393    0.653
+6  Time7  ~ Time6 0.523 0.066 7.906      0    0.393    0.653
+7  Time8  ~ Time7 0.523 0.066 7.906      0    0.393    0.653
+8  Time1 ~~ Time1 1.000 0.000    NA     NA    1.000    1.000
+9  Time2 ~~ Time2 0.722 0.079 9.110      0    0.567    0.877
+10 Time3 ~~ Time3 0.722 0.079 9.110      0    0.567    0.877
+11 Time4 ~~ Time4 0.722 0.079 9.110      0    0.567    0.877
+12 Time5 ~~ Time5 0.722 0.079 9.110      0    0.567    0.877
+13 Time6 ~~ Time6 0.722 0.079 9.110      0    0.567    0.877
+14 Time7 ~~ Time7 0.722 0.079 9.110      0    0.567    0.877
+15 Time8 ~~ Time8 0.722 0.079 9.110      0    0.567    0.877
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nel commentare il modello Simplex specificato, si può osservare che, per i dati artificiali in questione, la stima della correlazione tra costrutti latenti in momenti successivi risulta costante, con un valore di 0.523. Questo dato è in linea con i risultati ottenuti da <span id="id4">Little [<a class="reference internal" href="../z_biblio.html#id7" title="Todd D Little. Longitudinal structural equation modeling. Guilford Press, 2023.">Lit23</a>]</span>, che riporta una correlazione di 0.528. È importante notare la consistenza in queste stime, indicativa di una relazione stabile nel tempo tra i costrutti.</p>
+<p>Inoltre, il modello mostra che la varianza delle variabili latenti rimane relativamente costante nel tempo, con un valore di 0.722. Questo suggerisce che, nonostante il passare del tempo e i possibili cambiamenti nei costrutti, la quantità di varianza che essi spiegano rimane simile. Un’eccezione a questo schema si trova nella varianza al Tempo 1, che è stata fissata a 1. Questa scelta metodologica è comune in molti modelli di serie temporali per stabilire un punto di riferimento o una scala di misurazione per le varianze nei tempi successivi.</p>
+<p>Ritornando alle correlazioni presenti nella parte inferiore della diagonale della Tabella 1, si osserva che la stabilità da un punto temporale al successivo è piuttosto elevata, con correlazioni adiacenti di .80 in ciascun punto temporale successivo. Tuttavia, quando passa più tempo tra le misurazioni, la correlazione tra punti temporali non adiacenti diminuisce — e non solo diminuisce, ma lo fa in un modo previsto e prevedibile. Nella struttura inferiore della diagonale della Tabella 7.1, ad esempio, la correlazione tra Tempo 1 e Tempo 3 sarebbe di .64; lo stesso vale per la correlazione tra Tempo 2 e Tempo 4, così come tra Tempo 5 e Tempo 7, o qualsiasi altra coppia di punti temporali bi-contigui. In questo esempio, la correlazione tra i lag più lunghi — da Tempo 1 a Tempo 8 — sarebbe ancora una piccola correlazione positiva di .210 (con più punti temporali, questa correlazione si avvicinerebbe eventualmente a 0).</p>
+<p>Questo pattern di correlazioni indica che, mentre la stabilità a breve termine (tra punti temporali adiacenti) rimane alta, la correlazione tende a diminuire con l’allungarsi dell’intervallo tra le misurazioni, rispecchiando una riduzione della connessione o dell’influenza tra i costrutti latenti misurati in punti temporali più distanti.</p>
+<p>Nel triangolo superiore della tabella, la stabilità tra punti temporali adiacenti è inferiore, con una correlazione di .528. Punti temporali bi-contigui si correlano a .279, mentre il lag più lungo, da Tempo 1 a Tempo 8, genera una correlazione di .011, che è praticamente nulla. Entrambi gli schemi di correlazioni nella Tabella 1 riflettono un tasso costante di cambiamento e sarebbero meglio rappresentati da un modello autoregressivo simplex.</p>
+<p>Un modello autoregressivo semplice è in grado di riprodurre tutte queste correlazioni a causa degli effetti indiretti contenuti in esso. In tale modello, l’influenza del Tempo 1 sul Tempo 8 è trasmessa indirettamente attraverso le influenze dirette da Tempo 1 a Tempo 2, poi da Tempo 2 a Tempo 3, e così via fino a Tempo 8. È possibile applicare le regole di tracciamento a un modello come questo per osservare come il pattern di correlazione nella Tabella 1 venga riprodotto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="m">0.523</span><span class="o">^</span><span class="p">{</span><span class="m">2</span><span class="o">:</span><span class="m">7</span><span class="p">}</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span>
+<span class="w">    </span><span class="nf">round</span><span class="p">(</span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] 0.274 0.143 0.075 0.039 0.020 0.011
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il modello presentato nella <a class="reference internal" href="#little-fig-simplex"><span class="std std-ref">Stime dei parametri standardizzati dal modello simplex di mazzi di carte mescolati consecutivamente. Nota. Queste stime dei parametri provengono da un modello adattato ai dati nella tabella precedente. Questo modello ha 21 gradi di libertà e un adattamento perfetto del modello. Le correlazioni tra i mazzi separati da più di una mescolata sono riprodotte tracciando i percorsi di regressione tra ciascun mazzo consecutivo. Le linee tratteggiate mostrano le correlazioni riprodotte con l’ordine iniziale del mazzo. (Figura tratta da little2023longitudinal).</span></a> è un modello Simplex univariato perché include un solo costrutto, rappresentato in più punti temporali. È importante notare che, in un modello come questo, si verifica e si garantisce la forte invarianza fattoriale del modello di misurazione. Inoltre, i residui corrispondenti presentano unicità correlate nel tempo per ogni occorrenza dello stesso indicatore. I coefficienti di percorso in questo modello riproducono perfettamente le correlazioni nella parte superiore della Tabella 1.</p>
+<p>Lo stesso modello, quando applicato all’altro insieme di correlazioni nella Tabella 1, riprodurrebbe altrettanto perfettamente il pattern di correlazione. Gli effetti diretti in ciascun punto temporale adiacente sarebbero di .8, mentre l’effetto indiretto sarebbe il prodotto multiplo dei coefficienti di percorso diretti.</p>
+<p>Questo approccio mette in evidenza come le correlazioni tra punti temporali più lontani siano il risultato di una serie di influenze dirette che si susseguono nel tempo.</p>
+</section>
+<section id="modello-panel-per-affetto-positivo-e-negativo">
+<h2><span class="section-number">64.4. </span>Modello Panel per Affetto Positivo e Negativo<a class="headerlink" href="#modello-panel-per-affetto-positivo-e-negativo" title="Permalink to this heading">#</a></h2>
+<p>La discussione sui modelli longitudinali continua in <a class="reference internal" href="#little-fig-simplex"><span class="std std-ref">Stime dei parametri standardizzati dal modello simplex di mazzi di carte mescolati consecutivamente. Nota. Queste stime dei parametri provengono da un modello adattato ai dati nella tabella precedente. Questo modello ha 21 gradi di libertà e un adattamento perfetto del modello. Le correlazioni tra i mazzi separati da più di una mescolata sono riprodotte tracciando i percorsi di regressione tra ciascun mazzo consecutivo. Le linee tratteggiate mostrano le correlazioni riprodotte con l’ordine iniziale del mazzo. (Figura tratta da little2023longitudinal).</span></a>, focalizzandosi sulla costruzione di un modello CFA per studiare l’affetto positivo e negativo negli adolescenti. Invece di concentrarsi su soltanto due punti temporali, l’esempio esplora una situazione più complessa, considerando la misurazione dei due costrutti in tre diversi momenti temporali.</p>
+<p>I dati sono i seguenti.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.table</span><span class="p">(</span>
+<span class="w">    </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;../data/grade7and8.long.823.dat&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">col.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;PAT1P1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PAT1P2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PAT1P3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NAT1P1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NAT1P2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NAT1P3&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;PAT2P1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PAT2P2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PAT2P3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NAT2P1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NAT2P2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NAT2P3&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;PAT3P1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PAT3P2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PAT3P3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NAT3P1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NAT3P2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NAT3P3&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;grade&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;female&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hispanic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;other&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">psych</span><span class="o">::</span><span class="nf">describe</span><span class="p">(</span><span class="n">dat</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">18</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A psych: 18 × 13</caption>
+<thead>
+	<tr><th></th><th scope=col>vars</th><th scope=col>n</th><th scope=col>mean</th><th scope=col>sd</th><th scope=col>median</th><th scope=col>trimmed</th><th scope=col>mad</th><th scope=col>min</th><th scope=col>max</th><th scope=col>range</th><th scope=col>skew</th><th scope=col>kurtosis</th><th scope=col>se</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>PAT1P1</th><td> 1</td><td>823</td><td>2.991885</td><td>0.7644692</td><td>3.00000</td><td>3.042751</td><td>0.7413000</td><td>1</td><td>4</td><td>3</td><td>-0.4591316</td><td>-0.3486015</td><td>0.02664772</td></tr>
+	<tr><th scope=row>PAT1P2</th><td> 2</td><td>823</td><td>2.895543</td><td>0.7471531</td><td>3.00000</td><td>2.919860</td><td>0.7413000</td><td>1</td><td>4</td><td>3</td><td>-0.2986814</td><td>-0.3732379</td><td>0.02604412</td></tr>
+	<tr><th scope=row>PAT1P3</th><td> 3</td><td>823</td><td>3.112289</td><td>0.7481646</td><td>3.00000</td><td>3.175932</td><td>0.7413000</td><td>1</td><td>4</td><td>3</td><td>-0.5761073</td><td>-0.2344880</td><td>0.02607938</td></tr>
+	<tr><th scope=row>NAT1P1</th><td> 4</td><td>823</td><td>1.706311</td><td>0.7057569</td><td>1.50000</td><td>1.596773</td><td>0.7413000</td><td>1</td><td>4</td><td>3</td><td> 1.2112142</td><td> 1.2584152</td><td>0.02460114</td></tr>
+	<tr><th scope=row>NAT1P2</th><td> 5</td><td>823</td><td>1.450148</td><td>0.6576346</td><td>1.00000</td><td>1.312657</td><td>0.0000000</td><td>1</td><td>4</td><td>3</td><td> 1.7700996</td><td> 3.1319596</td><td>0.02292370</td></tr>
+	<tr><th scope=row>NAT1P3</th><td> 6</td><td>823</td><td>1.453063</td><td>0.6678318</td><td>1.00000</td><td>1.311948</td><td>0.0000000</td><td>1</td><td>4</td><td>3</td><td> 1.8185647</td><td> 3.3558790</td><td>0.02327915</td></tr>
+	<tr><th scope=row>PAT2P1</th><td> 7</td><td>823</td><td>3.001628</td><td>0.7599034</td><td>3.00000</td><td>3.044683</td><td>0.7413000</td><td>1</td><td>4</td><td>3</td><td>-0.4055187</td><td>-0.5083138</td><td>0.02648857</td></tr>
+	<tr><th scope=row>PAT2P2</th><td> 8</td><td>823</td><td>2.909043</td><td>0.7491414</td><td>3.00000</td><td>2.936239</td><td>0.7413000</td><td>1</td><td>4</td><td>3</td><td>-0.2667719</td><td>-0.5077469</td><td>0.02611343</td></tr>
+	<tr><th scope=row>PAT2P3</th><td> 9</td><td>823</td><td>3.126799</td><td>0.7295410</td><td>3.09211</td><td>3.189561</td><td>0.8778623</td><td>1</td><td>4</td><td>3</td><td>-0.6282730</td><td>-0.1499079</td><td>0.02543020</td></tr>
+	<tr><th scope=row>NAT2P1</th><td>10</td><td>823</td><td>1.695210</td><td>0.6614440</td><td>1.50000</td><td>1.606124</td><td>0.7413000</td><td>1</td><td>4</td><td>3</td><td> 1.1219909</td><td> 1.2251472</td><td>0.02305649</td></tr>
+	<tr><th scope=row>NAT2P2</th><td>11</td><td>823</td><td>1.537798</td><td>0.6225102</td><td>1.50000</td><td>1.429653</td><td>0.7413000</td><td>1</td><td>4</td><td>3</td><td> 1.3883623</td><td> 1.9372133</td><td>0.02169934</td></tr>
+	<tr><th scope=row>NAT2P3</th><td>12</td><td>823</td><td>1.580027</td><td>0.6499109</td><td>1.50000</td><td>1.471439</td><td>0.7413000</td><td>1</td><td>4</td><td>3</td><td> 1.3401267</td><td> 1.8529497</td><td>0.02265447</td></tr>
+	<tr><th scope=row>PAT3P1</th><td>13</td><td>823</td><td>2.886528</td><td>0.7823545</td><td>3.00000</td><td>2.917427</td><td>0.7413000</td><td>1</td><td>4</td><td>3</td><td>-0.2178390</td><td>-0.7223282</td><td>0.02727116</td></tr>
+	<tr><th scope=row>PAT3P2</th><td>14</td><td>823</td><td>2.849560</td><td>0.7624570</td><td>3.00000</td><td>2.868214</td><td>0.7413000</td><td>1</td><td>4</td><td>3</td><td>-0.1687695</td><td>-0.6306593</td><td>0.02657758</td></tr>
+	<tr><th scope=row>PAT3P3</th><td>15</td><td>823</td><td>3.056508</td><td>0.7484883</td><td>3.00000</td><td>3.107101</td><td>0.7413000</td><td>1</td><td>4</td><td>3</td><td>-0.4511290</td><td>-0.5120333</td><td>0.02609066</td></tr>
+	<tr><th scope=row>NAT3P1</th><td>16</td><td>823</td><td>1.723787</td><td>0.6912895</td><td>1.50000</td><td>1.623666</td><td>0.7413000</td><td>1</td><td>4</td><td>3</td><td> 1.2328507</td><td> 1.5654947</td><td>0.02409684</td></tr>
+	<tr><th scope=row>NAT3P2</th><td>17</td><td>823</td><td>1.575689</td><td>0.6600865</td><td>1.50000</td><td>1.469134</td><td>0.7413000</td><td>1</td><td>4</td><td>3</td><td> 1.3962112</td><td> 2.0916581</td><td>0.02300917</td></tr>
+	<tr><th scope=row>NAT3P3</th><td>18</td><td>823</td><td>1.641652</td><td>0.6980201</td><td>1.50000</td><td>1.533856</td><td>0.7413000</td><td>1</td><td>4</td><td>3</td><td> 1.1666457</td><td> 1.0690468</td><td>0.02433145</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">plots_list</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">()</span>
+
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">16</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">col_name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">dat</span><span class="p">)[</span><span class="n">i</span><span class="p">]</span>
+<span class="w">    </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!!</span><span class="nf">sym</span><span class="p">(</span><span class="n">col_name</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">        </span><span class="nf">geom_density</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">        </span><span class="nf">ggtitle</span><span class="p">(</span><span class="n">col_name</span><span class="p">)</span>
+<span class="w">    </span><span class="n">plots_list</span><span class="p">[[</span><span class="n">i</span><span class="p">]]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">p</span>
+<span class="p">}</span>
+
+<span class="c1"># Organize and display the plots</span>
+<span class="nf">do.call</span><span class="p">(</span><span class="n">grid.arrange</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">plots_list</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ffbccbe1a509636c64be2c5094b67994894e27d247a6d253ad548f45d4a38410.png" src="../_images/ffbccbe1a509636c64be2c5094b67994894e27d247a6d253ad548f45d4a38410.png" />
+</div>
+</div>
+<p>Iniziamo a specificare il modello nullo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod_null</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">    PAT1P1 ~~ V1*PAT1P1</span>
+<span class="s">    PAT1P2 ~~ V2*PAT1P2</span>
+<span class="s">    PAT1P3 ~~ V3*PAT1P3</span>
+<span class="s">    NAT1P1 ~~ V4*NAT1P1</span>
+<span class="s">    NAT1P2 ~~ V5*NAT1P2</span>
+<span class="s">    NAT1P3 ~~ V6*NAT1P3</span>
+
+<span class="s">    PAT2P1 ~~ V1*PAT2P1</span>
+<span class="s">    PAT2P2 ~~ V2*PAT2P2</span>
+<span class="s">    PAT2P3 ~~ V3*PAT2P3</span>
+<span class="s">    NAT2P1 ~~ V4*NAT2P1</span>
+<span class="s">    NAT2P2 ~~ V5*NAT2P2</span>
+<span class="s">    NAT2P3 ~~ V6*NAT2P3</span>
+
+<span class="s">    PAT3P1 ~~ V1*PAT3P1</span>
+<span class="s">    PAT3P2 ~~ V2*PAT3P2</span>
+<span class="s">    PAT3P3 ~~ V3*PAT3P3</span>
+<span class="s">    NAT3P1 ~~ V4*NAT3P1</span>
+<span class="s">    NAT3P2 ~~ V5*NAT3P2</span>
+<span class="s">    NAT3P3 ~~ V6*NAT3P3</span>
+
+<span class="s">	PAT1P1 ~ T1*1</span>
+<span class="s">    PAT1P2 ~ T2*1</span>
+<span class="s">    PAT1P3 ~ T3*1</span>
+<span class="s">    NAT1P1 ~ T4*1</span>
+<span class="s">    NAT1P2 ~ T5*1</span>
+<span class="s">    NAT1P3 ~ T6*1</span>
+
+<span class="s">    PAT2P1 ~ T1*1</span>
+<span class="s">    PAT2P2 ~ T2*1</span>
+<span class="s">    PAT2P3 ~ T3*1</span>
+<span class="s">    NAT2P1 ~ T4*1</span>
+<span class="s">    NAT2P2 ~ T5*1</span>
+<span class="s">    NAT2P3 ~ T6*1</span>
+
+<span class="s">    PAT3P1 ~ T1*1</span>
+<span class="s">    PAT3P2 ~ T2*1</span>
+<span class="s">    PAT3P3 ~ T3*1</span>
+<span class="s">    NAT3P1 ~ T4*1</span>
+<span class="s">    NAT3P2 ~ T5*1</span>
+<span class="s">    NAT3P3 ~ T6*1</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il modello nullo (<em>baseline</em>) è usato da <span id="id5">Little [<a class="reference internal" href="../z_biblio.html#id7" title="Todd D Little. Longitudinal structural equation modeling. Guilford Press, 2023.">Lit23</a>]</span> come punto di partenza nell’analisi SEM e per i confronti con modelli più complessi. Il modello nullo specifica sei variabili osservate (PAT1P1, PAT1P2, PAT1P3, NAT1P1, NAT1P2, NAT1P3) misurate in tre punti temporali distinti. Questo implica che ci sono 18 variabili osservate in totale. Ogni variabile osservata ha la propria varianza unica che è stimata nel modello. Le medie delle 6 variabili misurate in ciascuno dei tre punti temporali sono assunte non variare in funzione del tempo. Nonostante il modello prenda in considerazione misurazioni ripetute nel tempo, non vi è alcuna specificazione di correlazioni o percorsi causali tra queste misure nel tempo, come sarebbe tipico per i modelli longitudinali. Essendo un modello nullo, non vengono specificate relazioni tra le variabili (varianze e medie) diverse dai loro effetti unici.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit_null</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lavaan</span><span class="p">(</span><span class="n">mod_null</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat</span><span class="p">,</span><span class="w"> </span><span class="n">orthogonal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">fit_null</span><span class="p">,</span><span class="w"> </span><span class="n">standardized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">T</span><span class="p">,</span><span class="w"> </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 32 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        36
+  Number of equality constraints                    24
+
+  Number of observations                           823
+
+Model Test User Model:
+                                                       
+  Test statistic                              11213.103
+  Degrees of freedom                                177
+  P-value (Chi-square)                            0.000
+
+Model Test Baseline Model:
+
+  Test statistic                             11131.067
+  Degrees of freedom                               153
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.000
+  Tucker-Lewis Index (TLI)                       0.131
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)             -15975.145
+  Loglikelihood unrestricted model (H1)     -10368.594
+                                                      
+  Akaike (AIC)                               31974.291
+  Bayesian (BIC)                             32030.846
+  Sample-size adjusted Bayesian (SABIC)      31992.739
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.275
+  90 Percent confidence interval - lower         0.271
+  90 Percent confidence interval - upper         0.280
+  P-value H_0: RMSEA &lt;= 0.050                    0.000
+  P-value H_0: RMSEA &gt;= 0.080                    1.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.328
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    PAT1P1    (T1)    2.960    0.016  190.946    0.000    2.960    3.843
+    PAT1P2    (T2)    2.885    0.015  190.376    0.000    2.885    3.831
+    PAT1P3    (T3)    3.099    0.015  207.418    0.000    3.099    4.174
+    NAT1P1    (T4)    1.708    0.014  123.730    0.000    1.708    2.490
+    NAT1P2    (T5)    1.521    0.013  116.519    0.000    1.521    2.345
+    NAT1P3    (T6)    1.558    0.014  114.474    0.000    1.558    2.304
+    PAT2P1    (T1)    2.960    0.016  190.946    0.000    2.960    3.843
+    PAT2P2    (T2)    2.885    0.015  190.376    0.000    2.885    3.831
+    PAT2P3    (T3)    3.099    0.015  207.418    0.000    3.099    4.174
+    NAT2P1    (T4)    1.708    0.014  123.730    0.000    1.708    2.490
+    NAT2P2    (T5)    1.521    0.013  116.519    0.000    1.521    2.345
+    NAT2P3    (T6)    1.558    0.014  114.474    0.000    1.558    2.304
+    PAT3P1    (T1)    2.960    0.016  190.946    0.000    2.960    3.843
+    PAT3P2    (T2)    2.885    0.015  190.376    0.000    2.885    3.831
+    PAT3P3    (T3)    3.099    0.015  207.418    0.000    3.099    4.174
+    NAT3P1    (T4)    1.708    0.014  123.730    0.000    1.708    2.490
+    NAT3P2    (T5)    1.521    0.013  116.519    0.000    1.521    2.345
+    NAT3P3    (T6)    1.558    0.014  114.474    0.000    1.558    2.304
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    PAT1P1    (V1)    0.593    0.017   35.135    0.000    0.593    1.000
+    PAT1P2    (V2)    0.567    0.016   35.135    0.000    0.567    1.000
+    PAT1P3    (V3)    0.551    0.016   35.135    0.000    0.551    1.000
+    NAT1P1    (V4)    0.471    0.013   35.135    0.000    0.471    1.000
+    NAT1P2    (V5)    0.421    0.012   35.135    0.000    0.421    1.000
+    NAT1P3    (V6)    0.457    0.013   35.135    0.000    0.457    1.000
+    PAT2P1    (V1)    0.593    0.017   35.135    0.000    0.593    1.000
+    PAT2P2    (V2)    0.567    0.016   35.135    0.000    0.567    1.000
+    PAT2P3    (V3)    0.551    0.016   35.135    0.000    0.551    1.000
+    NAT2P1    (V4)    0.471    0.013   35.135    0.000    0.471    1.000
+    NAT2P2    (V5)    0.421    0.012   35.135    0.000    0.421    1.000
+    NAT2P3    (V6)    0.457    0.013   35.135    0.000    0.457    1.000
+    PAT3P1    (V1)    0.593    0.017   35.135    0.000    0.593    1.000
+    PAT3P2    (V2)    0.567    0.016   35.135    0.000    0.567    1.000
+    PAT3P3    (V3)    0.551    0.016   35.135    0.000    0.551    1.000
+    NAT3P1    (V4)    0.471    0.013   35.135    0.000    0.471    1.000
+    NAT3P2    (V5)    0.421    0.012   35.135    0.000    0.421    1.000
+    NAT3P3    (V6)    0.457    0.013   35.135    0.000    0.457    1.000
+</pre></div>
+</div>
+</div>
+</div>
+<section id="modello-sem-iniziale">
+<h3><span class="section-number">64.4.1. </span>Modello SEM Iniziale<a class="headerlink" href="#modello-sem-iniziale" title="Permalink to this heading">#</a></h3>
+<p>Il modello SEM iniziale presentato da <span id="id6">Little [<a class="reference internal" href="../z_biblio.html#id7" title="Todd D Little. Longitudinal structural equation modeling. Guilford Press, 2023.">Lit23</a>]</span> definisce sei variabili latenti (<code class="docutils literal notranslate"><span class="pre">Pos1</span></code>, <code class="docutils literal notranslate"><span class="pre">Pos2</span></code>, <code class="docutils literal notranslate"><span class="pre">Pos3</span></code>, <code class="docutils literal notranslate"><span class="pre">Neg1</span></code>, <code class="docutils literal notranslate"><span class="pre">Neg2</span></code>, <code class="docutils literal notranslate"><span class="pre">Neg3</span></code>) che rappresentano costrutti psicologici positivi e negativi misurati in tre diversi momenti temporali. Ogni variabile latente è identificato da tre indicatori (per esempio, <code class="docutils literal notranslate"><span class="pre">Pos1</span></code> è identificato da <code class="docutils literal notranslate"><span class="pre">PAT1P1</span></code>, <code class="docutils literal notranslate"><span class="pre">PAT1P2</span></code>, <code class="docutils literal notranslate"><span class="pre">PAT1P3</span></code>), con coefficienti di carico L1, L2, L3 che quantificano la relazione tra la variabile latenti e i suoi indicatori. Il modello stima la varianza di ciascuna variabile latente e la covarianza tra variabili latenti diverse. Le medie delle variabili latenti sono impostate a 1, indicando che sono considerate fisse. Il modello include stime per la varianza e la covarianza degli indicatori attraverso il tempo, suggerendo l’esistenza di correlazioni temporali tra gli stessi indicatori misurati in momenti diversi. Ci sono percorsi di regressione che collegano le variabili latenti nel tempo (ad esempio, <code class="docutils literal notranslate"><span class="pre">Pos2</span></code> è influenzata da <code class="docutils literal notranslate"><span class="pre">Pos1</span></code>). Il modello impone alcuni vincoli sulle saturazioni fattoriali e sulle intercette degli indicatori.</p>
+<p>Questo modello mira a esplorare le relazioni dinamiche e temporali tra variabili latenti, diversamente da un modello di invarianza configurale, che è più orientato alla valutazione della costanza della struttura fattoriale.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">SEMmod</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">    Pos1 =~ L1*PAT1P1 + L2*PAT1P2 + L3*PAT1P3</span>
+<span class="s">    Neg1 =~ L4*NAT1P1 + L5*NAT1P2 + L6*NAT1P3</span>
+<span class="s">    Pos2 =~ L1*PAT2P1 + L2*PAT2P2 + L3*PAT2P3</span>
+<span class="s">    Neg2 =~ L4*NAT2P1 + L5*NAT2P2 + L6*NAT2P3</span>
+<span class="s">    Pos3 =~ L1*PAT3P1 + L2*PAT3P2 + L3*PAT3P3</span>
+<span class="s">    Neg3 =~ L4*NAT3P1 + L5*NAT3P2 + L6*NAT3P3</span>
+
+<span class="s">    ## Latent factor variance and covariance (Psi matrix)</span>
+<span class="s">    Pos1 ~~ Pos1 ##Psi 1,1</span>
+<span class="s">    Pos1 ~~ Neg1 ##Psi 1,2</span>
+<span class="s">    Neg1 ~~ Neg1 ##Psi 2,2</span>
+
+<span class="s">    Pos2 ~~ Pos2 ##Psi 3,3</span>
+<span class="s">    Pos2 ~~ Neg2 ##Psi 3,4</span>
+<span class="s">    Neg2 ~~ Neg2 ##Psi 4,4</span>
+
+<span class="s">    Pos3 ~~ Pos3  ##Psi 5,5</span>
+<span class="s">    Pos3 ~~ Neg3  ##Psi 5,6</span>
+<span class="s">    Neg3 ~~ Neg3  ##Psi 6,6</span>
+
+<span class="s">    ## Latent means (Alpha matrix)</span>
+<span class="s">    Pos1 ~ 1</span>
+<span class="s">    Neg1 ~ 1</span>
+<span class="s">    Pos2 ~ 1</span>
+<span class="s">    Neg2 ~ 1</span>
+<span class="s">    Pos3 ~ 1</span>
+<span class="s">    Neg3 ~ 1</span>
+
+<span class="s">    ## indicator resduals var-covar (Theta-Epsilon matrix)</span>
+<span class="s">    ## Time1</span>
+<span class="s">    PAT1P1 ~~ PAT1P1</span>
+<span class="s">    PAT1P1 ~~ PAT2P1</span>
+<span class="s">    PAT1P1 ~~ PAT3P1</span>
+
+<span class="s">    PAT1P2 ~~ PAT1P2</span>
+<span class="s">    PAT1P2 ~~ PAT2P2</span>
+<span class="s">    PAT1P2 ~~ PAT3P2</span>
+
+<span class="s">    PAT1P3 ~~ PAT1P3</span>
+<span class="s">    PAT1P3 ~~ PAT2P3</span>
+<span class="s">    PAT1P3 ~~ PAT3P3</span>
+
+<span class="s">    NAT1P1 ~~ NAT1P1</span>
+<span class="s">    NAT1P1 ~~ NAT2P1</span>
+<span class="s">    NAT1P1 ~~ NAT3P1</span>
+
+<span class="s">    NAT1P2 ~~ NAT1P2</span>
+<span class="s">    NAT1P2 ~~ NAT2P2</span>
+<span class="s">    NAT1P2 ~~ NAT3P2</span>
+
+<span class="s">    NAT1P3 ~~ NAT1P3</span>
+<span class="s">    NAT1P3 ~~ NAT2P3</span>
+<span class="s">    NAT1P3 ~~ NAT3P3</span>
+
+<span class="s">    #Time2</span>
+<span class="s">    PAT2P1 ~~ PAT2P1</span>
+<span class="s">    PAT2P1 ~~ PAT3P1</span>
+
+<span class="s">    PAT2P2 ~~ PAT2P2</span>
+<span class="s">    PAT2P2 ~~ PAT3P2</span>
+
+<span class="s">    PAT2P3 ~~ PAT2P3</span>
+<span class="s">    PAT2P3 ~~ PAT3P3</span>
+
+<span class="s">    NAT2P1 ~~ NAT2P1</span>
+<span class="s">    NAT2P1 ~~ NAT3P1</span>
+
+<span class="s">    NAT2P2 ~~ NAT2P2</span>
+<span class="s">    NAT2P2 ~~ NAT3P2</span>
+
+<span class="s">    NAT2P3 ~~ NAT2P3</span>
+<span class="s">    NAT2P3 ~~ NAT3P3</span>
+
+<span class="s">    ## Time3</span>
+<span class="s">    PAT3P1  ~~ PAT3P1</span>
+<span class="s">    PAT3P2 ~~ PAT3P2</span>
+<span class="s">    PAT3P3 ~~ PAT3P3</span>
+<span class="s">    NAT3P1 ~~ NAT3P1</span>
+<span class="s">    NAT3P2 ~~ NAT3P2</span>
+<span class="s">    NAT3P3 ~~ NAT3P3</span>
+
+<span class="s">    ##Indicator means/intercepts (Tau vector)</span>
+<span class="s">    PAT1P1 ~ t1*1</span>
+<span class="s">    PAT1P2 ~ t2*1</span>
+<span class="s">    PAT1P3 ~ t3*1</span>
+<span class="s">    NAT1P1 ~ t4*1</span>
+<span class="s">    NAT1P2 ~ t5*1</span>
+<span class="s">    NAT1P3 ~ t6*1</span>
+
+<span class="s">    PAT2P1 ~ t1*1</span>
+<span class="s">    PAT2P2 ~ t2*1</span>
+<span class="s">    PAT2P3 ~ t3*1</span>
+<span class="s">    NAT2P1 ~ t4*1</span>
+<span class="s">    NAT2P2 ~ t5*1</span>
+<span class="s">    NAT2P3 ~ t6*1</span>
+
+<span class="s">    PAT3P1 ~ t1*1</span>
+<span class="s">    PAT3P2 ~ t2*1</span>
+<span class="s">    PAT3P3 ~ t3*1</span>
+<span class="s">    NAT3P1 ~ t4*1</span>
+<span class="s">    NAT3P2 ~ t5*1</span>
+<span class="s">    NAT3P3 ~ t6*1</span>
+
+<span class="s">    ##Regression paths here</span>
+<span class="s">    Pos2 ~ Pos1</span>
+<span class="s">    Pos3 ~ Pos1 + Pos2</span>
+<span class="s">    Neg2 ~ Neg1</span>
+<span class="s">    Neg3 ~ Neg1 + Neg2</span>
+
+<span class="s">    ## Constraints</span>
+<span class="s">    L1 == 3 - L2 - L3</span>
+<span class="s">    L4 == 3 - L5 - L6</span>
+<span class="s">    t1 == 0 - t2 - t3</span>
+<span class="s">    t4 == 0 - t5 - t6</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fitSEM</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lavaan</span><span class="p">(</span><span class="n">SEMmod</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat</span><span class="p">,</span><span class="w"> </span><span class="n">meanstructure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">fitSEM</span><span class="p">,</span><span class="w"> </span><span class="n">standardized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 129 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        93
+  Number of equality constraints                    28
+
+  Number of observations                           823
+
+Model Test User Model:
+                                                      
+  Test statistic                               441.520
+  Degrees of freedom                               124
+  P-value (Chi-square)                           0.000
+
+Model Test Baseline Model:
+
+  Test statistic                             11131.067
+  Degrees of freedom                               153
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.971
+  Tucker-Lewis Index (TLI)                       0.964
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)             -10589.354
+  Loglikelihood unrestricted model (H1)     -10368.594
+                                                      
+  Akaike (AIC)                               21308.709
+  Bayesian (BIC)                             21615.051
+  Sample-size adjusted Bayesian (SABIC)      21408.635
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.056
+  90 Percent confidence interval - lower         0.050
+  90 Percent confidence interval - upper         0.061
+  P-value H_0: RMSEA &lt;= 0.050                    0.044
+  P-value H_0: RMSEA &gt;= 0.080                    0.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.045
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  Pos1 =~                                                               
+    PAT1P1    (L1)    1.040    0.010  103.232    0.000    0.684    0.884
+    PAT1P2    (L2)    0.997    0.010   98.450    0.000    0.655    0.881
+    PAT1P3    (L3)    0.963    0.010   93.311    0.000    0.633    0.856
+  Neg1 =~                                                               
+    NAT1P1    (L4)    0.957    0.012   78.547    0.000    0.553    0.757
+    NAT1P2    (L5)    0.999    0.011   90.776    0.000    0.578    0.891
+    NAT1P3    (L6)    1.044    0.011   94.041    0.000    0.604    0.906
+  Pos2 =~                                                               
+    PAT2P1    (L1)    1.040    0.010  103.232    0.000    0.692    0.910
+    PAT2P2    (L2)    0.997    0.010   98.450    0.000    0.663    0.900
+    PAT2P3    (L3)    0.963    0.010   93.311    0.000    0.641    0.877
+  Neg2 =~                                                               
+    NAT2P1    (L4)    0.957    0.012   78.547    0.000    0.525    0.816
+    NAT2P2    (L5)    0.999    0.011   90.776    0.000    0.548    0.873
+    NAT2P3    (L6)    1.044    0.011   94.041    0.000    0.573    0.890
+  Pos3 =~                                                               
+    PAT3P1    (L1)    1.040    0.010  103.232    0.000    0.699    0.900
+    PAT3P2    (L2)    0.997    0.010   98.450    0.000    0.671    0.864
+    PAT3P3    (L3)    0.963    0.010   93.311    0.000    0.648    0.856
+  Neg3 =~                                                               
+    NAT3P1    (L4)    0.957    0.012   78.547    0.000    0.566    0.837
+    NAT3P2    (L5)    0.999    0.011   90.776    0.000    0.591    0.888
+    NAT3P3    (L6)    1.044    0.011   94.041    0.000    0.617    0.869
+
+Regressions:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  Pos2 ~                                                                
+    Pos1              0.550    0.033   16.667    0.000    0.544    0.544
+  Pos3 ~                                                                
+    Pos1              0.340    0.039    8.822    0.000    0.333    0.333
+    Pos2              0.372    0.038    9.848    0.000    0.368    0.368
+  Neg2 ~                                                                
+    Neg1              0.445    0.033   13.494    0.000    0.468    0.468
+  Neg3 ~                                                                
+    Neg1              0.285    0.038    7.470    0.000    0.279    0.279
+    Neg2              0.408    0.040   10.113    0.000    0.379    0.379
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  Pos1 ~~                                                               
+    Neg1             -0.063    0.015   -4.293    0.000   -0.166   -0.166
+ .Pos2 ~~                                                               
+   .Neg2             -0.050    0.011   -4.503    0.000   -0.183   -0.183
+ .Pos3 ~~                                                               
+   .Neg3             -0.074    0.011   -6.758    0.000   -0.288   -0.288
+ .PAT1P1 ~~                                                             
+   .PAT2P1            0.010    0.006    1.630    0.103    0.010    0.089
+   .PAT3P1            0.007    0.007    1.039    0.299    0.007    0.058
+ .PAT1P2 ~~                                                             
+   .PAT2P2            0.007    0.006    1.236    0.217    0.007    0.065
+   .PAT3P2            0.013    0.007    1.922    0.055    0.013    0.097
+ .PAT1P3 ~~                                                             
+   .PAT2P3            0.012    0.006    1.866    0.062    0.012    0.088
+   .PAT3P3            0.012    0.007    1.723    0.085    0.012    0.081
+ .NAT1P1 ~~                                                             
+   .NAT2P1            0.027    0.007    3.603    0.000    0.027    0.151
+   .NAT3P1            0.009    0.007    1.230    0.219    0.009    0.052
+ .NAT1P2 ~~                                                             
+   .NAT2P2            0.001    0.005    0.105    0.916    0.001    0.006
+   .NAT3P2            0.006    0.005    1.169    0.242    0.006    0.066
+ .NAT1P3 ~~                                                             
+   .NAT2P3           -0.001    0.005   -0.178    0.859   -0.001   -0.011
+   .NAT3P3           -0.008    0.006   -1.410    0.159   -0.008   -0.081
+ .PAT2P1 ~~                                                             
+   .PAT3P1           -0.000    0.006   -0.068    0.946   -0.000   -0.004
+ .PAT2P2 ~~                                                             
+   .PAT3P2            0.005    0.006    0.776    0.438    0.005    0.039
+ .PAT2P3 ~~                                                             
+   .PAT3P3            0.010    0.006    1.538    0.124    0.010    0.072
+ .NAT2P1 ~~                                                             
+   .NAT3P1            0.011    0.006    1.810    0.070    0.011    0.081
+ .NAT2P2 ~~                                                             
+   .NAT3P2            0.008    0.005    1.621    0.105    0.008    0.088
+ .NAT2P3 ~~                                                             
+   .NAT3P3           -0.004    0.006   -0.674    0.500   -0.004   -0.037
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    Pos1              3.000    0.024  124.676    0.000    4.564    4.564
+    Neg1              1.520    0.021   71.493    0.000    2.629    2.629
+   .Pos2              1.361    0.101   13.447    0.000    2.047    2.047
+   .Neg2              0.929    0.053   17.429    0.000    1.693    1.693
+   .Pos3              0.787    0.107    7.373    0.000    1.171    1.171
+   .Neg3              0.558    0.064    8.746    0.000    0.944    0.944
+   .PAT1P1    (t1)   -0.140    0.031   -4.557    0.000   -0.140   -0.181
+   .PAT1P2    (t2)   -0.088    0.031   -2.855    0.004   -0.088   -0.118
+   .PAT1P3    (t3)    0.228    0.031    7.238    0.000    0.228    0.308
+   .NAT1P1    (t4)    0.174    0.021    8.467    0.000    0.174    0.239
+   .NAT1P2    (t5)   -0.068    0.018   -3.706    0.000   -0.068   -0.105
+   .NAT1P3    (t6)   -0.106    0.018   -5.760    0.000   -0.106   -0.159
+   .PAT2P1    (t1)   -0.140    0.031   -4.557    0.000   -0.140   -0.184
+   .PAT2P2    (t2)   -0.088    0.031   -2.855    0.004   -0.088   -0.120
+   .PAT2P3    (t3)    0.228    0.031    7.238    0.000    0.228    0.312
+   .NAT2P1    (t4)    0.174    0.021    8.467    0.000    0.174    0.271
+   .NAT2P2    (t5)   -0.068    0.018   -3.706    0.000   -0.068   -0.108
+   .NAT2P3    (t6)   -0.106    0.018   -5.760    0.000   -0.106   -0.165
+   .PAT3P1    (t1)   -0.140    0.031   -4.557    0.000   -0.140   -0.180
+   .PAT3P2    (t2)   -0.088    0.031   -2.855    0.004   -0.088   -0.114
+   .PAT3P3    (t3)    0.228    0.031    7.238    0.000    0.228    0.301
+   .NAT3P1    (t4)    0.174    0.021    8.467    0.000    0.174    0.258
+   .NAT3P2    (t5)   -0.068    0.018   -3.706    0.000   -0.068   -0.102
+   .NAT3P3    (t6)   -0.106    0.018   -5.760    0.000   -0.106   -0.150
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    Pos1              0.432    0.024   18.356    0.000    1.000    1.000
+    Neg1              0.334    0.018   18.207    0.000    1.000    1.000
+   .Pos2              0.311    0.018   17.618    0.000    0.704    0.704
+   .Neg2              0.235    0.014   17.253    0.000    0.781    0.781
+   .Pos3              0.281    0.017   16.941    0.000    0.621    0.621
+   .Neg3              0.237    0.014   16.908    0.000    0.679    0.679
+   .PAT1P1            0.131    0.010   13.048    0.000    0.131    0.219
+   .PAT1P2            0.124    0.009   13.290    0.000    0.124    0.224
+   .PAT1P3            0.147    0.010   14.824    0.000    0.147    0.268
+   .NAT1P1            0.228    0.013   17.665    0.000    0.228    0.427
+   .NAT1P2            0.086    0.007   11.609    0.000    0.086    0.206
+   .NAT1P3            0.080    0.008   10.338    0.000    0.080    0.180
+   .PAT2P1            0.099    0.008   12.300    0.000    0.099    0.171
+   .PAT2P2            0.104    0.008   13.261    0.000    0.104    0.191
+   .PAT2P3            0.124    0.008   14.911    0.000    0.124    0.231
+   .NAT2P1            0.139    0.009   16.035    0.000    0.139    0.335
+   .NAT2P2            0.094    0.007   13.123    0.000    0.094    0.238
+   .NAT2P3            0.086    0.007   11.805    0.000    0.086    0.208
+   .PAT3P1            0.115    0.010   11.900    0.000    0.115    0.190
+   .PAT3P2            0.153    0.011   14.459    0.000    0.153    0.253
+   .PAT3P3            0.153    0.010   14.904    0.000    0.153    0.267
+   .NAT3P1            0.136    0.009   15.347    0.000    0.136    0.299
+   .NAT3P2            0.094    0.008   12.323    0.000    0.094    0.212
+   .NAT3P3            0.123    0.009   13.525    0.000    0.123    0.244
+
+Constraints:
+                                               |Slack|
+    L1 - (3-L2-L3)                               0.000
+    L4 - (3-L5-L6)                               0.000
+    t1 - (0-t2-t3)                               0.000
+    t4 - (0-t5-t6)                               0.000
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="modello-di-invarianza-configurale">
+<h3><span class="section-number">64.4.2. </span>Modello di Invarianza Configurale<a class="headerlink" href="#modello-di-invarianza-configurale" title="Permalink to this heading">#</a></h3>
+<p>In un modello di invarianza configurale, ci si aspetta che la struttura fattoriale, cioè il numero di fattori e il pattern di carichi fattoriali, sia la stessa in tutti i gruppi o momenti temporali considerati.</p>
+<p>Ogni variabile latente (<code class="docutils literal notranslate"><span class="pre">Pos1</span></code>, <code class="docutils literal notranslate"><span class="pre">Pos2</span></code>, <code class="docutils literal notranslate"><span class="pre">Pos3</span></code>, <code class="docutils literal notranslate"><span class="pre">Neg1</span></code>, <code class="docutils literal notranslate"><span class="pre">Neg2</span></code>, <code class="docutils literal notranslate"><span class="pre">Neg3</span></code>) è misurata da un set specifico di indicatori in ciascuno dei tre momenti temporali. Ad esempio, <code class="docutils literal notranslate"><span class="pre">Pos1</span></code> è misurata da <code class="docutils literal notranslate"><span class="pre">PAT1P1</span></code>, <code class="docutils literal notranslate"><span class="pre">PAT1P2</span></code>, e <code class="docutils literal notranslate"><span class="pre">PAT1P3</span></code>. I carichi fattoriali (L1, L2, L3, ecc.) sono specificati separatamente per ogni momento temporale. I vincoli imposti (ad esempio, L1 == 3 - L2 - L3) indicano che ci sono alcune restrizioni nella relazione tra i carichi fattoriali. Questi vincoli sono utilizzati per testare l’uguaglianza dei carichi attraverso i diversi tempi.</p>
+<p>Il modello stima separatamente la varianza di ciascun indicatore e di ciascuna variabile latente in ogni momento temporale. Il modello include covarianze sia tra gli indicatori in diversi momenti temporali sia tra le variabili latenti, suggerendo che esiste una correlazione tra le misurazioni nel tempo.  Le medie delle variabili latenti e degli indicatori sono specificate imponendo alcuni vincoli (ad esempio, t1 == 0 - t2 - t3).</p>
+<p>I vincoli imposti sui carichi fattoriali e sulle medie degli indicatori permettono di testare se la struttura fattoriale è consistente nel tempo, che è l’essenza dell’invarianza configurale.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod_config</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">    Pos1 =~ L1*PAT1P1 + L2*PAT1P2 + L3*PAT1P3</span>
+<span class="s">    Neg1 =~ L4*NAT1P1 + L5*NAT1P2 + L6*NAT1P3</span>
+<span class="s">    Pos2 =~ L7*PAT2P1 + L8*PAT2P2 + L9*PAT2P3</span>
+<span class="s">    Neg2 =~ L10*NAT2P1 + L11*NAT2P2 + L12*NAT2P3</span>
+<span class="s">    Pos3 =~ L13*PAT3P1 + L14*PAT3P2 + L15*PAT3P3</span>
+<span class="s">    Neg3 =~ L16*NAT3P1 + L17*NAT3P2 + L18*NAT3P3</span>
+<span class="s">    L1 == 3 - L2 - L3</span>
+<span class="s">    L4 == 3 - L5 - L6</span>
+<span class="s">    L7 == 3 - L8 - L9</span>
+<span class="s">    L10== 3 - L11- L12</span>
+<span class="s">    L13== 3 - L14- L15</span>
+<span class="s">    L16== 3 - L17- L18</span>
+
+<span class="s">    PAT1P1~~PAT1P1</span>
+<span class="s">    PAT1P2~~PAT1P2</span>
+<span class="s">    PAT1P3~~PAT1P3</span>
+<span class="s">    NAT1P1~~NAT1P1</span>
+<span class="s">    NAT1P2~~NAT1P2</span>
+<span class="s">    NAT1P3~~NAT1P3</span>
+<span class="s">    PAT2P1~~PAT2P1</span>
+<span class="s">    PAT2P2~~PAT2P2</span>
+<span class="s">    PAT2P3~~PAT2P3</span>
+<span class="s">    NAT2P1~~NAT2P1</span>
+<span class="s">    NAT2P2~~NAT2P2</span>
+<span class="s">    NAT2P3~~NAT2P3</span>
+<span class="s">    PAT3P1~~PAT3P1</span>
+<span class="s">    PAT3P2~~PAT3P2</span>
+<span class="s">    PAT3P3~~PAT3P3</span>
+<span class="s">    NAT3P1~~NAT3P1</span>
+<span class="s">    NAT3P2~~NAT3P2</span>
+<span class="s">    NAT3P3~~NAT3P3</span>
+
+<span class="s">    Pos1~~Pos1</span>
+<span class="s">    Neg1~~Neg1</span>
+<span class="s">    Pos2~~Pos2</span>
+<span class="s">    Neg2~~Neg2</span>
+<span class="s">    Pos3~~Pos3</span>
+<span class="s">    Neg3~~Neg3</span>
+
+<span class="s">    PAT1P1~~PAT2P1 + PAT3P1</span>
+<span class="s">    PAT2P1~~PAT3P1</span>
+<span class="s">    PAT1P2~~PAT2P2 + PAT3P2</span>
+<span class="s">    PAT2P2~~PAT3P2</span>
+<span class="s">    PAT1P3~~PAT2P3 + PAT3P3</span>
+<span class="s">    PAT2P3~~PAT3P3</span>
+<span class="s">    NAT1P1~~NAT2P1 + NAT3P1</span>
+<span class="s">    NAT2P1~~NAT3P1</span>
+<span class="s">    NAT1P2~~NAT2P2 + NAT3P2</span>
+<span class="s">    NAT2P2~~NAT3P2</span>
+<span class="s">    NAT1P3~~NAT2P3 + NAT3P3</span>
+<span class="s">    NAT2P3~~NAT3P3</span>
+
+<span class="s">    Pos1~~Pos2 + Pos3 + Neg1 + Neg2 + Neg3</span>
+<span class="s">    Pos2~~Pos3 + Neg1 + Neg2 + Neg3</span>
+<span class="s">    Pos3~~Neg1 + Neg2 + Neg3</span>
+<span class="s">    Neg1~~Neg2 + Neg3</span>
+<span class="s">    Neg2~~Neg3</span>
+
+<span class="s">    Pos1~NA*1</span>
+<span class="s">    Neg1~NA*1</span>
+<span class="s">    Pos2~NA*1</span>
+<span class="s">    Neg2~NA*1</span>
+<span class="s">    Pos3~NA*1</span>
+<span class="s">    Neg3~NA*1</span>
+
+<span class="s">    PAT1P1~t1*1</span>
+<span class="s">    PAT1P2~t2*1</span>
+<span class="s">    PAT1P3~t3*1</span>
+<span class="s">    NAT1P1~t4*1</span>
+<span class="s">    NAT1P2~t5*1</span>
+<span class="s">    NAT1P3~t6*1</span>
+<span class="s">    PAT2P1~t7*1</span>
+<span class="s">    PAT2P2~t8*1</span>
+<span class="s">    PAT2P3~t9*1</span>
+<span class="s">    NAT2P1~t10*1</span>
+<span class="s">    NAT2P2~t11*1</span>
+<span class="s">    NAT2P3~t12*1</span>
+<span class="s">    PAT3P1~t13*1</span>
+<span class="s">    PAT3P2~t14*1</span>
+<span class="s">    PAT3P3~t15*1</span>
+<span class="s">    NAT3P1~t16*1</span>
+<span class="s">    NAT3P2~t17*1</span>
+<span class="s">    NAT3P3~t18*1</span>
+
+<span class="s">    t1 == 0 - t2 - t3</span>
+<span class="s">    t4 == 0 - t5 - t6</span>
+<span class="s">    t7 == 0 - t8 - t9</span>
+<span class="s">    t10== 0 - t11- t12</span>
+<span class="s">    t13== 0 - t14- t15</span>
+<span class="s">    t16== 0 - t17- t18</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit_config</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lavaan</span><span class="p">(</span><span class="n">mod_config</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat</span><span class="p">,</span><span class="w"> </span><span class="n">meanstructure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">fit_config</span><span class="p">,</span><span class="w"> </span><span class="n">standardized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 160 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        99
+  Number of equality constraints                    12
+
+  Number of observations                           823
+
+Model Test User Model:
+                                                      
+  Test statistic                               352.232
+  Degrees of freedom                               102
+  P-value (Chi-square)                           0.000
+
+Model Test Baseline Model:
+
+  Test statistic                             11131.067
+  Degrees of freedom                               153
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.977
+  Tucker-Lewis Index (TLI)                       0.966
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)             -10544.710
+  Loglikelihood unrestricted model (H1)     -10368.594
+                                                      
+  Akaike (AIC)                               21263.420
+  Bayesian (BIC)                             21673.447
+  Sample-size adjusted Bayesian (SABIC)      21397.168
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.055
+  90 Percent confidence interval - lower         0.048
+  90 Percent confidence interval - upper         0.061
+  P-value H_0: RMSEA &lt;= 0.050                    0.108
+  P-value H_0: RMSEA &gt;= 0.080                    0.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.035
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  Pos1 =~                                                               
+    PAT1P1    (L1)    1.021    0.018   57.311    0.000    0.672    0.878
+    PAT1P2    (L2)    0.999    0.018   57.022    0.000    0.658    0.882
+    PAT1P3    (L3)    0.980    0.018   54.726    0.000    0.644    0.862
+  Neg1 =~                                                               
+    NAT1P1    (L4)    0.911    0.023   40.011    0.000    0.521    0.740
+    NAT1P2    (L5)    1.032    0.019   53.312    0.000    0.591    0.899
+    NAT1P3    (L6)    1.057    0.020   54.058    0.000    0.605    0.907
+  Pos2 =~                                                               
+    PAT2P1    (L7)    1.031    0.015   67.338    0.000    0.690    0.909
+    PAT2P2    (L8)    1.010    0.015   66.147    0.000    0.676    0.905
+    PAT2P3    (L9)    0.958    0.016   60.988    0.000    0.641    0.877
+  Neg2 =~                                                               
+    NAT2P1   (L10)    0.973    0.020   49.201    0.000    0.537    0.824
+    NAT2P2   (L11)    0.976    0.019   52.312    0.000    0.538    0.866
+    NAT2P3   (L12)    1.052    0.019   55.900    0.000    0.581    0.894
+  Pos3 =~                                                               
+    PAT3P1   (L13)    1.065    0.018   60.101    0.000    0.709    0.907
+    PAT3P2   (L14)    0.981    0.018   53.971    0.000    0.653    0.857
+    PAT3P3   (L15)    0.954    0.018   52.524    0.000    0.636    0.849
+  Neg3 =~                                                               
+    NAT3P1   (L16)    0.994    0.019   52.539    0.000    0.586    0.852
+    NAT3P2   (L17)    0.989    0.018   54.815    0.000    0.583    0.884
+    NAT3P3   (L18)    1.017    0.019   53.509    0.000    0.600    0.861
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+ .PAT1P1 ~~                                                             
+   .PAT2P1            0.011    0.006    1.701    0.089    0.011    0.091
+   .PAT3P1            0.008    0.007    1.133    0.257    0.008    0.064
+ .PAT2P1 ~~                                                             
+   .PAT3P1           -0.000    0.006   -0.039    0.969   -0.000   -0.002
+ .PAT1P2 ~~                                                             
+   .PAT2P2            0.007    0.006    1.251    0.211    0.007    0.066
+   .PAT3P2            0.012    0.007    1.782    0.075    0.012    0.089
+ .PAT2P2 ~~                                                             
+   .PAT3P2            0.005    0.006    0.732    0.464    0.005    0.037
+ .PAT1P3 ~~                                                             
+   .PAT2P3            0.011    0.006    1.740    0.082    0.011    0.083
+   .PAT3P3            0.013    0.007    1.851    0.064    0.013    0.087
+ .PAT2P3 ~~                                                             
+   .PAT3P3            0.010    0.006    1.524    0.127    0.010    0.071
+ .NAT1P1 ~~                                                             
+   .NAT2P1            0.029    0.007    3.893    0.000    0.029    0.163
+   .NAT3P1            0.010    0.007    1.412    0.158    0.010    0.061
+ .NAT2P1 ~~                                                             
+   .NAT3P1            0.009    0.006    1.506    0.132    0.009    0.069
+ .NAT1P2 ~~                                                             
+   .NAT2P2            0.000    0.005    0.006    0.996    0.000    0.000
+   .NAT3P2            0.005    0.005    1.009    0.313    0.005    0.058
+ .NAT2P2 ~~                                                             
+   .NAT3P2            0.008    0.005    1.660    0.097    0.008    0.087
+ .NAT1P3 ~~                                                             
+   .NAT2P3            0.000    0.005    0.002    0.998    0.000    0.000
+   .NAT3P3           -0.006    0.006   -1.016    0.310   -0.006   -0.057
+ .NAT2P3 ~~                                                             
+   .NAT3P3           -0.004    0.006   -0.729    0.466   -0.004   -0.039
+  Pos1 ~~                                                               
+    Pos2              0.243    0.019   12.892    0.000    0.552    0.552
+    Pos3              0.230    0.019   12.278    0.000    0.525    0.525
+    Neg1             -0.062    0.015   -4.217    0.000   -0.164   -0.164
+    Neg2             -0.059    0.014   -4.149    0.000   -0.162   -0.162
+    Neg3             -0.014    0.015   -0.913    0.361   -0.035   -0.035
+  Pos2 ~~                                                               
+    Pos3              0.241    0.019   12.725    0.000    0.542    0.542
+  Neg1 ~~                                                               
+    Pos2             -0.058    0.015   -3.963    0.000   -0.152   -0.152
+  Pos2 ~~                                                               
+    Neg2             -0.090    0.014   -6.254    0.000   -0.244   -0.244
+    Neg3             -0.028    0.015   -1.851    0.064   -0.071   -0.071
+  Neg1 ~~                                                               
+    Pos3             -0.010    0.015   -0.717    0.473   -0.027   -0.027
+  Neg2 ~~                                                               
+    Pos3             -0.047    0.014   -3.296    0.001   -0.128   -0.128
+  Pos3 ~~                                                               
+    Neg3             -0.078    0.015   -5.087    0.000   -0.199   -0.199
+  Neg1 ~~                                                               
+    Neg2              0.149    0.013   11.184    0.000    0.472    0.472
+    Neg3              0.149    0.014   10.586    0.000    0.441    0.441
+  Neg2 ~~                                                               
+    Neg3              0.167    0.014   11.998    0.000    0.514    0.514
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    Pos1              3.000    0.024  124.563    0.000    4.560    4.560
+    Neg1              1.537    0.021   72.416    0.000    2.684    2.684
+    Pos2              3.012    0.024  124.258    0.000    4.503    4.503
+    Neg2              1.604    0.020   78.945    0.000    2.907    2.907
+    Pos3              2.931    0.024  120.101    0.000    4.401    4.401
+    Neg3              1.647    0.022   75.997    0.000    2.793    2.793
+   .PAT1P1    (t1)   -0.071    0.054   -1.303    0.192   -0.071   -0.093
+   .PAT1P2    (t2)   -0.103    0.054   -1.916    0.055   -0.103   -0.138
+   .PAT1P3    (t3)    0.174    0.055    3.171    0.002    0.174    0.232
+   .NAT1P1    (t4)    0.307    0.037    8.291    0.000    0.307    0.436
+   .NAT1P2    (t5)   -0.136    0.031   -4.349    0.000   -0.136   -0.206
+   .NAT1P3    (t6)   -0.172    0.031   -5.455    0.000   -0.172   -0.257
+   .PAT2P1    (t7)   -0.106    0.047   -2.243    0.025   -0.106   -0.139
+   .PAT2P2    (t8)   -0.134    0.047   -2.860    0.004   -0.134   -0.180
+   .PAT2P3    (t9)    0.240    0.048    4.960    0.000    0.240    0.328
+   .NAT2P1   (t10)    0.135    0.033    4.058    0.000    0.135    0.207
+   .NAT2P2   (t11)   -0.027    0.031   -0.874    0.382   -0.027   -0.044
+   .NAT2P3   (t12)   -0.108    0.031   -3.419    0.001   -0.108   -0.166
+   .PAT3P1   (t13)   -0.234    0.053   -4.418    0.000   -0.234   -0.299
+   .PAT3P2   (t14)   -0.026    0.054   -0.481    0.631   -0.026   -0.034
+   .PAT3P3   (t15)    0.260    0.054    4.779    0.000    0.260    0.347
+   .NAT3P1   (t16)    0.087    0.033    2.663    0.008    0.087    0.127
+   .NAT3P2   (t17)   -0.054    0.031   -1.724    0.085   -0.054   -0.081
+   .NAT3P3   (t18)   -0.033    0.033   -1.019    0.308   -0.033   -0.048
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .PAT1P1            0.133    0.010   12.941    0.000    0.133    0.228
+   .PAT1P2            0.123    0.010   12.691    0.000    0.123    0.222
+   .PAT1P3            0.144    0.010   14.093    0.000    0.144    0.257
+   .NAT1P1            0.224    0.013   17.831    0.000    0.224    0.452
+   .NAT1P2            0.083    0.008   10.067    0.000    0.083    0.193
+   .NAT1P3            0.078    0.008    9.243    0.000    0.078    0.176
+   .PAT2P1            0.100    0.008   12.156    0.000    0.100    0.174
+   .PAT2P2            0.102    0.008   12.582    0.000    0.102    0.182
+   .PAT2P3            0.124    0.008   14.727    0.000    0.124    0.231
+   .NAT2P1            0.137    0.009   15.465    0.000    0.137    0.322
+   .NAT2P2            0.097    0.007   13.132    0.000    0.097    0.251
+   .NAT2P3            0.084    0.008   10.906    0.000    0.084    0.200
+   .PAT3P1            0.109    0.010   10.536    0.000    0.109    0.178
+   .PAT3P2            0.154    0.011   14.284    0.000    0.154    0.265
+   .PAT3P3            0.156    0.011   14.776    0.000    0.156    0.279
+   .NAT3P1            0.129    0.009   14.221    0.000    0.129    0.274
+   .NAT3P2            0.095    0.008   12.052    0.000    0.095    0.218
+   .NAT3P3            0.125    0.009   13.536    0.000    0.125    0.258
+    Pos1              0.433    0.024   18.354    0.000    1.000    1.000
+    Neg1              0.328    0.018   17.933    0.000    1.000    1.000
+    Pos2              0.448    0.024   18.745    0.000    1.000    1.000
+    Neg2              0.305    0.017   18.153    0.000    1.000    1.000
+    Pos3              0.444    0.024   18.323    0.000    1.000    1.000
+    Neg3              0.348    0.019   18.211    0.000    1.000    1.000
+
+Constraints:
+                                               |Slack|
+    L1 - (3-L2-L3)                               0.000
+    L4 - (3-L5-L6)                               0.000
+    L7 - (3-L8-L9)                               0.000
+    L10 - (3-L11-L12)                            0.000
+    L13 - (3-L14-L15)                            0.000
+    L16 - (3-L17-L18)                            0.000
+    t1 - (0-t2-t3)                               0.000
+    t4 - (0-t5-t6)                               0.000
+    t7 - (0-t8-t9)                               0.000
+    t10 - (0-t11-t12)                            0.000
+    t13 - (0-t14-t15)                            0.000
+    t16 - (0-t17-t18)                            0.000
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="modello-di-invarianza-debole">
+<h3><span class="section-number">64.4.3. </span>Modello di Invarianza Debole<a class="headerlink" href="#modello-di-invarianza-debole" title="Permalink to this heading">#</a></h3>
+<p>Il modello di invarianza debole, o invarianza metrica, è un passo oltre l’invarianza configurale nella SEM per testare l’uguaglianza di costrutti psicologici nel tempo. Mentre l’invarianza configurale si concentra sulla struttura fattoriale (cioè, la presenza e il pattern dei carichi fattoriali), l’invarianza debole agginge il vincolo dell’uguaglianza dei carichi fattoriali nei diversi momenti temporali.</p>
+<p>Nel modello successivo, i carichi fattoriali per gli indicatori corrispondenti sono mantenuti costanti nelle tre rilevazioni temporali. Ad esempio, lo stesso valore per <code class="docutils literal notranslate"><span class="pre">L1</span></code> è utilizzato per <code class="docutils literal notranslate"><span class="pre">PAT1P1</span></code>, <code class="docutils literal notranslate"><span class="pre">PAT2P1</span></code> e <code class="docutils literal notranslate"><span class="pre">PAT3P1</span></code> in tutti e tre i momenti temporali. Questo significa che questo modello verifica se la relazione tra le variabili latenti (<code class="docutils literal notranslate"><span class="pre">Pos</span></code> e <code class="docutils literal notranslate"><span class="pre">Neg</span></code>) e i loro indicatori (<code class="docutils literal notranslate"><span class="pre">PAT</span></code> e <code class="docutils literal notranslate"><span class="pre">NAT</span></code>) è la stessa nel tempo.</p>
+<p>Il modello stima separatamente la varianza di ciascun indicatore e di ciascuna variabile latente in ogni momento temporale. Questo è simile all’invarianza configurale.</p>
+<p>Il modello include covarianze sia tra gli indicatori in diversi momenti temporali sia tra le variabili latenti, permettendo di catturare la correlazione tra le misurazioni nel tempo.</p>
+<p>Viene fatta un’ipotesi sulle medie degli indicatori, come mostrato nelle equazioni <code class="docutils literal notranslate"><span class="pre">PAT1P1</span> <span class="pre">~</span> <span class="pre">t1*1</span></code>, ecc. I vincoli sulle medie degli indicatori (ad esempio, <code class="docutils literal notranslate"><span class="pre">t1</span> <span class="pre">==</span> <span class="pre">0</span> <span class="pre">-</span> <span class="pre">t2</span> <span class="pre">-</span> <span class="pre">t3</span></code>) suggeriscono che ci sono alcune restrizioni matematiche imposte sulle medie degli indicatori.  Prendendo l’equazione <code class="docutils literal notranslate"><span class="pre">t1</span> <span class="pre">==</span> <span class="pre">0</span> <span class="pre">-</span> <span class="pre">t2</span> <span class="pre">-</span> <span class="pre">t3</span></code> come esempio, questa impone una relazione diretta tra tre medie degli indicatori. In pratica, afferma che la media di un indicatore (rappresentata da <code class="docutils literal notranslate"><span class="pre">t1</span></code>) è definita come l’opposto della somma delle medie di altri due indicatori (<code class="docutils literal notranslate"><span class="pre">t2</span></code> e <code class="docutils literal notranslate"><span class="pre">t3</span></code>). Questo tipo di vincolo può essere interpretato come un meccanismo di bilanciamento. Se <code class="docutils literal notranslate"><span class="pre">t2</span></code> e <code class="docutils literal notranslate"><span class="pre">t3</span></code> aumentano, allora <code class="docutils literal notranslate"><span class="pre">t1</span></code> diminuisce di conseguenza, mantenendo una relazione bilanciata tra queste tre medie.</p>
+<p>Mentre l’invarianza configurale richiede solo che la stessa struttura fattoriale sia presente attraverso i gruppi o nel tempo (ad esempio, gli stessi fattori con gli stessi indicatori), l’invarianza debole richiede anche che i carichi fattoriali siano gli stessi. Questo è un test più rigoroso dell’invarianza poiché non solo assume che le stesse variabili latenti siano misurate, ma anche che la forza della relazione tra le variabili latenti e i loro indicatori sia costante.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod_weak</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">	Pos1 =~ L1*PAT1P1 + L2*PAT1P2 + L3*PAT1P3</span>
+<span class="s">	Neg1 =~ L4*NAT1P1 + L5*NAT1P2 + L6*NAT1P3</span>
+<span class="s">	Pos2 =~ L1*PAT2P1 + L2*PAT2P2 + L3*PAT2P3</span>
+<span class="s">	Neg2 =~ L4*NAT2P1 + L5*NAT2P2 + L6*NAT2P3</span>
+<span class="s">	Pos3 =~ L1*PAT3P1 + L2*PAT3P2 + L3*PAT3P3</span>
+<span class="s">	Neg3 =~ L4*NAT3P1 + L5*NAT3P2 + L6*NAT3P3</span>
+
+<span class="s">	## indicator residual variances (Theta-Epsilon matrix)</span>
+<span class="s">	PAT1P1 ~~ PAT1P1</span>
+<span class="s">	PAT1P2 ~~ PAT1P2</span>
+<span class="s">	PAT1P3 ~~ PAT1P3</span>
+<span class="s">	NAT1P1 ~~ NAT1P1</span>
+<span class="s">	NAT1P2 ~~ NAT1P2</span>
+<span class="s">	NAT1P3 ~~ NAT1P3</span>
+<span class="s">	PAT2P1 ~~ PAT2P1</span>
+<span class="s">	PAT2P2 ~~ PAT2P2</span>
+<span class="s">	PAT2P3 ~~ PAT2P3</span>
+<span class="s">	NAT2P1 ~~ NAT2P1</span>
+<span class="s">	NAT2P2 ~~ NAT2P2</span>
+<span class="s">	NAT2P3 ~~ NAT2P3</span>
+<span class="s">	PAT3P1 ~~ PAT3P1</span>
+<span class="s">	PAT3P2 ~~ PAT3P2</span>
+<span class="s">	PAT3P3 ~~ PAT3P3</span>
+<span class="s">	NAT3P1 ~~ NAT3P1</span>
+<span class="s">	NAT3P2 ~~ NAT3P2</span>
+<span class="s">	NAT3P3 ~~ NAT3P3</span>
+
+<span class="s">	### cross-time correlated residuals</span>
+<span class="s">	## correlate residuals of indicators with themselves across time</span>
+<span class="s">	PAT1P1 ~~ PAT2P1 + PAT3P1</span>
+<span class="s">	PAT2P1 ~~ PAT3P1</span>
+<span class="s">	PAT1P2 ~~ PAT2P2 + PAT3P2</span>
+<span class="s">	PAT2P2 ~~ PAT3P2</span>
+<span class="s">	PAT1P3 ~~ PAT2P3 + PAT3P3</span>
+<span class="s">	PAT2P3 ~~ PAT3P3</span>
+<span class="s">	NAT1P1 ~~ NAT2P1 + NAT3P1</span>
+<span class="s">	NAT2P1 ~~ NAT3P1</span>
+<span class="s">	NAT1P2 ~~ NAT2P2 + NAT3P2</span>
+<span class="s">	NAT2P2 ~~ NAT3P2</span>
+<span class="s">	NAT1P3 ~~ NAT2P3 + NAT3P3</span>
+<span class="s">	NAT2P3 ~~ NAT3P3</span>
+
+<span class="s">	## indicator intercepts (Tau vector), include labels for model constraints</span>
+<span class="s">	PAT1P1 ~ t1*1</span>
+<span class="s">	PAT1P2 ~ t2*1</span>
+<span class="s">	PAT1P3 ~ t3*1</span>
+<span class="s">	NAT1P1 ~ t4*1</span>
+<span class="s">	NAT1P2 ~ t5*1</span>
+<span class="s">	NAT1P3 ~ t6*1</span>
+
+<span class="s">	PAT2P1 ~ t7*1</span>
+<span class="s">	PAT2P2 ~ t8*1</span>
+<span class="s">	PAT2P3 ~ t9*1</span>
+<span class="s">	NAT2P1 ~ t10*1</span>
+<span class="s">	NAT2P2 ~ t11*1</span>
+<span class="s">	NAT2P3 ~ t12*1</span>
+
+<span class="s">	PAT3P1 ~ t13*1</span>
+<span class="s">	PAT3P2 ~ t14*1</span>
+<span class="s">	PAT3P3 ~ t15*1</span>
+<span class="s">	NAT3P1 ~ t16*1</span>
+<span class="s">	NAT3P2 ~ t17*1</span>
+<span class="s">	NAT3P3 ~ t18*1</span>
+
+<span class="s">	### latent factor variance (Psi matrix)</span>
+<span class="s">	Pos1 ~~ Pos1</span>
+<span class="s">	Neg1 ~~ Neg1</span>
+<span class="s">	Pos2 ~~ Pos2</span>
+<span class="s">	Neg2 ~~ Neg2</span>
+<span class="s">	Pos3 ~~ Pos3</span>
+<span class="s">	Neg3 ~~ Neg3</span>
+
+<span class="s">	### factor covariance</span>
+<span class="s">	Pos1 ~~ Pos2 + Pos3 + Neg1 + Neg2 + Neg3</span>
+<span class="s">	Pos2 ~~ Pos3 + Neg1 + Neg2 + Neg3</span>
+<span class="s">	Pos3 ~~ Neg1 + Neg2 + Neg3</span>
+<span class="s">	Neg1 ~~ Neg2 + Neg3</span>
+<span class="s">	Neg2 ~~ Neg3</span>
+
+<span class="s">	## latent means (Alpha matrix)</span>
+<span class="s">	Pos1 ~ 1</span>
+<span class="s">	Neg1 ~ 1</span>
+<span class="s">	Pos2 ~ 1</span>
+<span class="s">	Neg2 ~ 1</span>
+<span class="s">	Pos3 ~ 1</span>
+<span class="s">	Neg3 ~ 1</span>
+
+<span class="s">	## model constraints</span>
+<span class="s">	L1 == 3 - L2 - L3</span>
+<span class="s">	L4 == 3 - L5 - L6</span>
+<span class="s">	t1 == 0 - t2 - t3</span>
+<span class="s">	t4 == 0 - t5 - t6</span>
+<span class="s">	t7 == 0 - t8 - t9</span>
+<span class="s">	t10 == 0 - t11 - t12</span>
+<span class="s">	t13 == 0 - t14 - t15</span>
+<span class="s">	t16 == 0 - t17 - t18</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit_wk</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lavaan</span><span class="p">(</span><span class="n">mod_weak</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat</span><span class="p">,</span><span class="w"> </span><span class="n">meanstructure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="c1">#### Did not converge on first run, used final estimates on starting values for next run</span>
+<span class="n">fit_weak</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lavaan</span><span class="p">(</span><span class="n">mod_weak</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat</span><span class="p">,</span><span class="w"> </span><span class="n">meanstructure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fit_wk</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">fit_weak</span><span class="p">,</span><span class="w"> </span><span class="n">standardized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 4 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        99
+  Number of equality constraints                    20
+
+  Number of observations                           823
+
+Model Test User Model:
+                                                      
+  Test statistic                               366.562
+  Degrees of freedom                               110
+  P-value (Chi-square)                           0.000
+
+Model Test Baseline Model:
+
+  Test statistic                             11131.067
+  Degrees of freedom                               153
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.977
+  Tucker-Lewis Index (TLI)                       0.967
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)             -10551.875
+  Loglikelihood unrestricted model (H1)     -10368.594
+                                                      
+  Akaike (AIC)                               21261.750
+  Bayesian (BIC)                             21634.074
+  Sample-size adjusted Bayesian (SABIC)      21383.200
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.053
+  90 Percent confidence interval - lower         0.047
+  90 Percent confidence interval - upper         0.059
+  P-value H_0: RMSEA &lt;= 0.050                    0.182
+  P-value H_0: RMSEA &gt;= 0.080                    0.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.035
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  Pos1 =~                                                               
+    PAT1P1    (L1)    1.038    0.010  102.905    0.000    0.683    0.884
+    PAT1P2    (L2)    0.998    0.010   98.574    0.000    0.656    0.881
+    PAT1P3    (L3)    0.963    0.010   93.200    0.000    0.633    0.856
+  Neg1 =~                                                               
+    NAT1P1    (L4)    0.964    0.012   79.273    0.000    0.558    0.766
+    NAT1P2    (L5)    0.997    0.011   90.664    0.000    0.578    0.891
+    NAT1P3    (L6)    1.039    0.011   93.757    0.000    0.602    0.906
+  Pos2 =~                                                               
+    PAT2P1    (L1)    1.038    0.010  102.905    0.000    0.695    0.911
+    PAT2P2    (L2)    0.998    0.010   98.574    0.000    0.668    0.901
+    PAT2P3    (L3)    0.963    0.010   93.200    0.000    0.645    0.878
+  Neg2 =~                                                               
+    NAT2P1    (L4)    0.964    0.012   79.273    0.000    0.532    0.820
+    NAT2P2    (L5)    0.997    0.011   90.664    0.000    0.550    0.873
+    NAT2P3    (L6)    1.039    0.011   93.757    0.000    0.574    0.889
+  Pos3 =~                                                               
+    PAT3P1    (L1)    1.038    0.010  102.905    0.000    0.693    0.898
+    PAT3P2    (L2)    0.998    0.010   98.574    0.000    0.666    0.864
+    PAT3P3    (L3)    0.963    0.010   93.200    0.000    0.643    0.853
+  Neg3 =~                                                               
+    NAT3P1    (L4)    0.964    0.012   79.273    0.000    0.567    0.840
+    NAT3P2    (L5)    0.997    0.011   90.664    0.000    0.587    0.886
+    NAT3P3    (L6)    1.039    0.011   93.757    0.000    0.612    0.868
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+ .PAT1P1 ~~                                                             
+   .PAT2P1            0.010    0.006    1.643    0.100    0.010    0.090
+   .PAT3P1            0.008    0.007    1.171    0.242    0.008    0.065
+ .PAT2P1 ~~                                                             
+   .PAT3P1            0.000    0.006    0.046    0.963    0.000    0.003
+ .PAT1P2 ~~                                                             
+   .PAT2P2            0.008    0.006    1.304    0.192    0.008    0.068
+   .PAT3P2            0.012    0.007    1.761    0.078    0.012    0.089
+ .PAT2P2 ~~                                                             
+   .PAT3P2            0.005    0.006    0.796    0.426    0.005    0.040
+ .PAT1P3 ~~                                                             
+   .PAT2P3            0.011    0.006    1.784    0.074    0.011    0.084
+   .PAT3P3            0.013    0.007    1.780    0.075    0.013    0.084
+ .PAT2P3 ~~                                                             
+   .PAT3P3            0.010    0.006    1.482    0.138    0.010    0.069
+ .NAT1P1 ~~                                                             
+   .NAT2P1            0.029    0.007    3.931    0.000    0.029    0.166
+   .NAT3P1            0.011    0.007    1.474    0.141    0.011    0.063
+ .NAT2P1 ~~                                                             
+   .NAT3P1            0.010    0.006    1.625    0.104    0.010    0.073
+ .NAT1P2 ~~                                                             
+   .NAT2P2           -0.000    0.005   -0.038    0.970   -0.000   -0.002
+   .NAT3P2            0.005    0.005    1.052    0.293    0.005    0.059
+ .NAT2P2 ~~                                                             
+   .NAT3P2            0.008    0.005    1.654    0.098    0.008    0.089
+ .NAT1P3 ~~                                                             
+   .NAT2P3           -0.000    0.005   -0.079    0.937   -0.000   -0.005
+   .NAT3P3           -0.006    0.006   -1.103    0.270   -0.006   -0.063
+ .NAT2P3 ~~                                                             
+   .NAT3P3           -0.004    0.006   -0.780    0.435   -0.004   -0.042
+  Pos1 ~~                                                               
+    Pos2              0.243    0.019   12.903    0.000    0.552    0.552
+    Pos3              0.231    0.019   12.304    0.000    0.526    0.526
+    Neg1             -0.062    0.015   -4.210    0.000   -0.163   -0.163
+    Neg2             -0.059    0.014   -4.163    0.000   -0.162   -0.162
+    Neg3             -0.014    0.015   -0.921    0.357   -0.036   -0.036
+  Pos2 ~~                                                               
+    Pos3              0.243    0.019   12.757    0.000    0.544    0.544
+  Neg1 ~~                                                               
+    Pos2             -0.059    0.015   -3.979    0.000   -0.153   -0.153
+  Pos2 ~~                                                               
+    Neg2             -0.091    0.014   -6.280    0.000   -0.246   -0.246
+    Neg3             -0.028    0.015   -1.875    0.061   -0.072   -0.072
+  Neg1 ~~                                                               
+    Pos3             -0.011    0.015   -0.731    0.465   -0.028   -0.028
+  Neg2 ~~                                                               
+    Pos3             -0.047    0.014   -3.305    0.001   -0.128   -0.128
+  Pos3 ~~                                                               
+    Neg3             -0.079    0.015   -5.118    0.000   -0.200   -0.200
+  Neg1 ~~                                                               
+    Neg2              0.152    0.014   11.288    0.000    0.477    0.477
+    Neg3              0.151    0.014   10.634    0.000    0.443    0.443
+  Neg2 ~~                                                               
+    Neg3              0.167    0.014   12.005    0.000    0.514    0.514
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .PAT1P1    (t1)   -0.123    0.032   -3.855    0.000   -0.123   -0.160
+   .PAT1P2    (t2)   -0.100    0.032   -3.107    0.002   -0.100   -0.134
+   .PAT1P3    (t3)    0.223    0.033    6.799    0.000    0.223    0.301
+   .NAT1P1    (t4)    0.225    0.022   10.149    0.000    0.225    0.309
+   .NAT1P2    (t5)   -0.081    0.019   -4.220    0.000   -0.081   -0.126
+   .NAT1P3    (t6)   -0.144    0.019   -7.423    0.000   -0.144   -0.217
+   .PAT2P1    (t7)   -0.127    0.032   -3.989    0.000   -0.127   -0.166
+   .PAT2P2    (t8)   -0.099    0.032   -3.094    0.002   -0.099   -0.133
+   .PAT2P3    (t9)    0.225    0.033    6.910    0.000    0.225    0.307
+   .NAT2P1   (t10)    0.149    0.022    6.793    0.000    0.149    0.230
+   .NAT2P2   (t11)   -0.061    0.020   -3.101    0.002   -0.061   -0.098
+   .NAT2P3   (t12)   -0.087    0.020   -4.399    0.000   -0.087   -0.136
+   .PAT3P1   (t13)   -0.157    0.031   -5.018    0.000   -0.157   -0.203
+   .PAT3P2   (t14)   -0.077    0.032   -2.426    0.015   -0.077   -0.099
+   .PAT3P3   (t15)    0.234    0.032    7.256    0.000    0.234    0.310
+   .NAT3P1   (t16)    0.136    0.022    6.076    0.000    0.136    0.202
+   .NAT3P2   (t17)   -0.066    0.020   -3.251    0.001   -0.066   -0.100
+   .NAT3P3   (t18)   -0.070    0.021   -3.384    0.001   -0.070   -0.100
+    Pos1              3.000    0.024  124.639    0.000    4.563    4.563
+    Neg1              1.537    0.021   71.637    0.000    2.652    2.652
+    Pos2              3.012    0.024  124.219    0.000    4.502    4.502
+    Neg2              1.604    0.020   78.947    0.000    2.908    2.908
+    Pos3              2.931    0.024  119.853    0.000    4.391    4.391
+    Neg3              1.647    0.022   76.092    0.000    2.797    2.797
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .PAT1P1            0.130    0.010   13.072    0.000    0.130    0.219
+   .PAT1P2            0.124    0.009   13.267    0.000    0.124    0.223
+   .PAT1P3            0.147    0.010   14.837    0.000    0.147    0.268
+   .NAT1P1            0.220    0.013   17.540    0.000    0.220    0.414
+   .NAT1P2            0.087    0.007   11.767    0.000    0.087    0.207
+   .NAT1P3            0.079    0.008   10.385    0.000    0.079    0.179
+   .PAT2P1            0.099    0.008   12.350    0.000    0.099    0.170
+   .PAT2P2            0.104    0.008   13.257    0.000    0.104    0.188
+   .PAT2P3            0.123    0.008   14.898    0.000    0.123    0.229
+   .NAT2P1            0.138    0.009   15.933    0.000    0.138    0.327
+   .NAT2P2            0.094    0.007   13.203    0.000    0.094    0.237
+   .NAT2P3            0.087    0.007   11.961    0.000    0.087    0.209
+   .PAT3P1            0.115    0.010   11.939    0.000    0.115    0.193
+   .PAT3P2            0.150    0.010   14.356    0.000    0.150    0.253
+   .PAT3P3            0.154    0.010   14.973    0.000    0.154    0.272
+   .NAT3P1            0.134    0.009   15.181    0.000    0.134    0.294
+   .NAT3P2            0.094    0.008   12.427    0.000    0.094    0.215
+   .NAT3P3            0.123    0.009   13.604    0.000    0.123    0.247
+    Pos1              0.432    0.024   18.358    0.000    1.000    1.000
+    Neg1              0.336    0.018   18.230    0.000    1.000    1.000
+    Pos2              0.448    0.024   18.754    0.000    1.000    1.000
+    Neg2              0.304    0.017   18.188    0.000    1.000    1.000
+    Pos3              0.446    0.024   18.349    0.000    1.000    1.000
+    Neg3              0.347    0.019   18.230    0.000    1.000    1.000
+
+Constraints:
+                                               |Slack|
+    L1 - (3-L2-L3)                               0.000
+    L4 - (3-L5-L6)                               0.000
+    t1 - (0-t2-t3)                               0.000
+    t4 - (0-t5-t6)                               0.000
+    t7 - (0-t8-t9)                               0.000
+    t10 - (0-t11-t12)                            0.000
+    t13 - (0-t14-t15)                            0.000
+    t16 - (0-t17-t18)                            0.000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il modello di invarianza forte è un passaggio ulteriore nell’analisi dell’invarianza in un contesto di modellazione SEM longitudinale. Mentre l’invarianza configurale si concentra sulla struttura fattoriale e l’invarianza debole aggiunge l’uguaglianza dei carichi fattoriali, l’invarianza forte va oltre per includere anche l’uguaglianza delle medie degli indicatori.</p>
+<p>Come nei modelli di invarianza debole, i carichi fattoriali (L1, L2, L3, L4, L5, L6) sono mantenuti uguali attraverso i diversi momenti temporali, indicando che la forza della relazione tra le variabili latenti e i loro indicatori è costante.</p>
+<p>Il modello impone che le medie degli indicatori siano uguali attraverso i diversi momenti temporali. Questo è indicato dalle equazioni come <code class="docutils literal notranslate"><span class="pre">PAT1P1</span> <span class="pre">~</span> <span class="pre">t1*1</span></code>, <code class="docutils literal notranslate"><span class="pre">PAT2P1</span> <span class="pre">~</span> <span class="pre">t1*1</span></code>, e <code class="docutils literal notranslate"><span class="pre">PAT3P1</span> <span class="pre">~</span> <span class="pre">t1*1</span></code>, dove <code class="docutils literal notranslate"><span class="pre">t1</span></code> è lo stesso in tutti e tre i momenti temporali.</p>
+<p>Il modello continua a stimare separatamente la varianza degli indicatori e la covarianza sia tra gli indicatori in diversi momenti temporali sia tra le variabili latenti.</p>
+<p>Sono imposti alcuni vincoli, come <code class="docutils literal notranslate"><span class="pre">t1</span> <span class="pre">==</span> <span class="pre">0</span> <span class="pre">-</span> <span class="pre">t2</span> <span class="pre">-</span> <span class="pre">t3</span></code>, che servono a identificare il modello e riflettono ipotesi teoriche sulle relazioni tra gli indicatori.</p>
+<p>L’invarianza forte è fondamentale per garantire che le misure di un costrutto siano completamente comparabili nel tempo o tra i gruppi. Se un modello dimostra invarianza forte, significa che non solo la relazione tra le variabili latenti e i loro indicatori è costante, ma anche che il livello di base di ciascun indicatore è lo stesso. Questo è cruciale per confronti delle medie latenti o per esaminare i cambiamenti nel tempo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod_strong</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">	### loadings</span>
+<span class="s">	Pos1 =~ L1*PAT1P1 + L2*PAT1P2 + L3*PAT1P3</span>
+<span class="s">	Neg1 =~ L4*NAT1P1 + L5*NAT1P2 + L6*NAT1P3</span>
+<span class="s">	Pos2 =~ L1*PAT2P1 + L2*PAT2P2 + L3*PAT2P3</span>
+<span class="s">	Neg2 =~ L4*NAT2P1 + L5*NAT2P2 + L6*NAT2P3</span>
+<span class="s">	Pos3 =~ L1*PAT3P1 + L2*PAT3P2 + L3*PAT3P3</span>
+<span class="s">	Neg3 =~ L4*NAT3P1 + L5*NAT3P2 + L6*NAT3P3</span>
+<span class="s">	L1 == 3 - L2 - L3</span>
+<span class="s">	L4 == 3 - L5 - L6</span>
+
+<span class="s">	### factor variance</span>
+<span class="s">	Pos1 ~~ Pos1</span>
+<span class="s">	Neg1 ~~ Neg1</span>
+<span class="s">	Pos2 ~~ Pos2</span>
+<span class="s">	Neg2 ~~ Neg2</span>
+<span class="s">	Pos3 ~~ Pos3</span>
+<span class="s">	Neg3 ~~ Neg3</span>
+
+<span class="s">	### factor covariance</span>
+<span class="s">	Pos1 ~~ Pos2 + Pos3 + Neg1 + Neg2 + Neg3</span>
+<span class="s">	Pos2 ~~ Pos3 + Neg1 + Neg2 + Neg3</span>
+<span class="s">	Pos3 ~~ Neg1 + Neg2 + Neg3</span>
+<span class="s">	Neg1 ~~ Neg2 + Neg3</span>
+<span class="s">	Neg2 ~~ Neg3</span>
+
+<span class="s">	### residual variance</span>
+<span class="s">	PAT1P1 ~~ PAT1P1</span>
+<span class="s">	PAT1P2 ~~ PAT1P2</span>
+<span class="s">	PAT1P3 ~~ PAT1P3</span>
+<span class="s">	NAT1P1 ~~ NAT1P1</span>
+<span class="s">	NAT1P2 ~~ NAT1P2</span>
+<span class="s">	NAT1P3 ~~ NAT1P3</span>
+<span class="s">	PAT2P1 ~~ PAT2P1</span>
+<span class="s">	PAT2P2 ~~ PAT2P2</span>
+<span class="s">	PAT2P3 ~~ PAT2P3</span>
+<span class="s">	NAT2P1 ~~ NAT2P1</span>
+<span class="s">	NAT2P2 ~~ NAT2P2</span>
+<span class="s">	NAT2P3 ~~ NAT2P3</span>
+<span class="s">	PAT3P1 ~~ PAT3P1</span>
+<span class="s">	PAT3P2 ~~ PAT3P2</span>
+<span class="s">	PAT3P3 ~~ PAT3P3</span>
+<span class="s">	NAT3P1 ~~ NAT3P1</span>
+<span class="s">	NAT3P2 ~~ NAT3P2</span>
+<span class="s">	NAT3P3 ~~ NAT3P3</span>
+
+<span class="s">	### cross-time correlated residuals</span>
+<span class="s">	PAT1P1 ~~ PAT2P1 + PAT3P1</span>
+<span class="s">	PAT2P1 ~~ PAT3P1</span>
+<span class="s">	PAT1P2 ~~ PAT2P2 + PAT3P2</span>
+<span class="s">	PAT2P2 ~~ PAT3P2</span>
+<span class="s">	PAT1P3 ~~ PAT2P3 + PAT3P3</span>
+<span class="s">	PAT2P3 ~~ PAT3P3</span>
+<span class="s">	NAT1P1 ~~ NAT2P1 + NAT3P1</span>
+<span class="s">	NAT2P1 ~~ NAT3P1</span>
+<span class="s">	NAT1P2 ~~ NAT2P2 + NAT3P2</span>
+<span class="s">	NAT2P2 ~~ NAT3P2</span>
+<span class="s">	NAT1P3 ~~ NAT2P3 + NAT3P3</span>
+<span class="s">	NAT2P3 ~~ NAT3P3</span>
+
+<span class="s">	## latent mean</span>
+<span class="s">	Pos1 ~ 1</span>
+<span class="s">	Neg1 ~ 1</span>
+<span class="s">	Pos2 ~ 1</span>
+<span class="s">	Neg2 ~ 1</span>
+<span class="s">	Pos3 ~ 1</span>
+<span class="s">	Neg3 ~ 1</span>
+
+<span class="s">	## intercept</span>
+<span class="s">	PAT1P1 ~ t1*1</span>
+<span class="s">	PAT1P2 ~ t2*1</span>
+<span class="s">	PAT1P3 ~ t3*1</span>
+<span class="s">	NAT1P1 ~ t4*1</span>
+<span class="s">	NAT1P2 ~ t5*1</span>
+<span class="s">	NAT1P3 ~ t6*1</span>
+<span class="s">	PAT2P1 ~ t1*1</span>
+<span class="s">	PAT2P2 ~ t2*1</span>
+<span class="s">	PAT2P3 ~ t3*1</span>
+<span class="s">	NAT2P1 ~ t4*1</span>
+<span class="s">	NAT2P2 ~ t5*1</span>
+<span class="s">	NAT2P3 ~ t6*1</span>
+<span class="s">	PAT3P1 ~ t1*1</span>
+<span class="s">	PAT3P2 ~ t2*1</span>
+<span class="s">	PAT3P3 ~ t3*1</span>
+<span class="s">	NAT3P1 ~ t4*1</span>
+<span class="s">	NAT3P2 ~ t5*1</span>
+<span class="s">	NAT3P3 ~ t6*1</span>
+
+<span class="s">	t1 == 0 - t2 - t3</span>
+<span class="s">	t4 == 0 - t5 - t6</span>
+<span class="s">	&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit_strong</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lavaan</span><span class="p">(</span><span class="n">mod_strong</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat</span><span class="p">,</span><span class="w"> </span><span class="n">meanstructure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">fit_strong</span><span class="p">,</span><span class="w"> </span><span class="n">standardized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 148 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        99
+  Number of equality constraints                    28
+
+  Number of observations                           823
+
+Model Test User Model:
+                                                      
+  Test statistic                               418.737
+  Degrees of freedom                               118
+  P-value (Chi-square)                           0.000
+
+Model Test Baseline Model:
+
+  Test statistic                             11131.067
+  Degrees of freedom                               153
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.973
+  Tucker-Lewis Index (TLI)                       0.964
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)             -10577.963
+  Loglikelihood unrestricted model (H1)     -10368.594
+                                                      
+  Akaike (AIC)                               21297.925
+  Bayesian (BIC)                             21632.545
+  Sample-size adjusted Bayesian (SABIC)      21407.076
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.056
+  90 Percent confidence interval - lower         0.050
+  90 Percent confidence interval - upper         0.061
+  P-value H_0: RMSEA &lt;= 0.050                    0.052
+  P-value H_0: RMSEA &gt;= 0.080                    0.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.037
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  Pos1 =~                                                               
+    PAT1P1    (L1)    1.040    0.010  103.200    0.000    0.684    0.884
+    PAT1P2    (L2)    0.997    0.010   98.587    0.000    0.656    0.881
+    PAT1P3    (L3)    0.963    0.010   93.301    0.000    0.633    0.856
+  Neg1 =~                                                               
+    NAT1P1    (L4)    0.957    0.012   78.488    0.000    0.553    0.757
+    NAT1P2    (L5)    0.999    0.011   90.830    0.000    0.578    0.891
+    NAT1P3    (L6)    1.044    0.011   94.108    0.000    0.604    0.906
+  Pos2 =~                                                               
+    PAT2P1    (L1)    1.040    0.010  103.200    0.000    0.696    0.911
+    PAT2P2    (L2)    0.997    0.010   98.587    0.000    0.667    0.900
+    PAT2P3    (L3)    0.963    0.010   93.301    0.000    0.644    0.878
+  Neg2 =~                                                               
+    NAT2P1    (L4)    0.957    0.012   78.488    0.000    0.527    0.816
+    NAT2P2    (L5)    0.999    0.011   90.830    0.000    0.550    0.873
+    NAT2P3    (L6)    1.044    0.011   94.108    0.000    0.576    0.891
+  Pos3 =~                                                               
+    PAT3P1    (L1)    1.040    0.010  103.200    0.000    0.694    0.898
+    PAT3P2    (L2)    0.997    0.010   98.587    0.000    0.665    0.864
+    PAT3P3    (L3)    0.963    0.010   93.301    0.000    0.642    0.853
+  Neg3 =~                                                               
+    NAT3P1    (L4)    0.957    0.012   78.488    0.000    0.563    0.836
+    NAT3P2    (L5)    0.999    0.011   90.830    0.000    0.588    0.887
+    NAT3P3    (L6)    1.044    0.011   94.108    0.000    0.614    0.868
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  Pos1 ~~                                                               
+    Pos2              0.243    0.019   12.901    0.000    0.552    0.552
+    Pos3              0.231    0.019   12.306    0.000    0.527    0.527
+    Neg1             -0.062    0.015   -4.219    0.000   -0.164   -0.164
+    Neg2             -0.059    0.014   -4.163    0.000   -0.162   -0.162
+    Neg3             -0.014    0.015   -0.919    0.358   -0.035   -0.035
+  Pos2 ~~                                                               
+    Pos3              0.243    0.019   12.758    0.000    0.544    0.544
+  Neg1 ~~                                                               
+    Pos2             -0.059    0.015   -3.971    0.000   -0.152   -0.152
+  Pos2 ~~                                                               
+    Neg2             -0.091    0.014   -6.291    0.000   -0.246   -0.246
+    Neg3             -0.028    0.015   -1.882    0.060   -0.072   -0.072
+  Neg1 ~~                                                               
+    Pos3             -0.011    0.015   -0.722    0.470   -0.028   -0.028
+  Neg2 ~~                                                               
+    Pos3             -0.047    0.014   -3.309    0.001   -0.128   -0.128
+  Pos3 ~~                                                               
+    Neg3             -0.079    0.015   -5.140    0.000   -0.201   -0.201
+  Neg1 ~~                                                               
+    Neg2              0.152    0.013   11.258    0.000    0.475    0.475
+    Neg3              0.150    0.014   10.606    0.000    0.442    0.442
+  Neg2 ~~                                                               
+    Neg3              0.166    0.014   11.985    0.000    0.513    0.513
+ .PAT1P1 ~~                                                             
+   .PAT2P1            0.010    0.006    1.662    0.096    0.010    0.091
+   .PAT3P1            0.007    0.007    1.089    0.276    0.007    0.061
+ .PAT2P1 ~~                                                             
+   .PAT3P1           -0.000    0.006   -0.017    0.986   -0.000   -0.001
+ .PAT1P2 ~~                                                             
+   .PAT2P2            0.008    0.006    1.325    0.185    0.008    0.069
+   .PAT3P2            0.012    0.007    1.749    0.080    0.012    0.088
+ .PAT2P2 ~~                                                             
+   .PAT3P2            0.005    0.006    0.780    0.435    0.005    0.039
+ .PAT1P3 ~~                                                             
+   .PAT2P3            0.011    0.006    1.785    0.074    0.011    0.084
+   .PAT3P3            0.013    0.007    1.782    0.075    0.013    0.084
+ .PAT2P3 ~~                                                             
+   .PAT3P3            0.010    0.006    1.486    0.137    0.010    0.070
+ .NAT1P1 ~~                                                             
+   .NAT2P1            0.028    0.007    3.711    0.000    0.028    0.156
+   .NAT3P1            0.009    0.007    1.149    0.251    0.009    0.049
+ .NAT2P1 ~~                                                             
+   .NAT3P1            0.011    0.006    1.798    0.072    0.011    0.080
+ .NAT1P2 ~~                                                             
+   .NAT2P2            0.000    0.005    0.038    0.970    0.000    0.002
+   .NAT3P2            0.006    0.005    1.169    0.243    0.006    0.066
+ .NAT2P2 ~~                                                             
+   .NAT3P2            0.008    0.005    1.642    0.101    0.008    0.089
+ .NAT1P3 ~~                                                             
+   .NAT2P3           -0.001    0.005   -0.176    0.861   -0.001   -0.011
+   .NAT3P3           -0.008    0.006   -1.350    0.177   -0.008   -0.077
+ .NAT2P3 ~~                                                             
+   .NAT3P3           -0.004    0.006   -0.713    0.476   -0.004   -0.039
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    Pos1              3.000    0.024  124.671    0.000    4.563    4.563
+    Neg1              1.520    0.021   71.482    0.000    2.629    2.629
+    Pos2              3.012    0.024  124.262    0.000    4.502    4.502
+    Neg2              1.605    0.020   79.147    0.000    2.912    2.912
+    Pos3              2.929    0.024  119.856    0.000    4.389    4.389
+    Neg3              1.647    0.022   76.221    0.000    2.800    2.800
+   .PAT1P1    (t1)   -0.140    0.031   -4.557    0.000   -0.140   -0.181
+   .PAT1P2    (t2)   -0.089    0.031   -2.892    0.004   -0.089   -0.120
+   .PAT1P3    (t3)    0.229    0.031    7.275    0.000    0.229    0.309
+   .NAT1P1    (t4)    0.174    0.021    8.461    0.000    0.174    0.238
+   .NAT1P2    (t5)   -0.068    0.018   -3.691    0.000   -0.068   -0.104
+   .NAT1P3    (t6)   -0.107    0.018   -5.781    0.000   -0.107   -0.160
+   .PAT2P1    (t1)   -0.140    0.031   -4.557    0.000   -0.140   -0.183
+   .PAT2P2    (t2)   -0.089    0.031   -2.892    0.004   -0.089   -0.120
+   .PAT2P3    (t3)    0.229    0.031    7.275    0.000    0.229    0.312
+   .NAT2P1    (t4)    0.174    0.021    8.461    0.000    0.174    0.270
+   .NAT2P2    (t5)   -0.068    0.018   -3.691    0.000   -0.068   -0.107
+   .NAT2P3    (t6)   -0.107    0.018   -5.781    0.000   -0.107   -0.165
+   .PAT3P1    (t1)   -0.140    0.031   -4.557    0.000   -0.140   -0.181
+   .PAT3P2    (t2)   -0.089    0.031   -2.892    0.004   -0.089   -0.116
+   .PAT3P3    (t3)    0.229    0.031    7.275    0.000    0.229    0.304
+   .NAT3P1    (t4)    0.174    0.021    8.461    0.000    0.174    0.259
+   .NAT3P2    (t5)   -0.068    0.018   -3.691    0.000   -0.068   -0.102
+   .NAT3P3    (t6)   -0.107    0.018   -5.781    0.000   -0.107   -0.151
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    Pos1              0.432    0.024   18.357    0.000    1.000    1.000
+    Neg1              0.334    0.018   18.210    0.000    1.000    1.000
+    Pos2              0.448    0.024   18.753    0.000    1.000    1.000
+    Neg2              0.304    0.017   18.183    0.000    1.000    1.000
+    Pos3              0.445    0.024   18.343    0.000    1.000    1.000
+    Neg3              0.346    0.019   18.219    0.000    1.000    1.000
+   .PAT1P1            0.130    0.010   13.046    0.000    0.130    0.218
+   .PAT1P2            0.124    0.009   13.297    0.000    0.124    0.224
+   .PAT1P3            0.147    0.010   14.841    0.000    0.147    0.268
+   .NAT1P1            0.228    0.013   17.679    0.000    0.228    0.427
+   .NAT1P2            0.086    0.007   11.639    0.000    0.086    0.206
+   .NAT1P3            0.080    0.008   10.321    0.000    0.080    0.179
+   .PAT2P1            0.099    0.008   12.317    0.000    0.099    0.170
+   .PAT2P2            0.104    0.008   13.290    0.000    0.104    0.189
+   .PAT2P3            0.123    0.008   14.903    0.000    0.123    0.229
+   .NAT2P1            0.139    0.009   16.054    0.000    0.139    0.333
+   .NAT2P2            0.094    0.007   13.168    0.000    0.094    0.237
+   .NAT2P3            0.086    0.007   11.823    0.000    0.086    0.206
+   .PAT3P1            0.115    0.010   11.933    0.000    0.115    0.193
+   .PAT3P2            0.151    0.010   14.387    0.000    0.151    0.254
+   .PAT3P3            0.154    0.010   14.968    0.000    0.154    0.272
+   .NAT3P1            0.136    0.009   15.342    0.000    0.136    0.301
+   .NAT3P2            0.094    0.008   12.327    0.000    0.094    0.213
+   .NAT3P3            0.123    0.009   13.539    0.000    0.123    0.246
+
+Constraints:
+                                               |Slack|
+    L1 - (3-L2-L3)                               0.000
+    L4 - (3-L5-L6)                               0.000
+    t1 - (0-t2-t3)                               0.000
+    t4 - (0-t5-t6)                               0.000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Un confronto tra i modelli precedenti può essere eseguito mediante il test del rapporto tra verosimiglianze.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">out</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">compareFit</span><span class="p">(</span><span class="n">fit_null</span><span class="p">,</span><span class="w"> </span><span class="n">fitSEM</span><span class="p">,</span><span class="w"> </span><span class="n">fit_config</span><span class="p">,</span><span class="w"> </span><span class="n">fit_weak</span><span class="p">,</span><span class="w"> </span><span class="n">fit_strong</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>################### Nested Model Comparison #########################
+
+Chi-Squared Difference Test
+
+            Df   AIC   BIC    Chisq Chisq diff   RMSEA Df diff Pr(&gt;Chisq)    
+fit_config 102 21263 21673   352.23                                          
+fit_weak   110 21262 21634   366.56       14.3 0.03101       8  0.0735478 .  
+fit_strong 118 21298 21633   418.74       52.2 0.08191       8  1.557e-08 ***
+fitSEM     124 21309 21615   441.52       22.8 0.05830       6  0.0008723 ***
+fit_null   177 31974 32031 11213.10    10771.6 0.49571      53  &lt; 2.2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+####################### Model Fit Indices ###########################
+                chisq  df pvalue rmsea   cfi   tli  srmr        aic        bic
+fit_config   352.232† 102   .000 .055  .977† .966  .035  21263.420  21673.447 
+fit_weak     366.562  110   .000 .053† .977  .967† .035† 21261.750† 21634.074 
+fit_strong   418.737  118   .000 .056  .973  .964  .037  21297.925  21632.545 
+fitSEM       441.520  124   .000 .056  .971  .964  .045  21308.709  21615.051†
+fit_null   11213.103  177   .000 .275  .000  .131  .328  31974.291  32030.846 
+
+################## Differences in Fit Indices #######################
+                      df  rmsea    cfi    tli  srmr       aic       bic
+fit_weak - fit_config  8 -0.001 -0.001  0.002 0.000    -1.670   -39.373
+fit_strong - fit_weak  8  0.002 -0.004 -0.003 0.002    36.175    -1.529
+fitSEM - fit_strong    6  0.000 -0.002  0.000 0.008    10.783   -17.494
+fit_null - fitSEM     53  0.219 -0.971 -0.833 0.282 10665.582 10415.795
+
+The following lavaan models were compared:
+    fit_config
+    fit_weak
+    fit_strong
+    fitSEM
+    fit_null
+To view results, assign the compareFit() output to an object and  use the summary() method; see the class?FitDiff help page.
+</pre></div>
+</div>
+</div>
+</div>
+<p>I valori di <code class="docutils literal notranslate"><span class="pre">Chisq</span></code> indicano il grado di adattamento dei modelli ai dati. Valori più bassi indicano un migliore adattamento. Dall’elenco, <code class="docutils literal notranslate"><span class="pre">fit_config</span></code> ha il valore di Chi-square più basso, suggerendo il miglior adattamento tra i modelli confrontati. Un valore di <code class="docutils literal notranslate"><span class="pre">Chisq</span> <span class="pre">diff</span></code> significativo (basso valore p) suggerisce che il modello più vincolato ha un adattamento significativamente peggiore.<code class="docutils literal notranslate"><span class="pre">Chisq</span> <span class="pre">diff</span></code> di 14.3 con un valore p di 0.0735 indica che non c’è una differenza statisticamente significativa nel fit tra i modelli configurale e debole. Questo suggerisce che l’aggiunta dell’invarianza debole (uguaglianza dei carichi fattoriali) non peggiora significativamente il fit.
+<code class="docutils literal notranslate"><span class="pre">Chisq</span> <span class="pre">diff</span></code> è 52.2 con un valore p molto basso (1.557e-08), indica che l’aggiunta dell’invarianza forte (uguaglianza delle medie) peggiora significativamente il fit rispetto al modello debole.
+Una differenza di 22.8 nel Chi-square e un valore p basso (0.0008723) suggeriscono che il modello forte ha un fit significativamente peggiore rispetto al modello SEM base. Il modello nullo ha un valore molto alto di Chi-square, indicando, come previsto, un adattamento molto scarso. Questo è normale per i modelli nulli e serve come riferimento estremo.</p>
+<p>Il RMSEA è un indice di bontà di adattamento che considera la complessità del modello. Valori inferiori a 0.05 indicano un buon adattamento, valori tra 0.05 e 0.08 indicano un adattamento accettabile, e valori superiori a 0.10 sono generalmente considerati inaccettabili. In questo caso, il RMSEA aumenta da <code class="docutils literal notranslate"><span class="pre">fit_config</span></code> a <code class="docutils literal notranslate"><span class="pre">fit_strong</span></code>, suggerendo un peggioramento dell’adattamento con l’aggiunta di vincoli più forti.</p>
+<p>In conclusione, i risultati indicano che l’aggiunta di vincoli di invarianza debole non peggiora significativamente il fit, mentre l’aggiunta di vincoli di invarianza forte riduce in modo significativo la bontà di adattamento del modello. Questo suggerisce che, mentre i carichi fattoriali possono essere considerati invarianti tra i gruppi o nel tempo, le medie degli indicatori potrebbero non esserlo.</p>
+<p><span id="id7">Little [<a class="reference internal" href="../z_biblio.html#id7" title="Todd D Little. Longitudinal structural equation modeling. Guilford Press, 2023.">Lit23</a>]</span> nota che, con un campione così grande, disponiamo di un livello di potere statistico sufficiente anche per rilevare differenze minuscole. Quindi, i risultati dei test statistici precedenti vanno presi con un grano di sale. In particolare, <span id="id8">Little [<a class="reference internal" href="../z_biblio.html#id7" title="Todd D Little. Longitudinal structural equation modeling. Guilford Press, 2023.">Lit23</a>]</span> nota che il modello di invarianza forte fornisce evidenze di un adattamento soddisfacente e che il peggioramento dell’adattamento rispetto al modello di invarianza debole è, quantitativamente, estremamente piccolo se esaminato rispetto alle dimensioni di CFI, TLI, RMSEA, e SRMR. Per queste ragioni, <span id="id9">Little [<a class="reference internal" href="../z_biblio.html#id7" title="Todd D Little. Longitudinal structural equation modeling. Guilford Press, 2023.">Lit23</a>]</span>  conclude affermando che il modello di invarianza forte risulta giustificato da questi dati. I criteri per determinare una perdita eccessiva dell’adattamento, data la potenza della dimensione del campione, sono un valore p inferiore a .001, un cambiamento nel CFI superiore a .002, o una stima puntuale dell’RMSEA che cade al di fuori dell’intervallo di confidenza del modello di invarianza forte.</p>
+</section>
+</section>
+<section id="considerazioni-conclusive">
+<h2><span class="section-number">64.5. </span>Considerazioni Conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Permalink to this heading">#</a></h2>
+<p>In questo capitolo, abbiamo affrontato i passaggi e molte delle problematiche associate all’adattamento di un modello panel standard ai dati longitudinali. Nei dati longitudinali, il continuum lungo il quale sono ordinati i costrutti è rappresentato dal tempo.</p>
+<p>I modelli panel di base che abbiamo esaminato qui sono solo alcuni tra i vari tipi di modelli che possono essere adattati ai dati panel. In questo contesto, l’analisi dei dati longitudinali implica un approccio sistematico per esaminare come determinati costrutti o variabili cambiano nel corso del tempo. Questo può includere l’analisi di tendenze, cicli o pattern nei dati raccolti in diversi momenti.</p>
+<p>Adattare un modello panel a dati longitudinali richiede una comprensione approfondita sia della natura dei dati sia delle tecniche statistiche utilizzate. Questo processo può comportare sfide specifiche, come la gestione di dati mancanti, l’accounting per la variabilità sia tra i soggetti che all’interno dello stesso soggetto nel tempo, e la scelta del modello statistico più appropriato in base alla struttura dei dati e agli obiettivi della ricerca.</p>
+<p>I modelli panel di base, come quelli discussi in questo capitolo, sono un punto di partenza fondamentale. Tuttavia, esistono molte altre varianti e approfondimenti di questi modelli che possono essere esplorati per adattarsi meglio a scenari complessi o per rispondere a specifiche domande di ricerca. Questi includono modelli panel più avanzati che possono tener conto di effetti casuali, effetti fissi, o che possono essere usati per analizzare le interazioni tra variabili nel tempo.</p>
+<p>L’obiettivo finale di questi modelli è di fornire una rappresentazione accurata e significativa di come i costrutti si evolvono nel tempo, permettendo ai ricercatori di trarre conclusioni affidabili dai loro dati.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_lgm"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_invariance.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">63. </span>Invarianza Fattoriale Longitudinale</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="06_lgm_mixed.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">65. </span>LGM e modelli misti</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basi-di-un-modello-panel">64.1. Basi di un Modello Panel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-processo-di-cambiamento-simplex">64.2. Il Processo di Cambiamento Simplex</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-simplex-per-il-mescolamento-di-carte">64.3. Modello Simplex per il Mescolamento di Carte</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-panel-per-affetto-positivo-e-negativo">64.4. Modello Panel per Affetto Positivo e Negativo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-sem-iniziale">64.4.1. Modello SEM Iniziale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-invarianza-configurale">64.4.2. Modello di Invarianza Configurale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-invarianza-debole">64.4.3. Modello di Invarianza Debole</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">64.5. Considerazioni Conclusive</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

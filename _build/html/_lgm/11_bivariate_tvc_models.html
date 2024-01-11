@@ -1,0 +1,1537 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>70. Modelli di crescita latenti bivariati &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/custom.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_lgm/11_bivariate_tvc_models';</script>
+    <link rel="shortcut icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="71. Invarianza di misurazione" href="720_inv_measurement.html" />
+    <link rel="prev" title="69. Modelli di crescita latenti a gruppi multipli" href="10_growth_groups.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Test psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/01_measurement.html">1. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/02_norms.html">2. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/03_expval_var.html">3. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/04_joint_prob.html">4. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/05_regression.html">5. L’analisi di regressione</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/01_ctt_1.html">6. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/02_ctt_2.html">7. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/03_ctt_3.html">8. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/04_err_std_mis.html">9. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/05_err_std_stima.html">10. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/06_applications_ctt.html">11. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E_ctt_1.html">12. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/01_multilevel_1.html">13. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/02_interrater_reliability.html">14. L’affidabilità tra giudici</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/01_gtheory.html">15. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/01_validity.html">16. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/02_relations_to_other_vars.html">17. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">18. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale esplorativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/01_intro_fa.html">19. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/02_analisi_fattoriale_1.html">20. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/03_analisi_fattoriale_2.html">21. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/04_analisi_fattoriale_3.html">22. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/05_factor_scores.html">23. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/06_constraints_on_parms.html">24. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/07_total_score.html">25. Punteggio totale e modello fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione di strumenti psicometrici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">26. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">27. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">28. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">29. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">30. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/01_cfa.html">31. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/E_01.html">32. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/02_meanstructure.html">33. La struttura delle medie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/03_cat_data.html">34. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/04_mmm.html">35. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/05_bifactor.html">36. Modello bifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/06_efa_lavaan.html">37. Analisi Fattoriale Esplorativa</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/01_sem_intro.html">38. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/02_data_preparation.html">39. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/E_01.html">40. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/03_gof.html">41. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/04_mod_comp.html">42. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/05_cfa_mod_comp.html">43. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/06_refine_solution.html">44. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/07_group_invariance.html">45. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/08_multilevel_sem.html">46. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/09_structural_regr.html">47. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/10_missing_data.html">48. Dati mancanti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/11_small_samples.html">49. Modellizzazione SEM in Piccoli Campioni</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_irt/01_logistic_regr.html">50. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/E_01.html">51. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/02_rasch_model.html">52. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/03_assumptions.html">53. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/04_estimation.html">54. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/05_1pl_2pl_3pl.html">55. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/06_implementation.html">56. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/07_polytomous.html">57. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/01_development.html">58. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/02_tutorial.html">59. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_lgm_intro.html">60. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_lgm_prelims.html">61. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_time_effects.html">62. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_invariance.html">63. Invarianza Fattoriale Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_intro_panel.html">64. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_lgm_mixed.html">65. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_growth_1.html">66. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_growth_cont.html">67. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_time_inv_cov.html">68. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_growth_groups.html">69. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">70. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="720_inv_measurement.html">71. Invarianza di misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="750_latent_change.html">72. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="751_biv_change.html">73. Modello LCS bivariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="755_lgm_meas_inv.html">74. Invarianza fattoriale nei modelli LGM</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">75. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/901_intro_r.html">76. Linguaggio di programmazione R</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ccaudek/psy_test/issues/new?title=Issue%20on%20page%20%2F_lgm/11_bivariate_tvc_models.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_lgm/11_bivariate_tvc_models.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modelli di crescita latenti bivariati</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-crescita-con-covariata-variabile-nel-tempo">70.1. Modello di Crescita con Covariata Variabile nel Tempo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusione">70.2. Conclusione</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modelli-di-crescita-latenti-bivariati">
+<span id="bivariate-growth-mod-notebook"></span><h1><span class="section-number">70. </span>Modelli di crescita latenti bivariati<a class="headerlink" href="#modelli-di-crescita-latenti-bivariati" title="Permalink to this heading">#</a></h1>
+<p>I ricercatori frequentemente indagano lo sviluppo di più costrutti nel tempo per comprendere come questi si sviluppino insieme e come interagiscano tra loro. Esistono vari modelli statistici per esaminare contemporaneamente il cambiamento in più variabili. In questo capitolo, ci focalizziamo su due modelli specifici:</p>
+<ol class="arabic simple">
+<li><p><strong>Modello di Crescita Multivariato (MGM):</strong> Questo modello è utilizzato per esplorare le interrelazioni tra due o più processi di crescita distinti. Attraverso il MGM, possiamo esaminare come diversi costrutti si sviluppino parallelamente e in che modo le loro traiettorie di crescita siano interconnesse. Ad esempio, il modello può essere impiegato per studiare come le capacità linguistiche e matematiche di un bambino si evolvano insieme nel corso del tempo.</p></li>
+<li><p><strong>Modello di Crescita con Covariata Variabile nel Tempo (TVC):</strong> Questo modello stima l’effetto di una variabile che cambia nel tempo (ad esempio, l’esposizione a un particolare ambiente educativo) sui punteggi di un costrutto, mentre modella contemporaneamente il cambiamento in questi punteggi. Il modello TVC permette di analizzare come i cambiamenti in una variabile (la covariata) influenzino la traiettoria di crescita di un’altra variabile.</p></li>
+</ol>
+<p>Entrambi questi modelli sono ampiamente utilizzati nella ricerca sullo sviluppo. Sono particolarmente preziosi per rispondere a domande specifiche sulle relazioni tra variabili che cambiano simultaneamente e sui cambiamenti correlati tra individui.</p>
+<p>Questo tutorial mostra come adattare modelli di crescita lineare multivariati (bivariati) nel framework SEM in R. I dati sono tratti dal Capitolo 8 <span id="id1">Grimm <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id25" title="Kevin J Grimm, Nilam Ram, and Ryne Estabrook. Growth modeling: Structural equation and multilevel modeling approaches. Guilford Publications, 2016.">GRE16</a>]</span>. In particolare, utilizzando il set di dati NLSY-CYA, esaminiamo come le differenze individuali nella variazione del rendimento in matematica dei bambini (<code class="docutils literal notranslate"><span class="pre">math2</span></code>, … <code class="docutils literal notranslate"><span class="pre">math8</span></code>) siano correlate alle differenze individuali nella variazione dell’iperattività dei bambini valutata dagli insegnanti (<code class="docutils literal notranslate"><span class="pre">hyp2</span></code>, …, <code class="docutils literal notranslate"><span class="pre">hyp8</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># set filepath for data file</span>
+<span class="n">filepath</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;https://raw.githubusercontent.com/LRI-2/Data/main/GrowthModeling/nlsy_math_hyp_long_R.dat&quot;</span>
+<span class="c1"># read in the text data file using the url() function</span>
+<span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.table</span><span class="p">(</span>
+<span class="w">  </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">url</span><span class="p">(</span><span class="n">filepath</span><span class="p">),</span>
+<span class="w">  </span><span class="n">na.strings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;.&quot;</span>
+<span class="p">)</span><span class="w"> </span><span class="c1"># indicates the missing data designator</span>
+<span class="c1"># copy data with new name</span>
+<span class="n">nlsy_math_hyp_long</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dat</span>
+
+<span class="c1"># Add names the columns of the data set</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">nlsy_math_hyp_long</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">  </span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;female&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lb_wght&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti_k1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;math&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;comp&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rec&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bpi&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;as&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hd&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;hyp&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;dp&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;wd&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;grade&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;occ&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;age&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;men&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># reducing to variables of interest</span>
+<span class="n">nlsy_math_hyp_long</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nlsy_math_hyp_long</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;grade&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hyp&quot;</span><span class="p">)]</span>
+
+<span class="c1"># view the first few observations in the data set</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">nlsy_math_hyp_long</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 10 × 4</caption>
+<thead>
+	<tr><th></th><th scope=col>id</th><th scope=col>grade</th><th scope=col>math</th><th scope=col>hyp</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td> 201</td><td>3</td><td>38</td><td>0</td></tr>
+	<tr><th scope=row>2</th><td> 201</td><td>5</td><td>55</td><td>0</td></tr>
+	<tr><th scope=row>3</th><td> 303</td><td>2</td><td>26</td><td>1</td></tr>
+	<tr><th scope=row>4</th><td> 303</td><td>5</td><td>33</td><td>1</td></tr>
+	<tr><th scope=row>5</th><td>2702</td><td>2</td><td>56</td><td>2</td></tr>
+	<tr><th scope=row>6</th><td>2702</td><td>4</td><td>58</td><td>3</td></tr>
+	<tr><th scope=row>7</th><td>2702</td><td>8</td><td>80</td><td>3</td></tr>
+	<tr><th scope=row>8</th><td>4303</td><td>3</td><td>41</td><td>1</td></tr>
+	<tr><th scope=row>9</th><td>4303</td><td>4</td><td>58</td><td>1</td></tr>
+	<tr><th scope=row>10</th><td>5002</td><td>4</td><td>46</td><td>3</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Il nostro interesse specifico è il cambiamento intra-individuale nelle misure ripetute di matematica e iperattività durante il periodo scolastico (<code class="docutils literal notranslate"><span class="pre">grade</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># intraindividual change trajetories</span>
+<span class="nf">ggplot</span><span class="p">(</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_hyp_long</span><span class="p">,</span><span class="w"> </span><span class="c1"># data set</span>
+<span class="w">  </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grade</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">math</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># setting variables</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># adding points to plot</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># adding lines to plot</span>
+<span class="w">  </span><span class="c1"># setting the x-axis with breaks and labels</span>
+<span class="w">  </span><span class="nf">scale_x_continuous</span><span class="p">(</span>
+<span class="w">    </span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">),</span>
+<span class="w">    </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">),</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Grade at Testing&quot;</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="c1"># setting the y-axis with limits breaks and labels</span>
+<span class="w">  </span><span class="nf">scale_y_continuous</span><span class="p">(</span>
+<span class="w">    </span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">90</span><span class="p">),</span>
+<span class="w">    </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">70</span><span class="p">,</span><span class="w"> </span><span class="m">90</span><span class="p">),</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;PIAT Mathematics&quot;</span>
+<span class="w">  </span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bebef4d36b03e95aa690c97a67aff601a4ddf2ca7c2f325c82858e16a26176c4.png" src="../_images/bebef4d36b03e95aa690c97a67aff601a4ddf2ca7c2f325c82858e16a26176c4.png" />
+</div>
+</div>
+<p>Esaminiamo i punteggi di iperattività in funzione di <code class="docutils literal notranslate"><span class="pre">grade</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># intraindividual change trajetories</span>
+<span class="nf">ggplot</span><span class="p">(</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_hyp_long</span><span class="p">,</span><span class="w"> </span><span class="c1"># data set</span>
+<span class="w">  </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grade</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hyp</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># setting variables</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># adding points to plot</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># adding lines to plot</span>
+<span class="w">  </span><span class="c1"># setting the x-axis with breaks and labels</span>
+<span class="w">  </span><span class="nf">scale_x_continuous</span><span class="p">(</span>
+<span class="w">    </span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">),</span>
+<span class="w">    </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">),</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Grade at Testing&quot;</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="c1"># setting the y-axis with limits breaks and labels</span>
+<span class="w">  </span><span class="nf">scale_y_continuous</span><span class="p">(</span>
+<span class="w">    </span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">),</span>
+<span class="w">    </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">),</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hyperactivity&quot;</span>
+<span class="w">  </span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+“Removed 51 rows containing missing values (`geom_point()`).”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+“Removed 44 rows containing missing values (`geom_line()`).”
+</pre></div>
+</div>
+<img alt="../_images/09669255a681c6726ce89af8d3f1ee40dba946861d9d3eb36cb3e651a5df6504.png" src="../_images/09669255a681c6726ce89af8d3f1ee40dba946861d9d3eb36cb3e651a5df6504.png" />
+</div>
+</div>
+<p>Per semplicità, leggiamo i dati in formato long da file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># set filepath for data file</span>
+<span class="n">filepath</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;https://raw.githubusercontent.com/LRI-2/Data/main/GrowthModeling/nlsy_math_hyp_wide_R.dat&quot;</span>
+<span class="c1"># read in the text data file using the url() function</span>
+<span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.table</span><span class="p">(</span>
+<span class="w">  </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">url</span><span class="p">(</span><span class="n">filepath</span><span class="p">),</span>
+<span class="w">  </span><span class="n">na.strings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;.&quot;</span>
+<span class="p">)</span><span class="w"> </span><span class="c1"># indicates the missing data designator</span>
+<span class="c1"># copy data with new name</span>
+<span class="n">nlsy_math_hyp_wide</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dat</span>
+
+<span class="c1"># Add names the columns of the data set</span>
+<span class="c1"># Give the variable names</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">nlsy_math_hyp_wide</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">  </span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;female&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lb_wght&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti_k1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;math2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;comp2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;comp3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;comp4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;comp5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;comp6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;comp7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;comp8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;rec2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rec3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rec4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rec5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rec6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rec7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rec8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;bpi2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bpi3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bpi4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bpi5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bpi6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bpi7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bpi8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;asl2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;asl3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;asl4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;asl5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;asl6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;asl7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;asl8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;ax2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ax3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ax4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ax5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ax6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ax7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ax8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;hds2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hds3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hds4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hds5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hds6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hds7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hds8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;hyp2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hyp3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hyp4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hyp5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hyp6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hyp7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hyp8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;dpn2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;dpn3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;dpn4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;dpn5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;dpn6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;dpn7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;dpn8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;wdn2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;wdn3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;wdn4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;wdn5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;wdn6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;wdn7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;wdn8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;age2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;age3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;age4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;age5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;age6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;age7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;age8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;men2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;men3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;men4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;men5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;men6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;men7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;men8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;spring2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;anti2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti8&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># reducing to variables of interest</span>
+<span class="n">nlsy_multi_wide</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nlsy_math_hyp_wide</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">  </span><span class="s">&quot;id&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;math2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;hyp2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hyp3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hyp4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hyp5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hyp6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hyp7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hyp8&quot;</span>
+<span class="p">)]</span>
+
+<span class="c1"># view the first few observations in the data set</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">nlsy_multi_wide</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 10 × 15</caption>
+<thead>
+	<tr><th></th><th scope=col>id</th><th scope=col>math2</th><th scope=col>math3</th><th scope=col>math4</th><th scope=col>math5</th><th scope=col>math6</th><th scope=col>math7</th><th scope=col>math8</th><th scope=col>hyp2</th><th scope=col>hyp3</th><th scope=col>hyp4</th><th scope=col>hyp5</th><th scope=col>hyp6</th><th scope=col>hyp7</th><th scope=col>hyp8</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td> 201</td><td>NA</td><td>38</td><td>NA</td><td>55</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td> 0</td><td>NA</td><td> 0</td><td>NA</td><td>NA</td><td>NA</td></tr>
+	<tr><th scope=row>2</th><td> 303</td><td>26</td><td>NA</td><td>NA</td><td>33</td><td>NA</td><td>NA</td><td>NA</td><td> 1</td><td>NA</td><td>NA</td><td> 1</td><td>NA</td><td>NA</td><td>NA</td></tr>
+	<tr><th scope=row>3</th><td>2702</td><td>56</td><td>NA</td><td>58</td><td>NA</td><td>NA</td><td>NA</td><td>80</td><td> 2</td><td>NA</td><td> 3</td><td>NA</td><td>NA</td><td>NA</td><td> 3</td></tr>
+	<tr><th scope=row>4</th><td>4303</td><td>NA</td><td>41</td><td>58</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td> 1</td><td> 1</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>
+	<tr><th scope=row>5</th><td>5002</td><td>NA</td><td>NA</td><td>46</td><td>NA</td><td>54</td><td>NA</td><td>66</td><td>NA</td><td>NA</td><td> 3</td><td>NA</td><td> 2</td><td>NA</td><td> 3</td></tr>
+	<tr><th scope=row>6</th><td>5005</td><td>35</td><td>NA</td><td>50</td><td>NA</td><td>60</td><td>NA</td><td>59</td><td> 0</td><td>NA</td><td> 3</td><td>NA</td><td> 0</td><td>NA</td><td> 1</td></tr>
+	<tr><th scope=row>7</th><td>5701</td><td>NA</td><td>62</td><td>61</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td> 4</td><td> 3</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>
+	<tr><th scope=row>8</th><td>6102</td><td>NA</td><td>NA</td><td>55</td><td>67</td><td>NA</td><td>81</td><td>NA</td><td>NA</td><td>NA</td><td> 2</td><td> 0</td><td>NA</td><td> 0</td><td>NA</td></tr>
+	<tr><th scope=row>9</th><td>6801</td><td>NA</td><td>54</td><td>NA</td><td>62</td><td>NA</td><td>66</td><td>NA</td><td>NA</td><td> 0</td><td>NA</td><td> 1</td><td>NA</td><td> 1</td><td>NA</td></tr>
+	<tr><th scope=row>10</th><td>6802</td><td>NA</td><td>55</td><td>NA</td><td>66</td><td>NA</td><td>68</td><td>NA</td><td>NA</td><td> 0</td><td>NA</td><td> 0</td><td>NA</td><td> 0</td><td>NA</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Per l’implementazione SEM, utilizziamo i punteggi di rendimento in matematica e iperattività e le covariate invarianti nel tempo dai dati Wide. Specifichiamo un modello di crescita lineare bivariato usando la sintassi lavaan.</p>
+<p>I dati in input contengono le variabili da <code class="docutils literal notranslate"><span class="pre">math2</span></code> a <code class="docutils literal notranslate"><span class="pre">math8</span></code> e da <code class="docutils literal notranslate"><span class="pre">hyp2</span></code> a <code class="docutils literal notranslate"><span class="pre">hyp8</span></code> per i dati sulla matematica e sull’iperattività dal secondo all’ottavo grado, rispettivamente. Il modello di crescita per matematica e iperattività assume traiettorie lineari rispetto al grado.</p>
+<p>Il modello di crescita lineare bivariato viene specificato iniziando con la definizione delle variabili latenti <code class="docutils literal notranslate"><span class="pre">eta_1</span></code> ed <code class="docutils literal notranslate"><span class="pre">eta_2</span></code>. Queste rappresentano rispettivamente l’intercetta e la pendenza lineare per la matematica. I carichi fattoriali per <code class="docutils literal notranslate"><span class="pre">eta_1</span></code> sono fissati a 1, e quelli per <code class="docutils literal notranslate"><span class="pre">eta_2</span></code> sono fissati e cambiano linearmente rispetto al grado, iniziando da 0 per centrare l’intercetta al secondo grado. Successivamente, si specificano le varianze delle variabili latenti (<code class="docutils literal notranslate"><span class="pre">eta_1</span> <span class="pre">~~</span> <span class="pre">eta_1</span></code>; <code class="docutils literal notranslate"><span class="pre">eta_2</span> <span class="pre">~~</span> <span class="pre">eta_2</span></code>) e la covarianza tra intercetta e pendenza (<code class="docutils literal notranslate"><span class="pre">eta_1</span> <span class="pre">~~</span> <span class="pre">eta_2</span></code>), oltre alle medie di queste variabili latenti (<code class="docutils literal notranslate"><span class="pre">eta_1</span> <span class="pre">~</span> <span class="pre">start(35)*1</span></code>; <code class="docutils literal notranslate"><span class="pre">eta_2</span> <span class="pre">~</span> <span class="pre">start(4)*1</span></code>).</p>
+<p>Le varianze residue delle variabili osservate relative alla matematica sono specificate e etichettate come <code class="docutils literal notranslate"><span class="pre">theta1</span></code>, per vincolare le varianze residue ad essere uguali nel tempo. L’ultima parte del modello di crescita per la matematica fissa gli intercetti delle variabili osservate a 0.</p>
+<p>Nella seconda parte del modello, un modello di crescita lineare per l’iperattività è specificato con <code class="docutils literal notranslate"><span class="pre">eta_3</span></code> ed <code class="docutils literal notranslate"><span class="pre">eta_4</span></code> come intercetta e pendenza. La specificazione del modello di crescita per l’iperattività è analoga a quella per la matematica. Prima si definiscono le variabili latenti di intercetta e pendenza, poi si specificano le varianze latenti, la covarianza e le medie. Le varianze residue delle variabili osservate vengono poi specificate e vincolate ad essere uguali nel tempo, usando l’etichetta <code class="docutils literal notranslate"><span class="pre">theta2</span></code>. Infine, gli intercetti delle variabili osservate vengono impostati a 0.</p>
+<p>Nell’ultima parte del modello, vengono specificati i parametri che descrivono le associazioni tra le variabili di matematica e iperattività. Qui si specificano le covarianze delle intercette e delle pendenze tra le variabili, così come le covarianze tra le unicità (residui). Le covarianze delle variabili latenti includono la covarianza tra le intercette (<code class="docutils literal notranslate"><span class="pre">eta_1</span> <span class="pre">~~</span> <span class="pre">eta_3</span></code>), la covarianza tra l’intercetta per la matematica e la pendenza per l’iperattività (<code class="docutils literal notranslate"><span class="pre">eta_1</span> <span class="pre">~~</span> <span class="pre">eta_4</span></code>), la covarianza tra la pendenza per la matematica e l’intercetta per l’iperattività (<code class="docutils literal notranslate"><span class="pre">eta_2</span> <span class="pre">~~</span> <span class="pre">eta_3</span></code>), e la covarianza tra le pendenze (<code class="docutils literal notranslate"><span class="pre">eta_2</span> <span class="pre">~~</span> <span class="pre">eta_4</span></code>). Infine, vengono specificate le covarianze tra i residui. In queste istruzioni, le variabili osservate misurate nello stesso grado vengono specificate in modo tale da potere covariare (ad esempio, <code class="docutils literal notranslate"><span class="pre">math2</span> <span class="pre">~~</span> <span class="pre">hyp2</span></code>). Poiché queste variabili sono endogene, il parametro stimato è la covarianza unica o residua, piuttosto che la covarianza tra le variabili. Queste covarianze sono specificate con un’etichetta comune (<code class="docutils literal notranslate"><span class="pre">theta12</span></code>), che le forza ad essere uguali nel tempo.</p>
+<p>Il parametro principale di interesse nell’analisi è la covarianza pendenza-pendenza <code class="docutils literal notranslate"><span class="pre">eta_3</span> <span class="pre">~~</span> <span class="pre">eta_4</span></code>. Questa covarianza rappresenta la relazione tra le traiettorie di crescita temporale delle due variabili osservate, in questo caso, la matematica (<code class="docutils literal notranslate"><span class="pre">eta_2</span></code>) e l’iperattività (<code class="docutils literal notranslate"><span class="pre">eta_4</span></code>).</p>
+<p>Nel modello, <code class="docutils literal notranslate"><span class="pre">eta_2</span></code> e <code class="docutils literal notranslate"><span class="pre">eta_4</span></code> rappresentano le pendenze lineari per i punteggi di matematica e iperattività rispettivamente. Queste pendenze descrivono come queste misure cambiano nel tempo (dal secondo all’ottavo grado). Una pendenza è essenzialmente il tasso di cambiamento annuale di una variabile.</p>
+<p>La covarianza tra <code class="docutils literal notranslate"><span class="pre">eta_2</span></code> e <code class="docutils literal notranslate"><span class="pre">eta_4</span></code> indica quanto sono correlate le traiettorie di crescita delle due variabili. Una covarianza positiva implica che, in generale, se gli studenti mostrano un incremento (o un decremento) nei punteggi di matematica nel tempo, tendono anche a mostrare un incremento (o un decremento) analogo nei livelli di iperattività. Invece, una covarianza negativa suggerirebbe che un incremento in una variabile tende ad essere associato a un decremento nell’altra.</p>
+<p>La presenza di una covariazione offre spunti importanti per la comprensione e l’intervento in ambiti educativi e psicologici. Se c’è una forte correlazione, potrebbe indicare che gli interventi mirati a migliorare le prestazioni in matematica potrebbero anche influenzare i comportamenti relativi all’iperattività, o viceversa.</p>
+<p>È importante notare che una covarianza significativa non implica necessariamente una relazione causale diretta tra le due variabili, ma piuttosto una correlazione nel modo in cui esse evolvono nel tempo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># writing out linear growth model in full SEM way</span>
+<span class="n">bivariate_lavaan_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">  # latent variable definitions</span>
+<span class="s">      #intercept for math</span>
+<span class="s">      eta_1 =~ 1*math2</span>
+<span class="s">      eta_1 =~ 1*math3</span>
+<span class="s">      eta_1 =~ 1*math4</span>
+<span class="s">      eta_1 =~ 1*math5</span>
+<span class="s">      eta_1 =~ 1*math6</span>
+<span class="s">      eta_1 =~ 1*math7</span>
+<span class="s">      eta_1 =~ 1*math8</span>
+
+<span class="s">      #linear slope for math</span>
+<span class="s">      eta_2 =~ 0*math2</span>
+<span class="s">      eta_2 =~ 1*math3</span>
+<span class="s">      eta_2 =~ 2*math4</span>
+<span class="s">      eta_2 =~ 3*math5</span>
+<span class="s">      eta_2 =~ 4*math6</span>
+<span class="s">      eta_2 =~ 5*math7</span>
+<span class="s">      eta_2 =~ 6*math8</span>
+
+<span class="s">      #intercept for hyp</span>
+<span class="s">      eta_3 =~ 1*hyp2</span>
+<span class="s">      eta_3 =~ 1*hyp3</span>
+<span class="s">      eta_3 =~ 1*hyp4</span>
+<span class="s">      eta_3 =~ 1*hyp5</span>
+<span class="s">      eta_3 =~ 1*hyp6</span>
+<span class="s">      eta_3 =~ 1*hyp7</span>
+<span class="s">      eta_3 =~ 1*hyp8</span>
+
+<span class="s">      #linear slope for hyp</span>
+<span class="s">      eta_4 =~ 0*hyp2</span>
+<span class="s">      eta_4 =~ 1*hyp3</span>
+<span class="s">      eta_4 =~ 2*hyp4</span>
+<span class="s">      eta_4 =~ 3*hyp5</span>
+<span class="s">      eta_4 =~ 4*hyp6</span>
+<span class="s">      eta_4 =~ 5*hyp7</span>
+<span class="s">      eta_4 =~ 6*hyp8</span>
+
+<span class="s">  # factor variances</span>
+<span class="s">      eta_1 ~~ eta_1</span>
+<span class="s">      eta_2 ~~ eta_2</span>
+<span class="s">      eta_3 ~~ eta_3</span>
+<span class="s">      eta_4 ~~ eta_4</span>
+
+<span class="s">  # covariances among factors</span>
+<span class="s">      eta_1 ~~ eta_2 + eta_3 + eta_4</span>
+<span class="s">      eta_2 ~~ eta_3 + eta_4</span>
+<span class="s">      eta_3 ~~ eta_4</span>
+
+<span class="s">  # factor means</span>
+<span class="s">      eta_1 ~ start(35)*1</span>
+<span class="s">      eta_2 ~ start(4)*1</span>
+<span class="s">      eta_3 ~ start(2)*1</span>
+<span class="s">      eta_4 ~ start(.1)*1</span>
+
+<span class="s">  # manifest variances for math (made equivalent by naming theta1)</span>
+<span class="s">      math2 ~~ theta1*math2</span>
+<span class="s">      math3 ~~ theta1*math3</span>
+<span class="s">      math4 ~~ theta1*math4</span>
+<span class="s">      math5 ~~ theta1*math5</span>
+<span class="s">      math6 ~~ theta1*math6</span>
+<span class="s">      math7 ~~ theta1*math7</span>
+<span class="s">      math8 ~~ theta1*math8</span>
+
+<span class="s">  # manifest variances for hyp (made equivalent by naming theta2)</span>
+<span class="s">      hyp2 ~~ theta2*hyp2</span>
+<span class="s">      hyp3 ~~ theta2*hyp3</span>
+<span class="s">      hyp4 ~~ theta2*hyp4</span>
+<span class="s">      hyp5 ~~ theta2*hyp5</span>
+<span class="s">      hyp6 ~~ theta2*hyp6</span>
+<span class="s">      hyp7 ~~ theta2*hyp7</span>
+<span class="s">      hyp8 ~~ theta2*hyp8</span>
+
+<span class="s">  # residual covariances (made equivalent by naming theta12)</span>
+<span class="s">      math2 ~~ theta12*hyp2</span>
+<span class="s">      math3 ~~ theta12*hyp3</span>
+<span class="s">      math4 ~~ theta12*hyp4</span>
+<span class="s">      math5 ~~ theta12*hyp5</span>
+<span class="s">      math6 ~~ theta12*hyp6</span>
+<span class="s">      math7 ~~ theta12*hyp7</span>
+<span class="s">      math8 ~~ theta12*hyp8</span>
+
+<span class="s">  # manifest means for math (fixed at zero)</span>
+<span class="s">      math2 ~ 0*1</span>
+<span class="s">      math3 ~ 0*1</span>
+<span class="s">      math4 ~ 0*1</span>
+<span class="s">      math5 ~ 0*1</span>
+<span class="s">      math6 ~ 0*1</span>
+<span class="s">      math7 ~ 0*1</span>
+<span class="s">      math8 ~ 0*1</span>
+
+<span class="s">  # manifest means for hyp (fixed at zero)</span>
+<span class="s">      hyp2 ~ 0*1</span>
+<span class="s">      hyp3 ~ 0*1</span>
+<span class="s">      hyp4 ~ 0*1</span>
+<span class="s">      hyp5 ~ 0*1</span>
+<span class="s">      hyp6 ~ 0*1</span>
+<span class="s">      hyp7 ~ 0*1</span>
+<span class="s">      hyp8 ~ 0*1</span>
+<span class="s">&quot;</span><span class="w"> </span><span class="c1"># end of model definition</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo il modello ai dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">bivariate_lavaan_fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sem</span><span class="p">(</span><span class="n">bivariate_lavaan_model</span><span class="p">,</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_multi_wide</span><span class="p">,</span>
+<span class="w">  </span><span class="n">meanstructure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">  </span><span class="n">estimator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ML&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">missing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;fiml&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+“lavaan WARNING: some cases are empty and will be ignored:
+  741”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+“lavaan WARNING:
+    due to missing values, some pairwise combinations have less than
+    10% coverage; use lavInspect(fit, &quot;coverage&quot;) to investigate.”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g]], :
+“lavaan WARNING:
+    Maximum number of iterations reached when computing the sample
+    moments using EM; use the em.h1.iter.max= argument to increase the
+    number of iterations”
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo i risultati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">bivariate_lavaan_fit</span><span class="p">,</span><span class="w"> </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 67 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        35
+  Number of equality constraints                    18
+
+                                                  Used       Total
+  Number of observations                           932         933
+  Number of missing patterns                        96            
+
+Model Test User Model:
+                                                      
+  Test statistic                               318.885
+  Degrees of freedom                               102
+  P-value (Chi-square)                           0.000
+
+Model Test Baseline Model:
+
+  Test statistic                              1532.041
+  Degrees of freedom                                91
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.849
+  Tucker-Lewis Index (TLI)                       0.866
+                                                      
+  Robust Comparative Fit Index (CFI)             1.000
+  Robust Tucker-Lewis Index (TLI)               -6.557
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)             -11790.476
+  Loglikelihood unrestricted model (H1)     -11631.033
+                                                      
+  Akaike (AIC)                               23614.951
+  Bayesian (BIC)                             23697.186
+  Sample-size adjusted Bayesian (SABIC)      23643.196
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.048
+  90 Percent confidence interval - lower         0.042
+  90 Percent confidence interval - upper         0.054
+  P-value H_0: RMSEA &lt;= 0.050                    0.724
+  P-value H_0: RMSEA &gt;= 0.080                    0.000
+                                                      
+  Robust RMSEA                                   0.000
+  90 Percent confidence interval - lower         0.000
+  90 Percent confidence interval - upper         0.000
+  P-value H_0: Robust RMSEA &lt;= 0.050             1.000
+  P-value H_0: Robust RMSEA &gt;= 0.080             0.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.097
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Observed
+  Observed information based on                Hessian
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  eta_1 =~                                            
+    math2             1.000                           
+    math3             1.000                           
+    math4             1.000                           
+    math5             1.000                           
+    math6             1.000                           
+    math7             1.000                           
+    math8             1.000                           
+  eta_2 =~                                            
+    math2             0.000                           
+    math3             1.000                           
+    math4             2.000                           
+    math5             3.000                           
+    math6             4.000                           
+    math7             5.000                           
+    math8             6.000                           
+  eta_3 =~                                            
+    hyp2              1.000                           
+    hyp3              1.000                           
+    hyp4              1.000                           
+    hyp5              1.000                           
+    hyp6              1.000                           
+    hyp7              1.000                           
+    hyp8              1.000                           
+  eta_4 =~                                            
+    hyp2              0.000                           
+    hyp3              1.000                           
+    hyp4              2.000                           
+    hyp5              3.000                           
+    hyp6              4.000                           
+    hyp7              5.000                           
+    hyp8              6.000                           
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  eta_1 ~~                                            
+    eta_2            -0.204    1.154   -0.176    0.860
+    eta_3            -2.979    0.673   -4.426    0.000
+    eta_4             0.107    0.164    0.654    0.513
+  eta_2 ~~                                            
+    eta_3             0.098    0.161    0.608    0.543
+    eta_4            -0.040    0.038   -1.061    0.289
+  eta_3 ~~                                            
+    eta_4            -0.020    0.031   -0.644    0.520
+ .math2 ~~                                            
+   .hyp2    (th12)   -0.011    0.233   -0.046    0.963
+ .math3 ~~                                            
+   .hyp3    (th12)   -0.011    0.233   -0.046    0.963
+ .math4 ~~                                            
+   .hyp4    (th12)   -0.011    0.233   -0.046    0.963
+ .math5 ~~                                            
+   .hyp5    (th12)   -0.011    0.233   -0.046    0.963
+ .math6 ~~                                            
+   .hyp6    (th12)   -0.011    0.233   -0.046    0.963
+ .math7 ~~                                            
+   .hyp7    (th12)   -0.011    0.233   -0.046    0.963
+ .math8 ~~                                            
+   .hyp8    (th12)   -0.011    0.233   -0.046    0.963
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+    eta_1            35.259    0.356   99.178    0.000
+    eta_2             4.343    0.088   49.139    0.000
+    eta_3             1.903    0.058   32.702    0.000
+    eta_4            -0.057    0.014   -3.950    0.000
+   .math2             0.000                           
+   .math3             0.000                           
+   .math4             0.000                           
+   .math5             0.000                           
+   .math6             0.000                           
+   .math7             0.000                           
+   .math8             0.000                           
+   .hyp2              0.000                           
+   .hyp3              0.000                           
+   .hyp4              0.000                           
+   .hyp5              0.000                           
+   .hyp6              0.000                           
+   .hyp7              0.000                           
+   .hyp8              0.000                           
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+    eta_1            64.711    5.664   11.424    0.000
+    eta_2             0.752    0.329    2.282    0.023
+    eta_3             1.542    0.156    9.908    0.000
+    eta_4             0.005    0.009    0.539    0.590
+   .math2   (tht1)   36.126    1.863   19.390    0.000
+   .math3   (tht1)   36.126    1.863   19.390    0.000
+   .math4   (tht1)   36.126    1.863   19.390    0.000
+   .math5   (tht1)   36.126    1.863   19.390    0.000
+   .math6   (tht1)   36.126    1.863   19.390    0.000
+   .math7   (tht1)   36.126    1.863   19.390    0.000
+   .math8   (tht1)   36.126    1.863   19.390    0.000
+   .hyp2    (tht2)    1.104    0.057   19.404    0.000
+   .hyp3    (tht2)    1.104    0.057   19.404    0.000
+   .hyp4    (tht2)    1.104    0.057   19.404    0.000
+   .hyp5    (tht2)    1.104    0.057   19.404    0.000
+   .hyp6    (tht2)    1.104    0.057   19.404    0.000
+   .hyp7    (tht2)    1.104    0.057   19.404    0.000
+   .hyp8    (tht2)    1.104    0.057   19.404    0.000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Generiamo un diagramma di percorso.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">bivariate_lavaan_fit</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="nf">semPaths</span><span class="p">(</span>
+<span class="w">    </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ram&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;par&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">edge.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">6</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">label.prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.9</span><span class="p">,</span><span class="w"> </span><span class="n">edge.label.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">    </span><span class="n">equalizeManifests</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">optimizeLatRes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">node.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span>
+<span class="w">    </span><span class="n">edge.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">shapeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rectangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">shapeLat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ellipse&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">shapeInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;triangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">sizeInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">sizeLat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">    </span><span class="n">curve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">unCol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#070b8c&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e7fad8443721dcbcf21c5342fc0f9cb918b4f9a0a4c337fea1f2834e68b8f9d3.png" src="../_images/e7fad8443721dcbcf21c5342fc0f9cb918b4f9a0a4c337fea1f2834e68b8f9d3.png" />
+</div>
+</div>
+<p>Nell’analisi condotta, abbiamo ottenuto risultati significativi riguardo alle relazioni tra diverse variabili. In particolare:</p>
+<ol class="arabic simple">
+<li><p>La covarianza tra le intercette dei punteggi in matematica (<code class="docutils literal notranslate"><span class="pre">eta_1</span></code>) e i livelli di iperattività (<code class="docutils literal notranslate"><span class="pre">eta_3</span></code>) nella seconda elementare è risultata significativa e negativa (-2.979). Ciò suggerisce che i bambini con punteggi attesi più bassi in matematica nella seconda elementare tendevano ad avere livelli attesi più alti di iperattività nella seconda elementare.</p></li>
+<li><p>Tuttavia, la covarianza tra l’intercetta per i punteggi in matematica (<code class="docutils literal notranslate"><span class="pre">eta_1</span></code>) e la pendenza (tasso di cambiamento) per l’iperattività (<code class="docutils literal notranslate"><span class="pre">eta_4</span></code>) tra la seconda e l’ottava elementare non è risultata significativa (0.11). Ciò indica che i punteggi attesi in matematica di un bambino nella seconda elementare non erano associati al loro tasso atteso di cambiamento nell’iperattività negli anni successivi.</p></li>
+<li><p>Allo stesso modo, la covarianza tra l’intercetta per l’iperattività (<code class="docutils literal notranslate"><span class="pre">eta_2</span></code>) e la pendenza per la matematica (<code class="docutils literal notranslate"><span class="pre">eta_3</span></code>) non è risultata significativa (0.098). Ciò implica che il livello atteso di iperattività di un bambino nella seconda elementare non era correlato al loro tasso atteso di cambiamento nei punteggi in matematica dalla seconda all’ottava elementare.</p></li>
+<li><p>Inoltre, la covarianza tra la pendenza per la matematica (<code class="docutils literal notranslate"><span class="pre">eta_2</span></code>) e la pendenza per l’iperattività (<code class="docutils literal notranslate"><span class="pre">eta_4</span></code>) non è risultata significativa (-0.040). Ciò significa che il tasso atteso di cambiamento nei punteggi in matematica di un bambino non era correlato al loro tasso atteso di cambiamento nei punteggi di iperattività nel corso del periodo osservato.</p></li>
+<li><p>Infine, la covarianza tra i residui (variazioni non spiegate) per la matematica (<code class="docutils literal notranslate"><span class="pre">.math2</span></code>) e l’iperattività (<code class="docutils literal notranslate"><span class="pre">.hyp2</span></code>) non è risultata significativa (-0.011). Ciò indica che non c’era un’associazione rilevabile tra matematica e iperattività oltre a quanto poteva essere spiegato dalle associazioni tra i loro processi di crescita.</p></li>
+</ol>
+<p>In sintesi, questi risultati mettono in evidenza le relazioni tra i punteggi in matematica e i livelli di iperattività in diverse fasi dello sviluppo, suggerendo che le prestazioni in matematica precoci potrebbero essere legate ai livelli iniziali di iperattività, ma non necessariamente ai cambiamenti nell’iperattività o nei punteggi in matematica nel tempo.</p>
+<section id="modello-di-crescita-con-covariata-variabile-nel-tempo">
+<h2><span class="section-number">70.1. </span>Modello di Crescita con Covariata Variabile nel Tempo<a class="headerlink" href="#modello-di-crescita-con-covariata-variabile-nel-tempo" title="Permalink to this heading">#</a></h2>
+<p>Per semplicità, consideriamo un modello di crescita <em>univariato</em> con una covariata variabile nel tempo. In particolare, esamineremo la variazione lineare delle abilità matematiche in funzione della stagione dell’anno scolastico. La variabile di interesse è rappresentata dalle abilità matematiche, misurate in un intervallo di tempo. La covariata <code class="docutils literal notranslate"><span class="pre">spring</span></code> è rappresentata dalla stagione dell’anno scolastico, che è una variabile dicotomica che indica se la misurazione è stata effettuata in autunno o primavera.</p>
+<p>Importiamo i dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set filepath</span>
+<span class="n">filepath</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;https://quantdev.ssri.psu.edu/sites/qdev/files/nlsy_math_hyp_long.csv&quot;</span>
+<span class="c1"># Read in the .csv file using the url() function</span>
+<span class="n">nlsy_math_hyp_long</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">url</span><span class="p">(</span><span class="n">filepath</span><span class="p">),</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="n">math</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_hyp_long</span><span class="o">$</span><span class="n">id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_hyp_long</span><span class="o">$</span><span class="n">math</span><span class="p">,</span>
+<span class="w">    </span><span class="n">grade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_hyp_long</span><span class="o">$</span><span class="n">grade</span><span class="p">,</span>
+<span class="w">    </span><span class="n">d_math</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">    </span><span class="n">d_hyp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span>
+<span class="w">    </span><span class="n">grp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;math&quot;</span>
+<span class="p">)</span>
+
+<span class="n">hyp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_hyp_long</span><span class="o">$</span><span class="n">id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_hyp_long</span><span class="o">$</span><span class="n">hyp</span><span class="p">,</span>
+<span class="w">    </span><span class="n">grade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_hyp_long</span><span class="o">$</span><span class="n">grade</span><span class="p">,</span>
+<span class="w">    </span><span class="n">d_math</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span>
+<span class="w">    </span><span class="n">d_hyp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">    </span><span class="n">grp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;hyp&quot;</span>
+<span class="p">)</span>
+
+<span class="n">multivariate</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbind</span><span class="p">(</span><span class="n">math</span><span class="p">,</span><span class="w"> </span><span class="n">hyp</span><span class="p">)</span>
+
+<span class="n">nlsy_math_long_math</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span>
+<span class="w">    </span><span class="n">nlsy_math_hyp_long</span><span class="o">$</span><span class="n">id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nlsy_math_hyp_long</span><span class="o">$</span><span class="n">grade</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nlsy_math_hyp_long</span><span class="o">$</span><span class="n">math</span>
+<span class="p">))</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">nlsy_math_long_math</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;id&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;grade&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;math&quot;</span>
+<span class="p">)</span>
+
+<span class="n">nlsy_math_long_hyp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span>
+<span class="w">    </span><span class="n">nlsy_math_hyp_long</span><span class="o">$</span><span class="n">id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nlsy_math_hyp_long</span><span class="o">$</span><span class="n">grade</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nlsy_math_hyp_long</span><span class="o">$</span><span class="n">hyp</span>
+<span class="p">))</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">nlsy_math_long_hyp</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;id&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;grade&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;hyp&quot;</span>
+<span class="p">)</span>
+
+<span class="n">math_wide</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nlsy_math_long_math</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">spread</span><span class="p">(</span><span class="n">grade</span><span class="p">,</span><span class="w"> </span><span class="n">math</span><span class="p">)</span>
+<span class="c1"># give name to the variables with the grade</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">math_wide</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math.2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math.3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math.4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math.5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math.6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math.7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math.8&quot;</span><span class="p">)</span>
+
+<span class="n">hyp_wide</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nlsy_math_long_hyp</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">spread</span><span class="p">(</span><span class="n">grade</span><span class="p">,</span><span class="w"> </span><span class="n">hyp</span><span class="p">)</span>
+<span class="c1"># give name to the variables with the grade</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">hyp_wide</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hyp.2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hyp.3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hyp.4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hyp.5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hyp.6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hyp.7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hyp.8&quot;</span><span class="p">)</span>
+
+<span class="n">short</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">merge</span><span class="p">(</span><span class="n">math_wide</span><span class="p">,</span><span class="w"> </span><span class="n">hyp_wide</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="p">)</span>
+
+<span class="n">nlsy_math_long_spring</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span>
+<span class="w">    </span><span class="n">nlsy_math_hyp_long</span><span class="o">$</span><span class="n">id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nlsy_math_hyp_long</span><span class="o">$</span><span class="n">grade</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nlsy_math_hyp_long</span><span class="o">$</span><span class="n">spring</span>
+<span class="p">))</span>
+
+<span class="nf">names</span><span class="p">(</span><span class="n">nlsy_math_long_spring</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;id&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;grade&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;spring&quot;</span>
+<span class="p">)</span>
+
+<span class="n">spring_wide</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nlsy_math_long_spring</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">spread</span><span class="p">(</span><span class="n">grade</span><span class="p">,</span><span class="w"> </span><span class="n">spring</span><span class="p">)</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">spring_wide</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring.2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring.3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring.4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring.5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring.6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring.7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring.8&quot;</span><span class="p">)</span>
+
+<span class="n">math.spring</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">merge</span><span class="p">(</span><span class="n">math_wide</span><span class="p">,</span><span class="w"> </span><span class="n">spring_wide</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">math.spring</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 15</caption>
+<thead>
+	<tr><th></th><th scope=col>id</th><th scope=col>math.2</th><th scope=col>math.3</th><th scope=col>math.4</th><th scope=col>math.5</th><th scope=col>math.6</th><th scope=col>math.7</th><th scope=col>math.8</th><th scope=col>spring.2</th><th scope=col>spring.3</th><th scope=col>spring.4</th><th scope=col>spring.5</th><th scope=col>spring.6</th><th scope=col>spring.7</th><th scope=col>spring.8</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td> 201</td><td>NA</td><td>38</td><td>NA</td><td>55</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td> 1</td><td>NA</td><td> 1</td><td>NA</td><td>NA</td><td>NA</td></tr>
+	<tr><th scope=row>2</th><td> 303</td><td>26</td><td>NA</td><td>NA</td><td>33</td><td>NA</td><td>NA</td><td>NA</td><td> 1</td><td>NA</td><td>NA</td><td> 1</td><td>NA</td><td>NA</td><td>NA</td></tr>
+	<tr><th scope=row>3</th><td>2702</td><td>56</td><td>NA</td><td>58</td><td>NA</td><td>NA</td><td>NA</td><td>80</td><td> 1</td><td>NA</td><td> 1</td><td>NA</td><td>NA</td><td>NA</td><td> 1</td></tr>
+	<tr><th scope=row>4</th><td>4303</td><td>NA</td><td>41</td><td>58</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td> 0</td><td> 1</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>
+	<tr><th scope=row>5</th><td>5002</td><td>NA</td><td>NA</td><td>46</td><td>NA</td><td>54</td><td>NA</td><td>66</td><td>NA</td><td>NA</td><td> 1</td><td>NA</td><td> 0</td><td>NA</td><td> 1</td></tr>
+	<tr><th scope=row>6</th><td>5005</td><td>35</td><td>NA</td><td>50</td><td>NA</td><td>60</td><td>NA</td><td>59</td><td> 0</td><td>NA</td><td> 1</td><td>NA</td><td> 1</td><td>NA</td><td> 1</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Il modello di crescita può essere espresso come segue:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">univariate_time_varying_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">    # factor loadings</span>
+<span class="s">    b0m =~ 1* math.2</span>
+<span class="s">    b0m =~ 1* math.3</span>
+<span class="s">    b0m =~ 1* math.4</span>
+<span class="s">    b0m =~ 1* math.5</span>
+<span class="s">    b0m =~ 1* math.6</span>
+<span class="s">    b0m =~ 1* math.7</span>
+<span class="s">    b0m =~ 1* math.8</span>
+
+<span class="s">    b1m =~ 0* math.2</span>
+<span class="s">    b1m =~ 1* math.3</span>
+<span class="s">    b1m =~ 2* math.4</span>
+<span class="s">    b1m =~ 3* math.5</span>
+<span class="s">    b1m =~ 4* math.6</span>
+<span class="s">    b1m =~ 5* math.7</span>
+<span class="s">    b1m =~ 6* math.8</span>
+
+<span class="s">    # factor means</span>
+<span class="s">    b0m ~ start(35)*1 # with a starting value at 35</span>
+<span class="s">    b1m ~ start(4)*1  # with a starting value at 4</span>
+
+<span class="s">    # means of the observed variables (fixed at zero)</span>
+<span class="s">    math.2 ~ 0</span>
+<span class="s">    math.3 ~ 0</span>
+<span class="s">    math.4 ~ 0</span>
+<span class="s">    math.5 ~ 0</span>
+<span class="s">    math.6 ~ 0</span>
+<span class="s">    math.7 ~ 0</span>
+<span class="s">    math.8 ~ 0</span>
+
+<span class="s">    # observed variables regressed on the time-varying covariate</span>
+<span class="s">    math.2 ~ a * spring.2</span>
+<span class="s">    math.3 ~ a * spring.3</span>
+<span class="s">    math.4 ~ a * spring.4</span>
+<span class="s">    math.5 ~ a * spring.5</span>
+<span class="s">    math.6 ~ a * spring.6</span>
+<span class="s">    math.7 ~ a * spring.7</span>
+<span class="s">    math.8 ~ a * spring.8</span>
+
+<span class="s">    spring.2 ~ 1</span>
+<span class="s">    spring.3 ~ 1</span>
+<span class="s">    spring.4 ~ 1</span>
+<span class="s">    spring.5 ~ 1</span>
+<span class="s">    spring.6 ~ 1</span>
+<span class="s">    spring.7 ~ 1</span>
+<span class="s">    spring.8 ~ 1</span>
+
+<span class="s">    # factor variances</span>
+<span class="s">    b0m ~~ b0m</span>
+<span class="s">    b1m ~~ b1m</span>
+
+<span class="s">    # covariances between factors</span>
+<span class="s">    b0m ~~ b1m</span>
+
+<span class="s">    # variances of observed variables (made equivalent by naming theta1)</span>
+<span class="s">    math.2 ~~ theta1*math.2</span>
+<span class="s">    math.3 ~~ theta1*math.3</span>
+<span class="s">    math.4 ~~ theta1*math.4</span>
+<span class="s">    math.5 ~~ theta1*math.5</span>
+<span class="s">    math.6 ~~ theta1*math.6</span>
+<span class="s">    math.7 ~~ theta1*math.7</span>
+<span class="s">    math.8 ~~ theta1*math.8</span>
+
+<span class="s">    spring.2 ~~ theta2 * spring.2</span>
+<span class="s">    spring.3 ~~ theta2 * spring.3</span>
+<span class="s">    spring.4 ~~ theta2 * spring.4</span>
+<span class="s">    spring.5 ~~ theta2 * spring.5</span>
+<span class="s">    spring.6 ~~ theta2 * spring.6</span>
+<span class="s">    spring.7 ~~ theta2 * spring.7</span>
+<span class="s">    spring.8 ~~ theta2 * spring.8</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit_time_varying</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sem</span><span class="p">(</span><span class="n">univariate_time_varying_model</span><span class="p">,</span>
+<span class="w">    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">math.spring</span><span class="p">,</span>
+<span class="w">    </span><span class="n">missing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;fiml&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">estimator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ml&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+“lavaan WARNING:
+    due to missing values, some pairwise combinations have less than
+    10% coverage; use lavInspect(fit, &quot;coverage&quot;) to investigate.”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g]], :
+“lavaan WARNING:
+    Maximum number of iterations reached when computing the sample
+    moments using EM; use the em.h1.iter.max= argument to increase the
+    number of iterations”
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">fit_time_varying</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 81 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        33
+  Number of equality constraints                    18
+
+  Number of observations                           932
+  Number of missing patterns                        60
+
+Model Test User Model:
+                                                      
+  Test statistic                              1227.519
+  Degrees of freedom                               104
+  P-value (Chi-square)                           0.000
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Observed
+  Observed information based on                Hessian
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  b0m =~                                              
+    math.2            1.000                           
+    math.3            1.000                           
+    math.4            1.000                           
+    math.5            1.000                           
+    math.6            1.000                           
+    math.7            1.000                           
+    math.8            1.000                           
+  b1m =~                                              
+    math.2            0.000                           
+    math.3            1.000                           
+    math.4            2.000                           
+    math.5            3.000                           
+    math.6            4.000                           
+    math.7            5.000                           
+    math.8            6.000                           
+
+Regressions:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  math.2 ~                                            
+    spring.2   (a)    4.694    0.396   11.864    0.000
+  math.3 ~                                            
+    spring.3   (a)    4.694    0.396   11.864    0.000
+  math.4 ~                                            
+    spring.4   (a)    4.694    0.396   11.864    0.000
+  math.5 ~                                            
+    spring.5   (a)    4.694    0.396   11.864    0.000
+  math.6 ~                                            
+    spring.6   (a)    4.694    0.396   11.864    0.000
+  math.7 ~                                            
+    spring.7   (a)    4.694    0.396   11.864    0.000
+  math.8 ~                                            
+    spring.8   (a)    4.694    0.396   11.864    0.000
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  b0m ~~                                              
+    b1m               0.468    1.075    0.435    0.663
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+    b0m              32.648    0.404   80.888    0.000
+    b1m               4.159    0.088   47.461    0.000
+   .math.2            0.000                           
+   .math.3            0.000                           
+   .math.4            0.000                           
+   .math.5            0.000                           
+   .math.6            0.000                           
+   .math.7            0.000                           
+   .math.8            0.000                           
+    spring.2          0.609    0.026   23.610    0.000
+    spring.3          0.545    0.023   23.978    0.000
+    spring.4          0.646    0.024   26.585    0.000
+    spring.5          0.661    0.024   27.018    0.000
+    spring.6          0.708    0.024   29.605    0.000
+    spring.7          0.786    0.036   21.903    0.000
+    spring.8          0.718    0.040   18.132    0.000
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+    b0m              55.757    5.132   10.864    0.000
+    b1m               0.689    0.319    2.157    0.031
+   .math.2  (tht1)   34.721    1.801   19.282    0.000
+   .math.3  (tht1)   34.721    1.801   19.282    0.000
+   .math.4  (tht1)   34.721    1.801   19.282    0.000
+   .math.5  (tht1)   34.721    1.801   19.282    0.000
+   .math.6  (tht1)   34.721    1.801   19.282    0.000
+   .math.7  (tht1)   34.721    1.801   19.282    0.000
+   .math.8  (tht1)   34.721    1.801   19.282    0.000
+    sprng.2 (tht2)    0.223    0.007   33.324    0.000
+    sprng.3 (tht2)    0.223    0.007   33.324    0.000
+    sprng.4 (tht2)    0.223    0.007   33.324    0.000
+    sprng.5 (tht2)    0.223    0.007   33.324    0.000
+    sprng.6 (tht2)    0.223    0.007   33.324    0.000
+    sprng.7 (tht2)    0.223    0.007   33.324    0.000
+    sprng.8 (tht2)    0.223    0.007   33.324    0.000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit_time_varying</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">semPaths</span><span class="p">(</span>
+<span class="w">        </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ram&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;par&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">edge.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">6</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="n">label.prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.9</span><span class="p">,</span><span class="w"> </span><span class="n">edge.label.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">        </span><span class="n">equalizeManifests</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">optimizeLatRes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">node.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span>
+<span class="w">        </span><span class="n">edge.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">shapeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rectangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">shapeLat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ellipse&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">shapeInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;triangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">sizeInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">sizeLat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">        </span><span class="n">curve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">unCol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#070b8c&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/629173655b5778e058cafec8a00c7992604aa2169d4728ea2c18aa0c037b17ef.png" src="../_images/629173655b5778e058cafec8a00c7992604aa2169d4728ea2c18aa0c037b17ef.png" />
+</div>
+</div>
+<p>In base ai risultati prodotti da <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>, la covariata variabile nel tempo <code class="docutils literal notranslate"><span class="pre">spring</span></code> ha un effetto significativo sulle misurazioni delle abilità matematiche. In particolare, le abilità matematiche sono significativamente più alte in primavera rispetto all’autunno. Questo risultato è confermato dal coefficiente stimato per il modello di regressione, che è pari a 4.694. Questo coefficiente indica che, per ogni unità di aumento di <code class="docutils literal notranslate"><span class="pre">spring</span></code>, le abilità matematiche aumentano di 4.694 punti. Dato che <code class="docutils literal notranslate"><span class="pre">spring</span></code> è codificato con 0 (autunno) e 1 (primavera), il risultato indica che le abilità matematiche dei bambini sono di 4.7 punti più alte se la misurazione viene fatta nel semestre primaverile.</p>
+</section>
+<section id="conclusione">
+<h2><span class="section-number">70.2. </span>Conclusione<a class="headerlink" href="#conclusione" title="Permalink to this heading">#</a></h2>
+<p>I modelli di crescita bivariata e i modelli time-varying covariate (TVC) sono due modelli longitudinali bivariati ampiamente utilizzati in psicologia e nelle scienze sociali. Sono spesso utilizzati perché possono rispondere a domande specifiche sui processi di sviluppo e sono relativamente facili da stimare. Tuttavia, i due modelli forniscono concettualizzazioni diverse della relazione tra due o più costrutti e possono essere utilizzati per scopi diversi.</p>
+<p>Il modello di crescita bivariata concettualizza due costrutti come processi di sviluppo in corso. Le associazioni tra i costrutti in questo modello sono associazioni tra persone, il che significa che esaminano se gli individui che cambiano in modo più positivo in un costrutto tendono a cambiare in modo più positivo anche nell’altro costrutto e viceversa.</p>
+<p>In particolare, il modello di crescita bivariata stima i seguenti parametri:</p>
+<ul class="simple">
+<li><p>L’intercetta: il valore iniziale del costrutto</p></li>
+<li><p>La pendenza: la velocità di cambiamento del costrutto nel tempo</p></li>
+<li><p>La varianza: la variabilità del costrutto tra le persone</p></li>
+<li><p>La covarianza: la relazione tra le due variabili</p></li>
+</ul>
+<p>Il modello TVC, invece, non assume necessariamente che la variabile nel tempo abbia un processo di cambiamento sottostante. L’effetto della variabile nel tempo è un effetto entro-persona, il che significa che modifica la traiettoria di cambiamento di un individuo. L’effetto della variabile nel tempo ha anche un effetto istantaneo sulla traiettoria, il che significa che non persiste o non influisce sui punteggi alle successive occasioni.</p>
+<p>In particolare, il modello TVC stima i seguenti parametri:</p>
+<ul class="simple">
+<li><p>L’effetto della variabile nel tempo sull’intercetta: il modo in cui la variabile nel tempo influenza il valore iniziale del costrutto.</p></li>
+<li><p>L’effetto della variabile nel tempo sulla pendenza: il modo in cui la variabile nel tempo influenza la velocità di cambiamento del costrutto.</p></li>
+</ul>
+<p>Il modello di crescita bivariata è il più adatto quando si ritiene che entrambi i costrutti siano soggetti a cambiamenti di sviluppo mentre il modello TVC è il più adatto quando si ritiene che uno dei costrutti sia stabile e l’altro sia influenzato da fattori esterni.</p>
+<p>In sintesi, i modelli di crescita bivariata e i modelli TVC sono due strumenti utili per studiare la relazione tra due costrutti nel tempo. Tuttavia, è importante scegliere il modello corretto per lo scopo della propria ricerca.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_lgm"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="10_growth_groups.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">69. </span>Modelli di crescita latenti a gruppi multipli</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="720_inv_measurement.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">71. </span>Invarianza di misurazione</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-crescita-con-covariata-variabile-nel-tempo">70.1. Modello di Crescita con Covariata Variabile nel Tempo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusione">70.2. Conclusione</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

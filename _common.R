@@ -8,7 +8,9 @@ suppressPackageStartupMessages({
   library("psych")
   library("lavaan")
   library("semPlot")
+  library("semTools")
   library("patchwork")
+  library("gridExtra")
   library("bayesplot")
   library("ggExtra")
   library("ggpubr")
@@ -16,17 +18,14 @@ suppressPackageStartupMessages({
   library("ggokabeito")
 })
 
-set.seed(42)
-SEED <- 42 # set random seed for reproducibility
-
 theme_set(bayesplot::theme_default(base_size = 14, base_family = "sans"))
 
 # knitr chunk options ----------------------------------------------------------
 
 # Set default figure dimensions
-my_fig_height <- 4 # in inches
+my_fig_height <- 7 # in inches
 aspect_ratio <- 0.618
-my_fig_width <- my_fig_height * aspect_ratio
+my_fig_width <- my_fig_height / aspect_ratio
 
 knitr::opts_chunk$set(
   comment = "#>",
@@ -42,5 +41,8 @@ knitr::opts_chunk$set(
 
 # dplyr options ----------------------------------------------------------------
 
-options(repr.plot.width = 6, repr.plot.height = 6)
+options(repr.plot.width = my_fig_width, repr.plot.height = my_fig_height)
+# set.seed(42)
+
 set.seed(42)
+SEED <- 42 # set random seed for reproducibility

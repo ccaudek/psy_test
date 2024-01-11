@@ -18,30 +18,18 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-source("_common.R")
-suppressPackageStartupMessages({
-    library("lavaan")
-    library("semPlot")
-    library("knitr")
-    library("markdown")
-    library("patchwork")
-    library("psych")
-    library("DT")
-    library("kableExtra")
-    library("lme4")
-})
-
-set.seed(42)
+lavTestLRT(fit2_lmer, fit3_lmer) |>
+    print()
 ------------------
 
------ stderr -----
-Warning message in file(filename, "r", encoding = encoding):
-“non è possibile aprire il file '_common.R': No such file or directory”
-------------------
 
-Error in file(filename, "r", encoding = encoding): non è possibile aprire la connessione
+Error in h(simpleError(msg, call)): errore durante la valutazione dell'argomento 'x' nella selezione di un metodo per la funzione 'print': nessuno slot di nome "Options" per questo oggetto di classe "lmerMod"
 Traceback:
 
-1. source("_common.R")
-2. file(filename, "r", encoding = encoding)
+1. print(lavTestLRT(fit2_lmer, fit3_lmer))
+2. lavTestLRT(fit2_lmer, fit3_lmer)
+3. .handleSimpleError(function (cond) 
+ . .Internal(C_tryCatchHelper(addr, 1L, cond)), "nessuno slot di nome \"Options\" per questo oggetto di classe \"lmerMod\"", 
+ .     base::quote(lavTestLRT(fit2_lmer, fit3_lmer)))
+4. h(simpleError(msg, call))
 
