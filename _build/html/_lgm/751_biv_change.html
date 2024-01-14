@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>73. Modello LCS bivariato &#8212; psy_test</title>
+    <title>74. Modello LCS bivariato &#8212; psy_test</title>
   
   
   
@@ -72,8 +72,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/increasing.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="74. Invarianza fattoriale nei modelli LGM" href="755_lgm_meas_inv.html" />
-    <link rel="prev" title="72. Modello LCS univariato" href="750_latent_change.html" />
+    <link rel="next" title="75. Invarianza fattoriale nei modelli LGM" href="755_lgm_meas_inv.html" />
+    <link rel="prev" title="73. Modello LCS univariato" href="750_latent_change.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -284,17 +284,18 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="10_growth_groups.html">69. Modelli di crescita latenti a gruppi multipli</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_bivariate_tvc_models.html">70. Modelli di crescita latenti bivariati</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12_inv_measurement.html">71. Invarianza di Misurazione</a></li>
-<li class="toctree-l1"><a class="reference internal" href="750_latent_change.html">72. Modello LCS univariato</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">73. Modello LCS bivariato</a></li>
-<li class="toctree-l1"><a class="reference internal" href="755_lgm_meas_inv.html">74. Invarianza fattoriale nei modelli LGM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_latent_change.html">72. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="750_latent_change.html">73. Modello LCS univariato</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">74. Modello LCS bivariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="755_lgm_meas_inv.html">75. Invarianza fattoriale nei modelli LGM</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">75. Bibliografia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">76. Bibliografia</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../_appendix/901_intro_r.html">76. Linguaggio di programmazione R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/901_intro_r.html">77. Linguaggio di programmazione R</a></li>
 </ul>
 
     </div>
@@ -490,8 +491,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#illustrazione">73.1. Illustrazione</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione">73.1.1. Interpretazione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#illustrazione">74.1. Illustrazione</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione">74.1.1. Interpretazione</a></li>
 </ul>
 </li>
 </ul>
@@ -506,28 +507,26 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="modello-lcs-bivariato">
-<span id="lcsm-bivariate-notebook"></span><h1><span class="section-number">73. </span>Modello LCS bivariato<a class="headerlink" href="#modello-lcs-bivariato" title="Permalink to this heading">#</a></h1>
+<span id="lcsm-bivariate-notebook"></span><h1><span class="section-number">74. </span>Modello LCS bivariato<a class="headerlink" href="#modello-lcs-bivariato" title="Permalink to this heading">#</a></h1>
 <p>I modelli LCSM sono stati sviluppati principalmente per studiare le associazioni sequenziali nel tempo tra due o più processi che cambiano nel tempo. In altre parole, le equazioni di cambiamento latente possono essere estese per includere effetti derivanti da variabili aggiuntive per modellare congiuntamente processi multipli di sviluppo in corso (McArdle, 2001; McArdle &amp; Hamagami, 2001). Considereremo qui un modello LCS bivariato con parametri di accoppiamento cambiamento-cambiamento ritardati. Il seguene path diagram è fornito da <span id="id1">Wiedemann <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id24" title="Milan Wiedemann, Graham Thew, Urška Košir, and Anke Ehlers. Lcsm: an r package and tutorial on latent change score modelling. Wellcome Open Research, 7(149):149, 2022.">WTKovsirE22</a>]</span>.</p>
 <figure class="align-default" id="lcsm1-fig">
-<a class="reference internal image-reference" href="_lgm/images/lcsm_bivariato.png"><img alt="_lgm/images/lcsm_bivariato.png" src="_lgm/images/lcsm_bivariato.png" style="height: 450px;" /></a>
+<a class="reference internal image-reference" href="../_images/lcsm_bivariato.png"><img alt="../_images/lcsm_bivariato.png" src="../_images/lcsm_bivariato.png" style="height: 450px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 73.1 </span><span class="caption-text"><strong>Diagramma di percorso semplificato per un modello LCS bivariato con parametri di accoppiamento  cambiamento-cambiamento ritardati (ad esempio, da dx2 a dy3).</strong> Quadrati bianchi = variabili osservate; cerchi verdi = punteggi veri latenti (prefisso ‘l’); cerchi blu = punteggi di cambiamento latenti (prefisso ‘d’); cerchi gialli = fattori di cambiamento latente costanti. Frecce direzionali = Regressioni; frecce bidirezionali = covarianze. I punteggi unici (<span class="math notranslate nohighlight">\(ux_t\)</span> e <span class="math notranslate nohighlight">\(uy_t\)</span>) e le varianze uniche (<span class="math notranslate nohighlight">\(σ^2_{ux}\)</span> e <span class="math notranslate nohighlight">\(σ^2_{uy}\)</span>) non sono mostrati in questa figura per semplicità.</span><a class="headerlink" href="#lcsm1-fig" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 74.1 </span><span class="caption-text"><strong>Diagramma di percorso semplificato per un modello LCS bivariato con parametri di accoppiamento  cambiamento-cambiamento ritardati (ad esempio, da dx2 a dy3).</strong> Quadrati bianchi = variabili osservate; cerchi verdi = punteggi veri latenti (prefisso ‘l’); cerchi blu = punteggi di cambiamento latenti (prefisso ‘d’); cerchi gialli = fattori di cambiamento latente costanti. Frecce direzionali = Regressioni; frecce bidirezionali = covarianze. I punteggi unici (<span class="math notranslate nohighlight">\(ux_t\)</span> e <span class="math notranslate nohighlight">\(uy_t\)</span>) e le varianze uniche (<span class="math notranslate nohighlight">\(σ^2_{ux}\)</span> e <span class="math notranslate nohighlight">\(σ^2_{uy}\)</span>) non sono mostrati in questa figura per semplicità.</span><a class="headerlink" href="#lcsm1-fig" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Come in precedenza per il caso del modello univariato, il modello LCSM bivariato include, per ciascuna di due variabili misurate nel tempo, un fattore di cambiamento costante (alpha_constant), un fattore di cambiamento proporzionale (beta) e l’autoregressione dei punteggi di cambiamento (phi). L’aspetto nuovo riguarda i parametri di “accoppiamento”. Per i modelli LCSM bivariati, tali parametri modellano le interazioni tra le variabili <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span>. I test su tali parametri consentono di affrontare la seguente domanda della ricerca: le variazioni della variabile Y al momento (t) sono determinate dalle variazioni della variabile X al momento precedente (t-1)? E viceversa.  Oppure tutte e due le condizioni insieme. I test statistici sui parametri di accoppiamento consentono di rispondere alle domande precedenti.</p>
 <section id="illustrazione">
-<h2><span class="section-number">73.1. </span>Illustrazione<a class="headerlink" href="#illustrazione" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">74.1. </span>Illustrazione<a class="headerlink" href="#illustrazione" title="Permalink to this heading">#</a></h2>
 <p>Per illustrare l’adattamento e l’interpretazione dei modelli LCS bivariati, analizziamo i dati longitudinali di matematica che sono stati utilizzati nel Capitolo 17 di <span id="id2">[<a class="reference internal" href="../z_biblio.html#id25" title="Kevin J Grimm, Nilam Ram, and Ryne Estabrook. Growth modeling: Structural equation and multilevel modeling approaches. Guilford Publications, 2016.">GRE16</a>]</span>. I dati longitudinali di matematica sono stati raccolti dall’NLSY-CYA (Center for Human Resource Research, 2009) e i punteggi di matematica provengono dal PIAT (Dunn &amp; Markwardt, 1970). Vengono anche misurati i punteggi di comprensione nella lettura dal secondo all’ottavo grado scolastico.
 Il grado scolastico al momento del test viene utilizzato come metrica temporale e varia dalla seconda elementare (grado 2) alla terza media (grado 8).</p>
 <p>Leggiamo i pacchetti necessari.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">source</span><span class="p">(</span><span class="s">&quot;_common.R&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">source</span><span class="p">(</span><span class="s">&quot;../_common.R&quot;</span><span class="p">)</span>
 <span class="nf">suppressPackageStartupMessages</span><span class="p">({</span>
 <span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;lavaan&quot;</span><span class="p">)</span>
 <span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;semPlot&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;knitr&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;markdown&quot;</span><span class="p">)</span>
 <span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;patchwork&quot;</span><span class="p">)</span>
 <span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;psych&quot;</span><span class="p">)</span>
 <span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;DT&quot;</span><span class="p">)</span>
@@ -541,24 +540,11 @@ Il grado scolastico al momento del test viene utilizzato come metrica temporale 
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in file(filename, &quot;r&quot;, encoding = encoding):
-“non è possibile aprire il file &#39;_common.R&#39;: No such file or directory”
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="n">encoding</span><span class="p">):</span> <span class="n">non</span> <span class="n">è</span> <span class="n">possibile</span> <span class="n">aprire</span> <span class="n">la</span> <span class="n">connessione</span>
-<span class="ne">Traceback</span>:
-
-<span class="mi">1</span><span class="o">.</span> <span class="n">source</span><span class="p">(</span><span class="s2">&quot;_common.R&quot;</span><span class="p">)</span>
-<span class="mi">2</span><span class="o">.</span> <span class="n">file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="n">encoding</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
 </div>
 <p>Importiamo i dati in R utilizzando un file messo a disposizione dagli autori.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nlsy_multi_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.table</span><span class="p">(</span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;data/nlsy_math_hyp_wide_R.dat&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">na.strings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;.&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nlsy_multi_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.table</span><span class="p">(</span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;../data/nlsy_math_hyp_wide_R.dat&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">na.strings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;.&quot;</span><span class="p">)</span>
 <span class="nf">names</span><span class="p">(</span><span class="n">nlsy_multi_data</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
 <span class="w">    </span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;female&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lb_wght&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti_k1&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="s">&quot;math2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math8&quot;</span><span class="p">,</span>
@@ -671,11 +657,13 @@ $ rec8  &lt;int&gt; NA, NA, 66, NA, 77, 78, NA, NA, NA, NA, NA, NA, NA, NA, NA, 
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
 “Removed 2787 rows containing missing values (`geom_line()`).”
-Warning message:
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
 “Removed 4310 rows containing missing values (`geom_point()`).”
 </pre></div>
 </div>
-<img alt="../_images/a22fd0f0e457ae90a73469705956b75d8c685a16d878585ea3043f25b6329572.png" src="../_images/a22fd0f0e457ae90a73469705956b75d8c685a16d878585ea3043f25b6329572.png" />
+<img alt="../_images/d78988369deebdc8c2d1d4ce5b7e91c19cebc21d1be093763c4841df789644b8.png" src="../_images/d78988369deebdc8c2d1d4ce5b7e91c19cebc21d1be093763c4841df789644b8.png" />
 </div>
 </div>
 <p>Esaminiamo i dati di alcuni soggetti presi a caso.</p>
@@ -698,7 +686,7 @@ Warning message:
 “Removed 40 rows containing missing values (`geom_point()`).”
 </pre></div>
 </div>
-<img alt="../_images/02784a70409a897ba523550e12e6d7ba6ddc8890b27d2196329b9dd6ebc292ac.png" src="../_images/02784a70409a897ba523550e12e6d7ba6ddc8890b27d2196329b9dd6ebc292ac.png" />
+<img alt="../_images/5202324f70007812b3da8001d6a6fefafa05a6a3fbef470d7f912da9cdbd16a5.png" src="../_images/5202324f70007812b3da8001d6a6fefafa05a6a3fbef470d7f912da9cdbd16a5.png" />
 </div>
 </div>
 <p>Esaminiamo le curve di crescita per la comprensione nella lettura.</p>
@@ -719,11 +707,13 @@ Warning message:
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
 “Removed 2804 rows containing missing values (`geom_line()`).”
-Warning message:
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
 “Removed 4317 rows containing missing values (`geom_point()`).”
 </pre></div>
 </div>
-<img alt="../_images/4e721f01b3ba236a78d0c561ad6fcc898ab2f0b0c006d19170219218c6ba067a.png" src="../_images/4e721f01b3ba236a78d0c561ad6fcc898ab2f0b0c006d19170219218c6ba067a.png" />
+<img alt="../_images/c76108f116f71f6fce6d0e1b0c70b0d479f8443c72e814dfa3518a6786e8ceb2.png" src="../_images/c76108f116f71f6fce6d0e1b0c70b0d479f8443c72e814dfa3518a6786e8ceb2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -745,7 +735,7 @@ Warning message:
 “Removed 40 rows containing missing values (`geom_point()`).”
 </pre></div>
 </div>
-<img alt="../_images/89dcfd7e5a9c8e7f15e6554db02c67fb473d067f32971df5eff80f46fe72594a.png" src="../_images/89dcfd7e5a9c8e7f15e6554db02c67fb473d067f32971df5eff80f46fe72594a.png" />
+<img alt="../_images/60113de42280c387bf99e197eb5db8d6b8ea734f97f8048512c8ae4f943956bd.png" src="../_images/60113de42280c387bf99e197eb5db8d6b8ea734f97f8048512c8ae4f943956bd.png" />
 </div>
 </div>
 <p>Adattiamo ora quattro modelli di complessità crescente. Il primo modello ipotizza che i parametri di accoppiamento da matematica a lettura e da lettura a matematica siano pari a zero.  È il modello baseline. Il secondo modello ipotizza un effetto da lettura a matematica. Il terzo modello ipotizza un effetto da matematica a lettura. Il quarto modello ipotizza la presenza di entrambi i parametri di accoppiamento.</p>
@@ -797,47 +787,69 @@ Warning message:
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
 “lavaan WARNING: some cases are empty and will be ignored:
   741”
-Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
 “lavaan WARNING:
     due to missing values, some pairwise combinations have less than
     10% coverage; use lavInspect(fit, &quot;coverage&quot;) to investigate.”
-Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g]], :
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g]], :
 “lavaan WARNING:
     Maximum number of iterations reached when computing the sample
     moments using EM; use the em.h1.iter.max= argument to increase the
     number of iterations”
-Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
 “lavaan WARNING: some cases are empty and will be ignored:
   741”
-Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
 “lavaan WARNING:
     due to missing values, some pairwise combinations have less than
     10% coverage; use lavInspect(fit, &quot;coverage&quot;) to investigate.”
-Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g]], :
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g]], :
 “lavaan WARNING:
     Maximum number of iterations reached when computing the sample
     moments using EM; use the em.h1.iter.max= argument to increase the
     number of iterations”
-Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
 “lavaan WARNING: some cases are empty and will be ignored:
   741”
-Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
 “lavaan WARNING:
     due to missing values, some pairwise combinations have less than
     10% coverage; use lavInspect(fit, &quot;coverage&quot;) to investigate.”
-Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g]], :
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g]], :
 “lavaan WARNING:
     Maximum number of iterations reached when computing the sample
     moments using EM; use the em.h1.iter.max= argument to increase the
     number of iterations”
-Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
 “lavaan WARNING: some cases are empty and will be ignored:
   741”
-Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
 “lavaan WARNING:
     due to missing values, some pairwise combinations have less than
     10% coverage; use lavInspect(fit, &quot;coverage&quot;) to investigate.”
-Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g]], :
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g]], :
 “lavaan WARNING:
     Maximum number of iterations reached when computing the sample
     moments using EM; use the em.h1.iter.max= argument to increase the
@@ -854,18 +866,15 @@ Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g
 <span class="w">    </span><span class="nf">extract_fit</span><span class="p">(</span><span class="n">multi2_lavaan_results</span><span class="p">)</span><span class="o">$</span><span class="n">bic</span><span class="p">,</span>
 <span class="w">    </span><span class="nf">extract_fit</span><span class="p">(</span><span class="n">multi3_lavaan_results</span><span class="p">)</span><span class="o">$</span><span class="n">bic</span><span class="p">,</span>
 <span class="w">    </span><span class="nf">extract_fit</span><span class="p">(</span><span class="n">multi4_lavaan_results</span><span class="p">)</span><span class="o">$</span><span class="n">bic</span>
-<span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
-<ol class=list-inline><li>31518.9135405017</li><li>31524.4353027844</li><li>31526.3847693857</li><li>31527.4799661216</li></ol>
-</div></div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] 31518.91 31524.44 31526.38 31521.89
+</pre></div>
+</div>
+</div>
 </div>
 <p>Eseguiamo ora i test del rapporto tra verosimiglianze tra i vari modelli.</p>
 <div class="cell docutils container">
@@ -876,18 +885,21 @@ Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A anova: 2 × 7</caption>
-<thead>
-	<tr><th></th><th scope=col>Df</th><th scope=col>AIC</th><th scope=col>BIC</th><th scope=col>Chisq</th><th scope=col>Chisq diff</th><th scope=col>Df diff</th><th scope=col>Pr(&gt;Chisq)</th></tr>
-	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>multi2_lavaan_results</th><td>97</td><td>31418.01</td><td>31524.44</td><td>179.1446</td><td>      NA</td><td>NA</td><td>        NA</td></tr>
-	<tr><th scope=row>multi1_lavaan_results</th><td>98</td><td>31417.33</td><td>31518.91</td><td>180.4602</td><td>3.435371</td><td> 1</td><td>0.06381423</td></tr>
-</tbody>
-</table>
-</div></div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scaled Chi-Squared Difference Test (method = “satorra.bentler.2001”)
+
+lavaan NOTE:
+    The “Chisq” column contains standard test statistics, not the
+    robust test that should be reported per model. A robust difference
+    test is a function of two standard (not robust) statistics.
+ 
+                      Df   AIC   BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)  
+multi2_lavaan_results 97 31418 31524 179.14                                
+multi1_lavaan_results 98 31417 31519 180.46     3.4354       1    0.06381 .
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -897,26 +909,27 @@ Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lavTestLRT(object = object, ..., model.names = NAMES):
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lavTestLRT(multi1_lavaan_results, multi3_lavaan_results):
 “lavaan WARNING:
     Some restricted models fit better than less restricted models;
     either these models are not nested, or the less restricted model
     failed to reach a global optimum. Smallest difference =
-    -0.633896069368177”
+    -0.633896069371474”
 </pre></div>
 </div>
-<div class="output text_html"><table class="dataframe">
-<caption>A anova: 2 × 7</caption>
-<thead>
-	<tr><th></th><th scope=col>Df</th><th scope=col>AIC</th><th scope=col>BIC</th><th scope=col>Chisq</th><th scope=col>Chisq diff</th><th scope=col>Df diff</th><th scope=col>Pr(&gt;Chisq)</th></tr>
-	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>multi3_lavaan_results</th><td>97</td><td>31419.96</td><td>31526.38</td><td>181.0941</td><td>        NA</td><td>NA</td><td>NA</td></tr>
-	<tr><th scope=row>multi1_lavaan_results</th><td>98</td><td>31417.33</td><td>31518.91</td><td>180.4602</td><td>-0.1758342</td><td> 1</td><td> 1</td></tr>
-</tbody>
-</table>
-</div></div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scaled Chi-Squared Difference Test (method = “satorra.bentler.2001”)
+
+lavaan NOTE:
+    The “Chisq” column contains standard test statistics, not the
+    robust test that should be reported per model. A robust difference
+    test is a function of two standard (not robust) statistics.
+ 
+                      Df   AIC   BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)
+multi3_lavaan_results 97 31420 31526 181.09                              
+multi1_lavaan_results 98 31417 31519 180.46   -0.17583       1          1
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -926,18 +939,21 @@ Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A anova: 2 × 7</caption>
-<thead>
-	<tr><th></th><th scope=col>Df</th><th scope=col>AIC</th><th scope=col>BIC</th><th scope=col>Chisq</th><th scope=col>Chisq diff</th><th scope=col>Df diff</th><th scope=col>Pr(&gt;Chisq)</th></tr>
-	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>multi4_lavaan_results</th><td>96</td><td>31416.22</td><td>31527.48</td><td>175.3520</td><td>      NA</td><td>NA</td><td>       NA</td></tr>
-	<tr><th scope=row>multi1_lavaan_results</th><td>98</td><td>31417.33</td><td>31518.91</td><td>180.4602</td><td>3.521001</td><td> 2</td><td>0.1719588</td></tr>
-</tbody>
-</table>
-</div></div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scaled Chi-Squared Difference Test (method = “satorra.bentler.2001”)
+
+lavaan NOTE:
+    The “Chisq” column contains standard test statistics, not the
+    robust test that should be reported per model. A robust difference
+    test is a function of two standard (not robust) statistics.
+ 
+                      Df   AIC   BIC  Chisq Chisq diff Df diff Pr(&gt;Chisq)  
+multi4_lavaan_results 96 31411 31522 169.76                                
+multi1_lavaan_results 98 31417 31519 180.46     5.9923       2    0.04998 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+</pre></div>
+</div>
+</div>
 </div>
 <p>Anche in questo caso non vi è evidenza che la presenza dei fattori di accoppiamento migliori l’adattamento del modello ai dati.</p>
 <p>Per motivi didattici, però, proseguiamo l’analisi ipotizzando una presenza di entrambe le classi di parametri di accoppiamento (da comprensione nella lettura a matematica e viceversa).</p>
@@ -971,71 +987,51 @@ Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c1ccb2d4ccff75585f06db3963e9d8da5e8d54210d66177b01b44949e3176822.png" src="../_images/c1ccb2d4ccff75585f06db3963e9d8da5e8d54210d66177b01b44949e3176822.png" />
+<img alt="../_images/cfdfd092d692116aa39172b8a7caafb1bc337f4062b40c4810874feaa5e11294.png" src="../_images/cfdfd092d692116aa39172b8a7caafb1bc337f4062b40c4810874feaa5e11294.png" />
 </div>
 </div>
 <p>Esaminiamo la bontà di adattamento.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">extract_fit</span><span class="p">(</span><span class="n">multi4_lavaan_results</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">extract_fit</span><span class="p">(</span><span class="n">multi4_lavaan_results</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A tibble: 1 × 8</caption>
-<thead>
-	<tr><th scope=col>model</th><th scope=col>chisq</th><th scope=col>npar</th><th scope=col>aic</th><th scope=col>bic</th><th scope=col>cfi</th><th scope=col>rmsea</th><th scope=col>srmr</th></tr>
-	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><td>1</td><td>175.352</td><td>23</td><td>31416.22</td><td>31527.48</td><td>0.9697082</td><td>0.02978072</td><td>0.120704</td></tr>
-</tbody>
-</table>
-</div></div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># A tibble: 1 × 8
+  model chisq  npar    aic    bic   cfi  rmsea  srmr
+  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+1 1      170.    23 31411. 31522. 0.972 0.0287 0.108
+</pre></div>
+</div>
+</div>
 </div>
 <p>Notiamo che le informazioni sull’adattamento del modello fornite da <code class="docutils literal notranslate"><span class="pre">lcsm</span></code> indicano che il modello di cambiamento duale si adatta bene ai dati con forti indici di adattamento globale (ad esempio, RMSEA inferiore a 0.05, CFI &gt; 0.95).</p>
 <p>Esaminiamo i parametri.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">extract_param</span><span class="p">(</span><span class="n">multi4_lavaan_results</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">extract_param</span><span class="p">(</span><span class="n">multi4_lavaan_results</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A tibble: 23 × 8</caption>
-<thead>
-	<tr><th scope=col>label</th><th scope=col>estimate</th><th scope=col>std.error</th><th scope=col>statistic</th><th scope=col>p.value</th><th scope=col>std.lv</th><th scope=col>std.all</th><th scope=col>std.nox</th></tr>
-	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><td>gamma_lx1   </td><td>32.28742070</td><td>0.50617974</td><td>63.7864743</td><td>0.000000e+00</td><td> 3.8617634</td><td> 3.8617634</td><td> 3.8617634</td></tr>
-	<tr><td>sigma2_lx1  </td><td>69.90292968</td><td>6.00020330</td><td>11.6500935</td><td>0.000000e+00</td><td> 1.0000000</td><td> 1.0000000</td><td> 1.0000000</td></tr>
-	<tr><td>sigma2_ux   </td><td>29.99690146</td><td>1.82964655</td><td>16.3949160</td><td>0.000000e+00</td><td>29.9969015</td><td> 0.3002698</td><td> 0.3002698</td></tr>
-	<tr><td>alpha_g2    </td><td>12.41640785</td><td>2.92548453</td><td> 4.2442227</td><td>2.193524e-05</td><td> 6.3636823</td><td> 6.3636823</td><td> 6.3636823</td></tr>
-	<tr><td>sigma2_g2   </td><td> 3.80693063</td><td>1.04868187</td><td> 3.6302054</td><td>2.831957e-04</td><td> 1.0000000</td><td> 1.0000000</td><td> 1.0000000</td></tr>
-	<tr><td>sigma_g2lx1 </td><td>10.57924087</td><td>3.18769451</td><td> 3.3187750</td><td>9.041325e-04</td><td> 0.6485140</td><td> 0.6485140</td><td> 0.6485140</td></tr>
-	<tr><td>beta_x      </td><td>-0.14512346</td><td>0.07856819</td><td>-1.8471021</td><td>6.473235e-02</td><td>-0.8164537</td><td>-0.8164537</td><td>-0.8164537</td></tr>
-	<tr><td>phi_x       </td><td> 1.11533397</td><td>1.10899927</td><td> 1.0057121</td><td>3.145541e-01</td><td> 0.9212448</td><td> 0.9212448</td><td> 0.9212448</td></tr>
-	<tr><td>gamma_ly1   </td><td>34.06803390</td><td>0.45967001</td><td>74.1141111</td><td>0.000000e+00</td><td> 3.7790517</td><td> 3.7790517</td><td> 3.7790517</td></tr>
-	<tr><td>sigma2_ly1  </td><td>81.26966398</td><td>8.88358892</td><td> 9.1482918</td><td>0.000000e+00</td><td> 1.0000000</td><td> 1.0000000</td><td> 1.0000000</td></tr>
-	<tr><td>sigma2_uy   </td><td>33.38172914</td><td>2.06615553</td><td>16.1564455</td><td>0.000000e+00</td><td>33.3817291</td><td> 0.2911585</td><td> 0.2911585</td></tr>
-	<tr><td>alpha_j2    </td><td> 9.76186893</td><td>2.77868542</td><td> 3.5131249</td><td>4.428692e-04</td><td> 4.3134578</td><td> 4.3134578</td><td> 4.3134578</td></tr>
-	<tr><td>sigma2_j2   </td><td> 5.12170824</td><td>1.74574023</td><td> 2.9338318</td><td>3.348056e-03</td><td> 1.0000000</td><td> 1.0000000</td><td> 1.0000000</td></tr>
-	<tr><td>sigma_j2ly1 </td><td>14.98225260</td><td>5.35614006</td><td> 2.7972108</td><td>5.154590e-03</td><td> 0.7343540</td><td> 0.7343540</td><td> 0.7343540</td></tr>
-	<tr><td>beta_y      </td><td>-0.07799772</td><td>0.08028822</td><td>-0.9714715</td><td>3.313135e-01</td><td>-0.3883095</td><td>-0.3883095</td><td>-0.3883095</td></tr>
-	<tr><td>phi_y       </td><td>-1.15853206</td><td>1.30383730</td><td>-0.8885557</td><td>3.742419e-01</td><td>-1.6726795</td><td>-1.6726795</td><td>-1.6726795</td></tr>
-	<tr><td>sigma_su    </td><td> 6.25964956</td><td>1.20157732</td><td> 5.2095271</td><td>1.893226e-07</td><td> 6.2596496</td><td> 0.1978142</td><td> 0.1978142</td></tr>
-	<tr><td>sigma_ly1lx1</td><td>54.07595993</td><td>5.84895249</td><td> 9.2454093</td><td>0.000000e+00</td><td> 0.7174511</td><td> 0.7174511</td><td> 0.7174511</td></tr>
-	<tr><td>sigma_g2ly1 </td><td>12.16775970</td><td>2.07311855</td><td> 5.8693024</td><td>4.376326e-09</td><td> 0.6917655</td><td> 0.6917655</td><td> 0.6917655</td></tr>
-	<tr><td>sigma_j2lx1 </td><td> 8.24439973</td><td>3.54831691</td><td> 2.3234677</td><td>2.015404e-02</td><td> 0.4357164</td><td> 0.4357164</td><td> 0.4357164</td></tr>
-	<tr><td>sigma_j2g2  </td><td> 3.65790315</td><td>1.12368425</td><td> 3.2552767</td><td>1.132819e-03</td><td> 0.8283947</td><td> 0.8283947</td><td> 0.8283947</td></tr>
-	<tr><td>xi_lag_xy   </td><td>-1.32389447</td><td>1.13943560</td><td>-1.1618862</td><td>2.452817e-01</td><td>-1.3324099</td><td>-1.3324099</td><td>-1.3324099</td></tr>
-	<tr><td>xi_lag_yx   </td><td> 1.05271539</td><td>1.18628123</td><td> 0.8874079</td><td>3.748593e-01</td><td> 1.2473872</td><td> 1.2473872</td><td> 1.2473872</td></tr>
-</tbody>
-</table>
-</div></div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># A tibble: 23 × 8
+   label       estimate std.error statistic  p.value   std.lv  std.all  std.nox
+   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+ 1 gamma_lx1   32.5        0.543    60.0    0         4.08     4.08     4.08   
+ 2 sigma2_lx1  63.8        4.90     13.0    0         1        1        1      
+ 3 sigma2_ux   29.6        1.71     17.3    0        29.6      0.317    0.317  
+ 4 alpha_g2     7.82       2.18      3.58   0.000338  2.37     2.37     2.37   
+ 5 sigma2_g2   10.9        8.19      1.33   0.183     1        1        1      
+ 6 sigma_g2lx1  0.216      6.81      0.0317 0.975     0.00819  0.00819  0.00819
+ 7 beta_x      -<span class=" -Color -Color-Red">0.00771</span>    0.0563   -<span class=" -Color -Color-Red">0.137</span>  0.891    -<span class=" -Color -Color-Red">0.0186</span>  -<span class=" -Color -Color-Red">0.0186</span>  -<span class=" -Color -Color-Red">0.0186</span> 
+ 8 phi_x        4.73       3.30      1.43   0.152     3.89     3.89     3.89   
+ 9 gamma_ly1   33.8        0.422    80.1    0         3.53     3.53     3.53   
+10 sigma2_ly1  91.5        9.02     10.1    0         1        1        1      
+# ℹ 13 more rows
+</pre></div>
+</div>
+</div>
 </div>
 <p>L’output completo è fornito qui di seguito.</p>
 <div class="cell docutils container">
@@ -1046,7 +1042,7 @@ Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.15 ended normally after 400 iterations
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 484 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
@@ -1059,10 +1055,10 @@ Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g
 
 Model Test User Model:
                                               Standard      Scaled
-  Test Statistic                               175.352     187.599
+  Test Statistic                               169.764     182.983
   Degrees of freedom                                96          96
   P-value (Chi-square)                           0.000       0.000
-  Scaling correction factor                                  0.935
+  Scaling correction factor                                  0.928
     Yuan-Bentler correction (Mplus variant)                       
 
 Parameter Estimates:
@@ -1155,27 +1151,27 @@ Regressions:
   lx7 ~                                               
     lx6               1.000                           
   dx2 ~                                               
-    lx1     (bt_x)   -0.145    0.079   -1.847    0.065
+    lx1     (bt_x)   -0.008    0.056   -0.137    0.891
   dx3 ~                                               
-    lx2     (bt_x)   -0.145    0.079   -1.847    0.065
+    lx2     (bt_x)   -0.008    0.056   -0.137    0.891
   dx4 ~                                               
-    lx3     (bt_x)   -0.145    0.079   -1.847    0.065
+    lx3     (bt_x)   -0.008    0.056   -0.137    0.891
   dx5 ~                                               
-    lx4     (bt_x)   -0.145    0.079   -1.847    0.065
+    lx4     (bt_x)   -0.008    0.056   -0.137    0.891
   dx6 ~                                               
-    lx5     (bt_x)   -0.145    0.079   -1.847    0.065
+    lx5     (bt_x)   -0.008    0.056   -0.137    0.891
   dx7 ~                                               
-    lx6     (bt_x)   -0.145    0.079   -1.847    0.065
+    lx6     (bt_x)   -0.008    0.056   -0.137    0.891
   dx3 ~                                               
-    dx2     (ph_x)    1.115    1.109    1.006    0.315
+    dx2     (ph_x)    4.731    3.304    1.432    0.152
   dx4 ~                                               
-    dx3     (ph_x)    1.115    1.109    1.006    0.315
+    dx3     (ph_x)    4.731    3.304    1.432    0.152
   dx5 ~                                               
-    dx4     (ph_x)    1.115    1.109    1.006    0.315
+    dx4     (ph_x)    4.731    3.304    1.432    0.152
   dx6 ~                                               
-    dx5     (ph_x)    1.115    1.109    1.006    0.315
+    dx5     (ph_x)    4.731    3.304    1.432    0.152
   dx7 ~                                               
-    dx6     (ph_x)    1.115    1.109    1.006    0.315
+    dx6     (ph_x)    4.731    3.304    1.432    0.152
   ly2 ~                                               
     ly1               1.000                           
   ly3 ~                                               
@@ -1189,80 +1185,80 @@ Regressions:
   ly7 ~                                               
     ly6               1.000                           
   dy2 ~                                               
-    ly1     (bt_y)   -0.078    0.080   -0.971    0.331
+    ly1     (bt_y)    0.076    0.041    1.832    0.067
   dy3 ~                                               
-    ly2     (bt_y)   -0.078    0.080   -0.971    0.331
+    ly2     (bt_y)    0.076    0.041    1.832    0.067
   dy4 ~                                               
-    ly3     (bt_y)   -0.078    0.080   -0.971    0.331
+    ly3     (bt_y)    0.076    0.041    1.832    0.067
   dy5 ~                                               
-    ly4     (bt_y)   -0.078    0.080   -0.971    0.331
+    ly4     (bt_y)    0.076    0.041    1.832    0.067
   dy6 ~                                               
-    ly5     (bt_y)   -0.078    0.080   -0.971    0.331
+    ly5     (bt_y)    0.076    0.041    1.832    0.067
   dy7 ~                                               
-    ly6     (bt_y)   -0.078    0.080   -0.971    0.331
+    ly6     (bt_y)    0.076    0.041    1.832    0.067
   dy3 ~                                               
-    dy2     (ph_y)   -1.159    1.304   -0.889    0.374
+    dy2     (ph_y)   -5.985    3.231   -1.852    0.064
   dy4 ~                                               
-    dy3     (ph_y)   -1.159    1.304   -0.889    0.374
+    dy3     (ph_y)   -5.985    3.231   -1.852    0.064
   dy5 ~                                               
-    dy4     (ph_y)   -1.159    1.304   -0.889    0.374
+    dy4     (ph_y)   -5.985    3.231   -1.852    0.064
   dy6 ~                                               
-    dy5     (ph_y)   -1.159    1.304   -0.889    0.374
+    dy5     (ph_y)   -5.985    3.231   -1.852    0.064
   dy7 ~                                               
-    dy6     (ph_y)   -1.159    1.304   -0.889    0.374
+    dy6     (ph_y)   -5.985    3.231   -1.852    0.064
   dx3 ~                                               
-    dy2   (x_lg_x)   -1.324    1.139   -1.162    0.245
+    dy2   (x_lg_x)   -4.864    2.915   -1.668    0.095
   dx4 ~                                               
-    dy3   (x_lg_x)   -1.324    1.139   -1.162    0.245
+    dy3   (x_lg_x)   -4.864    2.915   -1.668    0.095
   dx5 ~                                               
-    dy4   (x_lg_x)   -1.324    1.139   -1.162    0.245
+    dy4   (x_lg_x)   -4.864    2.915   -1.668    0.095
   dx6 ~                                               
-    dy5   (x_lg_x)   -1.324    1.139   -1.162    0.245
+    dy5   (x_lg_x)   -4.864    2.915   -1.668    0.095
   dx7 ~                                               
-    dy6   (x_lg_x)   -1.324    1.139   -1.162    0.245
+    dy6   (x_lg_x)   -4.864    2.915   -1.668    0.095
   dy3 ~                                               
-    dx2   (x_lg_y)    1.053    1.186    0.887    0.375
+    dx2   (x_lg_y)    5.830    3.721    1.566    0.117
   dy4 ~                                               
-    dx3   (x_lg_y)    1.053    1.186    0.887    0.375
+    dx3   (x_lg_y)    5.830    3.721    1.566    0.117
   dy5 ~                                               
-    dx4   (x_lg_y)    1.053    1.186    0.887    0.375
+    dx4   (x_lg_y)    5.830    3.721    1.566    0.117
   dy6 ~                                               
-    dx5   (x_lg_y)    1.053    1.186    0.887    0.375
+    dx5   (x_lg_y)    5.830    3.721    1.566    0.117
   dy7 ~                                               
-    dx6   (x_lg_y)    1.053    1.186    0.887    0.375
+    dx6   (x_lg_y)    5.830    3.721    1.566    0.117
 
 Covariances:
                    Estimate  Std.Err  z-value  P(&gt;|z|)
   lx1 ~~                                              
-    g2 (sgm_g2lx1)   10.579    3.188    3.319    0.001
+    g2 (sgm_g2lx1)    0.216    6.811    0.032    0.975
   ly1 ~~                                              
-    j2 (sgm_j2ly1)   14.982    5.356    2.797    0.005
+    j2 (sgm_j2ly1)   -4.945    7.807   -0.633    0.526
  .x1 ~~                                               
-   .y1      (sgm_)    6.260    1.202    5.210    0.000
+   .y1      (sgm_)    3.888    1.514    2.568    0.010
  .x2 ~~                                               
-   .y2      (sgm_)    6.260    1.202    5.210    0.000
+   .y2      (sgm_)    3.888    1.514    2.568    0.010
  .x3 ~~                                               
-   .y3      (sgm_)    6.260    1.202    5.210    0.000
+   .y3      (sgm_)    3.888    1.514    2.568    0.010
  .x4 ~~                                               
-   .y4      (sgm_)    6.260    1.202    5.210    0.000
+   .y4      (sgm_)    3.888    1.514    2.568    0.010
  .x5 ~~                                               
-   .y5      (sgm_)    6.260    1.202    5.210    0.000
+   .y5      (sgm_)    3.888    1.514    2.568    0.010
  .x6 ~~                                               
-   .y6      (sgm_)    6.260    1.202    5.210    0.000
+   .y6      (sgm_)    3.888    1.514    2.568    0.010
  .x7 ~~                                               
-   .y7      (sgm_)    6.260    1.202    5.210    0.000
+   .y7      (sgm_)    3.888    1.514    2.568    0.010
   lx1 ~~                                              
-    l1      (s_11)   54.076    5.849    9.245    0.000
+    l1      (s_11)   52.706    5.478    9.622    0.000
   g2 ~~                                               
-    l1 (sgm_g2ly1)   12.168    2.073    5.869    0.000
+    l1 (sgm_g2ly1)    2.305    6.817    0.338    0.735
   lx1 ~~                                              
-    j2 (sgm_j2lx1)    8.244    3.548    2.323    0.020
+    j2 (sgm_j2lx1)   -4.187    6.344   -0.660    0.509
   g2 ~~                                               
-    j2      (s_22)    3.658    1.124    3.255    0.001
+    j2      (s_22)   14.752   10.409    1.417    0.156
 
 Intercepts:
                    Estimate  Std.Err  z-value  P(&gt;|z|)
-    lx1  (gmm_lx1)   32.287    0.506   63.786    0.000
+    lx1  (gmm_lx1)   32.540    0.543   59.963    0.000
    .lx2               0.000                           
    .lx3               0.000                           
    .lx4               0.000                           
@@ -1282,8 +1278,8 @@ Intercepts:
    .dx5               0.000                           
    .dx6               0.000                           
    .dx7               0.000                           
-    g2   (alph_g2)   12.416    2.925    4.244    0.000
-    ly1  (gmm_ly1)   34.068    0.460   74.114    0.000
+    g2   (alph_g2)    7.822    2.182    3.584    0.000
+    ly1  (gmm_ly1)   33.762    0.422   80.067    0.000
    .ly2               0.000                           
    .ly3               0.000                           
    .ly4               0.000                           
@@ -1303,58 +1299,58 @@ Intercepts:
    .dy5               0.000                           
    .dy6               0.000                           
    .dy7               0.000                           
-    j2   (alph_j2)    9.762    2.779    3.513    0.000
+    j2   (alph_j2)    5.289    1.598    3.310    0.001
 
 Variances:
                    Estimate  Std.Err  z-value  P(&gt;|z|)
-    lx1 (sgm2_lx1)   69.903    6.000   11.650    0.000
+    lx1 (sgm2_lx1)   63.761    4.904   13.001    0.000
    .lx2               0.000                           
    .lx3               0.000                           
    .lx4               0.000                           
    .lx5               0.000                           
    .lx6               0.000                           
    .lx7               0.000                           
-   .x1    (sgm2_x)   29.997    1.830   16.395    0.000
-   .x2    (sgm2_x)   29.997    1.830   16.395    0.000
-   .x3    (sgm2_x)   29.997    1.830   16.395    0.000
-   .x4    (sgm2_x)   29.997    1.830   16.395    0.000
-   .x5    (sgm2_x)   29.997    1.830   16.395    0.000
-   .x6    (sgm2_x)   29.997    1.830   16.395    0.000
-   .x7    (sgm2_x)   29.997    1.830   16.395    0.000
+   .x1    (sgm2_x)   29.553    1.713   17.251    0.000
+   .x2    (sgm2_x)   29.553    1.713   17.251    0.000
+   .x3    (sgm2_x)   29.553    1.713   17.251    0.000
+   .x4    (sgm2_x)   29.553    1.713   17.251    0.000
+   .x5    (sgm2_x)   29.553    1.713   17.251    0.000
+   .x6    (sgm2_x)   29.553    1.713   17.251    0.000
+   .x7    (sgm2_x)   29.553    1.713   17.251    0.000
    .dx2               0.000                           
    .dx3               0.000                           
    .dx4               0.000                           
    .dx5               0.000                           
    .dx6               0.000                           
    .dx7               0.000                           
-    g2   (sgm2_g2)    3.807    1.049    3.630    0.000
-    ly1 (sgm2_ly1)   81.270    8.884    9.148    0.000
+    g2   (sgm2_g2)   10.913    8.188    1.333    0.183
+    ly1 (sgm2_ly1)   91.477    9.025   10.136    0.000
    .ly2               0.000                           
    .ly3               0.000                           
    .ly4               0.000                           
    .ly5               0.000                           
    .ly6               0.000                           
    .ly7               0.000                           
-   .y1    (sgm2_y)   33.382    2.066   16.156    0.000
-   .y2    (sgm2_y)   33.382    2.066   16.156    0.000
-   .y3    (sgm2_y)   33.382    2.066   16.156    0.000
-   .y4    (sgm2_y)   33.382    2.066   16.156    0.000
-   .y5    (sgm2_y)   33.382    2.066   16.156    0.000
-   .y6    (sgm2_y)   33.382    2.066   16.156    0.000
-   .y7    (sgm2_y)   33.382    2.066   16.156    0.000
+   .y1    (sgm2_y)   30.320    1.940   15.632    0.000
+   .y2    (sgm2_y)   30.320    1.940   15.632    0.000
+   .y3    (sgm2_y)   30.320    1.940   15.632    0.000
+   .y4    (sgm2_y)   30.320    1.940   15.632    0.000
+   .y5    (sgm2_y)   30.320    1.940   15.632    0.000
+   .y6    (sgm2_y)   30.320    1.940   15.632    0.000
+   .y7    (sgm2_y)   30.320    1.940   15.632    0.000
    .dy2               0.000                           
    .dy3               0.000                           
    .dy4               0.000                           
    .dy5               0.000                           
    .dy6               0.000                           
    .dy7               0.000                           
-    j2   (sgm2_j2)    5.122    1.746    2.934    0.003
+    j2   (sgm2_j2)   20.928   12.318    1.699    0.089
 </pre></div>
 </div>
 </div>
 </div>
 <section id="interpretazione">
-<h3><span class="section-number">73.1.1. </span>Interpretazione<a class="headerlink" href="#interpretazione" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">74.1.1. </span>Interpretazione<a class="headerlink" href="#interpretazione" title="Permalink to this heading">#</a></h3>
 <p>Le stime dei parametri di questo modello descrivono le traiettorie medie e individuali per la matematica e la comprensione della lettura, nonché le loro associazioni nel tempo. Le traiettorie medie per la matematica e la comprensione della lettura iniziano rispettivamente a 32.27 e 33.99. Da lì, le traiettorie medie sono descritte dalle rispettive equazioni di cambiamento.</p>
 <p>Per l’equazione di cambiamento della matematica, la media della componente di cambiamento costante è 15.82 e indica l’aumento costante ogni anno. La media della componente di cambiamento proporzionale è -0.27, il che indica un effetto limitativo (il coefficiente è negativo) sul cambiamento in matematica dovuto ai punteggi precedenti di matematica. Il modello assume l’assenza di un effetto di accoppiamento (0).</p>
 <div class="math notranslate nohighlight">
@@ -1388,12 +1384,12 @@ dc_{t1} = 12.59 - 0.15 \cdot lc_{t-li} + 0
 	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><th scope=row>1</th><td> 201</td><td>32.35166</td><td>40.25955</td><td>46.85162</td><td>51.11244</td><td>54.57470</td><td>57.59438</td><td>60.12484</td><td>31.75815</td><td>38.54732</td><td>45.26624</td><td>50.15729</td><td>54.33036</td><td>58.16909</td><td>61.62984</td></tr>
-	<tr><th scope=row>2</th><td> 303</td><td>23.86811</td><td>30.14857</td><td>35.17338</td><td>38.40280</td><td>41.07092</td><td>43.41358</td><td>45.38324</td><td>24.18628</td><td>29.73735</td><td>35.03589</td><td>38.89187</td><td>42.22833</td><td>45.31553</td><td>48.10809</td></tr>
-	<tr><th scope=row>3</th><td>2702</td><td>47.56130</td><td>55.20710</td><td>61.33948</td><td>65.28213</td><td>68.53617</td><td>71.39213</td><td>73.79288</td><td>37.18372</td><td>43.93006</td><td>50.38320</td><td>55.07950</td><td>59.13967</td><td>62.89524</td><td>66.29170</td></tr>
-	<tr><th scope=row>4</th><td>4303</td><td>36.18772</td><td>43.74308</td><td>50.22670</td><td>54.43363</td><td>57.81340</td><td>60.74739</td><td>63.20028</td><td>30.87830</td><td>37.22475</td><td>43.67727</td><td>48.37539</td><td>52.34288</td><td>55.97661</td><td>59.24432</td></tr>
-	<tr><th scope=row>5</th><td>5002</td><td>32.84143</td><td>41.86050</td><td>48.41785</td><td>52.57231</td><td>56.14868</td><td>59.33908</td><td>62.04248</td><td>38.20347</td><td>46.67251</td><td>54.16384</td><td>59.61208</td><td>64.47281</td><td>69.02650</td><td>73.17441</td></tr>
-	<tr><th scope=row>6</th><td>5005</td><td>36.35390</td><td>45.08587</td><td>50.52404</td><td>53.87829</td><td>56.98803</td><td>59.83663</td><td>62.28095</td><td>46.05429</td><td>54.94143</td><td>62.03164</td><td>67.18320</td><td>71.98515</td><td>76.56021</td><td>80.76637</td></tr>
+	<tr><th scope=row>1</th><td> 201</td><td>33.15176</td><td>40.43844</td><td>46.60271</td><td>50.77319</td><td>54.73281</td><td>57.07988</td><td>59.47240</td><td>31.45715</td><td>38.76294</td><td>45.37727</td><td>50.08929</td><td>54.92148</td><td>58.17234</td><td>61.73385</td></tr>
+	<tr><th scope=row>2</th><td> 303</td><td>24.39926</td><td>28.98397</td><td>35.86019</td><td>37.92657</td><td>42.93685</td><td>43.62843</td><td>47.28636</td><td>24.58506</td><td>28.56551</td><td>35.75247</td><td>37.65318</td><td>43.29687</td><td>44.12950</td><td>48.64298</td></tr>
+	<tr><th scope=row>3</th><td>2702</td><td>47.54951</td><td>53.80030</td><td>60.98284</td><td>64.20800</td><td>69.19670</td><td>70.71387</td><td>74.12672</td><td>37.03671</td><td>42.91439</td><td>50.50044</td><td>53.87010</td><td>59.66067</td><td>61.68289</td><td>66.17441</td></tr>
+	<tr><th scope=row>4</th><td>4303</td><td>37.47188</td><td>42.91769</td><td>50.78769</td><td>53.29757</td><td>58.99872</td><td>59.89817</td><td>64.02936</td><td>31.37796</td><td>36.16723</td><td>44.40361</td><td>46.76698</td><td>53.21213</td><td>54.32159</td><td>59.45710</td></tr>
+	<tr><th scope=row>5</th><td>5002</td><td>33.15122</td><td>42.56383</td><td>47.98136</td><td>53.84208</td><td>56.81824</td><td>60.51675</td><td>61.77965</td><td>37.95614</td><td>47.91670</td><td>53.89218</td><td>60.88241</td><td>64.91407</td><td>70.14310</td><td>72.81414</td></tr>
+	<tr><th scope=row>6</th><td>5005</td><td>36.26630</td><td>45.51709</td><td>49.89202</td><td>55.82861</td><td>57.95578</td><td>61.83941</td><td>62.39880</td><td>47.08275</td><td>57.06728</td><td>61.98182</td><td>69.18891</td><td>72.32670</td><td>77.84997</td><td>79.75528</td></tr>
 </tbody>
 </table>
 </div></div>
@@ -1429,20 +1425,20 @@ dc_{t1} = 12.59 - 0.15 \cdot lc_{t-li} + 0
 	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><th scope=row>201.1</th><td>201</td><td>1</td><td>32.35166</td><td>31.75815</td></tr>
-	<tr><th scope=row>201.2</th><td>201</td><td>2</td><td>40.25955</td><td>38.54732</td></tr>
-	<tr><th scope=row>201.3</th><td>201</td><td>3</td><td>46.85162</td><td>45.26624</td></tr>
-	<tr><th scope=row>201.4</th><td>201</td><td>4</td><td>51.11244</td><td>50.15729</td></tr>
-	<tr><th scope=row>201.5</th><td>201</td><td>5</td><td>54.57470</td><td>54.33036</td></tr>
-	<tr><th scope=row>201.6</th><td>201</td><td>6</td><td>57.59438</td><td>58.16909</td></tr>
-	<tr><th scope=row>201.7</th><td>201</td><td>7</td><td>60.12484</td><td>61.62984</td></tr>
-	<tr><th scope=row>303.1</th><td>303</td><td>1</td><td>23.86811</td><td>24.18628</td></tr>
-	<tr><th scope=row>303.2</th><td>303</td><td>2</td><td>30.14857</td><td>29.73735</td></tr>
-	<tr><th scope=row>303.3</th><td>303</td><td>3</td><td>35.17338</td><td>35.03589</td></tr>
-	<tr><th scope=row>303.4</th><td>303</td><td>4</td><td>38.40280</td><td>38.89187</td></tr>
-	<tr><th scope=row>303.5</th><td>303</td><td>5</td><td>41.07092</td><td>42.22833</td></tr>
-	<tr><th scope=row>303.6</th><td>303</td><td>6</td><td>43.41358</td><td>45.31553</td></tr>
-	<tr><th scope=row>303.7</th><td>303</td><td>7</td><td>45.38324</td><td>48.10809</td></tr>
+	<tr><th scope=row>201.1</th><td>201</td><td>1</td><td>33.15176</td><td>31.45715</td></tr>
+	<tr><th scope=row>201.2</th><td>201</td><td>2</td><td>40.43844</td><td>38.76294</td></tr>
+	<tr><th scope=row>201.3</th><td>201</td><td>3</td><td>46.60271</td><td>45.37727</td></tr>
+	<tr><th scope=row>201.4</th><td>201</td><td>4</td><td>50.77319</td><td>50.08929</td></tr>
+	<tr><th scope=row>201.5</th><td>201</td><td>5</td><td>54.73281</td><td>54.92148</td></tr>
+	<tr><th scope=row>201.6</th><td>201</td><td>6</td><td>57.07988</td><td>58.17234</td></tr>
+	<tr><th scope=row>201.7</th><td>201</td><td>7</td><td>59.47240</td><td>61.73385</td></tr>
+	<tr><th scope=row>303.1</th><td>303</td><td>1</td><td>24.39926</td><td>24.58506</td></tr>
+	<tr><th scope=row>303.2</th><td>303</td><td>2</td><td>28.98397</td><td>28.56551</td></tr>
+	<tr><th scope=row>303.3</th><td>303</td><td>3</td><td>35.86019</td><td>35.75247</td></tr>
+	<tr><th scope=row>303.4</th><td>303</td><td>4</td><td>37.92657</td><td>37.65318</td></tr>
+	<tr><th scope=row>303.5</th><td>303</td><td>5</td><td>42.93685</td><td>43.29687</td></tr>
+	<tr><th scope=row>303.6</th><td>303</td><td>6</td><td>43.62843</td><td>44.12950</td></tr>
+	<tr><th scope=row>303.7</th><td>303</td><td>7</td><td>47.28636</td><td>48.64298</td></tr>
 </tbody>
 </table>
 </div></div>
@@ -1465,7 +1461,7 @@ dc_{t1} = 12.59 - 0.15 \cdot lc_{t-li} + 0
 “Removed 939 rows containing missing values (`geom_line()`).”
 </pre></div>
 </div>
-<img alt="../_images/e0c00ce1c77fcc17d921cdd09a1ea5a9a2ea9bb89e0d783fd62b2899230bd6e2.png" src="../_images/e0c00ce1c77fcc17d921cdd09a1ea5a9a2ea9bb89e0d783fd62b2899230bd6e2.png" />
+<img alt="../_images/0fc43703a6c7d06e13a54bc51da080feb2d3194c34da9c0f5af13552a095fee4.png" src="../_images/0fc43703a6c7d06e13a54bc51da080feb2d3194c34da9c0f5af13552a095fee4.png" />
 </div>
 </div>
 <p>Creiamo un grafico del cambiamento intra-individuale per la comprensione nella lettura.</p>
@@ -1483,10 +1479,10 @@ dc_{t1} = 12.59 - 0.15 \cdot lc_{t-li} + 0
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
-“Removed 948 rows containing missing values (`geom_line()`).”
+“Removed 942 rows containing missing values (`geom_line()`).”
 </pre></div>
 </div>
-<img alt="../_images/da8647b2b533120675abe058870e2b2b354c19478aaf17425afd82ae6884297e.png" src="../_images/da8647b2b533120675abe058870e2b2b354c19478aaf17425afd82ae6884297e.png" />
+<img alt="../_images/225ac0c1de885f6b0aec5b9293afbdfae6c31e45d8bfd8927b8f0939a2184e4e.png" src="../_images/225ac0c1de885f6b0aec5b9293afbdfae6c31e45d8bfd8927b8f0939a2184e4e.png" />
 </div>
 </div>
 <p>Esaminiamo gli effetti combinati dei cambiamenti nelle due variabili.</p>
@@ -1559,17 +1555,304 @@ dc_{t1} = 12.59 - 0.15 \cdot lc_{t-li} + 0
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
 “Removed 4317 rows containing non-finite values (`stat_ellipse()`).”
-Warning message:
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
 “Removed 4317 rows containing missing values (`geom_point()`).”
-Warning message:
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
 “Removed 1 rows containing missing values (`geom_segment()`).”
 </pre></div>
 </div>
-<img alt="../_images/ff5a72aac4cebe53bef7cd730ebd4be4d5e8539dec25853dca8e811529cb85d1.png" src="../_images/ff5a72aac4cebe53bef7cd730ebd4be4d5e8539dec25853dca8e811529cb85d1.png" />
+<img alt="../_images/63e9c33d2401ee113baeafe52f111a23c96c842ef17cd14c0450563e4f387c66.png" src="../_images/63e9c33d2401ee113baeafe52f111a23c96c842ef17cd14c0450563e4f387c66.png" />
 </div>
 </div>
 <p>Il grafico rappresenta l’evoluzione delle variabili nel tempo. Le frecce del campo vettoriale indicano le variazioni previste nello spazio bivariato per un intervallo di tempo di 0.25 unità. Si osserva che i dati si concentrano principalmente all’interno dell’ellisse di confidenza al 95%. Al di fuori di questa area, i vettori direzionali sono interpolati sulla base delle osservazioni e dei modelli derivati dai dati effettivi (cioè all’interno dell’ellisse). Pertanto, è importante evitare di sovrainterpretare le dinamiche al di fuori dell’ellisse.</p>
 <p>La regione dello spazio vettoriale in cui i vettori tendono a zero indica le combinazioni di valori delle due variabili per cui non si prevedono ulteriori cambiamenti. L’aspetto più interessante del grafico non è tanto il risultato finale del processo, quanto la descrizione della forza e della direzione del cambiamento per ogni combinazione di valori delle due variabili considerate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">lavaan</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">reshape2</span><span class="p">)</span>
+
+<span class="c1"># This script simulates, then saves, then fits, data for a bivariate Latent Change Score model.</span>
+
+<span class="c1">#####  Simulate data for a bivariate Latent Change Score model ####</span>
+
+
+<span class="c1"># Fix sample size</span>
+<span class="n">samplesize</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">500</span>
+
+<span class="c1"># Simulate data for a bivariate Latent Change Score model.</span>
+<span class="n">BLCS_simulate</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+
+<span class="s">##### The following four parameters capture the core assumptions of the LCS and should not generally be modified</span>
+<span class="s">COG_T2 ~ 1*COG_T1     # This parameter regresses COG_T2 perfectly on COG_T1</span>
+<span class="s">dCOG1 =~ 1*COG_T2     # This defines the latent change score factor as measured perfectly by scores on COG_T2</span>
+<span class="s">COG_T2 ~ 0*1          # This line constrains the intercept of COG_T2 to 0</span>
+<span class="s">COG_T2 ~~ 0*COG_T2    # This fixes the variance of the COG_T2 to 0</span>
+
+<span class="s">###### The following five parameters will be estimated in the model. Their values can be modified manually to examine the effect on the raw data and model fit</span>
+
+<span class="s">dCOG1 ~ 10*1         # This fixes the intercept of the change score to 10 (i.e. people gain 10 points on average).</span>
+<span class="s">COG_T1 ~ 50*1        # This fixes the intercept of COG_T1 to 50.</span>
+<span class="s">dCOG1 ~~ 5*dCOG1     # This fixes the variance of the change scores to 5. This parameter can be changed manually to examine the effects.</span>
+<span class="s">COG_T1 ~~ 8*COG_T1   # This fixes the variance of the COG_T1 to 8. This parameter can be changed manually to examine the effects.</span>
+<span class="s">dCOG1~-0.1*COG_T1    # This fixes the self-feedback parameter to -0.2. This parameter can be changed manually to examine the effects.</span>
+
+<span class="s">############</span>
+<span class="s">NEU_T2 ~ 1*NEU_T1    # This parameter regresses NEU_T2 perfectly on NEU_T1</span>
+<span class="s">dNEU1 =~ 1*NEU_T2    # This defines the latent change score factor as measured perfectly by scores on NEU_T2</span>
+<span class="s">NEU_T2 ~ 0*1         # This line constrains the intercept of NEU_T2 to 0</span>
+<span class="s">NEU_T2 ~~ 0*NEU_T2   # This fixes the variance of the NEU_T1 to 0</span>
+
+<span class="s">###### The following five parameters will be estimated in the model. Their values can be modified manually to examine the effect on the raw data and model fit</span>
+
+<span class="s">dNEU1 ~ 10*1         # This fixes the intercept of the change score to 10 (i.e. people gain 10 points on average).</span>
+<span class="s">NEU_T1 ~ 50*1        # This fixes the intercept of NEU_T1 to 50.</span>
+<span class="s">dNEU1 ~~ 5*dNEU1     # This fixes the variance of the change scores to 5. This parameter can be changed manually to examine the effects.</span>
+<span class="s">NEU_T1 ~~ 8*NEU_T1   # This fixes the variance of the NEU_T1 to 8. This parameter can be changed manually to examine the effects.</span>
+<span class="s">dNEU1~-0.1*NEU_T1    # This fixes the self-feedback parameter to -0.1. This parameter can be changed manually to examine the effects.</span>
+
+<span class="s">dNEU1~0.4*COG_T1     # This fixes the coupling (.2) parameter for dNEU. These parameter can be changed manually to examine the effects.</span>
+<span class="s">dCOG1~0.3*NEU_T1     # This fixes the coupling (.3) parameter for dCOG. These parameter can be changed manually to examine the effects.</span>
+
+<span class="s">NEU_T1~~5*COG_T1     # This fixes the covariance in scores at T1 to 5</span>
+<span class="s">dCOG1~~.2*dNEU1      # This fixes the covariance in change scores to .2</span>
+<span class="s">&quot;</span>
+
+<span class="c1"># Simulate data</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">1234</span><span class="p">)</span>
+<span class="n">simdatBLCS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">simulateData</span><span class="p">(</span><span class="n">BLCS_simulate</span><span class="p">,</span><span class="w"> </span><span class="n">sample.nobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">samplesize</span><span class="p">,</span><span class="w"> </span><span class="n">meanstructure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">T</span><span class="p">)</span><span class="w"> </span><span class="c1"># Simulate data</span>
+<span class="nf">colMeans</span><span class="p">(</span><span class="n">simdatBLCS</span><span class="p">)</span><span class="w"> </span><span class="c1"># sanity check the means</span>
+<span class="nf">write.csv</span><span class="p">(</span><span class="n">simdatBLCS</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;3_simdatBLCS.csv&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># Fit the Bivariate Latent Change Score model to simulated data</span>
+<span class="n">BLCS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+
+<span class="s">COG_T2 ~ 1*COG_T1     # This parameter regresses COG_T2 perfectly on COG_T1</span>
+<span class="s">dCOG1 =~ 1*COG_T2     # This defines the latent change score factor as measured perfectly by scores on COG_T2</span>
+<span class="s">dCOG1 ~ 1             # This estimates the intercept of the change score</span>
+<span class="s">COG_T1 ~  1           # This estimates the intercept of COG_T1</span>
+<span class="s">COG_T2 ~ 0*1          # This constrains the intercept of COG_T2 to 0</span>
+
+<span class="s">NEU_T2 ~ 1*NEU_T1     # This parameter regresses NEU_T2 perfectly on NEU_T1</span>
+<span class="s">dNEU1 =~ 1*NEU_T2     # This defines the latent change score factor as measured perfectly by scores on NEU_T2</span>
+<span class="s">NEU_T2 ~ 0*1          # This line constrains the intercept of NEU_T2 to 0</span>
+<span class="s">NEU_T2 ~~ 0*NEU_T2    # This fixes the variance of the NEU_T1 to 0</span>
+
+<span class="s">dCOG1 ~~  dCOG1       # This estimates the variance of the change scores</span>
+<span class="s">COG_T1 ~~   COG_T1    # This estimates the variance of the COG_T1</span>
+<span class="s">COG_T2 ~~ 0*COG_T2    # This fixes the variance of the COG_T2 to 0</span>
+
+<span class="s">dNEU1 ~ 1             # This estimates the intercept of the change score</span>
+<span class="s">NEU_T1 ~ 1            # This estimates the intercept of NEU_T1</span>
+<span class="s">dNEU1 ~~ dNEU1        # This estimates the variance of the change scores</span>
+<span class="s">NEU_T1 ~~ NEU_T1      # This estimates the variance of NEU_T1</span>
+
+<span class="s">dNEU1~COG_T1+NEU_T1   # This estimates the COG to NEU coupling parameter and the COG to COG self-feedback</span>
+<span class="s">dCOG1~NEU_T1+COG_T1   # This estimates the NEU to COG coupling parameter and the NEU to NEU self-feedback</span>
+
+<span class="s">COG_T1 ~~  NEU_T1     # This estimates the COG_T1 NEU_T1 covariance</span>
+<span class="s">dCOG1~~dNEU1          # This estimates the dCOG and dNEU covariance</span>
+<span class="s">&quot;</span>
+
+<span class="n">fitBLCS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lavaan</span><span class="p">(</span><span class="n">BLCS</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">simdatBLCS</span><span class="p">,</span><span class="w"> </span><span class="n">estimator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mlr&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fixed.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">missing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;fiml&quot;</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">fitBLCS</span><span class="p">,</span><span class="w"> </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">standardized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">rsquare</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1"># Visualize the raw data</span>
+
+<span class="nf">theme_set</span><span class="p">(</span><span class="nf">theme_grey</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18</span><span class="p">))</span><span class="w"> </span><span class="c1"># increase text size</span>
+<span class="n">id</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">samplesize</span><span class="p">)</span>
+<span class="n">plotdattemp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">simdatBLCS</span><span class="o">$</span><span class="n">COG_T1</span><span class="p">,</span><span class="w"> </span><span class="n">simdatBLCS</span><span class="o">$</span><span class="n">NEU_T1</span><span class="p">),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">simdatBLCS</span><span class="o">$</span><span class="n">COG_T2</span><span class="p">,</span><span class="w"> </span><span class="n">simdatBLCS</span><span class="o">$</span><span class="n">NEU_T2</span><span class="p">),</span><span class="w"> </span><span class="nf">as.factor</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">)),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;COG&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">samplesize</span><span class="p">),</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;NEU&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">samplesize</span><span class="p">)))</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">plotdattemp</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;T1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;T2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Domain&quot;</span><span class="p">)</span>
+<span class="n">plotdat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">melt</span><span class="p">(</span><span class="n">plotdattemp</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="p">)</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">plotdat</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Domain</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_line</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Bivariate Latent Change Score model&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">ylab</span><span class="p">(</span><span class="s">&quot;Scores&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">xlab</span><span class="p">(</span><span class="s">&quot;Time points&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">facet_grid</span><span class="p">(</span><span class="o">~</span><span class="n">Domain</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Caricamento pacchetto: ‘reshape2’
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Il seguente oggetto è mascherato da ‘package:tidyr’:
+
+    smiths
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>COG_T2</dt><dd>69.9151476843866</dd><dt>NEU_T2</dt><dd>75.0651698308271</dd><dt>COG_T1</dt><dd>49.9238526579244</dd><dt>NEU_T1</dt><dd>50.0692462852881</dd></dl>
+</div><div class="output text_html"><dl>
+	<dt>$header</dt>
+		<dd><dl>
+	<dt>$lavaan.version</dt>
+		<dd>'0.6.17'</dd>
+	<dt>$sam.approach</dt>
+		<dd>FALSE</dd>
+	<dt>$optim.method</dt>
+		<dd>'nlminb'</dd>
+	<dt>$optim.iterations</dt>
+		<dd>118</dd>
+	<dt>$optim.converged</dt>
+		<dd>TRUE</dd>
+</dl>
+</dd>
+	<dt>$optim</dt>
+		<dd><dl>
+	<dt>$estimator</dt>
+		<dd>'ML'</dd>
+	<dt>$estimator.args</dt>
+		<dd><ol>
+</ol>
+</dd>
+	<dt>$optim.method</dt>
+		<dd>'nlminb'</dd>
+	<dt>$npar</dt>
+		<dd>14</dd>
+	<dt>$eq.constraints</dt>
+		<dd>FALSE</dd>
+	<dt>$nrow.ceq.jac</dt>
+		<dd>0</dd>
+	<dt>$nrow.cin.jac</dt>
+		<dd>0</dd>
+	<dt>$nrow.con.jac</dt>
+		<dd>0</dd>
+	<dt>$con.jac.rank</dt>
+		<dd>0</dd>
+</dl>
+</dd>
+	<dt>$data</dt>
+		<dd><dl>
+	<dt>$ngroups</dt>
+		<dd>1</dd>
+	<dt>$nobs</dt>
+		<dd>500</dd>
+	<dt>$npatterns</dt>
+		<dd>1</dd>
+</dl>
+</dd>
+	<dt>$test</dt>
+		<dd><dl>
+	<dt>$standard</dt>
+		<dd><dl>
+	<dt>$test</dt>
+		<dd>'standard'</dd>
+	<dt>$stat</dt>
+		<dd>0</dd>
+	<dt>$stat.group</dt>
+		<dd>0</dd>
+	<dt>$df</dt>
+		<dd>0</dd>
+	<dt>$refdistr</dt>
+		<dd>'chisq'</dd>
+	<dt>$pvalue</dt>
+		<dd>&lt;NA&gt;</dd>
+</dl>
+</dd>
+	<dt>$yuan.bentler.mplus</dt>
+		<dd><dl>
+	<dt>$test</dt>
+		<dd>'yuan.bentler.mplus'</dd>
+	<dt>$stat</dt>
+		<dd>0</dd>
+	<dt>$stat.group</dt>
+		<dd>0</dd>
+	<dt>$df</dt>
+		<dd>0</dd>
+	<dt>$refdistr</dt>
+		<dd>'chisq'</dd>
+	<dt>$pvalue</dt>
+		<dd>&lt;NA&gt;</dd>
+	<dt>$scaling.factor</dt>
+		<dd>&lt;NA&gt;</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+	<dt>$fit</dt>
+		<dd><style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>npar</dt><dd>14</dd><dt>fmin</dt><dd>0</dd><dt>chisq</dt><dd>0</dd><dt>df</dt><dd>0</dd><dt>pvalue</dt><dd>&lt;NA&gt;</dd><dt>chisq.scaled</dt><dd>0</dd><dt>df.scaled</dt><dd>0</dd><dt>pvalue.scaled</dt><dd>&lt;NA&gt;</dd><dt>chisq.scaling.factor</dt><dd>&lt;NA&gt;</dd><dt>baseline.chisq</dt><dd>1516.08675157333</dd><dt>baseline.df</dt><dd>6</dd><dt>baseline.pvalue</dt><dd>0</dd><dt>baseline.chisq.scaled</dt><dd>1567.02822576292</dd><dt>baseline.df.scaled</dt><dd>6</dd><dt>baseline.pvalue.scaled</dt><dd>0</dd><dt>baseline.chisq.scaling.factor</dt><dd>0.967491667761896</dd><dt>cfi</dt><dd>1</dd><dt>tli</dt><dd>1</dd><dt>cfi.scaled</dt><dd>1</dd><dt>tli.scaled</dt><dd>1</dd><dt>cfi.robust</dt><dd>1</dd><dt>tli.robust</dt><dd>1</dd><dt>logl</dt><dd>-4527.60113645991</dd><dt>unrestricted.logl</dt><dd>-4527.60113645991</dd><dt>aic</dt><dd>9083.20227291981</dd><dt>bic</dt><dd>9142.20678629773</dd><dt>ntotal</dt><dd>500</dd><dt>bic2</dt><dd>9097.76992097063</dd><dt>rmsea</dt><dd>0</dd><dt>rmsea.ci.lower</dt><dd>0</dd><dt>rmsea.ci.upper</dt><dd>0</dd><dt>rmsea.ci.level</dt><dd>0.9</dd><dt>rmsea.pvalue</dt><dd>&lt;NA&gt;</dd><dt>rmsea.close.h0</dt><dd>0.05</dd><dt>rmsea.notclose.pvalue</dt><dd>&lt;NA&gt;</dd><dt>rmsea.notclose.h0</dt><dd>0.08</dd><dt>rmsea.scaled</dt><dd>&lt;NA&gt;</dd><dt>rmsea.ci.lower.scaled</dt><dd>&lt;NA&gt;</dd><dt>rmsea.ci.upper.scaled</dt><dd>&lt;NA&gt;</dd><dt>rmsea.pvalue.scaled</dt><dd>&lt;NA&gt;</dd><dt>rmsea.notclose.pvalue.scaled</dt><dd>&lt;NA&gt;</dd><dt>rmsea.robust</dt><dd>0</dd><dt>rmsea.ci.lower.robust</dt><dd>0</dd><dt>rmsea.ci.upper.robust</dt><dd>0</dd><dt>rmsea.pvalue.robust</dt><dd>&lt;NA&gt;</dd><dt>rmsea.notclose.pvalue.robust</dt><dd>&lt;NA&gt;</dd><dt>srmr</dt><dd>6.08965689215016e-09</dd></dl>
+</dd>
+	<dt>$pe</dt>
+		<dd><table class="dataframe">
+<caption>A data.frame: 26 × 11</caption>
+<thead>
+	<tr><th scope=col>lhs</th><th scope=col>op</th><th scope=col>rhs</th><th scope=col>exo</th><th scope=col>est</th><th scope=col>se</th><th scope=col>z</th><th scope=col>pvalue</th><th scope=col>std.lv</th><th scope=col>std.all</th><th scope=col>std.nox</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>COG_T2</td><td>~ </td><td>COG_T1</td><td>0</td><td> 1.00000000</td><td>0.00000000</td><td>         NA</td><td>          NA</td><td> 1.00000000</td><td> 0.77189054</td><td> 0.77189054</td></tr>
+	<tr><td>dCOG1 </td><td>=~</td><td>COG_T2</td><td>0</td><td> 1.00000000</td><td>0.00000000</td><td>         NA</td><td>          NA</td><td> 2.21323097</td><td> 0.58787598</td><td> 0.58787598</td></tr>
+	<tr><td>dCOG1 </td><td>~1</td><td>      </td><td>0</td><td>12.81314931</td><td>1.72715940</td><td>  7.4186258</td><td>1.183498e-13</td><td> 5.78934123</td><td> 5.78934123</td><td> 5.78934123</td></tr>
+	<tr><td>COG_T1</td><td>~1</td><td>      </td><td>0</td><td>49.92385266</td><td>0.12996061</td><td>384.1460278</td><td>0.000000e+00</td><td>49.92385266</td><td>17.17953268</td><td>17.17953268</td></tr>
+	<tr><td>COG_T2</td><td>~1</td><td>      </td><td>0</td><td> 0.00000000</td><td>0.00000000</td><td>         NA</td><td>          NA</td><td> 0.00000000</td><td> 0.00000000</td><td> 0.00000000</td></tr>
+	<tr><td>NEU_T2</td><td>~ </td><td>NEU_T1</td><td>0</td><td> 1.00000000</td><td>0.00000000</td><td>         NA</td><td>          NA</td><td> 1.00000000</td><td> 0.66933226</td><td> 0.66933226</td></tr>
+	<tr><td>dNEU1 </td><td>=~</td><td>NEU_T2</td><td>0</td><td> 1.00000000</td><td>0.00000000</td><td>         NA</td><td>          NA</td><td> 2.49434688</td><td> 0.58377396</td><td> 0.58377396</td></tr>
+	<tr><td>NEU_T2</td><td>~1</td><td>      </td><td>0</td><td> 0.00000000</td><td>0.00000000</td><td>         NA</td><td>          NA</td><td> 0.00000000</td><td> 0.00000000</td><td> 0.00000000</td></tr>
+	<tr><td>NEU_T2</td><td>~~</td><td>NEU_T2</td><td>0</td><td> 0.00000000</td><td>0.00000000</td><td>         NA</td><td>          NA</td><td> 0.00000000</td><td> 0.00000000</td><td> 0.00000000</td></tr>
+	<tr><td>dCOG1 </td><td>~~</td><td>dCOG1 </td><td>0</td><td> 4.53825134</td><td>0.31655675</td><td> 14.3362961</td><td>0.000000e+00</td><td> 0.92647791</td><td> 0.92647791</td><td> 0.92647791</td></tr>
+	<tr><td>COG_T1</td><td>~~</td><td>COG_T1</td><td>0</td><td> 8.44488022</td><td>0.57625655</td><td> 14.6547231</td><td>0.000000e+00</td><td> 8.44488022</td><td> 1.00000000</td><td> 1.00000000</td></tr>
+	<tr><td>COG_T2</td><td>~~</td><td>COG_T2</td><td>0</td><td> 0.00000000</td><td>0.00000000</td><td>         NA</td><td>          NA</td><td> 0.00000000</td><td> 0.00000000</td><td> 0.00000000</td></tr>
+	<tr><td>dNEU1 </td><td>~1</td><td>      </td><td>0</td><td> 6.94674702</td><td>1.86793879</td><td>  3.7189372</td><td>2.000628e-04</td><td> 2.78499637</td><td> 2.78499637</td><td> 2.78499637</td></tr>
+	<tr><td>NEU_T1</td><td>~1</td><td>      </td><td>0</td><td>50.06924628</td><td>0.12789951</td><td>391.4733155</td><td>0.000000e+00</td><td>50.06924628</td><td>17.50721895</td><td>17.50721895</td></tr>
+	<tr><td>dNEU1 </td><td>~~</td><td>dNEU1 </td><td>0</td><td> 5.04875124</td><td>0.30951726</td><td> 16.3116953</td><td>0.000000e+00</td><td> 0.81146590</td><td> 0.81146590</td><td> 0.81146590</td></tr>
+	<tr><td>NEU_T1</td><td>~~</td><td>NEU_T1</td><td>0</td><td> 8.17914262</td><td>0.53024016</td><td> 15.4253548</td><td>0.000000e+00</td><td> 8.17914262</td><td> 1.00000000</td><td> 1.00000000</td></tr>
+	<tr><td>dNEU1 </td><td>~ </td><td>COG_T1</td><td>0</td><td> 0.39200881</td><td>0.04672702</td><td>  8.3893383</td><td>0.000000e+00</td><td> 0.15715890</td><td> 0.45670496</td><td> 0.45670496</td></tr>
+	<tr><td>dNEU1 </td><td>~ </td><td>NEU_T1</td><td>0</td><td>-0.03038619</td><td>0.04675279</td><td> -0.6499333</td><td>5.157353e-01</td><td>-0.01218202</td><td>-0.03483961</td><td>-0.03483961</td></tr>
+	<tr><td>dCOG1 </td><td>~ </td><td>NEU_T1</td><td>0</td><td> 0.27388482</td><td>0.04360839</td><td>  6.2805532</td><td>3.373706e-10</td><td> 0.12374887</td><td> 0.35391186</td><td> 0.35391186</td></tr>
+	<tr><td>dCOG1 </td><td>~ </td><td>COG_T1</td><td>0</td><td>-0.13090058</td><td>0.04084872</td><td> -3.2045205</td><td>1.352877e-03</td><td>-0.05914456</td><td>-0.17187455</td><td>-0.17187455</td></tr>
+	<tr><td>COG_T1</td><td>~~</td><td>NEU_T1</td><td>0</td><td> 5.55209505</td><td>0.47854351</td><td> 11.6020696</td><td>0.000000e+00</td><td> 5.55209505</td><td> 0.66804583</td><td> 0.66804583</td></tr>
+	<tr><td>dCOG1 </td><td>~~</td><td>dNEU1 </td><td>0</td><td> 0.61835059</td><td>0.21028679</td><td>  2.9405109</td><td>3.276715e-03</td><td> 0.12918096</td><td> 0.12918096</td><td> 0.12918096</td></tr>
+	<tr><td>NEU_T2</td><td>r2</td><td>NEU_T2</td><td>0</td><td> 1.00000000</td><td>        NA</td><td>         NA</td><td>          NA</td><td>         NA</td><td>         NA</td><td>         NA</td></tr>
+	<tr><td>dCOG1 </td><td>r2</td><td>dCOG1 </td><td>0</td><td> 0.07352209</td><td>        NA</td><td>         NA</td><td>          NA</td><td>         NA</td><td>         NA</td><td>         NA</td></tr>
+	<tr><td>COG_T2</td><td>r2</td><td>COG_T2</td><td>0</td><td> 1.00000000</td><td>        NA</td><td>         NA</td><td>          NA</td><td>         NA</td><td>         NA</td><td>         NA</td></tr>
+	<tr><td>dNEU1 </td><td>r2</td><td>dNEU1 </td><td>0</td><td> 0.18853410</td><td>        NA</td><td>         NA</td><td>          NA</td><td>         NA</td><td>         NA</td><td>         NA</td></tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using id, Domain as id variables
+</pre></div>
+</div>
+<img alt="../_images/c40f6e8bc7145f08613989563d19f79f9c1736fe6faf5fc8ba3327ea054bb22b.png" src="../_images/c40f6e8bc7145f08613989563d19f79f9c1736fe6faf5fc8ba3327ea054bb22b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fitBLCS</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">semPaths</span><span class="p">(</span>
+<span class="w">        </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ram&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;par&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">edge.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">6</span><span class="p">,</span>
+<span class="w">        </span><span class="n">label.prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.9</span><span class="p">,</span><span class="w"> </span><span class="n">edge.label.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">        </span><span class="n">equalizeManifests</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">optimizeLatRes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">        </span><span class="n">node.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span>
+<span class="w">        </span><span class="n">edge.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">shapeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rectangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">shapeLat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ellipse&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">shapeInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;triangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">sizeInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">sizeLat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">        </span><span class="n">curve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">unCol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#070b8c&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fc4371c968ad1b90212e9da182ccc77a804a9b6bf23b014a06cc2b26495501e4.png" src="../_images/fc4371c968ad1b90212e9da182ccc77a804a9b6bf23b014a06cc2b26495501e4.png" />
+</div>
+</div>
 </section>
 </section>
 </section>
@@ -1610,7 +1893,7 @@ Warning message:
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">72. </span>Modello LCS univariato</p>
+        <p class="prev-next-title"><span class="section-number">73. </span>Modello LCS univariato</p>
       </div>
     </a>
     <a class="right-next"
@@ -1618,7 +1901,7 @@ Warning message:
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">74. </span>Invarianza fattoriale nei modelli LGM</p>
+        <p class="prev-next-title"><span class="section-number">75. </span>Invarianza fattoriale nei modelli LGM</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1637,8 +1920,8 @@ Warning message:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#illustrazione">73.1. Illustrazione</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione">73.1.1. Interpretazione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#illustrazione">74.1. Illustrazione</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione">74.1.1. Interpretazione</a></li>
 </ul>
 </li>
 </ul>

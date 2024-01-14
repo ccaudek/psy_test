@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>72. Modello LCS univariato &#8212; psy_test</title>
+    <title>73. Modello LCS univariato &#8212; psy_test</title>
   
   
   
@@ -72,8 +72,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/increasing.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="73. Modello LCS bivariato" href="751_biv_change.html" />
-    <link rel="prev" title="71. Invarianza di Misurazione" href="12_inv_measurement.html" />
+    <link rel="next" title="74. Modello LCS bivariato" href="751_biv_change.html" />
+    <link rel="prev" title="72. Modello LCS univariato" href="13_latent_change.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -284,17 +284,18 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="10_growth_groups.html">69. Modelli di crescita latenti a gruppi multipli</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_bivariate_tvc_models.html">70. Modelli di crescita latenti bivariati</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12_inv_measurement.html">71. Invarianza di Misurazione</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">72. Modello LCS univariato</a></li>
-<li class="toctree-l1"><a class="reference internal" href="751_biv_change.html">73. Modello LCS bivariato</a></li>
-<li class="toctree-l1"><a class="reference internal" href="755_lgm_meas_inv.html">74. Invarianza fattoriale nei modelli LGM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_latent_change.html">72. Modello LCS univariato</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">73. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="751_biv_change.html">74. Modello LCS bivariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="755_lgm_meas_inv.html">75. Invarianza fattoriale nei modelli LGM</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">75. Bibliografia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">76. Bibliografia</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../_appendix/901_intro_r.html">76. Linguaggio di programmazione R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/901_intro_r.html">77. Linguaggio di programmazione R</a></li>
 </ul>
 
     </div>
@@ -490,9 +491,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-singolo-indicatore-in-due-rilevazioni-temporali">72.1. Un singolo indicatore in due rilevazioni temporali</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indicatori-multipli-in-due-rilevazioni-temporali">72.2. Indicatori multipli in due rilevazioni temporali</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-cambiamento-duale">72.3. Modello di cambiamento duale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-di-una-misura-unica-in-due-momenti-temporali">73.1. Analisi di una Misura Unica in Due Momenti Temporali</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indicatori-multipli-in-due-rilevazioni-temporali">73.2. Indicatori multipli in due rilevazioni temporali</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-cambiamento-duale">73.3. Modello di cambiamento duale</a></li>
 </ul>
             </nav>
         </div>
@@ -505,27 +506,16 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="modello-lcs-univariato">
-<span id="latent-change-notebook"></span><h1><span class="section-number">72. </span>Modello LCS univariato<a class="headerlink" href="#modello-lcs-univariato" title="Permalink to this heading">#</a></h1>
-<p>I <em>Latent Growth Model</em> descrivono la variabile <span class="math notranslate nohighlight">\(Y\)</span> al tempo <span class="math notranslate nohighlight">\(t\)</span>. I <em>Latent Change Score Models</em> (LCSM; McArdle, 2001, 2009; McArdle &amp; Hamagami, 2001) rendono esplicito il cambiamento di <span class="math notranslate nohighlight">\(Y\)</span> da <span class="math notranslate nohighlight">\(t-1\)</span> a <span class="math notranslate nohighlight">\(t\)</span>. Questo cambiamento nel paradigma dell’analisi statistica costringe l’analista a focalizzarsi sull’aspettativa del cambiamento in <span class="math notranslate nohighlight">\(Y\)</span>. I modelli LCS vengono utilizzati per studiare come i costrutti cambiano nel tempo e possono essere usati per stimare la traiettoria di sviluppo di un costrutto o per indagare l’associazione tra i cambiamenti di due costrutti nel tempo.</p>
-<p>I modelli LCS sono stati utilizzati nella psicologia dello sviluppo per mostrare diversi effetti. Ad esempio, che il vocabolario influisce sulla comprensione della lettura, che le persone con dislessia mostrano minori benefici intellettuali dalla lettura, che l’addestramento cognitivo si generalizza oltre il livello degli elementi all’abilità cognitiva e che le abilità cognitive di base come il ragionamento e il vocabolario mostrano mutui benefici nel tempo.</p>
-<p>In termini statistici, i modelli di cambiamento latente (LCS) si concentrano sul cambiamento nei costrutti dipendenti dal tempo piuttosto che sui punteggi osservati. Questo approccio consente di studiare direttamente il cambiamento intra-individuale attraverso una modellizzazione statistica adeguata. Analogamente a un test t per dati accoppiati, nei modelli LCS il punteggio di cambiamento latente rimuove la varianza dovuta alle differenze inter-individuali e fornisce una misura del cambiamento all’interno dell’individuo tra diverse rilevazioni temporali <span id="id1">[<a class="reference internal" href="../z_biblio.html#id23" title="Emil N Coman, Katherine Picho, John J McArdle, Victor Villagra, Lisa Dierker, and Eugen Iordache. The paired t-test as a simple latent change score model. 2013.">CPM+13</a>]</span>.</p>
-<p>La modellizzazione del punteggio di cambiamento latente si basa sui concetti della teoria classica dei test, ovvero assume che il punteggio osservato (X) di un individuo (i) in un particolare momento (t) possa essere espresso come la somma del “punteggio vero” dell’individuo (lx) e del “punteggio unico / residuo” (u) dell’individuo in quel momento:</p>
-<div class="math notranslate nohighlight">
-\[
-X_{ti} = lx_{ti} + u_{ti}.
-\]</div>
-<p>I modelli di cambiamento latente (LCS) scompongono i punteggi osservati per testare ipotesi sui cambiamenti nei costrutti latenti riducendo l’effetto dell’errore di misura. I modelli LCS stimano una variabile latente che cattura il cambiamento nei “punteggi veri” latenti tra diversi punti temporali. Combinando i modelli di curva di crescita latente e i modelli cross-lag autoregressivi, i modelli LCS forniscono un’analisi dettagliata dei cambiamenti intra-personali in uno o più costrutti nel tempo. Un approccio comune è quello di comprendere prima le traiettorie individuali di ogni costrutto in un modello LCS univariato e poi combinare entrambi i modelli per esaminare le loro relazioni in un modello LCS bivariato. In questo capitolo esamineremo i modelli LCS univariati; nel prossimo capitolo ci occuperemo del caso bivariato.</p>
-<p>Iniziamo importiamo i pacchetti necessari.</p>
+<span id="latent-change-notebook"></span><h1><span class="section-number">73. </span>Modello LCS univariato<a class="headerlink" href="#modello-lcs-univariato" title="Permalink to this heading">#</a></h1>
+<p>I <em>Latent Change Score Models</em> (LCSM; McArdle, 2001, 2009; McArdle &amp; Hamagami, 2001) costituiscono un ulteriore sviluppo dei modelli dedicati all’analisi dei dati longitudinali. Per chiarire la differenza tra i modelli LGM e i modelli LCSM, è importante considerare come entrambi modellino il cambiamento nel tempo.</p>
+<p>I modello LGM sono utilizzati per descrivere le traiettorie di crescita di una variabile nel tempo. In un LGM, la variabile latente (che rappresenta il cambiamento) è modellata direttamente attraverso diverse misurazioni nel tempo. Questi modelli cercano di catturare il pattern di crescita o declino di una variabile (ad esempio, l’abilità cognitiva o un sintomo clinico) attraverso diversi momenti. Un LGM si concentra sull’intero percorso della variabile e sull’interpretazione di come questa traiettoria cambia in risposta a vari fattori.</p>
+<p>I modelli LCSM, d’altra parte, mettono l’accento sul <em>cambiamento</em> specifico che avviene tra due momenti consecutivi nel tempo. Questi modelli sono particolarmente utili quando l’interesse è focalizzato su come e perché una variabile cambia da un momento all’altro. Invece di guardare la traiettoria generale come nei LGM, i modelli LCSM esaminano il cambiamento incrementale, consentendo una maggiore comprensione delle dinamiche del cambiamento. I modelli LCSM si concentrano su come i cambiamenti in una variabile (ad esempio, l’abilità cognitiva) da un momento all’altro sono associati a fattori esterni o ad altre variabili misurate.</p>
+<p>Mentre i modelli LGM sono usati per studiare la progressione generale di un fenomeno nel tempo, i modelli LCSM sono invece utilizzati per indagare come e perché avviene il cambiamento in risposta a vari fattori. Inoltre, i modelli LCSM forniscono un’analisi più granulare del cambiamento, separando il cambiamento intra-individuale dalla variabilità inter-individuale e consentendo un’esplorazione più dettagliata delle dinamiche del cambiamento.</p>
+<p>In questo capitolo esamineremo i modelli LCSM univariati; nel prossimo capitolo ci occuperemo del caso bivariato.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">source</span><span class="p">(</span><span class="s">&quot;_common.R&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">source</span><span class="p">(</span><span class="s">&quot;../_common.R&quot;</span><span class="p">)</span>
 <span class="nf">suppressPackageStartupMessages</span><span class="p">({</span>
-<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;lavaan&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;semPlot&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;knitr&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;markdown&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;patchwork&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;psych&quot;</span><span class="p">)</span>
 <span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;DT&quot;</span><span class="p">)</span>
 <span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;kableExtra&quot;</span><span class="p">)</span>
 <span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;lme4&quot;</span><span class="p">)</span>
@@ -534,37 +524,22 @@ X_{ti} = lx_{ti} + u_{ti}.
 <span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;stringr&quot;</span><span class="p">)</span>
 <span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;reshape2&quot;</span><span class="p">)</span>
 <span class="p">})</span>
-
-<span class="nf">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in file(filename, &quot;r&quot;, encoding = encoding):
-“non è possibile aprire il file &#39;_common.R&#39;: No such file or directory”
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="n">encoding</span><span class="p">):</span> <span class="n">non</span> <span class="n">è</span> <span class="n">possibile</span> <span class="n">aprire</span> <span class="n">la</span> <span class="n">connessione</span>
-<span class="ne">Traceback</span>:
-
-<span class="mi">1</span><span class="o">.</span> <span class="n">source</span><span class="p">(</span><span class="s2">&quot;_common.R&quot;</span><span class="p">)</span>
-<span class="mi">2</span><span class="o">.</span> <span class="n">file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span> <span class="o">=</span> <span class="n">encoding</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<section id="un-singolo-indicatore-in-due-rilevazioni-temporali">
-<h2><span class="section-number">72.1. </span>Un singolo indicatore in due rilevazioni temporali<a class="headerlink" href="#un-singolo-indicatore-in-due-rilevazioni-temporali" title="Permalink to this heading">#</a></h2>
-<p>Iniziamo con il caso più semplice, ovvero quello di una singola misura osservata in due momenti nel tempo per un campione di individui. Verrà qui discusso un esempio presentato da <span id="id2">Kievit <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id22" title="Rogier A Kievit, Andreas M Brandmaier, Gabriel Ziegler, Anne-Laura van Harmelen, Susanne MM de Mooij, Michael Moutoussis, Ian M Goodyer, Ed Bullmore, Peter B Jones, Peter Fonagy, and others. Developmental cognitive neuroscience using latent change score models: a tutorial and applications. Developmental Cognitive Neuroscience, 33:99–117, 2018.">KBZ+18</a>]</span>. Supponiamo dunque che un ricercatore studi una variabile psicologica la quale viene osservata in due momenti del tempo (T1 e T2) in una popolazione di interesse. Il modo tradizionale con cui si indaga se i punteggi di un gruppo di individui sono aumentati o diminuiti tra T1 e T2 è quello di eseguire un test t di Student per dati appaiati. Con poche modifiche, il modello LCS ci consente di andare oltre questo quadro di analisi tradizionale.</p>
-<p>Iniziamo a simulare i dati usando lo script fornito da <span id="id3">Kievit <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id22" title="Rogier A Kievit, Andreas M Brandmaier, Gabriel Ziegler, Anne-Laura van Harmelen, Susanne MM de Mooij, Michael Moutoussis, Ian M Goodyer, Ed Bullmore, Peter B Jones, Peter Fonagy, and others. Developmental cognitive neuroscience using latent change score models: a tutorial and applications. Developmental Cognitive Neuroscience, 33:99–117, 2018.">KBZ+18</a>]</span>.</p>
+<section id="analisi-di-una-misura-unica-in-due-momenti-temporali">
+<h2><span class="section-number">73.1. </span>Analisi di una Misura Unica in Due Momenti Temporali<a class="headerlink" href="#analisi-di-una-misura-unica-in-due-momenti-temporali" title="Permalink to this heading">#</a></h2>
+<p>Esplorare il caso più semplice di una singola variabile misurata in due diversi momenti nel tempo. Immaginiamo un ricercatore che studia un aspetto psicologico, osservando questa variabile in due distinti periodi, identificati come Tempo 1 (T1) e Tempo 2 (T2), su un gruppo di soggetti. L’approccio convenzionale per analizzare se i punteggi di un gruppo di individui sono variati tra T1 e T2 è quello di utilizzare il test t di Student per dati appaiati. Questo test è stato ampiamente utilizzato per confrontare le medie di due misurazioni correlate, come i punteggi di uno stesso gruppo di individui in due momenti diversi. Questo metodo permette di stabilire se ci sia stata una variazione significativa nei punteggi medi del gruppo tra i due momenti osservati. Il modello Latent Change Score (LCS) offre una prospettiva più avanzata e dettagliata rispetto al test t tradizionale. Questo modello permette non solo di valutare se ci sia stata una variazione nei punteggi medi, ma anche di esaminare la natura di questa variazione su base individuale. Mentre il test t tradizionale si concentra sul cambiamento a livello di gruppo, il modello LCS ci consente di indagare come e perché ogni singolo individuo nel campione possa aver sperimentato un cambiamento tra T1 e T2.</p>
+<p>Iniziamo simulando i dati mediante lo script fornito da <span id="id1">Kievit <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id22" title="Rogier A Kievit, Andreas M Brandmaier, Gabriel Ziegler, Anne-Laura van Harmelen, Susanne MM de Mooij, Michael Moutoussis, Ian M Goodyer, Ed Bullmore, Peter B Jones, Peter Fonagy, and others. Developmental cognitive neuroscience using latent change score models: a tutorial and applications. Developmental Cognitive Neuroscience, 33:99–117, 2018.">KBZ+18</a>]</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">samplesize</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">100</span>
 
 <span class="n">ULCS_simulate</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;</span>
 
-<span class="s">#####     The following lines specify the core assumptions of the LCS </span>
-<span class="s">#####     and should not generally be modified</span>
+<span class="s">##### The following lines specify the core assumptions of the LCS </span>
+<span class="s">##### and should not generally be modified</span>
 
 <span class="s">COG_T2 ~ 1*COG_T1     # Fixed regression of COG_T2 on COG_T1</span>
 <span class="s">dCOG1 =~ 1*COG_T2     # Fixed regression of dCOG1 on COG_T2</span>
@@ -575,14 +550,13 @@ X_{ti} = lx_{ti} + u_{ti}.
 <span class="s">###### The following five parameters will be estimated in the model. </span>
 <span class="s">###### Values can be modified manually to examine the effect on the model</span>
 
-<span class="s">dCOG1 ~ 4*1        # This fixes the intercept of the change score to 10 </span>
+<span class="s">dCOG1 ~ 4*1         # This fixes the intercept of the change score to 10 </span>
 <span class="s">COG_T1 ~ 10*1       # This fixes the intercept of COG_T1 to 50 </span>
 
 <span class="s">dCOG1 ~~ 5*dCOG1    # This fixes the variance of the change scores to 5. </span>
 <span class="s">COG_T1 ~~ 8*COG_T1  # This fixes the variance of the COG_T1 to 8. </span>
 
 <span class="s">dCOG1 ~ -0.1*COG_T1 # This fixes the self-feedback parameter to -0.1. </span>
-
 <span class="s">&#39;</span>
 </pre></div>
 </div>
@@ -592,7 +566,31 @@ X_{ti} = lx_{ti} + u_{ti}.
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span>
 <span class="n">simdatULCS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">simulateData</span><span class="p">(</span><span class="n">ULCS_simulate</span><span class="p">,</span><span class="w"> </span><span class="n">sample.nobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">samplesize</span><span class="p">,</span><span class="w"> </span><span class="n">meanstructure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">colMeans</span><span class="p">(</span><span class="n">simdatULCS</span><span class="p">))</span><span class="w"> </span><span class="c1"># sanity check the means</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">simdatULCS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 2</caption>
+<thead>
+	<tr><th></th><th scope=col>COG_T2</th><th scope=col>COG_T1</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td> 9.673594</td><td> 5.047393</td></tr>
+	<tr><th scope=row>2</th><td>15.824384</td><td>10.192440</td></tr>
+	<tr><th scope=row>3</th><td>10.870739</td><td>10.273960</td></tr>
+	<tr><th scope=row>4</th><td>12.686939</td><td> 6.160675</td></tr>
+	<tr><th scope=row>5</th><td>11.054693</td><td> 9.764821</td></tr>
+	<tr><th scope=row>6</th><td>13.444989</td><td>10.145172</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">colMeans</span><span class="p">(</span><span class="n">simdatULCS</span><span class="p">))</span><span class="w"> </span><span class="c1"># sanity check the means</span>
 </pre></div>
 </div>
 </div>
@@ -603,43 +601,76 @@ X_{ti} = lx_{ti} + u_{ti}.
 </div>
 </div>
 </div>
-<p>I valori precedenti indicano le medie dei punteggi di un ipotetico test cognitivo nei momenti T1 e T2 calcolate sulla base dei risultati di 100 soggetti.</p>
-<p>Il modello LCS viene formulato nel modo seguente.</p>
+<p>Interpretiamo i valori precedenti come le medie calcolate sulla base dei risultati di 100 soggetti dei punteggi di un ipotetico test cognitivo nei momenti T1 e T2.</p>
+<p>Da un punto di vista matematico, modelliamo i punteggi di un individuo <span class="math notranslate nohighlight">\(i\)</span> sul costrutto di interesse COG al tempo <span class="math notranslate nohighlight">\(t\)</span> come risultato di una componente autoregressiva più un residuo. Stabilendo un peso di regressione di 1 per COG_T2 rispetto a COG_T1, l’equazione autoregressiva diventa:</p>
+<div class="math notranslate nohighlight">
+\[
+COG_{i,t2} = COG_{i,t1} + \Delta COG_{i,1}.
+\]</div>
+<p>Questa formulazione indica che il punteggio di COG al tempo 2 (COG_{i,t2}) è uguale al punteggio al tempo 1 (COG_{i,t1}) più un cambiamento latente (<span class="math notranslate nohighlight">\(\Delta COG_{i,1}\)</span>).</p>
+<p>Il cambiamento latente può essere definito come:</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta COG_{i,1} = COG_{i,t2} - COG_{i,t1}.
+\]</div>
+<p>In questo contesto, all’interno dei modelli SEM, si introduce un fattore latente <span class="math notranslate nohighlight">\(\Delta COG1\)</span>, che rappresenta il cambiamento tra il tempo 1 e il tempo 2. Questo fattore latente è identificato al tempo 2 con un carico fattoriale fissato a 1, catturando così il cambiamento osservato.</p>
+<p>È poi possibile aggiungere un parametro di regressione <span class="math notranslate nohighlight">\(\beta\)</span> al modello, per indagare se il grado di cambiamento dipenda dai punteggi al tempo 1:</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta COG_{i,1} = \beta \cdot COG_{i,t1}.
+\]</div>
+<p>Con questo modello, possiamo rispondere a tre questioni fondamentali. La prima riguarda l’esistenza di un cambiamento medio significativo da T1 a T2, misurato dalla media del fattore di cambiamento latente, <span class="math notranslate nohighlight">\(\mu_{\Delta COG1}\)</span>. Questo approccio può essere considerato equivalente a un test t di Student per dati appaiati sotto determinate condizioni. Oltre a questo, il modello permette di stimare la varianza del fattore di cambiamento, <span class="math notranslate nohighlight">\(\sigma^2_{\Delta COG1}\)</span>, che riflette quanto gli individui differiscono nel cambiamento nel tempo. Infine, si può specificare un parametro autoregressivo o una covarianza <span class="math notranslate nohighlight">\(\beta\)</span>, che quantifica la dipendenza del cambiamento dai punteggi iniziali.</p>
+<p>In sintesi, il modello LCS fornisce un quadro robusto per analizzare i cambiamenti nel tempo in un costrutto latente, offrendo sia una stima del cambiamento medio sia una misura della varianza individuale in questo cambiamento, e valutando l’effetto dei punteggi iniziali sul cambiamento stesso.</p>
+<p>Il modello LCS può essere formulato in <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> nel modo seguente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ULCS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;</span>
-
 <span class="s">    COG_T2 ~ 1*COG_T1     # Fixed regression of COG_T2 on COG_T1</span>
-<span class="s">    dCOG1 =~ 1*COG_T2     # Fixed regression of dCOG1 on COG_T2</span>
+<span class="s">    dCOG1 =~ 1*COG_T2     # Fixed loading of dCOG1 on COG_T2</span>
 <span class="s">    COG_T2 ~ 0*1          # This line constrains the intercept of COG_T2 to 0</span>
 <span class="s">    COG_T2 ~~ 0*COG_T2    # This fixes the variance of the COG_T2 to 0 </span>
 
 <span class="s">    dCOG1 ~ 1             # This estimates the intercept of the change scores </span>
-<span class="s">    COG_T1 ~  1           # This estimates the intercept of COG_T1 </span>
+<span class="s">    COG_T1 ~ 1            # This estimates the intercept of COG_T1 </span>
 <span class="s">    dCOG1 ~~ dCOG1        # This estimates the variance of the change scores </span>
 <span class="s">    COG_T1 ~~ COG_T1      # This estimates the variance of COG_T1 </span>
 <span class="s">    dCOG1 ~ COG_T1        # This estimates the self-feedback parameter</span>
-
 <span class="s">&#39;</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Il modello di Latent Change Score (LCS) può essere riformulato e chiarito nel seguente modo:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">ULCS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;</span>
+<span class="s">    COG_T2 ~ 1*COG_T1     # Regressione fissa di COG_T2 su COG_T1</span>
+<span class="s">    dCOG1 =~ 1*COG_T2     # Carico fattoriale fisso di dCOG1 su COG_T2</span>
+<span class="s">    COG_T2 ~ 0*1          # Fissa l&#39;</span><span class="n">intercetta</span><span class="w"> </span><span class="n">di</span><span class="w"> </span><span class="n">COG_T2</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="n">COG_T2</span><span class="w"> </span><span class="o">~~</span><span class="w"> </span><span class="m">0</span><span class="o">*</span><span class="n">COG_T2</span><span class="w">    </span><span class="c1"># Fissa la varianza di COG_T2 a 0</span>
+
+<span class="w">    </span><span class="n">dCOG1</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w">             </span><span class="c1"># Stima l&#39;intercetta dei punteggi di cambiamento</span>
+<span class="w">    </span><span class="n">COG_T1</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w">            </span><span class="c1"># Stima l&#39;intercetta di COG_T1</span>
+<span class="w">    </span><span class="n">dCOG1</span><span class="w"> </span><span class="o">~~</span><span class="w"> </span><span class="n">dCOG1</span><span class="w">        </span><span class="c1"># Stima la varianza dei punteggi di cambiamento</span>
+<span class="w">    </span><span class="n">COG_T1</span><span class="w"> </span><span class="o">~~</span><span class="w"> </span><span class="n">COG_T1</span><span class="w">      </span><span class="c1"># Stima la varianza di COG_T1</span>
+<span class="w">    </span><span class="n">dCOG1</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">COG_T1</span><span class="w">        </span><span class="c1"># Stima il parametro di auto-feedback</span>
+<span class="s">&#39;</span>
+</pre></div>
+</div>
+<p>Spiegazione delle Componenti del Modello:</p>
+<ol class="arabic simple">
+<li><p><strong>COG_T2 ~ 1*COG_T1</strong>: Questa riga indica che il punteggio cognitivo al tempo T2 (COG_T2) è previsto linearmente dal punteggio al tempo T1 (COG_T1). In pratica, ogni variazione in COG_T1 si riflette direttamente in una variazione equivalente in COG_T2.</p></li>
+<li><p><strong>dCOG1 =~ 1*COG_T2</strong>: Qui, dCOG1, che rappresenta il cambiamento latente della variabile cognitiva tra T1 e T2, è modellato con un carico fattoriale fisso su COG_T2. Questo significa che dCOG1 misura il cambiamento osservato da T1 a T2.</p></li>
+<li><p><strong>COG_T2 ~ 0<em>1 e COG_T2 ~~ 0</em>COG_T2</strong>: Queste righe indicano che l’intercetta e la varianza di COG_T2 sono fissate a 0, suggerendo che non esistono variazioni in COG_T2 al di fuori di quelle spiegate dalla sua relazione con COG_T1.</p></li>
+<li><p><strong>dCOG1 ~ 1 e COG_T1 ~ 1</strong>: Queste righe stimano rispettivamente le intercette di dCOG1 (il cambiamento latente) e COG_T1, fornendo valori medi per queste misurazioni.</p></li>
+<li><p><strong>dCOG1 ~~ dCOG1 e COG_T1 ~~ COG_T1</strong>: Queste righe stimano le varianze di dCOG1 e COG_T1, mostrando la variabilità nel cambiamento e nella misura iniziale rispettivamente.</p></li>
+<li><p><strong>dCOG1 ~ COG_T1</strong>: Questa linea introduce un parametro di regressione che esplora come il punteggio iniziale (COG_T1) influisce sul cambiamento latente (dCOG1), permettendo di indagare la dipendenza del cambiamento dai punteggi iniziali.</p></li>
+</ol>
 <p>Il corrispondente diagramma di percorso è fornito nella figura seguente.</p>
 <figure class="align-default" id="kevit1-fig">
-<a class="reference internal image-reference" href="_lgm/images/kevit_1.png"><img alt="_lgm/images/kevit_1.png" src="_lgm/images/kevit_1.png" style="height: 450px;" /></a>
+<a class="reference internal image-reference" href="../_images/kevit_1.png"><img alt="../_images/kevit_1.png" src="../_images/kevit_1.png" style="height: 400px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 72.1 </span><span class="caption-text"><strong>Diagramma di percorso semplificato di un LCSM univariato.</strong> La variabile COG viene misurata in due momenti (COG_T1 e COG_T2). Il cambiamento (ΔCOG1) tra i due momenti viene modellato come una variabile latente.</span><a class="headerlink" href="#kevit1-fig" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 73.1 </span><span class="caption-text"><strong>Diagramma di percorso semplificato di un LCSM univariato.</strong> La variabile COG viene misurata in due momenti (COG_T1 e COG_T2). Il cambiamento (ΔCOG1) tra i due momenti viene modellato come una variabile latente. (La figura è tratta da <span id="id2">Kievit <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id22" title="Rogier A Kievit, Andreas M Brandmaier, Gabriel Ziegler, Anne-Laura van Harmelen, Susanne MM de Mooij, Michael Moutoussis, Ian M Goodyer, Ed Bullmore, Peter B Jones, Peter Fonagy, and others. Developmental cognitive neuroscience using latent change score models: a tutorial and applications. Developmental Cognitive Neuroscience, 33:99–117, 2018.">KBZ+18</a>]</span>.)</span><a class="headerlink" href="#kevit1-fig" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p><code class="docutils literal notranslate"><span class="pre">COG_T1</span></code> e <code class="docutils literal notranslate"><span class="pre">COG_T2</span></code> sono i punteggi osservati nei due momenti temporali; <span class="math notranslate nohighlight">\(\delta\)</span><code class="docutils literal notranslate"><span class="pre">COG1</span></code> rappresenta la differenza tra i punteggi latenti nei due momenti temporali.</p>
-<p>Dato che il coefficiente parziale di regressione da <code class="docutils literal notranslate"><span class="pre">COG_T1</span></code> a <code class="docutils literal notranslate"><span class="pre">COG_T2</span></code> è fissato a 1, la media di <code class="docutils literal notranslate"><span class="pre">COG_T2</span></code> è data da <span class="math notranslate nohighlight">\(\mu_{COGT1} + \mu_\Delta{COG1}\)</span>. In altri termini, la differenza tra i punteggi latenti <code class="docutils literal notranslate"><span class="pre">COG</span></code> tra i due momenti temporali è uguale a <span class="math notranslate nohighlight">\(\mu_\Delta{COG1}\)</span>. Il framework SEM consente di definire un fattore per il cambiamento del punteggio latente ΔCOG1, il quale viene identificato a partire dal punto temporale 2 con una saturazione fattoriale fissata a 1. Facendo ciò si crea un fattore latente che cattura il cambiamento tra il tempo 1 e il tempo 2.</p>
-<p>Inoltre, il modello LCS aggiunge un parametro di regressione β al punteggio di cambiamento, che  consente di indagare se il grado di cambiamento dipende dai punteggi al tempo 1 come segue:</p>
-<div class="math notranslate nohighlight">
-\[
-ΔCOG_{i,1} = β·COG_{i,t_1}
-\]</div>
-<p>Con questo modello possiamo rispondere a tre domande. La prima domanda è se c’è un cambiamento medio affidabile da T1 a T2. Questo cambiamento è catturato dalla media del fattore del cambiamento latente, μΔCOG1. Sotto ipotesi relativamente semplici, questo test è equivalente a un test t di Student per dati appaiati <span id="id4">[<a class="reference internal" href="../z_biblio.html#id23" title="Emil N Coman, Katherine Picho, John J McArdle, Victor Villagra, Lisa Dierker, and Eugen Iordache. The paired t-test as a simple latent change score model. 2013.">CPM+13</a>]</span>. Tuttavia, anche questa semplice implementazione del modello LSC produce due ulteriori parametri di notevole interesse. Innanzitutto, ora possiamo stimare la varianza nel fattore di cambiamento, <span class="math notranslate nohighlight">\(σ^2ΔCOG1\)</span>, che cattura la misura in cui gli individui differiscono nel cambiamento che manifestano nel tempo. In secondo luogo, possiamo specificare una covarianza o un parametro autoregressivo β che cattura la misura in cui il cambiamento dipende o è proporzionale ai punteggi al tempo uno (questo parametro può anche essere specificato come covarianza se desiderato. Se viene incluso un parametro di regressione, il cambiamento medio deve essere interpretato condizionatamente al percorso di regressione; una covarianza stima il cambiamento medio “grezzo”).</p>
 <p>Adattiamo il modello specificato ai dati dell’esempio.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -656,7 +687,7 @@ X_{ti} = lx_{ti} + u_{ti}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.15 ended normally after 37 iterations
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 37 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
@@ -750,60 +781,93 @@ R-Square:
 </div>
 </div>
 </div>
-<p>Il cambiamento nel punteggio latente tra i momenti T1 e T2 è stimato essere uguale a 3.166 (SE = 0.648). Questo valore può essere messo in relazione alla differenza tra le medie dei punteggi in due momenti temporali che viene calcolata da un test t di Student per dati appaiati. Si noti però che, mentre nel caso del test t la differenza riguarda i punteggi osservati, nei modelli LSC essa descrive la variazione tra i punteggi latenti nei momenti T1 e T2.</p>
-<p>Il coefficiente 7.350 (SE = 0.494) stima la varianza con la quale gli individui differiscono nel cambiamento che manifestano nel tempo.</p>
-<p>Infine, il coefficiente -0.097  (SE = 0.036) stima la componente autoregressiva dal tempo T1 al tempo T2.</p>
-<p>Generiamo il diagramma di percorso con l’ausilio di <code class="docutils literal notranslate"><span class="pre">semPaths</span></code>.</p>
+<ul class="simple">
+<li><p>Il cambiamento nel punteggio latente tra i momenti T1 e T2 è stimato essere uguale a 3.166 (SE = 0.648). Questo valore può essere messo in relazione alla differenza tra le medie dei punteggi in due momenti temporali che viene calcolata da un test t di Student per dati appaiati. Si noti però che, mentre nel caso del test t la differenza riguarda i punteggi osservati, nei modelli LSC essa descrive la variazione tra i punteggi latenti nei momenti T1 e T2.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">semPaths</span><span class="p">(</span><span class="n">fitULCS</span><span class="p">,</span><span class="w"> </span><span class="n">what</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;path&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;par&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">t.test</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">simdatULCS</span><span class="o">$</span><span class="n">COG_T1</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">simdatULCS</span><span class="o">$</span><span class="n">COG_T2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/71cedc277a8b2a7b216bd4ae60eb7689eb4e14a232972ba43b2231805cd4568c.png" src="../_images/71cedc277a8b2a7b216bd4ae60eb7689eb4e14a232972ba43b2231805cd4568c.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
+
+data:  simdatULCS$COG_T1 and simdatULCS$COG_T2
+t = -6.1614, df = 192.21, p-value = 4.142e-09
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.682920 -1.896764
+sample estimates:
+mean of x mean of y 
+ 10.02172  12.81156 
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Il coefficiente 4.140 (SE = 0.733) stima la varianza con la quale gli individui differiscono nel cambiamento che manifestano nel tempo.</p></li>
+<li><p>Infine, il coefficiente -0.038 (SE = 0.064) stima la componente autoregressiva dal tempo T1 al tempo T2.</p></li>
+</ul>
+<p>Mediante <code class="docutils literal notranslate"><span class="pre">semPaths</span></code> possiamo generare il corrispondente diagramma di percorso.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fitULCS</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">semPaths</span><span class="p">(</span>
+<span class="w">        </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ram&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;par&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">edge.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">6</span><span class="p">,</span>
+<span class="w">        </span><span class="n">label.prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.9</span><span class="p">,</span><span class="w"> </span><span class="n">edge.label.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">        </span><span class="n">equalizeManifests</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">optimizeLatRes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">        </span><span class="n">node.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span>
+<span class="w">        </span><span class="n">edge.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">shapeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rectangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">shapeLat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ellipse&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">shapeInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;triangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">sizeInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">sizeLat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">        </span><span class="n">curve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">unCol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#070b8c&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3bc5de03d9258a49715ecac32d23bd19840a6620e8e3e9fc9ffd55b6f300e2ad.png" src="../_images/3bc5de03d9258a49715ecac32d23bd19840a6620e8e3e9fc9ffd55b6f300e2ad.png" />
 </div>
 </div>
 </section>
 <section id="indicatori-multipli-in-due-rilevazioni-temporali">
-<h2><span class="section-number">72.2. </span>Indicatori multipli in due rilevazioni temporali<a class="headerlink" href="#indicatori-multipli-in-due-rilevazioni-temporali" title="Permalink to this heading">#</a></h2>
-<p>Consideriamo ora il caso in cui abbiamo indicatori multipli in due momenti nel tempo. Iniziamo con simulare i dati usando lo script fornito dagli autori.</p>
+<h2><span class="section-number">73.2. </span>Indicatori multipli in due rilevazioni temporali<a class="headerlink" href="#indicatori-multipli-in-due-rilevazioni-temporali" title="Permalink to this heading">#</a></h2>
+<p>Consideriamo ora il caso in cui abbiamo indicatori multipli in due momenti del tempo. Iniziamo con la simulazione dei dati mediante lo script fornito da <span id="id3">Kievit <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id22" title="Rogier A Kievit, Andreas M Brandmaier, Gabriel Ziegler, Anne-Laura van Harmelen, Susanne MM de Mooij, Michael Moutoussis, Ian M Goodyer, Ed Bullmore, Peter B Jones, Peter Fonagy, and others. Developmental cognitive neuroscience using latent change score models: a tutorial and applications. Developmental Cognitive Neuroscience, 33:99–117, 2018.">KBZ+18</a>]</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">samplesize</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">100</span>
 
 <span class="c1">#Simulate data for a Univariate Latent Change Score model. </span>
 <span class="n">MILCS_simulate</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;</span>
+<span class="s">    ####    The following two lines specify the measurement model for multiple indicators (X1-X3) </span>
+<span class="s">    ####    measured on two occasions (T1-T2)</span>
+<span class="s">    COG_T1=~.8*T1X1+.9*T1X2+.7*T1X3   # This specifies the measurement model for COG_T1 </span>
+<span class="s">    COG_T2=~.8*T2X1+.9*T2X2+.7*T2X3   # This specifies the measurement model for COG_T2 </span>
 
-<span class="s">####    The following two lines specify the measurement model for multiple indicators (X1-X3) </span>
-<span class="s">####    measured on two occasions (T1-T2)</span>
-<span class="s">COG_T1=~.8*T1X1+.9*T1X2+.7*T1X3   # This specifies the measurement model for COG_T1 </span>
-<span class="s">COG_T2=~.8*T2X1+.9*T2X2+.7*T2X3   # This specifies the measurement model for COG_T2 </span>
+<span class="s">    #####     The following lines specify the core assumptions of the LCS </span>
+<span class="s">    #####     and should not generally be modified</span>
 
-<span class="s">#####     The following lines specify the core assumptions of the LCS </span>
-<span class="s">#####     and should not generally be modified</span>
+<span class="s">    COG_T2 ~ 1*COG_T1           # Fixed regression of COG_T2 on COG_T1</span>
+<span class="s">    dCOG1 =~ 1*COG_T2           # Fixed regression of dCOG1 on COG_T2</span>
+<span class="s">    COG_T2 ~ 0*1                # This line constrains the intercept of COG_T2 to 0</span>
+<span class="s">    COG_T2 ~~ 0*COG_T2          # This fixes the variance of the COG_T2 to 0  </span>
 
-<span class="s">COG_T2 ~ 1*COG_T1           # Fixed regression of COG_T2 on COG_T1</span>
-<span class="s">dCOG1 =~ 1*COG_T2           # Fixed regression of dCOG1 on COG_T2</span>
-<span class="s">COG_T2 ~ 0*1                # This line constrains the intercept of COG_T2 to 0</span>
-<span class="s">COG_T2 ~~ 0*COG_T2          # This fixes the variance of the COG_T2 to 0  </span>
+<span class="s">    T1X1~0*1                  # This fixes the intercept of X1 to 0</span>
+<span class="s">    T1X2~1*1                  # This fixes the intercept of X2 to 1</span>
+<span class="s">    T1X3~.5*1                 # This fixes the intercept of X3 to 0.5 </span>
+<span class="s">    T2X1~0*1                  # This fixes the intercept of X1 to 0</span>
+<span class="s">    T2X2~1*1                  # This fixes the intercept of X2 to 1</span>
+<span class="s">    T2X3~.5*1                 # This fixes the intercept of X3 to 0.5</span>
 
-<span class="s">T1X1~0*1                  # This fixes the intercept of X1 to 0</span>
-<span class="s">T1X2~1*1                  # This fixes the intercept of X2 to 1</span>
-<span class="s">T1X3~.5*1                 # This fixes the intercept of X3 to 0.5 </span>
-<span class="s">T2X1~0*1                  # This fixes the intercept of X1 to 0</span>
-<span class="s">T2X2~1*1                  # This fixes the intercept of X2 to 1</span>
-<span class="s">T2X3~.5*1                 # This fixes the intercept of X3 to 0.5</span>
+<span class="s">    ###### The following five parameters will be estimated in the model. </span>
+<span class="s">    ###### Values can be modified manually to examine the effect on the model</span>
 
-<span class="s">###### The following five parameters will be estimated in the model. </span>
-<span class="s">###### Values can be modified manually to examine the effect on the model</span>
-
-<span class="s">dCOG1 ~ 10*1            # This fixes the intercept of the change score to 10 </span>
-<span class="s">COG_T1 ~ 50*1           # This fixes the intercept of COG_T1 to 50. </span>
-<span class="s">dCOG1 ~~ 5*dCOG1        # This fixes the variance of the change scores to 5. </span>
-<span class="s">COG_T1 ~~ 8*COG_T1      # This fixes the variance of the COG_T1 to 8. </span>
-<span class="s">dCOG1 ~ -0.1*COG_T1       # This fixes the self-feedback parameter to -0.1. </span>
-
+<span class="s">    dCOG1 ~ 10*1            # This fixes the intercept of the change score to 10 </span>
+<span class="s">    COG_T1 ~ 50*1           # This fixes the intercept of COG_T1 to 50. </span>
+<span class="s">    dCOG1 ~~ 5*dCOG1        # This fixes the variance of the change scores to 5. </span>
+<span class="s">    COG_T1 ~~ 8*COG_T1      # This fixes the variance of the COG_T1 to 8. </span>
+<span class="s">    dCOG1 ~ -0.1*COG_T1       # This fixes the self-feedback parameter to -0.1. </span>
 <span class="s">&#39;</span>
 </pre></div>
 </div>
@@ -827,53 +891,102 @@ R-Square:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    T1X1     T1X2     T1X3     T2X1     T2X2     T2X3 
-39.66328 45.74262 35.16919 43.92156 50.35134 38.76447 
+39.89147 45.96496 35.41306 43.77188 50.13512 38.59128 
 </pre></div>
 </div>
 </div>
 </div>
-<p>Definiamo il modello LCS per indicatori multipli e due momenti temporali (il codice è fornito da <span id="id5">Kievit <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id22" title="Rogier A Kievit, Andreas M Brandmaier, Gabriel Ziegler, Anne-Laura van Harmelen, Susanne MM de Mooij, Michael Moutoussis, Ian M Goodyer, Ed Bullmore, Peter B Jones, Peter Fonagy, and others. Developmental cognitive neuroscience using latent change score models: a tutorial and applications. Developmental Cognitive Neuroscience, 33:99–117, 2018.">KBZ+18</a>]</span>).</p>
+<p>Esaminiamo la variazione dei punteggi dei soggetti.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">id</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">samplesize</span><span class="p">)</span>
+<span class="n">plotdattemp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">    </span><span class="nf">c</span><span class="p">(</span><span class="n">simdatMILCS</span><span class="o">$</span><span class="n">T1X1</span><span class="p">,</span><span class="w"> </span><span class="n">simdatMILCS</span><span class="o">$</span><span class="n">T1X2</span><span class="p">,</span><span class="w"> </span><span class="n">simdatMILCS</span><span class="o">$</span><span class="n">T1X3</span><span class="p">),</span>
+<span class="w">    </span><span class="nf">c</span><span class="p">(</span><span class="n">simdatMILCS</span><span class="o">$</span><span class="n">T2X1</span><span class="p">,</span><span class="w"> </span><span class="n">simdatMILCS</span><span class="o">$</span><span class="n">T2X2</span><span class="p">,</span><span class="w"> </span><span class="n">simdatMILCS</span><span class="o">$</span><span class="n">T2X3</span><span class="p">),</span>
+<span class="w">    </span><span class="nf">as.factor</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">)),</span>
+<span class="w">    </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">        </span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;X1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">samplesize</span><span class="p">),</span>
+<span class="w">        </span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;X2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">samplesize</span><span class="p">),</span>
+<span class="w">        </span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;X3&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">samplesize</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">plotdattemp</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;COG_T1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;COG_T2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Indicator&quot;</span><span class="p">)</span>
+<span class="n">plotdat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">melt</span><span class="p">(</span><span class="n">plotdattemp</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="p">)</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">plotdat</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Indicator</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_line</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Multiple indicator Latent Change Score model&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">ylab</span><span class="p">(</span><span class="s">&quot;Cognitive scores&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">xlab</span><span class="p">(</span><span class="s">&quot;Time points&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">facet_grid</span><span class="p">(</span><span class="o">~</span><span class="n">Indicator</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using id, Indicator as id variables
+</pre></div>
+</div>
+<img alt="../_images/f7c5d5f04bf8e39281c0b39546a674655fd0a6200c5ac784a6293bbc47eb310e.png" src="../_images/f7c5d5f04bf8e39281c0b39546a674655fd0a6200c5ac784a6293bbc47eb310e.png" />
+</div>
+</div>
+<p>Definiamo il modello LCS per indicatori multipli e due momenti temporali mediante il codice fornito da <span id="id4">Kievit <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id22" title="Rogier A Kievit, Andreas M Brandmaier, Gabriel Ziegler, Anne-Laura van Harmelen, Susanne MM de Mooij, Michael Moutoussis, Ian M Goodyer, Ed Bullmore, Peter B Jones, Peter Fonagy, and others. Developmental cognitive neuroscience using latent change score models: a tutorial and applications. Developmental Cognitive Neuroscience, 33:99–117, 2018.">KBZ+18</a>]</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">MILCS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;</span>
-<span class="s">COG_T1 =~ 1*T1X1+T1X2+T1X3  # This specifies the measurement model for COG_T1 </span>
-<span class="s">COG_T2 =~ 1*T2X1+equal(&quot;COG_T1=~T1X2&quot;)*T2X2+equal(&quot;COG_T1=~T1X3&quot;)*T2X3   # This specifies the measurement model for COG_T2 with the equality constrained factor loadings</span>
+<span class="s">    COG_T1 =~ 1*T1X1+T1X2+T1X3  # This specifies the measurement model for COG_T1 </span>
+<span class="s">    COG_T2 =~ 1*T2X1+equal(&quot;COG_T1=~T1X2&quot;)*T2X2+equal(&quot;COG_T1=~T1X3&quot;)*T2X3   # This specifies the measurement model for COG_T2 with the equality constrained factor loadings</span>
 
-<span class="s">COG_T2 ~ 1*COG_T1     # Fixed regression of COG_T2 on COG_T1</span>
-<span class="s">dCOG1 =~ 1*COG_T2     # Fixed regression of dCOG1 on COG_T2</span>
-<span class="s">COG_T2 ~ 0*1          # This line constrains the intercept of COG_T2 to 0</span>
-<span class="s">COG_T2 ~~ 0*COG_T2    # This fixes the variance of the COG_T2 to 0 </span>
+<span class="s">    COG_T2 ~ 1*COG_T1     # Fixed regression of COG_T2 on COG_T1</span>
+<span class="s">    dCOG1 =~ 1*COG_T2     # Fixed regression of dCOG1 on COG_T2</span>
+<span class="s">    COG_T2 ~ 0*1          # This line constrains the intercept of COG_T2 to 0</span>
+<span class="s">    COG_T2 ~~ 0*COG_T2    # This fixes the variance of the COG_T2 to 0 </span>
 
-<span class="s">dCOG1 ~ 1             # This estimates the intercept of the change score </span>
-<span class="s">COG_T1 ~  1           # This estimates the intercept of COG_T1 </span>
-<span class="s">dCOG1 ~~  dCOG1       # This estimates the variance of the change scores </span>
-<span class="s">COG_T1 ~~   COG_T1    # This estimates the variance of the COG_T1 </span>
-<span class="s">dCOG1~COG_T1          # This estimates the self-feedback parameter</span>
+<span class="s">    dCOG1 ~ 1             # This estimates the intercept of the change score </span>
+<span class="s">    COG_T1 ~  1           # This estimates the intercept of COG_T1 </span>
+<span class="s">    dCOG1 ~~ dCOG1        # This estimates the variance of the change scores </span>
+<span class="s">    COG_T1 ~~ COG_T1      # This estimates the variance of the COG_T1 </span>
+<span class="s">    dCOG1~COG_T1          # This estimates the self-feedback parameter</span>
 
-<span class="s">T1X1~~T2X1   # This allows residual covariance on indicator X1 across T1 and T2</span>
-<span class="s">T1X2~~T2X2   # This allows residual covariance on indicator X2 across T1 and T2</span>
-<span class="s">T1X3~~T2X3   # This allows residual covariance on indicator X3 across T1 and T2</span>
+<span class="s">    T1X1~~T2X1   # This allows residual covariance on indicator X1 across T1 and T2</span>
+<span class="s">    T1X2~~T2X2   # This allows residual covariance on indicator X2 across T1 and T2</span>
+<span class="s">    T1X3~~T2X3   # This allows residual covariance on indicator X3 across T1 and T2</span>
 
-<span class="s">T1X1~~T1X1   # This allows residual variance on indicator X1 </span>
-<span class="s">T1X2~~T1X2   # This allows residual variance on indicator X2</span>
-<span class="s">T1X3~~T1X3   # This allows residual variance on indicator X3</span>
+<span class="s">    T1X1~~T1X1   # This allows residual variance on indicator X1 </span>
+<span class="s">    T1X2~~T1X2   # This allows residual variance on indicator X2</span>
+<span class="s">    T1X3~~T1X3   # This allows residual variance on indicator X3</span>
 
-<span class="s">T2X1~~equal(&quot;T1X1~~T1X1&quot;)*T2X1  # This allows residual variance on indicator X1 at T2 </span>
-<span class="s">T2X2~~equal(&quot;T1X2~~T1X2&quot;)*T2X2  # This allows residual variance on indicator X2 at T2 </span>
-<span class="s">T2X3~~equal(&quot;T1X3~~T1X3&quot;)*T2X3  # This allows residual variance on indicator X3 at T2</span>
+<span class="s">    T2X1~~equal(&quot;T1X1~~T1X1&quot;)*T2X1  # This allows residual variance on indicator X1 at T2 </span>
+<span class="s">    T2X2~~equal(&quot;T1X2~~T1X2&quot;)*T2X2  # This allows residual variance on indicator X2 at T2 </span>
+<span class="s">    T2X3~~equal(&quot;T1X3~~T1X3&quot;)*T2X3  # This allows residual variance on indicator X3 at T2</span>
 
-<span class="s">T1X1~0*1                 # This constrains the intercept of X1 to 0 at T1</span>
-<span class="s">T1X2~1                   # This estimates the intercept of X2 at T1</span>
-<span class="s">T1X3~1                   # This estimates the intercept of X3 at T1</span>
-<span class="s">T2X1~0*1                 # This constrains the intercept of X1 to 0 at T2</span>
-<span class="s">T2X2~equal(&quot;T1X2~1&quot;)*1   # This estimates the intercept of X2 at T2</span>
-<span class="s">T2X3~equal(&quot;T1X3~1&quot;)*1   # This estimates the intercept of X3 at T2</span>
-
+<span class="s">    T1X1~0*1                 # This constrains the intercept of X1 to 0 at T1</span>
+<span class="s">    T1X2~1                   # This estimates the intercept of X2 at T1</span>
+<span class="s">    T1X3~1                   # This estimates the intercept of X3 at T1</span>
+<span class="s">    T2X1~0*1                 # This constrains the intercept of X1 to 0 at T2</span>
+<span class="s">    T2X2~equal(&quot;T1X2~1&quot;)*1   # This estimates the intercept of X2 at T2</span>
+<span class="s">    T2X3~equal(&quot;T1X3~1&quot;)*1   # This estimates the intercept of X3 at T2</span>
 <span class="s">&#39;</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Il modello “MILCS” rappresenta un’estensione del caso precedente, che riguardava un singolo indicatore in due momenti temporali.</p>
+<p><strong>Modello di Misura per COG_T1 e COG_T2</strong>: Nel modello MILCS, COG_T1 e COG_T2 sono costruiti usando più indicatori (T1X1, T1X2, T1X3 per COG_T1 e T2X1, T2X2, T2X3 per COG_T2). Questo offre una comprensione più ricca di ogni misurazione cognitiva, catturando diverse sfaccettature o aspetti in ciascun momento temporale.</p>
+<p>Vengono introdotti vari vincoli per l’identificazione del modello.</p>
+<ol class="arabic simple">
+<li><p><strong>Vincoli di Regressione e delle Intercette</strong>: Come nel modello precedente, la regressione di COG_T2 su COG_T1 è fissata e l’intercetta di COG_T2 è vincolata a 0, così come la varianza di COG_T2.</p></li>
+<li><p><strong>Vincoli di Carico Fattoriale Uguale</strong>: Un aspetto nuovo di MILCS è l’uso di vincoli di eguaglianza sulle saturazioni fattoriali degli indicatori corrispondenti di COG_T1 e COG_T2 (ad es., <code class="docutils literal notranslate"><span class="pre">equal(&quot;COG_T1=~T1X2&quot;)*T2X2</span></code>). Questo assicura che gli indicatori misurino lo stesso costrutto in modo consistente attraverso i due tempi.</p></li>
+<li><p><strong>Covarianza Residua e Varianza degli Indicatori</strong>: Il modello permette covarianze residue tra gli stessi indicatori attraverso i tempi (es. T1X1~~T2X1) e stima la varianza residua per ogni indicatore in entrambi i momenti temporali.</p></li>
+<li><p><strong>Stima degli Intercette degli Indicatori</strong>: Vengono fissati vincoli sulle intercette degli indicatori. Il vincolo <code class="docutils literal notranslate"><span class="pre">T1X1~0*1</span></code> fissa l’intercetta dell’indicatore T1X1 a 0. Questo significa che, per l’indicatore T1X1, il punto di partenza o il valore di base è impostato a zero. Questo fornisce un punto di riferimento standardizzato per l’analisi degli indicatori all’interno del modello. Al contrario, le intercette per altri indicatori come T1X2 sono stimate liberamente, permettendo al modello di adattarsi meglio ai dati.</p></li>
+</ol>
+<p>Il modello consente di interpretare il cambiamento non solo in termini di un’unica misurazione globale, ma attraverso varie dimensioni, fornendo insight più dettagliati sulle dinamiche del cambiamento cognitivo.</p>
+<p>Il corrispondente diagramma di percorso è fornito nella figura seguente.</p>
+<figure class="align-default" id="kevit2-fig">
+<a class="reference internal image-reference" href="../_images/kievit_2.jpg"><img alt="../_images/kievit_2.jpg" src="../_images/kievit_2.jpg" style="height: 550px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 73.2 </span><span class="caption-text"><strong>Diagramma di percorso di un LCSM univariato con indicatori multipli.</strong> Il costrutto latente di interesse (COG) viene misurato in due momenti temporali (COG_T1 e COG_T2), ciascuno utilizzando tre indicatori (X1, X2, X3). Si assume l’invarianza della misurazione e gli errori residui correlati nel tempo. (La figura è tratta da <span id="id5">Kievit <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id22" title="Rogier A Kievit, Andreas M Brandmaier, Gabriel Ziegler, Anne-Laura van Harmelen, Susanne MM de Mooij, Michael Moutoussis, Ian M Goodyer, Ed Bullmore, Peter B Jones, Peter Fonagy, and others. Developmental cognitive neuroscience using latent change score models: a tutorial and applications. Developmental Cognitive Neuroscience, 33:99–117, 2018.">KBZ+18</a>]</span>.)</span><a class="headerlink" href="#kevit2-fig" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>Adattiamo il modello ai dati.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -891,7 +1004,7 @@ R-Square:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.15 ended normally after 65 iterations
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 62 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
@@ -903,57 +1016,57 @@ R-Square:
 
 Model Test User Model:
                                               Standard      Scaled
-  Test Statistic                                12.687      12.026
+  Test Statistic                                10.053      10.011
   Degrees of freedom                                12          12
-  P-value (Chi-square)                           0.392       0.444
-  Scaling correction factor                                  1.055
+  P-value (Chi-square)                           0.611       0.615
+  Scaling correction factor                                  1.004
     Yuan-Bentler correction (Mplus variant)                       
 
 Model Test Baseline Model:
 
-  Test statistic                               615.947     602.011
+  Test statistic                               610.567     592.305
   Degrees of freedom                                15          15
   P-value                                        0.000       0.000
-  Scaling correction factor                                  1.023
+  Scaling correction factor                                  1.031
 
 User Model versus Baseline Model:
 
-  Comparative Fit Index (CFI)                    0.999       1.000
-  Tucker-Lewis Index (TLI)                       0.999       1.000
+  Comparative Fit Index (CFI)                    1.000       1.000
+  Tucker-Lewis Index (TLI)                       1.004       1.004
                                                                   
   Robust Comparative Fit Index (CFI)                         1.000
-  Robust Tucker-Lewis Index (TLI)                            1.001
+  Robust Tucker-Lewis Index (TLI)                            1.005
 
 Loglikelihood and Information Criteria:
 
-  Loglikelihood user model (H0)              -1087.543   -1087.543
-  Scaling correction factor                                  0.658
+  Loglikelihood user model (H0)              -1086.226   -1086.226
+  Scaling correction factor                                  0.685
       for the MLR correction                                      
   Loglikelihood unrestricted model (H1)      -1081.200   -1081.200
   Scaling correction factor                                  1.005
       for the MLR correction                                      
                                                                   
-  Akaike (AIC)                                2205.086    2205.086
-  Bayesian (BIC)                              2244.164    2244.164
-  Sample-size adjusted Bayesian (SABIC)       2196.790    2196.790
+  Akaike (AIC)                                2202.453    2202.453
+  Bayesian (BIC)                              2241.530    2241.530
+  Sample-size adjusted Bayesian (SABIC)       2194.157    2194.157
 
 Root Mean Square Error of Approximation:
 
-  RMSEA                                          0.024       0.005
+  RMSEA                                          0.000       0.000
   90 Percent confidence interval - lower         0.000       0.000
-  90 Percent confidence interval - upper         0.106       0.100
-  P-value H_0: RMSEA &lt;= 0.050                    0.608       0.661
-  P-value H_0: RMSEA &gt;= 0.080                    0.171       0.134
+  90 Percent confidence interval - upper         0.088       0.087
+  P-value H_0: RMSEA &lt;= 0.050                    0.788       0.791
+  P-value H_0: RMSEA &gt;= 0.080                    0.073       0.072
                                                                   
   Robust RMSEA                                               0.000
   90 Percent confidence interval - lower                     0.000
-  90 Percent confidence interval - upper                     0.104
-  P-value H_0: Robust RMSEA &lt;= 0.050                         0.673
-  P-value H_0: Robust RMSEA &gt;= 0.080                         0.143
+  90 Percent confidence interval - upper                     0.086
+  P-value H_0: Robust RMSEA &lt;= 0.050                         0.806
+  P-value H_0: Robust RMSEA &gt;= 0.080                         0.068
 
 Standardized Root Mean Square Residual:
 
-  SRMR                                           0.038       0.038
+  SRMR                                           0.033       0.033
 
 Parameter Estimates:
 
@@ -964,124 +1077,106 @@ Parameter Estimates:
 Latent Variables:
                      Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
   COG_T1 =~                                                               
-                        1.000                               2.179    0.919
-              (.p2.)    1.106    0.033   33.436    0.000    2.409    0.933
-              (.p3.)    0.817    0.029   27.789    0.000    1.780    0.865
+                        1.000                               2.106    0.923
+              (.p2.)    1.084    0.036   29.826    0.000    2.283    0.919
+              (.p3.)    0.799    0.031   25.502    0.000    1.682    0.851
   COG_T2 =~                                                               
-                        1.000                               2.498    0.936
-      (COG_T1=~T1X2)    1.106    0.033   33.436    0.000    2.762    0.948
-      (COG_T1=~T1X3)    0.817    0.029   27.789    0.000    2.040    0.892
+                        1.000                               2.612    0.948
+      (COG_T1=~T1X2)    1.084    0.036   29.826    0.000    2.831    0.945
+      (COG_T1=~T1X3)    0.799    0.031   25.502    0.000    2.086    0.895
   dCOG1 =~                                                                
-                        1.000                               0.692    0.692
+                        1.000                               0.693    0.693
 
 Regressions:
                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
   COG_T2 ~                                                              
-    COG_T1            1.000                               0.872    0.872
+    COG_T1            1.000                               0.806    0.806
   dCOG1 ~                                                               
-    COG_T1           -0.158    0.105   -1.500    0.134   -0.199   -0.199
+    COG_T1           -0.100    0.079   -1.265    0.206   -0.117   -0.117
 
 Covariances:
                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
  .T1X1 ~~                                                               
-   .T2X1             -0.033    0.140   -0.237    0.813   -0.033   -0.038
+   .T2X1              0.078    0.130    0.600    0.548    0.078    0.101
  .T1X2 ~~                                                               
-   .T2X2             -0.117    0.136   -0.857    0.392   -0.117   -0.136
+   .T2X2             -0.159    0.169   -0.941    0.347   -0.159   -0.167
  .T1X3 ~~                                                               
-   .T2X3             -0.006    0.123   -0.052    0.959   -0.006   -0.006
+   .T2X3              0.007    0.117    0.060    0.952    0.007    0.007
 
 Intercepts:
                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
    .COG_T2            0.000                               0.000    0.000
-   .dCOG1            10.511    4.119    2.552    0.011    6.077    6.077
-    COG_T1           39.667    0.232  170.663    0.000   18.208   18.208
+   .dCOG1             7.885    3.207    2.458    0.014    4.358    4.358
+    COG_T1           39.888    0.223  179.158    0.000   18.939   18.939
    .T1X1              0.000                               0.000    0.000
-   .T1X2    (.26.)    1.842    1.384    1.331    0.183    1.842    0.714
-   .T1X3    (.27.)    2.828    1.238    2.284    0.022    2.828    1.374
+   .T1X2    (.26.)    2.709    1.512    1.792    0.073    2.709    1.091
+   .T1X3    (.27.)    3.596    1.326    2.712    0.007    3.596    1.819
    .T2X1              0.000                               0.000    0.000
-   .T2X2    (T1X2)    1.842    1.384    1.331    0.183    1.842    0.632
-   .T2X3    (T1X3)    2.828    1.238    2.284    0.022    2.828    1.236
+   .T2X2    (T1X2)    2.709    1.512    1.792    0.073    2.709    0.905
+   .T2X3    (T1X3)    3.596    1.326    2.712    0.007    3.596    1.543
 
 Variances:
                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
    .COG_T2            0.000                               0.000    0.000
-   .dCOG1             2.873    0.444    6.471    0.000    0.960    0.960
-    COG_T1            4.746    0.742    6.397    0.000    1.000    1.000
-   .T1X1    (.19.)    0.875    0.129    6.806    0.000    0.875    0.156
-   .T1X2    (.20.)    0.856    0.139    6.143    0.000    0.856    0.129
-   .T1X3    (.21.)    1.068    0.128    8.356    0.000    1.068    0.252
-   .T2X1    (T1X1)    0.875    0.129    6.806    0.000    0.875    0.123
-   .T2X2    (T1X2)    0.856    0.139    6.143    0.000    0.856    0.101
-   .T2X3    (T1X3)    1.068    0.128    8.356    0.000    1.068    0.204
+   .dCOG1             3.230    0.675    4.787    0.000    0.986    0.986
+    COG_T1            4.436    0.629    7.054    0.000    1.000    1.000
+   .T1X1    (.19.)    0.770    0.113    6.832    0.000    0.770    0.148
+   .T1X2    (.20.)    0.953    0.168    5.656    0.000    0.953    0.155
+   .T1X3    (.21.)    1.081    0.131    8.250    0.000    1.081    0.277
+   .T2X1    (T1X1)    0.770    0.113    6.832    0.000    0.770    0.101
+   .T2X2    (T1X2)    0.953    0.168    5.656    0.000    0.953    0.106
+   .T2X3    (T1X3)    1.081    0.131    8.250    0.000    1.081    0.199
 
 R-Square:
                    Estimate
     COG_T2            1.000
-    dCOG1             0.040
-    T1X1              0.844
-    T1X2              0.871
-    T1X3              0.748
-    T2X1              0.877
-    T2X2              0.899
-    T2X3              0.796
+    dCOG1             0.014
+    T1X1              0.852
+    T1X2              0.845
+    T1X3              0.723
+    T2X1              0.899
+    T2X2              0.894
+    T2X3              0.801
 </pre></div>
 </div>
 </div>
 </div>
-<p>Il coefficiente 10.511 (SE = 4.119) indica la variazione stimata nel costrutto identificato dai tre indicatori X1, X2, X3 tra i due momenti T1 e T2. Il coefficiente 2.873 (SE = 0.444) descrive la varianza del cambiamento del valore del costrutto nel tempo tra gli individui. Il coefficiente -0.158 (SE = 0.105) stima la componente autoregressiva del cambiamento.</p>
+<ul class="simple">
+<li><p>L’intercetta di dCOG1, che è 7.885 con un errore standard di 3.207, rappresenta il valore medio stimato del cambiamento latente (dCOG1) nel campione. Questo numero indica la media generale del cambiamento osservato, considerando tutti gli individui nel campione.</p></li>
+<li><p>La varianza di dCOG1, che è 3.230 con un errore standard di 0.675, descrive la varianza nel cambiamento del costrutto tra gli individui nel tempo. Questo valore indica quanto gli individui differiscono nel loro cambiamento, riflettendo l’eterogeneità del cambiamento nel campione.</p></li>
+<li><p>Il coefficiente di -0.100 con un errore standard di 0.079 nella regressione di dCOG1 su COG_T1 rappresenta il parametro autoregressivo, che indica l’effetto della misura iniziale (COG_T1) sul cambiamento (dCOG1). Un valore negativo suggerisce che valori più alti di COG_T1 sono associati a una riduzione nel cambiamento (dCOG1), ma poiché il valore p (0.206) non è significativo, non possiamo confermare con sicurezza questa relazione nel modello.</p></li>
+</ul>
+<p>I valori di CFI e TLI molto vicini o uguali a 1, RMSEA e SRMR molto bassi, e un p-value elevato per il test di chi-quadrato indicano un buon adattamento del modello ai dati. Questi risultati suggeriscono che il modello specificato si adatta bene ai dati osservati.</p>
 <p>Generiamo il diagramma di percorso.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">semPaths</span><span class="p">(</span><span class="n">fitMILCS</span><span class="p">,</span><span class="w"> </span><span class="n">what</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;path&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;par&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/9cb3df5e4e6b1173735d1696bae1f3e9145d411860003a9b2d4e196b57a87fdb.png" src="../_images/9cb3df5e4e6b1173735d1696bae1f3e9145d411860003a9b2d4e196b57a87fdb.png" />
-</div>
-</div>
-<p>Esaminiamo la variazione dei punteggi latenti dei soggetti.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">samplesize</span><span class="p">)</span>
-<span class="n">plotdattemp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
-<span class="w">    </span><span class="nf">c</span><span class="p">(</span><span class="n">simdatMILCS</span><span class="o">$</span><span class="n">T1X1</span><span class="p">,</span><span class="w"> </span><span class="n">simdatMILCS</span><span class="o">$</span><span class="n">T1X2</span><span class="p">,</span><span class="w"> </span><span class="n">simdatMILCS</span><span class="o">$</span><span class="n">T1X3</span><span class="p">),</span>
-<span class="w">    </span><span class="nf">c</span><span class="p">(</span><span class="n">simdatMILCS</span><span class="o">$</span><span class="n">T2X1</span><span class="p">,</span><span class="w"> </span><span class="n">simdatMILCS</span><span class="o">$</span><span class="n">T2X2</span><span class="p">,</span><span class="w"> </span><span class="n">simdatMILCS</span><span class="o">$</span><span class="n">T2X3</span><span class="p">),</span>
-<span class="w">    </span><span class="nf">as.factor</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">)),</span>
-<span class="w">    </span><span class="nf">c</span><span class="p">(</span>
-<span class="w">        </span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;X1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">samplesize</span><span class="p">),</span><span class="w"> </span>
-<span class="w">        </span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;X2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">samplesize</span><span class="p">),</span><span class="w"> </span>
-<span class="w">        </span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;X3&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">samplesize</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fitMILCS</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">semPaths</span><span class="p">(</span>
+<span class="w">        </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ram&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;par&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">edge.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">6</span><span class="p">,</span>
+<span class="w">        </span><span class="n">label.prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.9</span><span class="p">,</span><span class="w"> </span><span class="n">edge.label.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">        </span><span class="n">equalizeManifests</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">optimizeLatRes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">        </span><span class="n">node.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span>
+<span class="w">        </span><span class="n">edge.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">shapeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rectangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">shapeLat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ellipse&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">shapeInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;triangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">sizeInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">sizeLat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">        </span><span class="n">curve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">unCol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#070b8c&quot;</span>
 <span class="w">    </span><span class="p">)</span>
-<span class="p">)</span>
-<span class="nf">colnames</span><span class="p">(</span><span class="n">plotdattemp</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;COG_T1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;COG_T2&#39;</span><span class="p">,</span><span class="s">&#39;id&#39;</span><span class="p">,</span><span class="s">&#39;Indicator&#39;</span><span class="p">)</span>
-<span class="n">plotdat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">melt</span><span class="p">(</span><span class="n">plotdattemp</span><span class="p">,</span><span class="n">by</span><span class="o">=</span><span class="s">&#39;id&#39;</span><span class="p">)</span>
-<span class="nf">ggplot</span><span class="p">(</span><span class="n">plotdat</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Indicator</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
-<span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<span class="w">    </span><span class="nf">geom_line</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<span class="w">    </span><span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Multiple indicator Latent Change Score model&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<span class="w">    </span><span class="nf">ylab</span><span class="p">(</span><span class="s">&quot;Cognitive scores&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<span class="w">    </span><span class="nf">xlab</span><span class="p">(</span><span class="s">&quot;Time points&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<span class="w">    </span><span class="nf">facet_grid</span><span class="p">(</span><span class="o">~</span><span class="n">Indicator</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using id, Indicator as id variables
-</pre></div>
-</div>
-<img alt="../_images/a298dcfeef65b4fcafdc4bfe891814b7c41a61ad27cc9f2360aee7dee607fcfd.png" src="../_images/a298dcfeef65b4fcafdc4bfe891814b7c41a61ad27cc9f2360aee7dee607fcfd.png" />
+<img alt="../_images/a5dd833c172b001f6a9b244533e86e6167c6f2342d144014499bc4ff716aa3f6.png" src="../_images/a5dd833c172b001f6a9b244533e86e6167c6f2342d144014499bc4ff716aa3f6.png" />
 </div>
 </div>
 </section>
 <section id="modello-di-cambiamento-duale">
-<h2><span class="section-number">72.3. </span>Modello di cambiamento duale<a class="headerlink" href="#modello-di-cambiamento-duale" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">73.3. </span>Modello di cambiamento duale<a class="headerlink" href="#modello-di-cambiamento-duale" title="Permalink to this heading">#</a></h2>
 <p>In questo secondo esempio fornito da <span id="id6">[<a class="reference internal" href="../z_biblio.html#id24" title="Milan Wiedemann, Graham Thew, Urška Košir, and Anke Ehlers. Lcsm: an r package and tutorial on latent change score modelling. Wellcome Open Research, 7(149):149, 2022.">WTKovsirE22</a>]</span> estenderemo l’approccio illustrato in precedenza. Useremo inoltre le funzionalità del pacchetto R <code class="docutils literal notranslate"><span class="pre">lcsm</span></code> fornito dagli stessi autori per specificare il modello LCS univariato in un caso più complesso di quello esaminato nel primo esempio.</p>
 <p>Il modello LCS univariato descritto ora si pone il problema di descrivere i cambiamenti degli individui (<span class="math notranslate nohighlight">\(i\)</span>) in un costrutto (<span class="math notranslate nohighlight">\(X\)</span>) in una serie di momenti del tempo (<span class="math notranslate nohighlight">\(t\)</span>). La figura successiva riporta il diagramma di percorso fornito da <span id="id7">Wiedemann <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id24" title="Milan Wiedemann, Graham Thew, Urška Košir, and Anke Ehlers. Lcsm: an r package and tutorial on latent change score modelling. Wellcome Open Research, 7(149):149, 2022.">WTKovsirE22</a>]</span>.</p>
 <figure class="align-default" id="lcsm1-fig">
-<a class="reference internal image-reference" href="_lgm/images/lcsm_1.png"><img alt="_lgm/images/lcsm_1.png" src="_lgm/images/lcsm_1.png" style="height: 450px;" /></a>
+<a class="reference internal image-reference" href="../_images/lcsm_1.png"><img alt="../_images/lcsm_1.png" src="../_images/lcsm_1.png" style="height: 450px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 72.2 </span><span class="caption-text"><strong>Diagramma di percorso semplificato di LCSM univariato.</strong> Quadrati bianchi = punteggi osservati sulla variabile <span class="math notranslate nohighlight">\(x\)</span> nei punti temporali da 1 a 5; cerchi verdi = punteggi veri latenti (prefisso ‘l’); cerchi blu = punteggi di cambiamento latenti (prefisso ‘d’); cerchio giallo = fattore di cambiamento latente costante. Frecce direzionali = regressioni; frecce bidirezionali = covarianze. Parametro <code class="docutils literal notranslate"><span class="pre">beta_x</span></code> = fattore di cambiamento proporzionale; parametro <code class="docutils literal notranslate"><span class="pre">phi_x</span></code> = autoregressione dei punteggi di cambiamento; parametro <code class="docutils literal notranslate"><span class="pre">sigma_g2lx1</span></code> = covarianza del fattore di cambiamento (<code class="docutils literal notranslate"><span class="pre">g2</span></code>) con il punteggio vero iniziale (<code class="docutils literal notranslate"><span class="pre">lx1</span></code>). I punteggi unici (<span class="math notranslate nohighlight">\(ux_t\)</span>) e le varianze uniche (<span class="math notranslate nohighlight">\(σ^2_{ux}\)</span>) non sono mostrati nella figura per semplicità.</span><a class="headerlink" href="#lcsm1-fig" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 73.3 </span><span class="caption-text"><strong>Diagramma di percorso semplificato di LCSM univariato.</strong> Quadrati bianchi = punteggi osservati sulla variabile <span class="math notranslate nohighlight">\(x\)</span> nei punti temporali da 1 a 5; cerchi verdi = punteggi veri latenti (prefisso ‘l’); cerchi blu = punteggi di cambiamento latenti (prefisso ‘d’); cerchio giallo = fattore di cambiamento latente costante. Frecce direzionali = regressioni; frecce bidirezionali = covarianze. Parametro <code class="docutils literal notranslate"><span class="pre">beta_x</span></code> = fattore di cambiamento proporzionale; parametro <code class="docutils literal notranslate"><span class="pre">phi_x</span></code> = autoregressione dei punteggi di cambiamento; parametro <code class="docutils literal notranslate"><span class="pre">sigma_g2lx1</span></code> = covarianza del fattore di cambiamento (<code class="docutils literal notranslate"><span class="pre">g2</span></code>) con il punteggio vero iniziale (<code class="docutils literal notranslate"><span class="pre">lx1</span></code>). I punteggi unici (<span class="math notranslate nohighlight">\(ux_t\)</span>) e le varianze uniche (<span class="math notranslate nohighlight">\(σ^2_{ux}\)</span>) non sono mostrati nella figura per semplicità.</span><a class="headerlink" href="#lcsm1-fig" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Come indicato in precedenza, i modelli  LCS descrivono il cambiamento di un costrutto nel tempo mediante tre parametri:</p>
@@ -1184,11 +1279,13 @@ math8      55  0.16    -0.52     0.97
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
 “Removed 2787 rows containing missing values (`geom_line()`).”
-Warning message:
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
 “Removed 4310 rows containing missing values (`geom_point()`).”
 </pre></div>
 </div>
-<img alt="../_images/a22fd0f0e457ae90a73469705956b75d8c685a16d878585ea3043f25b6329572.png" src="../_images/a22fd0f0e457ae90a73469705956b75d8c685a16d878585ea3043f25b6329572.png" />
+<img alt="../_images/d78988369deebdc8c2d1d4ce5b7e91c19cebc21d1be093763c4841df789644b8.png" src="../_images/d78988369deebdc8c2d1d4ce5b7e91c19cebc21d1be093763c4841df789644b8.png" />
 </div>
 </div>
 <p>Esaminiamo i dati di alcuni soggetti presi a caso.</p>
@@ -1211,7 +1308,7 @@ Warning message:
 “Removed 35 rows containing missing values (`geom_point()`).”
 </pre></div>
 </div>
-<img alt="../_images/bdbd6af20a2f3af79c255644d630323cf13117a4cb91f4bf39a3eb0577ac75f7.png" src="../_images/bdbd6af20a2f3af79c255644d630323cf13117a4cb91f4bf39a3eb0577ac75f7.png" />
+<img alt="../_images/25d1cc4750de16c29bb1b1a55d2846b449568b953884f987510adcb032a71231.png" src="../_images/25d1cc4750de16c29bb1b1a55d2846b449568b953884f987510adcb032a71231.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1230,11 +1327,15 @@ Warning message:
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
 “lavaan WARNING: some cases are empty and will be ignored:
   741”
-Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
 “lavaan WARNING:
     due to missing values, some pairwise combinations have less than
     10% coverage; use lavInspect(fit, &quot;coverage&quot;) to investigate.”
-Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g]], :
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g]], :
 “lavaan WARNING:
     Maximum number of iterations reached when computing the sample
     moments using EM; use the em.h1.iter.max= argument to increase the
@@ -1273,7 +1374,7 @@ Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7a029bb462d399b90ff2a95f57f4efd250f5bcdd4aaaaa550c197f72f49dbfb3.png" src="../_images/7a029bb462d399b90ff2a95f57f4efd250f5bcdd4aaaaa550c197f72f49dbfb3.png" />
+<img alt="../_images/9d4b20faedb17d03c9f82548de08df98ea88bd85865cc99b04f02d30b2597c33.png" src="../_images/9d4b20faedb17d03c9f82548de08df98ea88bd85865cc99b04f02d30b2597c33.png" />
 </div>
 </div>
 <p>Esaminiamo la bontà di adattamento.</p>
@@ -1326,7 +1427,7 @@ Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.15 ended normally after 55 iterations
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 55 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
@@ -1738,11 +1839,15 @@ NULL
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
 “lavaan WARNING: some cases are empty and will be ignored:
   741”
-Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
 “lavaan WARNING:
     due to missing values, some pairwise combinations have less than
     10% coverage; use lavInspect(fit, &quot;coverage&quot;) to investigate.”
-Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g]], :
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g]], :
 “lavaan WARNING:
     Maximum number of iterations reached when computing the sample
     moments using EM; use the em.h1.iter.max= argument to increase the
@@ -1760,7 +1865,7 @@ Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.15 ended normally after 55 iterations
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 55 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
@@ -2048,11 +2153,13 @@ Variances:
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
 “Removed 7 rows containing missing values (`geom_line()`).”
-Warning message:
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
 “Removed 7 rows containing missing values (`geom_point()`).”
 </pre></div>
 </div>
-<img alt="../_images/fe7dd6906fca1e164a4fc5c39f0af315d8ca71a18e460846e135bd0f53c07935.png" src="../_images/fe7dd6906fca1e164a4fc5c39f0af315d8ca71a18e460846e135bd0f53c07935.png" />
+<img alt="../_images/a86e24dfb8aa52a1fad5f3ac6c48a93f8185060e5c390dffbc9dfd68c7722e68.png" src="../_images/a86e24dfb8aa52a1fad5f3ac6c48a93f8185060e5c390dffbc9dfd68c7722e68.png" />
 </div>
 </div>
 <p>Come si vede dalla figura, tutte le traiettorie previste mostrano la forma generale di crescita che era stata descritta in precedenza.</p>
@@ -2094,12 +2201,12 @@ Warning message:
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="12_inv_measurement.html"
+       href="13_latent_change.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">71. </span>Invarianza di Misurazione</p>
+        <p class="prev-next-title"><span class="section-number">72. </span>Modello LCS univariato</p>
       </div>
     </a>
     <a class="right-next"
@@ -2107,7 +2214,7 @@ Warning message:
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">73. </span>Modello LCS bivariato</p>
+        <p class="prev-next-title"><span class="section-number">74. </span>Modello LCS bivariato</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -2126,9 +2233,9 @@ Warning message:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-singolo-indicatore-in-due-rilevazioni-temporali">72.1. Un singolo indicatore in due rilevazioni temporali</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indicatori-multipli-in-due-rilevazioni-temporali">72.2. Indicatori multipli in due rilevazioni temporali</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-cambiamento-duale">72.3. Modello di cambiamento duale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-di-una-misura-unica-in-due-momenti-temporali">73.1. Analisi di una Misura Unica in Due Momenti Temporali</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indicatori-multipli-in-due-rilevazioni-temporali">73.2. Indicatori multipli in due rilevazioni temporali</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-cambiamento-duale">73.3. Modello di cambiamento duale</a></li>
 </ul>
   </nav></div>
 
