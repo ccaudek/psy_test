@@ -33,15 +33,17 @@ Per accedere al syllabus del corso, si prega di fare clic sul seguente [link](sy
 
 ## 📚 Materiali didattici
 
-**Libro di testo:**
+**Libri di testo:**
 
 - Bandalos, D. L. (2018). [Measurement Theory and Applications for the Social Sciences](https://www.guilford.com/books/Measurement-Theory-and-Applications-for-the-Social-Sciences/Deborah-Bandalos/9781462532131). New York: Guildford.
 
 - Douglas, A., Roos, D., Mancini, F., Couto, A. & Lusseau, D. (2023). [An Introduction to R](https://intro2r.com)
 
+Questa dispensa rappresenta un complemento ai due testi precedenti e dovrebbe essere letta e compresa contemporaneamente alla lettura di quei testi.
+
 **Letture supplementari:**
 
-- American Educational Research Association, American Psychological Association & National Council on Measurement in Education (2014). [Standards for educational and psychological testing](https://www.aera.net/Publications/Books/Standards-for-Educational-Psychological-Testing-2014-Edition). Washington, DC: AERA. </br>
+- American Educational Research Association, American Psychological Association & National Council on Measurement in Education (2014). [Standards for educational and psychological testing](https://www.aera.net/Publications/Books/Standards-for-Educational-Psychological-Testing-2014-Edition). Washington, DC: AERA.
 - Kline, R.B. (2023). _Principles and practice of Structural Equation Modeling_. Guilford Press.
 - Brown, T.A. (2006). _Confirmatory Factor Analysis for Applied Research_. Guilford Press.
 - de Ayala, R.J. (2022). _The Theory and Practice of Item Response Theory_. Guilford Press.
