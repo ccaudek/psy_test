@@ -34,15 +34,14 @@ knitr::opts_chunk$set(
   warning = FALSE,
   error = FALSE,
   # fig.align = "center",
-  fig.width = my_fig_height,
-  fig.height = my_fig_height,
+  # fig.width = my_fig_height,
+  # fig.height = my_fig_height,
   tidy = "styler"
 )
 
 # dplyr options ----------------------------------------------------------------
 
-options(repr.plot.width = my_fig_width, repr.plot.height = my_fig_height)
-# set.seed(42)
+# options(repr.plot.width = my_fig_width, repr.plot.height = my_fig_height)
 
 set.seed(42)
 SEED <- 42 # set random seed for reproducibility

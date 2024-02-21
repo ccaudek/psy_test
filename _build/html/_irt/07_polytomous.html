@@ -521,6 +521,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-risposta-graduata">65.5. Modello di Risposta Graduata</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-sequenziale">65.6. Modello Sequenziale</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensione-del-campione">65.7. Dimensione del Campione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">65.8. Session Info</a></li>
 </ul>
             </nav>
         </div>
@@ -599,7 +600,7 @@ P_{pix} = \frac{\exp\left(\sum_{k=0}^{x-1}(\theta_p - \delta_{ik})\right)}{\sum_
 <figure class="align-default" id="bayes-workflow-fig">
 <a class="reference internal image-reference" href="../_images/debelak_fig_11_1.png"><img alt="../_images/debelak_fig_11_1.png" src="../_images/debelak_fig_11_1.png" style="height: 320px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 65.1 </span><span class="caption-text">Curve Caratteristiche delle Categorie per un item con parametri di soglia <span class="math notranslate nohighlight">\( \delta_{i1}, \delta_{i2}, \delta_{i3} \)</span>. I numeri in grassetto indicano la categoria con la più alta probabilità di risposta.  (Figura tratta da <span id="id1">Debelak <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id5" title="Rudolf Debelak, Carolin Strobl, and Matthew D Zeigenfuse. An introduction to the rasch model with examples in r. Crc Press, 2022.">DSZ22</a>]</span>).</span><a class="headerlink" href="#bayes-workflow-fig" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 65.1 </span><span class="caption-text">Curve Caratteristiche delle Categorie per un item con parametri di soglia <span class="math notranslate nohighlight">\( \delta_{i1}, \delta_{i2}, \delta_{i3} \)</span>. I numeri in grassetto indicano la categoria con la più alta probabilità di risposta.  (Figura tratta da <span id="id1">Debelak <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id6" title="Rudolf Debelak, Carolin Strobl, and Matthew D Zeigenfuse. An introduction to the rasch model with examples in r. Crc Press, 2022.">DSZ22</a>]</span>).</span><a class="headerlink" href="#bayes-workflow-fig" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Le soglie tra le categorie, indicate come <span class="math notranslate nohighlight">\(\delta_{i1}, \delta_{i2}, \delta_{i3}\)</span>, rappresentano i punti in cui la probabilità di scegliere due categorie adiacenti è uguale. Queste soglie sono rappresentate graficamente nelle CCC e aiutano a comprendere come varia la probabilità di selezionare ciascuna categoria al variare dell’abilità.</p>
@@ -609,7 +610,7 @@ P_{pix} = \frac{\exp\left(\sum_{k=0}^{x-1}(\theta_p - \delta_{ik})\right)}{\sum_
 </section>
 <section id="una-applicazione-concreta">
 <h2><span class="section-number">65.2. </span>Una Applicazione Concreta<a class="headerlink" href="#una-applicazione-concreta" title="Permalink to this heading">#</a></h2>
-<p>Consideriamo i dati forniti da <span id="id2">Braun [<a class="reference internal" href="../z_biblio.html#id9" title="Henry I Braun. Understanding scoring reliability: experiments in calibrating essay readers. Journal of Educational Statistics, 13(1):1–18, 1988.">Bra88</a>]</span>. Il dataset originale include valutazioni di 32 studenti fatte da 12 valutatori su tre diverse composizioni scritte. Per questa analisi, ci concentreremo sui dati relativi alla prima composizione. Per semplificare l’interpretazione, le valutazioni delle composizioni nel dataset originale sono state ricodificate, passando da nove a tre categorie (0 = basso rendimento, 1 = rendimento medio; 2 = alto rendimento).</p>
+<p>Consideriamo i dati forniti da <span id="id2">Braun [<a class="reference internal" href="../z_biblio.html#id10" title="Henry I Braun. Understanding scoring reliability: experiments in calibrating essay readers. Journal of Educational Statistics, 13(1):1–18, 1988.">Bra88</a>]</span>. Il dataset originale include valutazioni di 32 studenti fatte da 12 valutatori su tre diverse composizioni scritte. Per questa analisi, ci concentreremo sui dati relativi alla prima composizione. Per semplificare l’interpretazione, le valutazioni delle composizioni nel dataset originale sono state ricodificate, passando da nove a tre categorie (0 = basso rendimento, 1 = rendimento medio; 2 = alto rendimento).</p>
 <p>Nella nostra analisi, tratteremo i 12 valutatori come se fossero 12 “item” politomici che condividono la struttura di una scala di valutazione a tre categorie.</p>
 <p>I valutatori con una calibrazione di “difficoltà” elevata possono essere interpretati come severi: questi valutatori tendono ad assegnare punteggi bassi più frequentemente. Al contrario, valutatori con una calibrazione di “difficoltà” bassa possono essere interpretati come indulgenti: questi valutatori tendono ad assegnare punteggi alti più frequentemente.</p>
 <div class="cell docutils container">
@@ -623,7 +624,7 @@ P_{pix} = \frac{\exp\left(\sum_{k=0}^{x-1}(\theta_p - \delta_{ik})\right)}{\sum_
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">Rows: </span><span class=" -Color -Color-Blue">32</span> <span class=" -Color -Color-Bold">Columns: </span><span class=" -Color -Color-Blue">13</span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Bold">Column specification</span> <span class=" -Color -Color-Cyan">────────────────────────────────────────────────────────────────────────────────────────</span>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Bold">Column specification</span> <span class=" -Color -Color-Cyan">────────────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span class=" -Color -Color-Bold">Delimiter:</span> &quot;,&quot;
 <span class=" -Color -Color-Green">dbl</span> (13): Student, rater_1, rater_2, rater_3, rater_4, rater_5, rater_6, rat...
 </pre></div>
@@ -1089,69 +1090,66 @@ P32  2.336 11   0.997      0.195     0.239    -1.98   -2.12
 </ul>
 <p>Problemi nella convergenza dell’algoritmo di stima e la presenza di errori standard elevati possono essere segnali che la dimensione del campione utilizzato non è sufficiente per una stima affidabile dei parametri del modello.</p>
 <p>In sintesi, la scelta della grandezza del campione nei modelli IRT politomici deve considerare diversi fattori, inclusi il numero di item, il numero di categorie di risposta per item e il rapporto tra il numero di rispondenti e il numero di parametri dell’item da stimare. Seguendo le linee guida suggerite, i ricercatori possono assicurarsi di avere un campione di dimensioni adeguate per ottenere stime affidabili dei parametri del modello.</p>
+</section>
+<section id="session-info">
+<h2><span class="section-number">65.8. </span>Session Info<a class="headerlink" href="#session-info" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">xfun</span><span class="o">::</span><span class="nf">session_info</span><span class="p">()</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.3.2 (2023-10-31)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.3.2 (2023-10-31)
 Platform: aarch64-apple-darwin20 (64-bit)
 Running under: macOS Sonoma 14.3.1
 
-Locale: C / UTF-8 / C / C / C / C
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
 
-Package version:
-  CDM_8.2-6                DBI_1.2.0                Deriv_4.1.3             
-  GPArotation_2024.2-1     IRdisplay_1.1            IRkernel_1.3.2          
-  MASS_7.3-60.0.1          Matrix_1.6-5             R6_2.5.1                
-  RColorBrewer_1.1-3       Rcpp_1.0.12              RcppArmadillo_0.12.8.0.0
-  TAM_4.1-4                WrightMap_1.3            admisc_0.34             
-  askpass_1.2.0            backports_1.4.1          base64enc_0.1-3         
-  bit_4.0.5                bit64_4.0.5              blob_1.2.4              
-  broom_1.0.5              bslib_0.6.1              cachem_1.0.8            
-  callr_3.7.3              cellranger_1.1.0         cli_3.6.2               
-  clipr_0.8.0              cluster_2.1.6            colorspace_2.1-0        
-  compiler_4.3.2           conflicted_1.2.0         cpp11_0.4.7             
-  crayon_1.5.2             curl_5.2.0               data.table_1.15.0       
-  dbplyr_2.4.0             dcurver_0.9.2            digest_0.6.34           
-  dplyr_1.1.4              dtplyr_1.3.1             eRm_1.0-4               
-  ellipsis_0.3.2           evaluate_0.23            fansi_1.0.6             
-  farver_2.1.1             fastmap_1.1.1            fontawesome_0.5.2       
-  forcats_1.0.0            fs_1.6.3                 gargle_1.5.2            
-  generics_0.1.3           ggmirt_0.1.0             ggplot2_3.4.4           
-  glue_1.7.0               googledrive_2.1.1        googlesheets4_1.1.1     
-  grDevices_4.3.2          graphics_4.3.2           grid_4.3.2              
-  gridExtra_2.3            gtable_0.3.4             haven_2.5.4             
-  highr_0.10               hms_1.1.3                htmltools_0.5.7         
-  httr_1.4.7               ids_1.0.1                isoband_0.2.7           
-  jquerylib_0.1.4          jsonlite_1.8.8           kableExtra_1.4.0        
-  knitr_1.45               labeling_0.4.3           latex2exp_0.9.6         
-  lattice_0.22-5           lifecycle_1.0.4          lubridate_1.9.3         
-  magrittr_2.0.3           memoise_2.0.1            methods_4.3.2           
-  mgcv_1.9-1               mime_0.12                mirt_1.41               
-  mnormt_2.1.1             modelr_0.1.11            munsell_0.5.0           
-  mvtnorm_1.2-4            nlme_3.1-164             openssl_2.1.1           
-  parallel_4.3.2           pbapply_1.7-2            pbdZMQ_0.3-11           
-  permute_0.9-7            pillar_1.9.0             pkgconfig_2.0.3         
-  polycor_0.8-1            prettyunits_1.2.0        processx_3.8.3          
-  progress_1.2.3           ps_1.7.6                 psych_2.4.1             
-  psychotools_0.7-3        purrr_1.0.2              ragg_1.2.7              
-  rappdirs_0.3.3           readr_2.1.5              readxl_1.4.3            
-  rematch_2.0.0            rematch2_2.1.2           repr_1.1.6              
-  reprex_2.1.0             rlang_1.1.3              rmarkdown_2.25          
-  rstudioapi_0.15.0        rvest_1.0.3              sass_0.4.8              
-  scales_1.3.0             selectr_0.4.2            splines_4.3.2           
-  stats_4.3.2              stats4_4.3.2             stringi_1.8.3           
-  stringr_1.5.1            svglite_2.1.3            sys_3.4.2               
-  systemfonts_1.0.5        textshaping_0.3.7        tibble_3.2.1            
-  tidyr_1.3.1              tidyselect_1.2.0         tidyverse_2.0.0         
-  timechange_0.3.0         tinytex_0.49             tools_4.3.2             
-  tzdb_0.4.0               utf8_1.2.4               utils_4.3.2             
-  uuid_1.2-0               vctrs_0.6.5              vegan_2.6-4             
-  viridisLite_0.4.2        vroom_1.6.5              withr_3.0.0             
-  xfun_0.42                xml2_1.3.6               yaml_2.3.8              
+locale:
+[1] C/UTF-8/C/C/C/C
+
+time zone: Europe/Rome
+tzcode source: internal
+
+attached base packages:
+[1] grid      stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] kableExtra_1.4.0  latex2exp_0.9.6   WrightMap_1.3     psychotools_0.7-3
+ [5] ggmirt_0.1.0      TAM_4.2-21        CDM_8.2-6         mvtnorm_1.2-4    
+ [9] mirt_1.41         lattice_0.22-5    eRm_1.0-4         lubridate_1.9.3  
+[13] forcats_1.0.0     stringr_1.5.1     dplyr_1.1.4       purrr_1.0.2      
+[17] readr_2.1.5       tidyr_1.3.1       tibble_3.2.1      ggplot2_3.4.4    
+[21] tidyverse_2.0.0  
+
+loaded via a namespace (and not attached):
+ [1] gtable_0.3.4         xfun_0.42            psych_2.4.1         
+ [4] tzdb_0.4.0           vctrs_0.6.5          tools_4.3.2         
+ [7] generics_0.1.3       parallel_4.3.2       fansi_1.0.6         
+[10] cluster_2.1.6        pkgconfig_2.0.3      Matrix_1.6-5        
+[13] RColorBrewer_1.1-3   uuid_1.2-0           lifecycle_1.0.4     
+[16] compiler_4.3.2       GPArotation_2024.2-1 munsell_0.5.0       
+[19] mnormt_2.1.1         repr_1.1.6           permute_0.9-7       
+[22] dcurver_0.9.2        htmltools_0.5.7      pillar_1.9.0        
+[25] crayon_1.5.2         MASS_7.3-60.0.1      admisc_0.34         
+[28] vegan_2.6-4          nlme_3.1-164         Deriv_4.1.3         
+[31] polycor_0.8-1        tidyselect_1.2.0     digest_0.6.34       
+[34] stringi_1.8.3        splines_4.3.2        fastmap_1.1.1       
+[37] colorspace_2.1-0     cli_3.6.2            magrittr_2.0.3      
+[40] base64enc_0.1-3      utf8_1.2.4           IRdisplay_1.1       
+[43] withr_3.0.0          scales_1.3.0         bit64_4.0.5         
+[46] IRkernel_1.3.2       timechange_0.3.0     rmarkdown_2.25      
+[49] bit_4.0.5            gridExtra_2.3        pbdZMQ_0.3-11       
+[52] hms_1.1.3            pbapply_1.7-2        evaluate_0.23       
+[55] knitr_1.45           viridisLite_0.4.2    mgcv_1.9-1          
+[58] rlang_1.1.3          Rcpp_1.0.12          glue_1.7.0          
+[61] xml2_1.3.6           vroom_1.6.5          svglite_2.1.3       
+[64] rstudioapi_0.15.0    jsonlite_1.8.8       R6_2.5.1            
+[67] systemfonts_1.0.5   
 </pre></div>
 </div>
 </div>
@@ -1236,6 +1234,7 @@ Package version:
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-risposta-graduata">65.5. Modello di Risposta Graduata</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-sequenziale">65.6. Modello Sequenziale</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensione-del-campione">65.7. Dimensione del Campione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">65.8. Session Info</a></li>
 </ul>
   </nav></div>
 

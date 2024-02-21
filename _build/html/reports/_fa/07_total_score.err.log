@@ -18,24 +18,15 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-source("_common.R")
-suppressPackageStartupMessages({
-    library("psych")
-    library("lavaan")
-    library("modelsummary") # for summarizing data
-})
-options(repr.plot.width=6, repr.plot.height=6)
-set.seed(42)
+d <- rio::import(
+  "data/1_Factor_Parallel.csv"
+)
 ------------------
 
------ stderr -----
-Warning message in file(filename, "r", encoding = encoding):
-“non è possibile aprire il file '_common.R': No such file or directory”
-------------------
 
-Error in file(filename, "r", encoding = encoding): non è possibile aprire la connessione
+Error: No such file: data/1_Factor_Parallel.csv
 Traceback:
 
-1. source("_common.R")
-2. file(filename, "r", encoding = encoding)
+1. rio::import("data/1_Factor_Parallel.csv")
+2. stop("No such file: ", file, call. = FALSE)
 

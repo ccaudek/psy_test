@@ -18,24 +18,25 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-source("_common.R")
+source("../_common.R")
 suppressPackageStartupMessages({
     library("psych")
     library("lavaan")
     library("BifactorIndicesCalculator")
     library("semPlot")
 })
-set.seed(42)
 ------------------
 
------ stderr -----
-Warning message in file(filename, "r", encoding = encoding):
-“non è possibile aprire il file '_common.R': No such file or directory”
-------------------
 
-Error in file(filename, "r", encoding = encoding): non è possibile aprire la connessione
+Error in library("BifactorIndicesCalculator"): non c'è alcun pacchetto chiamato ‘BifactorIndicesCalculator’
 Traceback:
 
-1. source("_common.R")
-2. file(filename, "r", encoding = encoding)
+1. suppressPackageStartupMessages({
+ .     library("psych")
+ .     library("lavaan")
+ .     library("BifactorIndicesCalculator")
+ .     library("semPlot")
+ . })
+2. withCallingHandlers(expr, packageStartupMessage = function(c) tryInvokeRestart("muffleMessage"))
+3. library("BifactorIndicesCalculator")   # at line 5 of file <text>
 
