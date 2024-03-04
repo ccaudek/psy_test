@@ -531,6 +531,23 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">library</span><span class="p">(</span><span class="s2">&quot;LaplacesDemon&quot;</span><span class="p">):</span> <span class="n">there</span> <span class="ow">is</span> <span class="n">no</span> <span class="n">package</span> <span class="n">called</span> <span class="err">‘</span><span class="n">LaplacesDemon</span><span class="err">’</span>
+<span class="ne">Traceback</span>:
+
+<span class="mi">1</span><span class="o">.</span> <span class="n">suppressPackageStartupMessages</span><span class="p">({</span>
+ <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;tidyverse&quot;</span><span class="p">)</span>
+ <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;car&quot;</span><span class="p">)</span>
+ <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;LaplacesDemon&quot;</span><span class="p">)</span>
+ <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;gmodels&quot;</span><span class="p">)</span>
+ <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;effects&quot;</span><span class="p">)</span>
+ <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;psych&quot;</span><span class="p">)</span>
+ <span class="o">.</span> <span class="p">})</span>
+<span class="mi">2</span><span class="o">.</span> <span class="n">withCallingHandlers</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">packageStartupMessage</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">tryInvokeRestart</span><span class="p">(</span><span class="s2">&quot;muffleMessage&quot;</span><span class="p">))</span>
+<span class="mi">3</span><span class="o">.</span> <span class="n">library</span><span class="p">(</span><span class="s2">&quot;LaplacesDemon&quot;</span><span class="p">)</span>   <span class="c1"># at line 4 of file &lt;text&gt;</span>
+</pre></div>
+</div>
+</div>
 </div>
 <p><strong>E1.</strong> Per chiarire il significato del coefficiente <span class="math notranslate nohighlight">\(\beta\)</span> nel caso della regressione logistica, si utilizzino i dati <code class="docutils literal notranslate"><span class="pre">chdage</span></code> e si ripeta l’analisi precedente dicotomizzando l’età in funzione della media.</p>
 <div class="cell docutils container">
@@ -541,23 +558,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A data.frame: 6 × 3</caption>
-<thead>
-	<tr><th></th><th scope=col>id</th><th scope=col>age</th><th scope=col>chd</th></tr>
-	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>1</th><td>1</td><td>20</td><td>0</td></tr>
-	<tr><th scope=row>2</th><td>2</td><td>23</td><td>0</td></tr>
-	<tr><th scope=row>3</th><td>3</td><td>24</td><td>0</td></tr>
-	<tr><th scope=row>4</th><td>5</td><td>25</td><td>1</td></tr>
-	<tr><th scope=row>5</th><td>4</td><td>25</td><td>0</td></tr>
-	<tr><th scope=row>6</th><td>7</td><td>26</td><td>0</td></tr>
-</tbody>
-</table>
-</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -635,6 +635,44 @@ Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 Chi^2 =  19.27843     d.f. =  1     p =  1.129752e-05 
 
  
+$t
+            y
+x             0  1
+  SopraMedia 16 32
+  SottoMedia 41 11
+
+$prop.row
+            y
+x                    0         1
+  SopraMedia 0.3333333 0.6666667
+  SottoMedia 0.7884615 0.2115385
+
+$prop.col
+            y
+x                    0         1
+  SopraMedia 0.2807018 0.7441860
+  SottoMedia 0.7192982 0.2558140
+
+$prop.tbl
+            y
+x               0    1
+  SopraMedia 0.16 0.32
+  SottoMedia 0.41 0.11
+
+$chisq
+
+	Pearson&#39;s Chi-squared test
+
+data:  t
+X-squared = 21.094, df = 1, p-value = 4.372e-06
+
+
+$chisq.corr
+
+	Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+
+data:  t
+X-squared = 19.278, df = 1, p-value = 1.13e-05
 </pre></div>
 </div>
 </div>
@@ -693,7 +731,7 @@ Coefficients:
 (Intercept)               0.6931     0.3062   2.264   0.0236 *  
 eta_categoriaSottoMedia  -2.0088     0.4572  -4.394 1.12e-05 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
@@ -718,7 +756,7 @@ Number of Fisher Scoring iterations: 4
 </pre></div>
 </div>
 <div class="output text_html"><table class="dataframe">
-<caption>A matrix: 2 × 2 of type dbl</caption>
+<caption>A matrix: 2 x 2 of type dbl</caption>
 <thead>
 	<tr><th></th><th scope=col>2.5 %</th><th scope=col>97.5 %</th></tr>
 </thead>
@@ -748,7 +786,7 @@ Number of Fisher Scoring iterations: 4
 </pre></div>
 </div>
 <div class="output text_html"><table class="dataframe">
-<caption>A matrix: 2 × 2 of type dbl</caption>
+<caption>A matrix: 2 x 2 of type dbl</caption>
 <thead>
 	<tr><th></th><th scope=col>2.5 %</th><th scope=col>97.5 %</th></tr>
 </thead>
@@ -789,7 +827,7 @@ Number of Fisher Scoring iterations: 4
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><table class="dataframe">
-<caption>A data.frame: 6 × 4</caption>
+<caption>A data.frame: 6 x 4</caption>
 <thead>
 	<tr><th></th><th scope=col>neuroticism</th><th scope=col>extraversion</th><th scope=col>sex</th><th scope=col>volunteer</th></tr>
 	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th></tr>
@@ -814,7 +852,7 @@ Number of Fisher Scoring iterations: 4
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><table class="dataframe">
-<caption>A matrix: 2 × 1 of type dbl</caption>
+<caption>A matrix: 2 x 1 of type dbl</caption>
 <thead>
 	<tr><th></th><th scope=col>female</th></tr>
 </thead>
@@ -849,7 +887,7 @@ neuroticism               0.110777   0.037648   2.942  0.00326 **
 extraversion              0.166816   0.037719   4.423 9.75e-06 ***
 neuroticism:extraversion -0.008552   0.002934  -2.915  0.00355 ** 
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
@@ -872,7 +910,7 @@ Number of Fisher Scoring iterations: 4
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1aa6b92a45a11cc5e328e31b27ccfd4f35663fdf561e55db438d9192ef06b8f5.png" src="../_images/1aa6b92a45a11cc5e328e31b27ccfd4f35663fdf561e55db438d9192ef06b8f5.png" />
+<img alt="../_images/17bf09feac75febf71225664172c683768a64e8f16a5d4b2e5f188a4b9cb993b.png" src="../_images/17bf09feac75febf71225664172c683768a64e8f16a5d4b2e5f188a4b9cb993b.png" />
 </div>
 </div>
 <p>Calcoliamo l’Odds Ratio:</p>
