@@ -32,10 +32,10 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css?v=20b57f81" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../_static/a11y.css?v=ffeaf963" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6ba04eab" />
@@ -833,12 +833,50 @@ Cov(X,Y) &amp;= \mathbb{E}(XY) - \mathbb{E}(X)\mathbb{E}(Y)\notag\\
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Genera tutte le combinazioni possibili per 3 lanci di moneta</span>
 <span class="n">combinations</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">expand.grid</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">))</span>
-
-<span class="c1"># Calcola X e Y</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">combinations</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Var1 Var2 Var3
+1    0    0    0
+2    1    0    0
+3    0    1    0
+4    1    1    0
+5    0    0    1
+6    1    0    1
+7    0    1    1
+8    1    1    1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calcola X e Y</span>
 <span class="n">combinations</span><span class="o">$</span><span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rowSums</span><span class="p">(</span><span class="n">combinations</span><span class="p">)</span>
 <span class="n">combinations</span><span class="o">$</span><span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">combinations</span><span class="o">$</span><span class="n">Var1</span>
-
-<span class="c1"># Calcola la probabilità di ciascuna combinazione (1/8 per ciascuna combinazione)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">combinations</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Var1 Var2 Var3 X Y
+1    0    0    0 0 0
+2    1    0    0 1 1
+3    0    1    0 1 0
+4    1    1    0 2 1
+5    0    0    1 1 0
+6    1    0    1 2 1
+7    0    1    1 2 0
+8    1    1    1 3 1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calcola la probabilità di ciascuna combinazione (1/8 per ciascuna combinazione)</span>
 <span class="n">combinations</span><span class="o">$</span><span class="n">P</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">8</span>
 
 <span class="c1"># Visualizza la distribuzione congiunta</span>
@@ -867,16 +905,42 @@ Cov(X,Y) &amp;= \mathbb{E}(XY) - \mathbb{E}(X)\mathbb{E}(Y)\notag\\
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calcola le medie di X e Y</span>
 <span class="n">media_X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">combinations</span><span class="o">$</span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">combinations</span><span class="o">$</span><span class="n">P</span><span class="p">)</span>
-<span class="n">media_Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">combinations</span><span class="o">$</span><span class="n">Y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">combinations</span><span class="o">$</span><span class="n">P</span><span class="p">)</span>
-
-<span class="c1"># Calcola la covarianza</span>
-<span class="n">cov_XY</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">combinations</span><span class="o">$</span><span class="n">P</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">combinations</span><span class="o">$</span><span class="n">X</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">media_X</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">combinations</span><span class="o">$</span><span class="n">Y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">media_Y</span><span class="p">))</span>
-<span class="n">cov_XY</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">media_X</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">0.25</div></div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] 1.5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">media_Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">combinations</span><span class="o">$</span><span class="n">Y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">combinations</span><span class="o">$</span><span class="n">P</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">media_Y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] 0.5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calcola la covarianza</span>
+<span class="n">cov_XY</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">combinations</span><span class="o">$</span><span class="n">P</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">combinations</span><span class="o">$</span><span class="n">X</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">media_X</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">combinations</span><span class="o">$</span><span class="n">Y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">media_Y</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">cov_XY</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] 0.25
+</pre></div>
+</div>
+</div>
 </div>
 <p>La covarianza tra <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span> è dunque uguale a 0.25.</p>
 </section>
