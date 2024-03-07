@@ -491,11 +491,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazioni-basate-su-criteri">4.3. Interpretazioni Basate su Criteri</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodi-e-applicazioni">4.3.1. Metodi e Applicazioni</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#punti-di-forza">4.3.2. Punti di Forza</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#benefici">4.3.2.1. Benefici</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benefici">4.3.1. Benefici</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-comparativa-tra-valutazioni-normative-e-basate-su-criteri">4.4. Analisi Comparativa tra Valutazioni Normative e Basate su Criteri</a></li>
@@ -550,12 +546,18 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="valutazioni-normative-e-criteriali">
 <span id="norms-notebook"></span><h1><span class="section-number">4. </span>Valutazioni normative e criteriali<a class="headerlink" href="#valutazioni-normative-e-criteriali" title="Link to this heading">#</a></h1>
-<p>Prima di esplorare i concetti teorici della psicometria, questo capitolo si propone di introdurre l’utilizzo del software “R”, ponendo l’attenzione sulla differenza tra valutazioni normative e criteriali. I diversi tipi di punteggi saranno spiegati tramite esempi pratici. Questo approccio non solo offre una panoramica pratica delle tecniche dell’analisi psicometrica, ma rende anche i concetti più accessibili attraverso l’applicazione diretta tramite un software statistico.</p>
+<p>Questo capitolo si propone di introdurre l’utilizzo del software “R”, ponendo l’attenzione sulla differenza tra valutazioni normative e criteriali.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">source</span><span class="p">(</span><span class="s">&quot;../_common.R&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <section id="punteggi-grezzi-e-trasformati">
 <h2><span class="section-number">4.1. </span>Punteggi Grezzi e Trasformati<a class="headerlink" href="#punteggi-grezzi-e-trasformati" title="Link to this heading">#</a></h2>
-<p>Nell’ambito dei test psicometrici, i punteggi rivestono un’importanza cruciale, fungendo da misurazioni quantitative delle performance o delle valutazioni attribuite ai partecipanti. Questi punteggi offrono una rappresentazione numerica delle prestazioni, rendendo fondamentale una comprensione approfondita del loro significato e delle modalità di interpretazione.</p>
-<p>Il <strong>punteggio grezzo</strong> costituisce la valutazione più immediata e si basa sulla somma delle risposte categorizzate, come quelle corrette o errate, o vero o falso. Nonostante la sua immediatezza, il punteggio grezzo presenta limitazioni interpretative, poiché non considera fattori contestuali quali il numero totale di domande o il livello di difficoltà di queste.</p>
-<p>Per mitigare queste limitazioni, i punteggi grezzi vengono spesso convertiti in formati che permettono un’interpretazione più precisa e contestualizzata, quali i punteggi standardizzati o scalati. Queste trasformazioni facilitano l’interpretazione dei risultati ottenuti.</p>
+<p>Nell’ambito dei test psicometrici, il <strong>punteggio grezzo</strong> costituisce la valutazione più immediata e si basa sulla somma delle risposte categorizzate, come quelle corrette o errate, o vero o falso. Nonostante la sua immediatezza, il punteggio grezzo presenta limitazioni interpretative, poiché non considera fattori contestuali quali il numero totale di domande o il livello di difficoltà di queste.</p>
+<p>Per mitigare queste limitazioni, i punteggi grezzi vengono spesso convertiti in formati che permettono un’interpretazione più contestualizzata, quali i punteggi standardizzati o scalati. Queste trasformazioni facilitano l’interpretazione dei risultati ottenuti.</p>
 <p>L’interpretazione dei risultati dei test necessita di un riferimento comparativo. A seconda del contesto, può essere utile confrontare le prestazioni con una norma di riferimento o con criteri specifici.</p>
 <p>Le <strong>interpretazioni basate sulla norma</strong> confrontano la performance di un individuo con quella di un gruppo di riferimento o normativo, offrendo una valutazione relativa alla prestazione tipica o “normale”. Un esempio è rappresentato dai test di intelligenza. Al contrario, le <strong>interpretazioni basate sul criterio</strong> valutano le prestazioni rispetto a un livello di competenza specifico, indipendentemente dalla performance altrui.</p>
 <p>Un altro approccio interpretativo è offerto dalla <strong>Teoria della Risposta agli Item</strong> (IRT), che fornisce un’analisi avanzata delle prestazioni nei test, permettendo un’esplorazione dettagliata delle risposte individuali.</p>
@@ -569,47 +571,83 @@ document.write(`
 <p>Una considerazione finale riguardante le interpretazioni basate sulla norma è l’importanza della standardizzazione nella somministrazione. È fondamentale che il campione di riferimento venga sottoposto al test nelle stesse condizioni e secondo le stesse procedure amministrative che saranno utilizzate nella pratica effettiva. Di conseguenza, quando il test viene somministrato in contesti clinici, è cruciale che l’utente del test segua attentamente le procedure amministrative prescritte. Ad esempio, nel caso di test standardizzati, è essenziale leggere le istruzioni testuali esattamente come sono fornite e rispettare rigorosamente i limiti di tempo. Sarebbe irragionevole confrontare la performance dell’esaminando in un test a tempo con quella di un campione di standardizzazione che ha avuto più o meno tempo per completare gli item. Questa necessità di seguire procedure standardizzate si applica a tutti i test standardizzati, sia quelli con interpretazioni basate sulla norma che quelli basati sul criterio.</p>
 <section id="punteggi-derivati">
 <h3><span class="section-number">4.2.1. </span>Punteggi Derivati<a class="headerlink" href="#punteggi-derivati" title="Link to this heading">#</a></h3>
-<p>La letteratura in ambito psicometrico fa riferimento a molteplici tipi di punteggi derivati, ognuno con specifiche implicazioni per l’interpretazione dei dati ottenuti tramite test. La selezione del tipo di punteggio derivato adottato riveste un ruolo cruciale nell’analisi dei risultati. Di seguito, si esplorano le tipologie più frequentemente adottate.</p>
-<p><strong>Punteggi Standardizzati:</strong>
-La trasformazione di punteggi grezzi, quali il numero di risposte esatte, in punteggi standardizzati permette di ottenere misure che rimangono invarianti rispetto a determinate variabili, come l’età dell’individuo. Questi punteggi vengono calcolati stabilendo a priori una media e una deviazione standard specifiche. L’uso di unità standard di deviazione standard per localizzare il punteggio di un soggetto rispetto alla media della popolazione rappresenta una pratica consolidata. Tale procedura si avvale di una trasformazione lineare, applicando uniformemente una formula predeterminata a ciascun punteggio.</p>
-<p><strong>Varianti Comuni di Punteggi Standardizzati:</strong></p>
+<p>In ambito psicometrico, i punteggi derivati da test possono assumere diverse forme, ciascuna con implicazioni specifiche per l’interpretazione dei dati. Esploreremo le tipologie più comuni:</p>
+<ol class="arabic simple">
+<li><p><strong>Punteggi Standardizzati:</strong></p>
 <ul class="simple">
-<li><p><strong>z-scores:</strong> Misurano la distanza di un punteggio dalla media, espressa in numero di deviazioni standard. Presentano una media di 0 e una deviazione standard di 1.</p></li>
-<li><p><strong>T-scores:</strong> Con una media fissata a 50 e una deviazione standard di 10, trasformano tutti i punteggi in valori positivi, eliminando la presenza di decimali.</p></li>
-<li><p><strong>Punteggi di QI:</strong> Tipici delle scale di misurazione dell’intelligenza, questi punteggi si basano su una media di 100 e una deviazione standard di 15.</p></li>
+<li><p>Questi punteggi trasformano i punteggi grezzi (ad esempio, il numero di risposte corrette) in misure standardizzate. Ciò permette di ottenere valori invarianti rispetto a variabili come l’età dell’individuo.</p></li>
+<li><p>Si calcolano stabilendo una media e una deviazione standard specifiche a priori.</p></li>
+<li><p>Esempi:</p>
+<ul>
+<li><p><strong>z-scores</strong>: Misurano la distanza di un punteggio dalla media, espressa in deviazioni standard. Hanno una media di 0 e una deviazione standard di 1.</p></li>
+<li><p><strong>T-scores</strong>: Trasformano i punteggi in valori positivi, con una media di 50 e una deviazione standard di 10.</p></li>
+<li><p><strong>Punteggi di QI</strong>: Tipici delle scale di intelligenza, hanno una media di 100 e una deviazione standard di 15.</p></li>
 </ul>
-<p><strong>Punteggi Standardizzati Normalizzati:</strong>
-Quando i punteggi originari non si distribuiscono normalmente, è possibile adottare trasformazioni non lineari per normalizzarli. Tra i formati risultanti figurano i punteggi Stanine, i punteggi scalati di Wechsler e gli Equivalenti della Curva Normale (NCE).</p>
-<p><strong>Ranghi Percentili:</strong>
-I ranghi percentili, che si estendono da 1 a 99, indicano la posizione relativa di un soggetto all’interno di un gruppo di riferimento. Un rango percentile di 50 corrisponde alla prestazione mediana. Benché intuitivi, i ranghi percentili non costituiscono misure equidistanti, tendendo a concentrarsi nei pressi della media e a disperdersi verso le estremità della distribuzione.</p>
-<p><strong>Quartili e Decili:</strong>
-Questi punteggi segmentano la distribuzione dei risultati rispettivamente in quattro o dieci parti uguali, offrendo una rappresentazione dettagliata della posizione di un punteggio all’interno della distribuzione.</p>
-<p><strong>Equivalenti di Grado:</strong>
-Tali punteggi esprimono il livello di competenza corrispondente alle prestazioni medie registrate in ciascun grado scolastico. È necessario procedere con cautela nella loro interpretazione, data la specificità del contesto educativo di riferimento.</p>
-<p>La scelta consapevole tra questi diversi tipi di punteggi derivati e la comprensione delle loro implicazioni metodologiche sono essenziali per garantire una lettura accurata e informativa dei risultati di valutazioni psicometriche e educative.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Punteggi Standardizzati Normalizzati:</strong></p>
+<ul class="simple">
+<li><p>Quando i punteggi originali non seguono una distribuzione normale, si utilizzano trasformazioni non lineari per normalizzarli.</p></li>
+<li><p>Esempi:</p>
+<ul>
+<li><p><strong>Stanine</strong>: Suddividono i punteggi in 9 categorie (da 1 a 9).</p></li>
+<li><p><strong>Punteggi scalati di Wechsler</strong>: Utilizzati nei test di intelligenza di Wechsler.</p></li>
+<li><p><strong>Equivalenti della Curva Normale (NCE)</strong>: Esprimono la posizione di un punteggio rispetto alla distribuzione normale.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Ranghi Percentili:</strong></p>
+<ul class="simple">
+<li><p>Vanno da 1 a 99 e indicano la posizione relativa di un soggetto rispetto alla popolazione.</p></li>
+<li><p>Ad esempio, un punteggio al 75° percentile significa che il soggetto ha ottenuto un risultato migliore del 75% della popolazione.</p></li>
+</ul>
+</li>
+</ol>
 </section>
 </section>
 <section id="interpretazioni-basate-su-criteri">
 <h2><span class="section-number">4.3. </span>Interpretazioni Basate su Criteri<a class="headerlink" href="#interpretazioni-basate-su-criteri" title="Link to this heading">#</a></h2>
-<p>Dagli anni Sessanta, il mondo dell’educazione e della psicometria ha visto crescere l’interesse verso le valutazioni basate su criteri specifici. Questo approccio, noto anche come valutazione basata su contenuti, dominio o obiettivi, si concentra sulla misurazione delle competenze individuali rispetto a standard definiti, piuttosto che sul confronto con le prestazioni di un gruppo di riferimento.</p>
-<section id="metodi-e-applicazioni">
-<h3><span class="section-number">4.3.1. </span>Metodi e Applicazioni<a class="headerlink" href="#metodi-e-applicazioni" title="Link to this heading">#</a></h3>
+<p>L’approccio delle valutazioni basate su criteri specifici è diventato sempre più rilevante nel mondo dell’educazione e della psicometria a partire dagli anni Sessanta. Questo approccio, noto anche come valutazione basata su contenuti, dominio o obiettivi, si concentra sulla misurazione delle competenze individuali rispetto a standard definiti, piuttosto che sul confronto con le prestazioni di un gruppo di riferimento.</p>
+<p>Ecco alcune metodologie e applicazioni comuni:</p>
 <ol class="arabic simple">
-<li><p><strong>Percentuale di Risposte Corrette</strong>: Un esempio pratico è l’indicazione della percentuale di risposte corrette in un test, come quando un insegnante comunica che uno studente ha risposto correttamente all’85% delle domande di matematica. Questa valutazione si concentra sulle competenze dell’individuo, a differenza delle valutazioni comparative che misurano le prestazioni degli studenti gli uni rispetto agli altri.</p></li>
-<li><p><strong>Test di Padronanza</strong>: Questi test stabiliscono se lo studente ha acquisito una competenza specifica, come nel caso degli esami per la patente di guida, dove il risultato è espresso in termini di superamento o non superamento. Gli insegnanti possono fissare una soglia di padronanza e considerare competenti coloro che la raggiungono o la superano.</p></li>
-<li><p><strong>Valutazioni Basate su Standard</strong>: Tali valutazioni classificano i risultati in categorie di prestazione, ad esempio base, competente, avanzato, spesso correlando il risultato a voti letterali basati su una percentuale di correttezza.</p></li>
-</ol>
-<p>Le valutazioni basate su criteri si distinguono per la loro capacità di fornire misurazioni dirette e significative delle competenze di uno studente, necessitando di una definizione precisa dell’area di conoscenza o abilità valutata. Questi test sono ideali per la valutazione di aree di contenuto specifiche.</p>
-</section>
-<section id="punti-di-forza">
-<h3><span class="section-number">4.3.2. </span>Punti di Forza<a class="headerlink" href="#punti-di-forza" title="Link to this heading">#</a></h3>
+<li><p><strong>Percentuale di Risposte Corrette</strong>:</p>
 <ul class="simple">
-<li><p><strong>Comparazione con Standard Predefiniti</strong>: Valuta il raggiungimento di competenze o obiettivi specifici, indipendentemente dalle prestazioni altrui.</p></li>
-<li><p><strong>Autonomia dai Confronti Collettivi</strong>: Offre risultati che si basano su standard stabiliti, non alterati dalle performance di gruppo.</p></li>
+<li><p>Questo metodo fornisce un’indicazione diretta delle competenze di uno studente.</p></li>
+<li><p>Ad esempio, se uno studente risponde correttamente all’85% delle domande di matematica, l’insegnante può valutare le sue abilità in modo specifico.</p></li>
 </ul>
-<p>Nel settore educativo, questo metodo permette di analizzare con precisione le abilità individuali degli studenti. Ad esempio, un test di matematica potrebbe concentrarsi sulla capacità di risolvere equazioni lineari, valutando specificatamente questa competenza senza considerare le prestazioni generali della classe.</p>
+</li>
+<li><p><strong>Test di Padronanza</strong>:</p>
+<ul class="simple">
+<li><p>Questi test determinano se uno studente ha acquisito una competenza specifica.</p></li>
+<li><p>Ad esempio, gli esami per la patente di guida valutano se lo studente ha raggiunto il livello di padronanza richiesto.</p></li>
+</ul>
+</li>
+<li><p><strong>Valutazioni Basate su Standard</strong>:</p>
+<ul class="simple">
+<li><p>Queste valutazioni classificano i risultati in categorie di prestazione (ad esempio, base, competente, avanzato).</p></li>
+<li><p>Spesso, i punteggi vengono correlati a voti letterali basati su una percentuale di correttezza.</p></li>
+</ul>
+</li>
+</ol>
+<p>I punti di forza delle valutazioni basate su criteri includono:</p>
+<ul class="simple">
+<li><p><strong>Comparazione con Standard Predefiniti</strong>:</p>
+<ul>
+<li><p>Valutano il raggiungimento di competenze o obiettivi specifici, indipendentemente dalle prestazioni altrui.</p></li>
+<li><p>Questo approccio evita il bias derivante dal confronto con altri studenti.</p></li>
+</ul>
+</li>
+<li><p><strong>Focalizzazione su Competenze Specifiche</strong>:</p>
+<ul>
+<li><p>Questi test richiedono una definizione precisa dell’area di conoscenza o abilità valutata.</p></li>
+<li><p>Sono ideali per valutare aree di contenuto specifiche.</p></li>
+</ul>
+</li>
+</ul>
 <section id="benefici">
-<h4><span class="section-number">4.3.2.1. </span>Benefici<a class="headerlink" href="#benefici" title="Link to this heading">#</a></h4>
+<h3><span class="section-number">4.3.1. </span>Benefici<a class="headerlink" href="#benefici" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Valutazione Mirata delle Competenze</strong>: Fornisce una verifica concreta del conseguimento delle conoscenze e abilità delineate dal programma di studi.</p></li>
 <li><p><strong>Personalizzazione dell’Insegnamento</strong>: Identifica le aree di debolezza, consentendo un approccio didattico più focalizzato e personalizzato.</p></li>
@@ -617,34 +655,44 @@ Tali punteggi esprimono il livello di competenza corrispondente alle prestazioni
 <p>In conclusione, le valutazioni basate su criteri rappresentano un’alternativa preziosa ai metodi di valutazione tradizionali, specialmente in contesti in cui è fondamentale misurare le competenze individuali. Questo approccio è in crescente adozione in ambiti educativi e formativi, enfatizzando l’importanza dell’acquisizione di conoscenze e abilità mirate.</p>
 </section>
 </section>
-</section>
 <section id="analisi-comparativa-tra-valutazioni-normative-e-basate-su-criteri">
 <h2><span class="section-number">4.4. </span>Analisi Comparativa tra Valutazioni Normative e Basate su Criteri<a class="headerlink" href="#analisi-comparativa-tra-valutazioni-normative-e-basate-su-criteri" title="Link to this heading">#</a></h2>
-<p>La distinzione tra valutazioni normative (norm-referenced) e basate su criteri (criterion-referenced) è cruciale per interpretare le prestazioni individuali nei test. Mentre un test può teoricamente offrire entrambi gli approcci interpretativi, di solito è inclinato verso uno dei due, a seconda dell’obiettivo perseguito.</p>
-<p>Le valutazioni normative sono versatili, applicabili a test che valutano una gamma ampia di dimensioni, quali attitudini, risultati scolastici, interessi, atteggiamenti e comportamenti. Al contrario, le valutazioni basate su criteri sono principalmente associate a test che mirano a valutare conoscenze o competenze specifiche, essendo poco adatte a misurare tratti della personalità o altre caratteristiche non direttamente legate a competenze definite.</p>
-<p>Nel contesto dei test di massima prestazione, le valutazioni normative forniscono un quadro più ampio, ideali per esplorare costrutti come l’attitudine generale o l’intelligenza. Invece, le valutazioni basate su criteri si focalizzano su abilità e competenze specifiche, con test che spesso presentano numerose domande per ciascuna competenza o obiettivo valutato.</p>
-<p>La selezione delle domande rappresenta un altro aspetto critico. Nei test con un approccio normativo, si prediligono domande di difficoltà intermedia, escludendo quelle eccessivamente semplici o complesse. Per i test basati su criteri, la difficoltà delle domande è calibrata in funzione delle specifiche conoscenze o abilità da valutare.</p>
-<p>È importante riconoscere che le due interpretazioni non sono mutuamente esclusive. Alcuni test sono concepiti per offrire sia valutazioni normative che basate su criteri, fornendo così insight sulle prestazioni relative rispetto a un gruppo normativo, nonché sul livello di competenza in un ambito definito. Questa dualità interpretativa può essere estremamente utile in diversi contesti.</p>
-<p>In sintesi, sebbene i test standardizzati tendano a privilegiare le valutazioni normative, quelli che adottano un approccio basato su criteri sono indispensabili nel settore educativo e oltre. La scelta tra queste due modalità valutative è guidata dall’obiettivo specifico del test e dalla necessità di ottenere informazioni dettagliate sulle prestazioni o sulle competenze degli esaminati.</p>
+<p>La distinzione tra valutazioni <strong>normative</strong> (norm-referenced) e <strong>basate su criteri</strong> (criterion-referenced) è fondamentale per interpretare le prestazioni individuali nei test. Sebbene un test possa teoricamente adottare entrambi gli approcci interpretativi, di solito si orienta verso uno dei due, a seconda dell’obiettivo specifico.</p>
+<p>Ecco una panoramica delle differenze:</p>
+<ol class="arabic simple">
+<li><p><strong>Valutazioni Normative</strong>:</p>
+<ul class="simple">
+<li><p><strong>Versatilità</strong>: Si applicano a test che valutano una vasta gamma di dimensioni, come attitudini, risultati scolastici, interessi, atteggiamenti e comportamenti.</p></li>
+<li><p><strong>Ampio Quadro</strong>: Ideali per esplorare costrutti generali come l’attitudine generale o l’intelligenza.</p></li>
+<li><p><strong>Selezione delle Domande</strong>: Preferiscono domande di difficoltà intermedia, evitando quelle troppo semplici o complesse.</p></li>
+</ul>
+</li>
+<li><p><strong>Valutazioni Basate su Criteri</strong>:</p>
+<ul class="simple">
+<li><p><strong>Specificità</strong>: Associate principalmente a test che mirano a valutare conoscenze o competenze specifiche.</p></li>
+<li><p><strong>Focalizzazione</strong>: Concentrate su abilità e competenze ben definite.</p></li>
+<li><p><strong>Calibrazione delle Domande</strong>: La difficoltà delle domande è tarata in base alle conoscenze o abilità specifiche da valutare.</p></li>
+</ul>
+</li>
+</ol>
+<p>È importante notare che queste interpretazioni non sono mutuamente esclusive. Alcuni test offrono sia valutazioni normative che basate su criteri, fornendo una visione completa delle prestazioni relative rispetto a un gruppo di riferimento e del livello di competenza in un ambito specifico. Questa dualità interpretativa è preziosa in vari contesti.</p>
 </section>
 <section id="analisi-dei-punteggi-secondo-la-teoria-della-risposta-agli-item">
 <h2><span class="section-number">4.5. </span>Analisi dei Punteggi secondo la Teoria della Risposta agli Item<a class="headerlink" href="#analisi-dei-punteggi-secondo-la-teoria-della-risposta-agli-item" title="Link to this heading">#</a></h2>
-<p>La Teoria della Risposta agli Item (IRT) segna un avanzamento significativo nel campo della psicometria, offrendo strumenti essenziali per la valutazione accurata delle capacità e dei tratti latenti degli individui. Al centro di questa teoria vi è l’idea che le risposte fornite agli item di un test siano determinate da tratti non direttamente osservabili, i quali possono essere inferiti attraverso l’analisi delle prestazioni a specifiche domande. Questo saggio si propone di esplorare le basi, i benefici e le applicazioni pratiche dell’IRT.</p>
+<p>La <strong>Teoria della Risposta agli Item (IRT)</strong> rappresenta un notevole avanzamento nel campo della <strong>psicometria</strong>, fornendo strumenti essenziali per valutare con precisione le capacità e i tratti latenti degli individui.</p>
 <p><strong>Fondamenti e Principi dell’IRT:</strong>
-L’IRT si fonda sull’assunto che ogni persona possieda un grado di un determinato tratto latente, quale l’intelligenza, che è indipendente dalle particolari domande del test o dal metodo di valutazione utilizzato. Attraverso l’applicazione di modelli matematici complessi, l’IRT permette di localizzare ogni individuo su un continuum di tratto latente, offrendo una misurazione delle capacità più precisa rispetto ai tradizionali punteggi grezzi.</p>
-<p><strong>Benefici dei Punteggi basati sull’IRT:</strong>
-I punteggi derivati dall’IRT presentano vantaggi significativi. Essi sono trattati come punteggi a intervalli costanti, consentendo comparazioni valide tra le performance di soggetti o gruppi differenti. Inoltre, questi punteggi conservano una deviazione standard uniforme attraverso varie fasce d’età, rendendoli particolarmente adatti per monitorare l’evoluzione o il progresso delle abilità nel tempo.</p>
-<p><strong>Impieghi Pratici e Prospettive Future dell’IRT:</strong>
-Una delle applicazioni più innovative dell’IRT è lo sviluppo dei test adattivi computerizzati (CAT), dove le domande sono selezionate dinamicamente in base alle risposte precedenti dell’esaminando. Questo metodo permette valutazioni precise ed efficienti delle abilità in tempo reale. Un esempio emblematico è l’impiego dei punteggi IRT, come i W-scores nel Woodcock-Johnson IV, per analizzare variazioni nelle capacità cognitive attribuibili a processi di apprendimento o a decrementi cognitivi.</p>
-<p>La diffusione dell’IRT nella valutazione psicometrica è in aumento, con i punteggi talvolta riferiti come “punteggi Rasch”, in onore di Georg Rasch, uno dei precursori dei modelli matematici su cui si fonda la teoria. Le prospettive future per l’IRT sono promettenti, con ricerche in corso che ne ampliano l’applicabilità a svariati contesti.</p>
-<p>In sintesi, la Teoria della Risposta agli Item fornisce un approccio matematico e metodologicamente avanzato per la misurazione di tratti cognitivi e altri tratti latenti, evidenziando i suoi punti di forza quali la coerenza delle deviazioni standard e la capacità di tracciare i cambiamenti nelle abilità individuali nel tempo. L’IRT rappresenta quindi un pilastro fondamentale nella psicometria contemporanea e nella valutazione delle capacità personali.</p>
+L’IRT si basa sull’assunto che ogni persona possieda un livello di un tratto latente, come l’intelligenza, che è indipendente dalle specifiche domande del test o dal metodo di valutazione utilizzato. Attraverso l’applicazione di modelli matematici complessi, l’IRT consente di posizionare ogni individuo su un continuum di tratto latente, offrendo una misurazione delle capacità più precisa rispetto ai tradizionali punteggi grezzi.</p>
+<p><strong>Vantaggi dei Punteggi basati sull’IRT:</strong>
+I punteggi derivati dall’IRT presentano significativi vantaggi. Essi sono trattati come punteggi a intervalli costanti, consentendo comparazioni valide tra le performance di soggetti o gruppi diversi. Inoltre, questi punteggi mantengono una deviazione standard uniforme attraverso diverse fasce d’età, rendendoli particolarmente adatti per monitorare l’evoluzione o il progresso delle abilità nel tempo.</p>
+<p><strong>Applicazioni Pratiche e Prospettive Future dell’IRT:</strong>
+Una delle applicazioni più innovative dell’IRT è lo sviluppo dei <strong>test adattivi computerizzati (CAT)</strong>, in cui le domande vengono selezionate dinamicamente in base alle risposte precedenti del candidato. Questo metodo consente valutazioni precise ed efficienti delle abilità in tempo reale. Ad esempio, i punteggi IRT, come i <em>W-scores</em> nel <em>Woodcock-Johnson IV</em>, vengono utilizzati per analizzare variazioni nelle capacità cognitive legate ai processi di apprendimento o ai declini cognitivi.</p>
 </section>
 <section id="quali-tipi-di-punteggi-usare">
 <h2><span class="section-number">4.6. </span>Quali tipi di punteggi usare?<a class="headerlink" href="#quali-tipi-di-punteggi-usare" title="Link to this heading">#</a></h2>
 </section>
 <section id="la-selezione-del-punteggio-appropriato-per-la-valutazione">
 <h2><span class="section-number">4.7. </span>La Selezione del Punteggio Appropriato per la Valutazione<a class="headerlink" href="#la-selezione-del-punteggio-appropriato-per-la-valutazione" title="Link to this heading">#</a></h2>
-<p>Determinare il tipo di punteggio più adeguato per un test è essenziale per ottenere informazioni specifiche e pertinenti dalla valutazione. Diverse categorie di punteggi forniscono risposte a domande distinte riguardo le prestazioni degli esaminandi:</p>
+<p>Determinare il tipo di punteggio più adeguato per un test è essenziale per ottenere informazioni specifiche e pertinenti dalla valutazione. Le diverse categorie di punteggi forniscono risposte a domande distinte riguardo alle prestazioni degli esaminandi:</p>
 <ol class="arabic simple">
 <li><p><strong>Punteggi Grezzi:</strong></p>
 <ul class="simple">
@@ -681,13 +729,6 @@ Una delle applicazioni più innovative dell’IRT è lo sviluppo dei test adatti
 </ul>
 <p>In contesti educativi, l’uso di punteggi norm-referenced standardizzati per età può essere preferibile per determinare se uno studente sta progredendo adeguatamente rispetto ai suoi pari. In contesti clinici, come nella gestione della depressione, i punteggi criterion-referenced possono offrire una valutazione mirata del raggiungimento di soglie di miglioramento clinico significativo.</p>
 <p>In conclusione, la scelta del tipo di punteggio da utilizzare è guidata dal contesto di valutazione e dall’obiettivo specifico della misurazione. Diverse tipologie di punteggi illuminano aspetti distinti delle prestazioni, rendendoli più o meno adatti a seconda delle esigenze informative della valutazione.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">source</span><span class="p">(</span><span class="s">&quot;../_common.R&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 <section id="significato-e-applicazione-delle-norme-e-dei-punteggi-standardizzati">
 <h2><span class="section-number">4.8. </span>Significato e Applicazione delle Norme e dei Punteggi Standardizzati<a class="headerlink" href="#significato-e-applicazione-delle-norme-e-dei-punteggi-standardizzati" title="Link to this heading">#</a></h2>
@@ -789,7 +830,7 @@ Una delle applicazioni più innovative dell’IRT è lo sviluppo dei test adatti
 </section>
 <section id="come-funziona-la-trasformazione">
 <h4><span class="section-number">4.8.3.2. </span>Come Funziona la Trasformazione<a class="headerlink" href="#come-funziona-la-trasformazione" title="Link to this heading">#</a></h4>
-<p>Il processo di standardizzazione implica la sottrazione della media del campione normativo dal punteggio grezzo di un individuo, seguita dalla divisione del risultato per la deviazione standard del campione normativo. In termini matematici, se ( X ) è un punteggio grezzo, ( \mu ) è la media del campione normativo e ( \sigma ) è la deviazione standard del campione normativo, allora il punteggio standardizzato ( Z ) è calcolato come:</p>
+<p>Il processo di standardizzazione implica la sottrazione della media del campione normativo dal punteggio grezzo di un individuo, seguita dalla divisione del risultato per la deviazione standard del campione normativo. In termini matematici, se <span class="math notranslate nohighlight">\( X \)</span> è un punteggio grezzo, <span class="math notranslate nohighlight">\( \mu \)</span> è la media del campione normativo e <span class="math notranslate nohighlight">\( \sigma \)</span> è la deviazione standard del campione normativo, allora il punteggio standardizzato <span class="math notranslate nohighlight">\( Z \)</span> è calcolato come:</p>
 <div class="math notranslate nohighlight">
 \[ 
 Z = \frac{X - \mu}{\sigma}.
@@ -829,7 +870,7 @@ Z = \frac{X - \mu}{\sigma}.
 <h4><span class="section-number">4.8.3.5. </span>Caratteristiche Principali dei Punteggi T<a class="headerlink" href="#caratteristiche-principali-dei-punteggi-t" title="Link to this heading">#</a></h4>
 <ul>
 <li><p><strong>Media e Deviazione Standard</strong>: La media fissata a 50 e la deviazione standard di 10 sono scelte per offrire una scala più intuitiva e di facile lettura rispetto agli z-score. Questa trasformazione sposta la scala degli z-score in una gamma numericamente più familiare e più semplice da interpretare per la maggior parte delle persone.</p></li>
-<li><p><strong>Calcolo dei Punteggi T</strong>: Il calcolo dei punteggi T avviene trasformando prima i punteggi grezzi in z-score e poi convertendo questi z-score nella scala dei punteggi T. Matematicamente, se ( Z ) è lo z-score, il punteggio T corrispondente ( T ) è calcolato come:</p>
+<li><p><strong>Calcolo dei Punteggi T</strong>: Il calcolo dei punteggi T avviene trasformando prima i punteggi grezzi in z-score e poi convertendo questi z-score nella scala dei punteggi T. Matematicamente, se <span class="math notranslate nohighlight">\( Z \)</span> è lo z-score, il punteggio T corrispondente <span class="math notranslate nohighlight">\( T \)</span> è calcolato come:</p>
 <div class="math notranslate nohighlight">
 \[
   T = 50 + 10 \times Z. 
@@ -993,7 +1034,58 @@ Z = \frac{X - \mu}{\sigma}.
 </div>
 </div>
 </div>
-<p>Partendo dai ranghi percentili</p>
+<p>In alternativa, è possibile usare la trasformazione di Box-Cox, che è una tecnica parametrica che cerca di correggere le asimmetrie e trasformare i dati in una forma che approssima una distribuzione normale. È efficace per i dati positivi. La trasformazione è definita come segue:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+ y(\lambda) = \begin{cases} \frac{x^\lambda - 1}{\lambda} &amp; \text{se } \lambda \neq 0 \\ \log(x) &amp; \text{se } \lambda = 0 \end{cases},
+ \end{split}\]</div>
+<p>dove <span class="math notranslate nohighlight">\(x\)</span> è il valore originale e <span class="math notranslate nohighlight">\(\lambda\)</span> è il parametro di trasformazione che viene spesso trovato attraverso la massimizzazione della verosimiglianza.</p>
+<p>Supponiamo di voler utilizzare la trasformazione di Box-Cox sul nostro set di dati. La procedura è la seguente. Questo codice utilizza la funzione <code class="docutils literal notranslate"><span class="pre">boxcox</span></code> dal pacchetto MASS per trovare il valore di <span class="math notranslate nohighlight">\(\lambda\)</span> che massimizza la log-verosimiglianza della trasformazione di Box-Cox applicata ai dati. Poi, utilizza questo <span class="math notranslate nohighlight">\(\lambda\)</span> per trasformare i dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span><span class="w"> </span><span class="c1"># Per la funzione boxcox</span>
+
+<span class="c1"># Dati di esempio</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span><span class="w"> </span><span class="c1"># Per rendere l&#39;esempio riproducibile</span>
+<span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">raw_score</span>
+
+<span class="c1"># Trova il miglior lambda per la trasformazione di Box-Cox</span>
+<span class="n">bc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">boxcox</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">lambda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">-2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">))</span>
+
+<span class="c1"># Calcola la trasformazione di Box-Cox con il lambda ottimale</span>
+<span class="n">lambda_opt</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bc</span><span class="o">$</span><span class="n">x</span><span class="p">[</span><span class="nf">which.max</span><span class="p">(</span><span class="n">bc</span><span class="o">$</span><span class="n">y</span><span class="p">)]</span>
+<span class="n">data_transformed</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">data</span><span class="o">^</span><span class="n">lambda_opt</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">lambda_opt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: ‘MASS’
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following object is masked from ‘package:patchwork’:
+
+    area
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following object is masked from ‘package:dplyr’:
+
+    select
+</pre></div>
+</div>
+<img alt="../_images/9a0ea583a5894ebc52a5f382419e67f1a600d5331a7e38792c368ba906206044.png" src="../_images/9a0ea583a5894ebc52a5f382419e67f1a600d5331a7e38792c368ba906206044.png" />
+</div>
+</div>
+<p>Avendo trovato i dati trasformati con la procedura Box-Cox, li confrontiamo con gli Equivalenti alla Curva Normale (NCE) calcolati con la procedura usuale.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">normalized_zscore</span><span class="p">,</span><span class="w"> </span><span class="n">data_transformed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a174519e5fef83bed677c480d210eb38a51954a3e48b07162818713f12092b42.png" src="../_images/a174519e5fef83bed677c480d210eb38a51954a3e48b07162818713f12092b42.png" />
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="nf">density</span><span class="p">(</span><span class="n">normalized_zscore</span><span class="p">))</span><span class="w"> </span><span class="c1"># the shape will be closer to normal</span>
@@ -1004,7 +1096,49 @@ Z = \frac{X - \mu}{\sigma}.
 <img alt="../_images/17da759eb2e2d7e76eaba920ce88da1028fd92575da7982db696483110a55bfe.png" src="../_images/17da759eb2e2d7e76eaba920ce88da1028fd92575da7982db696483110a55bfe.png" />
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="nf">density</span><span class="p">((</span><span class="n">data_transformed</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">data_transformed</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sd</span><span class="p">(</span><span class="n">data_transformed</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/42d67f1617cdf8dbfbca2de5b298c2a74e5e39faed9fc36619ea0d84ef7c04e1.png" src="../_images/42d67f1617cdf8dbfbca2de5b298c2a74e5e39faed9fc36619ea0d84ef7c04e1.png" />
+</div>
+</div>
 <p>Si osservi che i dati NCE presentano una distribuzione più simile a una curva a forma campanulare rispetto ai dati grezzi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform the Lilliefors (Kolmogorov-Smirnov) normality test</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">nortest</span><span class="p">)</span>
+<span class="nf">lillie.test</span><span class="p">(</span><span class="n">normalized_zscore</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Lilliefors (Kolmogorov-Smirnov) normality test
+
+data:  normalized_zscore
+D = 0.085801, p-value = 0.4426
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">lillie.test</span><span class="p">(</span><span class="n">data_transformed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Lilliefors (Kolmogorov-Smirnov) normality test
+
+data:  data_transformed
+D = 0.12456, p-value = 0.04274
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 </section>
@@ -1067,13 +1201,13 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] ggokabeito_0.1.0   viridis_0.6.5      viridisLite_0.4.2  ggpubr_0.6.0      
- [5] ggExtra_0.10.1     bayesplot_1.11.1   gridExtra_2.3      patchwork_1.2.0   
- [9] semTools_0.5-6.920 semPlot_1.1.6      lavaan_0.6-17      psych_2.4.1       
-[13] scales_1.3.0       markdown_1.12      knitr_1.45         lubridate_1.9.3   
-[17] forcats_1.0.0      stringr_1.5.1      dplyr_1.1.4        purrr_1.0.2       
-[21] readr_2.1.5        tidyr_1.3.1        tibble_3.2.1       ggplot2_3.5.0     
-[25] tidyverse_2.0.0    here_1.0.1        
+ [1] nortest_1.0-4      MASS_7.3-60.0.1    ggokabeito_0.1.0   viridis_0.6.5     
+ [5] viridisLite_0.4.2  ggpubr_0.6.0       ggExtra_0.10.1     bayesplot_1.11.1  
+ [9] gridExtra_2.3      patchwork_1.2.0    semTools_0.5-6.920 semPlot_1.1.6     
+[13] lavaan_0.6-17      psych_2.4.1        scales_1.3.0       markdown_1.12     
+[17] knitr_1.45         lubridate_1.9.3    forcats_1.0.0      stringr_1.5.1     
+[21] dplyr_1.1.4        purrr_1.0.2        readr_2.1.5        tidyr_1.3.1       
+[25] tibble_3.2.1       ggplot2_3.5.0      tidyverse_2.0.0    here_1.0.1        
 
 loaded via a namespace (and not attached):
   [1] rstudioapi_0.15.0  jsonlite_1.8.8     magrittr_2.0.3    
@@ -1090,30 +1224,29 @@ loaded via a namespace (and not attached):
  [34] Hmisc_5.1-1        fansi_1.0.6        timechange_0.3.0  
  [37] abind_1.4-5        compiler_4.3.3     withr_3.0.0       
  [40] glasso_1.11        htmlTable_2.4.2    backports_1.4.1   
- [43] carData_3.0-5      ggsignif_0.6.4     MASS_7.3-60.0.1   
- [46] corpcor_1.6.10     gtools_3.9.5       tools_4.3.3       
- [49] pbivnorm_0.6.0     foreign_0.8-86     zip_2.3.1         
- [52] httpuv_1.6.14      nnet_7.3-19        glue_1.7.0        
- [55] quadprog_1.5-8     nlme_3.1-164       promises_1.2.1    
- [58] lisrelToR_0.3      grid_4.3.3         pbdZMQ_0.3-11     
- [61] checkmate_2.3.1    cluster_2.1.6      reshape2_1.4.4    
- [64] generics_0.1.3     gtable_0.3.4       tzdb_0.4.0        
- [67] data.table_1.15.2  hms_1.1.3          car_3.1-2         
- [70] utf8_1.2.4         sem_3.1-15         pillar_1.9.0      
- [73] IRdisplay_1.1      rockchalk_1.8.157  later_1.3.2       
- [76] splines_4.3.3      lattice_0.22-5     survival_3.5-8    
- [79] kutils_1.73        tidyselect_1.2.0   miniUI_0.1.1.1    
- [82] pbapply_1.7-2      stats4_4.3.3       xfun_0.42         
- [85] qgraph_1.9.8       arm_1.13-1         stringi_1.8.3     
- [88] boot_1.3-29        evaluate_0.23      codetools_0.2-19  
- [91] mi_1.1             cli_3.6.2          RcppParallel_5.1.7
- [94] IRkernel_1.3.2     rpart_4.1.23       xtable_1.8-4      
- [97] repr_1.1.6         munsell_0.5.0      Rcpp_1.0.12       
-[100] coda_0.19-4.1      png_0.1-8          XML_3.99-0.16.1   
-[103] parallel_4.3.3     ellipsis_0.3.2     jpeg_0.1-10       
-[106] lme4_1.1-35.1      mvtnorm_1.2-4      openxlsx_4.2.5.2  
-[109] crayon_1.5.2       rlang_1.1.3        multcomp_1.4-25   
-[112] mnormt_2.1.1      
+ [43] carData_3.0-5      ggsignif_0.6.4     corpcor_1.6.10    
+ [46] gtools_3.9.5       tools_4.3.3        pbivnorm_0.6.0    
+ [49] foreign_0.8-86     zip_2.3.1          httpuv_1.6.14     
+ [52] nnet_7.3-19        glue_1.7.0         quadprog_1.5-8    
+ [55] nlme_3.1-164       promises_1.2.1     lisrelToR_0.3     
+ [58] grid_4.3.3         pbdZMQ_0.3-11      checkmate_2.3.1   
+ [61] cluster_2.1.6      reshape2_1.4.4     generics_0.1.3    
+ [64] gtable_0.3.4       tzdb_0.4.0         data.table_1.15.2 
+ [67] hms_1.1.3          car_3.1-2          utf8_1.2.4        
+ [70] sem_3.1-15         pillar_1.9.0       IRdisplay_1.1     
+ [73] rockchalk_1.8.157  later_1.3.2        splines_4.3.3     
+ [76] lattice_0.22-5     survival_3.5-8     kutils_1.73       
+ [79] tidyselect_1.2.0   miniUI_0.1.1.1     pbapply_1.7-2     
+ [82] stats4_4.3.3       xfun_0.42          qgraph_1.9.8      
+ [85] arm_1.13-1         stringi_1.8.3      boot_1.3-29       
+ [88] evaluate_0.23      codetools_0.2-19   mi_1.1            
+ [91] cli_3.6.2          RcppParallel_5.1.7 IRkernel_1.3.2    
+ [94] rpart_4.1.23       xtable_1.8-4       repr_1.1.6        
+ [97] munsell_0.5.0      Rcpp_1.0.12        coda_0.19-4.1     
+[100] png_0.1-8          XML_3.99-0.16.1    parallel_4.3.3    
+[103] ellipsis_0.3.2     jpeg_0.1-10        lme4_1.1-35.1     
+[106] mvtnorm_1.2-4      openxlsx_4.2.5.2   crayon_1.5.2      
+[109] rlang_1.1.3        multcomp_1.4-25    mnormt_2.1.1      
 </pre></div>
 </div>
 </div>
@@ -1191,11 +1324,7 @@ loaded via a namespace (and not attached):
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazioni-basate-su-criteri">4.3. Interpretazioni Basate su Criteri</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodi-e-applicazioni">4.3.1. Metodi e Applicazioni</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#punti-di-forza">4.3.2. Punti di Forza</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#benefici">4.3.2.1. Benefici</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benefici">4.3.1. Benefici</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-comparativa-tra-valutazioni-normative-e-basate-su-criteri">4.4. Analisi Comparativa tra Valutazioni Normative e Basate su Criteri</a></li>
