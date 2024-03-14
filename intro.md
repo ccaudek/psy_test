@@ -48,6 +48,7 @@ Questa dispensa rappresenta un complemento ai due testi precedenti e dovrebbe es
 - Brown, T.A. (2006). _Confirmatory Factor Analysis for Applied Research_. Guilford Press.
 - de Ayala, R.J. (2022). _The Theory and Practice of Item Response Theory_. Guilford Press.
 - Debelak, R., Strobl, C., Zeigenfuse, M. D. (2022). _An Introduction to the Rasch Model with Examples in R_. CRC Press.
+- Gelman, A., Hill, J., Vehtari, A. (2023). [Regression and Other Stories](https://users.aalto.fi/~ave/ROS.pdf). 
 
 ## 💭 Come studiare
 
