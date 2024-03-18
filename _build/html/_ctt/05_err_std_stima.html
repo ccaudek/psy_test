@@ -486,7 +486,11 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-paradosso-di-kelley">13.1. Il paradosso di Kelley</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-errore-standard-della-stima">13.2. L’errore standard della stima</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-errore-standard-della-stima-nel-modello-di-regressione-di-kelley">13.2. L’Errore Standard della Stima nel Modello di Regressione di Kelley</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importanza-dell-errore-standard-della-stima">13.2.1. Importanza dell’Errore Standard della Stima</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#derivazione-dell-errore-standard-della-stima">13.2.2. Derivazione dell’Errore Standard della Stima</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intervallo-di-confidenza-per-il-punteggio-vero">13.3. Intervallo di confidenza per il punteggio vero</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione">13.3.1. Interpretazione</a></li>
 </ul>
@@ -507,16 +511,16 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="la-stima-del-punteggio-vero">
 <span id="err-std-stima-notebook"></span><h1><span class="section-number">13. </span>La stima del punteggio vero<a class="headerlink" href="#la-stima-del-punteggio-vero" title="Link to this heading">#</a></h1>
-<p>Uno dei principali scopi della valutazione psicologica è stimare il vero punteggio del soggetto. Il punteggio osservato <span class="math notranslate nohighlight">\(X\)</span> differisce dal punteggio vero <span class="math notranslate nohighlight">\(T\)</span> a causa dell’errore di misurazione: <span class="math notranslate nohighlight">\(X = T + E\)</span>. Ora poniamoci l’obiettivo di utilizzare i concetti della Teoria Classica per stimare il punteggio vero di un soggetto, utilizzando il suo punteggio osservato e l’affidabilità del test. Questa stima risulta particolarmente utile quando è necessario costruire un intervallo di confidenza per il punteggio vero del soggetto.</p>
+<p>Uno dei principali scopi della valutazione psicologica è stimare il punteggio vero del soggetto. Il punteggio osservato <span class="math notranslate nohighlight">\(X\)</span> differisce dal punteggio vero <span class="math notranslate nohighlight">\(T\)</span> a causa dell’errore di misurazione: <span class="math notranslate nohighlight">\(X = T + E\)</span>. Ora poniamoci l’obiettivo di utilizzare i concetti della Teoria Classica per stimare il punteggio vero di un soggetto, utilizzando il suo punteggio osservato e l’affidabilità del test. Questa stima risulta particolarmente utile quando è necessario costruire un intervallo di confidenza per il punteggio vero del soggetto.</p>
 <p>Per costruire l’intervallo di confidenza del vero punteggio, sono necessarie due misurazioni:</p>
 <ul class="simple">
 <li><p>Una stima del vero punteggio.</p></li>
-<li><p>L’errore standard della stima (ossia, una stima della deviazione standard della distribuzione delle stime del vero punteggio che si otterrebbero se il test venisse somministrato infinite volte nelle stesse condizioni).</p></li>
+<li><p>L’errore standard della stima (ossia, una stima della deviazione standard della distribuzione delle stime del punteggio vero che si otterrebbero se il test venisse somministrato infinite volte nelle stesse condizioni).</p></li>
 </ul>
 <p>Cominciamo affrontando il problema della stima del vero punteggio.</p>
 <section id="il-paradosso-di-kelley">
 <h2><span class="section-number">13.1. </span>Il paradosso di Kelley<a class="headerlink" href="#il-paradosso-di-kelley" title="Link to this heading">#</a></h2>
-<p>Negli anni ‘20, Kelly ha dimostrato come sia possibile stimare il  punteggio vero del rispondente utilizzando un modello di regressione. La formula di Kelley si fonda sull’equivalenza algebrica che lega l’attendibilità al quadrato del coefficiente di correlazione tra i punteggi osservati e quelli veri. Pertanto, la stima del punteggio vero di un rispondente può essere calcolata nel seguente modo:</p>
+<p>Negli anni ‘20, Kelly ha dimostrato come sia possibile stimare il punteggio vero del rispondente utilizzando un modello di regressione. La formula di Kelley si fonda sull’equivalenza algebrica che lega l’attendibilità al quadrato del coefficiente di correlazione tra i punteggi osservati e quelli veri. Pertanto, la stima del punteggio vero di un rispondente può essere calcolata nel seguente modo:</p>
 <div class="math notranslate nohighlight" id="equation-eq-kelly">
 <span class="eqno">(13.1)<a class="headerlink" href="#equation-eq-kelly" title="Link to this equation">#</a></span>\[
 \begin{equation}
@@ -524,87 +528,57 @@ document.write(`
 \end{equation}
 \]</div>
 <p>dove <span class="math notranslate nohighlight">\(X\)</span> rappresenta il punteggio osservato, <span class="math notranslate nohighlight">\(\mu_x\)</span> è la media dei punteggi ottenuti da tutti i partecipanti nel campione, e <span class="math notranslate nohighlight">\(\rho\)</span> è l’attendibilità del test.</p>
-<p>Quando l’attendibilità è perfetta (<span class="math notranslate nohighlight">\(\rho = 1\)</span>), il punteggio vero coincide con il punteggio osservato. Nel caso di attendibilità nulla (dove tutta la varianza è attribuibile all’errore di misurazione), la stima più accurata del vero punteggio è semplicemente la media del campione. Per valori di <span class="math notranslate nohighlight">\(\rho\)</span> compresi tra 0 e 1, la stima del punteggio vero si discosta dal punteggio osservato in direzione della media campionaria. In questo modo, la stima del punteggio vero illustra il concetto di regressione verso la media dei punteggi osservati, considerando l’attendibilità del test.</p>
+<p>Quando l’attendibilità è perfetta (<span class="math notranslate nohighlight">\(\rho = 1\)</span>), il punteggio vero coincide con il punteggio osservato. Nel caso di attendibilità nulla (dove tutta la varianza è attribuibile all’errore di misurazione), la stima più accurata del punteggio vero è semplicemente la media del campione. Per valori di <span class="math notranslate nohighlight">\(\rho\)</span> compresi tra 0 e 1, la stima del punteggio vero si discosta dal punteggio osservato in direzione della media campionaria. In questo modo, la stima del punteggio vero illustra il concetto di regressione verso la media dei punteggi osservati, considerando l’attendibilità del test.</p>
 <p>La formula del punteggio vero può essere interpretata nel modo seguente: per stimare il vero punteggio di un individuo, si parte dalla media della distribuzione di tutti i partecipanti e si procede in direzione del punteggio osservato. Tuttavia, il punteggio osservato non viene raggiunto completamente; l’entità dello spostamento è proporzionale all’attendibilità del test. Ciò implica che la stima del punteggio vero di un individuo, a seconda del valore di <span class="math notranslate nohighlight">\(\rho\)</span>, tiene conto anche della sua posizione rispetto alla media del gruppo. Se il soggetto si trova al di sotto della media, la stima del punteggio vero sarà maggiorata e viceversa. Questo fenomeno è noto come il “paradosso di Kelley”.</p>
-<p>È fondamentale sottolineare una contraddizione tra la formula di Kelley e l’idea intuitiva che suggerisce come il punteggio osservato possa essere considerato una stima del vero punteggio (cioè <span class="math notranslate nohighlight">\(\hat{T} = X\)</span>). Questo ragionamento è valido solo in caso di perfetta attendibilità (<span class="math notranslate nohighlight">\(\rho = 1\)</span>). Al contrario, quando <span class="math notranslate nohighlight">\(\rho = 0\)</span>, la formula di Kelley suggerisce di utilizzare la media dei punteggi osservati come stima del vero punteggio, implicando che il punteggio osservato non sia informativo. Tuttavia, è altamente improbabile che nella pratica <span class="math notranslate nohighlight">\(\rho\)</span> sia esattamente 0. Invece, con valori di <span class="math notranslate nohighlight">\(\rho\)</span> compresi tra 0 e 1, la stima del punteggio vero sarà situata tra il punteggio osservato e la media della popolazione. Per una comprensione più approfondita di questa stima, possiamo citare Kelley (1947), il quale ha osservato che:</p>
+<p>È cruciale mettere in evidenza una discrepanza tra la formula di Kelley e l’intuizione comune che suggerisce il punteggio osservato come una stima accurata del vero punteggio (cioè <span class="math notranslate nohighlight">\(\hat{T} = X\)</span>). Tuttavia, questo punto di vista è valido solo quando la misura è perfettamente attendibile (<span class="math notranslate nohighlight">\(\rho = 1\)</span>). Al contrario, quando <span class="math notranslate nohighlight">\(\rho = 0\)</span>, la formula di Kelley suggerisce di utilizzare la media dei punteggi osservati come stima del vero punteggio, implicando che il punteggio osservato non rifletta necessariamente il vero punteggio, ma solo l’errore di misurazione.</p>
+<p>In pratica, è estremamente improbabile che <span class="math notranslate nohighlight">\(\rho\)</span> sia esattamente uguale a zero. Invece, con valori di <span class="math notranslate nohighlight">\(\rho\)</span> compresi tra 0 e 1, la stima del punteggio vero si troverà in una posizione intermedia tra il punteggio osservato e la media della popolazione. Per una comprensione più dettagliata di questo concetto, possiamo fare riferimento a Kelley (1947), il quale ha osservato che:</p>
 <blockquote>
 <div><p>This is an interesting equation in that it expresses the estimate of true ability as the weighted sum of two separate estimates, – one based upon the individual’s observed score, <span class="math notranslate nohighlight">\(X_1\)</span> (<span class="math notranslate nohighlight">\(X\)</span> nella notazione corrente) and the other based upon the mean of the group to which he belongs, <span class="math notranslate nohighlight">\(M_1\)</span> (<span class="math notranslate nohighlight">\(\mu_x\)</span> nella notazione corrente). If the test is highly reliable, much weight is given to the test score and little to the group mean, and vice versa.</p>
 </div></blockquote>
-<p>Per comprendere l’eq. <a class="reference internal" href="#equation-eq-kelly">(13.1)</a>, è necessario partire dal modello di regressione lineare semplice che stabilisce la relazione tra il punteggio osservato <span class="math notranslate nohighlight">\(X\)</span> e il punteggio vero. In precedenza, abbiamo esaminato il modello di regressione che collega il punteggio osservato, <span class="math notranslate nohighlight">\(X = 0 + 1 \cdot T + E\)</span>. Tuttavia, in questo caso, l’obiettivo è differente: desideriamo <em>predire</em> il punteggio vero <span class="math notranslate nohighlight">\(T\)</span> basandoci sul punteggio osservato <span class="math notranslate nohighlight">\(X\)</span>, utilizzando un modello di regressione (Nunnally, 1978).</p>
-<p>Nel tentativo di “predire” il punteggio vero <span class="math notranslate nohighlight">\(T\)</span> basandoci sul punteggio osservato <span class="math notranslate nohighlight">\(X\)</span>, il modello di regressione assume la forma</p>
+<p>Per chiarire l’eq. <a class="reference internal" href="#equation-eq-kelly">(13.1)</a> e la sua derivazione in termini di predizione del punteggio vero a partire dal punteggio osservato, iniziamo esaminando il modello di base di regressione lineare semplice. Questo modello stabilisce una relazione diretta tra il punteggio osservato <span class="math notranslate nohighlight">\(X\)</span> e il punteggio vero <span class="math notranslate nohighlight">\(T\)</span>, una relazione che inizialmente abbiamo descritto con la formula <span class="math notranslate nohighlight">\(X = 0 + 1 \cdot T + E\)</span>. Il nostro interesse specifico qui, però, si sposta verso la predizione del punteggio vero <span class="math notranslate nohighlight">\(T\)</span> utilizzando il punteggio osservato <span class="math notranslate nohighlight">\(X\)</span>, attraverso un modello di regressione. La formula per questa predizione assume la forma:</p>
 <div class="math notranslate nohighlight">
 \[
 T = \alpha + \beta X + \varepsilon.
 \]</div>
-<p>Se esprimiamo le variabili come deviazioni dalla media, ovvero <span class="math notranslate nohighlight">\(x = X - \bar{X}\)</span> e <span class="math notranslate nohighlight">\(\tau = T - \mathbb{E}(T)\)</span>, l’intercetta diviene 0 e il modello si semplifica in <span class="math notranslate nohighlight">\(\tau = \beta x + \varepsilon\)</span>, cioè <span class="math notranslate nohighlight">\(\hat{\tau} = \beta x.\)</span> La sfida risiede nel calcolo del coefficiente <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
-<p>Nel modello <span class="math notranslate nohighlight">\(\hat{\tau} = \beta x\)</span>, la pendenza della retta di regressione è espressa come <span class="math notranslate nohighlight">\(\beta = \frac{\sigma_{\tau x}}{\sigma^2_x}\)</span>. Pertanto, possiamo riscrivere il modello di regressione nel seguente modo:</p>
-<div class="math notranslate nohighlight" id="equation-eq-hat-t-1">
-<span class="eqno">(13.2)<a class="headerlink" href="#equation-eq-hat-t-1" title="Link to this equation">#</a></span>\[
-\begin{equation}
+<p>Riorganizzando le variabili in termini di deviazioni dalla loro media (<span class="math notranslate nohighlight">\(x = X - \bar{X}\)</span> e <span class="math notranslate nohighlight">\(\tau = T - \mathbb{E}(T)\)</span>), e considerando l’intercetta <span class="math notranslate nohighlight">\(\alpha\)</span> come 0, il modello si semplifica in <span class="math notranslate nohighlight">\(\hat{\tau} = \beta x\)</span>, dove <span class="math notranslate nohighlight">\(\hat{\tau}\)</span> rappresenta la nostra stima del punteggio vero come deviazione dalla media. La questione centrale diventa quindi il calcolo di <span class="math notranslate nohighlight">\(\beta\)</span>, che è la pendenza della retta di regressione nel nostro modello semplificato.</p>
+<p>Il valore di <span class="math notranslate nohighlight">\(\beta\)</span> viene definito come <span class="math notranslate nohighlight">\(\beta = \frac{\sigma_{\tau x}}{\sigma^2_x}\)</span>, che ci permette di esprimere il modello come:</p>
+<div class="math notranslate nohighlight">
+\[
 \hat{\tau} = \frac{\sigma_{\tau x}}{\sigma^2_x} x.
-\end{equation}
 \]</div>
-<p>La correlazione tra <span class="math notranslate nohighlight">\(x\)</span> (o <span class="math notranslate nohighlight">\(X\)</span>) e <span class="math notranslate nohighlight">\(\tau\)</span> (o <span class="math notranslate nohighlight">\(T\)</span>) è uguale a <span class="math notranslate nohighlight">\(\rho_{\tau x} = \frac{\sigma_{\tau x}}{\sigma_x \sigma_{\tau}}\)</span>. Di conseguenza, <span class="math notranslate nohighlight">\(\sigma_{\tau x} = \rho_{\tau x}\sigma_x \sigma_{\tau}\)</span> e l’equazione precedente diviene</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{equation}
-\begin{aligned}
-\hat{\tau} &amp;= \frac{\sigma_{TX}}{\sigma^2_X} X  \notag\\
-&amp;= \frac{\rho_{\tau x}\sigma_x \sigma_{\tau}}{\sigma^2_x} x \notag\\
-&amp;= \rho_{\tau x}\frac{\sigma_{\tau}}{\sigma_x} x. \notag
-\end{aligned}
-\end{equation}
-\end{split}\]</div>
-<p>In accordo con la definizione di attendibilità, la varianza del punteggio vero è
-<span class="math notranslate nohighlight">\(\sigma^2_{\tau} = \sigma^2_x \rho_{xx^\prime}\)</span>. Pertanto, la deviazione standard del punteggio vero diviene <span class="math notranslate nohighlight">\(\sigma_{\tau} = \sigma_x \sqrt{\rho_{xx^\prime}}\)</span>. Sostituendo questo risultato nell’equazione precedente otteniamo</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{equation}
-\begin{aligned}
-\hat{\tau} &amp;= \rho_{\tau x}\frac{\sigma_x \sqrt{\rho_{xx^\prime}}}{\sigma_x} x
-\notag\\
-&amp;=  \rho_{\tau x}  \sqrt{\rho_{xx^\prime}} x. \notag
-\end{aligned}
-\end{equation}
-\end{split}\]</div>
-<p>Abbiamo precedentemente dimostrato che <span class="math notranslate nohighlight">\(\rho^2_{\tau x} = \rho_{xx^\prime}\)</span>, quindi</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{equation}
-\begin{aligned}
-\hat{\tau} &amp;= \rho_{\tau x} \sqrt{\rho_{xx^\prime}} x \notag\\
-        &amp;= \sqrt{\rho_{xx^\prime}} \sqrt{\rho_{xx^\prime}} x \notag\\
-        &amp;= \rho_{xx^\prime} x.\notag
-\end{aligned}
-\end{equation}
-\end{split}\]</div>
-<p>In sintesi, la stima del punteggio vero si ottiene moltiplicando il punteggio osservato, espresso come deviazione dalla media, per il coefficiente di attendibilità.</p>
-<p>Ora riformuliamo la formula appena ottenuta in termini del punteggio grezzo <span class="math notranslate nohighlight">\(X\)</span> (senza considerare le deviazioni dalla media). Per farlo, sommiamo <span class="math notranslate nohighlight">\(\bar{X}\)</span> ottenendo</p>
+<p>Introducendo la correlazione tra <span class="math notranslate nohighlight">\(x\)</span> (o <span class="math notranslate nohighlight">\(X\)</span>) e <span class="math notranslate nohighlight">\(\tau\)</span> (o <span class="math notranslate nohighlight">\(T\)</span>), denotata <span class="math notranslate nohighlight">\(\rho_{\tau x}\)</span>, e sostituendo la covarianza con il prodotto della correlazione per le deviazioni standard dei punteggi, riscriviamo l’equazione come:</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{T} = \rho_{XX^\prime} (X - \bar{X}) + \bar{X}, 
+\hat{\tau} = \rho_{\tau x}\frac{\sigma_{\tau}}{\sigma_x} x.
 \]</div>
-<p>dove <span class="math notranslate nohighlight">\(\hat{T}^\prime\)</span> è la stima del punteggio vero grezzo. Sviluppando ulteriormente, otteniamo</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{equation}
-\begin{aligned}
-\hat{T} &amp;= \rho_{XX^\prime} (X - \bar{X}) + \bar{X}\notag\\
- &amp;=  X\rho_{XX^\prime}  - \bar{X} \rho_{XX^\prime} + \bar{X}\notag\\
-&amp;= \bar{X} (1 - \rho_{XX^\prime}) + X\rho_{XX^\prime}\notag\\
-&amp;= \bar{X} - \bar{X}\rho_{XX'} + X\rho_{XX^\prime}\notag\\
-&amp;= \bar{X} + \rho_{XX'} (X - \bar{X}).\notag
-\end{aligned}
-\end{equation}
-\end{split}\]</div>
-<p>Per quanto riguarda i dati campionari, la formula diventa:</p>
+<p>Questo ci porta a considerare la definizione di attendibilità, secondo cui la varianza del punteggio vero può essere espressa come <span class="math notranslate nohighlight">\(\sigma^2_{\tau} = \sigma^2_x \rho_{xx^\prime}\)</span>. La stima del punteggio vero, in termini di deviazioni dalla media, diventa quindi una funzione del coefficiente di attendibilità e della deviazione del punteggio osservato dalla sua media:</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{T} = \bar{X} + r_{XX^\prime}  (X - \bar{X}),
+\hat{\tau} = \rho_{\tau x} \sqrt{\rho_{xx^\prime}} x.
 \]</div>
-<p>dove <span class="math notranslate nohighlight">\(X\)</span> rappresenta il punteggio (grezzo) osservato, <span class="math notranslate nohighlight">\(\bar{X}\)</span> è la media dei punteggi
-osservati in un campione di rispondenti, e <span class="math notranslate nohighlight">\(r_{XX^\prime}\)</span> è il coefficiente di
-attendibilità.</p>
+<p>Avendo dimostrato che <span class="math notranslate nohighlight">\(\rho^2_{\tau x} = \rho_{xx^\prime}\)</span>, possiamo ulteriormente semplificare la nostra stima del punteggio vero come:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\tau} = \rho_{xx^\prime} x.
+\]</div>
+<p>Questo ci indica che la stima del punteggio vero (in termini di deviazioni dalla media) si ottiene moltiplicando il punteggio osservato, anch’esso espresso come deviazione dalla media, per il coefficiente di attendibilità.</p>
+<p>Per ritornare alla formula in termini di punteggi grezzi, aggiungiamo la media dei punteggi osservati <span class="math notranslate nohighlight">\(\bar{X}\)</span> alla nostra equazione, ottenendo così la stima del punteggio vero grezzo <span class="math notranslate nohighlight">\(\hat{T}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{T} = \rho_{XX^\prime} (X - \bar{X}) + \bar{X}.
+\]</div>
+<p>Espandendo e riorganizzando l’equazione, arriviamo a una forma che chiarisce la relazione tra la media dei punteggi osservati, il coefficiente di attendibilità, e il punteggio osservato grezzo:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{T} = \bar{X} + \rho_{XX^\prime} (X - \bar{X}).
+\]</div>
+<p>Questa equazione finale dimostra come la stima del punteggio vero grezzo possa essere calcolata regolando il punteggio osservato per la media dei punteggi e il coefficiente di attendibilità.</p>
+<p>Nel contesto di dati campionari, dove il coefficiente di attendibilità popolazionale <span class="math notranslate nohighlight">\(\rho_{XX^\prime}\)</span> viene sostituito con il suo corrispettivo campionario <span class="math notranslate nohighlight">\(r_{XX^\prime}\)</span>, la formula diventa:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{T} = \bar{X} + r_{XX^\prime} (X - \bar{X}),
+\]</div>
+<p>offrendo un metodo pratico per stimare il punteggio vero di un individuo a partire dal suo punteggio osservato, con l’aggiunta della media dei punteggi osservati e il coefficiente di attendibilità campionario.</p>
 <p><strong>Esercizio.</strong> Posto un coefficiente di attendibilità pari a 0.80 e una media del test pari a <span class="math notranslate nohighlight">\(\bar{X} = 100\)</span>, si trovi una stima del punteggio vero per un rispondente con un punteggio osservato uguale a <span class="math notranslate nohighlight">\(X\)</span> = 115.</p>
 <p>La stima del punteggio vero <span class="math notranslate nohighlight">\(\hat{T}\)</span> è uguale a</p>
 <div class="math notranslate nohighlight">
@@ -627,30 +601,33 @@ attendibilità.</p>
 <div class="output text_html">112</div></div>
 </div>
 </section>
-<section id="l-errore-standard-della-stima">
-<h2><span class="section-number">13.2. </span>L’errore standard della stima<a class="headerlink" href="#l-errore-standard-della-stima" title="Link to this heading">#</a></h2>
-<p>Il modello di regressione di Kelley non solo ci consente di ottenere una stima del punteggio vero a partire dal punteggio osservato, ma ci fornisce anche un’indicazione della precisione di tale stima: l’<em>errore standard della stima</em>.</p>
-<p>Immaginiamo di poter somministrare il test a un partecipante più volte, in condizioni identiche, ottenendo da ciascuna somministrazione una stima del valore vero <span class="math notranslate nohighlight">\(\hat{T}\)</span>. A causa dell’errore di misurazione, il punteggio osservato varierà in ogni iterazione del test, comportando anche variazioni nella stima di <span class="math notranslate nohighlight">\(\hat{T}\)</span>. La deviazione standard di queste ipotetiche stime di <span class="math notranslate nohighlight">\(\hat{T}\)</span> viene denominata errore standard della stima, rappresentata da <span class="math notranslate nohighlight">\(\sigma_{\hat{T}}\)</span>.</p>
-<p>Calcolare l’errore standard della stima è importante poiché fornisce un’indicazione sulla precisione della stima del punteggio vero. Un valore più basso di errore standard della stima corrisponde a una stima più accurata del punteggio vero. L’errore standard della stima si calcola attraverso la seguente formula:</p>
+<section id="l-errore-standard-della-stima-nel-modello-di-regressione-di-kelley">
+<h2><span class="section-number">13.2. </span>L’Errore Standard della Stima nel Modello di Regressione di Kelley<a class="headerlink" href="#l-errore-standard-della-stima-nel-modello-di-regressione-di-kelley" title="Link to this heading">#</a></h2>
+<p>Nell’ambito del modello di regressione di Kelley, uno strumento fondamentale per valutare la precisione delle stime del punteggio vero ottenute dai punteggi osservati è l’<em>errore standard della stima</em>. Questo indice quantifica quanto le nostre stime del punteggio vero possano variare se ripetessimo il test più volte sotto le stesse condizioni. Denotiamo l’errore standard della stima con <span class="math notranslate nohighlight">\(\sigma_{\hat{T}}\)</span>, dove <span class="math notranslate nohighlight">\(\hat{T}\)</span> rappresenta la stima del valore vero.</p>
+<section id="importanza-dell-errore-standard-della-stima">
+<h3><span class="section-number">13.2.1. </span>Importanza dell’Errore Standard della Stima<a class="headerlink" href="#importanza-dell-errore-standard-della-stima" title="Link to this heading">#</a></h3>
+<p>L’errore standard della stima è cruciale per comprendere quanto sia affidabile la stima del punteggio vero. Un errore standard più piccolo indica una stima più precisa. Matematicamente, l’errore standard della stima si calcola come:</p>
 <div class="math notranslate nohighlight" id="equation-eq-std-err-estimate">
 <span class="eqno">(13.3)<a class="headerlink" href="#equation-eq-std-err-estimate" title="Link to this equation">#</a></span>\[
-\begin{equation}
-\sigma_{\hat{T}} = \sigma_X \sqrt{\rho_{XX^\prime} (1 -\rho_{XX^\prime})}.
-\end{equation}
+\sigma_{\hat{T}} = \sigma_X \sqrt{\rho_{XX^\prime} (1 -\rho_{XX^\prime})},
 \]</div>
-<p>Nel contesto di dati campionari, l’errore standard della stima si calcola come segue:</p>
+<p>dove <span class="math notranslate nohighlight">\(\sigma_X\)</span> è la deviazione standard dei punteggi osservati, e <span class="math notranslate nohighlight">\(\rho_{XX^\prime}\)</span> rappresenta il coefficiente di correlazione tra i punteggi osservati e i punteggi veri. Questa formula assume una distribuzione normale dei punteggi e una relazione lineare tra i punteggi osservati e i punteggi veri.</p>
+<p>Per dati campionari, utilizziamo una formula leggermente modificata per calcolare l’errore standard della stima:</p>
 <div class="math notranslate nohighlight">
 \[
 s_{\hat{T}} = s_X \sqrt{r_{XX^\prime} (1-r_{XX^\prime})},
 \]</div>
-<p>dove <span class="math notranslate nohighlight">\(s_X\)</span> rappresenta la deviazione standard del campione e <span class="math notranslate nohighlight">\(r_{XX^\prime}\)</span> è il coefficiente di attendibilità.</p>
-<p>Per ricavare l’eq. <a class="reference internal" href="#equation-eq-std-err-estimate">(13.3)</a>, iniziamo definendo <span class="math notranslate nohighlight">\(\varepsilon\)</span> come l’errore risultante dalla differenza tra il vero punteggio <span class="math notranslate nohighlight">\(T\)</span> e il punteggio stimato <span class="math notranslate nohighlight">\(\hat{T}\)</span> [si veda <span id="id1">Lord and Novick [<a class="reference internal" href="../z_biblio.html#id52" title="Frederic M Lord and Melvin R Novick. Statistical theories of mental test scores. Addison-Wesley, 1968.">LN68</a>]</span>]:</p>
+<p>qui <span class="math notranslate nohighlight">\(s_X\)</span> indica la deviazione standard campionaria, e <span class="math notranslate nohighlight">\(r_{XX^\prime}\)</span> è il coefficiente di affidabilità campionario.</p>
+</section>
+<section id="derivazione-dell-errore-standard-della-stima">
+<h3><span class="section-number">13.2.2. </span>Derivazione dell’Errore Standard della Stima<a class="headerlink" href="#derivazione-dell-errore-standard-della-stima" title="Link to this heading">#</a></h3>
+<p>Per derivare l’equazione dell’errore standard di stima, <a class="reference internal" href="#equation-eq-std-err-estimate">(13.3)</a>, iniziamo con la definizione dell’errore <span class="math notranslate nohighlight">\(\varepsilon\)</span>, che rappresenta la discrepanza tra il punteggio reale <span class="math notranslate nohighlight">\(T\)</span> e il punteggio stimato <span class="math notranslate nohighlight">\(\hat{T}\)</span>, come illustrato nella formula:</p>
 <div class="math notranslate nohighlight">
 \[
 \varepsilon = T - \hat{T}.
 \]</div>
-<p>È importante notare la distinzione di notazione tra l’errore di misurazione <span class="math notranslate nohighlight">\(E = X - T\)</span> (dove <span class="math notranslate nohighlight">\(E\)</span> rappresenta l’errore nella misurazione, ovvero la differenza tra il punteggio osservato <span class="math notranslate nohighlight">\(X\)</span> e il vero punteggio <span class="math notranslate nohighlight">\(T\)</span>) e <span class="math notranslate nohighlight">\(\varepsilon = T - \hat{T}\)</span> (dove <span class="math notranslate nohighlight">\(\varepsilon\)</span> rappresenta la differenza tra il vero punteggio <span class="math notranslate nohighlight">\(T\)</span> e la stima del vero punteggio <span class="math notranslate nohighlight">\(\hat{T}\)</span>).</p>
-<p>Utilizzando la relazione <span class="math notranslate nohighlight">\(\hat{T} = \bar{X} + \rho_{XX^\prime} (X - \bar{X})\)</span>, possiamo esprimere la varianza di <span class="math notranslate nohighlight">\(\varepsilon\)</span> come:</p>
+<p>Si sottolinea la distinzione tra l’errore di misurazione, indicato con <span class="math notranslate nohighlight">\(E = X - T\)</span> (dove <span class="math notranslate nohighlight">\(E\)</span> quantifica l’errore di misurazione, ovvero la differenza tra il punteggio osservato <span class="math notranslate nohighlight">\(X\)</span> e il punteggio reale <span class="math notranslate nohighlight">\(T\)</span>), e l’errore <span class="math notranslate nohighlight">\(\varepsilon = T - \hat{T}\)</span> (che esprime la discrepanza tra il punteggio reale <span class="math notranslate nohighlight">\(T\)</span> e la sua stima <span class="math notranslate nohighlight">\(\hat{T}\)</span>).</p>
+<p>Adottando la formula <span class="math notranslate nohighlight">\(\hat{T} = \bar{X} + \rho_{XX^\prime} (X - \bar{X})\)</span> per esprimere <span class="math notranslate nohighlight">\(\hat{T}\)</span>, si può calcolare la varianza di <span class="math notranslate nohighlight">\(\varepsilon\)</span> come segue:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -658,12 +635,12 @@ s_{\hat{T}} = s_X \sqrt{r_{XX^\prime} (1-r_{XX^\prime})},
 &amp;= \mathbb{V}(T - \bar{X} - \rho_{XX^\prime} X + \rho_{XX^\prime}\bar{X}).
 \end{aligned}
 \end{split}\]</div>
-<p>Poiché la varianza di una variabile aleatoria non cambia sommando una costante, possiamo semplificare ulteriormente l’equazione a:</p>
+<p>Dato che l’aggiunta di una costante non altera la varianza di una variabile aleatoria, possiamo semplificare l’espressione a:</p>
 <div class="math notranslate nohighlight">
 \[
 \mathbb{V}(\varepsilon) = \mathbb{V}(T - \rho_{XX^\prime}X).
 \]</div>
-<p>Successivamente, sfruttando la proprietà di varianza per la somma di due variabili aleatorie, di cui una moltiplicata per una costante, giungiamo a:</p>
+<p>Sfruttando la regola della varianza per la somma di variabili aleatorie, incluso il caso in cui una variabile è moltiplicata per una costante, arriviamo a:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -671,28 +648,27 @@ s_{\hat{T}} = s_X \sqrt{r_{XX^\prime} (1-r_{XX^\prime})},
 &amp;= \sigma^2_T + \rho_{XX^\prime}^2 \sigma^2_X - 2 \rho_{XX^\prime} \sigma_{XT}.
 \end{aligned}
 \end{split}\]</div>
-<p>Ricordando che <span class="math notranslate nohighlight">\(\sigma_{XT} = \sigma^2_T\)</span>, possiamo semplificare ulteriormente l’equazione a:</p>
+<p>Con <span class="math notranslate nohighlight">\(\sigma_{XT} = \sigma^2_T\)</span>, possiamo ridurre ulteriormente l’espressione a:</p>
 <div class="math notranslate nohighlight">
 \[
 \sigma^2_{\varepsilon} = \sigma^2_T + \left(\frac{\sigma_T^2}{\sigma_X^2}\right)^2 \sigma^2_X - 2 \frac{\sigma_T^2}{\sigma_X^2} \sigma_{XT}.
 \]</div>
-<p>Semplificando ulteriormente otteniamo:</p>
+<p>Semplificando, otteniamo:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
 \sigma^2_{\varepsilon} &amp;= \sigma^2_T + \frac{\sigma_T^4}{\sigma_X^4} \sigma^2_X - 2 \frac{\sigma_T^2}{\sigma_X^2} \sigma_{XT} \\
-&amp;= \sigma^2_T + \sigma^2_T \frac{\sigma_T^2}{\sigma_X^2} - \sigma_T^2 2 \frac{\sigma_{XT}}{\sigma_X^2} \\
 &amp;= \sigma^2_T \left(1 + \frac{\sigma_T^2}{\sigma_X^2} - 2 \frac{\sigma_{XT}}{\sigma_X^2}\right).
 \end{aligned}
 \end{split}\]</div>
-<p>Sfruttando <span class="math notranslate nohighlight">\(\sigma_{XT} = \sigma^2_T\)</span>, possiamo semplificare ulteriormente a:</p>
+<p>Infine, con <span class="math notranslate nohighlight">\(\sigma_{XT} = \sigma^2_T\)</span>, semplifichiamo a:</p>
 <div class="math notranslate nohighlight">
 \[
 \begin{aligned}
 \sigma^2_{\varepsilon} &amp;= \sigma^2_T \left(1 - \frac{\sigma_{T}^2}{\sigma_X^2}\right).
 \end{aligned}
 \]</div>
-<p>Da cui l’errore standard dell’estimazione <span class="math notranslate nohighlight">\(\sigma_{\varepsilon}\)</span> risulta essere:</p>
+<p>Questo ci porta alla formula dell’errore standard della stima <span class="math notranslate nohighlight">\(\sigma_{\varepsilon}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -701,7 +677,7 @@ s_{\hat{T}} = s_X \sqrt{r_{XX^\prime} (1-r_{XX^\prime})},
 &amp;= \frac{\sigma_T}{\sigma_X} \sqrt{\sigma^2_X - \sigma^2_T}.
 \end{aligned}
 \end{split}\]</div>
-<p>Considerando che <span class="math notranslate nohighlight">\(\sigma^2_X = \sigma^2_T + \sigma^2_E\)</span>, possiamo scrivere:</p>
+<p>Considerando che <span class="math notranslate nohighlight">\(\sigma^2_X = \sigma^2_T + \sigma^2_E\)</span>, l’errore standard di stima diventa:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -710,7 +686,7 @@ s_{\hat{T}} = s_X \sqrt{r_{XX^\prime} (1-r_{XX^\prime})},
 &amp;= \sqrt{\rho_{XX^\prime}} \sigma_E.
 \end{aligned}
 \end{split}\]</div>
-<p>Ricordando che l’errore standard di misurazione è <span class="math notranslate nohighlight">\(\sigma_E = \sigma_X \sqrt{1 - \rho_{XX^\prime}}\)</span>, otteniamo:</p>
+<p>Dato che l’errore standard di misurazione è definito come <span class="math notranslate nohighlight">\(\sigma_E = \sigma_X \sqrt{1 - \rho_{XX^\prime}}\)</span>, possiamo concludere che:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -719,6 +695,8 @@ s_{\hat{T}} = s_X \sqrt{r_{XX^\prime} (1-r_{XX^\prime})},
 &amp;= \sigma_X \sqrt{\rho_{XX^\prime} (1 - \rho_{XX^\prime})}.
 \end{aligned}
 \end{split}\]</div>
+<p>Quest’ultima espressione dimostra come l’errore standard della stima sia determinato dalla deviazione standard dei punteggi osservati, modulata dal coefficiente di correlazione tra i punteggi osservati e i punteggi veri.</p>
+</section>
 </section>
 <section id="intervallo-di-confidenza-per-il-punteggio-vero">
 <h2><span class="section-number">13.3. </span>Intervallo di confidenza per il punteggio vero<a class="headerlink" href="#intervallo-di-confidenza-per-il-punteggio-vero" title="Link to this heading">#</a></h2>
@@ -739,7 +717,7 @@ della stima, <span class="math notranslate nohighlight">\(\sigma_{\hat{T}} = \si
 È importante notare che l’errore standard della stima diventa sempre più grande
 man mano che diminuisce l’attendibilità <span class="math notranslate nohighlight">\(\rho_{XX^\prime}\)</span> del test.</p>
 <p>L’intervallo di confidenza indica quanto l’imprecisione della misura influisce sull’interpretazione dei dati. Più l’intervallo di confidenza è ampio, maggiore è l’incertezza nella valutazione dei risultati.</p>
-<p><strong>Esercizio.</strong> <span id="id2">Charter [<a class="reference internal" href="../z_biblio.html#id39" title="Richard A Charter. Revisiting the standard errors of measurement, estimate, and prediction and their application to test scores. Perceptual and Motor Skills, 82(3):1139–1144, 1996.">Cha96</a>]</span> ha esaminato l’effetto della variazione dell’attendibilità del test sull’ampiezza dell’intervallo di confidenza per il punteggio vero. Utilizzando come esempio i punteggi di QI (<span class="math notranslate nohighlight">\(\mu\)</span> = 100, <span class="math notranslate nohighlight">\(\sigma\)</span> = 15), Charter ha immaginato di variare il coefficiente di attendibilità del test utilizzato per la misurazione del QI. I valori presi in considerazione sono 0.55, 0.65, 0.75, 0.85 e 0.95. Ad esempio, supponiamo di avere un punteggio osservato pari a QI = 120 e un coefficiente di attendibilità del test <span class="math notranslate nohighlight">\(\rho_{xx^\prime}\)</span> pari a 0.65. In tali circostanze, la stima del punteggio vero è pari a</p>
+<p><strong>Esercizio.</strong> <span id="id1">Charter [<a class="reference internal" href="../z_biblio.html#id39" title="Richard A Charter. Revisiting the standard errors of measurement, estimate, and prediction and their application to test scores. Perceptual and Motor Skills, 82(3):1139–1144, 1996.">Cha96</a>]</span> ha esaminato l’effetto della variazione dell’attendibilità del test sull’ampiezza dell’intervallo di confidenza per il punteggio vero. Utilizzando come esempio i punteggi di QI (<span class="math notranslate nohighlight">\(\mu\)</span> = 100, <span class="math notranslate nohighlight">\(\sigma\)</span> = 15), Charter ha immaginato di variare il coefficiente di attendibilità del test utilizzato per la misurazione del QI. I valori presi in considerazione sono 0.55, 0.65, 0.75, 0.85 e 0.95. Ad esempio, supponiamo di avere un punteggio osservato pari a QI = 120 e un coefficiente di attendibilità del test <span class="math notranslate nohighlight">\(\rho_{xx^\prime}\)</span> pari a 0.65. In tali circostanze, la stima del punteggio vero è pari a</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{equation}
@@ -785,7 +763,7 @@ man mano che diminuisce l’attendibilità <span class="math notranslate nohighl
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><table class="dataframe">
-<caption>A data.frame: 1 x 4</caption>
+<caption>A data.frame: 1 × 4</caption>
 <thead>
 	<tr><th scope=col>SE.Est</th><th scope=col>LCL</th><th scope=col>T.Score</th><th scope=col>UCL</th></tr>
 	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
@@ -885,16 +863,16 @@ dell’intervallo di confidenza.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.3.2 (2023-10-31)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.3.3 (2024-02-29)
 Platform: aarch64-apple-darwin20 (64-bit)
-Running under: macOS Sonoma 14.3.1
+Running under: macOS Sonoma 14.4
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib 
 LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
 
 locale:
-[1] C
+[1] C/UTF-8/C/C/C/C
 
 time zone: Europe/Rome
 tzcode source: internal
@@ -909,47 +887,44 @@ other attached packages:
 [13] semTools_0.5-6    semPlot_1.1.6     lavaan_0.6-17     psych_2.4.1      
 [17] scales_1.3.0      markdown_1.12     knitr_1.45        lubridate_1.9.3  
 [21] forcats_1.0.0     stringr_1.5.1     dplyr_1.1.4       purrr_1.0.2      
-[25] readr_2.1.5       tidyr_1.3.1       tibble_3.2.1      ggplot2_3.4.4    
+[25] readr_2.1.5       tidyr_1.3.1       tibble_3.2.1      ggplot2_3.5.0    
 [29] tidyverse_2.0.0   here_1.0.1       
 
 loaded via a namespace (and not attached):
   [1] rstudioapi_0.15.0  jsonlite_1.8.8     magrittr_2.0.3    
-  [4] TH.data_1.1-2      estimability_1.5   nloptr_2.0.3      
-  [7] rmarkdown_2.25     vctrs_0.6.5        minqa_1.2.6       
- [10] base64enc_0.1-3    rstatix_0.7.2      htmltools_0.5.7   
- [13] broom_1.0.5        Formula_1.2-5      htmlwidgets_1.6.4 
- [16] plyr_1.8.9         sandwich_3.1-0     emmeans_1.10.0    
- [19] zoo_1.8-12         uuid_1.2-0         igraph_2.0.2      
- [22] mime_0.12          lifecycle_1.0.4    pkgconfig_2.0.3   
- [25] Matrix_1.6-5       R6_2.5.1           fastmap_1.1.1     
- [28] shiny_1.8.0        digest_0.6.34      OpenMx_2.21.11    
- [31] fdrtool_1.2.17     colorspace_2.1-0   rprojroot_2.0.4   
- [34] Hmisc_5.1-1        fansi_1.0.6        timechange_0.3.0  
- [37] abind_1.4-5        compiler_4.3.2     withr_3.0.0       
- [40] glasso_1.11        htmlTable_2.4.2    backports_1.4.1   
- [43] carData_3.0-5      ggsignif_0.6.4     corpcor_1.6.10    
- [46] gtools_3.9.5       tools_4.3.2        pbivnorm_0.6.0    
- [49] foreign_0.8-86     zip_2.3.1          httpuv_1.6.14     
- [52] nnet_7.3-19        glue_1.7.0         quadprog_1.5-8    
- [55] promises_1.2.1     lisrelToR_0.3      grid_4.3.2        
- [58] pbdZMQ_0.3-11      checkmate_2.3.1    cluster_2.1.6     
- [61] reshape2_1.4.4     generics_0.1.3     gtable_0.3.4      
- [64] tzdb_0.4.0         data.table_1.15.0  hms_1.1.3         
- [67] car_3.1-2          utf8_1.2.4         sem_3.1-15        
- [70] pillar_1.9.0       IRdisplay_1.1      rockchalk_1.8.157 
- [73] later_1.3.2        splines_4.3.2      lattice_0.22-5    
- [76] survival_3.5-8     kutils_1.73        tidyselect_1.2.0  
- [79] miniUI_0.1.1.1     pbapply_1.7-2      stats4_4.3.2      
- [82] xfun_0.42          qgraph_1.9.8       arm_1.13-1        
- [85] stringi_1.8.3      boot_1.3-29        evaluate_0.23     
- [88] codetools_0.2-19   mi_1.1             cli_3.6.2         
- [91] RcppParallel_5.1.7 IRkernel_1.3.2     rpart_4.1.23      
- [94] xtable_1.8-4       repr_1.1.6         munsell_0.5.0     
- [97] Rcpp_1.0.12        coda_0.19-4.1      png_0.1-8         
-[100] XML_3.99-0.16.1    parallel_4.3.2     ellipsis_0.3.2    
-[103] jpeg_0.1-10        lme4_1.1-35.1      mvtnorm_1.2-4     
-[106] openxlsx_4.2.5.2   crayon_1.5.2       rlang_1.1.3       
-[109] multcomp_1.4-25    mnormt_2.1.1      
+  [4] nloptr_2.0.3       rmarkdown_2.26     vctrs_0.6.5       
+  [7] minqa_1.2.6        base64enc_0.1-3    rstatix_0.7.2     
+ [10] htmltools_0.5.7    broom_1.0.5        Formula_1.2-5     
+ [13] htmlwidgets_1.6.4  plyr_1.8.9         uuid_1.2-0        
+ [16] igraph_2.0.2       mime_0.12          lifecycle_1.0.4   
+ [19] pkgconfig_2.0.3    Matrix_1.6-5       R6_2.5.1          
+ [22] fastmap_1.1.1      shiny_1.8.0        digest_0.6.34     
+ [25] OpenMx_2.21.11     fdrtool_1.2.17     colorspace_2.1-0  
+ [28] rprojroot_2.0.4    Hmisc_5.1-1        fansi_1.0.6       
+ [31] timechange_0.3.0   abind_1.4-5        compiler_4.3.3    
+ [34] withr_3.0.0        glasso_1.11        htmlTable_2.4.2   
+ [37] backports_1.4.1    carData_3.0-5      ggsignif_0.6.4    
+ [40] corpcor_1.6.10     gtools_3.9.5       tools_4.3.3       
+ [43] pbivnorm_0.6.0     foreign_0.8-86     zip_2.3.1         
+ [46] httpuv_1.6.14      nnet_7.3-19        glue_1.7.0        
+ [49] quadprog_1.5-8     promises_1.2.1     lisrelToR_0.3     
+ [52] grid_4.3.3         pbdZMQ_0.3-11      checkmate_2.3.1   
+ [55] cluster_2.1.6      reshape2_1.4.4     generics_0.1.3    
+ [58] gtable_0.3.4       tzdb_0.4.0         data.table_1.15.2 
+ [61] hms_1.1.3          car_3.1-2          utf8_1.2.4        
+ [64] sem_3.1-15         pillar_1.9.0       IRdisplay_1.1     
+ [67] rockchalk_1.8.157  later_1.3.2        splines_4.3.3     
+ [70] lattice_0.22-5     kutils_1.73        tidyselect_1.2.0  
+ [73] miniUI_0.1.1.1     pbapply_1.7-2      stats4_4.3.3      
+ [76] xfun_0.42          qgraph_1.9.8       arm_1.13-1        
+ [79] stringi_1.8.3      boot_1.3-29        evaluate_0.23     
+ [82] mi_1.1             cli_3.6.2          RcppParallel_5.1.7
+ [85] IRkernel_1.3.2     rpart_4.1.23       xtable_1.8-4      
+ [88] repr_1.1.6         munsell_0.5.0      Rcpp_1.0.12       
+ [91] coda_0.19-4.1      png_0.1-8          XML_3.99-0.16.1   
+ [94] parallel_4.3.3     ellipsis_0.3.2     jpeg_0.1-10       
+ [97] lme4_1.1-35.1      openxlsx_4.2.5.2   crayon_1.5.2      
+[100] rlang_1.1.3        mnormt_2.1.1      
 </pre></div>
 </div>
 </div>
@@ -1022,7 +997,11 @@ loaded via a namespace (and not attached):
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#il-paradosso-di-kelley">13.1. Il paradosso di Kelley</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-errore-standard-della-stima">13.2. L’errore standard della stima</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-errore-standard-della-stima-nel-modello-di-regressione-di-kelley">13.2. L’Errore Standard della Stima nel Modello di Regressione di Kelley</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importanza-dell-errore-standard-della-stima">13.2.1. Importanza dell’Errore Standard della Stima</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#derivazione-dell-errore-standard-della-stima">13.2.2. Derivazione dell’Errore Standard della Stima</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intervallo-di-confidenza-per-il-punteggio-vero">13.3. Intervallo di confidenza per il punteggio vero</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione">13.3.1. Interpretazione</a></li>
 </ul>
