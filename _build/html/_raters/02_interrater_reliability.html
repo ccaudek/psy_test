@@ -500,7 +500,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calcolo-dell-icc">18.3.6. Calcolo dell’ICC</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">18.4. Session Info</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusioni">18.4. Conclusioni</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">18.5. Session Info</a></li>
 </ul>
             </nav>
         </div>
@@ -1262,8 +1263,22 @@ Fixed effects:
 <p>In sintesi, un ICC di 0.7115643 indica un’alta affidabilità nelle misure all’interno dei gruppi definiti nel tuo modello, suggerendo che le variazioni osservate sono significativamente influenzate dalle differenze tra i gruppi piuttosto che dalla varianza casuale o dall’errore di misurazione.</p>
 </section>
 </section>
+<section id="conclusioni">
+<h2><span class="section-number">18.4. </span>Conclusioni<a class="headerlink" href="#conclusioni" title="Link to this heading">#</a></h2>
+<p>L’<em>Intraclass Correlation Coefficient</em> (ICC) può essere interpretato come “la proporzione di varianza spiegata dalla struttura di raggruppamento nella popolazione”. Questa struttura di raggruppamento implica che le misurazioni siano organizzate in gruppi (ad esempio, i punteggi di un test in una scuola possono essere raggruppati per classe, se ci sono più classi e a ciascuna è stato somministrato lo stesso test), e l’ICC indica quanto fortemente le misurazioni nello stesso gruppo si assomiglino. Questo indice varia da 0, se il raggruppamento non trasmette alcuna informazione, a 1, se tutte le osservazioni in un gruppo sono identiche (Gelman e Hill, 2007, p. 258). In altre parole, l’ICC - a volte concettualizzato come ripetibilità della misurazione - “può anche essere interpretato come la correlazione attesa tra due unità estratte casualmente che si trovano nello stesso gruppo” (Hox 2010), sebbene questa definizione potrebbe non applicarsi a modelli misti con strutture di effetti casuali più complesse. L’ICC può aiutare a determinare se un modello misto è necessario: un ICC pari a zero (o molto vicino a zero) significa che le osservazioni all’interno dei cluster non sono più simili tra loro rispetto a osservazioni di cluster diversi, e quindi considerarlo come un fattore casuale potrebbe non essere necessario.</p>
+<ul class="simple">
+<li><p><em>Alto ICC</em> significa che i dati sono altamente raggruppati, il che significa che i risultati dipendono fortemente dai gruppi a cui appartengono le osservazioni.</p></li>
+<li><p><em>Basso ICC</em> significa che i dati non sono altamente (o per niente) raggruppati, il che significa che i risultati non dipendono molto (o per niente) dai gruppi a cui appartengono le osservazioni.</p></li>
+</ul>
+<p><strong>Differenza con R^2</strong></p>
+<p>Il coefficiente di determinazione R^2 quantifica la proporzione di varianza spiegata da un modello statistico, ma la sua definizione in modelli misti è complessa (da qui l’esistenza di diversi metodi per calcolare un’approssimazione). L’ICC è associato a R^2 poiché entrambi sono rapporti di componenti di varianza. Più precisamente, R^2 rappresenta la proporzione della varianza spiegata (del modello completo), mentre l’ICC è la proporzione della varianza spiegata attribuibile agli effetti casuali.</p>
+<p><strong>Calcolo</strong></p>
+<p>L’ICC viene calcolato dividendo la varianza degli effetti casuali, σ^2_i, per la varianza totale, cioè la somma della varianza degli effetti casuali e della varianza residua, σ^2_ε.</p>
+<p><strong>ICC aggiustato e non aggiustato</strong></p>
+<p>La funzione <code class="docutils literal notranslate"><span class="pre">icc()</span></code> calcola un ICC aggiustato e uno non aggiustato, che tengono conto di tutte le fonti di incertezza (cioè di tutti gli effetti casuali). Mentre l’ICC aggiustato si riferisce solo agli effetti casuali, l’ICC non aggiustato considera anche le varianze degli effetti fissi, aggiungendo più precisamente la varianza degli effetti fissi al denominatore della formula per calcolare l’ICC (vedi Nakagawa et al. 2017). Tipicamente, l’ICC aggiustato è di interesse quando l’analisi degli effetti casuali è di interesse. <code class="docutils literal notranslate"><span class="pre">icc()</span></code> restituisce un valore ICC anche per strutture di effetti casuali più complesse, come modelli con pendenze casuali o design nidificato (più di due livelli) ed è applicabile per modelli con distribuzioni diverse dalla gaussiana.</p>
+</section>
 <section id="session-info">
-<h2><span class="section-number">18.4. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">18.5. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
@@ -1419,7 +1434,8 @@ loaded via a namespace (and not attached):
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calcolo-dell-icc">18.3.6. Calcolo dell’ICC</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">18.4. Session Info</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusioni">18.4. Conclusioni</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">18.5. Session Info</a></li>
 </ul>
   </nav></div>
 
