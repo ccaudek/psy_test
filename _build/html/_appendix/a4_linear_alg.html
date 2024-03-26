@@ -523,8 +523,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determinante-e-inversa">89.2.22. Determinante e inversa</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proprieta-del-determinante">89.2.23. Proprietà del determinante</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#radici-e-vettori-latenti">89.2.24. Radici e vettori latenti</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scomposizione-spettrale-di-una-matrice">89.2.25. Scomposizione spettrale di una matrice</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autovalori-e-determinante">89.2.26. Autovalori e determinante</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-delle-componenti-principali">89.3. Analisi delle componenti principali</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scomposizione-spettrale-di-una-matrice">89.3.1. Scomposizione spettrale di una matrice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autovalori-e-determinante">89.3.2. Autovalori e determinante</a></li>
 </ul>
 </li>
 </ul>
@@ -871,15 +874,15 @@ a_{21} &amp; a_{22} &amp; a_{23} \end{array} \right]
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">M</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span>
 <span class="w">  </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">),</span><span class="w"> </span>
 <span class="w">  </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span>
-<span class="w">  </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="w">  </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
 <span class="n">M</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     [,1] [,2] [,3]
-[1,]    1    2    3
-[2,]    4    5    6
+[1,]    1    3    5
+[2,]    2    4    6
 </pre></div>
 </div>
 </div>
@@ -1382,19 +1385,17 @@ invece:</p>
 <p>In R la matrice identità si crea nel modo seguente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">diag</span><span class="p">(</span><span class="m">2</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">diag</span><span class="p">(</span><span class="m">2</span><span class="p">))</span><span class="w"> </span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A matrix: 2 × 2 of type dbl</caption>
-<tbody>
-	<tr><td>1</td><td>0</td></tr>
-	<tr><td>0</td><td>1</td></tr>
-</tbody>
-</table>
-</div></div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     [,1] [,2]
+[1,]    1    0
+[2,]    0    1
+</pre></div>
+</div>
+</div>
 </div>
 <p>Dunque</p>
 <div class="cell docutils container">
@@ -1894,6 +1895,22 @@ al prodotto delle loro inverse nella sequenza opposta:</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">B</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">B</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 2 × 2 of type dbl</caption>
+<tbody>
+	<tr><td>1</td><td>0</td></tr>
+	<tr><td>0</td><td>1</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">solve</span><span class="p">(</span><span class="n">A</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">B</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -2281,13 +2298,12 @@ $vectors
 <span class="w">  </span><span class="nf">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
 <span class="w">  </span><span class="nf">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
 <span class="w">  </span><span class="nf">geom_abline</span><span class="p">(</span><span class="n">slope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ev1_m</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<span class="w">  </span><span class="nf">geom_abline</span><span class="p">(</span><span class="n">slope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ev2_m</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<span class="w">  </span><span class="nf">theme_classic</span><span class="p">()</span>
+<span class="w">  </span><span class="nf">geom_abline</span><span class="p">(</span><span class="n">slope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ev2_m</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">)</span><span class="w"> </span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4aca117b6f290fa85b5983ef9f13c65cfca27f832d5bdcd2c754e97afebb4050.png" src="../_images/4aca117b6f290fa85b5983ef9f13c65cfca27f832d5bdcd2c754e97afebb4050.png" />
+<img alt="../_images/1851ad8ed6624cdd7e0038a83021b509298df2d350db6a7ffb30fe280b4ea42b.png" src="../_images/1851ad8ed6624cdd7e0038a83021b509298df2d350db6a7ffb30fe280b4ea42b.png" />
 </div>
 </div>
 <p>Gli autovettori sono ortogonali:</p>
@@ -2305,7 +2321,6 @@ $vectors
 </div>
 </div>
 </div>
-<p>Per quanto riguarda gli autovalori, i loro valori numerici sono uguali alla somma dei quadrati delle distanze di ogni punto di dati proiettato sulla corrispondente componente principale. Questa somma dei quadrati è massimizzata nella prima componente principale.</p>
 <p>Generiamo uno Scree Plot.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2352,27 +2367,16 @@ $vectors
 <p>Gli autovettori ottenuti utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">eigen()</span></code> sono normalizzati. Ciò significa che la loro lunghezza è uguale a 1:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">norm</span><span class="p">(</span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">ev_1</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;FALSE&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">t</span><span class="p">(</span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">ee</span><span class="o">$</span><span class="n">vectors</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="p">]))</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">ee</span><span class="o">$</span><span class="n">vectors</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="p">])</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">norm</span><span class="p">(</span><span class="k">as</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">ev_1</span><span class="p">),</span> <span class="s2">&quot;FALSE&quot;</span><span class="p">):</span> <span class="n">argument</span> <span class="nb">type</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;FALSE&#39;</span> <span class="n">must</span> <span class="n">be</span> <span class="n">a</span> <span class="n">character</span> <span class="n">string</span> <span class="n">of</span> <span class="n">string</span> <span class="n">length</span> <span class="mi">1</span>
-<span class="ne">Traceback</span>:
-
-<span class="mi">1</span><span class="o">.</span> <span class="n">norm</span><span class="p">(</span><span class="k">as</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">ev_1</span><span class="p">),</span> <span class="s2">&quot;FALSE&quot;</span><span class="p">)</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     [,1]
+[1,]    1
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">norm</span><span class="p">(</span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">ev_2</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;FALSE&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">1</div></div>
 </div>
 <p>Utilizziamo le informazioni degli autovettori e degli autovalori per disegnare gli assi dell’ellisse:</p>
 <ul class="simple">
@@ -2409,7 +2413,7 @@ $vectors
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b8f91a1c6e0cd42e24e11af423bdb700b29071bc40656a9947b7174df6c6c553.png" src="../_images/b8f91a1c6e0cd42e24e11af423bdb700b29071bc40656a9947b7174df6c6c553.png" />
+<img alt="../_images/3ac49dd77458a8d4f9668d8d74413d401e496c92e5181303acb569ed8badcd08.png" src="../_images/3ac49dd77458a8d4f9668d8d74413d401e496c92e5181303acb569ed8badcd08.png" />
 </div>
 </div>
 <p>Tale analisi si può estendere a qualunque numero di variabili. Per
@@ -2418,8 +2422,152 @@ ellisoide attorno ad una nube di punti nello spazio tridimensionale.
 Anche in questo caso, gli autovalori e gli associati autovettori
 corrisponderanno agli assi dell’elissoide.</p>
 </section>
+</section>
+<section id="analisi-delle-componenti-principali">
+<h2><span class="section-number">89.3. </span>Analisi delle componenti principali<a class="headerlink" href="#analisi-delle-componenti-principali" title="Link to this heading">#</a></h2>
+<p>L’analisi precedente, mirata a offrire una lettura geometrica degli autovettori e autovalori, pone le premesse per un approccio avanzato nell’analisi multivariata, noto come Analisi delle Componenti Principali (PCA). Questo metodo sfrutta la proiezione ortogonale dei dati su assi definiti dagli autovettori per calcolare i cosiddetti punteggi delle componenti principali.</p>
+<p>La PCA si propone di semplificare la complessità dei dati riducendone le dimensioni. Ad esempio, se due variabili mostrano un’elevata correlazione, la prima componente principale può racchiudere l’essenza della loro varianza. In pratica, potrebbe risultare più efficace basarsi sui punteggi della prima componente principale piuttosto che sui punteggi derivanti dalle due variabili separate.</p>
+<p>La varianza totale dei dati è rappresentata dalla somma degli autovalori, equivalenti alla traccia della matrice di covarianza. La prima componente principale incapsula una porzione di varianza pari al suo corrispondente autovalore. Se il rapporto tra questo primo autovalore e la varianza totale è significativo (per esempio, 0.8), optare per i punteggi della prima componente principale offre un vantaggio nell’interpretazione e nella riduzione dimensionale dei dati.</p>
+<p>L’implementazione della PCA si basa su proiezioni ortogonali: i punteggi della prima componente sono determinati proiettando i dati lungo l’asse del primo autovettore, mentre i punteggi della seconda componente derivano dalla proiezione lungo il secondo autovettore, e così via per le componenti successive.</p>
+<p>Nell’esempio trattato, è possibile allineare il sistema di coordinate in modo che l’asse X coincida con il primo autovettore e l’asse Y con il secondo. Questo reorientamento si realizza attraverso i seguenti passaggi.</p>
+<p>Inizio standardizzando i dati, in modo che il centro del sistema di assi coordinati corrisponda con la media delle due variabili.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="nf">tibble</span><span class="p">(</span><span class="n">zx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="n">zy</span><span class="o">=</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span><span class="w">  </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">()</span>
+<span class="nf">dim</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>20</li><li>2</li></ol>
+</div></div>
+</div>
+<p>Ruoto gli assi coordinati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data_set_3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">ee</span><span class="o">$</span><span class="n">vectors</span><span class="p">)</span><span class="w"> </span><span class="c1"># Inverse of eigenvectors matrix</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scatter showing the rotation </span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">data_set_3</span><span class="p">),</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span><span class="w"> </span><span class="n">X2</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">xlab</span><span class="p">(</span><span class="s">&quot;PC1 (78.8%)&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">ylab</span><span class="p">(</span><span class="s">&quot;PC2 (21.2%)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/09fe1c8a7875671b3abfa3b5a6b5aff6085e4a8d5d58990757668e37ec8405e2.png" src="../_images/09fe1c8a7875671b3abfa3b5a6b5aff6085e4a8d5d58990757668e37ec8405e2.png" />
+</div>
+</div>
+<p>Avendo ruotato gli assi coordinati, la proiezione ortogonale dei punti su ciascun asse non è altro che la coordinata cartesiana di quel punto all’interno del nuovo sistema di assi coordinati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">data_set_3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 6 × 2 of type dbl</caption>
+<tbody>
+	<tr><td> 0.2843804</td><td> 0.1433279</td></tr>
+	<tr><td>-0.6256511</td><td>-0.4783489</td></tr>
+	<tr><td>-0.1818790</td><td>-1.0310925</td></tr>
+	<tr><td>-0.1749611</td><td>-0.4272913</td></tr>
+	<tr><td> 0.0329488</td><td> 2.3525898</td></tr>
+	<tr><td> 0.1624602</td><td> 0.2662514</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Controlliamo il risultato ottenuto svolgendo la PCA usando la funzione <code class="docutils literal notranslate"><span class="pre">princomp</span></code> di R. Calcoliamo anche i punteggi delle due “componenti principali”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pca_mod</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">princomp</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="n">loadings_mod</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pca_mod</span><span class="o">$</span><span class="n">loadings</span>
+<span class="n">scr_mod</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pca_mod</span><span class="o">$</span><span class="n">scores</span>
+<span class="n">scr_mod</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 6 × 2 of type dbl</caption>
+<thead>
+	<tr><th scope=col>Comp.1</th><th scope=col>Comp.2</th></tr>
+</thead>
+<tbody>
+	<tr><td> 0.1433279</td><td> 0.2843804</td></tr>
+	<tr><td>-0.4783489</td><td>-0.6256511</td></tr>
+	<tr><td>-1.0310925</td><td>-0.1818790</td></tr>
+	<tr><td>-0.4272913</td><td>-0.1749611</td></tr>
+	<tr><td> 2.3525898</td><td> 0.0329488</td></tr>
+	<tr><td> 0.2662514</td><td> 0.1624602</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Si noti che i punteggi che abbiamo ottenuto sono identici a quelli trovati in precedenza.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cor</span><span class="p">(</span><span class="n">data_set_3</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">scr_mod</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">1</div></div>
+</div>
+<p>La varianza di questi punteggi corrisponde agli autovalori:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">var</span><span class="p">(</span><span class="n">scr_mod</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">1.82910333474767</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ee</span><span class="o">$</span><span class="n">values</span><span class="p">[</span><span class="m">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">1.82910333474767</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">var</span><span class="p">(</span><span class="n">scr_mod</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.170896665252332</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ee</span><span class="o">$</span><span class="n">values</span><span class="p">[</span><span class="m">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.170896665252332</div></div>
+</div>
 <section id="scomposizione-spettrale-di-una-matrice">
-<h3><span class="section-number">89.2.25. </span>Scomposizione spettrale di una matrice<a class="headerlink" href="#scomposizione-spettrale-di-una-matrice" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">89.3.1. </span>Scomposizione spettrale di una matrice<a class="headerlink" href="#scomposizione-spettrale-di-una-matrice" title="Link to this heading">#</a></h3>
 <p>Data una matrice quadrata e simmetrica di dimensione <span class="math notranslate nohighlight">\(n\)</span>,
 <span class="math notranslate nohighlight">\(\boldsymbol{A}\)</span>, esistono una matrice diagonale <span class="math notranslate nohighlight">\(\boldsymbol{\Lambda}\)</span>
 e una matrice ortogonale <span class="math notranslate nohighlight">\(\boldsymbol{V}\)</span> tali che</p>
@@ -2529,7 +2677,7 @@ $vectors
 </div>
 </section>
 <section id="autovalori-e-determinante">
-<h3><span class="section-number">89.2.26. </span>Autovalori e determinante<a class="headerlink" href="#autovalori-e-determinante" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">89.3.2. </span>Autovalori e determinante<a class="headerlink" href="#autovalori-e-determinante" title="Link to this heading">#</a></h3>
 <p>Il determinante di una matrice è il prodotto degli autovalori:</p>
 <div class="math notranslate nohighlight">
 \[\begin{aligned}
@@ -2554,7 +2702,9 @@ $vectors
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     [,1] [,2]
 [1,]  1.0  0.5
 [2,]  0.5  2.0
-eigen() decomposition
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eigen() decomposition
 $values
 [1] 2.2071068 0.7928932
 
@@ -2589,7 +2739,9 @@ $vectors
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] 1.75
-[1] 1.75
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] 1.75
 </pre></div>
 </div>
 </div>
@@ -2695,8 +2847,11 @@ autovalori di <span class="math notranslate nohighlight">\(\boldsymbol{A}\)</spa
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determinante-e-inversa">89.2.22. Determinante e inversa</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proprieta-del-determinante">89.2.23. Proprietà del determinante</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#radici-e-vettori-latenti">89.2.24. Radici e vettori latenti</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scomposizione-spettrale-di-una-matrice">89.2.25. Scomposizione spettrale di una matrice</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autovalori-e-determinante">89.2.26. Autovalori e determinante</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-delle-componenti-principali">89.3. Analisi delle componenti principali</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scomposizione-spettrale-di-una-matrice">89.3.1. Scomposizione spettrale di una matrice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autovalori-e-determinante">89.3.2. Autovalori e determinante</a></li>
 </ul>
 </li>
 </ul>
