@@ -488,22 +488,20 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errore-di-misura">27.1. Errore di misura</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-monofattoriale">27.2. Modello monofattoriale</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlazione-parziale">27.3. Correlazione parziale</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principio-base-dell-analisi-fattoriale">27.4. Principio base dell’analisi fattoriale</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vincoli-sulle-correlazioni">27.4.1. Vincoli sulle correlazioni</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teoria-dei-due-fattori">27.4.2. Teoria dei Due Fattori</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#annullamento-della-tetrade">27.4.3. Annullamento della tetrade</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-del-centroide">27.4.4. Metodo del centroide</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principio-base-dell-analisi-fattoriale">27.4. Principio base dell’analisi fattoriale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vincoli-sulle-correlazioni">27.5. Vincoli sulle correlazioni</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teoria-dei-due-fattori">27.6. Teoria dei Due Fattori</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#annullamento-della-tetrade">27.7. Annullamento della tetrade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-del-centroide">27.8. Metodo del centroide</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduzione-a-lavaan">27.9. Introduzione a <code class="docutils literal notranslate"><span class="pre">lavaan</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sintassi-del-modello">27.9.1. Sintassi del modello</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">27.9.2. Un esempio concreto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagrammi-di-percorso">27.9.3. Diagrammi di percorso</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-fattoriale-esplorativa">27.9.4. Analisi fattoriale esplorativa</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduzione-a-lavaan">27.5. Introduzione a <code class="docutils literal notranslate"><span class="pre">lavaan</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sintassi-del-modello">27.5.1. Sintassi del modello</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">27.5.2. Un esempio concreto</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagrammi-di-percorso">27.5.3. Diagrammi di percorso</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-fattoriale-esplorativa">27.5.4. Analisi fattoriale esplorativa</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusioni">27.6. Conclusioni</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">27.7. Session Info</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusioni">27.10. Conclusioni</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">27.11. Session Info</a></li>
 </ul>
             </nav>
         </div>
@@ -520,12 +518,12 @@ document.write(`
 <p>Questo capitolo presenta le nozioni fondamentali dell’analisi fattoriale, un modello statistico che consente di spiegare le correlazioni tra variabili osservate mediante la loro saturazione in uno o più fattori generali. In questo modello, le <span class="math notranslate nohighlight">\(p\)</span> variabili osservate (item) sono considerate condizionalmente indipendenti rispetto a <span class="math notranslate nohighlight">\(m\)</span> variabili latenti chiamate fattori. L’obiettivo dell’analisi fattoriale è di interpretare questi fattori come costrutti teorici inosservabili. Ad esempio, l’analisi fattoriale può essere utilizzata per spiegare le correlazioni tra le prestazioni di un gruppo di individui in una serie di compiti mediante il concetto di intelligenza. In questo modo, l’analisi fattoriale aiuta a identificare i costrutti cui gli item si riferiscono e a stabilire in che misura ciascun item rappresenta il costrutto. Il modello può essere unifattoriale (<span class="math notranslate nohighlight">\(m = 1\)</span>) o multifattoriale (<span class="math notranslate nohighlight">\(m &gt; 1\)</span>), e in questo capitolo si introdurrà il modello unifattoriale che assume l’esistenza di un unico fattore comune latente.</p>
 <section id="errore-di-misura">
 <h2><span class="section-number">27.1. </span>Errore di misura<a class="headerlink" href="#errore-di-misura" title="Link to this heading">#</a></h2>
-<p>L’analisi fattoriale modella ogni misura osservata <span class="math notranslate nohighlight">\(y\)</span> come una combinazione del punteggio vero del costrutto latente <span class="math notranslate nohighlight">\(\xi\)</span> e di una componente di errore di misura latente <span class="math notranslate nohighlight">\(\delta\)</span>. In altre parole, il valore osservato di <span class="math notranslate nohighlight">\(y\)</span> è dato dalla somma del punteggio vero latente moltiplicato per il carico fattoriale <span class="math notranslate nohighlight">\(\lambda\)</span> e di un errore di misura latente <span class="math notranslate nohighlight">\(\delta_y\)</span>. Ad esempio, se consideriamo una bilancia imprecisa, ogni misura del peso corporeo è influenzata sia dal peso vero che dall’errore di misura della bilancia, che varia casualmente da misura a misura. In tal caso, il modello di analisi fattoriale sarebbe espresso come:</p>
+<p>L’analisi fattoriale concettualizza ogni misura osservabile <span class="math notranslate nohighlight">\(y\)</span> come risultante dalla combinazione lineare del punteggio reale associato al costrutto latente <span class="math notranslate nohighlight">\(\xi\)</span>, e di un elemento di errore di misura non osservato <span class="math notranslate nohighlight">\(\delta\)</span>. In questo contesto, il valore misurato di <span class="math notranslate nohighlight">\(y\)</span> è interpretato come il prodotto del punteggio reale latente, ponderato da un coefficiente di carico fattoriale <span class="math notranslate nohighlight">\(\lambda\)</span>, a cui si aggiunge un termine di errore specifico di misura <span class="math notranslate nohighlight">\(\delta_y\)</span>. Per illustrare con un esempio pratico, nel caso di una bilancia non completamente affidabile, ogni lettura del peso corporeo riflette sia il peso effettivo che un errore di misura intrinseco alla bilancia, che si manifesta con variazioni aleatorie da una lettura all’altra. In questa situazione, il modello fattoriale può essere formalizzato attraverso l’equazione:</p>
 <div class="math notranslate nohighlight">
 \[
-y = \lambda \xi + \delta_{y}.
+y = \lambda\xi + \delta_{y}.
 \]</div>
-<p>In questo modo, si può stimare il punteggio vero latente <span class="math notranslate nohighlight">\(\xi\)</span> e la componente di errore di misura latente <span class="math notranslate nohighlight">\(\delta\)</span>, se si dispone di molte misure osservate <span class="math notranslate nohighlight">\(y\)</span>, tutte che esprimono lo stesso costrutto latente <span class="math notranslate nohighlight">\(\xi\)</span>.</p>
+<p>Quando si analizzano multiple misure osservabili <span class="math notranslate nohighlight">\(y\)</span> che rappresentano lo stesso costrutto latente <span class="math notranslate nohighlight">\(\xi\)</span>, diventa fattibile la stima del punteggio reale latente <span class="math notranslate nohighlight">\(\xi\)</span> insieme alla componente di errore di misura <span class="math notranslate nohighlight">\(\delta\)</span>, migliorando così la comprensione e l’accuratezza dell’interpretazione dei dati.</p>
 </section>
 <section id="modello-monofattoriale">
 <h2><span class="section-number">27.2. </span>Modello monofattoriale<a class="headerlink" href="#modello-monofattoriale" title="Link to this heading">#</a></h2>
@@ -550,7 +548,7 @@ y_i -\mu_i = \lambda_i \xi + 1 \cdot \delta_i,
 </section>
 <section id="correlazione-parziale">
 <h2><span class="section-number">27.3. </span>Correlazione parziale<a class="headerlink" href="#correlazione-parziale" title="Link to this heading">#</a></h2>
-<p>Prima di entrare nel dettaglio del modello statistico dell’analisi fattoriale, è importante chiarire il concetto di correlazione parziale. Si attribuisce spesso a Charles Spearman la nascita dell’analisi fattoriale. Nel 1904, Spearman pubblicò un articolo intitolato “General Intelligence, Objectively Determined and Measured” in cui propose la Teoria dei Due Fattori. In questo articolo, dimostrò come fosse possibile identificare un fattore inosservabile a partire da una matrice di correlazioni, utilizzando il metodo dell’annullamento della tetrade (tetrad differences). L’annullamento della tetrade è un’applicazione della teoria della correlazione parziale, che mira a stabilire se, controllando un insieme di variabili inosservabili chiamate fattori <span class="math notranslate nohighlight">\(\xi_j\)</span>, le correlazioni tra le variabili osservabili <span class="math notranslate nohighlight">\(Y_i\)</span>, al netto degli effetti lineari delle <span class="math notranslate nohighlight">\(\xi_j\)</span>, diventino statisticamente nulle.</p>
+<p>Prima di entrare nel dettaglio del modello statistico dell’analisi fattoriale, è importante chiarire il concetto di correlazione parziale. Si attribuisce spesso a Charles Spearman la nascita dell’analisi fattoriale. Nel 1904, Spearman pubblicò un articolo intitolato “General Intelligence, Objectively Determined and Measured” in cui propose la Teoria dei Due Fattori. In questo articolo, dimostrò come fosse possibile identificare un fattore inosservabile a partire da una matrice di correlazioni, utilizzando il metodo dell’annullamento della tetrade (<em>tetrad differences</em>). L’annullamento della tetrade è un’applicazione della teoria della correlazione parziale che mira a stabilire se, controllando un insieme di variabili inosservabili chiamate fattori <span class="math notranslate nohighlight">\(\xi_j\)</span>, le correlazioni tra le variabili osservabili <span class="math notranslate nohighlight">\(Y_i\)</span>, al netto degli effetti lineari delle <span class="math notranslate nohighlight">\(\xi_j\)</span>, diventino statisticamente nulle.</p>
 <p>Possiamo considerare un esempio con tre variabili: <span class="math notranslate nohighlight">\(Y_1\)</span>, <span class="math notranslate nohighlight">\(Y_2\)</span> e <span class="math notranslate nohighlight">\(F\)</span>. La correlazione tra <span class="math notranslate nohighlight">\(Y_1\)</span> e <span class="math notranslate nohighlight">\(Y_2\)</span>, <span class="math notranslate nohighlight">\(r_{1,2}\)</span>, può essere influenzata dalla presenza di <span class="math notranslate nohighlight">\(F\)</span>. Per calcolare la correlazione parziale tra <span class="math notranslate nohighlight">\(Y_1\)</span> e <span class="math notranslate nohighlight">\(Y_2\)</span> al netto dell’effetto lineare di <span class="math notranslate nohighlight">\(F\)</span>, dobbiamo trovare le componenti di <span class="math notranslate nohighlight">\(Y_1\)</span> e <span class="math notranslate nohighlight">\(Y_2\)</span> che sono linearmente indipendenti da <span class="math notranslate nohighlight">\(F\)</span>.</p>
 <p>Per fare ciò, dobbiamo trovare la componente di <span class="math notranslate nohighlight">\(Y_1\)</span> che è ortogonale a <span class="math notranslate nohighlight">\(F\)</span>. Possiamo calcolare i residui <span class="math notranslate nohighlight">\(E_1\)</span> del modello:</p>
 <div class="math notranslate nohighlight">
@@ -562,7 +560,7 @@ Y_1 = b_{01} + b_{11}F + E_1.
 <div class="math notranslate nohighlight" id="equation-eq-corr-parz">
 <span class="eqno">(27.3)<a class="headerlink" href="#equation-eq-corr-parz" title="Link to this equation">#</a></span>\[
 \begin{equation}
-r_{1,2 \mid F} = \frac{r_{12} - r_{1F}r_{2F}}{\sqrt{(1-r_{1F}^2)(1-r_{2F}^2)}}
+r_{1,2 \mid F} = \frac{r_{12} - r_{1F}r_{2F}}{\sqrt{(1-r_{1F}^2)(1-r_{2F}^2)}}.
 \end{equation}
 \]</div>
 <p>In particolare, la correlazione parziale <span class="math notranslate nohighlight">\(r_{1,2 \mid F}\)</span> è data dalla differenza tra la correlazione <span class="math notranslate nohighlight">\(r_{12}\)</span> tra <span class="math notranslate nohighlight">\(Y_1\)</span> e <span class="math notranslate nohighlight">\(Y_2\)</span> e il prodotto tra le correlazioni <span class="math notranslate nohighlight">\(r_{1F}\)</span> e <span class="math notranslate nohighlight">\(r_{2F}\)</span> tra ciascuna delle due variabili e <span class="math notranslate nohighlight">\(F\)</span>, il tutto diviso per la radice quadrata del prodotto delle differenze tra 1 e i quadrati delle correlazioni tra <span class="math notranslate nohighlight">\(Y_1\)</span> e <span class="math notranslate nohighlight">\(F\)</span> e tra <span class="math notranslate nohighlight">\(Y_2\)</span> e <span class="math notranslate nohighlight">\(F\)</span>. In altre parole, la formula tiene conto dell’effetto di <span class="math notranslate nohighlight">\(F\)</span> sulle correlazioni tra <span class="math notranslate nohighlight">\(Y_1\)</span> e <span class="math notranslate nohighlight">\(Y_2\)</span> per ottenere una stima della relazione diretta tra le due variabili, eliminando l’effetto del fattore comune.</p>
@@ -679,15 +677,25 @@ applicando l’eq. <a class="reference internal" href="#equation-eq-corr-parz">(
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">0.0282751285315647</div></div>
+<div class="output text_html">0.0282751285315664</div></div>
 </div>
-<p>In conclusione, possiamo attribuire all’eq. <a class="reference internal" href="#equation-eq-corr-parz">(27.3)</a> la seguente interpretazione: la correlazione parziale tra le variabili <span class="math notranslate nohighlight">\(y_1\)</span> e <span class="math notranslate nohighlight">\(y_2\)</span> condizionata alla variabile <span class="math notranslate nohighlight">\(f\)</span> rappresenta la correlazione tra le componenti di <span class="math notranslate nohighlight">\(y_1\)</span> e <span class="math notranslate nohighlight">\(y_2\)</span> da cui è stato rimosso l’effetto lineare di <span class="math notranslate nohighlight">\(f\)</span>. Ricordiamo il ragionamento che abbiamo svolto in precedenza per fornire un’interpretazione al coefficiente parziale del modello di regressione.</p>
 </section>
 <section id="principio-base-dell-analisi-fattoriale">
 <h2><span class="section-number">27.4. </span>Principio base dell’analisi fattoriale<a class="headerlink" href="#principio-base-dell-analisi-fattoriale" title="Link to this heading">#</a></h2>
-<p>Nell’attuale pratica dell’inferenza statistica nell’analisi fattoriale, spesso si utilizzano stime della massima verosimiglianza, calcolate attraverso procedure iterative come l’algoritmo EM (Rubin &amp; Thayer, 1982). Tuttavia, all’inizio dell’analisi fattoriale, la procedura di estrazione dei fattori si basava sulle relazioni invarianti che il modello fattoriale imponeva agli elementi della matrice di covarianza delle variabili osservate. Uno dei più noti tra questi invarianti è la <em>tetrade</em>, presente nei modelli ad un fattore.</p>
-<p>La tetrade consiste in una combinazione di quattro correlazioni. Se l’associazione tra le variabili osservate dipende dal fatto che queste sono state generate causalmente da un fattore comune inosservabile, allora è possibile generare una combinazione delle correlazioni che annulla la tetrade. In altre parole, l’analisi fattoriale si propone di individuare un insieme di sole <span class="math notranslate nohighlight">\(m&lt;p\)</span> variabili latenti che, al netto dei fattori comuni, annullano significativamente tutte le correlazioni parziali tra le <span class="math notranslate nohighlight">\(p\)</span> variabili osservate. Se il metodo della correlazione parziale consente di identificare <span class="math notranslate nohighlight">\(m\)</span> variabili latenti, allora lo psicologo può concludere che tali fattori corrispondono agli <span class="math notranslate nohighlight">\(m\)</span> costrutti che intende misurare.</p>
-<p>Per illustrare il metodo dell’annullamento della tetrade, consideriamo la matrice di correlazioni riportata nella Tabella seguente.</p>
+<p>Attualmente, l’inferenza statistica nell’analisi fattoriale spesso si svolge mediante il calcolo di stime della massima verosimiglianza ottenute mediante procedure iterative. All’inizio dell’analisi fattoriale, tuttavia, la procedura di estrazione dei fattori faceva leva sulle relazioni invarianti che il modello fattoriale impone agli elementi della matrice di covarianza delle variabili osservate. Il più conosciuto tra tali invarianti è la <em>tetrade</em> che si presenta nei modelli ad un fattore.</p>
+<p>La tetrade è una combinazione di quattro correlazioni. Se l’associazione osservata tra le variabili dipende effettivamente dal fatto che le  variabili in questione sono state causalmente generate da un fattore comune inosservabile, allora è possibile generare una combinazione delle correlazioni tra le variabili che porta all’annullamento della tetrade. In altre parole, l’analisi fattoriale si chiede se esiste un insieme esiguo di <span class="math notranslate nohighlight">\(m&lt;p\)</span> variabili inosservabili che rendono significativamente nulle tutte le correlazioni parziali tra le <span class="math notranslate nohighlight">\(p\)</span> variabili osservate al netto dei fattori comuni. Se il metodo della correlazione parziale consente di identificare <span class="math notranslate nohighlight">\(m\)</span> variabili latenti, allora lo psicologo conclude che tali fattori corrispondono agli <span class="math notranslate nohighlight">\(m\)</span> costrutti che intende misurare.</p>
+<p>Per chiarire il metodo dell’annullamento della tetrade consideriamo la matrice di correlazioni riportata nella Tabella successiva. Nella tabella, la correlazione parziale tra ciascuna coppia di variabili
+<span class="math notranslate nohighlight">\(y_i\)</span>, <span class="math notranslate nohighlight">\(y_j\)</span> (con <span class="math notranslate nohighlight">\(i \neq j\)</span>) dato <span class="math notranslate nohighlight">\(\xi\)</span> è sempre uguale a zero. Ad esempio, la correlazione parziale tra <span class="math notranslate nohighlight">\(y_3\)</span> e <span class="math notranslate nohighlight">\(y_5\)</span> dato <span class="math notranslate nohighlight">\(\xi\)</span> è:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+  r_{35 \mid \xi} &amp;= \frac{r_{35} - r_{3\xi}r_{5\xi}}
+  {\sqrt{(1-r_{3\xi}^2)(1-r_{5\xi}^2)}} \notag \\[12pt]
+  &amp;= \frac{0.35 - 0.7 \times 0.5}
+  {\sqrt{(1-0.7^2)(1-0.5^2)}} = 0. \notag
+\end{align}
+\end{split}\]</div>
+<p>Lo stesso risultato si trova per qualunque altra coppia di variabili <span class="math notranslate nohighlight">\(y_i\)</span> e <span class="math notranslate nohighlight">\(y_j\)</span>, ovvero <span class="math notranslate nohighlight">\(r_{ij \mid \xi} = 0\)</span>.</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
@@ -750,40 +758,22 @@ applicando l’eq. <a class="reference internal" href="#equation-eq-corr-parz">(
 </tr>
 </tbody>
 </table>
-<p>Matrice di correlazioni nella quale tutte le correlazioni parziali
-tra le variabili <span class="math notranslate nohighlight">\(Y\)</span> al netto dell’effetto di <span class="math notranslate nohighlight">\(\xi\)</span> sono nulle.</p>
-<p>Nella tabella, la correlazione parziale tra ciascuna coppia di variabili <span class="math notranslate nohighlight">\(y_i\)</span>, <span class="math notranslate nohighlight">\(y_j\)</span> (con <span class="math notranslate nohighlight">\(i \neq j\)</span>) dato <span class="math notranslate nohighlight">\(\xi\)</span> è sempre pari a zero. Ad esempio, la correlazione parziale tra <span class="math notranslate nohighlight">\(y_3\)</span> e <span class="math notranslate nohighlight">\(y_5\)</span> condizionata a <span class="math notranslate nohighlight">\(\xi\)</span> è:</p>
+<p>Possiamo dunque dire che, per la matrice di correlazioni della Tabella, esiste un’unica variabile <span class="math notranslate nohighlight">\(\xi\)</span> la quale, quando viene controllata, spiega tutte le</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{equation}
-\begin{aligned}
-  r_{35 \mid \xi} &amp;= \frac{r_{35} - r_{3\xi}r_{5\xi}}
-  {\sqrt{(1-r_{3\xi}^2)(1-r_{5\xi}^2)}} \notag \\[12pt]
-  &amp;= \frac{0.35 - 0.7 \times 0.5}
-  {\sqrt{(1-0.7^2)(1-0.5^2)}} = 0. \notag
-  \end{aligned}
-\end{equation}
-\end{split}\]</div>
-<p>Lo stesso risultato si trova per qualunque altra coppia di variabili <span class="math notranslate nohighlight">\(y_i\)</span> e
-<span class="math notranslate nohighlight">\(y_j\)</span>, ovvero <span class="math notranslate nohighlight">\(r_{ij \mid \xi} = 0\)</span>. Possiamo dunque dire che, per la matrice di correlazioni della Tabella, esiste un’unica variabile <span class="math notranslate nohighlight">\(\xi\)</span> la
-quale, quando viene controllata, spiega tutte le</p>
-<div class="math notranslate nohighlight">
-\[
-p(p-1)/2 = 5(5-1)/2=10
-\]</div>
-<p>correlazioni tra le variabili <span class="math notranslate nohighlight">\(y\)</span>. Questo risultato non è sorprendente, in quanto la matrice di correlazioni è stata costruita in modo tale da possedere tale proprietà.</p>
-<p>Immaginiamo invece di trovarci in una situazione diversa, ovvero di avere a disposizione solo le variabili <span class="math notranslate nohighlight">\(y_i\)</span> senza conoscere <span class="math notranslate nohighlight">\(\xi\)</span>. In questo caso, ci poniamo la domanda: “Esiste una variabile latente <span class="math notranslate nohighlight">\(\xi\)</span> tale che, se fosse osservabile, renderebbe nulle tutte le correlazioni parziali tra le variabili <span class="math notranslate nohighlight">\(y\)</span>?”. Se esiste una tale variabile latente che spiega tutte le correlazioni tra le variabili osservate <span class="math notranslate nohighlight">\(y\)</span>, allora viene chiamata <em>fattore latente</em>.</p>
+\[p(p-1)/2 = 5(5-1)/2=10\]</div>
+<p>correlazioni tra le variabili <span class="math notranslate nohighlight">\(y\)</span>. Questo risultato non è sorprendente, in quanto la  matrice di correlazioni della Tabella è stata costruita in modo tale da possedere tale proprietà.</p>
+<p>Ma supponiamo di essere in una situazione diversa, ovvero di avere osservato soltanto le variabili <span class="math notranslate nohighlight">\(y_i\)</span> e di non conoscere <span class="math notranslate nohighlight">\(\xi\)</span>. In tali circostanze ci possiamo porre la seguente domanda: Esiste una variabile inosservabile <span class="math notranslate nohighlight">\(\xi\)</span> la quale, se venisse controllata, renderebbe uguali a zero tutte le correlazioni parziali tra le variabili <span class="math notranslate nohighlight">\(y\)</span>? Se una tale variabile inosservabile esiste, ed è in grado di spiegare tutte le correlazioni tra le variabili osservate <span class="math notranslate nohighlight">\(y\)</span>, allora essa viene chiamata <em>fattore</em>. Arriviamo dunque alla seguente definizione:</p>
 <p>Un fattore è una variabile inosservabile in grado di rendere significativamente nulle tutte le correlazioni parziali tra le variabili manifeste.</p>
+</section>
 <section id="vincoli-sulle-correlazioni">
-<h3><span class="section-number">27.4.1. </span>Vincoli sulle correlazioni<a class="headerlink" href="#vincoli-sulle-correlazioni" title="Link to this heading">#</a></h3>
-<p>Come si può stabilire se esiste una variabile inosservabile in grado di
-rendere nulle tutte le correlazioni parziali tra le variabili osservate?
-Riscriviamo l’eq. <a class="reference internal" href="#equation-eq-corr-parz">(27.3)</a> per specificare la correlazione parziale tra
-le variabili <span class="math notranslate nohighlight">\(y_i\)</span> e <span class="math notranslate nohighlight">\(y_j\)</span> dato <span class="math notranslate nohighlight">\(\xi\)</span>:</p>
+<h2><span class="section-number">27.5. </span>Vincoli sulle correlazioni<a class="headerlink" href="#vincoli-sulle-correlazioni" title="Link to this heading">#</a></h2>
+<p>Come si può stabilire se esiste una variabile inosservabile in grado di rendere nulle tutte le correlazioni parziali tra le variabili osservate? Riscriviamo l’Eq. <a class="reference internal" href="#equation-eq-corr-parz">(27.3)</a> per specificare la correlazione parziale tra le variabili <span class="math notranslate nohighlight">\(y_i\)</span> e <span class="math notranslate nohighlight">\(y_j\)</span> dato <span class="math notranslate nohighlight">\(\xi\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-  r_{ij \mid \xi} = \frac{r_{ij} - r_{i\xi}r_{j\xi}}
-  {\sqrt{(1-r_{i\xi}^2)(1-r_{j\xi}^2)}}
+\begin{align}
+  r_{ij \mid \xi} &amp;= \frac{r_{ij} - r_{i\xi}r_{j\xi}}
+  {\sqrt{(1-r_{i\xi}^2)(1-r_{j\xi}^2)}} 
+\end{align}
 \]</div>
 <p>Affinché <span class="math notranslate nohighlight">\(r_{ij \mid \xi}\)</span> sia uguale a zero è necessario che</p>
 <div class="math notranslate nohighlight">
@@ -793,60 +783,59 @@ r_{ij} - r_{i\xi}r_{j\xi}=0
 <p>ovvero</p>
 <div class="math notranslate nohighlight">
 \[
+\begin{equation}
 r_{ij} = r_{i\xi}r_{j\xi}.
+\end{equation}
 \]</div>
-<p>In altri termini, se esiste un fattore non osservato <span class="math notranslate nohighlight">\(\xi\)</span> in grado di
-rendere uguali a zero tutte le correlazioni parziali <span class="math notranslate nohighlight">\(r_{ih \mid \xi}\)</span>,
-allora la correlazione tra ciascuna coppia di variabili <span class="math notranslate nohighlight">\(y\)</span> deve essere
-uguale al prodotto delle correlazioni tra ciascuna <span class="math notranslate nohighlight">\(y\)</span> e il fattore
-latente <span class="math notranslate nohighlight">\(\xi\)</span>. Questo è il principio base dell’analisi fattoriale.</p>
+<p>In altri termini, se esiste un fattore non osservato <span class="math notranslate nohighlight">\(\xi\)</span> in grado di rendere uguali a zero tutte le correlazioni parziali <span class="math notranslate nohighlight">\(r_{ih \mid \xi}\)</span>, allora la correlazione tra ciascuna coppia di variabili <span class="math notranslate nohighlight">\(y\)</span> deve essere uguale al prodotto delle correlazioni tra ciascuna <span class="math notranslate nohighlight">\(y\)</span> e il fattore latente <span class="math notranslate nohighlight">\(\xi\)</span>. Questo è il principio base dell’analisi fattoriale.</p>
 </section>
 <section id="teoria-dei-due-fattori">
-<h3><span class="section-number">27.4.2. </span>Teoria dei Due Fattori<a class="headerlink" href="#teoria-dei-due-fattori" title="Link to this heading">#</a></h3>
-<p>Per fornire un esempio concreto del metodo dell’annullamento della tetrade, possiamo esaminare la matrice di correlazioni utilizzata da Spearman (1904) nella sua ricerca sulle capacità intellettuali di alcuni studenti di una scuola superiore. In particolare, sono state considerate le prestazioni degli studenti in tre materie scolastiche (studio dei classici, letteratura inglese, abilità matematiche) e in un compito di discriminazione dell’altezza di suoni. Secondo la Teoria dei Due Fattori di Spearman, le prestazioni in ogni compito intellettuale sono costituite da due componenti: un fattore generale comune a tutte le attività intellettuali (fattore “g”) e un fattore specifico relativo al compito in questione (fattore “s”). In questo modello, il fattore “g” rappresenta la componente invariante dell’abilità intellettiva, mentre il fattore “s” è una componente che varia da condizione a condizione.</p>
-<p>Per verificare l’esistenza di una variabile latente in grado di spiegare le correlazioni tra le variabili osservate da Spearman, è stato proposto uno strumento chiamato “annullamento della tetrade”. Tale strumento si basa sui vincoli sulle correlazioni derivanti dalla definizione di correlazione parziale. Come abbiamo visto in precedenza, la correlazione parziale tra le variabili <span class="math notranslate nohighlight">\(y\)</span> indicizzate da <span class="math notranslate nohighlight">\(i\)</span> e <span class="math notranslate nohighlight">\(j\)</span>, al netto dell’effetto di <span class="math notranslate nohighlight">\(\xi\)</span>, è nulla se la seguente relazione è soddisfatta:</p>
+<h2><span class="section-number">27.6. </span>Teoria dei Due Fattori<a class="headerlink" href="#teoria-dei-due-fattori" title="Link to this heading">#</a></h2>
+<p>Per fare un esempio concreto relativo al metodo dell’annullamento della tetrade, esaminiamo la matrice di correlazioni originariamente analizzata da Spearman. Spearman (1904) raccolse alcune misure di capacità intellettuale su un piccolo numero di studenti di una scuola superiore. Nello specifico, esaminò i voti di tali studenti nelle seguenti materie: studio dei classici (<span class="math notranslate nohighlight">\(c\)</span>), letteratura inglese (<span class="math notranslate nohighlight">\(e\)</span>) e abilità matematiche (<span class="math notranslate nohighlight">\(m\)</span>). Considerò anche la prestazione in un compito di discriminazione dell’altezza di suoni (“pitch discrimination”) (<span class="math notranslate nohighlight">\(p\)</span>), ovvero un’abilità diversa da quelle richieste nei test scolastici.</p>
+<p>Secondo la Teoria dei Due Fattori, le prestazioni relative ad un determinato compito intellettuale possiedono una componente comune (detta fattore ‘g’) con le prestazioni in un qualunque altro compito intellettuale e una componente specifica a quel determinato compito. Il modello dell’intelligenza di Spearman prevede dunque due fattori, uno generale e uno specifico (detto fattore ‘s’). Il fattore ‘g’ costituisce la componente invariante dell’abilità intellettiva, mente il fattore ‘s’ è una componente che varia da condizione a condizione.</p>
+<p>Come è possibile stabilire se esiste una variabile latente in grado di spiegare le correlazioni tra le variabili osservate da Spearman? Lo strumento proposto da Spearman per rispondere a questa domanda è <em>l’annullamento della tetrade</em>. L’annullamento della tetrade utilizza i vincoli sulle correlazioni che derivano dalla definizione di correlazione parziale. In precedenza abbiamo visto che la correlazione parziale tra le variabili <span class="math notranslate nohighlight">\(y\)</span> indicizzate da <span class="math notranslate nohighlight">\(i\)</span> e <span class="math notranslate nohighlight">\(j\)</span>, al netto dell’effetto di <span class="math notranslate nohighlight">\(\xi\)</span>, è nulla se</p>
 <div class="math notranslate nohighlight">
 \[
 r_{ij} = r_{i\xi}r_{j\xi}.
 \]</div>
-<p>In altre parole, se la correlazione tra due variabili osservate può essere spiegata dall’effetto di una terza variabile latente, allora la correlazione parziale tra tali variabili sarà nulla una volta che si tiene conto dell’effetto della variabile latente. Utilizzando questo strumento, Spearman ha dimostrato che le correlazioni tra le prestazioni degli studenti nei vari compiti intellettuali possono essere spiegate da due fattori: un fattore generale comune a tutti i compiti (fattore “g”) e un fattore specifico a ciascun compito (fattore “s”).</p>
-<p>Nel caso dei dati di Spearman, le correlazioni parziali sono nulle quando la correlazione tra “studi classici” e “letteratura inglese” è pari al prodotto della correlazione tra “studi classici” e la variabile latente <span class="math notranslate nohighlight">\(\xi\)</span> e della correlazione tra “letteratura inglese” e la variabile latente <span class="math notranslate nohighlight">\(\xi\)</span>. Inoltre, la correlazione tra “studi classici” e “abilità matematica” deve essere uguale al prodotto della correlazione tra “studi classici” e la variabile latente <span class="math notranslate nohighlight">\(\xi\)</span> e della correlazione tra “abilità matematica” e la variabile latente <span class="math notranslate nohighlight">\(\xi\)</span>, e così via per tutte le altre coppie di variabili.</p>
-<p>Le correlazioni tra le variabili manifeste e il fattore latente sono
-dette <em>saturazioni fattoriali</em> e vengono denotate con la lettera
-<span class="math notranslate nohighlight">\(\lambda\)</span>. Se il modello di Spearman è corretto, avremo che</p>
+<p>Nel caso dei dati di Spearman, dunque, le correlazioni parziali sono nulle se
+la correlazione tra ‘’studi classici’’ e ‘’letteratura inglese’’ è uguale al prodotto della correlazione tra ‘’studi classici’’ e il fattore <span class="math notranslate nohighlight">\(\xi\)</span> e della correlazione tra ‘’letteratura inglese’’ e il fattore <span class="math notranslate nohighlight">\(\xi\)</span>. Inoltre, la correlazione tra ‘’studi classici’’ e ‘’abilità matematica’’ deve essere uguale al prodotto della correlazione tra ‘’studi classici’’ e il fattore <span class="math notranslate nohighlight">\(\xi\)</span> e della correlazione tra ‘’abilità matematica’’ e il fattore <span class="math notranslate nohighlight">\(\xi\)</span>; e così via.</p>
+<p>Le correlazioni tra le variabili manifeste e il fattore latente sono dette \textit{saturazioni fattoriali} e vengono denotate con la lettera <span class="math notranslate nohighlight">\(\lambda\)</span>. Se il modello di Spearman è corretto, avremo che</p>
 <div class="math notranslate nohighlight">
-\[
-r_{ec}=\lambda_e \times \lambda_{c},
-\]</div>
-<p>dove <span class="math notranslate nohighlight">\(r_{ec}\)</span> è la correlazione tra “letteratura inglese” (e) e “studi classici” (c), <span class="math notranslate nohighlight">\(\lambda_e\)</span> è la correlazione tra “letteratura inglese” e <span class="math notranslate nohighlight">\(\xi\)</span>, e <span class="math notranslate nohighlight">\(\lambda_{c}\)</span> è la
-correlazione tra “studi classici” e <span class="math notranslate nohighlight">\(\xi\)</span>.</p>
-<p>Allo stesso modo, la correlazione tra “studi classici” e “matematica”
-(m) dovrà essere uguale a</p>
+\[r_{ec}=\lambda_e \times \lambda_{c},\]</div>
+<p>dove <span class="math notranslate nohighlight">\(r_{ec}\)</span> è la correlazione tra ‘’letteratura inglese’’ (e) e ‘’studi classici’’ (c), <span class="math notranslate nohighlight">\(\lambda_e\)</span> è la correlazione tra ‘’letteratura inglese’’ e <span class="math notranslate nohighlight">\(\xi\)</span>, e <span class="math notranslate nohighlight">\(\lambda_{c}\)</span> è la correlazione tra ‘’studi classici’’ e <span class="math notranslate nohighlight">\(\xi\)</span>.</p>
+<p>Allo stesso modo, la correlazione tra ‘’studi classici’’ e ‘’matematica’’ (m) dovrà essere uguale a</p>
 <div class="math notranslate nohighlight">
-\[
-\lambda_c \times \lambda_m,
-\]</div>
+\[\lambda_c \times \lambda_m,\]</div>
 <p>eccetera.</p>
 </section>
 <section id="annullamento-della-tetrade">
-<h3><span class="section-number">27.4.3. </span>Annullamento della tetrade<a class="headerlink" href="#annullamento-della-tetrade" title="Link to this heading">#</a></h3>
-<p>Utilizzando il metodo dell’annullamento della tetrade è possibile stimare i valori delle saturazioni fattoriali <span class="math notranslate nohighlight">\(\lambda\)</span>, partendo dalle correlazioni tra le tre coppie di variabili manifeste <span class="math notranslate nohighlight">\(c\)</span>, <span class="math notranslate nohighlight">\(m\)</span> ed <span class="math notranslate nohighlight">\(e\)</span>. In particolare, si possono scrivere tre equazioni in tre incognite, che consentono di calcolare le saturazioni <span class="math notranslate nohighlight">\(\lambda\)</span>. Ad esempio, per le tre variabili sopracitate, tali equazioni possono essere espresse nel seguente modo:</p>
+<h2><span class="section-number">27.7. </span>Annullamento della tetrade<a class="headerlink" href="#annullamento-della-tetrade" title="Link to this heading">#</a></h2>
+<p>Date le correlazioni tra tre coppie di variabili manifeste, il metodo dell’annullamento della tetrade</p>
+<blockquote>
+<div><p>in una matrice di correlazione, si selezionino quattro coefficienti nelle posizioni che marcano gli angoli di un rettangolo. La differenza tra i prodotti dei coefficienti che giacciono sulle due diagonali di tale rettangolo costituisce la differenza delle tetradi e deve essere uguale a zero.</p>
+</div></blockquote>
+<p>rende possibile stimare i valori delle saturazioni fattoriali <span class="math notranslate nohighlight">\(\lambda\)</span>. Ad esempio, per le variabili <span class="math notranslate nohighlight">\(c\)</span>, <span class="math notranslate nohighlight">\(m\)</span> ed <span class="math notranslate nohighlight">\(e\)</span>, possiamo scrivere le seguenti tre equazioni in tre incognite:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{equation}
-\begin{aligned}
+\begin{align}
   r_{cm} &amp;= \lambda_c \times \lambda_m, \notag \\
   r_{em} &amp;= \lambda_e \times \lambda_m,  \\
   r_{ce} &amp;= \lambda_c \times \lambda_e. \notag
-\end{aligned}
-\end{equation}
+\end{align}
 \end{split}\]</div>
-<p>Calcolando il determinante del sistema di equazioni lineari composto dalle correlazioni tra le variabili manifeste <span class="math notranslate nohighlight">\(c\)</span>, <span class="math notranslate nohighlight">\(m\)</span> ed <span class="math notranslate nohighlight">\(e\)</span>, possiamo ottenere il valore della saturazione fattoriale <span class="math notranslate nohighlight">\(\lambda\)</span> e, in particolare, il coefficiente di saturazione <span class="math notranslate nohighlight">\(\lambda_m\)</span> della variabile <span class="math notranslate nohighlight">\(y_m\)</span> nel fattore comune <span class="math notranslate nohighlight">\(\xi\)</span>. In altre parole, risolvendo il sistema di equazioni lineari, possiamo stimare il valore delle saturazioni fattoriali, compreso il coefficiente di saturazione <span class="math notranslate nohighlight">\(\lambda_m\)</span>, a partire dalle correlazioni tra le variabili manifeste:</p>
+<p>Risolvendo il precedente sistema di equazioni lineari, il coefficiente di saturazione <span class="math notranslate nohighlight">\(\lambda_m\)</span> della variabile <span class="math notranslate nohighlight">\(y_m\)</span> nel fattore comune <span class="math notranslate nohighlight">\(\xi\)</span>, ad esempio, pu{`o} essere calcolato a partire dalle correlazioni tra le variabili manifeste <span class="math notranslate nohighlight">\(c\)</span>, <span class="math notranslate nohighlight">\(m\)</span>, ed <span class="math notranslate nohighlight">\(e\)</span> nel modo seguente\footnote{
+La terza delle equazioni del sistema lineare può essere riscritta come <span class="math notranslate nohighlight">\(\lambda_c = \frac{r_{ce}}{\lambda_e}\)</span>.</p>
+<p>Utilizzando tale risultato, la prima equazione diventa <span class="math notranslate nohighlight">\(r_{cm} = \frac{r_{ce}}{\lambda_e}\lambda_m\)</span>.
+Dalla seconda equazione otteniamo <span class="math notranslate nohighlight">\(\lambda_e = \frac{r_{em}}{\lambda_m}\)</span>. Sostituendo questo risultato nell’equazione precedente otteniamo <span class="math notranslate nohighlight">\(r_{cm} = \frac{r_{ce}}{r_{em}}\lambda_m^2\)</span>, quindi <span class="math notranslate nohighlight">\(\lambda_m^2 = \frac{r_{cm} r_{em} }{r_{ce}}\)</span>.</p>
+<p>Verifichiamo: <span class="math notranslate nohighlight">\(\frac{r_{cm} r_{em}}{r_{ce}} = \frac{\lambda_c \lambda_m \lambda_e \lambda_m}{\lambda_c \lambda_e} = \lambda_m^2\)</span>.</p>
 <div class="math notranslate nohighlight" id="equation-eq-tetradi">
 <span class="eqno">(27.4)<a class="headerlink" href="#equation-eq-tetradi" title="Link to this equation">#</a></span>\[
-\begin{equation}
-\lambda_m = \sqrt{ \frac{r_{cm} r_{em}}{r_{ce}}}.
-\end{equation}
+\begin{align}
+  \lambda_m &amp;= \sqrt{
+    \frac{r_{cm} r_{em}}{r_{ce}}
+    }. 
+\end{align}
 \]</div>
 <p>Lo stesso vale per le altre due saturazioni <span class="math notranslate nohighlight">\(\lambda_c\)</span> e <span class="math notranslate nohighlight">\(\lambda_e\)</span>.</p>
 <p>Nel suo articolo del 1904, Spearman osservò le seguenti correlazioni tra
@@ -864,75 +853,69 @@ le variabili <span class="math notranslate nohighlight">\(Y_c\)</span>, <span cl
   \hline
 \end{array}
 \end{split}\]</div>
-<p>Utilizzando l’eq. <a class="reference internal" href="#equation-eq-tetradi">(27.4)</a>, mediante le correlazioni <span class="math notranslate nohighlight">\(r_{cm}\)</span>, <span class="math notranslate nohighlight">\(r_{em}\)</span>, e
-<span class="math notranslate nohighlight">\(r_{ce}\)</span> fornite dalla tabella precedente, la saturazione <span class="math notranslate nohighlight">\(\lambda_m\)</span>
-diventa uguale a:</p>
+<p>Utilizzando l’Eq. <a class="reference internal" href="#equation-eq-tetradi">(27.4)</a>, mediante le correlazioni <span class="math notranslate nohighlight">\(r_{cm}\)</span>, <span class="math notranslate nohighlight">\(r_{em}\)</span>, e <span class="math notranslate nohighlight">\(r_{ce}\)</span> fornite dalla tabella precedente, la saturazione <span class="math notranslate nohighlight">\(\lambda_m\)</span> diventa uguale a:</p>
 <div class="math notranslate nohighlight">
 \[
-  \hat{\lambda}_m = \sqrt{ \frac{r_{cm} r_{em}}{r_{ce}} } = \sqrt{
-    \frac{0.70 \times 0.64}{0.78} } = 0.76.
+\begin{align}
+  \hat{\lambda}_m &amp;= \sqrt{ \frac{r_{cm} r_{em}}{r_{ce}} } = \sqrt{
+    \frac{0.70 \times 0.64}{0.78} } = 0.76. \notag
+\end{align}
 \]</div>
-<p>È importante notare che il metodo dell’annullamento della tetrade
-produce risultati falsificabili. Infatti, ci sono modi diversi per
-calcolare la stessa saturazione fattoriale. Se il modello fattoriale è
-corretto si deve ottenere lo stesso risultato in tutti i casi. Nel caso
-presente, la saturazione fattoriale <span class="math notranslate nohighlight">\(\lambda_m\)</span> può essere calcolata in
-altri due modi:</p>
+<p>È importante notare che il metodo dell’annullamento della tetrade produce risultati falsificabili.
+Infatti, ci sono modi diversi per calcolare la stessa saturazione fattoriale.
+Se il modello fattoriale è corretto si deve ottenere lo stesso risultato in tutti i casi.<br />
+Nel caso presente, la saturazione fattoriale <span class="math notranslate nohighlight">\(\lambda_m\)</span> può essere calcolata in altri due modi:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{equation}
-\begin{aligned}
+\begin{align}
   \hat{\lambda}_m &amp;= \sqrt{ \frac{r_{cm} r_{mp}}{r_{cp}} } = \sqrt{ \frac{0.78 \times 0.45}{0.66} } = 0.69, \notag \\
   \hat{\lambda}_m &amp;= \sqrt{ \frac{r_{em} r_{mp}}{r_{ep}} } = \sqrt{
-    \frac{0.64 \times 0.45}{0.54} } = 0.73. \notag\end{aligned}
-\end{equation}
+    \frac{0.64 \times 0.45}{0.54} } = 0.73. \notag
+\end{align}
 \end{split}\]</div>
-<p>I tre valori che sono stati ottenuti sono molto simili. Qual è allora la stima
-migliore di <span class="math notranslate nohighlight">\(\lambda_m\)</span>?</p>
+<p>I tre valori che sono stati ottenuti sono molto simili. Qual è allora la stima migliore di  <span class="math notranslate nohighlight">\(\lambda_m\)</span>?</p>
 </section>
 <section id="metodo-del-centroide">
-<h3><span class="section-number">27.4.4. </span>Metodo del centroide<a class="headerlink" href="#metodo-del-centroide" title="Link to this heading">#</a></h3>
-<p>La soluzione più semplice è quella di fare la media di questi tre valori
-(<span class="math notranslate nohighlight">\(\bar{\lambda}_m = 0.73\)</span>). Un metodo migliore (meno vulnerabile ai
-valori anomali) è dato dal rapporto tra la somma dei numeratori e dei
-denominatori:</p>
+<h2><span class="section-number">27.8. </span>Metodo del centroide<a class="headerlink" href="#metodo-del-centroide" title="Link to this heading">#</a></h2>
+<p>La soluzione più semplice è quella di fare la media di questi tre valori (<span class="math notranslate nohighlight">\(\bar{\lambda}_m = 0.73\)</span>).
+Un metodo migliore (meno vulnerabile ai valori anomali) è dato dal rapporto tra la
+somma dei numeratori e dei denominatori:</p>
 <div class="math notranslate nohighlight">
 \[
-  \hat{\lambda}_m = \sqrt{ \frac{0.70 \times 0.64 + 0.78 \times 0.45 + 0.64
-      \times 0.45}{0.78+0.66+0.54} } = 0.73
+\begin{align}
+  \hat{\lambda}_m &amp;= \sqrt{ \frac{0.70 \times 0.64 + 0.78 \times 0.45 + 0.64
+      \times 0.45}{0.78+0.66+0.54} } = 0.73 \notag
+\end{align}
 \]</div>
-<p>In questo caso, i due metodi danno lo stesso risultato. Le altre tre
-saturazioni fattoriali trovate mediante il metodo del centroide sono:</p>
+<p>In questo caso, i due metodi danno lo stesso risultato. Le altre tre saturazioni fattoriali
+trovate mediante il metodo del centroide sono:</p>
 <div class="math notranslate nohighlight">
-\[
-\hat{\lambda}_c = 0.97, \quad \hat{\lambda}_e = 0.84, \quad
-\hat{\lambda}_p = 0.65.
-\]</div>
+\[\hat{\lambda}_c = 0.97, \quad \hat{\lambda}_e = 0.84, \quad \hat{\lambda}_p = 0.65.\]</div>
 <p>In conclusione,</p>
 <div class="math notranslate nohighlight">
 \[
-\boldsymbol{\hat{\Lambda}}^\prime=
+\boldsymbol{\hat{\Lambda}}'=
 (\hat{\lambda}_c, \hat{\lambda}_e, \hat{\lambda}_m, \hat{\lambda}_p) = (0.97, 0.84, 0.73, 0.65).
 \]</div>
-<!-- Il calcolo delle saturazioni fattoriali con il metodo del centroide aveva prodotto il risultato: $\boldsymbol{\hat{\Lambda}}'= (0.97, 0.84, 0.73, 0.65)$. Si noti che i due metodi producono risultati simili. -->
-</section>
+<p>Questo risultato è la soluzione proposta da Spearman nel suo articolo del 1904 per risolvere il problema di determinare le saturazioni fattoriali di un modello con un fattore comune latente.</p>
 </section>
 <section id="introduzione-a-lavaan">
-<h2><span class="section-number">27.5. </span>Introduzione a <code class="docutils literal notranslate"><span class="pre">lavaan</span></code><a class="headerlink" href="#introduzione-a-lavaan" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">27.9. </span>Introduzione a <code class="docutils literal notranslate"><span class="pre">lavaan</span></code><a class="headerlink" href="#introduzione-a-lavaan" title="Link to this heading">#</a></h2>
+<p>Attualmente, l’analisi fattoriale viene svolta mediante software. Il pacchetto R più ampiamente utilizzato per condurre l’analisi fattoriale è <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>.</p>
 <section id="sintassi-del-modello">
-<h3><span class="section-number">27.5.1. </span>Sintassi del modello<a class="headerlink" href="#sintassi-del-modello" title="Link to this heading">#</a></h3>
-<p>Al cuore del pacchetto lavaan si trova la “sintassi del modello”. La sintassi del modello è una descrizione del modello da stimare. In questa sezione, spieghiamo brevemente gli elementi della sintassi del modello lavaan.</p>
+<h3><span class="section-number">27.9.1. </span>Sintassi del modello<a class="headerlink" href="#sintassi-del-modello" title="Link to this heading">#</a></h3>
+<p>Al cuore del pacchetto <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> si trova la “sintassi del modello”. La sintassi del modello è una descrizione del modello da stimare. In questa sezione, spieghiamo brevemente gli elementi della sintassi del modello <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>.</p>
 <p>Nell’ambiente R, una formula di regressione ha la seguente forma:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">~</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">+</span> <span class="n">x3</span> <span class="o">+</span> <span class="n">x4</span>
 </pre></div>
 </div>
-<p>In questa formula, la tilde (“~”) è l’operatore di regressione. Sul lato sinistro dell’operatore, abbiamo la variabile dipendente (y), e sul lato destro abbiamo le variabili indipendenti, separate dall’operatore “+” . In lavaan, un modello tipico è semplicemente un insieme (o sistema) di formule di regressione, in cui alcune variabili (che iniziano con una ‘f’ qui sotto) possono essere latenti. Ad esempio:</p>
+<p>In questa formula, la tilde (“~”) è l’operatore di regressione. Sul lato sinistro dell’operatore, abbiamo la variabile dipendente (y), e sul lato destro abbiamo le variabili indipendenti, separate dall’operatore “+” . In <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>, un modello tipico è semplicemente un insieme (o sistema) di formule di regressione, in cui alcune variabili (che iniziano con una ‘f’ qui sotto) possono essere latenti. Ad esempio:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">~</span> <span class="n">f1</span> <span class="o">+</span> <span class="n">f2</span> <span class="o">+</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span>
 <span class="n">f1</span> <span class="o">~</span> <span class="n">f2</span> <span class="o">+</span> <span class="n">f3</span>
 <span class="n">f2</span> <span class="o">~</span> <span class="n">f3</span> <span class="o">+</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span>
 </pre></div>
 </div>
-<p>Se abbiamo variabili latenti in una qualsiasi delle formule di regressione, dobbiamo “definirle” elencando i loro indicatori (manifesti o latenti). Lo facciamo utilizzando l’operatore speciale “=~”, che può essere letto come “è misurato da”. Ad esempio, per definire le tre variabili latenti f1, f2 e f3, possiamo usare qualcosa del genere:</p>
+<p>Se abbiamo variabili latenti in una qualsiasi delle formule di regressione, dobbiamo “definirle” elencando i loro indicatori (manifesti o latenti). Lo facciamo utilizzando l’operatore speciale “=~”, che può essere letto come “è misurato da”. Ad esempio, per definire le tre variabili latenti f1, f2 e f3, possiamo usare la sintassi seguente:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f1</span> <span class="o">=~</span> <span class="n">y1</span> <span class="o">+</span> <span class="n">y2</span> <span class="o">+</span> <span class="n">y3</span>
 <span class="n">f2</span> <span class="o">=~</span> <span class="n">y4</span> <span class="o">+</span> <span class="n">y5</span> <span class="o">+</span> <span class="n">y6</span>
 <span class="n">f3</span> <span class="o">=~</span> <span class="n">y7</span> <span class="o">+</span> <span class="n">y8</span> <span class="o">+</span> <span class="n">y9</span> <span class="o">+</span> <span class="n">y10</span>
@@ -1005,7 +988,7 @@ saturazioni fattoriali trovate mediante il metodo del centroide sono:</p>
 </div>
 </section>
 <section id="un-esempio-concreto">
-<h3><span class="section-number">27.5.2. </span>Un esempio concreto<a class="headerlink" href="#un-esempio-concreto" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">27.9.2. </span>Un esempio concreto<a class="headerlink" href="#un-esempio-concreto" title="Link to this heading">#</a></h3>
 <p>Analizziamo nuovamente i dati di Spearman che abbiamo esaminato in precedenza usando <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>. La matrice completa dei dati di Spearman è messa a disposizione da &#64;kan2019extending.</p>
 <p>Specifichiamo il nome delle variabili manifeste</p>
 <div class="cell docutils container">
@@ -1020,7 +1003,7 @@ saturazioni fattoriali trovate mediante il metodo del centroide sono:</p>
 <p>e il loro numero</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ny</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">length </span><span class="p">(</span><span class="n">varnames</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ny</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">varnames</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1176,6 +1159,11 @@ Variances:
 <li><p>una sezione chiamata “Model Test User Model”: che fornisce una statistica di test, i gradi di libertà e un valore p per il modello specificato dall’utente.</p></li>
 </ul>
 <p>La sezione successiva contiene ulteriori misure di adattamento e viene mostrata solo se si utilizza l’argomento opzionale fit.measures = TRUE. Inizia con la riga Model Test Baseline Model: e termina con il valore per l’SRMR. L’ultima sezione contiene le stime dei parametri. Inizia con informazioni (tecniche) sul metodo utilizzato per calcolare gli errori standard. Quindi, vengono elencati tutti i parametri liberi (e fissati) inclusi nel modello. Di solito, prima vengono mostrate le variabili latenti, seguite dalle covarianze e dalle varianze (residui). La prima colonna (Stima) contiene il valore del parametro (stimato o fisso) per ogni parametro del modello; la seconda colonna (Std.err) contiene l’errore standard per ogni parametro stimato; la terza colonna (Z-value) contiene la statistica di Wald (che viene semplicemente ottenuta dividendo il valore del parametro per il suo errore standard), e l’ultima colonna (P(&gt;|z|)) contiene il valore p per testare l’ipotesi nulla che il valore del parametro sia uguale a zero nella popolazione.</p>
+<ol class="arabic simple">
+<li><p><strong>Estimate</strong>: Questo valore rappresenta lo <strong>stimatore di massima verosimiglianza</strong> per i pesi dei percorsi tra il costrutto latente (nel caso presente, il costrutto <code class="docutils literal notranslate"><span class="pre">g</span></code>) e le variabili osservate (le variabili manifeste: <code class="docutils literal notranslate"><span class="pre">Classics</span></code>, <code class="docutils literal notranslate"><span class="pre">French</span></code>, <code class="docutils literal notranslate"><span class="pre">English</span></code>, <code class="docutils literal notranslate"><span class="pre">Math</span></code>, <code class="docutils literal notranslate"><span class="pre">Pitch</span></code>, <code class="docutils literal notranslate"><span class="pre">Music</span></code>). In sostanza, è il peso del collegamento tra il costrutto latente e ciascuna delle variabili osservate nel modello.</p></li>
+<li><p><strong><a class="reference external" href="http://Std.lv">Std.lv</a></strong>: Questi valori rappresentano le stime dei coefficienti standardizzate rispetto alle variabili latenti. La standardizzazione avviene dividendo la stima del coefficiente non standardizzato per la deviazione standard della variabile latente. Ciò rende possibile confrontare direttamente i coefficienti all’interno del modello perché rimuove le unità di misura, facendo in modo che i coefficienti siano espressi in termini di deviazioni standard. Tuttavia, questa standardizzazione è parziale perché considera solo la varianza della variabile latente.</p></li>
+<li><p><strong>Std.all</strong>: Questi valori rappresentano le stime dei coefficienti completamente standardizzate, cioè standardizzate sia rispetto alle variabili latenti che a quelle osservate. Ciò significa che sia la variabile dipendente (latente) sia le variabili indipendenti (osservate) sono state standardizzate prima di calcolare i coefficienti. Questo processo di standardizzazione completa permette un confronto diretto dei coefficienti all’interno del modello indipendentemente dalle unità di misura originali, rendendoli espressi in termini di quanti deviazioni standard la variabile dipendente cambia per ogni deviazione standard di cambiamento nella variabile indipendente.</p></li>
+</ol>
 <p>Si noti che nella sezione Varianze: c’è un punto prima dei nomi delle variabili osservate. Ciò perché sono variabili dipendenti (o endogene) (predette dalle variabili latenti) e quindi il valore della varianza stampato in output è una stima della varianza residua: la varianza rimanente che non è spiegata dal/i predittore/i. Al contrario, non c’è un punto prima dei nomi delle variabili latenti, perché in questo modello sono variabili esogene. I valori delle varianze qui sono le varianze totali stimate delle variabili latenti.</p>
 <p>È possibile semplificare l’output dalla funzione <code class="docutils literal notranslate"><span class="pre">summary()</span></code> in maniera tale da stampare solo la tabella completa delle stime dei parametri e degli errori standard. Qui usiamo <code class="docutils literal notranslate"><span class="pre">coef(fit1)</span></code>.</p>
 <div class="cell docutils container">
@@ -1307,7 +1295,7 @@ Music     0.005  0.001 -0.017  0.024 -0.050  0.000
 </div>
 </section>
 <section id="diagrammi-di-percorso">
-<h3><span class="section-number">27.5.3. </span>Diagrammi di percorso<a class="headerlink" href="#diagrammi-di-percorso" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">27.9.3. </span>Diagrammi di percorso<a class="headerlink" href="#diagrammi-di-percorso" title="Link to this heading">#</a></h3>
 <p>Il pacchetto <code class="docutils literal notranslate"><span class="pre">semPlot</span></code> consente di disegnare diagrammi di percorso per vari modelli SEM. La funzione <code class="docutils literal notranslate"><span class="pre">semPaths</span></code> prende in input un oggetto creato da <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> e disegna il diagramma, con diverse opzioni disponibili. Il diagramma prodotto controlla le dimensioni dei caratteri/etichette, la visualizzazione dei residui e il colore dei percorsi/coefficienti. Sono disponibili queste e molte altre opzioni di controllo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1335,7 +1323,7 @@ Music     0.005  0.001 -0.017  0.024 -0.050  0.000
 <p>Si noti la somiglianza con i valori ottenuti mediante il metodo di massima verosimiglianza riportati nella figura.</p>
 </section>
 <section id="analisi-fattoriale-esplorativa">
-<h3><span class="section-number">27.5.4. </span>Analisi fattoriale esplorativa<a class="headerlink" href="#analisi-fattoriale-esplorativa" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">27.9.4. </span>Analisi fattoriale esplorativa<a class="headerlink" href="#analisi-fattoriale-esplorativa" title="Link to this heading">#</a></h3>
 <p>Quando abbiamo un’unica variabile latente, l’analisi fattoriale confermativa si riduce al caso dell’analisi fattoriale esplorativa. Esaminiamo qui sotto la sintassi per l’analisi fattoriale esplorativa in <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>.</p>
 <p>Specifichiamo il modello.</p>
 <div class="cell docutils container">
@@ -1437,7 +1425,7 @@ Variances:
 </section>
 </section>
 <section id="conclusioni">
-<h2><span class="section-number">27.6. </span>Conclusioni<a class="headerlink" href="#conclusioni" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">27.10. </span>Conclusioni<a class="headerlink" href="#conclusioni" title="Link to this heading">#</a></h2>
 <p>Nel presente capitolo abbiamo introdotto il metodo dell’annullamento
 della tetrade che consente di stimare le saturazioni di un modello
 monofattoriale. Abbiamo anche visto che il metodo dell’annullamento
@@ -1457,7 +1445,7 @@ affrontato mediante l’analisi fattoriale. In questo capitolo abbiamo
 presentato le proprietà di base del modello unifattoriale.</p>
 </section>
 <section id="session-info">
-<h2><span class="section-number">27.7. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">27.11. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
@@ -1466,15 +1454,15 @@ presentato le proprietà di base del modello unifattoriale.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.3.3 (2024-02-29)
-Platform: x86_64-apple-darwin20 (64-bit)
-Running under: macOS Sonoma 14.3.1
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Sonoma 14.4
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
-LAPACK: /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
 
 locale:
-[1] en_US.UTF-8/UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+[1] C/UTF-8/C/C/C/C
 
 time zone: Europe/Rome
 tzcode source: internal
@@ -1483,14 +1471,14 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] corrplot_0.92      kableExtra_1.4.0   lavaanExtra_0.2.0  lavaanPlot_0.8.1  
- [5] ggokabeito_0.1.0   viridis_0.6.5      viridisLite_0.4.2  ggpubr_0.6.0      
- [9] ggExtra_0.10.1     bayesplot_1.11.1   gridExtra_2.3      patchwork_1.2.0   
-[13] semTools_0.5-6.920 semPlot_1.1.6      lavaan_0.6-17      psych_2.4.1       
-[17] scales_1.3.0       markdown_1.12      knitr_1.45         lubridate_1.9.3   
-[21] forcats_1.0.0      stringr_1.5.1      dplyr_1.1.4        purrr_1.0.2       
-[25] readr_2.1.5        tidyr_1.3.1        tibble_3.2.1       ggplot2_3.5.0     
-[29] tidyverse_2.0.0    here_1.0.1        
+ [1] corrplot_0.92     kableExtra_1.4.0  lavaanExtra_0.2.0 lavaanPlot_0.8.1 
+ [5] ggokabeito_0.1.0  viridis_0.6.5     viridisLite_0.4.2 ggpubr_0.6.0     
+ [9] ggExtra_0.10.1    bayesplot_1.11.1  gridExtra_2.3     patchwork_1.2.0  
+[13] semTools_0.5-6    semPlot_1.1.6     lavaan_0.6-17     psych_2.4.1      
+[17] scales_1.3.0      markdown_1.12     knitr_1.45        lubridate_1.9.3  
+[21] forcats_1.0.0     stringr_1.5.1     dplyr_1.1.4       purrr_1.0.2      
+[25] readr_2.1.5       tidyr_1.3.1       tibble_3.2.1      ggplot2_3.5.0    
+[29] tidyverse_2.0.0   here_1.0.1       
 
 loaded via a namespace (and not attached):
   [1] RColorBrewer_1.1-3  rstudioapi_0.15.0   jsonlite_1.8.8     
@@ -1503,7 +1491,7 @@ loaded via a namespace (and not attached):
  [22] uuid_1.2-0          igraph_2.0.2        mime_0.12          
  [25] lifecycle_1.0.4     pkgconfig_2.0.3     Matrix_1.6-5       
  [28] R6_2.5.1            fastmap_1.1.1       shiny_1.8.0        
- [31] numDeriv_2016.8-1.1 digest_0.6.34       OpenMx_2.21.11     
+ [31] numDeriv_2016.8-1.1 digest_0.6.35       OpenMx_2.21.11     
  [34] fdrtool_1.2.17      colorspace_2.1-0    rprojroot_2.0.4    
  [37] Hmisc_5.1-1         labeling_0.4.3      fansi_1.0.6        
  [40] timechange_0.3.0    abind_1.4-5         compiler_4.3.3     
@@ -1527,7 +1515,7 @@ loaded via a namespace (and not attached):
  [94] visNetwork_2.1.2    stringi_1.8.3       boot_1.3-29        
  [97] evaluate_0.23       codetools_0.2-19    mi_1.1             
 [100] cli_3.6.2           RcppParallel_5.1.7  IRkernel_1.3.2     
-[103] rpart_4.1.23        systemfonts_1.0.5   xtable_1.8-4       
+[103] rpart_4.1.23        systemfonts_1.0.6   xtable_1.8-4       
 [106] repr_1.1.6          munsell_0.5.0       Rcpp_1.0.12        
 [109] coda_0.19-4.1       png_0.1-8           XML_3.99-0.16.1    
 [112] parallel_4.3.3      ellipsis_0.3.2      jpeg_0.1-10        
@@ -1608,22 +1596,20 @@ loaded via a namespace (and not attached):
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errore-di-misura">27.1. Errore di misura</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-monofattoriale">27.2. Modello monofattoriale</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlazione-parziale">27.3. Correlazione parziale</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principio-base-dell-analisi-fattoriale">27.4. Principio base dell’analisi fattoriale</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vincoli-sulle-correlazioni">27.4.1. Vincoli sulle correlazioni</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teoria-dei-due-fattori">27.4.2. Teoria dei Due Fattori</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#annullamento-della-tetrade">27.4.3. Annullamento della tetrade</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-del-centroide">27.4.4. Metodo del centroide</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principio-base-dell-analisi-fattoriale">27.4. Principio base dell’analisi fattoriale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vincoli-sulle-correlazioni">27.5. Vincoli sulle correlazioni</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teoria-dei-due-fattori">27.6. Teoria dei Due Fattori</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#annullamento-della-tetrade">27.7. Annullamento della tetrade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-del-centroide">27.8. Metodo del centroide</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduzione-a-lavaan">27.9. Introduzione a <code class="docutils literal notranslate"><span class="pre">lavaan</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sintassi-del-modello">27.9.1. Sintassi del modello</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">27.9.2. Un esempio concreto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagrammi-di-percorso">27.9.3. Diagrammi di percorso</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-fattoriale-esplorativa">27.9.4. Analisi fattoriale esplorativa</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduzione-a-lavaan">27.5. Introduzione a <code class="docutils literal notranslate"><span class="pre">lavaan</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sintassi-del-modello">27.5.1. Sintassi del modello</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">27.5.2. Un esempio concreto</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagrammi-di-percorso">27.5.3. Diagrammi di percorso</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-fattoriale-esplorativa">27.5.4. Analisi fattoriale esplorativa</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusioni">27.6. Conclusioni</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">27.7. Session Info</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusioni">27.10. Conclusioni</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">27.11. Session Info</a></li>
 </ul>
   </nav></div>
 
