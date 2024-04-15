@@ -518,17 +518,8 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rio</span><span class="o">::</span><span class="nf">import</span><span class="p">(</span>
-<span class="w">  </span><span class="s">&quot;data/1_Factor_Parallel.csv&quot;</span>
+<span class="w">  </span><span class="s">&quot;../data/1_Factor_Parallel.csv&quot;</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">Error</span>: No such file: data/1_Factor_Parallel.csv
-<span class="ne">Traceback</span>:
-
-<span class="mi">1</span><span class="o">.</span> <span class="n">rio</span><span class="p">::</span><span class="n">import</span><span class="p">(</span><span class="s2">&quot;data/1_Factor_Parallel.csv&quot;</span><span class="p">)</span>
-<span class="mi">2</span><span class="o">.</span> <span class="n">stop</span><span class="p">(</span><span class="s2">&quot;No such file: &quot;</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">call</span><span class="o">.</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -596,6 +587,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/4f1d21422ebec949ee2ac57747ec86cfc02f61acecb9e90a7c09fddd36bab0dc.png" src="../_images/4f1d21422ebec949ee2ac57747ec86cfc02f61acecb9e90a7c09fddd36bab0dc.png" />
+</div>
 </div>
 <p>Tuttavia, questa conclusione è valida solo se il modello parallelo è giustificato per i dati.  Se esaminiamo l’output di lavaan vediamo che, nel caso presente, questo non è vero.</p>
 <div class="cell docutils container">
@@ -603,6 +597,82 @@ document.write(`
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># report output with fit measures and standardized estimates</span>
 <span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">fit_parallel</span><span class="p">,</span><span class="w"> </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">standardized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
 <span class="nf">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 13 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                         7
+  Number of equality constraints                     5
+
+  Number of observations                           301
+
+Model Test User Model:
+                                                      
+  Test statistic                               325.899
+  Degrees of freedom                                19
+  P-value (Chi-square)                           0.000
+
+Model Test Baseline Model:
+
+  Test statistic                               568.519
+  Degrees of freedom                                15
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.446
+  Tucker-Lewis Index (TLI)                       0.562
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -2680.931
+  Loglikelihood unrestricted model (H1)      -2517.981
+                                                      
+  Akaike (AIC)                                5365.862
+  Bayesian (BIC)                              5373.276
+  Sample-size adjusted Bayesian (SABIC)       5366.933
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.232
+  90 Percent confidence interval - lower         0.210
+  90 Percent confidence interval - upper         0.254
+  P-value H_0: RMSEA &lt;= 0.050                    0.000
+  P-value H_0: RMSEA &gt;= 0.080                    1.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.206
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  f1 =~                                                                 
+    X4                1.000                               0.633    0.551
+    X5                1.000                               0.633    0.551
+    X6                1.000                               0.633    0.551
+    X7                1.000                               0.633    0.551
+    X8                1.000                               0.633    0.551
+    X9                1.000                               0.633    0.551
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .X4      (thet)    0.920    0.034   27.432    0.000    0.920    0.697
+   .X5      (thet)    0.920    0.034   27.432    0.000    0.920    0.697
+   .X6      (thet)    0.920    0.034   27.432    0.000    0.920    0.697
+   .X7      (thet)    0.920    0.034   27.432    0.000    0.920    0.697
+   .X8      (thet)    0.920    0.034   27.432    0.000    0.920    0.697
+   .X9      (thet)    0.920    0.034   27.432    0.000    0.920    0.697
+    f1                0.400    0.045    8.803    0.000    1.000    1.000
 </pre></div>
 </div>
 </div>
@@ -653,8 +723,22 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Table: Factor Loadings
+
+|Latent Factor |Indicator |     B|    SE|      Z| p-value|  Beta|
+|:-------------|:---------|-----:|-----:|------:|-------:|-----:|
+|f1            |X4        | 0.963| 0.059| 16.274|   0.000| 0.824|
+|f1            |X5        | 1.121| 0.067| 16.835|   0.000| 0.846|
+|f1            |X6        | 0.894| 0.058| 15.450|   0.000| 0.792|
+|f1            |X7        | 0.195| 0.071|  2.767|   0.006| 0.170|
+|f1            |X8        | 0.185| 0.063|  2.938|   0.003| 0.180|
+|f1            |X9        | 0.278| 0.065|  4.245|   0.000| 0.258|
+</pre></div>
 </div>
-<p>Si noti che le saturazioni fattoriali standardizzate sono molto diverse tra loro, suggerendo che il punteggio del costrutto si relaziona in modo diverso con ciascun item e che sarebbe inappropriato stimare il punteggio del costrutto assegnando un peso unitario agli item.</p>
+</div>
+</div>
+<p>Si noti che le saturazioni fattoriali sono molto diverse tra loro, suggerendo che il punteggio del costrutto si relaziona in modo diverso con ciascun item e che sarebbe inappropriato stimare il punteggio del costrutto assegnando un peso unitario agli item.</p>
 <p>McNeish e Wolf (2020) calcolano poi i punteggi fattoriali del modello congenerico.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -673,6 +757,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/9d77fe9db93d1f438530c0cf4c00e7e1a3bb6e92088ebc4a9382c7805e00d1ff.png" src="../_images/9d77fe9db93d1f438530c0cf4c00e7e1a3bb6e92088ebc4a9382c7805e00d1ff.png" />
+</div>
 </div>
 <p>Nel caso presente, il coefficiente di determinazione tra punteggio totale e punteggi fattoriali è 0.77.</p>
 <div class="cell docutils container">
@@ -681,6 +768,8 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.765992021080728</div></div>
 </div>
 <p>Secondo gli autori, ciò significa che due persone con un punteggio totale identico potrebbero avere punteggi di modello congenerico potenzialmente diversi perché hanno raggiunto il loro particolare punteggio totale approvando item diversi. Poiché il modello congenerico assegna pesi diversi agli item, ciascun item contribuisce in modo diverso al punteggio fattoriale del modello congenerico, il che non è vero per il punteggio totale.</p>
 <p>Si noti che, per i dati di Holzinger and Swineford (1939), neppure un modello congenerico ad un fattore si dimostra adeguato.</p>
@@ -691,13 +780,149 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 16 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        12
+
+  Number of observations                           301
+
+Model Test User Model:
+                                                      
+  Test statistic                               115.366
+  Degrees of freedom                                 9
+  P-value (Chi-square)                           0.000
+
+Model Test Baseline Model:
+
+  Test statistic                               568.519
+  Degrees of freedom                                15
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.808
+  Tucker-Lewis Index (TLI)                       0.680
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -2575.664
+  Loglikelihood unrestricted model (H1)      -2517.981
+                                                      
+  Akaike (AIC)                                5175.328
+  Bayesian (BIC)                              5219.813
+  Sample-size adjusted Bayesian (SABIC)       5181.756
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.198
+  90 Percent confidence interval - lower         0.167
+  90 Percent confidence interval - upper         0.231
+  P-value H_0: RMSEA &lt;= 0.050                    0.000
+  P-value H_0: RMSEA &gt;= 0.080                    1.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.129
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  f1 =~                                                                 
+    X4                0.963    0.059   16.274    0.000    0.963    0.824
+    X5                1.121    0.067   16.835    0.000    1.121    0.846
+    X6                0.894    0.058   15.450    0.000    0.894    0.792
+    X7                0.195    0.071    2.767    0.006    0.195    0.170
+    X8                0.185    0.063    2.938    0.003    0.185    0.180
+    X9                0.278    0.065    4.245    0.000    0.278    0.258
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    f1                1.000                               1.000    1.000
+   .X4                0.437    0.056    7.775    0.000    0.437    0.320
+   .X5                0.500    0.071    6.998    0.000    0.500    0.285
+   .X6                0.474    0.054    8.777    0.000    0.474    0.372
+   .X7                1.278    0.105   12.211    0.000    1.278    0.971
+   .X8                1.023    0.084   12.204    0.000    1.023    0.967
+   .X9                1.080    0.089   12.132    0.000    1.080    0.933
+</pre></div>
 </div>
-<p>Trascurando le considerazioni sulla struttura fattoriale e esaminando, per esempio, unicamente il coefficiente omega, finiamo per trovare una risposta accettabile, ma sbagliata.</p>
+</div>
+</div>
+<p>Se trascuriamo le considerazioni sulla struttura fattoriale e esaminiamo (per esempio) unicamente il coefficiente omega, finiamo per trovare una risposta accettabile, ma sbagliata.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">psych</span><span class="o">::</span><span class="nf">omega</span><span class="p">(</span><span class="n">d</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">])</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Caricamento dei namespace richiesti: GPArotation
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Omega 
+Call: omegah(m = m, nfactors = nfactors, fm = fm, key = key, flip = flip, 
+    digits = digits, title = title, sl = sl, labels = labels, 
+    plot = plot, n.obs = n.obs, rotate = rotate, Phi = Phi, option = option, 
+    covar = covar)
+Alpha:                 0.72 
+G.6:                   0.76 
+Omega Hierarchical:    0.55 
+Omega H asymptotic:    0.65 
+Omega Total            0.84 
+
+Schmid Leiman Factor loadings greater than  0.2 
+      g  F1*  F2*   F3*   h2   u2   p2
+X4 0.73            0.68 1.00 0.00 0.53
+X5 0.96                 0.92 0.08 1.00
+X6 0.69            0.22 0.54 0.46 0.90
+X7           0.56       0.33 0.67 0.03
+X8           0.75       0.59 0.41 0.05
+X9 0.22      0.49       0.29 0.71 0.16
+
+With Sums of squares  of:
+   g  F1*  F2*  F3* 
+2.02 0.00 1.11 0.54 
+
+general/max  1.82   max/min =   257.39
+mean percent general =  0.44    with sd =  0.43 and cv of  0.97 
+Explained Common Variance of the general factor =  0.55 
+
+The degrees of freedom are 0  and the fit is  0 
+The number of observations was  301  with Chi Square =  0.03  with prob &lt;  NA
+The root mean square of the residuals is  0 
+The df corrected root mean square of the residuals is  NA
+
+Compare this with the adequacy of just a general factor and no group factors
+The degrees of freedom for just the general factor are 9  and the fit is  0.48 
+The number of observations was  301  with Chi Square =  142.26  with prob &lt;  3.5e-26
+The root mean square of the residuals is  0.17 
+The df corrected root mean square of the residuals is  0.21 
+
+RMSEA index =  0.222  and the 10 % confidence intervals are  0.191 0.255
+BIC =  90.9 
+
+Measures of factor score adequacy             
+                                                 g   F1*  F2*  F3*
+Correlation of scores with factors            0.96  0.08 0.83 0.96
+Multiple R square of scores with factors      0.93  0.01 0.68 0.91
+Minimum correlation of factor score estimates 0.86 -0.99 0.36 0.83
+
+ Total, General and Subset omega for each subset
+                                                 g  F1*  F2*  F3*
+Omega total for total scores and subscales    0.84 0.92 0.66 0.86
+Omega general for total scores and subscales  0.55 0.92 0.04 0.61
+Omega group for total scores and subscales    0.27 0.00 0.61 0.25
+</pre></div>
+</div>
+<img alt="../_images/905c07576a88f489f8422154d69b560266085964112c0075ba25d1ec14dd486a.png" src="../_images/905c07576a88f489f8422154d69b560266085964112c0075ba25d1ec14dd486a.png" />
 </div>
 </div>
 <p>È invece necessario ipotizzare un modello congenerico a due fattori.</p>
@@ -735,8 +960,90 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 18 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        13
+
+  Number of observations                           301
+
+Model Test User Model:
+                                                      
+  Test statistic                                14.736
+  Degrees of freedom                                 8
+  P-value (Chi-square)                           0.064
+
+Model Test Baseline Model:
+
+  Test statistic                               568.519
+  Degrees of freedom                                15
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.988
+  Tucker-Lewis Index (TLI)                       0.977
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -2525.349
+  Loglikelihood unrestricted model (H1)      -2517.981
+                                                      
+  Akaike (AIC)                                5076.698
+  Bayesian (BIC)                              5124.891
+  Sample-size adjusted Bayesian (SABIC)       5083.662
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.053
+  90 Percent confidence interval - lower         0.000
+  90 Percent confidence interval - upper         0.095
+  P-value H_0: RMSEA &lt;= 0.050                    0.402
+  P-value H_0: RMSEA &gt;= 0.080                    0.159
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.035
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  f1 =~                                                                 
+    X4                0.965    0.059   16.296    0.000    0.965    0.826
+    X5                1.123    0.067   16.845    0.000    1.123    0.847
+    X6                0.895    0.058   15.465    0.000    0.895    0.793
+  f2 =~                                                                 
+    X7                0.659    0.080    8.218    0.000    0.659    0.575
+    X8                0.733    0.077    9.532    0.000    0.733    0.712
+    X9                0.599    0.075    8.025    0.000    0.599    0.557
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  f1 ~~                                                                 
+    f2                0.275    0.072    3.813    0.000    0.275    0.275
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    f1                1.000                               1.000    1.000
+    f2                1.000                               1.000    1.000
+   .X4                0.433    0.056    7.679    0.000    0.433    0.318
+   .X5                0.496    0.072    6.892    0.000    0.496    0.282
+   .X6                0.472    0.054    8.732    0.000    0.472    0.371
+   .X7                0.881    0.100    8.807    0.000    0.881    0.670
+   .X8                0.521    0.094    5.534    0.000    0.521    0.492
+   .X9                0.798    0.087    9.162    0.000    0.798    0.689
+</pre></div>
 </div>
-<p>Nel caso di un modello congenerico, però, l’uso del punteggio totale (somma dei punteggi degli item), non è una misura adeguata del costrutto latente.</p>
+</div>
+</div>
+<p>Nel contesto di questi dati, l’utilizzo di un modello congenerico non è sufficiente a giustificare l’impiego del punteggio totale, che rappresenta la somma dei punteggi degli item. Questo perché, nel caso specifico, sommando i punteggi di tutti gli item, finiremmo per includere misurazioni di due costrutti distinti.</p>
 </section>
 <section id="session-info">
 <h2><span class="section-number">32.3. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
@@ -747,16 +1054,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.3.2 (2023-10-31)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.3.3 (2024-02-29)
 Platform: aarch64-apple-darwin20 (64-bit)
-Running under: macOS Sonoma 14.3.1
+Running under: macOS Sonoma 14.4.1
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib 
 LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
 
 locale:
-[1] C
+[1] C/UTF-8/C/C/C/C
 
 time zone: Europe/Rome
 tzcode source: internal
@@ -771,47 +1078,50 @@ other attached packages:
 [13] psych_2.4.1        scales_1.3.0       markdown_1.12      knitr_1.45        
 [17] lubridate_1.9.3    forcats_1.0.0      stringr_1.5.1      dplyr_1.1.4       
 [21] purrr_1.0.2        readr_2.1.5        tidyr_1.3.1        tibble_3.2.1      
-[25] ggplot2_3.4.4      tidyverse_2.0.0    here_1.0.1        
+[25] ggplot2_3.5.0      tidyverse_2.0.0    here_1.0.1        
 
 loaded via a namespace (and not attached):
-  [1] rstudioapi_0.15.0  jsonlite_1.8.8     magrittr_2.0.3    
-  [4] TH.data_1.1-2      estimability_1.5   nloptr_2.0.3      
-  [7] rmarkdown_2.25     vctrs_0.6.5        minqa_1.2.6       
- [10] base64enc_0.1-3    rstatix_0.7.2      htmltools_0.5.7   
- [13] broom_1.0.5        Formula_1.2-5      htmlwidgets_1.6.4 
- [16] plyr_1.8.9         sandwich_3.1-0     emmeans_1.10.0    
- [19] zoo_1.8-12         uuid_1.2-0         igraph_2.0.2      
- [22] mime_0.12          lifecycle_1.0.4    pkgconfig_2.0.3   
- [25] Matrix_1.6-5       R6_2.5.1           fastmap_1.1.1     
- [28] shiny_1.8.0        digest_0.6.34      OpenMx_2.21.11    
- [31] fdrtool_1.2.17     colorspace_2.1-0   rprojroot_2.0.4   
- [34] Hmisc_5.1-1        fansi_1.0.6        timechange_0.3.0  
- [37] abind_1.4-5        compiler_4.3.2     withr_3.0.0       
- [40] glasso_1.11        htmlTable_2.4.2    backports_1.4.1   
- [43] carData_3.0-5      ggsignif_0.6.4     MASS_7.3-60.0.1   
- [46] corpcor_1.6.10     gtools_3.9.5       tools_4.3.2       
- [49] pbivnorm_0.6.0     foreign_0.8-86     zip_2.3.1         
- [52] httpuv_1.6.14      nnet_7.3-19        glue_1.7.0        
- [55] quadprog_1.5-8     nlme_3.1-164       promises_1.2.1    
- [58] lisrelToR_0.3      grid_4.3.2         pbdZMQ_0.3-11     
- [61] checkmate_2.3.1    cluster_2.1.6      reshape2_1.4.4    
- [64] generics_0.1.3     gtable_0.3.4       tzdb_0.4.0        
- [67] data.table_1.15.0  hms_1.1.3          car_3.1-2         
- [70] utf8_1.2.4         tables_0.9.17      sem_3.1-15        
- [73] pillar_1.9.0       IRdisplay_1.1      rockchalk_1.8.157 
- [76] later_1.3.2        splines_4.3.2      lattice_0.22-5    
- [79] survival_3.5-8     kutils_1.73        tidyselect_1.2.0  
- [82] miniUI_0.1.1.1     pbapply_1.7-2      stats4_4.3.2      
- [85] xfun_0.42          qgraph_1.9.8       arm_1.13-1        
- [88] stringi_1.8.3      boot_1.3-29        evaluate_0.23     
- [91] codetools_0.2-19   mi_1.1             cli_3.6.2         
- [94] RcppParallel_5.1.7 IRkernel_1.3.2     rpart_4.1.23      
- [97] xtable_1.8-4       repr_1.1.6         munsell_0.5.0     
-[100] Rcpp_1.0.12        coda_0.19-4.1      png_0.1-8         
-[103] XML_3.99-0.16.1    parallel_4.3.2     ellipsis_0.3.2    
-[106] jpeg_0.1-10        lme4_1.1-35.1      mvtnorm_1.2-4     
-[109] insight_0.19.8     openxlsx_4.2.5.2   crayon_1.5.2      
-[112] rlang_1.1.3        multcomp_1.4-25    mnormt_2.1.1      
+  [1] rstudioapi_0.15.0    jsonlite_1.8.8       magrittr_2.0.3      
+  [4] TH.data_1.1-2        estimability_1.5     farver_2.1.1        
+  [7] nloptr_2.0.3         rmarkdown_2.26       vctrs_0.6.5         
+ [10] minqa_1.2.6          base64enc_0.1-3      rstatix_0.7.2       
+ [13] htmltools_0.5.7      broom_1.0.5          Formula_1.2-5       
+ [16] htmlwidgets_1.6.4    plyr_1.8.9           sandwich_3.1-0      
+ [19] rio_1.0.1            emmeans_1.10.0       zoo_1.8-12          
+ [22] uuid_1.2-0           igraph_2.0.2         mime_0.12           
+ [25] lifecycle_1.0.4      pkgconfig_2.0.3      Matrix_1.6-5        
+ [28] R6_2.5.1             fastmap_1.1.1        shiny_1.8.0         
+ [31] digest_0.6.35        OpenMx_2.21.11       fdrtool_1.2.17      
+ [34] colorspace_2.1-0     rprojroot_2.0.4      Hmisc_5.1-1         
+ [37] labeling_0.4.3       fansi_1.0.6          timechange_0.3.0    
+ [40] abind_1.4-5          compiler_4.3.3       withr_3.0.0         
+ [43] glasso_1.11          htmlTable_2.4.2      backports_1.4.1     
+ [46] carData_3.0-5        R.utils_2.12.3       ggsignif_0.6.4      
+ [49] MASS_7.3-60.0.1      GPArotation_2024.3-1 corpcor_1.6.10      
+ [52] gtools_3.9.5         tools_4.3.3          pbivnorm_0.6.0      
+ [55] foreign_0.8-86       zip_2.3.1            httpuv_1.6.14       
+ [58] nnet_7.3-19          R.oo_1.26.0          glue_1.7.0          
+ [61] quadprog_1.5-8       nlme_3.1-164         promises_1.2.1      
+ [64] lisrelToR_0.3        grid_4.3.3           pbdZMQ_0.3-11       
+ [67] checkmate_2.3.1      cluster_2.1.6        reshape2_1.4.4      
+ [70] generics_0.1.3       gtable_0.3.4         tzdb_0.4.0          
+ [73] R.methodsS3_1.8.2    data.table_1.15.2    hms_1.1.3           
+ [76] car_3.1-2            utf8_1.2.4           tables_0.9.17       
+ [79] sem_3.1-15           pillar_1.9.0         IRdisplay_1.1       
+ [82] rockchalk_1.8.157    later_1.3.2          splines_4.3.3       
+ [85] lattice_0.22-5       survival_3.5-8       kutils_1.73         
+ [88] tidyselect_1.2.0     miniUI_0.1.1.1       pbapply_1.7-2       
+ [91] stats4_4.3.3         xfun_0.42            qgraph_1.9.8        
+ [94] arm_1.13-1           stringi_1.8.3        boot_1.3-29         
+ [97] evaluate_0.23        codetools_0.2-19     mi_1.1              
+[100] cli_3.6.2            RcppParallel_5.1.7   IRkernel_1.3.2      
+[103] rpart_4.1.23         xtable_1.8-4         repr_1.1.6          
+[106] munsell_0.5.0        Rcpp_1.0.12          coda_0.19-4.1       
+[109] png_0.1-8            XML_3.99-0.16.1      parallel_4.3.3      
+[112] ellipsis_0.3.2       jpeg_0.1-10          lme4_1.1-35.1       
+[115] mvtnorm_1.2-4        insight_0.19.8       openxlsx_4.2.5.2    
+[118] crayon_1.5.2         rlang_1.1.3          multcomp_1.4-25     
+[121] mnormt_2.1.1        
 </pre></div>
 </div>
 </div>
