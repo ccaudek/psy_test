@@ -495,10 +495,10 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodi-basati-sul-confronto-tra-modelli">35.3. Metodi basati sul confronto tra modelli</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-del-rapporto-di-verosimiglianze">35.3.1. Test del rapporto di verosimiglianze</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimizzazione-dell-out-of-sample-prediction-error">35.3.2. Minimizzazione dell’out-of-sample prediction error</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">35.4. Considerazioni conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimizzazione-dell-out-of-sample-prediction-error">35.4. Minimizzazione dell’out-of-sample prediction error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">35.5. Considerazioni conclusive</a></li>
 </ul>
             </nav>
         </div>
@@ -643,6 +643,8 @@ solitamente un numero di fattori troppo grande.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">3.34528401303822</div></div>
 </div>
 <p>Per i dati di questa simulazione, l’autovalore maggiore ha un valore
 pari a <span class="math notranslate nohighlight">\(3.35\)</span>, anche se i dati sono del tutto casuali. La Parallel
@@ -663,8 +665,9 @@ dello stesso ordine composta da colonne mutualmente incorrelate. Nel caso di que
 <p>Il test del rapporto di verosimiglianze è particolarmente indicato quando il numero di osservazioni è grande, ma la sua applicazione è limitata dalle dimensioni del campione. In alternativa, è possibile utilizzare gli indici AIC, BIC e RMSEA per scegliere la soluzione con il valore più piccolo di tali statistiche. Tuttavia, questi indici non forniscono un test statistico per il confronto tra modelli.</p>
 <p>In pratica, si può considerare il valore <span class="math notranslate nohighlight">\(m\)</span> indicato dal test come il limite superiore del numero di fattori che sono importanti dal punto di vista pratico.</p>
 </section>
+</section>
 <section id="minimizzazione-dell-out-of-sample-prediction-error">
-<h3><span class="section-number">35.3.2. </span>Minimizzazione dell’out-of-sample prediction error<a class="headerlink" href="#minimizzazione-dell-out-of-sample-prediction-error" title="Link to this heading">#</a></h3>
+<h2><span class="section-number">35.4. </span>Minimizzazione dell’out-of-sample prediction error<a class="headerlink" href="#minimizzazione-dell-out-of-sample-prediction-error" title="Link to this heading">#</a></h2>
 <p>Recentemente è stato proposto un nuovo metodo per stimare il numero di fattori in EFA che affronta il problema come un problema di selezione del modello <span id="id1">[<a class="reference internal" href="../z_biblio.html#id22" title="Jonas Haslbeck and Riet van Bork. Estimating the number of factors in exploratory factor analysis via out-of-sample prediction errors. Psychological Methods, 2022.">HvB22</a>]</span>. L’obiettivo è confrontare i modelli con 1, 2, …, p fattori, dove <span class="math notranslate nohighlight">\(p\)</span> è il numero di variabili, e selezionare il modello con l’errore di previsione atteso più basso nella popolazione. Tuttavia, questo è un compito non banale perché il modello che minimizza l’errore di previsione nel campione non minimizza sempre l’errore di previsione nella popolazione.</p>
 <p>Intuitivamente, questo problema viene affrontato suddividendo il campione di dati in due insiemi: un set di training e un set di test. Il set di training viene utilizzato per stimare i parametri del modello, le cui previsioni vengono poi verificate utilizzando i dati di test (non utilizzati per la stima dei parametri). Questo calcolo dell’errore di previsione fuori campione viene ripetuto diverse volte, suddividendo ogni volta in modo casuale il campione negli insiemi di training e test. Tale metodo per stimare il numero di fattori è implementato nel pacchetto R <code class="docutils literal notranslate"><span class="pre">fspe</span></code>.</p>
 <p><strong>Esempio.</strong> Per confrontare i metodi discussi per la scelta del numero <span class="math notranslate nohighlight">\(m\)</span> di fattori usiamo una matrice di correlazioni calcolata sulle sottoscale della WAIS. Le 11 sottoscale del test sono le seguenti:</p>
@@ -787,7 +790,7 @@ al valore medio degli autovalori (che, nel caso di <strong>R</strong> è uguale 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f8174a60931662827ff0d1ffddbbadc46ea5751880587110baf06a49cba2ec81.png" src="../_images/f8174a60931662827ff0d1ffddbbadc46ea5751880587110baf06a49cba2ec81.png" />
+<img alt="../_images/eb9f01c214409f063e74f201a583d2e6a96b147787ea5bb980eb1999debbfc01.png" src="../_images/eb9f01c214409f063e74f201a583d2e6a96b147787ea5bb980eb1999debbfc01.png" />
 </div>
 </div>
 <p>Lo scree test suggerisce la presenza di un unico fattore comune.</p>
@@ -798,13 +801,33 @@ al valore medio degli autovalori (che, nel caso di <strong>R</strong> è uguale 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using eigendecomposition of correlation matrix.
+Computing: 10%  20%  30%  40%  50%  60%  70%  80%  90%  100%
+
+
+Results of Horn&#39;s Parallel Analysis for component retention
+330 iterations, using the mean estimate
+
+-------------------------------------------------- 
+Component   Adjusted    Unadjusted    Estimated 
+            Eigenvalue  Eigenvalue    Bias 
+-------------------------------------------------- 
+1           1.647667    3.765744      2.118077
+-------------------------------------------------- 
+
+Adjusted eigenvalues &gt; 1 indicate dimensions to retain.
+(1 components retained)
+</pre></div>
+</div>
+<img alt="../_images/2732bc6a03f96d8221229b161a80f2d76c0ac340dcc71274139d32b318fafe39.png" src="../_images/2732bc6a03f96d8221229b161a80f2d76c0ac340dcc71274139d32b318fafe39.png" />
+</div>
 </div>
 <p>La Parallel Analysis indica una soluzione a <span class="math notranslate nohighlight">\(m=1\)</span> fattore.</p>
 <p>Il test inferenziale relativo al numero di fattori basato sulla statistica <span class="math notranslate nohighlight">\(\chi^2\)</span> può essere eseguito nel modo seguente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">factanal</span><span class="p">(</span><span class="n">covmat</span><span class="o">=</span><span class="n">wais_cor</span><span class="p">,</span><span class="w"> </span><span class="n">factors</span><span class="o">=</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">n.obs</span><span class="o">=</span><span class="m">933</span><span class="p">)</span>
-<span class="nf">factanal</span><span class="p">(</span><span class="n">covmat</span><span class="o">=</span><span class="n">wais_cor</span><span class="p">,</span><span class="w"> </span><span class="n">factors</span><span class="o">=</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">n.obs</span><span class="o">=</span><span class="m">933</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -840,6 +863,15 @@ The chi square statistic is 35.4 on 17 degrees of freedom.
 The p-value is 0.00551 
 </pre></div>
 </div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">factanal</span><span class="p">(</span><span class="n">covmat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wais_cor</span><span class="p">,</span><span class="w"> </span><span class="n">factors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">n.obs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">933</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
 factanal(factors = 5, covmat = wais_cor, n.obs = 933)
 
@@ -892,10 +924,50 @@ The p-value is 0.256
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  |----------------------------------------------------------------------| 100%
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  |                                                                            
+  |                                                                      |   0%
 </pre></div>
 </div>
-<div class="output text_html">4</div></div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Caricamento dei namespace richiesti: GPArotation
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  |                                                                            
+  |-------                                                               |  10%
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  |                                                                            
+  |--------------                                                        |  20%
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  |                                                                            
+  |---------------------                                                 |  30%
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  |                                                                            
+  |----------------------------                                          |  40%
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  |                                                                            
+  |-----------------------------------                                   |  50%
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  |                                                                            
+  |------------------------------------------                            |  60%
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  |                                                                            
+  |-------------------------------------------------                     |  70%
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  |                                                                            
+  |--------------------------------------------------------              |  80%
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  |                                                                            
+  |---------------------------------------------------------------       |  90%
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -912,14 +984,13 @@ The p-value is 0.256
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/052799985cc2f4989590f2afa2bbadbedc599ca24d63037cf63bdcde566e01d2.png" src="../_images/052799985cc2f4989590f2afa2bbadbedc599ca24d63037cf63bdcde566e01d2.png" />
+<img alt="../_images/8a31e41ee2427a713e86c184c12b376ac2b67038f5851172e60b01c5a0fd220f.png" src="../_images/8a31e41ee2427a713e86c184c12b376ac2b67038f5851172e60b01c5a0fd220f.png" />
 </div>
 </div>
 <p>Per i dati <code class="docutils literal notranslate"><span class="pre">holzinger19</span></code>, il metodo di <span id="id2">Haslbeck and van Bork [<a class="reference internal" href="../z_biblio.html#id22" title="Jonas Haslbeck and Riet van Bork. Estimating the number of factors in exploratory factor analysis via out-of-sample prediction errors. Psychological Methods, 2022.">HvB22</a>]</span> produce dunque una soluzione a 4 fattori.</p>
 </section>
-</section>
 <section id="considerazioni-conclusive">
-<h2><span class="section-number">35.4. </span>Considerazioni conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">35.5. </span>Considerazioni conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h2>
 <p>In generale, la scelta del numero di fattori <span class="math notranslate nohighlight">\(m\)</span> non è sempre ovvia e rappresenta un limite dell’analisi fattoriale. Per affrontare questo problema, tradizionalmente si utilizza uno strumento come lo scree test per valutare la proporzione di varianza spiegata di ciascun item e l’interpretabilità della soluzione ottenuta dopo una rotazione adeguata. Tuttavia, poiché la scelta di <span class="math notranslate nohighlight">\(m\)</span> è soggettiva, i limiti della soluzione ottenuta sono evidenti. In alcuni casi, la scelta di <span class="math notranslate nohighlight">\(m\)</span> può essere più certa quando tutti i metodi forniscono la stessa risposta. Un’alternativa più moderna potrebbe essere l’uso di un metodo basato sulla minimizzazione dell’errore di previsione come quello descritto da <span id="id3">Haslbeck and van Bork [<a class="reference internal" href="../z_biblio.html#id22" title="Jonas Haslbeck and Riet van Bork. Estimating the number of factors in exploratory factor analysis via out-of-sample prediction errors. Psychological Methods, 2022.">HvB22</a>]</span>. In questo modo, si potrebbe ottenere una soluzione più affidabile e oggettiva.</p>
 </section>
 </section>
@@ -998,10 +1069,10 @@ The p-value is 0.256
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodi-basati-sul-confronto-tra-modelli">35.3. Metodi basati sul confronto tra modelli</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-del-rapporto-di-verosimiglianze">35.3.1. Test del rapporto di verosimiglianze</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimizzazione-dell-out-of-sample-prediction-error">35.3.2. Minimizzazione dell’out-of-sample prediction error</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">35.4. Considerazioni conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimizzazione-dell-out-of-sample-prediction-error">35.4. Minimizzazione dell’out-of-sample prediction error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">35.5. Considerazioni conclusive</a></li>
 </ul>
   </nav></div>
 

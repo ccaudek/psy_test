@@ -487,18 +487,22 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indeterminatezza-della-soluzione-fattoriale">36.1. Indeterminatezza della soluzione fattoriale</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parsimonia-e-semplicita">36.2. Parsimonia e semplicità</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-criterio-della-struttura-semplice">36.2.1. Il criterio della struttura semplice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-criterio-della-struttura-semplice-nell-analisi-fattoriale">36.2.1. Il Criterio della Struttura Semplice nell’Analisi Fattoriale</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rotazione-nello-spazio-geometrico">36.3. Rotazione nello spazio geometrico</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rotazione-ortogonale">36.3.1. Rotazione ortogonale</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vincoli-alla-rotazione">36.3.2. Vincoli alla rotazione</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-grafico">36.3.3. Metodo grafico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rotazione-nello-spazio-geometrico">36.3. Rotazione nello Spazio Geometrico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rotazione-ortogonale">36.3.1. Rotazione Ortogonale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vincoli-alla-rotazione-dei-fattori">36.3.2. Vincoli alla Rotazione dei Fattori</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-grafico-per-la-rotazione-dei-fattori">36.3.3. Metodo Grafico per la Rotazione dei Fattori</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medodi-di-rotazione-ortogonale">36.3.4. Medodi di rotazione ortogonale</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodi-di-rotazione-obliqua">36.3.5. Metodi di rotazione obliqua</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodi-di-rotazione-obliqua">36.3.5. Metodi di Rotazione Obliqua</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrice-dei-pesi-fattoriali-e-matrice-di-struttura">36.4. Matrice dei pesi fattoriali e matrice di struttura</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrice-dei-pesi-fattoriali-e-matrice-di-struttura">36.4. Matrice dei Pesi Fattoriali e Matrice di Struttura</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">36.4.1. Rotazione Ortogonale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rotazione-obliqua">36.4.2. Rotazione Obliqua</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esempio-con-semtools">36.5. Esempio con <code class="docutils literal notranslate"><span class="pre">semTools</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonal-varimax">36.5.1. Orthogonal varimax</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonal-quartimin">36.5.2. Orthogonal Quartimin</a></li>
@@ -572,17 +576,43 @@ seguenti</p>
 pesi fattoriali (con le comunalità sulla diagonale di <span class="math notranslate nohighlight">\(\boldsymbol{R}\)</span>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">l1</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">l1</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="m">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 6 × 6 of type dbl</caption>
+<tbody>
+	<tr><td>0.64</td><td>0.56</td><td>0.48</td><td>0.22</td><td>0.19</td><td>0.16</td></tr>
+	<tr><td>0.56</td><td>0.49</td><td>0.42</td><td>0.20</td><td>0.17</td><td>0.14</td></tr>
+	<tr><td>0.48</td><td>0.42</td><td>0.36</td><td>0.17</td><td>0.14</td><td>0.12</td></tr>
+	<tr><td>0.22</td><td>0.20</td><td>0.17</td><td>0.49</td><td>0.42</td><td>0.35</td></tr>
+	<tr><td>0.19</td><td>0.17</td><td>0.14</td><td>0.42</td><td>0.36</td><td>0.30</td></tr>
+	<tr><td>0.16</td><td>0.14</td><td>0.12</td><td>0.35</td><td>0.30</td><td>0.25</td></tr>
+</tbody>
+</table>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">l2</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">l2</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">l2</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">l2</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="m">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 6 × 6 of type dbl</caption>
+<tbody>
+	<tr><td>0.64</td><td>0.56</td><td>0.48</td><td>0.22</td><td>0.19</td><td>0.16</td></tr>
+	<tr><td>0.56</td><td>0.49</td><td>0.42</td><td>0.20</td><td>0.17</td><td>0.14</td></tr>
+	<tr><td>0.48</td><td>0.42</td><td>0.36</td><td>0.17</td><td>0.14</td><td>0.12</td></tr>
+	<tr><td>0.22</td><td>0.20</td><td>0.17</td><td>0.49</td><td>0.42</td><td>0.35</td></tr>
+	<tr><td>0.19</td><td>0.17</td><td>0.14</td><td>0.42</td><td>0.36</td><td>0.30</td></tr>
+	<tr><td>0.16</td><td>0.14</td><td>0.12</td><td>0.35</td><td>0.30</td><td>0.25</td></tr>
+</tbody>
+</table>
+</div></div>
 </div>
 <p>Come si vede, viene ottenuto lo stesso risultato utilizzando matrici
 <span class="math notranslate nohighlight">\(\boldsymbol{\Lambda}\)</span> con lo stesso numero <span class="math notranslate nohighlight">\(m\)</span> di colonne ma
@@ -622,17 +652,39 @@ comunalità sulla diagonale principale) viene generata dalle saturazioni
 fattoriali corrispondenti ad un numero diverso di fattori comuni:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">l1</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">l1</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="m">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 4 × 4 of type dbl</caption>
+<tbody>
+	<tr><td>0.81</td><td>0.63</td><td>0.45</td><td>0.27</td></tr>
+	<tr><td>0.63</td><td>0.49</td><td>0.35</td><td>0.21</td></tr>
+	<tr><td>0.45</td><td>0.35</td><td>0.25</td><td>0.15</td></tr>
+	<tr><td>0.27</td><td>0.21</td><td>0.15</td><td>0.09</td></tr>
+</tbody>
+</table>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">l2</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">l2</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">l2</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">l2</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="m">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 4 × 4 of type dbl</caption>
+<tbody>
+	<tr><td>0.81</td><td>0.63</td><td>0.45</td><td>0.26</td></tr>
+	<tr><td>0.63</td><td>0.49</td><td>0.35</td><td>0.20</td></tr>
+	<tr><td>0.45</td><td>0.35</td><td>0.25</td><td>0.14</td></tr>
+	<tr><td>0.26</td><td>0.20</td><td>0.14</td><td>0.08</td></tr>
+</tbody>
+</table>
+</div></div>
 </div>
 </section>
 <section id="parsimonia-e-semplicita">
@@ -641,45 +693,45 @@ fattoriali corrispondenti ad un numero diverso di fattori comuni:</p>
 <p>Il criterio della parsimonia richiede di scegliere il modello con il minor numero di fattori comuni che può spiegare la covarianza tra le variabili. In pratica, se ci sono due soluzioni fattoriali con un diverso numero di fattori che riproducono allo stesso modo la matrice di covarianza o di correlazione, si sceglie quella con il minor numero di fattori.</p>
 <p>In caso invece ci siano diverse soluzioni fattoriali con lo stesso numero m di fattori, il criterio della semplicità guida nella scelta della trasformazione più appropriata della matrice di saturazioni fattoriali <span class="math notranslate nohighlight">\(\boldsymbol{\Lambda}\)</span>. Questa trasformazione, nota come rotazione, cerca di rendere i fattori più interpretabili. Ci sono due tipi di rotazione: ortogonale e obliqua.</p>
 <p>La rotazione ortogonale assume che i fattori siano incorrelati, mentre la rotazione obliqua consente correlazioni tra i fattori. L’obiettivo della rotazione è di trovare una soluzione che renda i fattori più facilmente interpretabili e, quindi, in grado di spiegare meglio i dati.</p>
-<section id="il-criterio-della-struttura-semplice">
-<h3><span class="section-number">36.2.1. </span>Il criterio della struttura semplice<a class="headerlink" href="#il-criterio-della-struttura-semplice" title="Link to this heading">#</a></h3>
-<p>La rotazione degli assi fattoriali è un metodo utilizzato nell’analisi fattoriale per ottenere una struttura semplice della matrice delle saturazioni fattoriali. Questa struttura si caratterizza per poche ma forti saturazioni diverse da zero e dall’assenza di variabili saturate da più di un fattore. Thurstone (1947) propose un criterio di struttura semplice che si raggiunge quando si soddisfano alcune condizioni nella matrice fattoriale ruotata, come la presenza di saturazioni nulle per ogni variabile e per ogni fattore almeno <span class="math notranslate nohighlight">\(m\)</span> saturazioni nulle, dove <span class="math notranslate nohighlight">\(m\)</span> è il numero di fattori comuni.</p>
-<p>In pratica, si cerca di massimizzare il numero di saturazioni nulle o quasi nulle nella matrice fattoriale ruotata per ottenere la struttura semplice e facilitare l’interpretazione dei fattori. L’esame delle saturazioni fattoriali nella matrice ruotata consente di fornire un’interpretazione ai fattori, osservando quali variabili sono maggiormente associate con essi e quanto forti sono questi legami. Se i coefficienti di impatto di un fattore sono positivi e elevati su un sottoinsieme di variabili osservate, deduciamo che il fattore rappresenta ciò che hanno in comune le variabili che saturano sul fattore. Tuttavia, l’interpretazione può diventare più complessa nel caso di variabili che saturano su più fattori.</p>
+<section id="il-criterio-della-struttura-semplice-nell-analisi-fattoriale">
+<h3><span class="section-number">36.2.1. </span>Il Criterio della Struttura Semplice nell’Analisi Fattoriale<a class="headerlink" href="#il-criterio-della-struttura-semplice-nell-analisi-fattoriale" title="Link to this heading">#</a></h3>
+<p>L’analisi fattoriale impiega la rotazione degli assi fattoriali per ottenere una “struttura semplice” nella matrice delle saturazioni fattoriali. Questo criterio, proposto originariamente da Thurstone nel 1947, mira a realizzare una matrice caratterizzata da un numero limitato di saturazioni (o carichi fattoriali) significative e diverse da zero, minimizzando al contempo la presenza di variabili influenzate da più di un fattore.</p>
+<p>Per raggiungere una struttura semplice, Thurstone ha delineato specifiche condizioni che la matrice fattoriale ruotata deve soddisfare:</p>
+<ol class="arabic simple">
+<li><p>Ogni variabile deve presentare saturazioni nulle con la maggior parte dei fattori, escludendo uno o pochi con cui mostra saturazioni significative.</p></li>
+<li><p>Per ciascun fattore, devono esistere almeno <span class="math notranslate nohighlight">\(m\)</span> saturazioni nulle, dove <span class="math notranslate nohighlight">\(m\)</span> è il numero totale di fattori comuni.</p></li>
+</ol>
+<p>L’obiettivo della rotazione è quindi massimizzare il numero di saturazioni nulle o quasi nulle, facilitando l’interpretazione dei fattori. Analizzando la matrice ruotata, è possibile identificare le variabili che sono fortemente associate a specifici fattori e valutare l’intensità di tali associazioni.</p>
+<p>Un fattore si interpreta efficacemente quando i suoi carichi sono elevati e positivi su un gruppo ristretto di variabili; ciò suggerisce che il fattore rappresenta un tratto o una caratteristica comune a tali variabili. Tuttavia, l’interpretazione diventa più complessa quando le variabili presentano saturazioni significative con più di un fattore, poiché indica la presenza di sovrapposizioni nelle influenze fattoriali.</p>
 </section>
 </section>
 <section id="rotazione-nello-spazio-geometrico">
-<h2><span class="section-number">36.3. </span>Rotazione nello spazio geometrico<a class="headerlink" href="#rotazione-nello-spazio-geometrico" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">36.3. </span>Rotazione nello Spazio Geometrico<a class="headerlink" href="#rotazione-nello-spazio-geometrico" title="Link to this heading">#</a></h2>
 <section id="rotazione-ortogonale">
-<h3><span class="section-number">36.3.1. </span>Rotazione ortogonale<a class="headerlink" href="#rotazione-ortogonale" title="Link to this heading">#</a></h3>
-<p>Come abbiamo visto in precedenza, la matrice delle saturazioni fattoriali non è identificabile, il che significa che esistono molteplici soluzioni equivalenti per la determinazione dei pesi fattoriali. La rotazione ortogonale consiste nell’applicare una trasformazione lineare ai pesi fattoriali, in modo tale che venga prodotta una nuova matrice di saturazioni fattoriali che soddisfa alcuni criteri di struttura semplice, come descritto in precedenza. In altre parole, l’obiettivo della rotazione ortogonale è quello di ottenere una rappresentazione più interpretabile dei dati.</p>
-<p>Geometricamente, la rotazione ortogonale corrisponde a una rotazione rigida degli assi cartesiani del sistema di coordinate che rappresenta i pesi fattoriali. Questa rotazione mantiene invariata la distanza tra i punti che rappresentano le saturazioni fattoriali, ma cambia la posizione relativa delle variabili rispetto ai fattori. In questo modo, è possibile ottenere una struttura dei pesi fattoriali più semplice e interpretabile. La rotazione ortogonale viene solitamente effettuata utilizzando la tecnica della massima verosimiglianza o del metodo dei componenti principali, al fine di massimizzare il numero di saturazioni nulle o quasi nulle nella nuova matrice delle saturazioni fattoriali.</p>
+<h3><span class="section-number">36.3.1. </span>Rotazione Ortogonale<a class="headerlink" href="#rotazione-ortogonale" title="Link to this heading">#</a></h3>
+<p>Come precedentemente osservato, la matrice delle saturazioni fattoriali non è unica, implicando l’esistenza di multiple soluzioni equivalenti per determinare i pesi fattoriali. La rotazione ortogonale è un tipo di trasformazione lineare applicata ai pesi fattoriali per produrre una nuova matrice di saturazioni fattoriali che rispetti criteri specifici di struttura semplice. Questo processo ha lo scopo di rendere i dati più facilmente interpretabili.</p>
+<p>Geometricamente parlando, la rotazione ortogonale è simile a una rotazione rigida degli assi in uno spazio cartesiano che rappresenta i pesi fattoriali. Tale rotazione conserva le distanze tra i punti (che rappresentano le saturazioni fattoriali) ma modifica la loro posizione relativa rispetto ai fattori. Di conseguenza, si ottiene una configurazione dei pesi fattoriali che è più semplice da interpretare.</p>
+<p>Le tecniche di rotazione ortogonale sono tipicamente implementate attraverso metodi come la massima verosimiglianza o l’analisi dei componenti principali, con l’obiettivo di massimizzare il numero di saturazioni nulle o quasi nulle nella matrice delle saturazioni risultante. Questo processo aiuta a chiarire quale variabile è influenzata maggiormente da quali fattori, facilitando l’interpretazione dei risultati dell’analisi fattoriale.</p>
 </section>
-<section id="vincoli-alla-rotazione">
-<h3><span class="section-number">36.3.2. </span>Vincoli alla rotazione<a class="headerlink" href="#vincoli-alla-rotazione" title="Link to this heading">#</a></h3>
-<p>Il problema della non identificabilità di <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\Lambda}}\)</span> significa che ci sono molte possibili matrici di pesi fattoriali che possono produrre gli stessi valori di correlazione tra le variabili del nostro modello. Per risolvere questo problema, è necessario impostare dei vincoli sulla rotazione dei fattori. Il criterio principale nella scelta della rotazione è quello della semplicità della matrice <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\Lambda}}\)</span>, ovvero la vicinanza dei suoi elementi ai valori 0 e 1. Questo rende più facile interpretare i fattori come combinazioni lineari delle variabili.</p>
-<p>Le rotazioni ortogonali non cambiano le comunalità nel caso di fattori incorrelati, perché preservano le distanze tra i punti identificati dai pesi fattoriali. Questo significa che la comunalità può essere calcolata come la somma dei quadrati dei pesi fattoriali. Tuttavia, le rotazioni non ortogonali cambiano la quota di varianza spiegata da ciascun fattore, perché la varianza spiegata è data dalla somma dei quadrati dei pesi fattoriali divisa per la traccia della matrice delle correlazioni.</p>
-<p>Ci sono diversi algoritmi per la rotazione ortogonale dei fattori. Alcuni di essi sono il metodo grafico, il metodo Quartimax e il metodo Varimax.</p>
+<section id="vincoli-alla-rotazione-dei-fattori">
+<h3><span class="section-number">36.3.2. </span>Vincoli alla Rotazione dei Fattori<a class="headerlink" href="#vincoli-alla-rotazione-dei-fattori" title="Link to this heading">#</a></h3>
+<p>Il problema della non identificabilità della matrice dei pesi fattoriali, denotata come <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\Lambda}}\)</span>, indica l’esistenza di molteplici matrici equivalenti che possono produrre identiche correlazioni tra le variabili di un modello. Per affrontare questa questione, è essenziale imporre vincoli sulla rotazione dei fattori. Uno dei criteri fondamentali nella scelta del tipo di rotazione è l’ottenimento di una matrice <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\Lambda}}\)</span> semplificata, i cui elementi si avvicinano il più possibile ai valori 0 e 1. Questo facilita l’interpretazione dei fattori come combinazioni lineari delle variabili.</p>
+<p>Le rotazioni ortogonali, utili in presenza di fattori non correlati, mantengono inalterate le comunalità, poiché conservano le distanze geometriche tra i punti rappresentati dai pesi fattoriali. In questo caso, le comunalità sono calcolate come la somma dei quadrati dei pesi fattoriali. Al contrario, le rotazioni non ortogonali modificano la quota di varianza spiegata da ciascun fattore, calcolata dalla somma dei quadrati dei pesi fattoriali divisa per la traccia della matrice di correlazione.</p>
+<p>Esistono vari algoritmi per eseguire la rotazione ortogonale dei fattori, tra cui il metodo grafico, il metodo Quartimax e il metodo Varimax. Ciascuno di questi metodi ha specifiche applicazioni e impatti sulla struttura della matrice risultante, facilitando così l’interpretazione dei dati analizzati.</p>
 </section>
-<section id="metodo-grafico">
-<h3><span class="section-number">36.3.3. </span>Metodo grafico<a class="headerlink" href="#metodo-grafico" title="Link to this heading">#</a></h3>
-<p>Per ruotare il sistema degli assi, se ci sono solo <span class="math notranslate nohighlight">\(m=2\)</span> fattori, utilizziamo un sistema di coordinate bidimensionale per ottenere la loro rappresentazione geometrica. L’ispezione visiva del diagramma delle saturazioni fattoriali può guidare nella scelta della rotazione più appropriata. Le righe di <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\Lambda}}\)</span> corrispondono a coppie di pesi fattoriali, <span class="math notranslate nohighlight">\(\hat{\lambda}_{i1}, \hat{\lambda}_{i2}\)</span>, con <span class="math notranslate nohighlight">\(i=1, \dots, p\)</span>, che possono essere interpretate come le coordinate di <span class="math notranslate nohighlight">\(p\)</span> punti (tanti quanti le variabili manifeste). Gli assi del diagramma vengono ruotati di un angolo <span class="math notranslate nohighlight">\(\phi\)</span> per avvicinarli il più possibile ai punti presenti nel grafico. Le nuove coordinate (<span class="math notranslate nohighlight">\(\hat{\lambda}_{i1}^*, \hat{\lambda}_{i2}^*\)</span>) vengono calcolate come <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\Lambda}}^* = \hat{\boldsymbol{\Lambda}} \textbf{T}\)</span>,
-dove</p>
+<section id="metodo-grafico-per-la-rotazione-dei-fattori">
+<h3><span class="section-number">36.3.3. </span>Metodo Grafico per la Rotazione dei Fattori<a class="headerlink" href="#metodo-grafico-per-la-rotazione-dei-fattori" title="Link to this heading">#</a></h3>
+<p>Quando si dispone di soli <span class="math notranslate nohighlight">\( m=2 \)</span> fattori, il sistema di coordinate bidimensionale è utilizzato per rappresentare geometricamente i fattori. La visualizzazione grafica delle saturazioni fattoriali permette di determinare visivamente la rotazione più appropriata. Ogni riga della matrice <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\Lambda}}\)</span> rappresenta un paio di pesi fattoriali, <span class="math notranslate nohighlight">\(\hat{\lambda}_{i1}, \hat{\lambda}_{i2}\)</span>, con <span class="math notranslate nohighlight">\(i=1, \dots, p\)</span>, che corrispondono alle coordinate di <span class="math notranslate nohighlight">\(p\)</span> punti (equivalenti al numero di variabili manifeste). Per ottimizzare la rappresentazione, gli assi vengono ruotati di un angolo <span class="math notranslate nohighlight">\(\phi\)</span> per avvicinarli il più possibile alla disposizione dei punti sul grafico. Le nuove coordinate <span class="math notranslate nohighlight">\((\hat{\lambda}_{i1}^*, \hat{\lambda}_{i2}^*)\)</span> sono calcolate mediante la trasformazione <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\Lambda}}^* = \hat{\boldsymbol{\Lambda}} \textbf{T}\)</span>, dove</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \textbf{T} = 
-\left[
-  \begin{array}{ c c }
-  \cos{\phi} &amp; - \sin{\phi}\\
-  \sin{\phi} &amp; \cos{\phi}
-  \end{array} 
-\right] 
+\begin{bmatrix}
+\cos{\phi} &amp; -\sin{\phi}\\
+\sin{\phi} &amp; \cos{\phi}
+\end{bmatrix}
 \end{split}\]</div>
 <p>è una matrice ortogonale <span class="math notranslate nohighlight">\(2 \times 2\)</span>.</p>
-<p><strong>Esempio.</strong> Si considerino i dati di Brown, Williams e Barlow (1984) discussi da
-<span id="id1">Rencher [<a class="reference internal" href="../z_biblio.html#id20" title="AC Rencher. Methods of multivariate analysis. 2002. Wiley Publications, 2002.">Ren02</a>]</span>. Ad una bambina di dodici anni è stato chiesto di
-valutare sette dei suoi conoscenti su cinque variabili: <em>kind</em>,
-<em>intelligent</em>, <em>happy</em>, <em>likeable</em> e <em>just</em>. Per queste cinque
-variabili, la matrice di correlazioni è</p>
+<p><strong>Esempio:</strong> Consideriamo un caso studiato da Brown, Williams e Barlow (1984), analizzato in <span id="id1">Rencher [<a class="reference internal" href="../z_biblio.html#id20" title="AC Rencher. Methods of multivariate analysis. 2002. Wiley Publications, 2002.">Ren02</a>]</span>. A una ragazza di dodici anni è stato chiesto di valutare sette suoi conoscenti su cinque attributi: <em>gentilezza</em>, <em>intelligenza</em>, <em>felicità</em>, <em>simpatia</em> e <em>giustizia</em>. Per queste variabili, la matrice di correlazione <span class="math notranslate nohighlight">\(R\)</span> è stata analizzata per estrarre due fattori mediante il metodo delle componenti principali, senza rotazione iniziale:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span>
@@ -710,8 +762,7 @@ J 0.545  0.837  0.130 0.544 1.000
 </div>
 </div>
 </div>
-<p>Dalla matrice <strong>R</strong> estraiamo due fattori con il metodo delle componenti
-principali:</p>
+<p>Dalla matrice <span class="math notranslate nohighlight">\(R\)</span>, estraiamo due fattori. Si osserva che i fattori risultano difficili da interpretare: il primo fattore mostra alte saturazioni positive su tutte le variabili manifeste, mentre il secondo fattore si caratterizza per alte saturazioni positive su una variabile e negative sulle altre.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">f.pc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">principal</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">rotate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span>
@@ -719,10 +770,38 @@ principali:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Specified rotation not found, rotate=&#39;none&#39; used
+</pre></div>
 </div>
-<p>Si noti che i fattori sono difficili da interpretare: il primo fattore è caratterizzato da saturazioni fattoriali alte e positive su tutte le variabili manifeste; il secondo fattore è identificato dalle cinque variabili mediante una saturazione fattoriale alta e positiva, mentre le altre saturazioni fattoriali sono negative.</p>
-<p>Nella seguente figura, i punti rappresentano le cinque coppie di saturazioni
-fattoriali non ruotate (una per ciascun fattore):</p>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Principal Components Analysis
+Call: principal(r = R, nfactors = 2, rotate = FALSE)
+Standardized loadings (pattern matrix) based upon correlation matrix
+   PC1   PC2   h2     u2 com
+K 0.97 -0.23 0.99 0.0067 1.1
+I 0.52  0.81 0.92 0.0792 1.7
+H 0.78 -0.59 0.96 0.0391 1.9
+L 0.97 -0.21 0.99 0.0135 1.1
+J 0.70  0.67 0.94 0.0597 2.0
+
+                       PC1  PC2
+SS loadings           3.26 1.54
+Proportion Var        0.65 0.31
+Cumulative Var        0.65 0.96
+Proportion Explained  0.68 0.32
+Cumulative Proportion 0.68 1.00
+
+Mean item complexity =  1.6
+Test of the hypothesis that 2 components are sufficient.
+
+The root mean square of the residuals (RMSR) is  0.03 
+
+Fit based upon off diagonal values = 1
+</pre></div>
+</div>
+</div>
+</div>
+<p>In un grafico delle saturazioni fattoriali, i punti rappresentano le cinque coppie di saturazioni (una per ciascun fattore):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span>
@@ -736,11 +815,11 @@ fattoriali non ruotate (una per ciascun fattore):</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/3ecd9e938c0bbd6bfc0673082ed592c2654383baa53ff4108df4b9c4df486498.png" src="../_images/3ecd9e938c0bbd6bfc0673082ed592c2654383baa53ff4108df4b9c4df486498.png" />
 </div>
-<p><span id="id2">Rencher [<a class="reference internal" href="../z_biblio.html#id20" title="AC Rencher. Methods of multivariate analysis. 2002. Wiley Publications, 2002.">Ren02</a>]</span> nota che, per questi dati, una rotazione ortogonale di
-<span class="math notranslate nohighlight">\(-35^{\circ}\)</span> porterebbe gli assi ad avvicinarsi ai punti del
-diagramma a dispersione. Per verificare questo, disegnamo sul diagramma i nuovi assi
-dopo una rotazione di <span class="math notranslate nohighlight">\(-35^{\circ}\)</span>. Le istruzioni <code class="docutils literal notranslate"><span class="pre">R</span></code> sono le seguenti:</p>
+</div>
+<p><span id="id2">Rencher [<a class="reference internal" href="../z_biblio.html#id20" title="AC Rencher. Methods of multivariate analysis. 2002. Wiley Publications, 2002.">Ren02</a>]</span> suggerisce che una rotazione ortogonale di <span class="math notranslate nohighlight">\(-35^\circ\)</span> avvicinerebbe efficacemente gli assi ai punti nel diagramma di dispersione. Per verificarlo, si può disegnare i nuovi assi nel grafico dopo una rotazione di <span class="math notranslate nohighlight">\(-35^\circ\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span>
@@ -773,6 +852,18 @@ dopo una rotazione di <span class="math notranslate nohighlight">\(-35^{\circ}\)
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 4 × 2 of type dbl</caption>
+<tbody>
+	<tr><td>0.000</td><td> 0.000</td></tr>
+	<tr><td>0.574</td><td> 0.819</td></tr>
+	<tr><td>0.000</td><td> 0.000</td></tr>
+	<tr><td>0.819</td><td>-0.574</td></tr>
+</tbody>
+</table>
+</div><img alt="../_images/9693c8d693c1d9973cf884beb616700f73e538442c32aaddda0d7f1fd333e724.png" src="../_images/9693c8d693c1d9973cf884beb616700f73e538442c32aaddda0d7f1fd333e724.png" />
+</div>
 </div>
 <p>Nella figura, le due frecce rappresentano gli assi ruotati. La rotazione di <span class="math notranslate nohighlight">\(-35^{\circ}\)</span> ha effettivamente avvicinato gli assi ai punti del diagramma. Se usiamo dunque il valore <span class="math notranslate nohighlight">\(\phi = -35^{\circ}\)</span> nella matrice di rotazione, possiamo
 calcolare le saturazioni fattoriali della soluzione ruotata
@@ -791,6 +882,18 @@ ortogonale dei punti sugli assi ruotati:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 5 × 2 of type dbl</caption>
+<tbody>
+	<tr><th scope=row>K</th><td> 0.927</td><td> 0.367</td></tr>
+	<tr><th scope=row>I</th><td>-0.037</td><td> 0.959</td></tr>
+	<tr><th scope=row>H</th><td> 0.980</td><td>-0.031</td></tr>
+	<tr><th scope=row>L</th><td> 0.916</td><td> 0.385</td></tr>
+	<tr><th scope=row>J</th><td> 0.194</td><td> 0.950</td></tr>
+</tbody>
+</table>
+</div></div>
 </div>
 <p>La soluzione ottenuta in questo modo riproduce quanto riportato da
 <span id="id3">Rencher [<a class="reference internal" href="../z_biblio.html#id20" title="AC Rencher. Methods of multivariate analysis. 2002. Wiley Publications, 2002.">Ren02</a>]</span>.</p>
@@ -821,60 +924,79 @@ componenti principali e il metodo del fattore principale.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Principal Components Analysis
+Call: principal(r = R, nfactors = 2, rotate = &quot;varimax&quot;, n.obs = 7)
+Standardized loadings (pattern matrix) based upon correlation matrix
+   RC1   RC2   h2     u2 com
+K 0.95  0.30 0.99 0.0067 1.2
+I 0.03  0.96 0.92 0.0792 1.0
+H 0.97 -0.10 0.96 0.0391 1.0
+L 0.94  0.32 0.99 0.0135 1.2
+J 0.26  0.93 0.94 0.0597 1.2
+
+                       RC1  RC2
+SS loadings           2.81 1.99
+Proportion Var        0.56 0.40
+Cumulative Var        0.56 0.96
+Proportion Explained  0.58 0.42
+Cumulative Proportion 0.58 1.00
+
+Mean item complexity =  1.1
+Test of the hypothesis that 2 components are sufficient.
+
+The root mean square of the residuals (RMSR) is  0.03 
+ with the empirical chi square  0.12  with prob &lt;  0.73 
+
+Fit based upon off diagonal values = 1
+</pre></div>
+</div>
+</div>
 </div>
 <p>Un altro metodo di rotazione ortogonale è il metodo Quartimax (Neuhaus e Wringley, 1954), il quale opera una semplificazione della matrice <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\Lambda}}\)</span> massimizzando le covarianze tra i quadrati degli elementi <span class="math notranslate nohighlight">\(\lambda_{ij}\)</span> appartenenti a righe diverse, subordinatamente alla condizione che la varianza delle righe
 rimanga inalterata.</p>
 </section>
 <section id="metodi-di-rotazione-obliqua">
-<h3><span class="section-number">36.3.5. </span>Metodi di rotazione obliqua<a class="headerlink" href="#metodi-di-rotazione-obliqua" title="Link to this heading">#</a></h3>
-<p>Il termine “rotazione obliqua” è improprio poiché una rotazione implica una trasformazione ortogonale che preserva le distanze. Secondo <span id="id4">Rencher [<a class="reference internal" href="../z_biblio.html#id20" title="AC Rencher. Methods of multivariate analysis. 2002. Wiley Publications, 2002.">Ren02</a>]</span>, un termine più appropriato sarebbe “trasformazione obliqua”. Tuttavia, il termine “rotazione obliqua” è di uso comune.</p>
-<p>Nella rotazione obliqua, gli assi della soluzione ruotata non devono rimanere ortogonali e quindi possono avvicinarsi più facilmente ai raggruppamenti di punti nello spazio delle saturazioni fattoriali (se esistono). Esistono vari metodi analitici per ottenere una rotazione obliqua. Per esempio, nel metodo Direct Oblimin (Jennrich e Sampson, 1966), il criterio usato è
-il seguente:</p>
+<h3><span class="section-number">36.3.5. </span>Metodi di Rotazione Obliqua<a class="headerlink" href="#metodi-di-rotazione-obliqua" title="Link to this heading">#</a></h3>
+<p>Il termine “rotazione obliqua” può sembrare inappropriato, in quanto la rotazione implica generalmente una trasformazione ortogonale che preserva le distanze. Tuttavia, come evidenziato da <span id="id4">Rencher [<a class="reference internal" href="../z_biblio.html#id20" title="AC Rencher. Methods of multivariate analysis. 2002. Wiley Publications, 2002.">Ren02</a>]</span>, un’espressione più corretta potrebbe essere “trasformazione obliqua”. Nonostante ciò, l’uso comune ha consolidato il termine “rotazione obliqua”.</p>
+<p>Nel contesto della rotazione obliqua, gli assi della soluzione ruotata non sono costretti a rimanere ortogonali tra loro, permettendo così un allineamento più diretto agli agglomerati di punti nello spazio delle saturazioni fattoriali. Questo tipo di trasformazione facilita l’interpretazione dei fattori in presenza di correlazioni tra di essi.</p>
+<p>Esistono diversi approcci analitici per realizzare una rotazione obliqua. Ad esempio, il metodo Direct Oblimin, sviluppato da Jennrich e Sampson nel 1966, utilizza il seguente criterio:</p>
 <div class="math notranslate nohighlight">
 \[
-\sum_{ij} \left(\sum_v \lambda_i^2 \lambda_j^2 - w \frac{1}{p} \sum_v \lambda_i^2
-\sum_v \lambda_j^2\right)
+\sum_{ij} \left(\sum_v \lambda_i^2 \lambda_j^2 - w \frac{1}{p} \sum_v \lambda_i^2 \sum_v \lambda_j^2\right)
 \]</div>
-<p>dove <span class="math notranslate nohighlight">\(\sum_{ij}\)</span> si riferisce alla somma su tutte le coppie di fattori <span class="math notranslate nohighlight">\(ij\)</span>. In questo caso si procede ad una minimizzazione piuttosto che a una masssimizzazione.</p>
+<p>Qui, <span class="math notranslate nohighlight">\(\sum_{ij}\)</span> rappresenta la somma su tutte le coppie di fattori <span class="math notranslate nohighlight">\(ij\)</span>. Il processo prevede una minimizzazione, al contrario della massimizzazione tipica delle rotazioni ortogonali, riflettendo la ricerca di una soluzione che minimizzi la correlazione ridondante tra i fattori, mantenendo al contempo chiarezza interpretativa.</p>
 </section>
 </section>
 <section id="matrice-dei-pesi-fattoriali-e-matrice-di-struttura">
-<h2><span class="section-number">36.4. </span>Matrice dei pesi fattoriali e matrice di struttura<a class="headerlink" href="#matrice-dei-pesi-fattoriali-e-matrice-di-struttura" title="Link to this heading">#</a></h2>
-<p>Nella rotazione ortogonale i fattori sono incorrelati. Si consideri la situazione presentata nella figura successiva, con due variabili latenti incorrelate
-(<span class="math notranslate nohighlight">\(\xi_1\)</span> e <span class="math notranslate nohighlight">\(\xi_2\)</span>) e quattro variabili manifeste (<span class="math notranslate nohighlight">\(y_1\)</span>, <span class="math notranslate nohighlight">\(y_2\)</span>, <span class="math notranslate nohighlight">\(y_3\)</span>,
-<span class="math notranslate nohighlight">\(y_4\)</span>). Siano <span class="math notranslate nohighlight">\(\lambda_{11}\)</span>, <span class="math notranslate nohighlight">\(\lambda_{12}\)</span>, <span class="math notranslate nohighlight">\(\lambda_{13}\)</span> e
-<span class="math notranslate nohighlight">\(\lambda_{14}\)</span> le saturazioni fattoriali delle variabili nel primo
-fattore; siano <span class="math notranslate nohighlight">\(\lambda_{21}\)</span>, <span class="math notranslate nohighlight">\(\lambda_{22}\)</span>, <span class="math notranslate nohighlight">\(\lambda_{23}\)</span> e
-<span class="math notranslate nohighlight">\(\lambda_{24}\)</span> le saturazioni fattoriali delle variabili nel secondo
-fattore.</p>
+<h2><span class="section-number">36.4. </span>Matrice dei Pesi Fattoriali e Matrice di Struttura<a class="headerlink" href="#matrice-dei-pesi-fattoriali-e-matrice-di-struttura" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h3><span class="section-number">36.4.1. </span>Rotazione Ortogonale<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>Nel contesto della rotazione ortogonale, i fattori rimangono incorrelati tra loro. Consideriamo il caso di due fattori latenti non correlati (<span class="math notranslate nohighlight">\(\xi_1\)</span> e <span class="math notranslate nohighlight">\(\xi_2\)</span>) e quattro variabili manifeste (<span class="math notranslate nohighlight">\(y_1, y_2, y_3, y_4\)</span>). I coefficienti <span class="math notranslate nohighlight">\(\lambda_{11}, \lambda_{12}, \lambda_{13}, \lambda_{14}\)</span> rappresentano le saturazioni fattoriali delle variabili nel primo fattore, mentre <span class="math notranslate nohighlight">\(\lambda_{21}, \lambda_{22}, \lambda_{23}, \lambda_{24}\)</span> sono quelle nel secondo fattore. In un modello di percorso, la correlazione tra due variabili è calcolata come la somma di tutti i percorsi validi che le collegano. Se i fattori comuni sono incorrelati, esiste un solo percorso valido che collega ciascuna variabile manifesta a ciascun fattore comune secondo le regole di Wright. Pertanto, le correlazioni tra variabili manifeste e fattori comuni sono direttamente uguali alle saturazioni fattoriali. Queste saturazioni possono essere interpretate come i pesi beta di un modello di regressione multipla, indicando il contributo specifico di ciascun fattore comune nella varianza spiegata degli item (Tabachnick &amp; Fidell, 2001).</p>
 <figure class="align-default" id="orto-rot-fig">
-<a class="reference internal image-reference" href="_psychometric_methods/images/rot_4.png"><img alt="_psychometric_methods/images/rot_4.png" src="_psychometric_methods/images/rot_4.png" style="height: 300px;" /></a>
+<a class="reference internal image-reference" href="../_images/rot_4.png"><img alt="../_images/rot_4.png" src="../_images/rot_4.png" style="height: 300px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 36.1 </span><span class="caption-text">Rotazione ortogonale.</span><a class="headerlink" href="#orto-rot-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>In un diagramma di percorso, la correlazione tra due variabili è uguale alla somma dei valori numerici di tutti i percorsi legittimi che le collegano. Se i fattori comuni sono incorrelati, c’è un unico percorso legittimo che collega ciascuna variabile manifesta a ciascun fattore comune in base alle regole di Wright. Le correlazioni tra variabili manifeste e fattori comuni sono quindi uguali alle saturazioni fattoriali. Nel caso di fattori comuni incorrelati, dunque, la matrice delle saturazioni fattoriali descrive le correlazioni tra variabili e fattori. Le saturazioni fattoriali possono essere interpretate come i pesi beta del modello di regressione multipla, ovvero come la stima del contributo specifico di ciascun fattore comune nella determinazione della varianza spiegata degli item (Tabachnick &amp; Fidell, 2001).</p>
-<p>Nel caso della rotazione obliqua, la soluzione fattoriale ruotata produce un insieme di fattori comuni correlati tra loro. Di conseguenza, la matrice delle saturazioni fattoriali non descrive le correlazioni tra variabili e fattori. In un diagramma di percorso ci sono almeno due percorsi legittimi che collegano ciascuna variabile manifesta a ciascun fattore comune in base alle regole di Wright. Nel caso di una rotazione obliqua è quindi necessario specificare tre diverse matrici:</p>
+</section>
+<section id="rotazione-obliqua">
+<h3><span class="section-number">36.4.2. </span>Rotazione Obliqua<a class="headerlink" href="#rotazione-obliqua" title="Link to this heading">#</a></h3>
+<p>Nel caso della rotazione obliqua, i fattori comuni risultano correlati tra loro, rendendo la soluzione fattoriale più complessa. Pertanto, la matrice delle saturazioni fattoriali non riflette più direttamente le correlazioni tra variabili e fattori. Un modello di percorso in questa configurazione include almeno due percorsi validi che collegano ciascuna variabile manifesta a ciascun fattore comune. È necessario distinguere tra tre matrici diverse:</p>
 <ul class="simple">
-<li><p>la matrice delle saturazioni fattoriali, <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\Lambda}}\)</span>, detta
-<em>matrice pattern</em> (<em>factor pattern matrix</em>, o “configurazione,” o
-“matrice dei modelli”);</p></li>
-<li><p>la matrice delle correlazioni tra variabili manifeste e fattori, detta <em>matrice di struttura</em> (<em>factor structure matrix</em>);</p></li>
-<li><p>la  matrice che esprime le correlazioni tra i fattori, <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\Phi}}\)</span>, detta <em>matrice di intercorrelazione fattoriale</em>.</p></li>
+<li><p><strong>Matrice Pattern (<span class="math notranslate nohighlight">\(\hat{\boldsymbol{\Lambda}}\)</span>)</strong>: Conosciuta anche come matrice dei modelli, questa matrice rappresenta i coefficienti di regressione parziali delle variabili sulle dimensioni fattoriali, escludendo l’influenza degli altri fattori.</p></li>
+<li><p><strong>Matrice di Struttura</strong>: Rappresenta le correlazioni complessive tra le variabili manifeste e i fattori, considerando sia gli effetti diretti che quelli indiretti dei fattori correlati.</p></li>
+<li><p><strong>Matrice di Intercorrelazione Fattoriale (<span class="math notranslate nohighlight">\(\hat{\boldsymbol{\Phi}}\)</span>)</strong>: Indica le correlazioni tra i fattori stessi.</p></li>
 </ul>
-<p>In questo caso, la matrice pattern rappresenta l’analogo dei coefficienti parziali di regressione della variabile sul fattore, al netto degli altri fattori. Nel caso
-della rotazione obliqua, è la matrice che viene usata per determinare in
-che grado è stata raggiunta la “struttura semplice”.</p>
-<p>Esaminiamo in dettaglio la soluzione fattoriale prodotta da una rotazione obliqua. In questo caso, gli assi che rappresentano i fattori non sono ortogonali (ovvero, i fattori sono correlati) e, in un diagramma di percorso, le variabili manifeste sono collegate ai fattori attraverso due tipi distinti di percorsi che rappresentano l’effetto “diretto” e “indiretto” dei fattori sulle variabili. Nel caso di una rotazione obliqua, le saturazioni fattoriali non coincidono con le correlazioni tra variabili e fattori. Si consideri la figura &#64;ref(fig:fact-rot5). Nel caso di una rotazione obliqua, la correlazione tra i due fattori comuni viene rappresentata mediante la freccia non direzionata <span class="math notranslate nohighlight">\(\phi_{12}\)</span> che collega <span class="math notranslate nohighlight">\(\xi_1\)</span> e <span class="math notranslate nohighlight">\(\xi_2\)</span>. Nel diagramma di percorso della figura successiva ci sono due percorsi legittimi che, in base alle regole di Wright, consentono di collegare ciascuna variabile manifesta a un fattore comune.</p>
-<p>Ad esempio, per la variabile <span class="math notranslate nohighlight">\(y_1\)</span> e il fattore <span class="math notranslate nohighlight">\(\xi_1\)</span>, i percorsi sono: la freccia causale <span class="math notranslate nohighlight">\(\lambda_{11}\)</span> che rappresenta l’effetto diretto di <span class="math notranslate nohighlight">\(\xi_1\)</span> su <span class="math notranslate nohighlight">\(y_1\)</span> e il percorso composto che rappresenta l’effetto indiretto di <span class="math notranslate nohighlight">\(\xi_1\)</span> su <span class="math notranslate nohighlight">\(y_1\)</span>, il cui valore numerico è uguale al prodotto <span class="math notranslate nohighlight">\(\lambda_{21}\phi_{12}\)</span>. Nell’analisi dei percorsi, la correlazione tra <span class="math notranslate nohighlight">\(\xi_1\)</span> e <span class="math notranslate nohighlight">\(y_1\)</span> è uguale alla somma dei valori numerici dei percorsi legittimi che collegano <span class="math notranslate nohighlight">\(y_1\)</span> a <span class="math notranslate nohighlight">\(\xi_1\)</span>, ovvero <span class="math notranslate nohighlight">\(\lambda_{11} + \lambda_{21} \phi_{12}\)</span>.</p>
+<p>In un modello di percorso con rotazione obliqua, gli assi che rappresentano i fattori non sono ortogonali, il che significa che i fattori sono correlati. Le variabili manifeste sono quindi collegate ai fattori attraverso percorsi che includono effetti diretti e indiretti. Ad esempio, per la variabile <span class="math notranslate nohighlight">\(y_1\)</span> e il fattore <span class="math notranslate nohighlight">\(\xi_1\)</span>, i percorsi includono una freccia causale <span class="math notranslate nohighlight">\(\lambda_{11}\)</span> per l’effetto diretto e un percorso indiretto rappresentato dal prodotto <span class="math notranslate nohighlight">\(\lambda_{21}\phi_{12}\)</span>. L’analisi dei percorsi dimostra che la correlazione tra <span class="math notranslate nohighlight">\(\xi_1\)</span> e <span class="math notranslate nohighlight">\(y_1\)</span> è la somma dei valori numerici di questi percorsi validi, ovvero <span class="math notranslate nohighlight">\(\lambda_{11} + \lambda_{21} \phi_{12}\)</span>.</p>
 <figure class="align-default" id="obl-rot-fig">
-<a class="reference internal image-reference" href="_psychometric_methods/images/rot_5.png"><img alt="_psychometric_methods/images/rot_5.png" src="_psychometric_methods/images/rot_5.png" style="height: 300px;" /></a>
+<a class="reference internal image-reference" href="../_images/rot_5.png"><img alt="../_images/rot_5.png" src="../_images/rot_5.png" style="height: 300px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 36.2 </span><span class="caption-text">Rotazione obliqua.</span><a class="headerlink" href="#obl-rot-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Per illustrare la rotazione obliqua, utilizziamo i dati discussi da
-<span id="id5">Rencher [<a class="reference internal" href="../z_biblio.html#id20" title="AC Rencher. Methods of multivariate analysis. 2002. Wiley Publications, 2002.">Ren02</a>]</span>. Si consideri la matrice di correlazione presentata qui sotto.</p>
+<span id="id6">Rencher [<a class="reference internal" href="../z_biblio.html#id20" title="AC Rencher. Methods of multivariate analysis. 2002. Wiley Publications, 2002.">Ren02</a>]</span>. Si consideri la matrice di correlazione presentata qui sotto.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span>
@@ -891,6 +1013,17 @@ che grado è stata raggiunta la “struttura semplice”.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 4 × 4 of type dbl</caption>
+<tbody>
+	<tr><td>1.000</td><td>0.735</td><td>0.711</td><td>0.704</td></tr>
+	<tr><td>0.735</td><td>1.000</td><td>0.693</td><td>0.709</td></tr>
+	<tr><td>0.711</td><td>0.693</td><td>1.000</td><td>0.839</td></tr>
+	<tr><td>0.704</td><td>0.709</td><td>0.839</td><td>1.000</td></tr>
+</tbody>
+</table>
+</div></div>
 </div>
 <p>Iniziamo calcolando la soluzione a due fattori mediante il metodo delle
 componenti principali e una rotazione Varimax (ovvero, ortogonale). Otteniamo le seguenti saturazioni fattoriali.</p>
@@ -898,6 +1031,32 @@ componenti principali e una rotazione Varimax (ovvero, ortogonale). Otteniamo le
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">f1_pc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">principal</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">rotate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;varimax&quot;</span><span class="p">)</span><span class="w"> </span>
 <span class="n">f1_pc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Principal Components Analysis
+Call: principal(r = R, nfactors = 2, rotate = &quot;varimax&quot;)
+Standardized loadings (pattern matrix) based upon correlation matrix
+   RC1  RC2   h2    u2 com
+1 0.50 0.78 0.86 0.140 1.7
+2 0.47 0.81 0.88 0.124 1.6
+3 0.90 0.33 0.92 0.078 1.3
+4 0.89 0.35 0.92 0.083 1.3
+
+                       RC1  RC2
+SS loadings           2.08 1.50
+Proportion Var        0.52 0.37
+Cumulative Var        0.52 0.89
+Proportion Explained  0.58 0.42
+Cumulative Proportion 0.58 1.00
+
+Mean item complexity =  1.5
+Test of the hypothesis that 2 components are sufficient.
+
+The root mean square of the residuals (RMSR) is  0.06 
+
+Fit based upon off diagonal values = 0.99
 </pre></div>
 </div>
 </div>
@@ -909,6 +1068,11 @@ componenti principali e una rotazione Varimax (ovvero, ortogonale). Otteniamo le
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Caricamento dei namespace richiesti: GPArotation
+</pre></div>
+</div>
+</div>
 </div>
 <p>La matrice <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\Lambda}}\)</span> delle saturazioni fattoriali si ricava come indicato di seguito.</p>
 <div class="cell docutils container">
@@ -917,6 +1081,17 @@ componenti principali e una rotazione Varimax (ovvero, ortogonale). Otteniamo le
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 4 × 2 of type dbl</caption>
+<tbody>
+	<tr><td> 0.03206780</td><td> 0.90186261</td></tr>
+	<tr><td>-0.02543116</td><td> 0.95556536</td></tr>
+	<tr><td> 0.96858605</td><td>-0.01096737</td></tr>
+	<tr><td> 0.94726778</td><td> 0.01327683</td></tr>
+</tbody>
+</table>
+</div></div>
 </div>
 <p>La matrice <span class="math notranslate nohighlight">\(\hat{\boldsymbol{\Phi}}\)</span> di inter-correlazione fattoriale è la seguente.</p>
 <div class="cell docutils container">
@@ -925,6 +1100,18 @@ componenti principali e una rotazione Varimax (ovvero, ortogonale). Otteniamo le
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 2 × 2 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>TC1</th><th scope=col>TC2</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>TC1</th><td>1.0000000</td><td>0.7869776</td></tr>
+	<tr><th scope=row>TC2</th><td>0.7869776</td><td>1.0000000</td></tr>
+</tbody>
+</table>
+</div></div>
 </div>
 <p>La matrice di struttura, che riporta le correlazioni tra indicatori e fattori comuni, si ottiene pre-moltiplicando la matrice <span class="math notranslate nohighlight">\(\boldsymbol{\Lambda}\)</span> delle saturazioni fattoriali alla matrice <span class="math notranslate nohighlight">\(\boldsymbol{\Phi}\)</span> di inter-correlazione fattoriale.</p>
 <div class="math notranslate nohighlight">
@@ -938,6 +1125,8 @@ componenti principali e una rotazione Varimax (ovvero, ortogonale). Otteniamo le
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><strong>TC1:</strong> 0.741813471502872</div></div>
 </div>
 <p>L’intera matrice di struttura si può trovare eseguendo la moltiplicazione  <span class="math notranslate nohighlight">\(\boldsymbol{\Lambda}\boldsymbol{\Phi}\)</span>.</p>
 <div class="cell docutils container">
@@ -947,7 +1136,22 @@ componenti principali e una rotazione Varimax (ovvero, ortogonale). Otteniamo le
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 4 × 2 of type dbl</caption>
+<thead>
+	<tr><th scope=col>TC1</th><th scope=col>TC2</th></tr>
+</thead>
+<tbody>
+	<tr><td>0.742</td><td>0.927</td></tr>
+	<tr><td>0.727</td><td>0.936</td></tr>
+	<tr><td>0.960</td><td>0.751</td></tr>
+	<tr><td>0.958</td><td>0.759</td></tr>
+</tbody>
+</table>
+</div></div>
 </div>
+</section>
 </section>
 <section id="esempio-con-semtools">
 <h2><span class="section-number">36.5. </span>Esempio con <code class="docutils literal notranslate"><span class="pre">semTools</span></code><a class="headerlink" href="#esempio-con-semtools" title="Link to this heading">#</a></h2>
@@ -974,6 +1178,93 @@ componenti principali e una rotazione Varimax (ovvero, ortogonale). Otteniamo le
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 229 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        36
+
+  Number of observations                           301
+
+Model Test User Model:
+                                              Standard      Scaled
+  Test Statistic                                22.897      23.864
+  Degrees of freedom                                12          12
+  P-value (Chi-square)                           0.029       0.021
+  Scaling correction factor                                  0.959
+    Yuan-Bentler correction (Mplus variant)                       
+
+Parameter Estimates:
+
+  Standard errors                             Sandwich
+  Information bread                           Observed
+  Observed information based on                Hessian
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  factor1 =~                                          
+    x1      (l1_1)    0.653    0.083    7.909    0.000
+    x2      (l2_1)    0.353    0.079    4.481    0.000
+    x3      (l3_1)    0.415    0.086    4.832    0.000
+    x4      (l4_1)    0.926    0.067   13.762    0.000
+    x5      (l5_1)    1.014    0.067   15.176    0.000
+    x6      (l6_1)    0.868    0.062   13.887    0.000
+    x7      (l7_1)    0.283    0.091    3.113    0.002
+    x8      (l8_1)    0.340    0.083    4.095    0.000
+    x9      (l9_1)    0.460    0.078    5.881    0.000
+  factor2 =~                                          
+    x1      (l1_2)    0.349    0.124    2.815    0.005
+    x2      (l2_2)    0.242    0.159    1.523    0.128
+    x3      (l3_2)    0.497    0.132    3.767    0.000
+    x4      (l4_2)   -0.337    0.067   -5.058    0.000
+    x5      (l5_2)   -0.461    0.077   -6.009    0.000
+    x6      (l6_2)   -0.280    0.057   -4.908    0.000
+    x7      (l7_2)    0.372    0.188    1.976    0.048
+    x8      (l8_2)    0.510    0.133    3.831    0.000
+    x9      (l9_2)    0.489    0.066    7.416    0.000
+  factor3 =~                                          
+    x1      (l1_3)   -0.338    0.103   -3.275    0.001
+    x2      (l2_3)   -0.405    0.092   -4.401    0.000
+    x3      (l3_3)   -0.404    0.120   -3.355    0.001
+    x4      (l4_3)    0.049    0.098    0.503    0.615
+    x5      (l5_3)    0.122    0.105    1.154    0.248
+    x6      (l6_3)   -0.000    0.076   -0.003    0.998
+    x7      (l7_3)    0.609    0.125    4.863    0.000
+    x8      (l8_3)    0.409    0.143    2.853    0.004
+    x9      (l9_3)    0.112    0.123    0.915    0.360
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  factor1 ~~                                          
+    factor2           0.000                           
+    factor3           0.000                           
+  factor2 ~~                                          
+    factor3           0.000                           
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+    factor1           1.000                           
+    factor2           1.000                           
+    factor3           1.000                           
+   .x1                0.696    0.113    6.184    0.000
+   .x2                1.035    0.106    9.803    0.000
+   .x3                0.692    0.097    7.133    0.000
+   .x4                0.377    0.053    7.170    0.000
+   .x5                0.403    0.064    6.303    0.000
+   .x6                0.365    0.046    7.984    0.000
+   .x7                0.594    0.148    4.014    0.000
+   .x8                0.479    0.099    4.842    0.000
+   .x9                0.551    0.065    8.518    0.000
+
+Constraints:
+                                               |Slack|
+    0-(1_2*1_1+2_2*2_1+3_2*3_1+4_2*4_1+5_2*5_    0.000
+    0-(1_3*1_1+2_3*2_1+3_3*3_1+4_3*4_1+5_3*5_    0.000
+    0-(1_3*1_2+2_3*2_2+3_3*3_2+4_3*4_2+5_3*5_    0.000
+</pre></div>
+</div>
+</div>
 </div>
 <p>Si noti che, in assenza di rotazione, è impossibile assegnare un significato ai fattori comuni.</p>
 <section id="orthogonal-varimax">
@@ -984,6 +1275,101 @@ componenti principali e una rotazione Varimax (ovvero, ortogonale). Otteniamo le
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">out_varimax</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">orthRotate</span><span class="p">(</span><span class="n">unrotated</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;varimax&quot;</span><span class="p">)</span>
 <span class="n">out</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">out_varimax</span><span class="p">,</span><span class="w"> </span><span class="n">sort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">suppress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.3</span><span class="p">)</span>
 <span class="nf">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standardized Rotated Factor Loadings
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in testLoadings(object):
+“The standard error is currently invalid because it does not account for the variance of the rotation function. It is simply based on the delta method.”
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   factor1 factor2 factor3
+x1  0.320*  0.607*        
+x2          0.481*        
+x3          0.662*        
+x4  0.838*                
+x5  0.867*                
+x6  0.815*                
+x7                  0.695*
+x8                  0.704*
+x9          0.409*  0.511*
+
+Factor Correlation
+        factor1 factor2 factor3
+factor1       1       0       0
+factor2       0       1       0
+factor3       0       0       1
+
+Method of rotation:	varimax 
+
+Test Statistics for Standardized Rotated Factor Loadings
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in testLoadings(object):
+“The standard error is currently invalid because it does not account for the variance of the rotation function. It is simply based on the delta method.”
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       lhs op rhs std.loading    se      z     p ci.lower ci.upper
+1  factor1 =~  x1       0.320 0.055  5.799 0.000    0.212    0.428
+2  factor1 =~  x2       0.135 0.063  2.151 0.031    0.012    0.259
+3  factor1 =~  x3       0.080 0.049  1.622 0.105   -0.017    0.176
+4  factor1 =~  x4       0.838 0.028 30.193 0.000    0.784    0.892
+5  factor1 =~  x5       0.867 0.024 36.189 0.000    0.820    0.914
+6  factor1 =~  x6       0.815 0.024 33.939 0.000    0.768    0.862
+7  factor1 =~  x7       0.102 0.049  2.058 0.040    0.005    0.199
+8  factor1 =~  x8       0.078 0.048  1.617 0.106   -0.016    0.172
+9  factor1 =~  x9       0.170 0.053  3.222 0.001    0.067    0.273
+10 factor2 =~  x1       0.607 0.075  8.138 0.000    0.461    0.753
+11 factor2 =~  x2       0.481 0.067  7.184 0.000    0.350    0.612
+12 factor2 =~  x3       0.662 0.058 11.499 0.000    0.549    0.775
+13 factor2 =~  x4       0.113 0.043  2.615 0.009    0.028    0.198
+14 factor2 =~  x5       0.032 0.040  0.802 0.422   -0.047    0.111
+15 factor2 =~  x6       0.162 0.042  3.855 0.000    0.079    0.244
+16 factor2 =~  x7      -0.062 0.047 -1.341 0.180   -0.154    0.029
+17 factor2 =~  x8       0.174 0.082  2.117 0.034    0.013    0.336
+18 factor2 =~  x9       0.409 0.079  5.173 0.000    0.254    0.564
+19 factor3 =~  x1       0.130 0.066  1.978 0.048    0.001    0.259
+20 factor3 =~  x2      -0.041 0.071 -0.578 0.563   -0.179    0.098
+21 factor3 =~  x3       0.113 0.049  2.324 0.020    0.018    0.209
+22 factor3 =~  x4       0.077 0.040  1.916 0.055   -0.002    0.155
+23 factor3 =~  x5       0.070 0.042  1.669 0.095   -0.012    0.153
+24 factor3 =~  x6       0.066 0.038  1.715 0.086   -0.009    0.141
+25 factor3 =~  x7       0.695 0.092  7.591 0.000    0.516    0.875
+26 factor3 =~  x8       0.704 0.083  8.520 0.000    0.542    0.865
+27 factor3 =~  x9       0.511 0.065  7.885 0.000    0.384    0.638
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       lhs op rhs std.loading    se      z     p ci.lower ci.upper
+1  factor1 =~  x1       0.320 0.055  5.799 0.000    0.212    0.428
+2  factor1 =~  x2       0.135 0.063  2.151 0.031    0.012    0.259
+3  factor1 =~  x3       0.080 0.049  1.622 0.105   -0.017    0.176
+4  factor1 =~  x4       0.838 0.028 30.193 0.000    0.784    0.892
+5  factor1 =~  x5       0.867 0.024 36.189 0.000    0.820    0.914
+6  factor1 =~  x6       0.815 0.024 33.939 0.000    0.768    0.862
+7  factor1 =~  x7       0.102 0.049  2.058 0.040    0.005    0.199
+8  factor1 =~  x8       0.078 0.048  1.617 0.106   -0.016    0.172
+9  factor1 =~  x9       0.170 0.053  3.222 0.001    0.067    0.273
+10 factor2 =~  x1       0.607 0.075  8.138 0.000    0.461    0.753
+11 factor2 =~  x2       0.481 0.067  7.184 0.000    0.350    0.612
+12 factor2 =~  x3       0.662 0.058 11.499 0.000    0.549    0.775
+13 factor2 =~  x4       0.113 0.043  2.615 0.009    0.028    0.198
+14 factor2 =~  x5       0.032 0.040  0.802 0.422   -0.047    0.111
+15 factor2 =~  x6       0.162 0.042  3.855 0.000    0.079    0.244
+16 factor2 =~  x7      -0.062 0.047 -1.341 0.180   -0.154    0.029
+17 factor2 =~  x8       0.174 0.082  2.117 0.034    0.013    0.336
+18 factor2 =~  x9       0.409 0.079  5.173 0.000    0.254    0.564
+19 factor3 =~  x1       0.130 0.066  1.978 0.048    0.001    0.259
+20 factor3 =~  x2      -0.041 0.071 -0.578 0.563   -0.179    0.098
+21 factor3 =~  x3       0.113 0.049  2.324 0.020    0.018    0.209
+22 factor3 =~  x4       0.077 0.040  1.916 0.055   -0.002    0.155
+23 factor3 =~  x5       0.070 0.042  1.669 0.095   -0.012    0.153
+24 factor3 =~  x6       0.066 0.038  1.715 0.086   -0.009    0.141
+25 factor3 =~  x7       0.695 0.092  7.591 0.000    0.516    0.875
+26 factor3 =~  x8       0.704 0.083  8.520 0.000    0.542    0.865
+27 factor3 =~  x9       0.511 0.065  7.885 0.000    0.384    0.638
 </pre></div>
 </div>
 </div>
@@ -1000,6 +1386,101 @@ componenti principali e una rotazione Varimax (ovvero, ortogonale). Otteniamo le
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standardized Rotated Factor Loadings
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in testLoadings(object):
+“The standard error is currently invalid because it does not account for the variance of the rotation function. It is simply based on the delta method.”
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   factor1 factor2 factor3
+x1  0.353*  0.590*        
+x2          0.474*        
+x3          0.657*        
+x4  0.844*                
+x5  0.869*                
+x6  0.823*                
+x7                  0.692*
+x8                  0.702*
+x9          0.397*  0.508*
+
+Factor Correlation
+        factor1 factor2 factor3
+factor1       1       0       0
+factor2       0       1       0
+factor3       0       0       1
+
+Method of rotation:	Quartimin 
+
+Test Statistics for Standardized Rotated Factor Loadings
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in testLoadings(object):
+“The standard error is currently invalid because it does not account for the variance of the rotation function. It is simply based on the delta method.”
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       lhs op rhs std.loading    se      z     p ci.lower ci.upper
+1  factor1 =~  x1       0.353 0.062  5.720 0.000    0.232    0.473
+2  factor1 =~  x2       0.158 0.066  2.375 0.018    0.028    0.288
+3  factor1 =~  x3       0.115 0.057  2.015 0.044    0.003    0.226
+4  factor1 =~  x4       0.844 0.027 30.814 0.000    0.790    0.898
+5  factor1 =~  x5       0.869 0.023 37.224 0.000    0.823    0.914
+6  factor1 =~  x6       0.823 0.024 35.026 0.000    0.777    0.869
+7  factor1 =~  x7       0.116 0.054  2.161 0.031    0.011    0.222
+8  factor1 =~  x8       0.104 0.054  1.914 0.056   -0.003    0.210
+9  factor1 =~  x9       0.202 0.059  3.403 0.001    0.086    0.319
+10 factor2 =~  x1       0.590 0.078  7.523 0.000    0.436    0.743
+11 factor2 =~  x2       0.474 0.068  6.935 0.000    0.340    0.608
+12 factor2 =~  x3       0.657 0.059 11.204 0.000    0.542    0.771
+13 factor2 =~  x4       0.072 0.041  1.748 0.080   -0.009    0.152
+14 factor2 =~  x5      -0.010 0.039 -0.263 0.793   -0.087    0.066
+15 factor2 =~  x6       0.122 0.040  3.008 0.003    0.042    0.201
+16 factor2 =~  x7      -0.071 0.048 -1.465 0.143   -0.166    0.024
+17 factor2 =~  x8       0.167 0.090  1.849 0.064   -0.010    0.343
+18 factor2 =~  x9       0.397 0.087  4.581 0.000    0.227    0.567
+19 factor3 =~  x1       0.124 0.071  1.740 0.082   -0.016    0.264
+20 factor3 =~  x2      -0.042 0.074 -0.574 0.566   -0.187    0.102
+21 factor3 =~  x3       0.114 0.054  2.093 0.036    0.007    0.221
+22 factor3 =~  x4       0.056 0.037  1.503 0.133   -0.017    0.128
+23 factor3 =~  x5       0.048 0.038  1.263 0.207   -0.027    0.123
+24 factor3 =~  x6       0.046 0.034  1.347 0.178   -0.021    0.112
+25 factor3 =~  x7       0.692 0.093  7.477 0.000    0.511    0.874
+26 factor3 =~  x8       0.702 0.084  8.331 0.000    0.537    0.867
+27 factor3 =~  x9       0.508 0.070  7.298 0.000    0.371    0.644
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       lhs op rhs std.loading    se      z     p ci.lower ci.upper
+1  factor1 =~  x1       0.353 0.062  5.720 0.000    0.232    0.473
+2  factor1 =~  x2       0.158 0.066  2.375 0.018    0.028    0.288
+3  factor1 =~  x3       0.115 0.057  2.015 0.044    0.003    0.226
+4  factor1 =~  x4       0.844 0.027 30.814 0.000    0.790    0.898
+5  factor1 =~  x5       0.869 0.023 37.224 0.000    0.823    0.914
+6  factor1 =~  x6       0.823 0.024 35.026 0.000    0.777    0.869
+7  factor1 =~  x7       0.116 0.054  2.161 0.031    0.011    0.222
+8  factor1 =~  x8       0.104 0.054  1.914 0.056   -0.003    0.210
+9  factor1 =~  x9       0.202 0.059  3.403 0.001    0.086    0.319
+10 factor2 =~  x1       0.590 0.078  7.523 0.000    0.436    0.743
+11 factor2 =~  x2       0.474 0.068  6.935 0.000    0.340    0.608
+12 factor2 =~  x3       0.657 0.059 11.204 0.000    0.542    0.771
+13 factor2 =~  x4       0.072 0.041  1.748 0.080   -0.009    0.152
+14 factor2 =~  x5      -0.010 0.039 -0.263 0.793   -0.087    0.066
+15 factor2 =~  x6       0.122 0.040  3.008 0.003    0.042    0.201
+16 factor2 =~  x7      -0.071 0.048 -1.465 0.143   -0.166    0.024
+17 factor2 =~  x8       0.167 0.090  1.849 0.064   -0.010    0.343
+18 factor2 =~  x9       0.397 0.087  4.581 0.000    0.227    0.567
+19 factor3 =~  x1       0.124 0.071  1.740 0.082   -0.016    0.264
+20 factor3 =~  x2      -0.042 0.074 -0.574 0.566   -0.187    0.102
+21 factor3 =~  x3       0.114 0.054  2.093 0.036    0.007    0.221
+22 factor3 =~  x4       0.056 0.037  1.503 0.133   -0.017    0.128
+23 factor3 =~  x5       0.048 0.038  1.263 0.207   -0.027    0.123
+24 factor3 =~  x6       0.046 0.034  1.347 0.178   -0.021    0.112
+25 factor3 =~  x7       0.692 0.093  7.477 0.000    0.511    0.874
+26 factor3 =~  x8       0.702 0.084  8.331 0.000    0.537    0.867
+27 factor3 =~  x9       0.508 0.070  7.298 0.000    0.371    0.644
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="oblique-quartimin">
@@ -1010,6 +1491,101 @@ componenti principali e una rotazione Varimax (ovvero, ortogonale). Otteniamo le
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">out_oblq</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">oblqRotate</span><span class="p">(</span><span class="n">unrotated</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;quartimin&quot;</span><span class="p">)</span>
 <span class="n">out</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">out_oblq</span><span class="p">,</span><span class="w"> </span><span class="n">sort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">suppress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.3</span><span class="p">)</span>
 <span class="nf">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standardized Rotated Factor Loadings
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in testLoadings(object):
+“The standard error is currently invalid because it does not account for the variance of the rotation function. It is simply based on the delta method.”
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   factor1 factor2 factor3
+x1          0.602*        
+x2          0.505*        
+x3          0.689*        
+x4  0.840*                
+x5  0.888*                
+x6  0.808*                
+x7                  0.723*
+x8                  0.702*
+x9          0.366*  0.463*
+
+Factor Correlation
+          factor1   factor2   factor3
+factor1 1.0000000 0.3257795 0.2164274
+factor2 0.3257795 1.0000000 0.2704798
+factor3 0.2164274 0.2704798 1.0000000
+
+Method of rotation:	Quartimin 
+
+Test Statistics for Standardized Rotated Factor Loadings
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in testLoadings(object):
+“The standard error is currently invalid because it does not account for the variance of the rotation function. It is simply based on the delta method.”
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       lhs op rhs std.loading    se      z     p ci.lower ci.upper
+1  factor1 =~  x1       0.191 0.064  2.965 0.003    0.065    0.317
+2  factor1 =~  x2       0.044 0.066  0.665 0.506   -0.085    0.172
+3  factor1 =~  x3      -0.070 0.034 -2.031 0.042   -0.137   -0.002
+4  factor1 =~  x4       0.840 0.033 25.622 0.000    0.776    0.905
+5  factor1 =~  x5       0.888 0.027 32.583 0.000    0.835    0.942
+6  factor1 =~  x6       0.808 0.028 28.441 0.000    0.752    0.863
+7  factor1 =~  x7       0.044 0.037  1.179 0.238   -0.029    0.116
+8  factor1 =~  x8      -0.033 0.036 -0.916 0.360   -0.103    0.037
+9  factor1 =~  x9       0.035 0.048  0.728 0.467   -0.059    0.129
+10 factor2 =~  x1       0.602 0.086  7.003 0.000    0.434    0.771
+11 factor2 =~  x2       0.505 0.071  7.163 0.000    0.367    0.644
+12 factor2 =~  x3       0.689 0.056 12.344 0.000    0.580    0.799
+13 factor2 =~  x4       0.022 0.045  0.483 0.629   -0.067    0.110
+14 factor2 =~  x5      -0.067 0.036 -1.890 0.059   -0.137    0.002
+15 factor2 =~  x6       0.078 0.041  1.887 0.059   -0.003    0.158
+16 factor2 =~  x7      -0.152 0.037 -4.059 0.000   -0.225   -0.078
+17 factor2 =~  x8       0.104 0.109  0.960 0.337   -0.109    0.317
+18 factor2 =~  x9       0.366 0.097  3.780 0.000    0.176    0.556
+19 factor3 =~  x1       0.031 0.062  0.500 0.617   -0.090    0.152
+20 factor3 =~  x2      -0.117 0.066 -1.776 0.076   -0.245    0.012
+21 factor3 =~  x3       0.023 0.039  0.587 0.557   -0.054    0.100
+22 factor3 =~  x4       0.005 0.042  0.128 0.898   -0.076    0.087
+23 factor3 =~  x5       0.008 0.035  0.216 0.829   -0.061    0.076
+24 factor3 =~  x6      -0.011 0.030 -0.362 0.717   -0.070    0.048
+25 factor3 =~  x7       0.723 0.087  8.328 0.000    0.553    0.893
+26 factor3 =~  x8       0.702 0.098  7.137 0.000    0.509    0.894
+27 factor3 =~  x9       0.463 0.075  6.211 0.000    0.317    0.609
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       lhs op rhs std.loading    se      z     p ci.lower ci.upper
+1  factor1 =~  x1       0.191 0.064  2.965 0.003    0.065    0.317
+2  factor1 =~  x2       0.044 0.066  0.665 0.506   -0.085    0.172
+3  factor1 =~  x3      -0.070 0.034 -2.031 0.042   -0.137   -0.002
+4  factor1 =~  x4       0.840 0.033 25.622 0.000    0.776    0.905
+5  factor1 =~  x5       0.888 0.027 32.583 0.000    0.835    0.942
+6  factor1 =~  x6       0.808 0.028 28.441 0.000    0.752    0.863
+7  factor1 =~  x7       0.044 0.037  1.179 0.238   -0.029    0.116
+8  factor1 =~  x8      -0.033 0.036 -0.916 0.360   -0.103    0.037
+9  factor1 =~  x9       0.035 0.048  0.728 0.467   -0.059    0.129
+10 factor2 =~  x1       0.602 0.086  7.003 0.000    0.434    0.771
+11 factor2 =~  x2       0.505 0.071  7.163 0.000    0.367    0.644
+12 factor2 =~  x3       0.689 0.056 12.344 0.000    0.580    0.799
+13 factor2 =~  x4       0.022 0.045  0.483 0.629   -0.067    0.110
+14 factor2 =~  x5      -0.067 0.036 -1.890 0.059   -0.137    0.002
+15 factor2 =~  x6       0.078 0.041  1.887 0.059   -0.003    0.158
+16 factor2 =~  x7      -0.152 0.037 -4.059 0.000   -0.225   -0.078
+17 factor2 =~  x8       0.104 0.109  0.960 0.337   -0.109    0.317
+18 factor2 =~  x9       0.366 0.097  3.780 0.000    0.176    0.556
+19 factor3 =~  x1       0.031 0.062  0.500 0.617   -0.090    0.152
+20 factor3 =~  x2      -0.117 0.066 -1.776 0.076   -0.245    0.012
+21 factor3 =~  x3       0.023 0.039  0.587 0.557   -0.054    0.100
+22 factor3 =~  x4       0.005 0.042  0.128 0.898   -0.076    0.087
+23 factor3 =~  x5       0.008 0.035  0.216 0.829   -0.061    0.076
+24 factor3 =~  x6      -0.011 0.030 -0.362 0.717   -0.070    0.048
+25 factor3 =~  x7       0.723 0.087  8.328 0.000    0.553    0.893
+26 factor3 =~  x8       0.702 0.098  7.137 0.000    0.509    0.894
+27 factor3 =~  x9       0.463 0.075  6.211 0.000    0.317    0.609
 </pre></div>
 </div>
 </div>
@@ -1026,6 +1602,101 @@ componenti principali e una rotazione Varimax (ovvero, ortogonale). Otteniamo le
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standardized Rotated Factor Loadings
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in testLoadings(object):
+“The standard error is currently invalid because it does not account for the variance of the rotation function. It is simply based on the delta method.”
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   factor1 factor2 factor3
+x1  0.315*         -0.621*
+x2                 -0.474*
+x3                 -0.671*
+x4  0.838*                
+x5  0.867*                
+x6  0.814*                
+x7          0.696*        
+x8          0.677*        
+x9          0.456* -0.468*
+
+Factor Correlation
+        factor1 factor2 factor3
+factor1       1       0       0
+factor2       0       1       0
+factor3       0       0       1
+
+Method of rotation:	Geomin 
+
+Test Statistics for Standardized Rotated Factor Loadings
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in testLoadings(object):
+“The standard error is currently invalid because it does not account for the variance of the rotation function. It is simply based on the delta method.”
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       lhs op rhs std.loading    se       z     p ci.lower ci.upper
+1  factor1 =~  x1       0.315 0.121   2.612 0.009    0.079    0.552
+2  factor1 =~  x2       0.130 0.103   1.258 0.208   -0.072    0.332
+3  factor1 =~  x3       0.074 0.107   0.689 0.491   -0.136    0.284
+4  factor1 =~  x4       0.838 0.035  23.931 0.000    0.769    0.906
+5  factor1 =~  x5       0.867 0.025  34.724 0.000    0.818    0.916
+6  factor1 =~  x6       0.814 0.037  21.921 0.000    0.741    0.887
+7  factor1 =~  x7       0.112 0.061   1.820 0.069   -0.009    0.232
+8  factor1 =~  x8       0.085 0.071   1.194 0.232   -0.054    0.224
+9  factor1 =~  x9       0.172 0.101   1.704 0.088   -0.026    0.370
+10 factor2 =~  x1       0.053 0.051   1.041 0.298   -0.047    0.153
+11 factor2 =~  x2      -0.099 0.068  -1.451 0.147   -0.233    0.035
+12 factor2 =~  x3       0.033 0.046   0.727 0.467   -0.057    0.124
+13 factor2 =~  x4       0.051 0.042   1.206 0.228   -0.032    0.133
+14 factor2 =~  x5       0.054 0.038   1.398 0.162   -0.022    0.129
+15 factor2 =~  x6       0.035 0.032   1.066 0.287   -0.029    0.098
+16 factor2 =~  x7       0.696 0.092   7.589 0.000    0.516    0.876
+17 factor2 =~  x8       0.677 0.086   7.911 0.000    0.509    0.845
+18 factor2 =~  x9       0.456 0.059   7.700 0.000    0.340    0.573
+19 factor3 =~  x1      -0.621 0.094  -6.609 0.000   -0.805   -0.437
+20 factor3 =~  x2      -0.474 0.073  -6.487 0.000   -0.617   -0.331
+21 factor3 =~  x3      -0.671 0.057 -11.696 0.000   -0.784   -0.559
+22 factor3 =~  x4      -0.129 0.137  -0.944 0.345   -0.397    0.139
+23 factor3 =~  x5      -0.048 0.147  -0.328 0.743   -0.336    0.240
+24 factor3 =~  x6      -0.176 0.141  -1.248 0.212   -0.452    0.100
+25 factor3 =~  x7      -0.021 0.050  -0.420 0.675   -0.119    0.077
+26 factor3 =~  x8      -0.257 0.087  -2.963 0.003   -0.427   -0.087
+27 factor3 =~  x9      -0.468 0.092  -5.075 0.000   -0.648   -0.287
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       lhs op rhs std.loading    se       z     p ci.lower ci.upper
+1  factor1 =~  x1       0.315 0.121   2.612 0.009    0.079    0.552
+2  factor1 =~  x2       0.130 0.103   1.258 0.208   -0.072    0.332
+3  factor1 =~  x3       0.074 0.107   0.689 0.491   -0.136    0.284
+4  factor1 =~  x4       0.838 0.035  23.931 0.000    0.769    0.906
+5  factor1 =~  x5       0.867 0.025  34.724 0.000    0.818    0.916
+6  factor1 =~  x6       0.814 0.037  21.921 0.000    0.741    0.887
+7  factor1 =~  x7       0.112 0.061   1.820 0.069   -0.009    0.232
+8  factor1 =~  x8       0.085 0.071   1.194 0.232   -0.054    0.224
+9  factor1 =~  x9       0.172 0.101   1.704 0.088   -0.026    0.370
+10 factor2 =~  x1       0.053 0.051   1.041 0.298   -0.047    0.153
+11 factor2 =~  x2      -0.099 0.068  -1.451 0.147   -0.233    0.035
+12 factor2 =~  x3       0.033 0.046   0.727 0.467   -0.057    0.124
+13 factor2 =~  x4       0.051 0.042   1.206 0.228   -0.032    0.133
+14 factor2 =~  x5       0.054 0.038   1.398 0.162   -0.022    0.129
+15 factor2 =~  x6       0.035 0.032   1.066 0.287   -0.029    0.098
+16 factor2 =~  x7       0.696 0.092   7.589 0.000    0.516    0.876
+17 factor2 =~  x8       0.677 0.086   7.911 0.000    0.509    0.845
+18 factor2 =~  x9       0.456 0.059   7.700 0.000    0.340    0.573
+19 factor3 =~  x1      -0.621 0.094  -6.609 0.000   -0.805   -0.437
+20 factor3 =~  x2      -0.474 0.073  -6.487 0.000   -0.617   -0.331
+21 factor3 =~  x3      -0.671 0.057 -11.696 0.000   -0.784   -0.559
+22 factor3 =~  x4      -0.129 0.137  -0.944 0.345   -0.397    0.139
+23 factor3 =~  x5      -0.048 0.147  -0.328 0.743   -0.336    0.240
+24 factor3 =~  x6      -0.176 0.141  -1.248 0.212   -0.452    0.100
+25 factor3 =~  x7      -0.021 0.050  -0.420 0.675   -0.119    0.077
+26 factor3 =~  x8      -0.257 0.087  -2.963 0.003   -0.427   -0.087
+27 factor3 =~  x9      -0.468 0.092  -5.075 0.000   -0.648   -0.287
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="oblique-geomin">
@@ -1036,6 +1707,101 @@ componenti principali e una rotazione Varimax (ovvero, ortogonale). Otteniamo le
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">out_geomin_obl</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">oblqRotate</span><span class="p">(</span><span class="n">unrotated</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;geomin&quot;</span><span class="p">)</span>
 <span class="n">out</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">out_geomin_obl</span><span class="p">,</span><span class="w"> </span><span class="n">sort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">suppress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.3</span><span class="p">)</span>
 <span class="nf">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standardized Rotated Factor Loadings
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in testLoadings(object):
+“The standard error is currently invalid because it does not account for the variance of the rotation function. It is simply based on the delta method.”
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   factor1 factor2 factor3
+x1                 -0.604*
+x2                 -0.507*
+x3                 -0.691*
+x4  0.839*                
+x5  0.887*                
+x6  0.806*                
+x7          0.726*        
+x8          0.703*        
+x9          0.463* -0.368*
+
+Factor Correlation
+           factor1    factor2    factor3
+factor1  1.0000000  0.2296090 -0.3271571
+factor2  0.2296090  1.0000000 -0.2776982
+factor3 -0.3271571 -0.2776982  1.0000000
+
+Method of rotation:	Geomin 
+
+Test Statistics for Standardized Rotated Factor Loadings
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in testLoadings(object):
+“The standard error is currently invalid because it does not account for the variance of the rotation function. It is simply based on the delta method.”
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       lhs op rhs std.loading    se       z     p ci.lower ci.upper
+1  factor1 =~  x1       0.188 0.070   2.670 0.008    0.050    0.326
+2  factor1 =~  x2       0.044 0.054   0.806 0.420   -0.063    0.150
+3  factor1 =~  x3      -0.073 0.049  -1.467 0.142   -0.170    0.024
+4  factor1 =~  x4       0.839 0.032  26.467 0.000    0.777    0.901
+5  factor1 =~  x5       0.887 0.029  30.077 0.000    0.829    0.945
+6  factor1 =~  x6       0.806 0.030  26.717 0.000    0.747    0.865
+7  factor1 =~  x7       0.031 0.034   0.915 0.360   -0.036    0.099
+8  factor1 =~  x8      -0.045 0.048  -0.948 0.343   -0.139    0.048
+9  factor1 =~  x9       0.025 0.034   0.747 0.455   -0.041    0.091
+10 factor2 =~  x1       0.029 0.051   0.567 0.571   -0.071    0.129
+11 factor2 =~  x2      -0.119 0.072  -1.664 0.096   -0.260    0.021
+12 factor2 =~  x3       0.020 0.037   0.538 0.591   -0.053    0.092
+13 factor2 =~  x4       0.007 0.043   0.174 0.862   -0.076    0.091
+14 factor2 =~  x5       0.010 0.036   0.285 0.775   -0.060    0.080
+15 factor2 =~  x6      -0.009 0.030  -0.309 0.758   -0.068    0.049
+16 factor2 =~  x7       0.726 0.072  10.065 0.000    0.585    0.868
+17 factor2 =~  x8       0.703 0.118   5.963 0.000    0.472    0.934
+18 factor2 =~  x9       0.463 0.080   5.810 0.000    0.307    0.619
+19 factor3 =~  x1      -0.604 0.081  -7.438 0.000   -0.763   -0.445
+20 factor3 =~  x2      -0.507 0.073  -6.983 0.000   -0.649   -0.364
+21 factor3 =~  x3      -0.691 0.061 -11.373 0.000   -0.810   -0.572
+22 factor3 =~  x4      -0.024 0.034  -0.702 0.482   -0.091    0.043
+23 factor3 =~  x5       0.065 0.045   1.459 0.144   -0.022    0.153
+24 factor3 =~  x6      -0.080 0.048  -1.679 0.093   -0.173    0.013
+25 factor3 =~  x7       0.150 0.107   1.403 0.161   -0.060    0.360
+26 factor3 =~  x8      -0.106 0.164  -0.645 0.519   -0.428    0.216
+27 factor3 =~  x9      -0.368 0.133  -2.770 0.006   -0.629   -0.108
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       lhs op rhs std.loading    se       z     p ci.lower ci.upper
+1  factor1 =~  x1       0.188 0.070   2.670 0.008    0.050    0.326
+2  factor1 =~  x2       0.044 0.054   0.806 0.420   -0.063    0.150
+3  factor1 =~  x3      -0.073 0.049  -1.467 0.142   -0.170    0.024
+4  factor1 =~  x4       0.839 0.032  26.467 0.000    0.777    0.901
+5  factor1 =~  x5       0.887 0.029  30.077 0.000    0.829    0.945
+6  factor1 =~  x6       0.806 0.030  26.717 0.000    0.747    0.865
+7  factor1 =~  x7       0.031 0.034   0.915 0.360   -0.036    0.099
+8  factor1 =~  x8      -0.045 0.048  -0.948 0.343   -0.139    0.048
+9  factor1 =~  x9       0.025 0.034   0.747 0.455   -0.041    0.091
+10 factor2 =~  x1       0.029 0.051   0.567 0.571   -0.071    0.129
+11 factor2 =~  x2      -0.119 0.072  -1.664 0.096   -0.260    0.021
+12 factor2 =~  x3       0.020 0.037   0.538 0.591   -0.053    0.092
+13 factor2 =~  x4       0.007 0.043   0.174 0.862   -0.076    0.091
+14 factor2 =~  x5       0.010 0.036   0.285 0.775   -0.060    0.080
+15 factor2 =~  x6      -0.009 0.030  -0.309 0.758   -0.068    0.049
+16 factor2 =~  x7       0.726 0.072  10.065 0.000    0.585    0.868
+17 factor2 =~  x8       0.703 0.118   5.963 0.000    0.472    0.934
+18 factor2 =~  x9       0.463 0.080   5.810 0.000    0.307    0.619
+19 factor3 =~  x1      -0.604 0.081  -7.438 0.000   -0.763   -0.445
+20 factor3 =~  x2      -0.507 0.073  -6.983 0.000   -0.649   -0.364
+21 factor3 =~  x3      -0.691 0.061 -11.373 0.000   -0.810   -0.572
+22 factor3 =~  x4      -0.024 0.034  -0.702 0.482   -0.091    0.043
+23 factor3 =~  x5       0.065 0.045   1.459 0.144   -0.022    0.153
+24 factor3 =~  x6      -0.080 0.048  -1.679 0.093   -0.173    0.013
+25 factor3 =~  x7       0.150 0.107   1.403 0.161   -0.060    0.360
+26 factor3 =~  x8      -0.106 0.164  -0.645 0.519   -0.428    0.216
+27 factor3 =~  x9      -0.368 0.133  -2.770 0.006   -0.629   -0.108
 </pre></div>
 </div>
 </div>
@@ -1116,18 +1882,22 @@ componenti principali e una rotazione Varimax (ovvero, ortogonale). Otteniamo le
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indeterminatezza-della-soluzione-fattoriale">36.1. Indeterminatezza della soluzione fattoriale</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parsimonia-e-semplicita">36.2. Parsimonia e semplicità</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-criterio-della-struttura-semplice">36.2.1. Il criterio della struttura semplice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-criterio-della-struttura-semplice-nell-analisi-fattoriale">36.2.1. Il Criterio della Struttura Semplice nell’Analisi Fattoriale</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rotazione-nello-spazio-geometrico">36.3. Rotazione nello spazio geometrico</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rotazione-ortogonale">36.3.1. Rotazione ortogonale</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vincoli-alla-rotazione">36.3.2. Vincoli alla rotazione</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-grafico">36.3.3. Metodo grafico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rotazione-nello-spazio-geometrico">36.3. Rotazione nello Spazio Geometrico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rotazione-ortogonale">36.3.1. Rotazione Ortogonale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vincoli-alla-rotazione-dei-fattori">36.3.2. Vincoli alla Rotazione dei Fattori</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-grafico-per-la-rotazione-dei-fattori">36.3.3. Metodo Grafico per la Rotazione dei Fattori</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medodi-di-rotazione-ortogonale">36.3.4. Medodi di rotazione ortogonale</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodi-di-rotazione-obliqua">36.3.5. Metodi di rotazione obliqua</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metodi-di-rotazione-obliqua">36.3.5. Metodi di Rotazione Obliqua</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrice-dei-pesi-fattoriali-e-matrice-di-struttura">36.4. Matrice dei pesi fattoriali e matrice di struttura</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrice-dei-pesi-fattoriali-e-matrice-di-struttura">36.4. Matrice dei Pesi Fattoriali e Matrice di Struttura</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">36.4.1. Rotazione Ortogonale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rotazione-obliqua">36.4.2. Rotazione Obliqua</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esempio-con-semtools">36.5. Esempio con <code class="docutils literal notranslate"><span class="pre">semTools</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonal-varimax">36.5.1. Orthogonal varimax</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonal-quartimin">36.5.2. Orthogonal Quartimin</a></li>
