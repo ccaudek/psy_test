@@ -83,7 +83,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="46. Preparazione dei Dati" href="02_data_preparation.html" />
-    <link rel="prev" title="44. Analisi Fattoriale Esplorativa" href="../_cfa/06_efa_lavaan.html" />
+    <link rel="prev" title="44. Exploratory Structural Equation Modeling (ESEM)" href="../_cfa/06_efa_lavaan.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -270,7 +270,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../_cfa/03_cat_data.html">41. Dati non gaussiani e categoriali</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_cfa/04_mmm.html">42. CFA per matrici multi-tratto multi-metodo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_cfa/05_bifactor.html">43. Modello bifattoriale</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../_cfa/06_efa_lavaan.html">44. Analisi Fattoriale Esplorativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/06_efa_lavaan.html">44. Exploratory Structural Equation Modeling (ESEM)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
 <ul class="current nav bd-sidenav">
@@ -485,7 +485,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-regressione-multipla">45.1. Modello di Regressione Multipla</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-regressione-lineare-multipla">45.1. Modello di Regressione Lineare Multipla</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-dei-minimi-quadrati">45.2. Metodo dei Minimi Quadrati</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-percorso">45.3. Modello di Percorso</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#path-analysis-e-scomposizione-della-covarianza">45.4. Path Analysis e Scomposizione della Covarianza</a></li>
@@ -494,9 +494,15 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regressione-stepwise">45.5.2. Regressione Stepwise</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oltre-la-regressione-multipla">45.6. Oltre la Regressione Multipla</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#impiego-delle-medie-nei-modelli-sem">45.7. Impiego delle Medie nei Modelli SEM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oltre-la-regressione-multipla-l-uso-dei-modelli-sem">45.6. Oltre la Regressione Multipla: L’Uso dei Modelli SEM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#impiego-delle-medie-nei-modelli-sem">45.7. Impiego delle Medie nei Modelli SEM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#struttura-delle-medie-nel-modello-sem">45.7.1. Struttura delle Medie nel Modello SEM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vincoli-e-scalatura-delle-medie">45.7.2. Vincoli e Scalatura delle Medie</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stima-delle-intercette-con-lavaan">45.7.3. Stima delle Intercette con <code class="docutils literal notranslate"><span class="pre">lavaan</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">45.8. Considerazioni Conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">45.9. Session Info</a></li>
 </ul>
             </nav>
         </div>
@@ -510,11 +516,11 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="introduzione-ai-modelli-sem">
 <span id="sem-intro-notebook"></span><h1><span class="section-number">45. </span>Introduzione ai Modelli SEM<a class="headerlink" href="#introduzione-ai-modelli-sem" title="Link to this heading">#</a></h1>
-<p>Dopo aver esplorato in dettaglio l’analisi fattoriale, sia esplorativa che confermativa, il presente capitolo si addentra nel mondo dei Modelli di Equazioni Strutturali (SEM). Generalmente, un modello a equazioni strutturali può essere diviso in due parti: la parte di misurazione collega le variabili latenti a un insieme di variabili osservate o indicatori, mentre la parte strutturale rappresenta le relazioni ipotizzate tra queste variabili latenti.</p>
-<p>Il fulcro dei SEM è testare una teoria specificando un modello che rappresenti le predizioni di questa teoria, utilizzando costrutti plausibili misurati con variabili osservate adeguate. In questo senso, i SEM rappresentano un ponte cruciale tra la teoria e l’osservazione, consentendo di tradurre concetti astratti in entità misurabili e di esaminare le interdipendenze tra di essi in maniera strutturata e teoricamente fondata.</p>
-<p>È fondamentale, tuttavia, mantenere una prospettiva critica riguardo all’utilizzo dei SEM. Come ogni modello statistico, anche i SEM sono basati su semplificazioni e approssimazioni della realtà. Questo porta al celebre adagio: “Tutti i modelli sono sbagliati, ma alcuni sono utili”. Questa affermazione sottolinea l’importanza di riconoscere che, sebbene un modello possa adattarsi bene ai dati, non è necessariamente una rappresentazione accurata della realtà.</p>
-<p>Spesso, modelli fortemente sbagliati possono mostrare un buon fit con i dati, portando a conclusioni errate o fuorvianti. Di conseguenza, la procedura di selezione dei modelli non è solo un esercizio statistico, ma diventa un metodo per sviluppare e affinare teorie migliori. La critica e la revisione dei modelli, basate su dati empirici e considerazioni teoriche, sono dunque componenti essenziali del processo scientifico nel campo della psicologia e delle scienze sociali.</p>
-<p>In conclusione, i SEM offrono un potente strumento per l’analisi e l’interpretazione dei dati in psicologia, ma il loro utilizzo richiede un attento equilibrio tra comprensione teorica, competenza statistica e senso critico. Attraverso un approccio ponderato e informato, i SEM possono contribuire significativamente allo sviluppo della ricerca psicologica, guidando verso una comprensione più profonda dei fenomeni studiati.</p>
+<p>Dopo aver esaminato in dettaglio l’analisi fattoriale, sia esplorativa che confermativa, il presente capitolo si immerge nei Modelli di Equazioni Strutturali (SEM). Tipicamente, un modello SEM è articolato in due parti principali: la parte di misurazione, che collega le variabili latenti a un insieme di variabili osservate o indicatori, e la parte strutturale, che modella le relazioni ipotizzate tra queste variabili latenti.</p>
+<p>Il punto focale dei SEM è quello di testare teorie specifiche mediante la specificazione di un modello che rappresenti le predizioni di queste teorie, impiegando costrutti plausibili misurati con variabili osservate adeguate. In questo contesto, i SEM fungono da collegamento essenziale tra la teoria e l’osservazione, facilitando la traduzione di concetti astratti in entità misurabili e l’analisi delle loro interrelazioni in un modo strutturato e teoricamente valido.</p>
+<p>Tuttavia, è cruciale mantenere un approccio critico nell’uso dei SEM. Come ogni modello statistico, i SEM si basano su semplificazioni e approssimazioni della realtà. Ciò rispecchia il noto detto: “Tutti i modelli sono sbagliati, ma alcuni sono utili”. Questa espressione enfatizza l’importanza di riconoscere che, benché un modello possa mostrare un buon adattamento ai dati, non è necessariamente una rappresentazione fedele della realtà.</p>
+<p>Spesso, modelli notevolmente imprecisi possono comunque adattarsi bene ai dati, portando a conclusioni inesatte o fuorvianti. Pertanto, la selezione dei modelli diventa più di un semplice esercizio statistico; è un processo di sviluppo e raffinamento di teorie più robuste. La critica e la revisione dei modelli, basate su evidenze empiriche e riflessioni teoriche, sono quindi elementi fondamentali del processo scientifico nelle scienze sociali e psicologiche.</p>
+<p>In conclusione, i SEM offrono strumenti potenti per l’analisi e l’interpretazione dei dati in psicologia. Tuttavia, il loro impiego esige un equilibrio attento tra comprensione teorica, competenza statistica e spirito critico. Con un approccio consapevole e ben informato, i SEM possono svolgere un ruolo significativo nello sviluppo della ricerca psicologica, conducendo a una comprensione più profonda dei fenomeni studiati.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">source</span><span class="p">(</span><span class="s">&quot;../_common.R&quot;</span><span class="p">)</span>
@@ -533,26 +539,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">library</span><span class="p">(</span><span class="s2">&quot;mvnormalTest&quot;</span><span class="p">):</span> <span class="n">non</span> <span class="n">c</span><span class="s1">&#39;è alcun pacchetto chiamato ‘mvnormalTest’</span>
-<span class="ne">Traceback</span>:
-
-<span class="mi">1</span><span class="o">.</span> <span class="n">suppressPackageStartupMessages</span><span class="p">({</span>
- <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;lavaanExtra&quot;</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;psych&quot;</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;tidyr&quot;</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;knitr&quot;</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;mvnormalTest&quot;</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;semPlot&quot;</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;DiagrammeRsvg&quot;</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;rsvg&quot;</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;effectsize&quot;</span><span class="p">)</span>
- <span class="o">.</span> <span class="p">})</span>
-<span class="mi">2</span><span class="o">.</span> <span class="n">withCallingHandlers</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">packageStartupMessage</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">tryInvokeRestart</span><span class="p">(</span><span class="s2">&quot;muffleMessage&quot;</span><span class="p">))</span>
-<span class="mi">3</span><span class="o">.</span> <span class="n">library</span><span class="p">(</span><span class="s2">&quot;mvnormalTest&quot;</span><span class="p">)</span>   <span class="c1"># at line 7 of file &lt;text&gt;</span>
-</pre></div>
-</div>
-</div>
 </div>
 <p>Per introdurre i modelli SEM iniziamo a considerare il caso più semplice, ovvero il modello di regressione multipla espresso come un modello di equazioni strutturali. Utilizzeremo un campione di dati reali e ci concentreremo sulle 3 sottoscale del DASS-21: ansia, stress e depressione. Il campione è costituito da 526 studenti universitari di psicologia.</p>
 <div class="cell docutils container">
@@ -565,7 +551,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><table class="dataframe">
-<caption>A data.frame: 6 x 11</caption>
+<caption>A data.frame: 6 × 11</caption>
 <thead>
 	<tr><th></th><th scope=col>stress</th><th scope=col>anxiety</th><th scope=col>depression</th><th scope=col>rosenberg</th><th scope=col>self_kindness</th><th scope=col>common_humanity</th><th scope=col>mindfulness</th><th scope=col>self_judgment</th><th scope=col>isolation</th><th scope=col>over_identification</th><th scope=col>scs_ts</th></tr>
 	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
@@ -607,7 +593,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/65c9e37c05b20b0b306666e7e3090bfe06e18a9f87d7c851cc5e709094d54754.png" src="../_images/65c9e37c05b20b0b306666e7e3090bfe06e18a9f87d7c851cc5e709094d54754.png" />
+<img alt="../_images/a93edf76bb966624fe2ebcb2c6a7c44709259bdb82e7b9c838a1ecfed458c1c4.png" src="../_images/a93edf76bb966624fe2ebcb2c6a7c44709259bdb82e7b9c838a1ecfed458c1c4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -626,21 +612,35 @@ document.write(`
 <ol class=list-inline><li>526</li><li>1</li></ol>
 </div></div>
 </div>
-<section id="modello-di-regressione-multipla">
-<h2><span class="section-number">45.1. </span>Modello di Regressione Multipla<a class="headerlink" href="#modello-di-regressione-multipla" title="Link to this heading">#</a></h2>
-<p>Il modello generale di regressione lineare multipla (MLR) può essere espresso tramite la seguente equazione:</p>
+<section id="modello-di-regressione-lineare-multipla">
+<h2><span class="section-number">45.1. </span>Modello di Regressione Lineare Multipla<a class="headerlink" href="#modello-di-regressione-lineare-multipla" title="Link to this heading">#</a></h2>
+<p>Il modello generale di regressione lineare multipla (MLR) si esprime attraverso la seguente equazione:</p>
 <div class="math notranslate nohighlight">
 \[
 y_i = \beta_0 + \beta_1 x_{1i} + \cdots + \beta_p x_{pi} + \epsilon_i 
 \]</div>
-<p>dove <span class="math notranslate nohighlight">\( i = 1, \ldots, N \)</span> rappresenta l’osservazione <span class="math notranslate nohighlight">\(i\)</span>-esima, <span class="math notranslate nohighlight">\( \beta_0 \)</span> è il parametro di intercetta, <span class="math notranslate nohighlight">\( \beta_1, \ldots, \beta_p \)</span> sono i coefficienti di regressione, e <span class="math notranslate nohighlight">\( \epsilon_i \)</span> è un termine di errore per la risposta <span class="math notranslate nohighlight">\(i\)</span>. Inoltre, si assume che il termine di errore sia indipendente da tutte le variabili esplicative (o regressori) <span class="math notranslate nohighlight">\( X_s \)</span>.</p>
-<p>In questa formulazione, ogni <span class="math notranslate nohighlight">\( y_i \)</span> rappresenta il valore della variabile dipendente per l’osservazione <span class="math notranslate nohighlight">\(i\)</span>-esima, i <span class="math notranslate nohighlight">\( \beta \)</span> rappresentano i coefficienti che misurano l’impatto di ciascuna variabile esplicativa sulla variabile dipendente, e <span class="math notranslate nohighlight">\( \epsilon_i \)</span> cattura l’errore o la varianza non spiegata nella previsione di <span class="math notranslate nohighlight">\( y_i \)</span>. Questa struttura permette di modellare la relazione lineare tra una variabile dipendente e più variabili indipendenti.</p>
-<p>Il modello di regressione lineare multipla (MLR) espresso nell’equazione precedente viene spesso rappresentato nella seguente forma matriciale:</p>
+<p>dove:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(i = 1, \ldots, N\)</span> indica l’<span class="math notranslate nohighlight">\(i\)</span>-esima osservazione,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_0\)</span> è l’intercetta del modello,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_1, \ldots, \beta_p\)</span> sono i coefficienti di regressione associati a ciascuna variabile indipendente,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon_i\)</span> è il termine di errore associato all’<span class="math notranslate nohighlight">\(i\)</span>-esima osservazione,</p></li>
+<li><p>Si presume che il termine di errore sia indipendente dalle variabili esplicative <span class="math notranslate nohighlight">\(X_s\)</span>.</p></li>
+</ul>
+<p>In questa formula, ogni <span class="math notranslate nohighlight">\(y_i\)</span> rappresenta il valore della variabile dipendente per l’<span class="math notranslate nohighlight">\(i\)</span>-esima osservazione, i coefficienti <span class="math notranslate nohighlight">\(\beta\)</span> quantificano l’impatto di ogni variabile indipendente sulla variabile dipendente, e <span class="math notranslate nohighlight">\(\epsilon_i\)</span> rappresenta l’errore o la varianza non spiegata nella previsione di <span class="math notranslate nohighlight">\(y_i\)</span>. Questa struttura consente di modellare relazioni lineari tra una variabile dipendente e più variabili indipendenti.</p>
+<p>Il modello MLR può essere rappresentato anche in forma matriciale come segue:</p>
 <div class="math notranslate nohighlight">
 \[
-y = X\beta + \epsilon 
+y = X\beta + \epsilon
 \]</div>
-<p>dove <span class="math notranslate nohighlight">\( y \)</span> è un vettore <span class="math notranslate nohighlight">\( N \times 1 \)</span> della variabile di risposta osservata, <span class="math notranslate nohighlight">\( X \)</span> è una matrice di progettazione (o design matrix) <span class="math notranslate nohighlight">\( N \times (p+1) \)</span> che include tutte le <span class="math notranslate nohighlight">\( p \)</span> variabili esplicative, con la prima colonna composta da 1 che rappresenta l’intercetta (cioè, <span class="math notranslate nohighlight">\( \beta_0 \)</span>), <span class="math notranslate nohighlight">\( \beta = (\beta_0, \beta_1, \ldots, \beta_p) \)</span> è un vettore di <span class="math notranslate nohighlight">\( (p+1) \)</span> parametri di regressione, e <span class="math notranslate nohighlight">\( \epsilon \)</span> è il termine di errore. Specificamente, la matrice <span class="math notranslate nohighlight">\( X \)</span> e i vettori <span class="math notranslate nohighlight">\( y \)</span> e <span class="math notranslate nohighlight">\( \epsilon \)</span> sono definiti come segue:</p>
+<p>dove:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y\)</span> è un vettore <span class="math notranslate nohighlight">\(N \times 1\)</span> dei valori osservati della variabile risposta,</p></li>
+<li><p><span class="math notranslate nohighlight">\(X\)</span> è una matrice di progettazione <span class="math notranslate nohighlight">\(N \times (p+1)\)</span> che incorpora tutte le <span class="math notranslate nohighlight">\(p\)</span> variabili indipendenti e una colonna di uno per l’intercetta,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span> è un vettore di dimensione <span class="math notranslate nohighlight">\((p+1)\)</span> che contiene i parametri di regressione, inclusa l’intercetta,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> rappresenta il vettore dei termini di errore.</p></li>
+</ul>
+<p>La matrice <span class="math notranslate nohighlight">\(X\)</span> e i vettori <span class="math notranslate nohighlight">\(y\)</span> e <span class="math notranslate nohighlight">\(\epsilon\)</span> sono definiti nel modo seguente:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 y = 
@@ -663,29 +663,29 @@ X =
 1 &amp; x_{12} &amp; \cdots &amp; x_{p2} \\
 \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
 1 &amp; x_{1N} &amp; \cdots &amp; x_{pN}
-\end{pmatrix} 
+\end{pmatrix}
 \end{split}\]</div>
-<p>In questa rappresentazione, ogni riga della matrice <span class="math notranslate nohighlight">\( X \)</span> corrisponde a un’osservazione e contiene i valori delle variabili esplicative per quell’osservazione, con una colonna aggiuntiva di 1 per l’intercetta. Il modello in forma matriciale consente un calcolo più efficiente dei parametri di regressione e una gestione più diretta delle relazioni tra variabili multiple.</p>
+<p>Ogni riga di <span class="math notranslate nohighlight">\(X\)</span> corrisponde a un’osservazione e include i valori delle variabili indipendenti per quella osservazione più un uno per l’intercetta.</p>
 </section>
 <section id="metodo-dei-minimi-quadrati">
 <h2><span class="section-number">45.2. </span>Metodo dei Minimi Quadrati<a class="headerlink" href="#metodo-dei-minimi-quadrati" title="Link to this heading">#</a></h2>
-<p>Fondamentalmente, stimando il parametro <span class="math notranslate nohighlight">\( \beta \)</span>, cerchiamo di trovare valori (cioè, stime) per gli elementi in <span class="math notranslate nohighlight">\( \beta \)</span> in modo tale che la componente sistematica (cioè, <span class="math notranslate nohighlight">\( X\beta \)</span>) spieghi quanto più possibile la variazione nella risposta (cioè, <span class="math notranslate nohighlight">\( y \)</span>). In un certo senso, si tratta di trovare valori dei parametri che rendano l’errore il più piccolo possibile. In statistica, questo viene definito come stima dei minimi quadrati, cioè trovare <span class="math notranslate nohighlight">\( \beta \)</span> in modo che la somma degli errori al quadrato sia il più piccola possibile. Matematicamente, la stima dei minimi quadrati (LSE) di <span class="math notranslate nohighlight">\( \beta \)</span>, indicata con <span class="math notranslate nohighlight">\( \hat{\beta} \)</span>, si ottiene minimizzando la somma degli errori al quadrato (SSE):</p>
+<p>Il metodo dei minimi quadrati (LSE) mira a trovare i parametri <span class="math notranslate nohighlight">\(\beta\)</span> che minimizzano la somma dei quadrati degli errori, espressa come:</p>
 <div class="math notranslate nohighlight">
 \[
-\text{SSE} = \epsilon_i^2 = \epsilon' \epsilon = (y - X\beta)'(y - X\beta) = y'y - 2\beta X'y + \beta'X'X\beta
+\text{SSE} = \epsilon_i^2 = \epsilon' \epsilon = (y - X\beta)'(y - X\beta) = y'y - 2\beta'X'y + \beta'X'X\beta
 \]</div>
-<p>Prendendo la derivata della somma degli errori al quadrato (SSE) rispetto a <span class="math notranslate nohighlight">\( \beta \)</span> e impostandola a zero, si ottiene:</p>
+<p>Minimizzando la SSE rispetto a <span class="math notranslate nohighlight">\(\beta\)</span> e impostando la derivata pari a zero, si ottiene:</p>
 <div class="math notranslate nohighlight">
 \[
-X'X\hat{\beta} = X'y \quad (1.5)
+X'X\hat{\beta} = X'y
 \]</div>
-<p>Se <span class="math notranslate nohighlight">\( X'X \)</span> è invertibile, allora abbiamo:</p>
+<p>Se la matrice <span class="math notranslate nohighlight">\(X'X\)</span> è invertibile, la soluzione è:</p>
 <div class="math notranslate nohighlight">
 \[
 \hat{\beta} = (X'X)^{-1}X'y
 \]</div>
-<p>In pratica, questo processo di minimizzazione degli errori al quadrato è fondamentale per la stima dei coefficienti nel modello di regressione lineare multipla. Lo scopo è di identificare i valori dei parametri che meglio descrivono la relazione tra le variabili indipendenti e la variabile dipendente, riducendo al minimo la discrepanza tra i valori osservati e quelli previsti dal modello.</p>
-<p>Esaminiamo questi calcoli nel caso dei dati in considerazione.</p>
+<p>Questa procedura di minimizzazione degli errori al quadrato è essenziale per determinare i coefficienti che descrivono al meglio la relazione tra le variabili indipendenti e la variabile dipendente, minimizzando la discrepanza tra i valori osservati e quelli predetti dal modello.</p>
+<p>Ora, esaminiamo queste relazioni utilizzando i dati specifici a disposizione.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dass</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">d_mr</span><span class="w"> </span><span class="o">|&gt;</span>
@@ -703,7 +703,7 @@ X'X\hat{\beta} = X'y \quad (1.5)
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><table class="dataframe">
-<caption>A matrix: 6 x 4 of type dbl</caption>
+<caption>A matrix: 6 × 4 of type dbl</caption>
 <thead>
 	<tr><th></th><th scope=col>(Intercept)</th><th scope=col>depression</th><th scope=col>anxiety</th><th scope=col>stress</th></tr>
 </thead>
@@ -784,6 +784,13 @@ stress      -0.9733368
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">RSS</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">e</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">RSS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         [,1]
+[1,] 128699.9
 </pre></div>
 </div>
 </div>
@@ -792,6 +799,13 @@ stress      -0.9733368
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">var_e</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">RSS</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">dim</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="m">2</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">var_e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         [,1]
+[1,] 246.5515
 </pre></div>
 </div>
 </div>
@@ -833,7 +847,7 @@ depression   -1.4842     0.2376  -6.247 8.69e-10 ***
 anxiety       1.0493     0.2103   4.990 8.22e-07 ***
 stress       -0.9733     0.2553  -3.813 0.000154 ***
 ---
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 Residual standard error: 15.7 on 522 degrees of freedom
 Multiple R-squared:  0.247,	Adjusted R-squared:  0.2426 
@@ -856,7 +870,7 @@ F-statistic: 57.06 on 3 and 522 DF,  p-value: &lt; 2.2e-16
 </section>
 <section id="modello-di-percorso">
 <h2><span class="section-number">45.3. </span>Modello di Percorso<a class="headerlink" href="#modello-di-percorso" title="Link to this heading">#</a></h2>
-<p>Formuliamo ora il modello di regressione multipla nei termini della path analysis.</p>
+<p>Formuliamo ora il modello di regressione multipla nei termini di un modello SEM.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod_mr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
@@ -897,7 +911,7 @@ F-statistic: 57.06 on 3 and 522 DF,  p-value: &lt; 2.2e-16
 </div>
 </div>
 </div>
-<p>Si noti che i parametri stimati in questo modo sono praticamente identici a quelli trovati con il metodo della massima verosimiglianza.</p>
+<p>Si noti che i parametri stimati da <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> sono praticamente identici a quelli trovati con il metodo della massima verosimiglianza.</p>
 </section>
 <section id="path-analysis-e-scomposizione-della-covarianza">
 <h2><span class="section-number">45.4. </span>Path Analysis e Scomposizione della Covarianza<a class="headerlink" href="#path-analysis-e-scomposizione-della-covarianza" title="Link to this heading">#</a></h2>
@@ -923,7 +937,7 @@ F-statistic: 57.06 on 3 and 522 DF,  p-value: &lt; 2.2e-16
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7a5053ed25d2ed9ec967841f60179f5453e22528a7f4863d571c299c78f92080.png" src="../_images/7a5053ed25d2ed9ec967841f60179f5453e22528a7f4863d571c299c78f92080.png" />
+<img alt="../_images/a8645967c207054a19bff236ae6953fda4c0d142be409a3102d803a2b3592dab.png" src="../_images/a8645967c207054a19bff236ae6953fda4c0d142be409a3102d803a2b3592dab.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1014,7 +1028,7 @@ F-statistic: 57.06 on 3 and 522 DF,  p-value: &lt; 2.2e-16
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><table class="dataframe">
-<caption>A tibble: 6 x 3</caption>
+<caption>A tibble: 6 × 3</caption>
 <thead>
 	<tr><th scope=col>performance</th><th scope=col>motivation</th><th scope=col>anxiety</th></tr>
 	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
@@ -1073,7 +1087,7 @@ Coefficients:
 (Intercept) -12.39720    1.44591  -8.574 2.24e-16 ***
 motivation   -0.43717    0.03553 -12.305  &lt; 2e-16 ***
 ---
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 Residual standard error: 4.866 on 398 degrees of freedom
 Multiple R-squared:  0.2756,	Adjusted R-squared:  0.2738 
@@ -1173,12 +1187,12 @@ b_1^\prime &amp;= \frac{Cov(X_1, a + b_1 X_1 + b_2 X_2 + e)}{Var(X_1)}\notag\\
 <p>Una considerazione finale riguarda l’idea di rimuovere i predittori “non significativi” dal modello di regressione. Questa è una cattiva idea. Il ricercatore non deve sentirsi in dovere di trascurare quei predittore che non risultano “statisticamente significativi”. In campioni piccoli, la potenza dei test di significatività è  bassa e la rimozione di un predittore non significativo può alterare sostanzialmente la soluzione. Se c’è una buona ragione per includere un predittore, allora è meglio lasciarlo nel modello, fino a prova contraria. In termini generali, qualsiasi considerazione basata sulla “significatività statistia” è fuorviante.</p>
 </section>
 </section>
-<section id="oltre-la-regressione-multipla">
-<h2><span class="section-number">45.6. </span>Oltre la Regressione Multipla<a class="headerlink" href="#oltre-la-regressione-multipla" title="Link to this heading">#</a></h2>
-<p>Approfondiamo l’esempio che utilizza il modello SEM per esaminare la relazione tra autocompassione e malessere psicologico, come misurato dalle sotto-scale della DASS-21 (Depressione, Ansia, Stress) e della Self-Compassion Scale. In questo contesto, sviluppiamo due variabili latenti: ‘malessere psicologico’ e ‘autocompassione’. La variabile latente ‘malessere psicologico’ è costruita dalle tre sotto-scale della DASS-21, mentre ‘autocompassione’ è derivata dalle sei sotto-scale della Self-Compassion Scale.</p>
-<p>La relazione tra queste variabili latenti è esplorata mediante un modello strutturale. In questo modello, l’autocompassione è trattata come una variabile esogena, che si ipotizza agisca come fattore di protezione, riducendo il malessere psicologico (variabile endogena). L’ipotesi è che vi sia una relazione di regressione negativa tra autocompassione e malessere psicologico, suggerendo che livelli più alti di autocompassione sono associati a livelli più bassi di malessere psicologico.</p>
-<p>Un aspetto cruciale del modello SEM è il trattamento dell’errore di misurazione. Le variabili latenti sono costruite per catturare la vera essenza dei costrutti teorici (autocompassione e malessere psicologico in questo caso) al di là degli errori di misurazione presenti negli indicatori osservati (le sotto-scale). Questo significa che quando esploriamo la relazione tra autocompassione e malessere psicologico, lo facciamo considerando la ‘vera’ relazione tra questi costrutti, purificata dagli errori di misurazione che possono essere presenti nelle misure osservate.</p>
-<p>La capacità del modello SEM di distinguere tra la variabilità dovuta ai costrutti latenti e quella dovuta all’errore di misurazione rende l’analisi più accurata e affidabile. Ciò è particolarmente importante in psicologia, dove i costrutti teorici non sono direttamente osservabili e devono essere inferiti da misure soggette a errore.</p>
+<section id="oltre-la-regressione-multipla-l-uso-dei-modelli-sem">
+<h2><span class="section-number">45.6. </span>Oltre la Regressione Multipla: L’Uso dei Modelli SEM<a class="headerlink" href="#oltre-la-regressione-multipla-l-uso-dei-modelli-sem" title="Link to this heading">#</a></h2>
+<p>Analizziamo un esempio in cui il modello di Equazioni Strutturali (SEM) viene impiegato per studiare la relazione tra autocompassione e malessere psicologico, utilizzando come indicatori le sotto-scale della DASS-21 (Depressione, Ansia, Stress) e della Self-Compassion Scale. In questo contesto, definiamo due variabili latenti: “malessere psicologico” e “autocompassione”. La variabile latente “malessere psicologico” è composta dalle tre sotto-scale della DASS-21, mentre la variabile “autocompassione” è formata dalle sei sotto-scale della Self-Compassion Scale.</p>
+<p>Il modello strutturale esplora la relazione tra queste due variabili latenti. L’autocompassione è considerata una variabile esogena, ipotizzata come un fattore di protezione che riduce il malessere psicologico, che a sua volta è trattato come variabile endogena. L’ipotesi principale del modello è che esista una relazione di regressione negativa tra autocompassione e malessere psicologico, indicando che livelli più elevati di autocompassione sono associati a minori livelli di malessere psicologico.</p>
+<p>Un elemento chiave dei modelli SEM è la gestione dell’errore di misurazione. Le variabili latenti sono progettate per riflettere il nucleo vero dei costrutti teorici, in questo caso autocompassione e malessere psicologico, isolando gli effetti degli errori di misurazione che possono affliggere gli indicatori osservati. Questo approccio consente di esaminare la “vera” relazione tra i costrutti, eliminando le distorsioni introdotte dagli errori di misurazione nelle misure osservate.</p>
+<p>La capacità del modello SEM di separare la variabilità attribuibile ai costrutti latenti da quella dovuta agli errori di misurazione aumenta l’accuratezza e l’affidabilità dell’analisi. Questo è particolarmente vantaggioso in campi come la psicologia, dove i costrutti teorici non sono direttamente osservabili e devono essere inferiti attraverso misure potenzialmente errate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod_sc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
@@ -1193,7 +1207,7 @@ b_1^\prime &amp;= \frac{Cov(X_1, a + b_1 X_1 + b_2 X_2 + e)}{Var(X_1)}\notag\\
 <p>Adattiamo il modello ai dati.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit_sc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">sem</span><span class="p">(</span><span class="n">mod_sc</span><span class="p">,</span><span class="w"> </span><span class="n">dat</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit_sc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">sem</span><span class="p">(</span><span class="n">mod_sc</span><span class="p">,</span><span class="w"> </span><span class="n">dat</span><span class="p">,</span><span class="w"> </span><span class="n">std.lv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1213,7 +1227,7 @@ b_1^\prime &amp;= \frac{Cov(X_1, a + b_1 X_1 + b_2 X_2 + e)}{Var(X_1)}\notag\\
 4                   SC =~       self_kindness   0.757 0.022  33.984      0
 5                   SC =~     common_humanity   0.621 0.030  20.695      0
 6                   SC =~         mindfulness   0.689 0.026  26.235      0
-7                   SC =~       self_judgment  -0.770 0.022 -35.800      0
+7                   SC =~       self_judgment  -0.770 0.022 -35.799      0
 8                   SC =~           isolation  -0.770 0.022 -35.822      0
 9                   SC =~ over_identification  -0.767 0.022 -35.416      0
 10                   F  ~                  SC  -0.476 0.038 -12.385      0
@@ -1292,39 +1306,134 @@ b_1^\prime &amp;= \frac{Cov(X_1, a + b_1 X_1 + b_2 X_2 + e)}{Var(X_1)}\notag\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a1c5d9e70291783418702427a052424bf170499253cd8369faa08102540a01fd.png" src="../_images/a1c5d9e70291783418702427a052424bf170499253cd8369faa08102540a01fd.png" />
+<img alt="../_images/e6408b3e3b5c1b9da937e92be350947e4bb0918e15daf5c70d098a414d63857e.png" src="../_images/e6408b3e3b5c1b9da937e92be350947e4bb0918e15daf5c70d098a414d63857e.png" />
 </div>
 </div>
 <p>I coefficienti stimati nel modello SEM appaiono coerenti e in linea con le aspettative, in particolare il coefficiente che descrive l’effetto “causale” del fattore dell’autocompassione sul malessere psicologico, che si attesta a -0.48. Questo valore negativo corrobora l’ipotesi secondo cui l’autocompassione svolge un ruolo di fattore protettivo contro il malessere psicologico. Tuttavia, prima di confermare definitivamente questa conclusione, è cruciale esaminare gli indici di bontà di adattamento del modello. Questi indici ci permetteranno di valutare quanto accuratamente il modello SEM si adatta ai dati osservati, fornendo un quadro più chiaro della validità delle nostre inferenze. In altre parole, sebbene il modello suggerisca una relazione negativa tra autocompassione e malessere psicologico, la conferma finale di questa associazione dipenderà dall’adeguatezza complessiva del modello rispetto ai dati. Questo argomento verrà affrontato nel prossimo capitolo.</p>
 </section>
 <section id="impiego-delle-medie-nei-modelli-sem">
 <h2><span class="section-number">45.7. </span>Impiego delle Medie nei Modelli SEM<a class="headerlink" href="#impiego-delle-medie-nei-modelli-sem" title="Link to this heading">#</a></h2>
-<p>Nei modelli SEM, similmente all’analisi fattoriale, poniamo enfasi sull’analisi delle covarianze tra le variabili. Tuttavia, a differenza dell’analisi fattoriale, i modelli SEM permettono anche di includere le medie delle variabili osservate e latenti. Le medie forniscono informazioni molto utili in molti modelli SEM, come ad esempio nei modelli CFA longitudinali. In alcuni di questi modelli, le ipotesi chiave riguardano le medie dei costrutti.</p>
-<p>L’equazione generale per le strutture medie è:</p>
-<div class="math notranslate nohighlight" id="equation-eq-mean-structure-cfa">
-<span class="eqno">(45.2)<a class="headerlink" href="#equation-eq-mean-structure-cfa" title="Link to this equation">#</a></span>\[ 
+<p>Nei modelli di equazioni strutturali (SEM), come nell’analisi fattoriale, l’accento è posto sull’analisi delle covarianze tra variabili. Tuttavia, a differenza dell’analisi fattoriale, i modelli SEM consentono di includere anche le medie delle variabili osservate e latenti. Questo arricchisce l’analisi, fornendo informazioni preziose in molti contesti, come nei modelli CFA longitudinali, dove le ipotesi centrali riguardano proprio le medie dei costrutti.</p>
+<section id="struttura-delle-medie-nel-modello-sem">
+<h3><span class="section-number">45.7.1. </span>Struttura delle Medie nel Modello SEM<a class="headerlink" href="#struttura-delle-medie-nel-modello-sem" title="Link to this heading">#</a></h3>
+<p>L’equazione generale per la struttura delle medie in un modello SEM è la seguente:</p>
+<div class="math notranslate nohighlight">
+\[ 
 E(y) = \mu_y = T + \Lambda A 
 \]</div>
 <p>dove:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\( y \)</span> rappresenta i punteggi sugli indicatori.</p></li>
-<li><p><span class="math notranslate nohighlight">\( E(y) \)</span> è l’aspettativa (ovvero, la media) di <span class="math notranslate nohighlight">\( y \)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\( \mu_y \)</span> è il vettore delle medie implicite dal modello degli indicatori <span class="math notranslate nohighlight">\( y \)</span>. È l’analogia per le strutture medie di <span class="math notranslate nohighlight">\( \Sigma \)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\( \Lambda \)</span> è la matrice dei carichi o delle stime delle relazioni degli indicatori con i costrutti.</p></li>
-<li><p><span class="math notranslate nohighlight">\( T \)</span> è il vettore colonna delle medie degli indicatori.</p></li>
-<li><p><span class="math notranslate nohighlight">\( A \)</span> è un vettore colonna delle medie dei costrutti latenti.</p></li>
+<li><p>( y ) indica i punteggi degli indicatori.</p></li>
+<li><p>( E(y) ) rappresenta la media attesa di ( y ).</p></li>
+<li><p>( \mu_y ) è il vettore delle medie dei modelli degli indicatori, analogo a ( \Sigma ) nelle strutture di covarianza.</p></li>
+<li><p>( \Lambda ) è la matrice dei carichi fattoriali, che stima le relazioni degli indicatori con i costrutti.</p></li>
+<li><p>( T ) è il vettore delle medie degli indicatori.</p></li>
+<li><p>( A ) è un vettore delle medie dei costrutti latenti.</p></li>
 </ul>
-<p>In un diagramma a percorsi, un triangolo con il numero 1 viene utilizzato per includere la costante di regressione in una rappresentazione grafica. Questo simbolo rappresenta la costante del vettore colonna (intercetta) che viene utilizzata per stimare una media quando una variabile viene regredita su di essa: la colonna di 1.0 rappresenta l’intercetta di un’equazione di regressione.</p>
-<p>La media di ciascun indicatore è stimata nel vettore tau, <span class="math notranslate nohighlight">\( \tau \)</span>, una singola colonna di medie con una elemento per riga per ciascun indicatore in un dato modello. La matrice <span class="math notranslate nohighlight">\( \Lambda \)</span> è la matrice di saturazioni fattoriali del modello di misurazione CFA. Poiché i carichi sono inclusi nell’Eq. <a class="reference internal" href="#equation-eq-mean-structure-cfa">(45.2)</a>, il modello delle strutture delle medie è intrinsecamente collegato al modello delle strutture di covarianza. L’intensità con cui un indicatore satura su un costrutto influenza il modo in cui stimiamo la media latente, in particolare quando gli indicatori sono congenerici. Ciò significa che gli indicatori con carichi più forti contribuiscono maggiormente a determinare il livello medio del costrutto rispetto a quelli con carichi più bassi. La lettera greca alfa, <span class="math notranslate nohighlight">\( \alpha \)</span>, è utilizzata per rappresentare le medie stimate dei costrutti latenti. Quando sviluppo le equazioni individuali, la lettera greca minuscola tau, <span class="math notranslate nohighlight">\( \tau \)</span>, è utilizzata per rappresentare la media degli indicatori, e la lettera greca minuscola alfa, <span class="math notranslate nohighlight">\( \alpha \)</span>, è utilizzata per rappresentare la media del fattore latente.</p>
-<p>Come nella dimensione delle strutture di covarianza dei modelli SEM, dove è necessario un vincolo per stabilire la scala, anche nella componente delle strutture medie si richiede un vincolo simile. Per le medie, lo zero è adottato come punto fisso di scalatura. La scelta dello zero, piuttosto che di un valore non nullo come avviene nella parte di covarianza del modello, si basa sul fatto che le medie vengono calcolate come distanze dallo zero, che possono essere sia positive sia negative. Stabilire un vincolo per la scalatura delle medie comporta la definizione precisa della posizione dello zero, consentendo così il calcolo delle distanze a partire da questo punto fissato. Nella gestione delle strutture delle medie, in genere, la media del fattore latente viene fissata a zero per stabilire la scala nel caso si adotti il metodo del fattore fisso.</p>
-<p>Per stimare le intercette in un modello SEM, è necessario disporre dei dati originali (non elaborati) o di una matrice di covarianza, oltre alle medie di tutte le variabili coinvolte. Inoltre, la definizione del modello SEM tramite il software <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> richiede l’inclusione di specificazioni sia per la struttura di covarianza che per la struttura delle medie.</p>
-<p>Il software <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> semplifica questo processo. Ad esempio, utilizzando la sintassi <code class="docutils literal notranslate"><span class="pre">meanstructure</span> <span class="pre">=</span> <span class="pre">true</span></code> in <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>, si comunica al programma che deve incorporare automaticamente la costante “1” in tutte le equazioni del modello. Questo permette al modello di calcolare le intercette per le variabili endogene. Se necessario, è anche possibile impostare manualmente queste intercette. Per esempio, inserendo <code class="docutils literal notranslate"><span class="pre">illness</span> <span class="pre">~</span> <span class="pre">1</span></code> nella sintassi, si indica al modello di includere una costante “1” nell’equazione relativa alla variabile “illness” (malattia), consentendo così di stimarne l’intercetta.</p>
-<p>In conclusione, la struttura delle medie in un modello SEM è fondamentale per ottenere stime delle medie delle variabili. Queste stime possono essere poi confrontate con le medie osservate nei dati raccolti. Questo approccio è analogo a come la struttura di covarianza nel modello SEM ci permette di confrontare le relazioni tra le variabili nel modello con quelle osservate nei dati.</p>
+<p>In un diagramma a percorsi, un triangolo contrassegnato con il numero 1 rappresenta la costante di regressione. Questo simbolo indica l’intercetta, che viene utilizzata per stimare la media quando una variabile viene regredita su di essa.</p>
+<p>La media di ciascun indicatore è stimata nel vettore ( \tau ), mentre ( \Lambda ) rappresenta la matrice di saturazioni fattoriali del modello di misurazione CFA. Questo collegamento tra i carichi e le medie indica che gli indicatori con carichi più elevati hanno un impatto maggiore sulla media del costrutto.</p>
+<p>Il simbolo ( \alpha ) rappresenta le medie stimate dei costrutti latenti. Questa simbologia aiuta a distinguere tra le medie degli indicatori (( \tau )) e quelle dei costrutti latenti (( \alpha )) nelle equazioni.</p>
+</section>
+<section id="vincoli-e-scalatura-delle-medie">
+<h3><span class="section-number">45.7.2. </span>Vincoli e Scalatura delle Medie<a class="headerlink" href="#vincoli-e-scalatura-delle-medie" title="Link to this heading">#</a></h3>
+<p>Similmente alla gestione delle strutture di covarianza nei modelli SEM, anche per le strutture delle medie è necessario impostare un vincolo per definire la scala. Per le medie, lo zero viene spesso adottato come riferimento. Stabilire questo vincolo aiuta a calcolare le distanze dai punti fissati, che possono essere sia positive sia negative.</p>
+</section>
+<section id="stima-delle-intercette-con-lavaan">
+<h3><span class="section-number">45.7.3. </span>Stima delle Intercette con <code class="docutils literal notranslate"><span class="pre">lavaan</span></code><a class="headerlink" href="#stima-delle-intercette-con-lavaan" title="Link to this heading">#</a></h3>
+<p>Per stimare le intercette in un modello SEM, è essenziale avere accesso ai dati originali o a una matrice di covarianza, oltre alle medie di tutte le variabili coinvolte. L’utilizzo del software <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> facilita questo processo. Impostando <code class="docutils literal notranslate"><span class="pre">meanstructure</span> <span class="pre">=</span> <span class="pre">true</span></code>, si indica a <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> di integrare automaticamente una costante “1” in tutte le equazioni del modello, facilitando il calcolo delle intercette per le variabili endogene. Questo permette di calcolare con precisione le intercette, che sono cruciali per il modello delle strutture delle medie.</p>
+<p>In conclusione, la struttura delle medie in un modello SEM è essenziale per ottenere stime accurate delle medie delle variabili, permettendo di confrontare queste stime con le medie osservate nei dati raccolti, proprio come si confrontano le covarianze nel modello con quelle osservate nei dati. Questo approccio arricchisce significativamente l’analisi fornita dai modelli SEM.</p>
+</section>
 </section>
 <section id="considerazioni-conclusive">
 <h2><span class="section-number">45.8. </span>Considerazioni Conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h2>
-<p>In questo capitolo, abbiamo introdotto i Modelli di Equazioni Strutturali (SEM). Abbiamo mostrato come i SEM non solo descrivano le interazioni tra variabili osservabili, ma possono anche essere utilizzati per analizzare relazioni tra variabili latenti. Il punto di forza dei SEM risiede nella loro capacità di fondere il modello di misura, che delinea le relazioni tra gli indicatori e le variabili latenti, con il modello strutturale, che esplora le connessioni tra le variabili latenti stesse.</p>
-<p>Nei capitoli successivi, approfondiremo ulteriormente gli aspetti della modellizzazione SEM. Uno dei temi centrali sarà la valutazione della bontà di adattamento del modello, un processo essenziale per determinare quanto accuratamente il modello rappresenti la realtà. Esploreremo inoltre il confronto tra modelli alternativi, un passaggio chiave per identificare il modello che meglio si adatta alla struttura dei dati. Un altro aspetto importante sarà l’analisi dell’adattabilità dei modelli a gruppi diversificati, essenziale per valutare la loro generalizzabilità e specificità. Inoltre, affronteremo le sfide metodologiche poste dalla gestione di dati categoriali, dall’applicazione di modelli SEM multilivello e dal trattamento di dati mancanti.</p>
+<p>In questo capitolo, abbiamo esplorato i Modelli di Equazioni Strutturali (SEM), evidenziando come questi modelli non si limitino a descrivere le correlazioni tra variabili osservabili, ma permettano anche di analizzare le relazioni tra variabili latenti. La forza dei SEM risiede nella loro capacità di integrare il modello di misurazione, che definisce le relazioni tra gli indicatori e le variabili latenti, con il modello strutturale, che esamina le interazioni tra le stesse variabili latenti.</p>
+<p>Nei prossimi capitoli, approfondiremo vari aspetti della modellazione SEM. Esamineremo la bontà di adattamento del modello, un criterio fondamentale per verificare la fedeltà con cui il modello riflette la realtà osservata. Analizzeremo anche il confronto tra modelli alternativi, un passaggio cruciale per identificare il modello che migliora l’interpretazione dei dati.</p>
+<p>Un altro tema importante sarà l’analisi dell’applicabilità dei modelli a gruppi diversi, vitale per valutare la loro generalizzabilità e la pertinenza in contesti specifici. Inoltre, discuteremo le sfide metodologiche legate alla gestione di dati categoriali, all’implementazione di modelli SEM multilivello e alla gestione di dati mancanti. Questi approfondimenti ci permetteranno di comprendere meglio come i modelli SEM possono essere adattati e applicati efficacemente in diversi ambiti di ricerca.</p>
+</section>
+<section id="session-info">
+<h2><span class="section-number">45.9. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.3.3 (2024-02-29)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Sonoma 14.4.1
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
+
+locale:
+[1] C/UTF-8/C/C/C/C
+
+time zone: Europe/Rome
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] effectsize_0.8.7   rsvg_2.6.0         DiagrammeRsvg_0.1  mvnormalTest_1.0.0
+ [5] lavaanExtra_0.2.0  ggokabeito_0.1.0   viridis_0.6.5      viridisLite_0.4.2 
+ [9] ggpubr_0.6.0       ggExtra_0.10.1     bayesplot_1.11.1   gridExtra_2.3     
+[13] patchwork_1.2.0    semTools_0.5-6     semPlot_1.1.6      lavaan_0.6-17     
+[17] psych_2.4.3        scales_1.3.0       markdown_1.12      knitr_1.45        
+[21] lubridate_1.9.3    forcats_1.0.0      stringr_1.5.1      dplyr_1.1.4       
+[25] purrr_1.0.2        readr_2.1.5        tidyr_1.3.1        tibble_3.2.1      
+[29] ggplot2_3.5.0      tidyverse_2.0.0    here_1.0.1        
+
+loaded via a namespace (and not attached):
+  [1] splines_4.3.3       later_1.3.2         pbdZMQ_0.3-11      
+  [4] datawizard_0.9.1    XML_3.99-0.16.1     rpart_4.1.23       
+  [7] lifecycle_1.0.4     rstatix_0.7.2       rprojroot_2.0.4    
+ [10] lattice_0.22-5      MASS_7.3-60.0.1     insight_0.19.10    
+ [13] rockchalk_1.8.157   backports_1.4.1     magrittr_2.0.3     
+ [16] openxlsx_4.2.5.2    Hmisc_5.1-1         rmarkdown_2.26     
+ [19] httpuv_1.6.14       qgraph_1.9.8        zip_2.3.1          
+ [22] pbapply_1.7-2       minqa_1.2.6         ADGofTest_0.3      
+ [25] multcomp_1.4-25     abind_1.4-5         quadprog_1.5-8     
+ [28] pspline_1.0-19      nnet_7.3-19         TH.data_1.1-2      
+ [31] sandwich_3.1-0      moments_0.14.1      nortest_1.0-4      
+ [34] arm_1.13-1          codetools_0.2-19    tidyselect_1.2.0   
+ [37] lme4_1.1-35.1       stats4_4.3.3        base64enc_0.1-3    
+ [40] jsonlite_1.8.8      ellipsis_0.3.2      Formula_1.2-5      
+ [43] survival_3.5-8      emmeans_1.10.0      tools_4.3.3        
+ [46] Rcpp_1.0.12         glue_1.7.0          mnormt_2.1.1       
+ [49] xfun_0.42           IRdisplay_1.1       withr_3.0.0        
+ [52] numDeriv_2016.8-1.1 fastmap_1.1.1       boot_1.3-29        
+ [55] fansi_1.0.6         digest_0.6.35       mi_1.1             
+ [58] timechange_0.3.0    R6_2.5.1            mime_0.12          
+ [61] estimability_1.5    colorspace_2.1-0    gtools_3.9.5       
+ [64] jpeg_0.1-10         copula_1.1-3        utf8_1.2.4         
+ [67] generics_0.1.3      data.table_1.15.2   corpcor_1.6.10     
+ [70] htmlwidgets_1.6.4   parameters_0.21.6   pkgconfig_2.0.3    
+ [73] sem_3.1-15          gtable_0.3.4        pcaPP_2.0-4        
+ [76] htmltools_0.5.7     carData_3.0-5       png_0.1-8          
+ [79] rstudioapi_0.15.0   tzdb_0.4.0          reshape2_1.4.4     
+ [82] uuid_1.2-0          coda_0.19-4.1       checkmate_2.3.1    
+ [85] nlme_3.1-164        curl_5.2.1          nloptr_2.0.3       
+ [88] repr_1.1.6          zoo_1.8-12          parallel_4.3.3     
+ [91] miniUI_0.1.1.1      foreign_0.8-86      pillar_1.9.0       
+ [94] grid_4.3.3          vctrs_0.6.5         promises_1.2.1     
+ [97] car_3.1-2           OpenMx_2.21.11      xtable_1.8-4       
+[100] cluster_2.1.6       htmlTable_2.4.2     evaluate_0.23      
+[103] pbivnorm_0.6.0      mvtnorm_1.2-4       cli_3.6.2          
+[106] kutils_1.73         compiler_4.3.3      rlang_1.1.3        
+[109] crayon_1.5.2        ggsignif_0.6.4      fdrtool_1.2.17     
+[112] plyr_1.8.9          stringi_1.8.3       munsell_0.5.0      
+[115] gsl_2.1-8           lisrelToR_0.3       bayestestR_0.13.2  
+[118] V8_4.4.2            Matrix_1.6-5        IRkernel_1.3.2     
+[121] hms_1.1.3           stabledist_0.7-1    glasso_1.11        
+[124] shiny_1.8.0         igraph_2.0.2        broom_1.0.5        
+[127] RcppParallel_5.1.7 
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -1364,7 +1473,7 @@ E(y) = \mu_y = T + \Lambda A
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">44. </span>Analisi Fattoriale Esplorativa</p>
+        <p class="prev-next-title"><span class="section-number">44. </span>Exploratory Structural Equation Modeling (ESEM)</p>
       </div>
     </a>
     <a class="right-next"
@@ -1392,7 +1501,7 @@ E(y) = \mu_y = T + \Lambda A
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-regressione-multipla">45.1. Modello di Regressione Multipla</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-regressione-lineare-multipla">45.1. Modello di Regressione Lineare Multipla</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-dei-minimi-quadrati">45.2. Metodo dei Minimi Quadrati</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-percorso">45.3. Modello di Percorso</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#path-analysis-e-scomposizione-della-covarianza">45.4. Path Analysis e Scomposizione della Covarianza</a></li>
@@ -1401,9 +1510,15 @@ E(y) = \mu_y = T + \Lambda A
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regressione-stepwise">45.5.2. Regressione Stepwise</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oltre-la-regressione-multipla">45.6. Oltre la Regressione Multipla</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#impiego-delle-medie-nei-modelli-sem">45.7. Impiego delle Medie nei Modelli SEM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oltre-la-regressione-multipla-l-uso-dei-modelli-sem">45.6. Oltre la Regressione Multipla: L’Uso dei Modelli SEM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#impiego-delle-medie-nei-modelli-sem">45.7. Impiego delle Medie nei Modelli SEM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#struttura-delle-medie-nel-modello-sem">45.7.1. Struttura delle Medie nel Modello SEM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vincoli-e-scalatura-delle-medie">45.7.2. Vincoli e Scalatura delle Medie</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stima-delle-intercette-con-lavaan">45.7.3. Stima delle Intercette con <code class="docutils literal notranslate"><span class="pre">lavaan</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">45.8. Considerazioni Conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">45.9. Session Info</a></li>
 </ul>
   </nav></div>
 

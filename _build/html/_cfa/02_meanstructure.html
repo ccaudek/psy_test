@@ -270,7 +270,7 @@
 <li class="toctree-l1"><a class="reference internal" href="03_cat_data.html">41. Dati non gaussiani e categoriali</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_mmm.html">42. CFA per matrici multi-tratto multi-metodo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_bifactor.html">43. Modello bifattoriale</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06_efa_lavaan.html">44. Analisi Fattoriale Esplorativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_efa_lavaan.html">44. Exploratory Structural Equation Modeling (ESEM)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
 <ul class="nav bd-sidenav">
@@ -485,17 +485,19 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizzo-delle-medie-nei-modelli-sem">40.1. Utilizzo delle Medie nei Modelli SEM</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-delle-intercette-nei-modelli-sem">40.2. Interpretazione delle Intercette nei Modelli SEM</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struttura-delle-medie-nel-modello-cfa">40.3. Struttura delle Medie nel Modello CFA</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struttura-delle-medie-e-lavaan">40.4. Struttura delle Medie e <code class="docutils literal notranslate"><span class="pre">lavaan</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-pratico">40.5. Un Esempio Pratico</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-delle-medie-stimate">40.5.1. Interpretazione delle Medie Stimate</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calcolo-delle-medie-osservate-e-predette-in-r">40.5.2. Calcolo delle Medie Osservate e Predette in R</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medie-di-costrutti-latenti-non-zero">40.5.3. Medie di Costrutti Latenti Non Zero</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-impiego-delle-medie-nei-modelli-di-equazioni-strutturali-sem">40.1. L’impiego delle Medie nei Modelli di Equazioni Strutturali (SEM)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-delle-intercette-nei-modelli-sem">40.1.1. Interpretazione delle Intercette nei Modelli SEM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#struttura-delle-medie-nel-modello-cfa">40.1.2. Struttura delle Medie nel Modello CFA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizzo-delle-medie-nel-software-lavaan">40.1.3. Utilizzo delle Medie nel Software <code class="docutils literal notranslate"><span class="pre">lavaan</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">40.6. Session Info</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-pratico">40.2. Un Esempio Pratico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-delle-medie-stimate">40.2.1. Interpretazione delle Medie Stimate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calcolo-delle-medie-osservate-e-predette-in-r">40.2.2. Calcolo delle Medie Osservate e Predette in R</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medie-di-costrutti-latenti-non-zero">40.2.3. Medie di Costrutti Latenti Non Zero</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">40.3. Session Info</a></li>
 </ul>
             </nav>
         </div>
@@ -516,13 +518,12 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="utilizzo-delle-medie-nei-modelli-sem">
-<h2><span class="section-number">40.1. </span>Utilizzo delle Medie nei Modelli SEM<a class="headerlink" href="#utilizzo-delle-medie-nei-modelli-sem" title="Link to this heading">#</a></h2>
-<p>Nei modelli SEM, come nell’analisi fattoriale, ci focalizziamo principalmente sull’analisi delle covarianze tra le variabili. A differenza dell’analisi fattoriale tradizionale, i modelli SEM possono incorporare anche le medie delle variabili osservate e latenti. Questo aspetto è particolarmente utile in modelli SEM come i modelli CFA longitudinali, dove le ipotesi chiave riguardano le medie dei costrutti.</p>
-</section>
+<section id="l-impiego-delle-medie-nei-modelli-di-equazioni-strutturali-sem">
+<h2><span class="section-number">40.1. </span>L’impiego delle Medie nei Modelli di Equazioni Strutturali (SEM)<a class="headerlink" href="#l-impiego-delle-medie-nei-modelli-di-equazioni-strutturali-sem" title="Link to this heading">#</a></h2>
+<p>Nei modelli di equazioni strutturali (SEM), simili all’analisi fattoriale, esaminiamo principalmente le relazioni di covarianza tra le variabili. Una caratteristica distintiva dei modelli SEM rispetto all’analisi fattoriale tradizionale è la possibilità di includere le medie sia delle variabili osservate che di quelle latenti. Questo è particolarmente utile in modelli come quelli di analisi fattoriale confermativa (CFA) longitudinale, dove le ipotesi si concentrano sulle medie dei costrutti analizzati.</p>
 <section id="interpretazione-delle-intercette-nei-modelli-sem">
-<h2><span class="section-number">40.2. </span>Interpretazione delle Intercette nei Modelli SEM<a class="headerlink" href="#interpretazione-delle-intercette-nei-modelli-sem" title="Link to this heading">#</a></h2>
-<p>In un modello SEM, l’intercetta di un indicatore (denotata con <span class="math notranslate nohighlight">\( \tau \)</span>) rappresenta la media stimata di quell’indicatore. <span class="math notranslate nohighlight">\( \tau \)</span> corrisponde al valore atteso dell’indicatore quando il fattore latente associato è zero. La formula generale per un indicatore <span class="math notranslate nohighlight">\(y\)</span> in un modello SEM è:</p>
+<h3><span class="section-number">40.1.1. </span>Interpretazione delle Intercette nei Modelli SEM<a class="headerlink" href="#interpretazione-delle-intercette-nei-modelli-sem" title="Link to this heading">#</a></h3>
+<p>In un modello SEM, l’intercetta di una variabile indicatore (denotata con <span class="math notranslate nohighlight">\( \tau \)</span>) indica la media stimata di quella variabile. Il valore di <span class="math notranslate nohighlight">\( \tau \)</span> rappresenta il valore atteso dell’indicatore quando il fattore latente a cui è associato è zero. La relazione generale per un indicatore <span class="math notranslate nohighlight">\( y \)</span> in un modello SEM è data dalla formula:</p>
 <div class="math notranslate nohighlight">
 \[ 
 y = \tau + \lambda \cdot \text{fattore latente} + \varepsilon, 
@@ -530,29 +531,30 @@ y = \tau + \lambda \cdot \text{fattore latente} + \varepsilon,
 <p>dove:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\( y \)</span> è il punteggio osservato dell’indicatore.</p></li>
-<li><p><span class="math notranslate nohighlight">\( \lambda \)</span> rappresenta il carico fattoriale.</p></li>
-<li><p><span class="math notranslate nohighlight">\( \tau \)</span> è l’intercetta, ovvero la media stimata dell’indicatore.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \lambda \)</span> rappresenta il carico fattoriale, che indica quanto fortemente l’indicatore è influenzato dal fattore latente.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \tau \)</span> è l’intercetta, cioè la media stimata dell’indicatore.</p></li>
 <li><p><span class="math notranslate nohighlight">\( \varepsilon \)</span> è l’errore di misura associato all’indicatore.</p></li>
 </ul>
 </section>
 <section id="struttura-delle-medie-nel-modello-cfa">
-<h2><span class="section-number">40.3. </span>Struttura delle Medie nel Modello CFA<a class="headerlink" href="#struttura-delle-medie-nel-modello-cfa" title="Link to this heading">#</a></h2>
-<p>In un modello CFA, la formula generale per la struttura delle medie è:</p>
+<h3><span class="section-number">40.1.2. </span>Struttura delle Medie nel Modello CFA<a class="headerlink" href="#struttura-delle-medie-nel-modello-cfa" title="Link to this heading">#</a></h3>
+<p>Nel contesto di un modello CFA, la struttura delle medie è descritta dalla formula:</p>
 <div class="math notranslate nohighlight">
 \[ \text{media(variabile latente)} = \Lambda \mu_{\text{lat}} + \tau, \]</div>
-<p>dove:</p>
+<p>qui:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\( \Lambda \)</span> è la matrice dei carichi fattoriali.</p></li>
-<li><p><span class="math notranslate nohighlight">\( \mu_{\text{lat}} \)</span> è il vettore delle medie dei costrutti latenti.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \mu_{\text{lat}} \)</span> è il vettore che rappresenta le medie dei costrutti latenti.</p></li>
 <li><p><span class="math notranslate nohighlight">\( \tau \)</span> è il vettore delle intercette degli indicatori.</p></li>
 </ul>
 </section>
-<section id="struttura-delle-medie-e-lavaan">
-<h2><span class="section-number">40.4. </span>Struttura delle Medie e <code class="docutils literal notranslate"><span class="pre">lavaan</span></code><a class="headerlink" href="#struttura-delle-medie-e-lavaan" title="Link to this heading">#</a></h2>
-<p>Per stimare le intercette in un modello SEM con lavaan, si richiedono i dati originali o una matrice di covarianza, oltre alle medie di tutte le variabili. La sintassi <code class="docutils literal notranslate"><span class="pre">meanstructure</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> in <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> serve a incorporare automaticamente la costante “1” in tutte le equazioni del modello, facilitando il calcolo delle intercette per le variabili endogene.</p>
+<section id="utilizzo-delle-medie-nel-software-lavaan">
+<h3><span class="section-number">40.1.3. </span>Utilizzo delle Medie nel Software <code class="docutils literal notranslate"><span class="pre">lavaan</span></code><a class="headerlink" href="#utilizzo-delle-medie-nel-software-lavaan" title="Link to this heading">#</a></h3>
+<p>Nel software <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>, utilizzato per l’analisi SEM, è possibile stimare le intercette inserendo l’opzione <code class="docutils literal notranslate"><span class="pre">meanstructure</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> nella sintassi del modello. Questo comando permette di includere automaticamente una costante “1” in tutte le equazioni del modello, facilitando così il calcolo delle intercette per le variabili endogene. È necessario fornire i dati originali o una matrice di covarianza, insieme alle medie di tutte le variabili interessate.</p>
+</section>
 </section>
 <section id="un-esempio-pratico">
-<h2><span class="section-number">40.5. </span>Un Esempio Pratico<a class="headerlink" href="#un-esempio-pratico" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">40.2. </span>Un Esempio Pratico<a class="headerlink" href="#un-esempio-pratico" title="Link to this heading">#</a></h2>
 <p>Utilizziamo il dataset <code class="docutils literal notranslate"><span class="pre">HolzingerSwineford1939</span></code> per costruire un modello di misurazione con tre costrutti latenti (<code class="docutils literal notranslate"><span class="pre">visual</span></code>, <code class="docutils literal notranslate"><span class="pre">textual</span></code>, <code class="docutils literal notranslate"><span class="pre">speed</span></code>), ciascuno definito da tre indicatori (<code class="docutils literal notranslate"><span class="pre">x1</span></code>, <code class="docutils literal notranslate"><span class="pre">x2</span></code>, <code class="docutils literal notranslate"><span class="pre">x3</span></code>, ecc.).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -664,11 +666,11 @@ $ x9     &lt;dbl&gt; 6.361111, 7.916667, 4.416667, 4.861111, 5.916667, 7.500000,
 </div>
 </div>
 <section id="interpretazione-delle-medie-stimate">
-<h3><span class="section-number">40.5.1. </span>Interpretazione delle Medie Stimate<a class="headerlink" href="#interpretazione-delle-medie-stimate" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">40.2.1. </span>Interpretazione delle Medie Stimate<a class="headerlink" href="#interpretazione-delle-medie-stimate" title="Link to this heading">#</a></h3>
 <p>La media dei punteggi osservati per gli indicatori (<code class="docutils literal notranslate"><span class="pre">x1</span></code>, <code class="docutils literal notranslate"><span class="pre">x2</span></code>, <code class="docutils literal notranslate"><span class="pre">x3</span></code>, ecc.) viene calcolata attraverso le intercette stimate dal modello. È fondamentale distinguere tra la media empirica, calcolata direttamente dai dati, e la media predetta dal modello. La media predetta degli indicatori in un modello dove la media dei costrutti latenti è fissata a zero è influenzata esclusivamente dalle loro intercette.</p>
 </section>
 <section id="calcolo-delle-medie-osservate-e-predette-in-r">
-<h3><span class="section-number">40.5.2. </span>Calcolo delle Medie Osservate e Predette in R<a class="headerlink" href="#calcolo-delle-medie-osservate-e-predette-in-r" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">40.2.2. </span>Calcolo delle Medie Osservate e Predette in R<a class="headerlink" href="#calcolo-delle-medie-osservate-e-predette-in-r" title="Link to this heading">#</a></h3>
 <p>Consideriamo gli indicatori <code class="docutils literal notranslate"><span class="pre">x1</span></code>, <code class="docutils literal notranslate"><span class="pre">x2</span></code>, <code class="docutils literal notranslate"><span class="pre">x3</span></code>. Per calcolare la media osservata di questi indicatori, usiamo le loro intercette stimate.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -705,7 +707,7 @@ $ x9     &lt;dbl&gt; 6.361111, 7.916667, 4.416667, 4.861111, 5.916667, 7.500000,
 </div>
 </div>
 </div>
-<p>Questo valore rappresenta la media osservata calcolata come la media aritmetica delle intercette di <code class="docutils literal notranslate"><span class="pre">x1</span></code>, <code class="docutils literal notranslate"><span class="pre">x2</span></code>, <code class="docutils literal notranslate"><span class="pre">x3</span></code>. Nel contesto del nostro modello SEM, dove la media dei costrutti latenti è fissata a zero, la media predetta degli indicatori corrisponderà alla media osservata:</p>
+<p>Questo valore rappresenta la media osservata calcolata come la media aritmetica delle intercette di <code class="docutils literal notranslate"><span class="pre">x1</span></code>, <code class="docutils literal notranslate"><span class="pre">x2</span></code>, <code class="docutils literal notranslate"><span class="pre">x3</span></code>. Nel contesto del nostro modello CFA, dove la media dei costrutti latenti è fissata a zero, la media predetta degli indicatori corrisponde alla media osservata:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">mean</span><span class="p">((</span><span class="n">HolzingerSwineford1939</span><span class="o">$</span><span class="n">x1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">HolzingerSwineford1939</span><span class="o">$</span><span class="n">x2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">HolzingerSwineford1939</span><span class="o">$</span><span class="n">x3</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span>
@@ -730,8 +732,8 @@ $ x9     &lt;dbl&gt; 6.361111, 7.916667, 4.416667, 4.861111, 5.916667, 7.500000,
 </div>
 </section>
 <section id="medie-di-costrutti-latenti-non-zero">
-<h3><span class="section-number">40.5.3. </span>Medie di Costrutti Latenti Non Zero<a class="headerlink" href="#medie-di-costrutti-latenti-non-zero" title="Link to this heading">#</a></h3>
-<p>In situazioni in cui le medie dei costrutti latenti non sono fissate a zero, la media predetta degli indicatori sarebbe influenzata sia dalle intercette sia dai carichi fattoriali. Per esempio, se la media del costrutto latente fosse diversa da zero, l’equazione per calcolare la media di un indicatore (come <code class="docutils literal notranslate"><span class="pre">x1</span></code>) includerebbe il contributo del costrutto latente:</p>
+<h3><span class="section-number">40.2.3. </span>Medie di Costrutti Latenti Non Zero<a class="headerlink" href="#medie-di-costrutti-latenti-non-zero" title="Link to this heading">#</a></h3>
+<p>In situazioni in cui le medie dei costrutti latenti non sono fissate a zero, la media predetta degli indicatori è influenzata sia dalle intercette sia dai carichi fattoriali. Per esempio, se la media del costrutto latente fosse diversa da zero, l’equazione per calcolare la media di un indicatore (come <code class="docutils literal notranslate"><span class="pre">x1</span></code>) includerebbe il contributo del costrutto latente:</p>
 <div class="math notranslate nohighlight">
 \[ 
 \text{media predetta}(x1) = \mu_{\text{latente}} \cdot \lambda_{x1} + \tau_{x1}, 
@@ -831,7 +833,7 @@ $ x9     &lt;dbl&gt; 6.361111, 7.916667, 4.416667, 4.861111, 5.916667, 7.500000,
 </section>
 </section>
 <section id="session-info">
-<h2><span class="section-number">40.6. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">40.3. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
@@ -972,17 +974,19 @@ loaded via a namespace (and not attached):
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizzo-delle-medie-nei-modelli-sem">40.1. Utilizzo delle Medie nei Modelli SEM</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-delle-intercette-nei-modelli-sem">40.2. Interpretazione delle Intercette nei Modelli SEM</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struttura-delle-medie-nel-modello-cfa">40.3. Struttura delle Medie nel Modello CFA</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struttura-delle-medie-e-lavaan">40.4. Struttura delle Medie e <code class="docutils literal notranslate"><span class="pre">lavaan</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-pratico">40.5. Un Esempio Pratico</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-delle-medie-stimate">40.5.1. Interpretazione delle Medie Stimate</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calcolo-delle-medie-osservate-e-predette-in-r">40.5.2. Calcolo delle Medie Osservate e Predette in R</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medie-di-costrutti-latenti-non-zero">40.5.3. Medie di Costrutti Latenti Non Zero</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-impiego-delle-medie-nei-modelli-di-equazioni-strutturali-sem">40.1. L’impiego delle Medie nei Modelli di Equazioni Strutturali (SEM)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-delle-intercette-nei-modelli-sem">40.1.1. Interpretazione delle Intercette nei Modelli SEM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#struttura-delle-medie-nel-modello-cfa">40.1.2. Struttura delle Medie nel Modello CFA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizzo-delle-medie-nel-software-lavaan">40.1.3. Utilizzo delle Medie nel Software <code class="docutils literal notranslate"><span class="pre">lavaan</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">40.6. Session Info</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-pratico">40.2. Un Esempio Pratico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-delle-medie-stimate">40.2.1. Interpretazione delle Medie Stimate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calcolo-delle-medie-osservate-e-predette-in-r">40.2.2. Calcolo delle Medie Osservate e Predette in R</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medie-di-costrutti-latenti-non-zero">40.2.3. Medie di Costrutti Latenti Non Zero</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">40.3. Session Info</a></li>
 </ul>
   </nav></div>
 

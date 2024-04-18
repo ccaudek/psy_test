@@ -74,8 +74,6 @@
                 gtag('config', 'G-VMXNE4BCDL');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_cfa/04_mmm';</script>
     <script src="../_static/custom.js?v=3f5092eb"></script>
     <link rel="canonical" href="https://ccaudek.github.io/psy_test/_cfa/04_mmm.html" />
@@ -270,7 +268,7 @@
 <li class="toctree-l1"><a class="reference internal" href="03_cat_data.html">41. Dati non gaussiani e categoriali</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">42. CFA per matrici multi-tratto multi-metodo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_bifactor.html">43. Modello bifattoriale</a></li>
-<li class="toctree-l1"><a class="reference internal" href="06_efa_lavaan.html">44. Analisi Fattoriale Esplorativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_efa_lavaan.html">44. Exploratory Structural Equation Modeling (ESEM)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
 <ul class="nav bd-sidenav">
@@ -485,11 +483,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mtmm-e-cfa">42.1. MTMM e CFA</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">42.1.1. Un esempio concreto</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">42.2. Session Info</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mtmm-e-cfa">42.1. MTMM e CFA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">42.2. Un esempio concreto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">42.3. Session Info</a></li>
 </ul>
             </nav>
         </div>
@@ -503,21 +499,22 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="cfa-per-matrici-multi-tratto-multi-metodo">
 <span id="mmm-notebook"></span><h1><span class="section-number">42. </span>CFA per matrici multi-tratto multi-metodo<a class="headerlink" href="#cfa-per-matrici-multi-tratto-multi-metodo" title="Link to this heading">#</a></h1>
-<p>La validità rappresenta la capacità di una procedura di misurazione di misurare ciò che si intende misurare. È possibile distinguere diversi tipi di validità cui corrispondono metodi diversi di verifica.</p>
+<p>La validità descrive quanto accuratamente un metodo di misurazione riesce a quantificare ciò che è inteso misurare. Esistono diverse categorie di validità, ognuna delle quali si verifica attraverso metodi specifici. Una suddivisione convenzionale delle diverse tipologie di validità, che non riflette necessariamente gli sviluppi più recenti in questo campo, può essere descritta come segue (per ulteriori dettagli si rimanda al capitolo dedicato alla validità nella presente dispena):</p>
 <ul class="simple">
-<li><p><strong>validità di facciata</strong>: “il grado in con cui gli item di un test appaiono ragionevoli o sensibili, rispetto al costrutto, sia alle persone a cui è diretto il test sia a coloro che lo usano” (Anastasi, 1969); è dunque determinata dalla significatività apparente ed esteriore che una misura presenta; per valutarla si richiedono giudizi di esperti relativamente alla validità che sembrano avere le misure;</p></li>
-<li><p><strong>validità di contenuto</strong>: una misura ha validità di contenuto quando i suoi indicatori rappresentano in modo accurato l’universo di contenuto misurato; anche questo tipo di validità richiede il giudizio di esperti;</p></li>
-<li><p><strong>validità di costrutto</strong>: richiama la definizione generica di validità: “il grado in cui uno strumento misura il costrutto che intende misurare”; si riferisce all’inferenza della misurazione delle variabili latenti (o costrutti), non direttamente osservabili ma dedotte, attraverso un modello statistico, da variabili osservate; è data dal livello in cui gli indicatori misurano accuratamente i costrutti teorici che interessa misurare; essa è verificata praticamente attraverso la misura dell’associazione tra un costrutto ed altri costrutti secondo particolari modelli teorici (poniamo, per esempio, di voler costruire uno strumento che misuri la depressione di un particolare gruppo di individui; secondo l’ipotesi, lo strumento fornirà una buona misura di depressione, ovvero avrà validità di costrutto, se risulterà essere inversamente correlato con il benessere, ad esempio; per poter procedere in questo modo è necessario assumere che la teoria sia corretta, ovvero che esista la relazione ipotizzata tra depressione e benessere);</p></li>
-<li><p><strong>validità di criterio</strong>: rappresenta la capacità di uno strumento di fare previsioni accurate; la verifica di tale validità è fatta a partire dalla sua adeguatezza nel predire un criterio esterno;</p></li>
-<li><p><strong>validità concorrente</strong>: è determinata osservando quanto lo strumento correla con altri strumenti che il ricercatore ritiene validi nel misurare la stessa caratteristica; l’osservazione di una forte relazione statisticamente è considerata verifica della validità;</p></li>
-<li><p><strong>validità convergente</strong>: è determinata confrontando e correlando i punteggi ottenuti con la misura da validare con quelli ottenuti con la misura di un altro costrutto, teoricamente legato al primo. La possibilità di verificare la validità convergente dipende quindi dall’esistenza di costrutti, e relative misure, legati con quello misurato;</p></li>
-<li><p><strong>validità discriminante</strong>: è speculare alla validità convergente; essa è alta quando la misura da validare non correla con le misure di altri costrutti, teoricamente distinti dal primo.</p></li>
+<li><p><strong>Validità di facciata</strong>: Valuta se gli item di un test appaiono appropriati e ragionevoli rispetto al costrutto che si intende misurare, sia agli occhi di chi partecipa al test sia di chi lo utilizza. Questo tipo di validità è basato sulla percezione esteriore della misura e si valuta tramite i giudizi di esperti sulla plausibilità delle misure.</p></li>
+<li><p><strong>Validità di contenuto</strong>: Una misura possiede validità di contenuto quando i suoi indicatori rappresentano in modo esaustivo e accurato l’area di contenuto da misurare. Anche questa validità si basa sui giudizi di esperti.</p></li>
+<li><p><strong>Validità di costrutto</strong>: Corrisponde alla definizione generale di validità e si riferisce alla capacità di uno strumento di misurare il costrutto che intende misurare. La validità di costrutto si verifica attraverso la correttezza con cui gli indicatori misurano i costrutti teorici di interesse e si convalida attraverso l’analisi delle relazioni tra il costrutto misurato e altri costrutti correlati, secondo modelli teorici specifici.</p></li>
+<li><p><strong>Validità di criterio</strong>: Indica la capacità di uno strumento di fare previsioni accurate su un criterio esterno, valutando quanto bene la misura predice questo criterio.</p></li>
+<li><p><strong>Validità concorrente</strong>: Si determina osservando quanto uno strumento di misurazione correla con altri strumenti considerati validi per misurare lo stesso attributo. Una forte correlazione è generalmente vista come una conferma della validità.</p></li>
+<li><p><strong>Validità convergente</strong>: Si verifica confrontando e correlando i punteggi ottenuti con la misura da validare con quelli ottenuti da un altro costrutto teoricamente relazionato. La verifica di questa validità dipende dall’esistenza di misure valide per costrutti correlati.</p></li>
+<li><p><strong>Validità discriminante</strong>: È l’opposto della validità convergente e si verifica quando la misura in esame non mostra correlazioni significative con le misure di costrutti teoricamente distinti.</p></li>
 </ul>
 <section id="mtmm-e-cfa">
 <h2><span class="section-number">42.1. </span>MTMM e CFA<a class="headerlink" href="#mtmm-e-cfa" title="Link to this heading">#</a></h2>
-<p>La Matrice Multi-Tratto Multi-Metodo (MTMM; Campbell and Fiske, 1959) è un metodo per valutare la validità di costrutto. La MTMM valuta la correlazione tra costrutti differenti misurati sia con metodi uguali, sia con metodi differenti. La ratio è che la validità di costrutto è alta quando lo strumento misura il costrutto in modo tale che lo strumento utilizzato non è essenziale alla misurazione.</p>
+<p>La Matrice Multi-Tratto Multi-Metodo (MTMM) è un approccio utilizzato per valutare la validità di costrutto, esaminando la correlazione tra diversi costrutti misurati sia con gli stessi metodi sia con metodi differenti. La validità di costrutto è considerata alta quando la misura di un costrutto è indipendente dal metodo di misurazione utilizzato.</p>
+</section>
 <section id="un-esempio-concreto">
-<h3><span class="section-number">42.1.1. </span>Un esempio concreto<a class="headerlink" href="#un-esempio-concreto" title="Link to this heading">#</a></h3>
+<h2><span class="section-number">42.2. </span>Un esempio concreto<a class="headerlink" href="#un-esempio-concreto" title="Link to this heading">#</a></h2>
 <p>Nell’esempio discusso da <span id="id1">Brown [<a class="reference internal" href="../z_biblio.html#id55" title="Timothy A Brown. Confirmatory factor analysis for applied research. Guilford publications, 2015.">Bro15</a>]</span>, il ricercatore desidera esaminare la validità del costrutto dei disturbi di personalità del Cluster A del DSM-IV, che sono pattern persistenti di sintomi caratterizzati da comportamenti strani o eccentrici (American Psychiatric Association, 1994). Il cluster A comprende tre costrutti di disturbo della personalità:</p>
 <ul class="simple">
 <li><p><em>paranoico</em> (un pattern duraturo di sfiducia e sospetto tale che le motivazioni degli altri sono interpretate come malevole);</p></li>
@@ -526,8 +523,8 @@ document.write(`
 </ul>
 <p>In un campione di 500 pazienti, ciascuno di questi tre tratti è misurato mediante tre metodi di valutazione:</p>
 <ul class="simple">
-<li><p>un <em>inventario di autovalutazione</em> dei disturbi di personalità;</p></li>
-<li><p>*valutazioni dimensionali da un <em>colloquio clinico</em> strutturato sui disturbi della personalità;</p></li>
+<li><p>un inventario di <em>autovalutazione</em> dei disturbi di personalità;</p></li>
+<li><p>valutazioni dimensionali da un <em>colloquio clinico</em> strutturato sui disturbi della personalità;</p></li>
 <li><p><em>valutazioni osservazionali</em> effettuate da psicologi.</p></li>
 </ul>
 <p>I dati sono contenuti in una matrice 3 (T) × 3 (M), organizzata in modo tale che le correlazioni tra i diversi tratti (disturbi della personalità: paranoico, schizotipico, schizoide) siano annidate all’interno di ciascun metodo (tipo di valutazione: inventario, colloquio clinico, valutazioni degli osservatori).</p>
@@ -556,15 +553,16 @@ document.write(`
 </div>
 </div>
 </div>
-<!-- La MTMM è una matrice di correlazione simmetrica con un'eccezione: le stime di affidabilità (es. alpha di Cronbach) delle misure sono inserite nella diagonale al posto dei valori 1 (es., nei dati in esame la stima di coerenza interna della misura inventariale della personalità paranoica è .93). Come notano Campbell e Fiske (1959), idealmente la diagonale di affidabilità dovrebbe contenere i coefficienti più grandi nella matrice; cioè, la misura dovrebbe essere più fortemente correlata con se stessa che con qualsiasi altro indicatore nella matrice MTMM. -->
-<p>La matrice MTMM è costituita da due tipi di blocchi di coefficienti.</p>
+<p>La Matrice Multi-Tratto Multi-Metodo (MTMM) si organizza in due tipi di blocchi di coefficienti:</p>
 <ol class="arabic simple">
-<li><p>Blocchi di mono-metodo, che contengono correlazioni tra indicatori derivati dallo stesso metodo di valutazione.</p></li>
-<li><p>Blocchi etero-metodo, che contengono correlazioni tra indicatori valutati con metodi differenti. Di centrale interesse è la diagonale di validità, che corrisponde alla diagonale all’interno di ciascun blocco etero-metodo. Le correlazioni sulla diagonale di validità rappresentano stime di validità convergente: diverse misure di costrutti teoricamente simili o sovrapposti dovrebbero essere fortemente interconnesse.</p></li>
+<li><p><strong>Blocchi di mono-metodo</strong>: contengono le correlazioni tra indicatori che provengono dallo stesso metodo di misurazione. Questi blocchi esaminano come diversi indicatori del medesimo tratto si correlano tra loro quando misurati tramite lo stesso strumento.</p></li>
+<li><p><strong>Blocchi di etero-metodo</strong>: includono le correlazioni tra indicatori misurati mediante metodi diversi. Particolarmente significativa è la “diagonale di validità” all’interno di questi blocchi, dove le correlazioni rappresentano stime di validità convergente. In altre parole, misure diverse di costrutti teoricamente simili dovrebbero mostrare forti correlazioni.</p></li>
 </ol>
-<p>Nella matrice MTMM, la validità convergente è evidenziata da forti correlazioni tra metodi che misurano lo stesso tratto (cioè, coefficienti mono-tratto/etero-metodo). Ad esempio, i risultati dell’esempio indicano che le tre diverse misure della personalità schizotipica sono fortemente correlate (valori <span class="math notranslate nohighlight">\(r\)</span> da .676 a .749). Gli elementi al di fuori della diagonale dei blocchi etero-metodo rivelano la validità discriminante: le misure di costrutti teoricamente distinti non dovrebbero essere altamente inter-correlate. La validità discriminante nella matrice MTMM è evidenziata da correlazioni deboli tra diversi tratti misurati con metodi diversi (cioè, coefficienti etero-tratto/etero-metodo) in relazione alle correlazioni sulla diagonale di validità (coefficienti mono-tratto/etero-metodo). Nei dati dell’esempio, il supporto per la validità discriminante è ottenuto dalla constatazione che le correlazioni negli elementi al di fuori della diagonale dei blocchi etero-metodo sono uniformemente inferiori (valori <span class="math notranslate nohighlight">\(r\)</span> = .126 a .290) rispetto ai coefficienti di validità (valori <span class="math notranslate nohighlight">\(r\)</span> = .557 a .749).</p>
-<p>Infine, l’evidenza degli effetti del metodo è ottenuta dall’esame degli elementi fuori dalla  diagonale dei blocchi del mono-metodo. L’entità degli effetti del metodo è riflessa dall’entità differenziale delle correlazioni tra i diversi tratti misurati con lo stesso metodo (coefficienti etero-tratto/mono-metodo) rispetto alle correlazioni tra gli stessi due tratti misurati con metodi diversi. Come mostrato nei dati dell’esempio, sebbene non estrema, è evidente una certa varianza di metodo, in particolare per le misure di valutazione dell’inventario e dell’osservatore. Ad esempio, le valutazioni dell’osservatore dei tratti della personalità paranoica e schizotipica sono più altamente correlate (r = .383) rispetto alle misure etero-metodo di questi tratti (ad esempio, la correlazione tra i tratti della personalità paranoide e schizotipica misurata rispettivamente dall’inventario e dalla valutazione dell’osservatore, è .196). Come nel presente esempio, quando i risultati complessivi indicano che la validità convergente e discriminante sono elevate e gli effetti del metodo sono trascurabili, la validità del costrutto è supportata.</p>
-<p><span id="id2">Brown [<a class="reference internal" href="../z_biblio.html#id55" title="Timothy A Brown. Confirmatory factor analysis for applied research. Guilford publications, 2015.">Bro15</a>]</span> mostra come sia possibile analizzare la matrice MTMM con un modello CFA nel quale si ipotizza che vi siano correlazioni residue tra le specificità di ciascun metodo. Il modello è dunque formulato nel modo seguente: ogni fattore comune (<code class="docutils literal notranslate"><span class="pre">paranoid</span></code>, <code class="docutils literal notranslate"><span class="pre">schizotypal</span></code>, <code class="docutils literal notranslate"><span class="pre">schizoid</span></code>) è identificato dagli item corrispondenti definiti da metodi diversi; le specificità di ciascun metodo, inoltre, sono tra loro correlate.</p>
+<p>Nell’analisi MTMM, una forte correlazione tra metodi che misurano lo stesso tratto evidenzia la validità convergente. Per esempio, potrebbe risultare che diverse misure della personalità schizotipica mostrino correlazioni elevate, con coefficienti ( r ) che variano da 0.676 a 0.749. Al contrario, elementi al di fuori della diagonale nei blocchi di etero-metodo rivelano la validità discriminante, dove le misure di costrutti teoricamente distinti non dovrebbero essere altamente correlate. Questa validità è confermata quando tali correlazioni sono significativamente più basse rispetto a quelle della diagonale di validità, ad esempio, coefficienti che variano da 0.126 a 0.290.</p>
+<p>Inoltre, è possibile rilevare gli effetti del metodo esaminando gli elementi al di fuori della diagonale nei blocchi di mono-metodo. Qui, la varianza nelle correlazioni tra diversi tratti misurati con lo stesso metodo, rispetto alle correlazioni tra gli stessi tratti misurati con metodi diversi, riflette l’entità degli effetti del metodo. Ad esempio, le valutazioni dell’osservatore dei tratti della personalità paranoica e schizotipica potrebbero essere più correlate (r = 0.383) rispetto alle loro misure con metodi diversi (ad esempio, la correlazione tra le misure di personalità paranoide e schizotipica, con l’uso rispettivamente dell’inventario e della valutazione dell’osservatore, è di 0.196).</p>
+<p>La validità del costrutto è supportata quando i dati indicano alta validità convergente e discriminante con effetti del metodo trascurabili.</p>
+<p>Il modello CFA per analizzare la matrice MTMM può includere correlazioni residue tra le specificità di ciascun metodo, supponendo che ogni fattore comune (come <code class="docutils literal notranslate"><span class="pre">paranoid</span></code>, <code class="docutils literal notranslate"><span class="pre">schizotypal</span></code>, <code class="docutils literal notranslate"><span class="pre">schizoid</span></code>) sia identificato da item misurati con metodi diversi e che le specificità di ciascun metodo siano correlate tra loro.</p>
+<p><span id="id2">Brown [<a class="reference internal" href="../z_biblio.html#id55" title="Timothy A Brown. Confirmatory factor analysis for applied research. Guilford publications, 2015.">Bro15</a>]</span> mostra come sia possibile analizzare la matrice MTMM con un modello CFA nel quale si ipotizza che vi siano correlazioni residue tra le specificità di ciascun metodo. Il modello è dunque formulato nel modo seguente: ogni fattore comune (<code class="docutils literal notranslate"><span class="pre">paranoid</span></code>, <code class="docutils literal notranslate"><span class="pre">schizotypal</span></code>, <code class="docutils literal notranslate"><span class="pre">schizoid</span></code>) è identificato dagli item corrispondenti definiti da metodi diversi; le specificità di ciascun metodo, inoltre, sono correlate tra loro.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;</span>
@@ -737,9 +735,8 @@ Variances:
 </div>
 <p>Per i dati considerati da <span id="id3">Brown [<a class="reference internal" href="../z_biblio.html#id55" title="Timothy A Brown. Confirmatory factor analysis for applied research. Guilford publications, 2015.">Bro15</a>]</span>, l’adattamento del modello MTMM è eccellente. Ciò fornisce forti evidenze di validità di costrutto per i fattori Paranoico, Schizoide e Schizotipico che sono stati ipotizzati.</p>
 </section>
-</section>
 <section id="session-info">
-<h2><span class="section-number">42.2. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">42.3. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
@@ -885,11 +882,9 @@ loaded via a namespace (and not attached):
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mtmm-e-cfa">42.1. MTMM e CFA</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">42.1.1. Un esempio concreto</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">42.2. Session Info</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mtmm-e-cfa">42.1. MTMM e CFA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">42.2. Un esempio concreto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">42.3. Session Info</a></li>
 </ul>
   </nav></div>
 

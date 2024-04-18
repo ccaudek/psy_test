@@ -485,16 +485,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dati-non-gaussiani">41.1. Dati non gaussiani</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dati-categoriali">41.2. Dati categoriali</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">41.2.1. Un esempio concreto</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-modello-basato-sulle-soglie-per-risposte-categoriali-ordinate">41.2.2. Il Modello Basato sulle Soglie per Risposte Categoriali Ordinate</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modellazione-di-variabili-categoriali-nei-modelli-sem">41.2.3. Modellazione di Variabili Categoriali nei Modelli SEM</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adattamento-del-modello-con-lmer">41.2.4. Adattamento del Modello con <code class="docutils literal notranslate"><span class="pre">lmer</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dati-non-gaussiani-e-stimatori-alternativi">41.1. Dati non Gaussiani e Stimatori Alternativi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ml-robusto-adattamento-in-presenza-di-non-normalita">41.1.1. ML Robusto: Adattamento in Presenza di Non Normalità</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dati-categoriali">41.1.2. Dati Categoriali</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">41.1.3. Un esempio concreto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-modello-basato-sulle-soglie-per-risposte-categoriali-ordinate">41.1.4. Il Modello Basato sulle Soglie per Risposte Categoriali Ordinate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modellazione-di-variabili-categoriali-nei-modelli-cfa">41.1.5. Modellazione di Variabili Categoriali nei Modelli CFA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adattamento-del-modello-con-lmer">41.1.6. Adattamento del Modello con <code class="docutils literal notranslate"><span class="pre">lmer</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">41.3. Considerazioni conclusive</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">41.4. Session Info</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">41.2. Considerazioni Conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">41.3. Session Info</a></li>
 </ul>
             </nav>
         </div>
@@ -508,19 +509,16 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="dati-non-gaussiani-e-categoriali">
 <span id="cat-data-notebook"></span><h1><span class="section-number">41. </span>Dati non gaussiani e categoriali<a class="headerlink" href="#dati-non-gaussiani-e-categoriali" title="Link to this heading">#</a></h1>
-<p>Negli esempi precedenti di questa dispensa è stato utilizzato lo stimatore di massima verosimiglianza (ML). Molti dei modelli CFA e SEM riportati nella letteratura di ricerca applicata utilizzano infatti stime di ML. Tuttavia, lo stimatore ML è appropriata solo per dati multivariati normali a livello di scala a intervalli (cioè, quando la distribuzione congiunta delle variabili continue è distribuita normalmente). Quando i dati continui si discostano marcatamente dalla normalità (cioè, mostrano una forte asimmetria o curtosi), o quando alcuni degli indicatori non sono a livello di scala a intervalli (cioè, dati binari, politomici o ordinali), allora è preferibile usare uno stimatore diverso da quello di ML.</p>
-<section id="dati-non-gaussiani">
-<h2><span class="section-number">41.1. </span>Dati non gaussiani<a class="headerlink" href="#dati-non-gaussiani" title="Link to this heading">#</a></h2>
-<p>La ricerca ha evidenziato che la stima di massima verosimiglianza (ML) rimane robusta di fronte a piccole deviazioni dalla normalità. Tuttavia, in presenza di una non normalità più marcata, si rende necessario l’uso di stimatori alternativi a ML per garantire l’affidabilità statistica, sia in termini di accuratezza delle statistiche di bontà di adattamento sia per gli errori standard delle stime dei parametri. La stima ML è particolarmente vulnerabile in presenza di un’elevata curtosi.</p>
-<p>Utilizzare ML in condizioni di forte non normalità porta a conseguenze quali:</p>
+<p>Nel materiale precedente di questa dispensa è stato discusso l’utilizzo dello stimatore di massima verosimiglianza (ML), comunemente adottato nei modelli di Analisi Fattoriale Confermativa (CFA) e Structural Equation Modeling (SEM) presenti nella letteratura di ricerca applicata. Tuttavia, l’uso dello stimatore ML è appropriato esclusivamente per dati multivariati normali, ovvero quando la distribuzione congiunta delle variabili continue è normalmente distribuita. In presenza di dati continui che presentano una forte deviazione dalla normalità, come asimmetria o curtosi elevate, o quando gli indicatori non sono a livello di scala intervallare (per esempio, dati binari, politomici o ordinali), è consigliabile adottare stimatori alternativi al ML.</p>
+<section id="dati-non-gaussiani-e-stimatori-alternativi">
+<h2><span class="section-number">41.1. </span>Dati non Gaussiani e Stimatori Alternativi<a class="headerlink" href="#dati-non-gaussiani-e-stimatori-alternativi" title="Link to this heading">#</a></h2>
+<p>Nonostante la stima di massima verosimiglianza (ML) rimanga robusta a piccole deviazioni dalla normalità, situazioni di marcata non normalità richiedono l’adozione di stimatori alternativi per preservare l’affidabilità statistica. L’uso del ML in tali condizioni può portare a:</p>
 <ul class="simple">
 <li><p>Sovrastima della statistica chi-quadrato (<span class="math notranslate nohighlight">\(\chi^2\)</span>) del modello;</p></li>
-<li><p>Sottostima degli indici di bontà di adattamento come TLI (Tucker-Lewis Index) e CFI (Comparative Fit Index);</p></li>
+<li><p>Sottostima degli indici di bontà di adattamento, come il Tucker-Lewis Index (TLI) e il Comparative Fit Index (CFI);</p></li>
 <li><p>Sottostima degli errori standard delle stime dei parametri.</p></li>
 </ul>
-<p>Questi effetti negativi sono amplificati quando la dimensione del campione è ridotta.</p>
-<p>Per mitigare queste conseguenze in situazioni di grave violazione dell’assunzione di normalità multivariata, si utilizzano stimatori differenti da ML. Tra questi, i più noti sono:</p>
-<p>Certamente, esaminerò ciascuno di questi stimatori in modo più approfondito, cercando di rendere la spiegazione tecnica più accessibile:</p>
+<p>Questi problemi si accentuano in campioni di dimensioni ridotte. Per mitigare tali effetti, si raccomanda l’uso dei seguenti stimatori:</p>
 <ol class="arabic simple">
 <li><p><strong>GLS (Generalized Least Squares)</strong>:</p>
 <ul class="simple">
@@ -552,16 +550,16 @@ document.write(`
 </li>
 </ol>
 <p>In sintesi, questi stimatori vengono utilizzati per valutare quanto bene un modello SEM si adatti ai dati. Differiscono nel modo in cui trattano le discrepanze tra i dati osservati e quelli stimati dal modello, e ciascuno ha specifiche situazioni in cui risulta più appropriato.</p>
-<p>Oltre ai quattro metodi di stima già menzionati (GLS, WLS, DWLS, ULS), un altro stimatore importante nel contesto del Structural Equation Modeling (SEM) è il <strong>ML Robusto</strong> (Robust Maximum Likelihood). Questo stimatore è una variazione della stima di massima verosimiglianza tradizionale, progettato per essere più affidabile in presenza di violazioni dell’assunzione di normalità multivariata.</p>
-<p>Il ML Robusto si adatta a situazioni in cui la distribuzione dei dati non rispetta pienamente l’ipotesi di normalità, in particolare quando si verifica un eccesso di curtosi. Questo stimatore è utile perché:</p>
+<section id="ml-robusto-adattamento-in-presenza-di-non-normalita">
+<h3><span class="section-number">41.1.1. </span>ML Robusto: Adattamento in Presenza di Non Normalità<a class="headerlink" href="#ml-robusto-adattamento-in-presenza-di-non-normalita" title="Link to this heading">#</a></h3>
+<p>Oltre ai quattro metodi di stima già menzionati (GLS, WLS, DWLS, ULS), un altro stimatore importante nel contesto del Structural Equation Modeling (SEM) è il <strong>ML Robusto</strong> (<em>Robust Maximum Likelihood</em>). Il ML Robusto è una variante della stima di massima verosimiglianza tradizionale, progettata per migliorare l’affidabilità statistica quando i dati deviano significativamente dalla normalità. Questo stimatore:</p>
 <ul class="simple">
-<li><p><strong>Corregge la Sovrastima di Chi-Quadrato (<span class="math notranslate nohighlight">\(\chi^2\)</span>):</strong> Il ML tradizionale può portare a una sovrastima della statistica <span class="math notranslate nohighlight">\(\chi^2\)</span> in presenza di non normalità. Il ML Robusto fornisce una correzione a questo problema, offrendo una misura più accurata del fit del modello.</p></li>
-<li><p><strong>Errore Standard Affidabile:</strong> Fornisce stime degli errori standard dei parametri che sono più accurate in condizioni di non normalità, a differenza del ML tradizionale che tende a sottostimarli.</p></li>
-<li><p><strong>Miglioramento degli Indici di Bontà di Adattamento:</strong> Rispetto al ML tradizionale, il ML Robusto può offrire una valutazione più accurata degli indici di bontà di adattamento, come il Tucker-Lewis Index (TLI) e il Comparative Fit Index (CFI), che sono fondamentali per valutare la qualità del modello SEM.</p></li>
+<li><p><strong>Corregge la Sovrastima di <span class="math notranslate nohighlight">\(\chi^2\)</span></strong>: Offre una correzione alla sovrastima della statistica chi-quadrato tipica del ML tradizionale.</p></li>
+<li><p><strong>Errore Standard Affidabile</strong>: Fornisce stime più accurate degli errori standard, cruciali in presenza di non normalità.</p></li>
+<li><p><strong>Migliora Indici di Bontà di Adattamento</strong>: Offre valutazioni più precise di indici come TLI e CFI.</p></li>
 </ul>
-<p>Il ML Robusto funziona modificando la stima degli errori standard e la statistica test del <span class="math notranslate nohighlight">\(\chi^2\)</span> per tener conto della non normalità. Questo approccio permette agli analisti di utilizzare la metodologia SEM in una gamma più ampia di scenari di dati, rendendo l’analisi più flessibile e robusta. Per questi motivi, il ML Robusto è diventato un’opzione popolare nell’analisi SEM, soprattutto quando i dati non rispettano perfettamente le assunzioni di normalità multivariata.</p>
-<p>I due stimatori più comunemente usati per dati continui non normali sono ML robusto e minimi quadrati ponderati (WLS). L’uso di WLS non è, in generale, raccomandato, a meno che le dimensioni del campione non siano molto grandi. Al contrario, la ricerca ha dimostrato che il metodo ML robusto fornisce uno stimatore adeguato rispetto a diversi livelli di non normalità.</p>
-<p>Esaminiamo qui un esempio discusso da <span id="id1">Brown [<a class="reference internal" href="../z_biblio.html#id55" title="Timothy A Brown. Confirmatory factor analysis for applied research. Guilford publications, 2015.">Bro15</a>]</span> nelle sue tabelle 9.5 – 9.7.</p>
+<p>In conclusione, l’adozione di stimatori come il ML Robusto o il WLS si rivela essenziale per garantire l’integrità delle analisi SEM in presenza di dati non normali, specialmente quando le dimensioni del campione sono limitate o i dati presentano caratteristiche complesse.</p>
+<p><strong>Esempio.</strong> Esaminiamo qui un esempio discusso da <span id="id1">Brown [<a class="reference internal" href="../z_biblio.html#id55" title="Timothy A Brown. Confirmatory factor analysis for applied research. Guilford publications, 2015.">Bro15</a>]</span> (tabelle 9.5 – 9.7).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readRDS</span><span class="p">(</span><span class="n">here</span><span class="o">::</span><span class="nf">here</span><span class="p">(</span><span class="s">&quot;data&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;brown_table_9_5_data.RDS&quot;</span><span class="p">))</span>
@@ -760,24 +758,25 @@ Variances:
 </div>
 </section>
 <section id="dati-categoriali">
-<h2><span class="section-number">41.2. </span>Dati categoriali<a class="headerlink" href="#dati-categoriali" title="Link to this heading">#</a></h2>
-<p>Nella nostra discussione precedente, abbiamo esplorato il modello SEM partendo dall’ipotesi che i dati fossero continui e distribuiti secondo una normale multivariata congiunta. In questo capitolo, abbiamo allentato tale ipotesi e esaminato la stima robusta per dati non normalmente distribuiti. Tuttavia, è importante riconoscere che la maggior parte dei dati raccolti per l’analisi fattoriale confermativa (CFA) o SEM proviene da questionari e scale di tipo Likert, che generano dati categoriali (come binari, ordinali e nominali). Questi dati hanno una natura ordinale e non sono continui.</p>
-<p>Quando si lavora con almeno un indicatore categoriale (binario, politomico o ordinale), il metodo di massima verosimiglianza (ML) ordinario non dovrebbe essere impiegato per stimare i modelli CFA/SEM. Trattare variabili categoriali come se fossero continue può avere diverse conseguenze negative, tra cui:</p>
+<h3><span class="section-number">41.1.2. </span>Dati Categoriali<a class="headerlink" href="#dati-categoriali" title="Link to this heading">#</a></h3>
+<p>Nella discussione precedente, abbiamo esaminato il modello CFA presupponendo che i dati fossero continui e normalmente distribuiti in maniera multivariata. Tuttavia, abbiamo anche trattato la stima robusta per dati non normalmente distribuiti. Ora, è fondamentale riconoscere che molti dei dati utilizzati nelle analisi fattoriali confermative (CFA) o SEM provengono da questionari e scale di tipo Likert, che producono dati categoriali, inclusi formati binari, ordinali e nominali. Questi dati sono di natura ordinale e non sono continui.</p>
+<p>L’uso del metodo di massima verosimiglianza (ML) ordinario non è raccomandato quando si analizzano dati con almeno un indicatore categoriale. Trattare tali variabili come se fossero continue può portare a varie conseguenze indesiderate, tra cui:</p>
 <ul class="simple">
-<li><p><strong>Stime Attenuate delle Relazioni</strong>: Le relazioni tra gli indicatori possono risultare attenuate, specialmente in presenza di effetti pavimento o soffitto (floor or ceiling effects).</p></li>
-<li><p><strong>Emergenza di “Pseudo-Fattori”</strong>: Possono emergere fattori artefatti, non veri e propri costrutti, ma risultati del metodo statistico utilizzato.</p></li>
-<li><p><strong>Distorsione degli Indici di Bontà di Adattamento e delle Stime degli Errori Standard</strong>: Gli indici che valutano la qualità dell’adattamento del modello possono essere distorti, così come le stime degli errori standard.</p></li>
+<li><p><strong>Stime Attenuate delle Relazioni</strong>: Le relazioni tra gli indicatori possono risultare attenuate, specialmente se influenzate da effetti di pavimento o soffitto.</p></li>
+<li><p><strong>Emergenza di “Pseudo-Fattori”</strong>: La possibilità di identificare falsi fattori, che non rappresentano veri costrutti ma sono piuttosto artefatti del metodo statistico utilizzato.</p></li>
+<li><p><strong>Distorsione degli Indici di Bontà di Adattamento e delle Stime degli Errori Standard</strong>: Questi indici, che valutano la qualità dell’adattamento del modello, possono essere distorti, così come le stime degli errori standard.</p></li>
 <li><p><strong>Stime Errate dei Parametri</strong>: I parametri del modello potrebbero essere stimati in modo inaccurato.</p></li>
 </ul>
-<p>Per affrontare questi problemi, esistono vari stimatori specifici per i dati categoriali. Alcuni esempi includono:</p>
+<p>Per mitigare questi problemi, esistono stimatori specifici per i dati categoriali, tra cui:</p>
 <ul class="simple">
-<li><p><strong>WLS (Weighted Least Squares)</strong>: Adatto per dati categoriali, tenendo conto del loro peso specifico.</p></li>
+<li><p><strong>WLS (Weighted Least Squares)</strong>: Adatto per dati categoriali, considera il peso specifico di ciascuna osservazione.</p></li>
 <li><p><strong>WLSMV (Weighted Least Squares Mean and Variance Adjusted)</strong>: Una versione modificata di WLS che si adatta meglio alle peculiarità dei dati categoriali.</p></li>
-<li><p><strong>ULS (Unweighted Least Squares)</strong>: Non prevede ponderazioni, utile per dati categoriali senza presupporre pesi specifici.</p></li>
+<li><p><strong>ULS (Unweighted Least Squares)</strong>: Questo stimatore non prevede ponderazioni e può essere utile per dati categoriali senza presupporre pesi specifici.</p></li>
 </ul>
-<p>Nelle sezioni successive, discuteremo in dettaglio l’approccio SEM per dati categoriali, evidenziando le specificità e le migliori pratiche per gestire questo tipo di dati nelle analisi SEM. Questo approccio ci permette di fare inferenze più accurate da dati categoriali, preservando l’integrità e la validità delle conclusioni tratte dalle analisi SEM.</p>
+<p>Nelle sezioni seguenti, approfondiremo l’approccio CFA per dati categoriali, evidenziando le specificità e le migliori pratiche per gestire questo tipo di dati nelle analisi CFA. Questo ci permetterà di effettuare inferenze più accurate, preservando l’integrità e la validità delle conclusioni derivanti dalle analisi.</p>
+</section>
 <section id="un-esempio-concreto">
-<h3><span class="section-number">41.2.1. </span>Un esempio concreto<a class="headerlink" href="#un-esempio-concreto" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">41.1.3. </span>Un esempio concreto<a class="headerlink" href="#un-esempio-concreto" title="Link to this heading">#</a></h3>
 <p>Nell’esempio discusso da <span id="id3">Brown [<a class="reference internal" href="../z_biblio.html#id55" title="Timothy A Brown. Confirmatory factor analysis for applied research. Guilford publications, 2015.">Bro15</a>]</span>, i ricercatori desiderano verificare un modello uni-fattoriale di dipendenza da alcol in un campione di 750 pazienti ambulatoriali. Gli indicatori di alcolismo sono item binari che riflettono la presenza/assenza di sei criteri diagnostici per l’alcolismo (0 = criterio non soddisfatto, 1 = criterio soddisfatto). I dati sono i seguenti:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -850,13 +849,12 @@ y5    0   1
 </div>
 </div>
 </div>
-<p>Nelle tabelle precedenti, possiamo vedere che ci sono più casi dove entrambe le variabili sono 1 rispetto a quando entrambe sono 0 o quando una è 1 e l’altra è 0. Questo indicare una relazione ordinale tra queste coppie di variabili nel dataset.</p>
+<p>Nelle tabelle precedenti, si osserva una maggiore frequenza di casi in cui entrambe le variabili assumono il valore 1, rispetto ai casi in cui entrambe sono 0 o in cui una è 1 e l’altra è 0. Questo suggerisce l’esistenza di una relazione ordinale tra le coppie di variabili nel dataset.</p>
 </section>
 <section id="il-modello-basato-sulle-soglie-per-risposte-categoriali-ordinate">
-<h3><span class="section-number">41.2.2. </span>Il Modello Basato sulle Soglie per Risposte Categoriali Ordinate<a class="headerlink" href="#il-modello-basato-sulle-soglie-per-risposte-categoriali-ordinate" title="Link to this heading">#</a></h3>
-<p>La teoria fondamentale dietro il modello basato sulle soglie per risposte categoriali ordinate si fonda sull’idea che le risposte di una variabile categoriale possano essere concepite come generate da una corrispondente variabile continua sottostante, normalmente distribuita. Questa variabile continua sottostante è una variabile latente e non osservata che rappresenta la propensione a rispondere in una certa direzione. Le risposte categoriali sono considerate misurazioni approssimative di queste variabili continue latenti non osservate.</p>
-<p>Le soglie (o punti di scala), che suddividono l’intera gamma della scala continua latente in un numero finito di categorie, sono utilizzate per definire la mappatura delle risposte di propensione latente alle risposte categoriali osservate.</p>
-<p>Per illustrare, prendiamo come esempio lo strumento di misurazione costituito da item strutturati su una scala Likert a 7 punti, rappresentando così una variabile categoriale con sette classi ordinali. Poniamo che I denoti genericamente un item, e I* rappresenti la variabile continua sottostante non osservata corrispondente a I. La relazione tra I e I* è descritta dal seguente insieme di equazioni:</p>
+<h3><span class="section-number">41.1.4. </span>Il Modello Basato sulle Soglie per Risposte Categoriali Ordinate<a class="headerlink" href="#il-modello-basato-sulle-soglie-per-risposte-categoriali-ordinate" title="Link to this heading">#</a></h3>
+<p>Il modello basato sulle soglie per risposte categoriali ordinate si basa sull’idea che ogni risposta di una variabile categoriale possa essere vista come il risultato di una variabile continua non osservata, che è normalmente distribuita. Questa variabile nascosta, chiamata variabile latente, rappresenta la tendenza di una persona a rispondere in un determinato modo. Le risposte che vediamo, classificate in categorie, sono in realtà approssimazioni di questa variabile latente.</p>
+<p>Immaginiamo di utilizzare un questionario dove le risposte sono su una scala Likert a 7 punti. Questo crea una variabile categoriale con sette categorie ordinate. Se denotiamo con I un particolare item del questionario e con I* la sua corrispondente variabile latente non osservabile, possiamo descrivere il loro legame attraverso le seguenti equazioni, che mappano la variabile latente alle risposte osservabili:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -869,8 +867,8 @@ I &amp;= 6 \quad \text{se} \quad t_5 &lt; I^* \leq t_6 \\
 I &amp;= 7 \quad \text{se} \quad t_6 &lt; I^* &lt; \infty
 \end{align*}
 \end{split}\]</div>
-<p>dove <span class="math notranslate nohighlight">\(t_i (i = 1,\dots,6; −\infty &lt;t_1 &lt;t_2 &lt;t_3 &lt;t_4 &lt;t_5 &lt;t_6 &lt; \infty)\)</span> sono soglie che definiscono regioni di I* per produrre le risposte categoriali I. Il numero di soglie è sempre uno in meno rispetto al numero di categorie, simile al numero di variabili fittizie necessarie per codificare una variabile di classificazione nell’analisi di regressione classica.</p>
-<p>Il processo di categorizzazione di I* è anche illustrato graficamente nella seguente figura. In questa figura, la variabile continua latente sottostante I* è una distribuzione normale standard rappresentata dalla curva nera. Le sei linee verticali sono le soglie ipotetiche con t1 a t6 segnate in cima alle linee. Le possibili categorie di risposta vanno da I = 1 a I = 7. Il valore di I dipende quindi dalle regioni (demarcate dalle soglie) in cui I* cade.</p>
+<p>In queste equazioni, <span class="math notranslate nohighlight">\( t_i \)</span> (con i da 1 a 6) rappresenta le soglie che dividono l’intero spettro della variabile latente in sette categorie. Le soglie sono disposte in modo che <span class="math notranslate nohighlight">\( -\infty &lt; t_1 &lt; t_2 &lt; t_3 &lt; t_4 &lt; t_5 &lt; t_6 &lt; \infty \)</span>. È importante notare che il numero di soglie è sempre uno in meno rispetto al numero di categorie, un po’ come il numero di variabili dummy usate nell’analisi di regressione per codificare una variabile categoriale.</p>
+<p>Questo processo di categorizzazione può essere visualizzato come segue: si immagini una curva normale che rappresenta la distribuzione della variabile latente I*. Le sei linee verticali nella figura rappresentano le soglie <span class="math notranslate nohighlight">\( t_1 \)</span> a <span class="math notranslate nohighlight">\( t_6 \)</span>. Le risposte possibili vanno da I = 1 a I = 7, e la categoria specifica (I) dipende dall’intervallo, definito dalle soglie, in cui il valore di I* si trova.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definire le soglie</span>
@@ -900,27 +898,38 @@ I &amp;= 7 \quad \text{se} \quad t_6 &lt; I^* &lt; \infty
 <img alt="../_images/b43a7b55356850de4f32fd6193d9b5c5125d1cba93c128c330d747b632af32ae.png" src="../_images/b43a7b55356850de4f32fd6193d9b5c5125d1cba93c128c330d747b632af32ae.png" />
 </div>
 </div>
-<p>La categorizzazione di I* per produrre dati su scala Likert è soggetta a errori di misurazione e campionamento. Come sottolineato da O’Brien (1985), questo processo può produrre (1) errore di categorizzazione risultante dalla divisione della scala continua nella scala categoriale, e (2) errore di trasformazione risultante da categorie di larghezze disuguali. Pertanto, le soglie dovrebbero essere stimate insieme a tutti gli altri parametri nel modello di equazioni strutturali.</p>
+<p>La conversione della variabile latente <span class="math notranslate nohighlight">\( I^* \)</span> in dati su una scala Likert comporta inevitabilmente degli errori di misurazione e campionamento. Come evidenziato da O’Brien (1985), questo processo di categorizzazione introduce due tipi principali di errore:</p>
+<ol class="arabic simple">
+<li><p><strong>Errore di categorizzazione</strong>: Questo errore deriva dalla segmentazione di una scala continua in una scala categoriale, dove la variabile latente viene divisa in categorie distinte.</p></li>
+<li><p><strong>Errore di trasformazione</strong>: Questo errore emerge quando le categorie hanno larghezze disuguali, influenzando la fedeltà della rappresentazione delle misure originali della variabile latente.</p></li>
+</ol>
+<p>Di conseguenza, è fondamentale che le soglie siano stimate contemporaneamente agli altri parametri nel modello di equazioni strutturali per garantire che tali errori siano minimizzati e che l’analisi rifletta accuratamente la realtà sottostante.</p>
 </section>
-<section id="modellazione-di-variabili-categoriali-nei-modelli-sem">
-<h3><span class="section-number">41.2.3. </span>Modellazione di Variabili Categoriali nei Modelli SEM<a class="headerlink" href="#modellazione-di-variabili-categoriali-nei-modelli-sem" title="Link to this heading">#</a></h3>
-<p>Quando si modellano variabili categoriali ordinate in SEM, l’approccio comune è quello di collegarle a una variabile latente sottostante, denominata I*. Questa variabile rappresenta una sorta di “propensione nascosta” che determina le risposte osservate nelle variabili categoriali.</p>
-<p>Ad esempio, la seguente equazione modella la variabile latente I* utilizzando una serie di p predittori (x1, x2, …, xp). Ogni predittore ha un effetto, misurato dai coefficienti β1, β2, …, βP:</p>
+<section id="modellazione-di-variabili-categoriali-nei-modelli-cfa">
+<h3><span class="section-number">41.1.5. </span>Modellazione di Variabili Categoriali nei Modelli CFA<a class="headerlink" href="#modellazione-di-variabili-categoriali-nei-modelli-cfa" title="Link to this heading">#</a></h3>
+<p>Nell’ambito dei modelli CFA, le variabili categoriali ordinate vengono spesso modellate collegandole a una variabile latente sottostante, denominata <span class="math notranslate nohighlight">\( I^* \)</span>. Questa variabile latente rappresenta una sorta di “propensione nascosta” che influisce sulle risposte osservate nelle variabili categoriali.</p>
+<p>Per esemplificare, consideriamo il seguente modello che esprime la variabile latente <span class="math notranslate nohighlight">\( I^* \)</span> attraverso una serie di predittori (x1, x2, …, xp), ognuno dei quali contribuisce all’esito con un effetto quantificato dai coefficienti <span class="math notranslate nohighlight">\( \beta_1, \beta_2, ..., \beta_P \)</span>:</p>
 <div class="math notranslate nohighlight">
 \[ 
 I^*_i = \beta_0 + \beta_1 x_{1i} + \dots + \beta_P x_{Pi} + e_i.
 \]</div>
-<p>Qui, <span class="math notranslate nohighlight">\( I^*_i \)</span> rappresenta la propensione latente per l’i-esimo osservatore o risposta. <span class="math notranslate nohighlight">\( \beta_0 \)</span> è un termine costante (intercetta), mentre <span class="math notranslate nohighlight">\( \beta_1, \dots, \beta_P \)</span> sono i coefficienti che quantificano l’effetto di ciascun predittore sul livello della propensione latente. Infine, <span class="math notranslate nohighlight">\( e_i \)</span> è il termine di errore che cattura le variazioni non spiegate dai predittori.</p>
-<p>Quando la variabile categoriale I è un indicatore di misurazione di un fattore latente (<span class="math notranslate nohighlight">\(\xi\)</span>) in un modello fattoriale confermativo, l’equazione si semplifica:</p>
+<p>In questa equazione:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( I^*_i \)</span> indica la propensione latente per l’osservatore <span class="math notranslate nohighlight">\( i \)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \beta_0 \)</span> è un termine costante che agisce come intercetta.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \beta_1, \dots, \beta_P \)</span> sono i coefficienti che misurano l’impatto di ciascun predittore sulla propensione latente.</p></li>
+<li><p><span class="math notranslate nohighlight">\( e_i \)</span> è il termine di errore che rappresenta le variazioni non spiegate dai predittori.</p></li>
+</ul>
+<p>Quando la variabile categoriale <span class="math notranslate nohighlight">\( I \)</span> funge da indicatore di un fattore latente <span class="math notranslate nohighlight">\( \xi \)</span> in un modello fattoriale confermativo, la formulazione dell’equazione si semplifica a:</p>
 <div class="math notranslate nohighlight">
 \[ 
 I^*_i = \beta_0 + \beta_1 \xi_i + e_i.
 \]</div>
-<p>Qui, <span class="math notranslate nohighlight">\( \beta_1 \)</span> è il carico fattoriale, che misura quanto fortemente il fattore latente <span class="math notranslate nohighlight">\(\xi\)</span> influisce sulla variabile latente I*. Questa equazione è strutturata in modo simile a quelle utilizzate per modellare indicatori di misurazione continui in SEM.</p>
-<p>Questo approccio di modellazione riflette la teoria che le risposte categoriali osservate possono essere viste come manifestazioni esterne di una propensione latente interna. L’uso dei minimi quadrati ponderati (WLS) come metodo di stima è appropriato per questo tipo di modellazione. Tuttavia, è fondamentale ricordare che modellare risposte categoriali ordinate può richiedere passaggi aggiuntivi per gestire accuratamente la natura ordinale dei dati. Questi dettagli aggiuntivi saranno discussi nelle sezioni successive.</p>
+<p>In questa configurazione, <span class="math notranslate nohighlight">\( \beta_1 \)</span> rappresenta il carico fattoriale, indicando quanto fortemente il fattore latente <span class="math notranslate nohighlight">\( \xi \)</span> influisce sulla variabile latente <span class="math notranslate nohighlight">\( I^* \)</span>. Questo schema è analogo a quello usato per modellare indicatori di misurazione continui nei modelli SEM.</p>
+<p>Questo approccio riflette l’idea che le risposte categoriali osservabili possono essere considerate come manifestazioni esterne di una propensione interna latente. Per la stima di tali modelli, il metodo dei minimi quadrati ponderati (WLS) è generalmente appropriato. Tuttavia, è importante tenere presente che la modellazione di risposte categoriali ordinate può richiedere considerazioni aggiuntive per gestire adeguatamente la loro natura ordinale, dettagli che verranno approfonditi nelle sezioni seguenti.</p>
 </section>
 <section id="adattamento-del-modello-con-lmer">
-<h3><span class="section-number">41.2.4. </span>Adattamento del Modello con <code class="docutils literal notranslate"><span class="pre">lmer</span></code><a class="headerlink" href="#adattamento-del-modello-con-lmer" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">41.1.6. </span>Adattamento del Modello con <code class="docutils literal notranslate"><span class="pre">lmer</span></code><a class="headerlink" href="#adattamento-del-modello-con-lmer" title="Link to this heading">#</a></h3>
 <p>Specifichiamo il modello nel modo seguente:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -931,9 +940,9 @@ I^*_i = \beta_0 + \beta_1 \xi_i + e_i.
 </div>
 </div>
 </div>
-<p>Nel modellare i dati utilizzando scale ordinali, <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> adotta un approccio mirato che considera specificamente la natura dei dati categoriali. Questo viene fatto attraverso l’impiego dello stimatore WLSMV (Weighted Least Squares Mean and Variance Adjusted). In questo contesto, la stima dei parametri avviene mediante l’utilizzo dei minimi quadrati ponderati diagonalmente (DWLS), un metodo che si concentra sull’utilizzo delle componenti diagonali della matrice di peso. Questa scelta rende lo stimatore particolarmente efficace nel trattare dati non normali.</p>
-<p>Una delle caratteristiche salienti dello stimatore WLSMV è il calcolo di errori standard robusti. Questi vengono determinati con una metodologia che assicura l’affidabilità delle stime, anche quando i dati non rispettano le classiche assunzioni di normalità. Inoltre, le statistiche di test generate da WLSMV sono opportunamente aggiustate per riflettere variazioni nella media e nella varianza dei dati. Tale aggiustamento è fondamentale per garantire l’accuratezza e la validità delle statistiche di test, soprattutto in contesti dove la distribuzione dei dati si discosta dalla normalità.</p>
-<p>In sintesi, <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> propone una metodologia avanzata per la modellazione di dati categoriali, sfruttando lo stimatore WLSMV che si adatta efficacemente alle specificità di questi dati. Ciò si traduce in stime precise e statistiche di test attendibili, rendendo <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> uno strumento molto adeguato per l’analisi di dati categoriali complessi.</p>
+<p>Nell’analizzare dati ottenuti da scale ordinali, il software <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> impiega un metodo specializzato per gestire la natura particolare dei dati categoriali. Questo approccio utilizza lo stimatore WLSMV (Weighted Least Squares Mean and Variance Adjusted). La stima dei parametri avviene tramite il metodo dei minimi quadrati ponderati diagonalmente (DWLS), che si concentra sulle componenti diagonali della matrice di peso. Questa specificità rende lo stimatore WLSMV particolarmente adatto per analizzare dati non normali.</p>
+<p>Una caratteristica importante dello stimatore WLSMV è la sua capacità di calcolare errori standard robusti. Questi sono determinati attraverso un metodo che mantiene l’affidabilità delle stime anche quando i dati non soddisfano le tradizionali assunzioni di normalità. Inoltre, le statistiche di test prodotte da WLSMV sono adeguatamente corrette per tenere conto delle variazioni nella media e nella varianza dei dati. Questo tipo di correzione è cruciale per garantire l’accuratezza e la validità delle statistiche di test, specialmente quando la distribuzione dei dati devia dalla normalità.</p>
+<p>In conclusione, <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> offre un approccio avanzato per la modellazione di dati categoriali utilizzando lo stimatore WLSMV, che è ottimizzato per rispondere alle esigenze specifiche di questi tipi di dati. Questo si traduce in stime più precise e statistiche di test affidabili, rendendo <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> uno strumento molto appropriato per l’analisi di dati categoriali complessi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cfa</span><span class="p">(</span>
@@ -1173,15 +1182,20 @@ Variances:
 </section>
 </section>
 <section id="considerazioni-conclusive">
-<h2><span class="section-number">41.3. </span>Considerazioni conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h2>
-<p>In questo capitolo, abbiamo illustrato la modellazione delle equazioni strutturali per dati non normalmente distribuiti. È importante sottolineare che, nella pratica analitica SEM, la presenza di dati non normalmente distribuiti dovrebbe essere considerata la norma. Di conseguenza, l’uso della massima verosimiglianza robusta (ML robusta) è raccomandato ogni volta che ci siano dubbi sulla violazione dell’assunzione di normalità dei dati.</p>
-<p>Alcune considerazioni importanti meritano attenzione. Innanzitutto, benché tutte queste versioni robuste di ML producano errori standard robusti e una statistica di test robusta (o scalata), le stime dei parametri ottenute rimangono quelle della stima ML originale. In secondo luogo, la robustezza di questi aggiustamenti riguarda la violazione dell’assunzione di normalità, ma non la presenza di valori anomali, che è un argomento a sé stante. Terzo, la robustezza di questi aggiustamenti non si estende alla violazione delle specifiche del modello, che è un altro tema studiato nella letteratura SEM.</p>
-<p>In questo capitolo, abbiamo inoltre introdotto lo stimatore WLSMV per dati categoriali, dimostrando che lo stimatore WLSMV è più efficiente con una stima dell’errore standard più piccola rispetto all’MLE di default e all’MLE robusta.</p>
-<p>Va sottolineato che lo stimatore WLSMV è un metodo generale per dati categoriali in SEM, implementato nella maggior parte dei software, come ad esempio MPlus. WLSMV è una parola chiave generale che richiede simultaneamente lo stimatore DWLS e una statistica di test del chi-quadro aggiustata per media e varianza (MV). Pertanto, in <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>, possiamo semplicemente utilizzare <code class="docutils literal notranslate"><span class="pre">lavaan(...,</span> <span class="pre">estimator</span> <span class="pre">=</span> <span class="pre">&quot;WLSMV&quot;)</span></code>, che è equivalente a <code class="docutils literal notranslate"><span class="pre">lavaan(...,</span> <span class="pre">estimator</span> <span class="pre">=</span> <span class="pre">&quot;DWLS&quot;,</span> <span class="pre">se</span> <span class="pre">=</span> <span class="pre">&quot;robust.sem&quot;,</span> <span class="pre">test</span> <span class="pre">=</span> <span class="pre">&quot;scaled.shifted&quot;)</span></code>.</p>
-<p>Oltre al WLSMV, <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> offre anche un estimatore sperimentale di massima verosimiglianza marginale (estimator = “MML”). L’MML può essere lento nella stima a causa dell’integrazione numerica associata a questo stimatore e più incline a problemi di convergenza. Un altro stimatore è l’ADF (estimator = “WLS”), che non fa alcuna specifica assunzione distributiva sui dati. Tuttavia, questo stimatore WLS richiede una dimensione del campione molto grande (N &gt; 5000) affinché la stima dei parametri (cioè stime dei parametri, SE e statistiche di test) possa essere considerata affidabile.</p>
+<h2><span class="section-number">41.2. </span>Considerazioni Conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h2>
+<p>In questo capitolo, abbiamo esplorato la modellazione CFA con dati non normalmente distribuiti. È essenziale riconoscere che, nella pratica analitica, incontrare dati non normalmente distribuiti dovrebbe essere considerato normale. Di conseguenza, si raccomanda l’utilizzo della massima verosimiglianza robusta (ML robusta) ogni volta che sorgono dubbi sulla normalità dei dati.</p>
+<p>Ci sono alcune considerazioni importanti da tenere presente:</p>
+<ol class="arabic simple">
+<li><p><strong>Stabilità delle stime di parametro</strong>: Anche se le versioni robuste di ML forniscono errori standard robusti e statistiche di test adattate, le stime dei parametri ottenute rimangono quelle della stima ML originale.</p></li>
+<li><p><strong>Robustezza limitata</strong>: Gli aggiustamenti robusti compensano la violazione della normalità, ma non coprono la presenza di valori anomali, che richiedono un’analisi separata.</p></li>
+<li><p><strong>Limitazioni degli aggiustamenti</strong>: Gli aggiustamenti robusti non trattano violazioni delle specifiche del modello, che è un altro argomento di discussione nella letteratura CFA e SEM.</p></li>
+</ol>
+<p>Abbiamo anche discusso l’uso dello stimatore WLSMV per dati categoriali, evidenziando come esso fornisca una stima dell’errore standard più precisa rispetto all’MLE standard e all’MLE robusta.</p>
+<p>Va notato che WLSMV è un metodo generale per dati categoriali nella CFA, ampiamente implementato in software come MPlus. In <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>, l’uso di WLSMV può essere attivato semplicemente con <code class="docutils literal notranslate"><span class="pre">lavaan(...,</span> <span class="pre">estimator</span> <span class="pre">=</span> <span class="pre">&quot;WLSMV&quot;)</span></code>, equivalente a <code class="docutils literal notranslate"><span class="pre">lavaan(...,</span> <span class="pre">estimator</span> <span class="pre">=</span> <span class="pre">&quot;DWLS&quot;,</span> <span class="pre">se</span> <span class="pre">=</span> <span class="pre">&quot;robust.sem&quot;,</span> <span class="pre">test</span> <span class="pre">=</span> <span class="pre">&quot;scaled.shifted&quot;)</span></code>.</p>
+<p>Oltre al WLSMV, <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> offre anche lo stimatore sperimentale di massima verosimiglianza marginale (MML), che, pur essendo preciso, può essere lento e più suscettibile a problemi di convergenza a causa della complessità dell’integrazione numerica. Un altro stimatore è l’ADF (estimator = “WLS”), che non assume specifiche distributive sui dati, ma richiede una dimensione campionaria molto grande (N &gt; 5000) per considerare affidabili le stime dei parametri, gli errori standard e le statistiche di test.</p>
 </section>
 <section id="session-info">
-<h2><span class="section-number">41.4. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">41.3. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
@@ -1322,16 +1336,17 @@ loaded via a namespace (and not attached):
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dati-non-gaussiani">41.1. Dati non gaussiani</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dati-categoriali">41.2. Dati categoriali</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">41.2.1. Un esempio concreto</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-modello-basato-sulle-soglie-per-risposte-categoriali-ordinate">41.2.2. Il Modello Basato sulle Soglie per Risposte Categoriali Ordinate</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modellazione-di-variabili-categoriali-nei-modelli-sem">41.2.3. Modellazione di Variabili Categoriali nei Modelli SEM</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adattamento-del-modello-con-lmer">41.2.4. Adattamento del Modello con <code class="docutils literal notranslate"><span class="pre">lmer</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dati-non-gaussiani-e-stimatori-alternativi">41.1. Dati non Gaussiani e Stimatori Alternativi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ml-robusto-adattamento-in-presenza-di-non-normalita">41.1.1. ML Robusto: Adattamento in Presenza di Non Normalità</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dati-categoriali">41.1.2. Dati Categoriali</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">41.1.3. Un esempio concreto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#il-modello-basato-sulle-soglie-per-risposte-categoriali-ordinate">41.1.4. Il Modello Basato sulle Soglie per Risposte Categoriali Ordinate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modellazione-di-variabili-categoriali-nei-modelli-cfa">41.1.5. Modellazione di Variabili Categoriali nei Modelli CFA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adattamento-del-modello-con-lmer">41.1.6. Adattamento del Modello con <code class="docutils literal notranslate"><span class="pre">lmer</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">41.3. Considerazioni conclusive</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">41.4. Session Info</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">41.2. Considerazioni Conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">41.3. Session Info</a></li>
 </ul>
   </nav></div>
 
