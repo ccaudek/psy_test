@@ -270,7 +270,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../_cfa/03_cat_data.html">41. Dati non gaussiani e categoriali</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_cfa/04_mmm.html">42. CFA per matrici multi-tratto multi-metodo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_cfa/05_bifactor.html">43. Modello bifattoriale</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../_cfa/06_efa_lavaan.html">44. Analisi Fattoriale Esplorativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/06_efa_lavaan.html">44. Exploratory Structural Equation Modeling (ESEM)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
 <ul class="current nav bd-sidenav">
@@ -485,13 +485,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#livelli-nel-modello-sem-multilivello">53.1. Livelli nel Modello SEM Multilivello</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficiente-di-correlazione-intraclass">53.2. Coefficiente di Correlazione Intraclass</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#icc-nei-modelli-sem-multilivello">53.2.1. ICC nei Modelli SEM Multilivello</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calcolo-dell-icc-con-lmer">53.2.2. Calcolo dell’ICC con <code class="docutils literal notranslate"><span class="pre">lmer</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficiente-di-correlazione-intraclass">53.1. Coefficiente di Correlazione Intraclass</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#icc-nei-modelli-sem-multilivello">53.1.1. ICC nei Modelli SEM Multilivello</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calcolo-dell-icc-con-lmer">53.1.2. Calcolo dell’ICC con <code class="docutils literal notranslate"><span class="pre">lmer</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">53.3. Considerazioni Conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">53.2. Considerazioni Conclusive</a></li>
 </ul>
             </nav>
         </div>
@@ -523,8 +522,9 @@ document.write(`
 </div>
 </div>
 </div>
-<p>I dati raccolti nella ricerca psicologica e nelle scienze sociali spesso presentano complesse strutture multi-livello, dove le informazioni sono organizzate in gruppi o cluster, e le osservazioni all’interno di questi cluster tendono a essere correlate tra loro. Questo aspetto è fondamentale poiché, in molte situazioni, i modelli classici di equazioni strutturali non sono adeguati per l’analisi di tali dati. Il motivo principale è che questi modelli tradizionali non tengono conto delle correlazioni intrinseche presenti nei dati organizzati su più livelli. L’uso di tali modelli senza adeguare la loro struttura ai dati multi-livello può portare a stime che non sono né valide né efficienti.</p>
-<p>Nel contesto della modellazione di equazioni strutturali multi-livello (multilevel SEM), si adotta un approccio basato su variabili latenti per suddividere la variazione tra e all’interno dei cluster. In questa prospettiva, le variabili osservate sono considerate come influenzate congiuntamente da variazioni latenti sia interne ai cluster che tra cluster diversi. Questo significa che nel modello vengono introdotte variabili latenti che catturano le differenze di gruppo (tra cluster) e le variazioni individuali (all’interno del cluster), permettendo un’analisi più precisa e rappresentativa dei dati complessi tipici delle scienze sociali e psicologiche.</p>
+<p>I dati raccolti nella ricerca psicologica e nelle scienze sociali spesso presentano complesse strutture multi-livello, dove le informazioni sono organizzate in gruppi o cluster, e le osservazioni all’interno di questi cluster tendono a essere correlate tra loro. Questo aspetto è fondamentale poiché, in molte situazioni, i modelli classici di equazioni strutturali non sono adeguati per l’analisi di tali dati. Il motivo principale è che questi modelli tradizionali non tengono conto delle correlazioni intrinseche presenti nei dati organizzati su più livelli. L’uso dei modelli SEM tradizionali, senza adeguare la loro struttura ai dati multi-livello, può portare a stime che non sono né valide né efficienti.</p>
+<p>Nel contesto della modellazione delle equazioni strutturali multilivello (multilevel SEM), si adotta un approccio che prevede l’utilizzo di variabili latenti per distinguere la variazione tra i cluster e quella all’interno dei cluster stessi. In questa prospettiva, le variabili osservate vengono considerate come influenzate congiuntamente da fattori latenti che incidono sui dati all’interno di ogni cluster e da fattori latenti che influenzano le differenze tra i diversi cluster.</p>
+<p>In sostanza, ciò significa che il modello include variabili latenti progettate per catturare le differenze di gruppo (tra i cluster) e le variazioni individuali (all’interno di ciascun cluster), consentendo un’analisi più precisa e rappresentativa dei dati complessi tipici delle scienze sociali e psicologiche. Mediante questa strategia, siamo in grado di comprendere in modo più approfondito sia la variazione sistematica tra i gruppi che quella individuale all’interno dei gruppi stessi, offrendo così un quadro più completo e informativo delle dinamiche sottostanti ai fenomeni studiati.</p>
 <p>In questo capitolo introdurremo brevemente l’implementazione in <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> per l’analisi SEM multilivello. Utilizzeremo un set di dati artificiali ricavato dal sito di MPlus.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -600,24 +600,20 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="livelli-nel-modello-sem-multilivello">
-<h2><span class="section-number">53.1. </span>Livelli nel Modello SEM Multilivello<a class="headerlink" href="#livelli-nel-modello-sem-multilivello" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><strong>Livello 1:</strong> Il primo livello rappresenta le misurazioni individuali. Nel modello, <code class="docutils literal notranslate"><span class="pre">fw</span></code> è un fattore latente che viene definito dalle quattro variabili osservate <code class="docutils literal notranslate"><span class="pre">y1</span></code>, <code class="docutils literal notranslate"><span class="pre">y2</span></code>, <code class="docutils literal notranslate"><span class="pre">y3</span></code>, <code class="docutils literal notranslate"><span class="pre">y4</span></code>. Queste variabili sono influenzate da due predittori <code class="docutils literal notranslate"><span class="pre">x1</span></code> e <code class="docutils literal notranslate"><span class="pre">x2</span></code>. Questo livello cattura la variazione a livello individuale.</p></li>
 <li><p><strong>Livello 2:</strong> Il secondo livello considera le differenze tra i gruppi o i cluster (indicati dalla variabile <code class="docutils literal notranslate"><span class="pre">clus</span></code>). Qui, <code class="docutils literal notranslate"><span class="pre">fb</span></code> è un altro fattore latente definito dalle stesse variabili osservate <code class="docutils literal notranslate"><span class="pre">y1</span></code>, <code class="docutils literal notranslate"><span class="pre">y2</span></code>, <code class="docutils literal notranslate"><span class="pre">y3</span></code>, <code class="docutils literal notranslate"><span class="pre">y4</span></code>. La variabile <code class="docutils literal notranslate"><span class="pre">w</span></code> agisce come un predittore a livello di cluster.</p></li>
 </ol>
-</section>
 <section id="coefficiente-di-correlazione-intraclass">
-<h2><span class="section-number">53.2. </span>Coefficiente di Correlazione Intraclass<a class="headerlink" href="#coefficiente-di-correlazione-intraclass" title="Link to this heading">#</a></h2>
-<p>Lo scopo dell’analisi SEM Multilivello è quello di calcolare il Coefficiente di Correlazione Intraclasse (ICC). L’ICC è una misura statistica essenziale in studi dove i dati sono strutturati in gruppi o cluster. L’ICC valuta la somiglianza o l’omogeneità delle misurazioni all’interno dei gruppi. In termini più tecnici, l’ICC quantifica la proporzione di varianza totale nei dati che può essere attribuita alle differenze tra i gruppi. Più alto è l’ICC, maggiore è l’influenza del raggruppamento sulle misurazioni, indicando che una parte significativa della varianza osservata nei dati deriva dalle differenze tra i gruppi piuttosto che dalle variazioni individuali all’interno di essi.</p>
+<h2><span class="section-number">53.1. </span>Coefficiente di Correlazione Intraclass<a class="headerlink" href="#coefficiente-di-correlazione-intraclass" title="Link to this heading">#</a></h2>
+<p>Lo scopo dell’analisi SEM Multilivello è quello di calcolare il Coefficiente di Correlazione Intraclasse (ICC). L’ICC è una misura statistica usata in studi dove i dati sono strutturati in gruppi o cluster. L’ICC valuta la somiglianza o l’omogeneità delle misurazioni all’interno dei gruppi. In termini più tecnici, l’ICC quantifica la proporzione di varianza totale nei dati che può essere attribuita alle differenze tra i gruppi. Più alto è l’ICC, maggiore è l’influenza del raggruppamento sulle misurazioni, indicando che una parte sostanziale della varianza osservata nei dati deriva dalle differenze tra i gruppi piuttosto che dalle variazioni individuali all’interno di essi.</p>
 <section id="icc-nei-modelli-sem-multilivello">
-<h3><span class="section-number">53.2.1. </span>ICC nei Modelli SEM Multilivello<a class="headerlink" href="#icc-nei-modelli-sem-multilivello" title="Link to this heading">#</a></h3>
-<p>Nei modelli SEM multilivello, l’ICC assume un ruolo importante. Per ciascuna variabile osservata (ad esempio, <code class="docutils literal notranslate"><span class="pre">y1</span></code>, <code class="docutils literal notranslate"><span class="pre">y2</span></code>, <code class="docutils literal notranslate"><span class="pre">y3</span></code>, <code class="docutils literal notranslate"><span class="pre">y4</span></code>), l’ICC può essere calcolato come la proporzione della varianza tra i gruppi (o cluster) rispetto alla varianza totale. La varianza totale è composta dalla somma della varianza tra i gruppi e quella all’interno dei gruppi.</p>
-<p>Calcolare l’ICC per ogni variabile osservata in un modello SEM multilivello fornisce informazioni cruciali sulla struttura dei dati. Un ICC elevato per una variabile specifica suggerisce che la posizione di un individuo all’interno di un particolare gruppo o cluster ha un impatto significativo su quella misurazione. Questo può indicare che le differenze di gruppo (come ad esempio, gli individui, ma i gruppi potrebbero essere scuole o unità familiari) sono fattori rilevanti che devono essere considerati nell’analisi dei dati.</p>
-<p>In pratica, l’ICC aiuta a decidere se è necessario adottare un approccio di analisi multilivello. Se l’ICC è basso, potrebbe non essere necessario utilizzare modelli complessi che tengono conto della struttura a cluster dei dati. Al contrario, un ICC alto suggerisce che l’analisi dovrebbe adeguatamente modellare la struttura dei dati multi-livello per evitare stime distorte e conclusioni errate.</p>
+<h3><span class="section-number">53.1.1. </span>ICC nei Modelli SEM Multilivello<a class="headerlink" href="#icc-nei-modelli-sem-multilivello" title="Link to this heading">#</a></h3>
+<p>Calcolare l’ICC (<em>Intra-Class Correlation</em>) per ciascuna variabile osservata in un modello SEM multilivello è cruciale per comprendere la struttura dei dati. Un ICC elevato per una variabile specifica indica che la posizione di un individuo all’interno di un determinato gruppo o cluster ha un notevole impatto su quella misurazione. Questo suggerisce che le differenze tra i gruppi (come individui, scuole o unità familiari) sono aspetti cruciali che devono essere considerati nell’analisi dei dati.</p>
+<p>In pratica, l’ICC aiuta a determinare se è opportuno adottare un approccio di analisi multilivello. Un ICC basso suggerisce che potrebbe non essere necessario utilizzare modelli complessi che considerano la struttura a cluster dei dati. Al contrario, un ICC alto indica che è fondamentale modellare accuratamente la struttura multilivello dei dati per evitare stime distorte e conclusioni erronee. Utilizzando l’ICC come guida, gli analisti possono decidere se e in che misura integrare l’approccio multilivello per ottenere una comprensione più accurata e affidabile dei fenomeni studiati.</p>
 </section>
 <section id="calcolo-dell-icc-con-lmer">
-<h3><span class="section-number">53.2.2. </span>Calcolo dell’ICC con <code class="docutils literal notranslate"><span class="pre">lmer</span></code><a class="headerlink" href="#calcolo-dell-icc-con-lmer" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">53.1.2. </span>Calcolo dell’ICC con <code class="docutils literal notranslate"><span class="pre">lmer</span></code><a class="headerlink" href="#calcolo-dell-icc-con-lmer" title="Link to this heading">#</a></h3>
 <p>Per iniziare, poniamoci il problema di calcolare ICC mediante un modello lineare multilivello. Svolgeremo questi calcoli con <code class="docutils literal notranslate"><span class="pre">lmer</span></code>. Il modello <code class="docutils literal notranslate"><span class="pre">lmer</span></code> considera ogni variabile osservata separatamente, fornendo un’analisi indipendente per ciascuna. Per <code class="docutils literal notranslate"><span class="pre">y1</span></code>, per esempio, abbiamo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -640,7 +636,7 @@ document.write(`
 <div class="output text_html">0.129536196128802</div></div>
 </div>
 <p>Il Coefficiente di Correlazione Intraclass (ICC) di 0.129 per la variabile <code class="docutils literal notranslate"><span class="pre">y1</span></code> significa che circa il 12.9% della variazione totale in <code class="docutils literal notranslate"><span class="pre">y1</span></code> è ascrivibile alle differenze tra gli studenti, considerati come unità separate o cluster individuali. Questa percentuale relativamente modesta della variazione totale suggerisce che le caratteristiche o i comportamenti individuali degli studenti spiegano solo una piccola parte della variazione osservata in <code class="docutils literal notranslate"><span class="pre">y1</span></code>.</p>
-<p>Un ICC di questo livello, che si può considerare relativamente basso, implica che la maggior parte della variazione nella variabile non è legata in modo significativo alle differenze tra gli studenti. Questo può essere indicativo del fatto che altri fattori, esterni alle caratteristiche individuali degli studenti, giocano un ruolo più determinante. In un contesto educativo, ad esempio, questo potrebbe suggerire che elementi come l’ambiente scolastico, le metodologie didattiche impiegate, o le specificità del programma di studi, hanno un impatto maggiore sulla variazione di <code class="docutils literal notranslate"><span class="pre">y1</span></code> rispetto alle differenze individuali tra gli studenti.</p>
+<p>Un ICC di questo livello, che si può considerare relativamente basso, implica che la maggior parte della variazione nella variabile non è legata in modo sostanziale alle differenze tra gli studenti. Questo può essere indicativo del fatto che altri fattori, esterni alle caratteristiche individuali degli studenti, giocano un ruolo più determinante. In un contesto educativo, ad esempio, questo potrebbe suggerire che elementi come l’ambiente scolastico, le metodologie didattiche impiegate, o le specificità del programma di studi, hanno un impatto maggiore sulla variazione di <code class="docutils literal notranslate"><span class="pre">y1</span></code> rispetto alle differenze individuali tra gli studenti.</p>
 <p>Calcoliamo ora l’ICC con un modello SEM multilivello.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -808,7 +804,7 @@ Variances:
 </section>
 </section>
 <section id="considerazioni-conclusive">
-<h2><span class="section-number">53.3. </span>Considerazioni Conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">53.2. </span>Considerazioni Conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h2>
 <p>In questo capitolo, abbiamo illustrato il modello di equazioni strutturali multilivello utilizzando <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>. Come evidenziato dall’esempio, l’implementazione in <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> è molto diretta, richiedendo solo l’inclusione dell’opzione <code class="docutils literal notranslate"><span class="pre">cluster</span></code> nella funzione <code class="docutils literal notranslate"><span class="pre">sem</span></code>. È importante sottolineare che, al momento, <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> supporta solo modelli SEM a due livelli.</p>
 <p>Nell’ambito dei modelli SEM multilivello, abbiamo visto come l’interpretazione dei coefficienti di correlazione intra-classe (ICC) possa fornire intuizioni significative sulla variazione dei dati all’interno di gruppi o cluster. Un ICC basso, come quello osservato nell’esempio (0.129), indica che una porzione minore della variazione totale è attribuibile alle differenze tra i cluster. Nel contesto specifico dei nostri dati, dove ogni studente è considerato un cluster individuale, ciò suggerisce che fattori esterni agli studenti stessi potrebbero giocare un ruolo più significativo nella variazione osservata rispetto alle caratteristiche individuali degli studenti.</p>
 <p>In conclusione, la modellazione di equazioni strutturali multilivello è uno strumento potente e flessibile nell’analisi di dati strutturati gerarchicamente. <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>, sebbene limitato ai modelli a due livelli, fornisce un approccio accessibile e diretto per questi tipi di analisi. Per modelli più complessi e a più livelli, Mplus e Stata offrono soluzioni alternative che possono gestire una gamma più ampia di esigenze analitiche.</p>
@@ -879,13 +875,12 @@ Variances:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#livelli-nel-modello-sem-multilivello">53.1. Livelli nel Modello SEM Multilivello</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficiente-di-correlazione-intraclass">53.2. Coefficiente di Correlazione Intraclass</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#icc-nei-modelli-sem-multilivello">53.2.1. ICC nei Modelli SEM Multilivello</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calcolo-dell-icc-con-lmer">53.2.2. Calcolo dell’ICC con <code class="docutils literal notranslate"><span class="pre">lmer</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficiente-di-correlazione-intraclass">53.1. Coefficiente di Correlazione Intraclass</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#icc-nei-modelli-sem-multilivello">53.1.1. ICC nei Modelli SEM Multilivello</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calcolo-dell-icc-con-lmer">53.1.2. Calcolo dell’ICC con <code class="docutils literal notranslate"><span class="pre">lmer</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">53.3. Considerazioni Conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">53.2. Considerazioni Conclusive</a></li>
 </ul>
   </nav></div>
 
