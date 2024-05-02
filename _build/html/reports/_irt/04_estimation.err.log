@@ -18,41 +18,32 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-source("../_common.R")
-
-suppressPackageStartupMessages({
-    library("grid")
-    library("latex2exp")
-    library("mirt")
-    library("TAM")
-    # devtools::install_github("masurp/ggmirt")
-    library("ggmirt")
-    library("cmdstanr")
-    library("posterior")
-    options(posterior.num_args = list(sigfig = 2)) # by default summaries with 2 significant digits
-    library("rstan")
-    library("bayesplot")
-    color_scheme_set("brightblue")
-    })
+stan_file <- "../code/rasch_model.stan"
+mod <- cmdstan_model(stan_file)
+mod$print()
 ------------------
 
+----- stderr -----
+fatal error: file '/opt/anaconda3/envs/stan_env/lib/clang/16/include/arm_fp16.h' has been modified since the precompiled header 'stan/src/stan/model/model_header_16_0.hpp.gch' was built: mtime changed (was 1706884841, now 1711057963)
+note: please rebuild precompiled header 'stan/src/stan/model/model_header_16_0.hpp.gch'
+----- stderr -----
+Warning message:
+“CmdStan's precompiled header (PCH) files may need to be rebuilt.
+If your model failed to compile please run rebuild_cmdstan().
+If the issue persists please open a bug report.”
+----- stderr -----
+1 error generated.
+----- stderr -----
+make: *** [make/program:61: /var/folders/s7/z86r4t9j6yx376cm120nln6w0000gn/T/RtmpDpA5WP/model-72122ecc4bf.o] Error 1
+------------------
 
-Error in library("latex2exp"): non c'è alcun pacchetto chiamato ‘latex2exp’
+Error: An error occured during compilation! See the message above for more information.
 Traceback:
 
-1. suppressPackageStartupMessages({
- .     library("grid")
- .     library("latex2exp")
- .     library("mirt")
- .     library("TAM")
- .     library("ggmirt")
- .     library("cmdstanr")
- .     library("posterior")
- .     options(posterior.num_args = list(sigfig = 2))
- .     library("rstan")
- .     library("bayesplot")
- .     color_scheme_set("brightblue")
- . })
-2. withCallingHandlers(expr, packageStartupMessage = function(c) tryInvokeRestart("muffleMessage"))
-3. library("latex2exp")   # at line 5 of file <text>
+1. cmdstan_model(stan_file)
+2. CmdStanModel$new(stan_file = stan_file, exe_file = exe_file, 
+ .     compile = compile, ...)
+3. initialize(...)
+4. self$compile(...)
+5. stop(err_msg, call. = FALSE)
 

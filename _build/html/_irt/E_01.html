@@ -502,23 +502,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">library</span><span class="p">(</span><span class="s2">&quot;LaplacesDemon&quot;</span><span class="p">):</span> <span class="n">non</span> <span class="n">c</span><span class="s1">&#39;è alcun pacchetto chiamato ‘LaplacesDemon’</span>
-<span class="ne">Traceback</span>:
-
-<span class="mi">1</span><span class="o">.</span> <span class="n">suppressPackageStartupMessages</span><span class="p">({</span>
- <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;tidyverse&quot;</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;car&quot;</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;LaplacesDemon&quot;</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;gmodels&quot;</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;effects&quot;</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;psych&quot;</span><span class="p">)</span>
- <span class="o">.</span> <span class="p">})</span>
-<span class="mi">2</span><span class="o">.</span> <span class="n">withCallingHandlers</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">packageStartupMessage</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">tryInvokeRestart</span><span class="p">(</span><span class="s2">&quot;muffleMessage&quot;</span><span class="p">))</span>
-<span class="mi">3</span><span class="o">.</span> <span class="n">library</span><span class="p">(</span><span class="s2">&quot;LaplacesDemon&quot;</span><span class="p">)</span>   <span class="c1"># at line 4 of file &lt;text&gt;</span>
-</pre></div>
-</div>
-</div>
 </div>
 <p><strong>E1.</strong> Per chiarire il significato del coefficiente <span class="math notranslate nohighlight">\(\beta\)</span> nel caso della regressione logistica, si utilizzino i dati <code class="docutils literal notranslate"><span class="pre">chdage</span></code> e si ripeta l’analisi precedente dicotomizzando l’età in funzione della media.</p>
 <div class="cell docutils container">
@@ -529,6 +512,23 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>id</th><th scope=col>age</th><th scope=col>chd</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>1</td><td>20</td><td>0</td></tr>
+	<tr><th scope=row>2</th><td>2</td><td>23</td><td>0</td></tr>
+	<tr><th scope=row>3</th><td>3</td><td>24</td><td>0</td></tr>
+	<tr><th scope=row>4</th><td>5</td><td>25</td><td>1</td></tr>
+	<tr><th scope=row>5</th><td>4</td><td>25</td><td>0</td></tr>
+	<tr><th scope=row>6</th><td>7</td><td>26</td><td>0</td></tr>
+</tbody>
+</table>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -606,44 +606,6 @@ Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 Chi^2 =  19.27843     d.f. =  1     p =  1.129752e-05 
 
  
-$t
-            y
-x             0  1
-  SopraMedia 16 32
-  SottoMedia 41 11
-
-$prop.row
-            y
-x                    0         1
-  SopraMedia 0.3333333 0.6666667
-  SottoMedia 0.7884615 0.2115385
-
-$prop.col
-            y
-x                    0         1
-  SopraMedia 0.2807018 0.7441860
-  SottoMedia 0.7192982 0.2558140
-
-$prop.tbl
-            y
-x               0    1
-  SopraMedia 0.16 0.32
-  SottoMedia 0.41 0.11
-
-$chisq
-
-	Pearson&#39;s Chi-squared test
-
-data:  t
-X-squared = 21.094, df = 1, p-value = 4.372e-06
-
-
-$chisq.corr
-
-	Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
-
-data:  t
-X-squared = 19.278, df = 1, p-value = 1.13e-05
 </pre></div>
 </div>
 </div>
@@ -656,30 +618,15 @@ X-squared = 19.278, df = 1, p-value = 1.13e-05
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>$data
-            Outcome
-Predictor     0  1 Total
-  SopraMedia 16 32    48
-  SottoMedia 41 11    52
-  Total      57 43   100
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">loadNamespace</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="n">non</span> <span class="n">c</span><span class="s1">&#39;è alcun pacchetto chiamato ‘epitools’</span>
+<span class="ne">Traceback</span>:
 
-$measure
-            odds ratio with 95% C.I.
-Predictor     estimate      lower     upper
-  SopraMedia 1.0000000         NA        NA
-  SottoMedia 0.1341463 0.05475114 0.3286733
-
-$p.value
-            two-sided
-Predictor      midp.exact fisher.exact   chi.square
-  SopraMedia           NA           NA           NA
-  SottoMedia 4.582028e-06 6.194004e-06 4.371863e-06
-
-$correction
-[1] FALSE
-
-attr(,&quot;method&quot;)
-[1] &quot;Unconditional MLE &amp; normal approximation (Wald) CI&quot;
+<span class="mi">1</span><span class="o">.</span> <span class="nb">print</span><span class="p">(</span><span class="n">epitools</span><span class="p">::</span><span class="n">oddsratio</span><span class="p">(</span><span class="n">chdage</span><span class="err">$</span><span class="n">eta_categoria</span><span class="p">,</span> <span class="n">chdage</span><span class="err">$</span><span class="n">chd</span><span class="p">,</span> <span class="n">conf</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">,</span> 
+ <span class="o">.</span>     <span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;wald&quot;</span><span class="p">))</span>
+<span class="mi">2</span><span class="o">.</span> <span class="n">loadNamespace</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="mi">3</span><span class="o">.</span> <span class="n">withRestarts</span><span class="p">(</span><span class="n">stop</span><span class="p">(</span><span class="n">cond</span><span class="p">),</span> <span class="n">retry_loadNamespace</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="n">NULL</span><span class="p">)</span>
+<span class="mi">4</span><span class="o">.</span> <span class="n">withOneRestart</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">restarts</span><span class="p">[[</span><span class="mi">1</span><span class="n">L</span><span class="p">]])</span>
+<span class="mi">5</span><span class="o">.</span> <span class="n">doWithOneRestart</span><span class="p">(</span><span class="k">return</span><span class="p">(</span><span class="n">expr</span><span class="p">),</span> <span class="n">restart</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

@@ -486,13 +486,13 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-regressione-logistica-per-variabili-binarie">58.1. Modello di Regressione Logistica per Variabili Binarie</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-lineare-nelle-probabilita">58.2. Modello lineare nelle probabilità</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalita">58.2.1. Normalità</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#omoschedasticita">58.2.2. Omoschedasticità</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-lineare-nelle-probabilita">58.2. Modello Lineare nelle Probabilità</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problemi-di-normalita">58.2.1. Problemi di Normalità</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problematiche-di-omoschedasticita">58.2.2. Problematiche di Omoschedasticità</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linearita">58.2.3. Linearità</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constrained-linear-probability-model">58.3. Constrained linear-probability model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-lineare-nelle-probabilita-vincolato">58.3. Modello Lineare nelle Probabilità Vincolato</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regressione-logistica">58.4. Regressione Logistica</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilita-odds-e-logit">58.5. Probabilità, Odds e Logit</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trasformazione-inversa-del-logit">58.5.1. Trasformazione Inversa del Logit</a></li>
@@ -524,6 +524,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="modello-di-regressione-logistica">
 <span id="logistic-reg-notebook"></span><h1><span class="section-number">58. </span>Modello di Regressione Logistica<a class="headerlink" href="#modello-di-regressione-logistica" title="Link to this heading">#</a></h1>
+<p>Prima di immergerci nell’esplorazione dei modelli di Teoria della Risposta all’Item (IRT), è fondamentale acquisire una solida comprensione del modello di regressione logistica. Questo modello, ampiamente utilizzato per analizzare dati categorici, ci serve come solido punto di partenza per comprendere i più complessi modelli IRT. La regressione logistica, infatti, si occupa di stimare la probabilità che un evento avvenga, date certe variabili predittive. Analogamente, i modelli IRT si focalizzano sulla probabilità che un esaminando risponda correttamente a un item, basandosi su parametri che descrivono sia l’abilità dell’esaminando sia le caratteristiche dell’item.</p>
+<p>Nonostante le somiglianze, i modelli IRT si distaccano in maniera sostanziale dalla regressione logistica per la loro capacità di modellare simultaneamente le proprietà degli item e le abilità degli individui. Mentre la regressione logistica assume che ogni osservazione sia indipendente, i modelli IRT considerano le interdipendenze tra le risposte agli item e tra gli item stessi. Nel presente capitolo, ci dedicheremo  ad esplorare il modello di regressione logistica.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">suppressPackageStartupMessages</span><span class="p">({</span>
@@ -533,45 +535,29 @@ document.write(`
 <span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;gmodels&quot;</span><span class="p">)</span>
 <span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;effects&quot;</span><span class="p">)</span>
 <span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;psych&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;jtools&quot;</span><span class="p">)</span>
 <span class="w">    </span><span class="p">})</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">library</span><span class="p">(</span><span class="s2">&quot;LaplacesDemon&quot;</span><span class="p">):</span> <span class="n">non</span> <span class="n">c</span><span class="s1">&#39;è alcun pacchetto chiamato ‘LaplacesDemon’</span>
-<span class="ne">Traceback</span>:
-
-<span class="mi">1</span><span class="o">.</span> <span class="n">suppressPackageStartupMessages</span><span class="p">({</span>
- <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;tidyverse&quot;</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;car&quot;</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;LaplacesDemon&quot;</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;gmodels&quot;</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;effects&quot;</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;psych&quot;</span><span class="p">)</span>
- <span class="o">.</span> <span class="p">})</span>
-<span class="mi">2</span><span class="o">.</span> <span class="n">withCallingHandlers</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">packageStartupMessage</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">tryInvokeRestart</span><span class="p">(</span><span class="s2">&quot;muffleMessage&quot;</span><span class="p">))</span>
-<span class="mi">3</span><span class="o">.</span> <span class="n">library</span><span class="p">(</span><span class="s2">&quot;LaplacesDemon&quot;</span><span class="p">)</span>   <span class="c1"># at line 4 of file &lt;text&gt;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="modello-di-regressione-logistica-per-variabili-binarie">
 <h2><span class="section-number">58.1. </span>Modello di Regressione Logistica per Variabili Binarie<a class="headerlink" href="#modello-di-regressione-logistica-per-variabili-binarie" title="Link to this heading">#</a></h2>
-<p>Il modello di regressione logistica è adatto quando si studia la relazione tra una variabile dipendente dicotomica (successo e fallimento) e una o più variabili indipendenti, sia quantitative che qualitative. Supponiamo di avere <span class="math notranslate nohighlight">\(n\)</span> osservazioni indipendenti, dove <span class="math notranslate nohighlight">\(Y_i\)</span> rappresenta l’osservazione <span class="math notranslate nohighlight">\(i\)</span>-esima sulla variabile risposta, con <span class="math notranslate nohighlight">\(i=1, \dots, n\)</span>. Ogni unità statistica è associata a un vettore di variabili esplicative <span class="math notranslate nohighlight">\((x_1, \dots, x_p)\)</span>. La relazione di interesse è tra la probabilità di risposta <span class="math notranslate nohighlight">\(\pi_i\)</span> e le variabili esplicative <span class="math notranslate nohighlight">\(x=x_1, \dots, x_p\)</span>, formalmente espressa come:</p>
+<p>Il modello di regressione logistica si utilizza per analizzare la relazione tra una variabile dipendente dicotomica, che assume i valori di “successo” e “fallimento”, e una o più variabili indipendenti, che possono essere sia quantitative che qualitative. Consideriamo <span class="math notranslate nohighlight">\(n\)</span> osservazioni indipendenti, dove <span class="math notranslate nohighlight">\(Y_i\)</span> indica l’osservazione <span class="math notranslate nohighlight">\(i\)</span>-esima della variabile risposta, per <span class="math notranslate nohighlight">\(i=1, \dots, n\)</span>. Ogni osservazione è associata a un vettore di variabili esplicative <span class="math notranslate nohighlight">\((x_1, \dots, x_p)\)</span>. La relazione che vogliamo esaminare è tra la probabilità di successo <span class="math notranslate nohighlight">\(\pi_i\)</span> e le variabili esplicative, espressa dalla formula:</p>
 <div class="math notranslate nohighlight">
 \[
 P(Y=1 \mid X=x_i) = \pi_i.
 \]</div>
-<p>Qui, la variabile dipendente <span class="math notranslate nohighlight">\(Y\)</span> è Bernoulliana, assumendo valori:</p>
+<p>In questo contesto, la variabile dipendente <span class="math notranslate nohighlight">\(Y\)</span> segue una distribuzione di Bernoulli, con i seguenti possibili valori:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 y_i = 
 \begin{cases} 
-    1 &amp; \text{per un successo ($i$-esima osservazione)},\\
-    0 &amp; \text{altrimenti},
+    1 &amp; \text{per un successo (per l'osservazione $i$-esima)},\\
+    0 &amp; \text{per un fallimento}.
 \end{cases}
 \end{split}\]</div>
-<p>con probabilità <span class="math notranslate nohighlight">\(\pi\)</span> e <span class="math notranslate nohighlight">\(1-\pi\)</span> rispettivamente:</p>
+<p>Le probabilità associate a questi valori sono rispettivamente <span class="math notranslate nohighlight">\(\pi\)</span> per il successo e <span class="math notranslate nohighlight">\(1-\pi\)</span> per il fallimento:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -579,6 +565,7 @@ y_i =
     P(Y_i = 0) &amp;= 1-\pi.
 \end{aligned}
 \end{split}\]</div>
+<p>Questo modello permette quindi di studiare come le variabili esplicative influenzino la probabilità di un evento binario, quali il successo o il fallimento.</p>
 <p>Per illustrare, consideriamo un dataset di 100 volontari, dove <code class="docutils literal notranslate"><span class="pre">age</span></code> è la variabile esplicativa e <code class="docutils literal notranslate"><span class="pre">chd</span></code> è la variabile risposta che indica la presenza (<code class="docutils literal notranslate"><span class="pre">chd</span></code> = 1) o assenza (<code class="docutils literal notranslate"><span class="pre">chd</span></code> = 0) di disturbi cardiaci. La media condizionata <span class="math notranslate nohighlight">\(\mathbb{E}(Y \mid X=x)\)</span> in una popolazione può essere vista come la proporzione di valori 1 per un dato punteggio <span class="math notranslate nohighlight">\(x\)</span> sulla variabile esplicativa (ad esempio, l’età), ovvero la probabilità condizionata <span class="math notranslate nohighlight">\(\pi_i\)</span> di osservare la presenza di sintomi cardiaci in un certo gruppo d’età:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -600,7 +587,7 @@ y_i =
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><table class="dataframe">
-<caption>A data.frame: 6 x 3</caption>
+<caption>A data.frame: 6 × 3</caption>
 <thead>
 	<tr><th></th><th scope=col>id</th><th scope=col>age</th><th scope=col>chd</th></tr>
 	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
@@ -631,8 +618,7 @@ y_i =
 <span class="w">        </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Stima Non Parametrica della Regressione di CHD su Age&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Età&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Proporzione di CHD = 1&quot;</span>
-<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<span class="w">    </span><span class="nf">theme_minimal</span><span class="p">()</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span>
 </pre></div>
 </div>
 </div>
@@ -640,87 +626,77 @@ y_i =
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`geom_smooth()` using formula = &#39;y ~ x&#39;
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/e190540e4252ab70bbded97cd1cf65f105d4eaf72fbc48e7e61b1fea0bbf5f8a.png"><img alt="../_images/e190540e4252ab70bbded97cd1cf65f105d4eaf72fbc48e7e61b1fea0bbf5f8a.png" src="../_images/e190540e4252ab70bbded97cd1cf65f105d4eaf72fbc48e7e61b1fea0bbf5f8a.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/b62788726a0867d6c493c4cd5b9b307d89dfd6c488f957c478b598879ffbaa21.png"><img alt="../_images/b62788726a0867d6c493c4cd5b9b307d89dfd6c488f957c478b598879ffbaa21.png" src="../_images/b62788726a0867d6c493c4cd5b9b307d89dfd6c488f957c478b598879ffbaa21.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 <p>Per valori bassi della variabile <code class="docutils literal notranslate"><span class="pre">age</span></code> la proporzione condizionata di valori <span class="math notranslate nohighlight">\(Y=1\)</span> è prossima allo 0. Per valori alti dell’età la proporzione di valori <span class="math notranslate nohighlight">\(Y=1\)</span> è prossima a 1.0. A livelli di età intermedi, la curva di regressione non parametrica gradualmente approssima i valori 0 e 1 seguendo un andamento sigmoidale.</p>
 <p>Anche se nel caso presente la regressione non parametrica produce un risultato sensato, è utile rappresentare la dipendenza di <span class="math notranslate nohighlight">\(Y\)</span> da <span class="math notranslate nohighlight">\(X\)</span> con una semplice funzione, in particolare quando ci sono molteplici variabili esplicative.</p>
 </section>
 <section id="modello-lineare-nelle-probabilita">
-<h2><span class="section-number">58.2. </span>Modello lineare nelle probabilità<a class="headerlink" href="#modello-lineare-nelle-probabilita" title="Link to this heading">#</a></h2>
-<p>Iniziamo specificando un modello lineare con le solite assunzioni</p>
+<h2><span class="section-number">58.2. </span>Modello Lineare nelle Probabilità<a class="headerlink" href="#modello-lineare-nelle-probabilita" title="Link to this heading">#</a></h2>
+<p>Introduciamo un modello lineare con le seguenti assunzioni standard:</p>
 <div class="math notranslate nohighlight">
 \[
-  Y_i = \alpha + \beta X_i + \varepsilon_i,
+Y_i = \alpha + \beta X_i + \varepsilon_i,
 \]</div>
-<p>dove <span class="math notranslate nohighlight">\(\varepsilon_i \sim \mathcal{N}(0, 1)\)</span> e <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> e <span class="math notranslate nohighlight">\(\varepsilon_j\)</span> sono indipendenti per <span class="math notranslate nohighlight">\(i \neq j\)</span>. Dato che <span class="math notranslate nohighlight">\(\mathbb{E}(Y_i) = \alpha + \beta X_i\)</span>, ne segue che</p>
+<p>dove <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> segue una distribuzione normale con media 0 e varianza 1 (<span class="math notranslate nohighlight">\(\varepsilon_i \sim \mathcal{N}(0, 1)\)</span>) e gli errori <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> e <span class="math notranslate nohighlight">\(\varepsilon_j\)</span> sono indipendenti per ogni <span class="math notranslate nohighlight">\(i \neq j\)</span>. Il valore atteso di <span class="math notranslate nohighlight">\(Y_i\)</span> è quindi <span class="math notranslate nohighlight">\(\mathbb{E}(Y_i) = \alpha + \beta X_i\)</span>, portando a:</p>
 <div class="math notranslate nohighlight">
 \[
-  \pi_i = \alpha + \beta X_i.
+\pi_i = \alpha + \beta X_i.
 \]</div>
-<p>Questo modello si dice <em>modello lineare nelle probabilità</em> (<em>linear probability model</em>). Tale modo di procedere è però insoddisfacente perchè non dà alcuna garanzia che i valori predetti siano confacenti a probabilità, cioè compresi tra 0 e 1.</p>
-<section id="normalita">
-<h3><span class="section-number">58.2.1. </span>Normalità<a class="headerlink" href="#normalita" title="Link to this heading">#</a></h3>
-<p>Dato che <span class="math notranslate nohighlight">\(Y_i\)</span> può assumere solo i valori 0 e 1, gli errori sono pure dicotomici e, dunque, non possono essere distribuiti normalmente. Se <span class="math notranslate nohighlight">\(Y_i=1\)</span> con probabilità <span class="math notranslate nohighlight">\(\pi_i\)</span> allora</p>
+<p>Questo è noto come <em>modello lineare nelle probabilità</em> (<em>linear probability model</em>). Tuttavia, questo approccio presenta una limitazione significativa: non garantisce che i valori predetti di <span class="math notranslate nohighlight">\(\pi_i\)</span> siano confinati nell’intervallo [0,1], come richiesto per le probabilità.</p>
+<section id="problemi-di-normalita">
+<h3><span class="section-number">58.2.1. </span>Problemi di Normalità<a class="headerlink" href="#problemi-di-normalita" title="Link to this heading">#</a></h3>
+<p>Considerando che <span class="math notranslate nohighlight">\(Y_i\)</span> può assumere solo i valori 0 o 1, i residui <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> risultano anch’essi dicotomici e quindi non possono seguire una distribuzione normale. Ad esempio, se <span class="math notranslate nohighlight">\(Y_i=1\)</span> con probabilità <span class="math notranslate nohighlight">\(\pi_i\)</span>, il residuo sarà:</p>
 <div class="math notranslate nohighlight">
 \[
-\begin{align}
-\varepsilon_i = 1- \mathbb{E}(Y_i) = 1- (\alpha + \beta X_i) = 1 - \pi_i. \notag 
-\end{align}
+\varepsilon_i = 1 - \mathbb{E}(Y_i) = 1 - (\alpha + \beta X_i) = 1 - \pi_i.
 \]</div>
-<p>Se <span class="math notranslate nohighlight">\(Y_i=0\)</span> con probabilità <span class="math notranslate nohighlight">\(1-\pi_i\)</span> allora</p>
+<p>Se, invece, <span class="math notranslate nohighlight">\(Y_i=0\)</span> con probabilità <span class="math notranslate nohighlight">\(1-\pi_i\)</span>, il residuo sarà:</p>
 <div class="math notranslate nohighlight">
 \[
-    \begin{align}
-      \varepsilon_i &amp;= 0- \mathbb{E}(Y_i) = 0- (\alpha + \beta X_i) =
-      - \pi_i. \notag
-    \end{align}
+\varepsilon_i = 0 - \mathbb{E}(Y_i) = 0 - (\alpha + \beta X_i) = - \pi_i.
 \]</div>
-<p>Se la numerosità del campione è sufficientemente grande, comunque, come conseguenza del teorema del limite centrale, l’assunzione di normalità non è critica per le stime dei minimi quadrati.</p>
+<p>Tuttavia, se la dimensione del campione è grande, il teorema del limite centrale può mitigare l’importanza dell’assunzione di normalità per le stime dei minimi quadrati.</p>
 </section>
-<section id="omoschedasticita">
-<h3><span class="section-number">58.2.2. </span>Omoschedasticità<a class="headerlink" href="#omoschedasticita" title="Link to this heading">#</a></h3>
-<p>Non sarebbe opportuno usare il metodo dei minimi quadrati con questi dati poichè la varianza non è costante, ma è funzione della media e quindi funzione della variabile <span class="math notranslate nohighlight">\(X\)</span>. Se l’assunzione di linearità è soddisfatta, allora <span class="math notranslate nohighlight">\(\mathbb{E}(\varepsilon_i)=0\)</span>. Utilizzando i risultati precedenti otteniamo</p>
+<section id="problematiche-di-omoschedasticita">
+<h3><span class="section-number">58.2.2. </span>Problematiche di Omoschedasticità<a class="headerlink" href="#problematiche-di-omoschedasticita" title="Link to this heading">#</a></h3>
+<p>Utilizzare il metodo dei minimi quadrati può essere inappropriato in questo contesto poiché la varianza dei residui non è costante ma dipende dalla media, e quindi dalla variabile <span class="math notranslate nohighlight">\(X\)</span>. Assumendo che il modello sia lineare, abbiamo che <span class="math notranslate nohighlight">\(\mathbb{E}(\varepsilon_i)=0\)</span>. Sfruttando le relazioni sopra, la varianza dei residui si calcola come:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-    \begin{align}
-      \mathbb{V}(\varepsilon_i) &amp;=  (1- \pi_i)^2\pi_i + (-\pi_i)^2(1-\pi_i) \notag \\
-      &amp;= (1-\pi_i)\left[ (1-\pi_i) \pi_i + \pi_i^2 \right]\notag\\
-      &amp;= (1 - \pi_i)\pi_i. \notag
-    \end{align}
-\end{split}\]</div>
-<p>L’eteroschedasticità degli errori è un problema per le stime dei minimi quadrati del modello lineare, ma solo se le probabilità <span class="math notranslate nohighlight">\(\pi_i\)</span> sono prossime a 0 e 1.</p>
+\[
+\mathbb{V}(\varepsilon_i) = (1-\pi_i)\pi_i.
+\]</div>
+<p>Questa eteroschedasticità dei residui rappresenta un problema per le stime dei minimi quadrati nel modello lineare, specialmente quando le probabilità <span class="math notranslate nohighlight">\(\pi_i\)</span> sono vicine a 0 o 1.</p>
 </section>
 <section id="linearita">
 <h3><span class="section-number">58.2.3. </span>Linearità<a class="headerlink" href="#linearita" title="Link to this heading">#</a></h3>
 <p>Il maggiore inconveniente connesso all’adozione del modello lineare nelle probabilità deriva dal fatto che la stima della probabilità di successo, <span class="math notranslate nohighlight">\(P(\hat{Y}_i=1)=\hat{\pi}_i\)</span>, non è necessariamente compresa nell’intervallo (<span class="math notranslate nohighlight">\(0,1\)</span>), ma può essere sia negativa sia maggiore di 1. Nel caso dell’esempio in discussione, ciò significa che la retta dei minimi quadrati produce valori attesi <span class="math notranslate nohighlight">\(\hat{\pi}\)</span> inferiori a 0 per bassi valori della variabile età e valori <span class="math notranslate nohighlight">\(\hat{\pi}\)</span> superiori a 1 per valori di età alti.</p>
 </section>
 </section>
-<section id="constrained-linear-probability-model">
-<h2><span class="section-number">58.3. </span>Constrained linear-probability model<a class="headerlink" href="#constrained-linear-probability-model" title="Link to this heading">#</a></h2>
-<p>Una possibile soluzione è quella di forzare <span class="math notranslate nohighlight">\(\pi\)</span> nell’intervallo <span class="math notranslate nohighlight">\((0, 1)\)</span>:</p>
+<section id="modello-lineare-nelle-probabilita-vincolato">
+<h2><span class="section-number">58.3. </span>Modello Lineare nelle Probabilità Vincolato<a class="headerlink" href="#modello-lineare-nelle-probabilita-vincolato" title="Link to this heading">#</a></h2>
+<p>Una soluzione per mantenere <span class="math notranslate nohighlight">\(\pi\)</span> all’interno dell’intervallo (0, 1) è la seguente specificazione del modello:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \pi=
 \begin{cases}
-  0                           &amp;\text{per $\alpha + \beta X$} &lt; 0,\\
-  \alpha + \beta X           &amp;\text{per $0 \leq \alpha + \beta X \leq 1$},\\
-  1 &amp;\text{per $\alpha + \beta X &gt; 1$.}
+  0                           &amp;\text{se $\alpha + \beta X &lt; 0$},\\
+  \alpha + \beta X           &amp;\text{se $0 \leq \alpha + \beta X \leq 1$},\\
+  1 &amp;\text{se $\alpha + \beta X &gt; 1$}.
 \end{cases}
 \end{split}\]</div>
-<p>Il <em>constrained linear-probability model</em> presenta delle instabilità dovute alla sua dipendenza critica dai valori estremi di <span class="math notranslate nohighlight">\(\pi\)</span>, ovvero dove <span class="math notranslate nohighlight">\(\pi\)</span> assume valori 0 e 1. Questo modello, caratterizzato dalla relazione lineare <span class="math notranslate nohighlight">\(\pi = \alpha + \beta X\)</span>, si basa fortemente sui punti in cui si verificano questi estremi di <span class="math notranslate nohighlight">\(\pi\)</span>. In particolare, la stima di <span class="math notranslate nohighlight">\(\pi = 0\)</span> è influenzata dal valore minimo di <span class="math notranslate nohighlight">\(X\)</span> associato a <span class="math notranslate nohighlight">\(Y=1\)</span>. Analogamente, la stima di <span class="math notranslate nohighlight">\(\pi = 1\)</span> è influenzata dal valore massimo di <span class="math notranslate nohighlight">\(X\)</span> per cui <span class="math notranslate nohighlight">\(Y=0\)</span>. Questi punti, essendo valori estremi, tendono a variare notevolmente da un campione all’altro. Inoltre, con l’aumentare della dimensione del campione, è probabile che questi valori estremi diventino ancora più estremi.</p>
-<p>Un’altra problematica si presenta quando si ha a che fare con più variabili esplicative (ovvero, <span class="math notranslate nohighlight">\(k \geq 2\)</span>). In questo contesto, la stima dei parametri del modello diventa particolarmente complicata.</p>
-<p>Inoltre, il modello lineare-probabilità vincolato mostra un cambiamento brusco nella pendenza della retta di regressione ai punti estremi (0 e 1 di <span class="math notranslate nohighlight">\(X\)</span>), il che è poco realistico in molti scenari pratici. Questo rende il modello meno adatto a rappresentare relazioni più complesse e graduali tra <span class="math notranslate nohighlight">\(\pi\)</span> e <span class="math notranslate nohighlight">\(X\)</span>.</p>
-<p>Una funzione che descrive una relazione più graduale e “liscia” tra <span class="math notranslate nohighlight">\(\pi\)</span> e $X” sarebbe più plausibile e rappresentativa dei fenomeni reali. Questo spiega la preferenza per modelli alternativi come il modello di regressione logistica, che tende a fornire una rappresentazione più realistica della relazione tra variabili dicotomiche e le variabili esplicative.</p>
+<p>Questo <em>modello lineare nelle probabilità vincolato</em> mostra alcune instabilità, soprattutto a causa della sua dipendenza critica dai valori estremi di <span class="math notranslate nohighlight">\(\pi\)</span>, dove assume i valori 0 o 1. La linearità di <span class="math notranslate nohighlight">\(\pi = \alpha + \beta X\)</span> si basa fortemente sui punti in cui si verificano questi estremi. In particolare, la stima di <span class="math notranslate nohighlight">\(\pi = 0\)</span> può essere influenzata dal valore minimo di <span class="math notranslate nohighlight">\(X\)</span> associato a <span class="math notranslate nohighlight">\(Y=1\)</span>, mentre la stima di <span class="math notranslate nohighlight">\(\pi = 1\)</span> può dipendere dal valore massimo di <span class="math notranslate nohighlight">\(X\)</span> per cui <span class="math notranslate nohighlight">\(Y=0\)</span>. Questi valori estremi tendono a variare significativamente tra diversi campioni e possono diventare più estremi all’aumentare della dimensione del campione.</p>
+<p>La presenza di più variabili esplicative (<span class="math notranslate nohighlight">\(k \geq 2\)</span>) complica ulteriormente la stima dei parametri del modello. Inoltre, il modello mostra un cambiamento brusco nella pendenza della curva di regressione ai punti estremi (0 e 1 di <span class="math notranslate nohighlight">\(\pi\)</span>), risultando poco realistico in molte situazioni pratiche. Questo rende il modello meno adatto a descrivere relazioni complesse e gradualmente variabili tra <span class="math notranslate nohighlight">\(\pi\)</span> e <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<p>Una funzione che modella una relazione più fluida e continua tra <span class="math notranslate nohighlight">\(\pi\)</span> e <span class="math notranslate nohighlight">\(X\)</span> sarebbe più realistica e rappresentativa delle dinamiche osservate. Questo motiva la preferenza per modelli alternativi, come il modello di regressione logistica, che tende a fornire una rappresentazione più accurata e realistica delle interazioni tra variabili dicotomiche e esplicative.</p>
 </section>
 <section id="regressione-logistica">
 <h2><span class="section-number">58.4. </span>Regressione Logistica<a class="headerlink" href="#regressione-logistica" title="Link to this heading">#</a></h2>
-<p>Il modo migliore per risolvere il problema del vincolo sulle probabilità consiste nello specificare dei modelli non per le probabilità, ma per delle loro trasformazioni che rimuovano tale vincolo. Se invece di specificare un modello lineare per la probabilità condizionata <span class="math notranslate nohighlight">\(\pi_i\)</span> si specifica un modello lineare per il logaritmo degli odds</p>
+<p>Un metodo efficace per gestire il problema del vincolo sulle probabilità è specificare modelli non direttamente per le probabilità stesse, ma per una loro trasformazione che elimina tale vincolo. Invece di definire un modello lineare per la probabilità condizionata <span class="math notranslate nohighlight">\(\pi_i\)</span>, si può specificare un modello lineare per il logaritmo degli odds (logit):</p>
 <div class="math notranslate nohighlight">
 \[
-  \eta_i = \log_e \frac{\pi_i}{1-\pi_i}= \alpha + \beta x_i,
+\eta_i = \log_e \frac{\pi_i}{1-\pi_i} = \alpha + \beta x_i,
 \]</div>
-<p>non sussistono problemi perché il logit <span class="math notranslate nohighlight">\(\eta\)</span> è sempre un numero reale. Risulta così specificato un modello lineare per una trasformazione di <span class="math notranslate nohighlight">\(\pi\)</span>. La figura seguente è stata creata calcolando i <em>logit empirici</em>, ovvero il logaritmo degli odds <span class="math notranslate nohighlight">\(\log_e(\hat{\pi}_i/(1-\hat{\pi}_i)\)</span>) in corrispondenza di 8 intervalli in cui è stata suddivisa la variabile “età”. In questo caso è chiaro che vi è una relazione lineare tra i logit empirici e l’età.</p>
+<p>Questo approccio non presenta problemi poiché il logit <span class="math notranslate nohighlight">\(\eta\)</span> è sempre un numero reale, permettendo di modellare una trasformazione lineare di <span class="math notranslate nohighlight">\(\pi\)</span>. L’immagine che segue è stata generata calcolando i <em>logit empirici</em>, ovvero il logaritmo degli odds <span class="math notranslate nohighlight">\(\log_e(\hat{\pi}_i/(1-\hat{\pi}_i))\)</span> per 8 intervalli in cui è stata suddivisa la variabile “età”. Questa analisi mostra chiaramente una relazione lineare tra i logit empirici e l’età, evidenziando come la regressione logistica possa efficacemente modellare e interpretare relazioni tra variabili trasformate e fattori esplicativi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">xc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">24.5</span><span class="p">,</span><span class="w"> </span><span class="m">32</span><span class="p">,</span><span class="w"> </span><span class="m">37</span><span class="p">,</span><span class="w"> </span><span class="m">42</span><span class="p">,</span><span class="w"> </span><span class="m">47</span><span class="p">,</span><span class="w"> </span><span class="m">52</span><span class="p">,</span><span class="w"> </span><span class="m">57</span><span class="p">,</span><span class="w"> </span><span class="m">64.5</span><span class="p">)</span>
@@ -968,7 +944,7 @@ Coefficients:
 (Intercept) -5.30945    1.13365  -4.683 2.82e-06 ***
 age          0.11092    0.02406   4.610 4.02e-06 ***
 ---
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
@@ -1035,7 +1011,7 @@ Number of Fisher Scoring iterations: 4
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/d862ecca1a5cde12a18f0f62d1d0cbe895ab6de2aae0e7b3e7beb7e4f8c50bb8.png"><img alt="../_images/d862ecca1a5cde12a18f0f62d1d0cbe895ab6de2aae0e7b3e7beb7e4f8c50bb8.png" src="../_images/d862ecca1a5cde12a18f0f62d1d0cbe895ab6de2aae0e7b3e7beb7e4f8c50bb8.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/4c2dde4b952ad3b2f1976d542ca20a35baae3b8c0786e64b17750e2198d3e14d.png"><img alt="../_images/4c2dde4b952ad3b2f1976d542ca20a35baae3b8c0786e64b17750e2198d3e14d.png" src="../_images/4c2dde4b952ad3b2f1976d542ca20a35baae3b8c0786e64b17750e2198d3e14d.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 </section>
@@ -1084,16 +1060,16 @@ Number of Fisher Scoring iterations: 4
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.3.2 (2023-10-31)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.3.3 (2024-02-29)
 Platform: aarch64-apple-darwin20 (64-bit)
-Running under: macOS Sonoma 14.3.1
+Running under: macOS Sonoma 14.4.1
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib 
 LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
 
 locale:
-[1] C
+[1] C/UTF-8/C/C/C/C
 
 time zone: Europe/Rome
 tzcode source: internal
@@ -1102,30 +1078,30 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] psych_2.4.1          effects_4.2-2        gmodels_2.18.1.1    
- [4] LaplacesDemon_16.1.6 car_3.1-2            carData_3.0-5       
- [7] lubridate_1.9.3      forcats_1.0.0        stringr_1.5.1       
-[10] dplyr_1.1.4          purrr_1.0.2          readr_2.1.5         
-[13] tidyr_1.3.1          tibble_3.2.1         ggplot2_3.4.4       
-[16] tidyverse_2.0.0     
+ [1] jtools_2.2.2         psych_2.4.3          effects_4.2-2       
+ [4] gmodels_2.19.1       LaplacesDemon_16.1.6 car_3.1-2           
+ [7] carData_3.0-5        lubridate_1.9.3      forcats_1.0.0       
+[10] stringr_1.5.1        dplyr_1.1.4          purrr_1.0.2         
+[13] readr_2.1.5          tidyr_1.3.1          tibble_3.2.1        
+[16] ggplot2_3.5.1        tidyverse_2.0.0     
 
 loaded via a namespace (and not attached):
- [1] gtable_0.3.4     insight_0.19.8   lattice_0.22-5   tzdb_0.4.0      
- [5] vctrs_0.6.5      tools_4.3.2      generics_0.1.3   parallel_4.3.2  
+ [1] gtable_0.3.5     insight_0.19.10  lattice_0.22-5   tzdb_0.4.0      
+ [5] vctrs_0.6.5      tools_4.3.3      generics_0.1.3   parallel_4.3.3  
  [9] fansi_1.0.6      pkgconfig_2.0.3  Matrix_1.6-5     uuid_1.2-0      
-[13] lifecycle_1.0.4  farver_2.1.1     compiler_4.3.2   mnormt_2.1.1    
-[17] munsell_0.5.0    repr_1.1.6       mitools_2.4      survey_4.2-1    
+[13] lifecycle_1.0.4  farver_2.1.1     compiler_4.3.3   mnormt_2.1.1    
+[17] munsell_0.5.1    repr_1.1.6       mitools_2.4      survey_4.4-2    
 [21] htmltools_0.5.7  pillar_1.9.0     nloptr_2.0.3     crayon_1.5.2    
 [25] MASS_7.3-60.0.1  gdata_3.0.0      boot_1.3-29      abind_1.4-5     
-[29] nlme_3.1-164     gtools_3.9.5     tidyselect_1.2.0 digest_0.6.34   
-[33] stringi_1.8.3    labeling_0.4.3   splines_4.3.2    fastmap_1.1.1   
-[37] grid_4.3.2       colorspace_2.1-0 cli_3.6.2        magrittr_2.0.3  
-[41] base64enc_0.1-3  survival_3.5-8   utf8_1.2.4       IRdisplay_1.1   
-[45] withr_3.0.0      scales_1.3.0     IRkernel_1.3.2   timechange_0.3.0
-[49] nnet_7.3-19      lme4_1.1-35.1    pbdZMQ_0.3-11    hms_1.1.3       
-[53] evaluate_0.23    mgcv_1.9-1       rlang_1.1.3      Rcpp_1.0.12     
-[57] glue_1.7.0       DBI_1.2.2        minqa_1.2.6      jsonlite_1.8.8  
-[61] R6_2.5.1        
+[29] nlme_3.1-164     gtools_3.9.5     tidyselect_1.2.1 digest_0.6.35   
+[33] stringi_1.8.3    pander_0.6.5     labeling_0.4.3   splines_4.3.3   
+[37] fastmap_1.1.1    grid_4.3.3       colorspace_2.1-0 cli_3.6.2       
+[41] magrittr_2.0.3   base64enc_0.1-3  survival_3.5-8   utf8_1.2.4      
+[45] IRdisplay_1.1    withr_3.0.0      scales_1.3.0     IRkernel_1.3.2  
+[49] timechange_0.3.0 nnet_7.3-19      lme4_1.1-35.1    pbdZMQ_0.3-11   
+[53] hms_1.1.3        evaluate_0.23    mgcv_1.9-1       rlang_1.1.3     
+[57] Rcpp_1.0.12      glue_1.7.0       DBI_1.2.2        minqa_1.2.6     
+[61] jsonlite_1.8.8   R6_2.5.1        
 </pre></div>
 </div>
 </div>
@@ -1198,13 +1174,13 @@ loaded via a namespace (and not attached):
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-regressione-logistica-per-variabili-binarie">58.1. Modello di Regressione Logistica per Variabili Binarie</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-lineare-nelle-probabilita">58.2. Modello lineare nelle probabilità</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalita">58.2.1. Normalità</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#omoschedasticita">58.2.2. Omoschedasticità</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-lineare-nelle-probabilita">58.2. Modello Lineare nelle Probabilità</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problemi-di-normalita">58.2.1. Problemi di Normalità</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problematiche-di-omoschedasticita">58.2.2. Problematiche di Omoschedasticità</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linearita">58.2.3. Linearità</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constrained-linear-probability-model">58.3. Constrained linear-probability model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-lineare-nelle-probabilita-vincolato">58.3. Modello Lineare nelle Probabilità Vincolato</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regressione-logistica">58.4. Regressione Logistica</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilita-odds-e-logit">58.5. Probabilità, Odds e Logit</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trasformazione-inversa-del-logit">58.5.1. Trasformazione Inversa del Logit</a></li>
