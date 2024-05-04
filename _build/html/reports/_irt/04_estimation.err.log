@@ -1,20 +1,20 @@
 Traceback (most recent call last):
-  File "/opt/anaconda3/envs/pymc_env/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+  File "/Users/corrado/mambaforge/envs/pymc_env/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
-  File "/opt/anaconda3/envs/pymc_env/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
+  File "/Users/corrado/mambaforge/envs/pymc_env/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/envs/pymc_env/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+  File "/Users/corrado/mambaforge/envs/pymc_env/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
     return loop.run_until_complete(inner)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/envs/pymc_env/lib/python3.12/asyncio/base_events.py", line 685, in run_until_complete
+  File "/Users/corrado/mambaforge/envs/pymc_env/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
     return future.result()
            ^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/envs/pymc_env/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+  File "/Users/corrado/mambaforge/envs/pymc_env/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "/opt/anaconda3/envs/pymc_env/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+  File "/Users/corrado/mambaforge/envs/pymc_env/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/opt/anaconda3/envs/pymc_env/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+  File "/Users/corrado/mambaforge/envs/pymc_env/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
@@ -23,27 +23,148 @@ mod <- cmdstan_model(stan_file)
 mod$print()
 ------------------
 
------ stderr -----
-fatal error: file '/opt/anaconda3/envs/stan_env/lib/clang/16/include/arm_fp16.h' has been modified since the precompiled header 'stan/src/stan/model/model_header_16_0.hpp.gch' was built: mtime changed (was 1706884841, now 1711057963)
-note: please rebuild precompiled header 'stan/src/stan/model/model_header_16_0.hpp.gch'
------ stderr -----
-Warning message:
-“CmdStan's precompiled header (PCH) files may need to be rebuilt.
-If your model failed to compile please run rebuild_cmdstan().
-If the issue persists please open a bug report.”
------ stderr -----
-1 error generated.
------ stderr -----
-make: *** [make/program:61: /var/folders/s7/z86r4t9j6yx376cm120nln6w0000gn/T/RtmpDpA5WP/model-72122ecc4bf.o] Error 1
-------------------
 
-Error: An error occured during compilation! See the message above for more information.
+Error in c("process_initialize(self, private, command, args, stdin, stdout, ", : [33m![39m Native call to `processx_exec` failed
+[1mCaused by error[22m in `chain_call(c_processx_exec, command, c(command, args), pty, pty_options, …`:
+[33m![39m cannot start processx process '/Users/corrado/_repositories/psy_test/_irt/../code/rasch_model' (system error 86, Bad CPU type in executable) @unix/processx.c:613 (processx_exec)
 Traceback:
 
 1. cmdstan_model(stan_file)
 2. CmdStanModel$new(stan_file = stan_file, exe_file = exe_file, 
  .     compile = compile, ...)
 3. initialize(...)
-4. self$compile(...)
-5. stop(err_msg, call. = FALSE)
+4. model_compile_info(self$exe_file())
+5. withr::with_path(c(toolchain_PATH_env_var(), tbb_path()), ret <- wsl_compatible_run(command = wsl_safe_path(exe_file), 
+ .     args = "info", error_on_status = FALSE))
+6. force(code)
+7. wsl_compatible_run(command = wsl_safe_path(exe_file), args = "info", 
+ .     error_on_status = FALSE)
+8. do.call(processx::run, run_args)
+9. (function (command = NULL, args = character(), error_on_status = TRUE, 
+ .     wd = NULL, echo_cmd = FALSE, echo = FALSE, spinner = FALSE, 
+ .     timeout = Inf, stdout = "|", stderr = "|", stdout_line_callback = NULL, 
+ .     stdout_callback = NULL, stderr_line_callback = NULL, stderr_callback = NULL, 
+ .     stderr_to_stdout = FALSE, env = NULL, windows_verbatim_args = FALSE, 
+ .     windows_hide_window = FALSE, encoding = "", cleanup_tree = FALSE, 
+ .     ...) 
+ . {
+ .     assert_that(is_flag(error_on_status))
+ .     assert_that(is_time_interval(timeout))
+ .     assert_that(is_flag(spinner))
+ .     assert_that(is_string_or_null(stdout))
+ .     assert_that(is_string_or_null(stderr))
+ .     assert_that(is.null(stdout_line_callback) || is.function(stdout_line_callback))
+ .     assert_that(is.null(stderr_line_callback) || is.function(stderr_line_callback))
+ .     assert_that(is.null(stdout_callback) || is.function(stdout_callback))
+ .     assert_that(is.null(stderr_callback) || is.function(stderr_callback))
+ .     assert_that(is_flag(cleanup_tree))
+ .     assert_that(is_flag(stderr_to_stdout))
+ .     "!DEBUG run() Checked arguments"
+ .     if (!interactive()) 
+ .         spinner <- FALSE
+ .     if (stderr_to_stdout) 
+ .         stderr <- "2>&1"
+ .     pr <- process$new(command, args, echo_cmd = echo_cmd, wd = wd, 
+ .         windows_verbatim_args = windows_verbatim_args, windows_hide_window = windows_hide_window, 
+ .         stdout = stdout, stderr = stderr, env = env, encoding = encoding, 
+ .         cleanup_tree = cleanup_tree, ...)
+ .     "#!DEBUG run() Started the process: `pr$get_pid()`"
+ .     if (cleanup_tree) {
+ .         on.exit(pr$kill_tree(), add = TRUE)
+ .     }
+ .     else {
+ .         on.exit(pr$kill(), add = TRUE)
+ .     }
+ .     if (echo) {
+ .         stdout_callback <- echo_callback(stdout_callback, "stdout")
+ .         stderr_callback <- echo_callback(stderr_callback, "stderr")
+ .     }
+ .     runcall <- sys.call()
+ .     resenv <- new.env(parent = emptyenv())
+ .     has_stdout <- !is.null(stdout) && stdout == "|"
+ .     has_stderr <- !is.null(stderr) && stderr == "|"
+ .     if (has_stdout) {
+ .         resenv$outbuf <- make_buffer()
+ .         on.exit(resenv$outbuf$done(), add = TRUE)
+ .     }
+ .     if (has_stderr) {
+ .         resenv$errbuf <- make_buffer()
+ .         on.exit(resenv$errbuf$done(), add = TRUE)
+ .     }
+ .     res <- tryCatch(run_manage(pr, timeout, spinner, stdout, 
+ .         stderr, stdout_line_callback, stdout_callback, stderr_line_callback, 
+ .         stderr_callback, resenv), interrupt = function(e) {
+ .         "!DEBUG run() process `pr$get_pid()` killed on interrupt"
+ .         out <- if (has_stdout) {
+ .             resenv$outbuf$push(pr$read_output())
+ .             resenv$outbuf$push(pr$read_output())
+ .             resenv$outbuf$read()
+ .         }
+ .         err <- if (has_stderr) {
+ .             resenv$errbuf$push(pr$read_error())
+ .             resenv$errbuf$push(pr$read_error())
+ .             resenv$errbuf$read()
+ .         }
+ .         tryCatch(pr$kill(), error = function(e) NULL)
+ .         signalCondition(new_process_interrupt_cond(list(interrupt = TRUE, 
+ .             stderr = err, stdout = out, command = command, args = args), 
+ .             runcall, echo = echo, stderr_to_stdout = stderr_to_stdout))
+ .         cat("\n")
+ .         invokeRestart("abort")
+ .     })
+ .     if (error_on_status && (is.na(res$status) || res$status != 
+ .         0)) {
+ .         "!DEBUG run() error on status `res$status` for process `pr$get_pid()`"
+ .         throw(new_process_error(res, call = sys.call(), echo = echo, 
+ .             stderr_to_stdout, res$status, command = command, 
+ .             args = args))
+ .     }
+ .     res
+ . })(command = "/Users/corrado/_repositories/psy_test/_irt/../code/rasch_model", 
+ .     args = "info", error_on_status = FALSE)
+10. process$new(command, args, echo_cmd = echo_cmd, wd = wd, windows_verbatim_args = windows_verbatim_args, 
+  .     windows_hide_window = windows_hide_window, stdout = stdout, 
+  .     stderr = stderr, env = env, encoding = encoding, cleanup_tree = cleanup_tree, 
+  .     ...)
+11. initialize(...)
+12. process_initialize(self, private, command, args, stdin, stdout, 
+  .     stderr, pty, pty_options, connections, poll_connection, env, 
+  .     cleanup, cleanup_tree, wd, echo_cmd, supervise, windows_verbatim_args, 
+  .     windows_hide_window, windows_detached_process, encoding, 
+  .     post_process)
+13. chain_call(c_processx_exec, command, c(command, args), pty, pty_options, 
+  .     connections, env, windows_verbatim_args, windows_hide_window, 
+  .     windows_detached_process, private, cleanup, wd, encoding, 
+  .     paste0("PROCESSX_", private$tree_id, "=YES"))
+14. withCallingHandlers(do.call(".Call", list(.NAME, ...)), error = function(e) {
+  .     .hide_from_trace <- 0:1
+  .     e$srcref <- srcref
+  .     e$procsrcref <- NULL
+  .     e[["call"]] <- call
+  .     name <- native_name(.NAME)
+  .     err <- new_error("Native call to `", name, "` failed", call. = call1)
+  .     cerror <- if (inherits(e, "simpleError")) 
+  .         "c_error"
+  .     class(err) <- c(cerror, "rlib_error_3_0", "rlib_error", "error", 
+  .         "condition")
+  .     throw_error(err, parent = e)
+  . })
+15. do.call(".Call", list(.NAME, ...))
+16. .handleSimpleError(function (e) 
+  . {
+  .     .hide_from_trace <- 0:1
+  .     e$srcref <- srcref
+  .     e$procsrcref <- NULL
+  .     e[["call"]] <- call
+  .     name <- native_name(.NAME)
+  .     err <- new_error("Native call to `", name, "` failed", call. = call1)
+  .     cerror <- if (inherits(e, "simpleError")) 
+  .         "c_error"
+  .     class(err) <- c(cerror, "rlib_error_3_0", "rlib_error", "error", 
+  .         "condition")
+  .     throw_error(err, parent = e)
+  . }, "cannot start processx process '/Users/corrado/_repositories/psy_test/_irt/../code/rasch_model' (system error 86, Bad CPU type in executable) @unix/processx.c:613 (processx_exec)", 
+  .     base::quote(do.call(".Call", list(.NAME, ...))))
+17. h(simpleError(msg, call))
+18. throw_error(err, parent = e)
 
