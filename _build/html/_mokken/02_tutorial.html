@@ -494,9 +494,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6">67.6. Step 6</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7">67.7. Step 7</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8">67.8. Step 8</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-10">67.9. Step 10</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">67.10. Considerazioni conclusive</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">67.11. Session Info</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-9">67.9. Step 9.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-10">67.10. Step 10</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">67.11. Considerazioni conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">67.12. Session Info</a></li>
 </ul>
             </nav>
         </div>
@@ -511,6 +512,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="tutorial">
 <span id="tutorial-mokken-notebook"></span><h1><span class="section-number">67. </span>Tutorial<a class="headerlink" href="#tutorial" title="Link to this heading">#</a></h1>
 <p>In questo notebook esamineremo il tutorial proposto da <span id="id1">Sijtsma and van der Ark [<a class="reference internal" href="../z_biblio.html#id2" title="Klaas Sijtsma and L Andries van der Ark. A tutorial on how to do a mokken scale analysis on your test and questionnaire data. British Journal of Mathematical and Statistical Psychology, 70(1):137–158, 2017.">SvdA17</a>]</span>, i quali usano un campione (N = 541; 68 donne e 473 uomini) con un’età compresa tra i 23 e gli 89 anni (M = 58.7). I partecipanti erano pazienti affetti da lieve malattia coronarica, a cui è stata somministrata una batteria di questionari, tra cui il DS14, un questionario di 14 item che misura la personalità di Tipo D (Denollet, 2005). Sette item misurano l’affettività negativa (NA) e gli altri sette item misurano l’inibizione sociale (SI).</p>
+<p>La somma dei punteggi dei 14 item, denominata punteggio DS14, misura la personalità di Tipo D. Gli item consistono in un’affermazione seguita da una scala di valutazione a cinque punti, da 0 a 4.</p>
 <ol class="arabic simple">
 <li><p>I make contact easily when I meet people</p></li>
 <li><p>I often make a fuss about unimportant things</p></li>
@@ -527,7 +529,6 @@ document.write(`
 <li><p>I am often down in the dumps</p></li>
 <li><p>When socializing, I don’t find the right things to talk about</p></li>
 </ol>
-<p>La somma dei punteggi dei 14 item, denominata punteggio DS14, misura la personalità di Tipo D. Gli item consistono in un’affermazione seguita da una scala di valutazione a cinque punti, da 0 a 4.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">suppressPackageStartupMessages</span><span class="p">({</span>
@@ -576,25 +577,7 @@ document.write(`
 <section id="dieci-passi-per-l-analisi-di-una-scala-mokken">
 <h2><span class="section-number">67.1. </span>Dieci passi per l’analisi di una scala Mokken<a class="headerlink" href="#dieci-passi-per-l-analisi-di-una-scala-mokken" title="Link to this heading">#</a></h2>
 <p>Descriviamo le tre fasi contenenti dieci passi per eseguire un’analisi di scala Mokken (MSA):</p>
-<p><strong>i. Esame dei dati.</strong> Analizzare i dati e adottare misure appropriate quando si verificano particolari problemi con i dati (passi 1–3):</p>
-<ol class="arabic simple">
-<li><p><strong>Ricodifica.</strong> Ricodificare i punteggi degli item che sono formulati negativamente rispetto all’attributo di interesse, in modo che per tutti gli item punteggi più alti indichino una posizione più elevata sulla scala dell’attributo.</p></li>
-<li><p><strong>Punteggi inammissibili e dati mancanti.</strong> Trattare i punteggi inammissibili come valori mancanti. Determinare la percentuale totale di punteggi mancanti nel set di dati e i rispondenti che hanno lasciato un numero irragionevole di risposte incomplete. Impostare i punteggi degli item mancanti utilizzando un qualche procedura di imputazione.</p></li>
-<li><p><strong>Outlier.</strong> Identificare se particolari schemi di punteggi degli item si qualificano come outlier.</p></li>
-</ol>
-<p><strong>ii. Identificazione della scala.</strong> Identificare una o più scale che soddisfino il modello di omogeneità monotona e, se ritenuto appropriato, verificare se le scale soddisfano anche il modello più esigente di monotonia doppia (passi 4–7):</p>
-<ol class="arabic simple" start="4">
-<li><p><strong>Scalabilità.</strong> Se si desidera valutare scale a priori definite, calcolare i coefficienti Hjk, Hj e H per le scale complete. Se si desidera esplorare il set di item per la sua dimensionalità, eseguire AISP utilizzando c = 0,05, 0,10,…, 0,55. A seconda dei dati, gli schemi di risultato possono diventare chiari prima di raggiungere i valori di c più elevati. AISP ordina approssimativamente gli item in scale che ordinano le persone usando X+ senza commettere grandi errori, ma potrebbe mancare alcune sfumature necessarie per prendere decisioni più dettagliate; vedere passi 5–7.</p></li>
-<li><p><strong>Indipendenza locale.</strong> Investigare l’indipendenza locale utilizzando la procedura di associazione condizionale (Straat et al., in stampa). La procedura di associazione condizionale coinvolge due indici W1 e W3 che segnalano coppie di item dipendenti localmente.</p></li>
-<li><p><strong>Monotonia.</strong> Investigare la monotonia delle funzioni di risposta agli item (IRF) usando un metodo di regressione non parametrico per un punteggio dell’item sul punteggio totale degli altri J-1 item nella stessa scala (Junker &amp; Sijtsma, 2000; Sijtsma &amp; Molenaar, 2002, 2016). L’analisi grafica fornisce un’indicazione del grado in cui una curva osservata può essere considerata monotona, e le deviazioni locali dalla monotonia possono essere testate per significatività statistica.</p></li>
-<li><p><strong>Ordinamento invariante degli item.</strong> I ricercatori che desiderano solo costruire una scala che ordini le persone su una dimensione possono saltare questo passo. Tuttavia, se è necessario un ordinamento invariante degli item, si può utilizzare la procedura di ricerca suggerita da Ligtvoet et al. (2010). Il coefficiente di scalabilità HT esprime il grado in cui i rispondenti ordinano gli item in modo invariante (Ligtvoet et al., 2010; Sijtsma &amp; Meijer, 1992).</p></li>
-</ol>
-<p><strong>iii. Proprietà della scala.</strong> Determinare le proprietà della scala delle scale identificate nella seconda fase (passi 8–10).</p>
-<ol class="arabic simple" start="8">
-<li><p><strong>Affidabilità.</strong> Utilizzare il metodo Molenaar–Sijtsma (MS) (Sijtsma &amp; Molenaar, 1987) per stimare l’affidabilità del punteggio del test. Il metodo MS assume il modello di doppia monotonia.</p></li>
-<li><p><strong>Norme.</strong> I ricercatori che necessitano di tabelle normative per la misurazione degli individui possono stimare norme e intervalli di confidenza per le norme usando una procedura di regressione (Oosterhuis, Van der Ark, &amp; Sijtsma, 2016). Nella ricerca scientifica, non è necessario utilizzare norme per interpretare le prestazioni dei test degli individui; in questo caso, si può omettere il passo 9.</p></li>
-<li><p><strong>Confronto tra gruppi.</strong> Se il campione contiene sottogruppi significativi, si può indagare se la composizione delle scale e le proprietà della scala (passi 4–9) possono essere generalizzate tra i sottogruppi. Se la composizione della scala e le proprietà variano tra i gruppi, la conoscenza di questa variazione può essere utile nell’interpretazione delle prestazioni dei test degli individui e nella ricerca in cui caratteristiche di gruppo come i punteggi medi della scala e le correlazioni dei punteggi della scala con altre variabili sono di interesse.</p></li>
-</ol>
+<p><strong>i. Esame dei dati.</strong> Analizzare i dati e adottare misure appropriate quando si verificano particolari problemi con i dati (passi 1–3).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">itemsScores</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">itemScores</span><span class="p">)</span>
@@ -627,7 +610,9 @@ document.write(`
 </section>
 <section id="step-1">
 <h2><span class="section-number">67.2. </span>Step 1<a class="headerlink" href="#step-1" title="Link to this heading">#</a></h2>
-<p>Ridefinire i punteggi degli item formulati in modo negativo rispetto all’attributo di interesse, in modo che per tutti gli item punteggi più alti indichino una posizione più elevata sulla scala dell’attributo.</p>
+<ol class="arabic simple">
+<li><p><strong>Ricodifica.</strong> Ricodificare i punteggi degli item che sono formulati negativamente rispetto all’attributo di interesse, in modo che per tutti gli item punteggi più alti indichino una posizione più elevata sulla scala dell’attributo.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">itemsScores</span><span class="o">$</span><span class="n">Si1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">itemsScores</span><span class="o">$</span><span class="n">Si1</span><span class="w"> </span>
@@ -663,7 +648,9 @@ document.write(`
 </section>
 <section id="step-2">
 <h2><span class="section-number">67.3. </span>Step 2<a class="headerlink" href="#step-2" title="Link to this heading">#</a></h2>
-<p>Si considerano i punteggi non ammissibili come valori mancanti.</p>
+<ol class="arabic simple" start="2">
+<li><p><strong>Punteggi inammissibili e dati mancanti.</strong> Trattare i punteggi inammissibili come valori mancanti. Determinare la percentuale totale di punteggi mancanti nel set di dati e i rispondenti che hanno lasciato un numero irragionevole di risposte incomplete. Impostare i punteggi degli item mancanti utilizzando un qualche procedura di imputazione.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># STEP 2: INADMISSIBLE SCORES AND MISSING DATA</span>
@@ -735,6 +722,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Eseguiamo l’imputazione multipla.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Deterministic regression imputation</span>
@@ -812,7 +800,9 @@ document.write(`
 </section>
 <section id="step-3">
 <h2><span class="section-number">67.4. </span>Step 3<a class="headerlink" href="#step-3" title="Link to this heading">#</a></h2>
-<p>Identificazione degli outlier.</p>
+<ol class="arabic simple" start="3">
+<li><p><strong>Outlier.</strong> Identificare se particolari schemi di punteggi degli item si qualificano come outlier.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># STEP 3: OUTLIERS</span>
@@ -869,10 +859,14 @@ document.write(`
 </table>
 </div></div>
 </div>
+<p><strong>ii. Identificazione della scala.</strong> Identificare una o più scale che soddisfino il modello di omogeneità monotona e, se ritenuto appropriato, verificare se le scale soddisfano anche il modello più esigente di monotonia doppia (passi 4–7).</p>
 </section>
 <section id="step-4">
 <h2><span class="section-number">67.5. </span>Step 4<a class="headerlink" href="#step-4" title="Link to this heading">#</a></h2>
-<p>Identifichiamo una o più scale che soddisfino il modello di omogeneità monotona e, se ritenuto appropriato, controlliamo se le scale soddisfano anche il modello più esigente di doppia monotonicità.</p>
+<ol class="arabic simple" start="4">
+<li><p><strong>Scalabilità.</strong> Calcolare i coefficienti Hjk, Hj e H per le scale complete. Se ritenuto appropriato, controlliamo se le scale soddisfano anche il modello più esigente di doppia monotonicità.</p></li>
+</ol>
+<p>L’inclusione degli outlier ha mostrato un impatto minimo sulla scalabilità dei risultati; pertanto, tali osservazioni sono state mantenute nell’analisi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scalability coefficients</span>
@@ -1051,11 +1045,13 @@ Scale H      se
 </div>
 </div>
 </div>
-<p>L’inclusione degli outlier ha mostrato un impatto minimo sulla scalabilità dei risultati; pertanto, tali osservazioni sono state mantenute nell’analisi.</p>
 <p>Riguardo agli item NA, per coppie di item con una scalabilità di .41 &lt; Hjk &lt; .73 (con un errore standard, SE, compreso tra .03 e .05) e per singoli item con .49 &lt; Hj &lt; .62 (.02 &lt; SE &lt; .03), è stata evidenziata una forte coerenza nella scala (H = .55, SE = .02).</p>
 <p>Per gli item SI, le coppie mostrano una scalabilità di .40 &lt; Hjk &lt; .67 (.03 &lt; SE &lt; .05), mentre i singoli item si attestano tra .45 &lt; Hj &lt; .57 (.02 &lt; SE &lt; .03).</p>
 <p>La scala complessiva per gli item SI registra un H = .52 (SE = .02); tuttavia, l’ampiezza dell’errore standard impedisce di affermare con certezza che nella popolazione H sia maggiore di .5, suggerendo così una forza media della scala.</p>
 <p>Per quanto riguarda i 14 item del DS14, è stato ottenuto un H = .36 (SE = .02), ma questi non formano una scala Mokken debole, dato che i coefficienti H2,3 e H3,5 risultano negativi, in violazione del criterio per la definizione di scala. Altri coefficienti di scalabilità per coppie di item non hanno mostrato significatività superiore a zero. Tenendo conto degli errori standard, i coefficienti di scalabilità per gli item H2, H5 e H11 superano significativamente il limite inferiore convenzionale di .3.</p>
+<ol class="arabic simple" start="5">
+<li><p><strong>Indipendenza locale.</strong> Investigare l’indipendenza locale utilizzando la procedura di associazione condizionale (Straat et al., in stampa). La procedura di associazione condizionale coinvolge due indici W1 e W3 che segnalano coppie di item dipendenti localmente.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># STEP 5: LOCAL INDEPENDENCE</span>
@@ -1896,7 +1892,9 @@ Scale H      se
 </section>
 <section id="step-6">
 <h2><span class="section-number">67.6. </span>Step 6<a class="headerlink" href="#step-6" title="Link to this heading">#</a></h2>
-<p>Monotonicità.</p>
+<ol class="arabic simple" start="6">
+<li><p><strong>Monotonicità.</strong> Investigare la monotonia delle funzioni di risposta agli item (IRF) usando un metodo di regressione non parametrico per un punteggio dell’item sul punteggio totale degli altri J-1 item nella stessa scala (Junker &amp; Sijtsma, 2000; Sijtsma &amp; Molenaar, 2002, 2016). L’analisi grafica fornisce un’indicazione del grado in cui una curva osservata può essere considerata monotona, e le deviazioni locali dalla monotonia possono essere testate per significatività statistica.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Results from manifest monotonicity</span>
@@ -2014,7 +2012,9 @@ Scale H      se
 </section>
 <section id="step-7">
 <h2><span class="section-number">67.7. </span>Step 7<a class="headerlink" href="#step-7" title="Link to this heading">#</a></h2>
-<p>Invariant item ordering.</p>
+<ol class="arabic simple" start="7">
+<li><p><strong>Ordinamento invariante degli item.</strong> L’IIO sostiene che l’ordine degli item, basato sulla difficoltà o sulla probabilità di una risposta positiva, dovrebbe rimanere costante indipendentemente dal gruppo di soggetti considerato. Ciò significa che, se un item è generalmente più difficile di un altro in un sottogruppo di soggetti, dovrebbe rimanere più difficile in tutti i sottogruppi.</p></li>
+</ol>
 <p>Per NA, SI e gli item DS14, l’ispezione visiva ha suggerito che diverse IRF fossero quasi identiche, rendendo quindi difficile stabilire un ordinamento degli item invariante. Il metodo più rigoroso per indagare sull’ordinamento degli item invariante (chiamato aumento in trasposizione; Ligtvoet, Van der Ark, Bergsma e Sijtsma, 2011) ha suggerito che solo quattro dei 14 item (NA: 4, 13; SI: 10, 14) non mostrano segni di violazione dell’ordinamento degli item invariante.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2242,7 +2242,6 @@ Scale H      se
 <a class="reference internal image-reference" href="../_images/8297e994ee8bbd6190e32290a5feb42bca93c3ea52feb5f5e86b2b4f89f1da45.png"><img alt="../_images/8297e994ee8bbd6190e32290a5feb42bca93c3ea52feb5f5e86b2b4f89f1da45.png" src="../_images/8297e994ee8bbd6190e32290a5feb42bca93c3ea52feb5f5e86b2b4f89f1da45.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
-<p>Invariante item ordering.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Results from Method IT</span>
@@ -2308,10 +2307,13 @@ Scale H      se
 </dl>
 </div></div>
 </div>
+<p><strong>iii. Proprietà della scala.</strong> Determinare le proprietà della scala delle scale identificate nella seconda fase (passi 8–10).</p>
 </section>
 <section id="step-8">
 <h2><span class="section-number">67.8. </span>Step 8<a class="headerlink" href="#step-8" title="Link to this heading">#</a></h2>
-<p>Attendibilità.</p>
+<ol class="arabic simple" start="8">
+<li><p><strong>Affidabilità.</strong> Utilizzare il metodo Molenaar–Sijtsma (MS) (Sijtsma &amp; Molenaar, 1987) per stimare l’affidabilità del punteggio del test. Il metodo MS assume il modello di doppia monotonia.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># STEP 8: RELIABILITY</span>
@@ -2382,6 +2384,14 @@ Scale H      se
 </div></div>
 </div>
 <p>Tutte le stime sono molto alte e quindi soddisfacenti.</p>
+</section>
+<section id="step-9">
+<h2><span class="section-number">67.9. </span>Step 9.<a class="headerlink" href="#step-9" title="Link to this heading">#</a></h2>
+<ol class="arabic simple" start="9">
+<li><p><strong>Norme.</strong></p></li>
+</ol>
+<p>Nell’ambito della verifica delle scale Mokken, i ricercatori possono necessitare di tabelle normative per effettuare misurazioni accurate sugli individui. Una soluzione proposta da Oosterhuis, Van der Ark, e Sijtsma (2016) prevede l’utilizzo di una procedura di regressione per stimare le norme e gli intervalli di confidenza relativi a queste norme. Questo metodo consente di avere riferimenti quantitativi chiari e basati sulla statistica per valutare i risultati dei test in un contesto normativo.</p>
+<p>Nel contesto della ricerca scientifica, tuttavia, l’uso di norme per interpretare le prestazioni ai test può non essere necessario. In questi casi, la fase di stima delle norme può essere omessa. Questo approccio è particolarmente utile quando l’obiettivo della ricerca è esplorare relazioni teoriche o costrutti piuttosto che valutare le performance individuali rispetto a un gruppo normativo. La decisione di includere o escludere la stima delle norme dipenderà quindi dagli obiettivi specifici dello studio e dal contesto in cui il test viene applicato.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># STEP 9: NORMS</span>
@@ -5140,8 +5150,10 @@ $Groups$`1`$H
 <p>Per uomini e donne separatamente, si possono calcolare i percentili di rango per NA, SI e DS14. In una figura, <span id="id2">Sijtsma and van der Ark [<a class="reference internal" href="../z_biblio.html#id2" title="Klaas Sijtsma and L Andries van der Ark. A tutorial on how to do a mokken scale analysis on your test and questionnaire data. British Journal of Mathematical and Statistical Psychology, 70(1):137–158, 2017.">SvdA17</a>]</span> mostrano che per NA e DS14, lo stesso punteggio al test porta a un percentile di rango più elevato per gli uomini rispetto alle donne. Tuttavia, per DS14 gli intervalli di confidenza sovrapposti suggeriscono che la maggior parte delle differenze di punteggio tra uomini e donne non sono marcate. Per quanto riguarda SI, le donne hanno punteggi percentile costantemente più alti, ma le differenze sono piccole. Dato il minor numero di osservazioni, gli intervalli di confidenza delle donne sono più ampi.</p>
 </section>
 <section id="step-10">
-<h2><span class="section-number">67.9. </span>Step 10<a class="headerlink" href="#step-10" title="Link to this heading">#</a></h2>
-<p>Confronto tra gruppi.</p>
+<h2><span class="section-number">67.10. </span>Step 10<a class="headerlink" href="#step-10" title="Link to this heading">#</a></h2>
+<ol class="arabic simple" start="10">
+<li><p><strong>Confronto tra gruppi.</strong> Se il campione contiene sottogruppi significativi, si può indagare se la composizione delle scale e le proprietà della scala (passi 4–9) possono essere generalizzate tra i sottogruppi. Se la composizione della scala e le proprietà variano tra i gruppi, la conoscenza di questa variazione può essere utile nell’interpretazione delle prestazioni dei test degli individui e nella ricerca in cui caratteristiche di gruppo come i punteggi medi della scala e le correlazioni dei punteggi della scala con altre variabili sono di interesse.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">coefH</span><span class="p">(</span><span class="n">itemsScores</span><span class="p">[,</span><span class="w"> </span><span class="n">Na</span><span class="p">],</span><span class="w"> </span><span class="n">group.var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">male</span><span class="p">)</span>
@@ -7719,7 +7731,7 @@ $Groups$`1`$H
 <p>In questo studio, gli item specificati mostrano come uomini e donne possano rispondere diversamente a certi stimoli o domande, il che può riflettere differenze nei tratti o nelle esperienze di vita che il questionario cerca di misurare.</p>
 </section>
 <section id="considerazioni-conclusive">
-<h2><span class="section-number">67.10. </span>Considerazioni conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">67.11. </span>Considerazioni conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h2>
 <p><span id="id3">Sijtsma and van der Ark [<a class="reference internal" href="../z_biblio.html#id2" title="Klaas Sijtsma and L Andries van der Ark. A tutorial on how to do a mokken scale analysis on your test and questionnaire data. British Journal of Mathematical and Statistical Psychology, 70(1):137–158, 2017.">SvdA17</a>]</span>, concludono proponendo le seguenti considerazioni:</p>
 <ul class="simple">
 <li><p>Qualsiasi analisi di scala è complessa, e lo è anche l’analisi MSA. In diverse fasi di analisi, per vari insiemi di elementi e singoli elementi, il ricercatore deve valutare le ipotesi dei modelli di misurazione e fornire indici di qualità come scalabilità e affidabilità. Considerare solo i coefficienti di scalabilità fornisce un quadro incompleto e deve essere scoraggiato.</p></li>
@@ -7727,7 +7739,7 @@ $Groups$`1`$H
 </ul>
 </section>
 <section id="session-info">
-<h2><span class="section-number">67.11. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">67.12. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
@@ -7854,9 +7866,10 @@ loaded via a namespace (and not attached):
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6">67.6. Step 6</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7">67.7. Step 7</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8">67.8. Step 8</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-10">67.9. Step 10</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">67.10. Considerazioni conclusive</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">67.11. Session Info</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-9">67.9. Step 9.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-10">67.10. Step 10</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">67.11. Considerazioni conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">67.12. Session Info</a></li>
 </ul>
   </nav></div>
 

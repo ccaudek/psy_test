@@ -518,11 +518,11 @@ document.write(`
 <h2><span class="section-number">68.1. </span>Importazione dei dati<a class="headerlink" href="#importazione-dei-dati" title="Link to this heading">#</a></h2>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tot</span> <span class="o">&lt;-</span> <span class="n">readRDS</span><span class="p">(</span><span class="s2">&quot;../data/fai_2022_11_20.rds&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">df_tot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readRDS</span><span class="p">(</span><span class="s">&quot;../data/fai_2022_11_20.rds&quot;</span><span class="p">)</span>
 
-<span class="n">temp</span> <span class="o">&lt;-</span> <span class="n">df_tot</span> <span class="o">|&gt;</span> 
-  <span class="n">dplyr</span><span class="p">::</span><span class="nb">filter</span><span class="p">(</span><span class="n">FLAG</span> <span class="o">==</span> <span class="s2">&quot;keep&quot;</span><span class="p">)</span>
-<span class="n">temp</span><span class="err">$</span><span class="n">FLAG</span> <span class="o">&lt;-</span> <span class="n">NULL</span>
+<span class="n">temp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df_tot</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span>
+<span class="w">  </span><span class="n">dplyr</span><span class="o">::</span><span class="nf">filter</span><span class="p">(</span><span class="n">FLAG</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;keep&quot;</span><span class="p">)</span>
+<span class="n">temp</span><span class="o">$</span><span class="n">FLAG</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NULL</span>
 </pre></div>
 </div>
 </div>
@@ -530,17 +530,22 @@ document.write(`
 <p>Per migliorare la qualità del nostro set di dati, rimuoveremo gli item che presentano livelli eccessivi di asimmetria (skewness) e curtosi. Questo passaggio è fondamentale per garantire che i nostri dati siano ben distribuiti e rappresentativi, migliorando così l’affidabilità e la validità delle nostre analisi. Gli item con asimmetria e curtosi estreme possono infatti distorcere i risultati degli analisi statistiche e influenzare negativamente le conclusioni tratte dallo studio.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">items_stats</span> <span class="o">&lt;-</span> <span class="n">psych</span><span class="p">::</span><span class="n">describe</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
-
-<span class="n">items_skew_kurt_bad</span> <span class="o">&lt;-</span> <span class="n">items_stats</span> <span class="o">|&gt;</span>
-    <span class="n">dplyr</span><span class="p">::</span><span class="nb">filter</span><span class="p">(</span><span class="n">skew</span> <span class="o">&gt;</span> <span class="mf">2.5</span> <span class="o">|</span> <span class="n">kurtosis</span> <span class="o">&gt;</span> <span class="mf">7.5</span><span class="p">)</span> <span class="o">|&gt;</span>
-    <span class="n">row</span><span class="o">.</span><span class="n">names</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">items_skew_kurt_bad</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">items_stats</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">psych</span><span class="o">::</span><span class="nf">describe</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">items_skew_kurt_bad</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">items_stats</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="n">dplyr</span><span class="o">::</span><span class="nf">filter</span><span class="p">(</span><span class="n">skew</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">2.5</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">kurtosis</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">7.5</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">row.names</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">items_skew_kurt_bad</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> [1] &quot;other*&quot;                 &quot;child_birth_place&quot;      &quot;has_chronic_disease&quot;   
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> [1] &quot;other&quot;                  &quot;child_birth_place&quot;      &quot;has_chronic_disease&quot;   
  [4] &quot;hospitalization_number&quot; &quot;emergency_care_number&quot;  &quot;divorce&quot;               
  [7] &quot;low_income&quot;             &quot;change_address&quot;         &quot;change_city&quot;           
 [10] &quot;is_mother_italian&quot;      &quot;is_father_italian&quot;      &quot;is_father_working&quot;     
@@ -555,32 +560,47 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the strings starting with &quot;FAI_&quot;</span>
-<span class="n">bad_fai_items</span> <span class="o">&lt;-</span> <span class="n">grep</span><span class="p">(</span><span class="s2">&quot;^FAI_&quot;</span><span class="p">,</span> <span class="n">items_skew_kurt_bad</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select the strings starting with &quot;FAI_&quot;</span>
+<span class="n">bad_fai_items</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">grep</span><span class="p">(</span><span class="s">&quot;^FAI_&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">items_skew_kurt_bad</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
 
-<span class="n">df</span> <span class="o">&lt;-</span> <span class="n">temp</span> <span class="o">|&gt;</span>
-    <span class="n">dplyr</span><span class="p">::</span><span class="n">select</span><span class="p">(</span><span class="o">!</span>any_of<span class="o">(</span>bad_fai_items<span class="o">))</span>
+<span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="n">dplyr</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span><span class="o">!</span><span class="nf">any_of</span><span class="p">(</span><span class="n">bad_fai_items</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">dim</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>453</li><li>222</li></ol>
+</div></div>
+</div>
 <p>Ci concentreremo qui su un sottoinsieme di item, ovvero quelli che riguardano l’area delle caratteristiche del bambino.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First subscale: items names.</span>
-<span class="n">item_subscale</span> <span class="o">&lt;-</span> <span class="n">c</span><span class="p">(</span>
-    <span class="s2">&quot;FAI_49&quot;</span><span class="p">,</span> <span class="s2">&quot;FAI_106&quot;</span><span class="p">,</span> <span class="s2">&quot;FAI_60&quot;</span><span class="p">,</span> <span class="s2">&quot;FAI_124&quot;</span><span class="p">,</span> <span class="s2">&quot;FAI_86&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;FAI_47&quot;</span><span class="p">,</span> <span class="s2">&quot;FAI_121&quot;</span><span class="p">,</span> <span class="s2">&quot;FAI_167&quot;</span><span class="p">,</span> <span class="s2">&quot;FAI_99&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;FAI_63&quot;</span><span class="p">,</span> <span class="s2">&quot;FAI_168&quot;</span><span class="p">,</span> <span class="s2">&quot;FAI_5&quot;</span><span class="p">,</span> <span class="s2">&quot;FAI_132&quot;</span><span class="p">,</span> <span class="s2">&quot;FAI_85&quot;</span><span class="p">,</span> <span class="s2">&quot;FAI_81&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;FAI_83&quot;</span><span class="p">,</span>
-    <span class="c1"># &quot;FAI_152&quot;,  &quot;FAI_175&quot;,</span>
-    <span class="s2">&quot;FAI_57&quot;</span><span class="p">,</span> <span class="s2">&quot;FAI_91&quot;</span><span class="p">,</span> <span class="s2">&quot;FAI_135&quot;</span><span class="p">,</span> <span class="s2">&quot;FAI_1&quot;</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># First subscale: items names.</span>
+<span class="n">item_subscale</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;FAI_49&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FAI_106&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FAI_60&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FAI_124&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FAI_86&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;FAI_47&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FAI_121&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FAI_167&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FAI_99&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;FAI_63&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FAI_168&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FAI_5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FAI_132&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FAI_85&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FAI_81&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;FAI_83&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="c1"># &quot;FAI_152&quot;,  &quot;FAI_175&quot;,</span>
+<span class="w">    </span><span class="s">&quot;FAI_57&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FAI_91&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FAI_135&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FAI_1&quot;</span>
 <span class="p">)</span>
 
 <span class="c1"># Select only the items of this subscale.</span>
-<span class="n">subscale_data</span> <span class="o">&lt;-</span> <span class="n">df</span> <span class="o">%&gt;%</span>
-    <span class="n">dplyr</span><span class="p">::</span><span class="n">select</span><span class="p">(</span><span class="n">all_of</span><span class="p">(</span><span class="n">item_subscale</span><span class="p">))</span>
-<span class="n">dim</span><span class="p">(</span><span class="n">subscale_data</span><span class="p">)</span>
+<span class="n">subscale_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="n">dplyr</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span><span class="nf">all_of</span><span class="p">(</span><span class="n">item_subscale</span><span class="p">))</span>
+<span class="nf">dim</span><span class="p">(</span><span class="n">subscale_data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -599,13 +619,13 @@ document.write(`
 <p>Esaminiamo le statistiche descrittive degli item.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psych</span><span class="p">::</span><span class="n">describe</span><span class="p">(</span><span class="n">subscale_data</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">psych</span><span class="o">::</span><span class="nf">describe</span><span class="p">(</span><span class="n">subscale_data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><table class="dataframe">
-<caption>A psych: 20 x 13</caption>
+<caption>A psych: 20 × 13</caption>
 <thead>
 	<tr><th></th><th scope=col>vars</th><th scope=col>n</th><th scope=col>mean</th><th scope=col>sd</th><th scope=col>median</th><th scope=col>trimmed</th><th scope=col>mad</th><th scope=col>min</th><th scope=col>max</th><th scope=col>range</th><th scope=col>skew</th><th scope=col>kurtosis</th><th scope=col>se</th></tr>
 	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
@@ -638,13 +658,13 @@ document.write(`
 <p>Esaminiamo la distribuzione del punteggio totale.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">&lt;-</span> <span class="n">apply</span><span class="p">(</span><span class="n">subscale_data</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">sum</span><span class="p">)</span>
-<span class="n">hist</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="n">subscale_data</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">)</span>
+<span class="nf">hist</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/fd7448ff5efaf4633687464c3b1fc2e012c2923c41b71ce1d086613d218695c2.png"><img alt="../_images/fd7448ff5efaf4633687464c3b1fc2e012c2923c41b71ce1d086613d218695c2.png" src="../_images/fd7448ff5efaf4633687464c3b1fc2e012c2923c41b71ce1d086613d218695c2.png" style="width: 679.6117px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/00379c1c0fe0530f6b01e54d538f486cac6c3665ec48d2e0e919ecd8ca109174.png"><img alt="../_images/00379c1c0fe0530f6b01e54d538f486cac6c3665ec48d2e0e919ecd8ca109174.png" src="../_images/00379c1c0fe0530f6b01e54d538f486cac6c3665ec48d2e0e919ecd8ca109174.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 </section>
@@ -653,9 +673,9 @@ document.write(`
 <p>Il primo passo nell’Analisi delle Scale Mokken (MSA) consiste nell’esecuzione dell’<em>Automated Item Selection Procedure</em> (AISP). Come precedentemente discusso, questa analisi ricerca insiemi di item (scale) che si conformano al modello di omogeneità monotona. Similmente all’analisi fattoriale esplorativa, l’AISP è un metodo per suddividere i dati in diverse sottoscale che soddisfano i criteri della MSA, includendo possibilmente anche l’individuazione di eventuali item non scalabili. Per eseguire la AISP, è necessario eseguire il codice seguente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">subscale_data</span> <span class="o">&lt;-</span> <span class="k">as</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="n">subscale_data</span><span class="p">)</span>
-<span class="n">scale</span> <span class="o">&lt;-</span> <span class="n">aisp</span><span class="p">(</span><span class="n">subscale_data</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">scale</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">subscale_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">subscale_data</span><span class="p">)</span>
+<span class="n">scale</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">aisp</span><span class="p">(</span><span class="n">subscale_data</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">scale</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -689,8 +709,8 @@ FAI_1     0
 <p>È possibile modificare sia il limite inferiore c (il limite inferiore predefinito è .30) sia il livello di alpha, che di default è .05. Per esempio:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scale</span> <span class="o">&lt;-</span> <span class="n">aisp</span><span class="p">(</span><span class="n">subscale_data</span><span class="p">,</span> <span class="n">lowerbound</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">scale</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">scale</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">aisp</span><span class="p">(</span><span class="n">subscale_data</span><span class="p">,</span><span class="w"> </span><span class="n">lowerbound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.4</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">scale</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -729,17 +749,17 @@ FAI_1     0
 <p>Per eseguire l’AISP con molteplici limiti inferiori, possiamo usare l’istruzione seguente:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aisp</span><span class="p">(</span>
-    <span class="n">subscale_data</span><span class="p">,</span> 
-    <span class="n">lowerbound</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mf">.05</span><span class="p">,</span> <span class="mf">.10</span><span class="p">,</span> <span class="mf">.15</span><span class="p">,</span> <span class="mf">.20</span><span class="p">,</span> <span class="mf">.25</span><span class="p">,</span> <span class="mf">.30</span><span class="p">,</span> <span class="mf">.35</span><span class="p">,</span> <span class="mf">.40</span><span class="p">,</span> <span class="mf">.45</span><span class="p">,</span> <span class="mf">.50</span><span class="p">,</span> <span class="mf">.55</span><span class="p">),</span> 
-    <span class="n">verbose</span> <span class="o">=</span> <span class="n">FALSE</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">aisp</span><span class="p">(</span>
+<span class="w">    </span><span class="n">subscale_data</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">lowerbound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">.</span><span class="m">05</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">35</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">40</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">55</span><span class="p">),</span><span class="w"> </span>
+<span class="w">    </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><table class="dataframe">
-<caption>A matrix: 20 x 11 of type dbl</caption>
+<caption>A matrix: 20 × 11 of type dbl</caption>
 <thead>
 	<tr><th></th><th scope=col>0.05</th><th scope=col>0.1</th><th scope=col>0.15</th><th scope=col>0.2</th><th scope=col>0.25</th><th scope=col>0.3</th><th scope=col>0.35</th><th scope=col>0.4</th><th scope=col>0.45</th><th scope=col>0.5</th><th scope=col>0.55</th></tr>
 </thead>
@@ -771,8 +791,8 @@ FAI_1     0
 <p>Per eseguire un’analisi della dimensionalità utilizzando un metodo diverso, ovvero l’algoritmo genetico (Straat, van der Ark &amp; Sijtsma, 2013), si può utilizzare il seguente codice:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scale</span> <span class="o">&lt;-</span> <span class="n">aisp</span><span class="p">(</span><span class="n">subscale_data</span><span class="p">,</span> <span class="n">search</span> <span class="o">=</span> <span class="s2">&quot;ga&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">scale</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">scale</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">aisp</span><span class="p">(</span><span class="n">subscale_data</span><span class="p">,</span><span class="w"> </span><span class="n">search</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ga&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">scale</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -807,9 +827,9 @@ FAI_1     0
 <p>Possiamo selezionare gli item della scala 1 individuata dalla AISP nel modo seguente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aisp</span><span class="o">.</span><span class="n">lb</span> <span class="o">&lt;-</span> <span class="n">aisp</span><span class="p">(</span><span class="n">subscale_data</span><span class="p">,</span> <span class="n">lowerbound</span> <span class="o">=</span> <span class="mf">.3</span><span class="p">)</span>
-<span class="n">good_items</span> <span class="o">&lt;-</span> <span class="n">subscale_data</span><span class="p">[,</span> <span class="n">aisp</span><span class="o">.</span><span class="n">lb</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
-<span class="n">names</span><span class="p">(</span><span class="n">good_items</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="nb">print</span><span class="p">()</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">aisp.lb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">aisp</span><span class="p">(</span><span class="n">subscale_data</span><span class="p">,</span><span class="w"> </span><span class="n">lowerbound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">3</span><span class="p">)</span>
+<span class="n">good_items</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">subscale_data</span><span class="p">[,</span><span class="w"> </span><span class="n">aisp.lb</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">]</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">good_items</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -825,8 +845,8 @@ FAI_1     0
 <p>Il codice seguente ritorna i valori <span class="math notranslate nohighlight">\(H_{ij}\)</span>, <span class="math notranslate nohighlight">\(H_j\)</span>, e <span class="math notranslate nohighlight">\(H\)</span>. Nelle parentesi tonde sono riportati gli errori standard.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scal_coef</span> <span class="o">&lt;-</span> <span class="n">coefH</span><span class="p">(</span><span class="n">good_items</span><span class="p">,</span> <span class="n">se</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">)</span>
-<span class="n">scal_coef</span> <span class="o">|&gt;</span> <span class="nb">print</span><span class="p">()</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">scal_coef</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">coefH</span><span class="p">(</span><span class="n">good_items</span><span class="p">,</span><span class="w"> </span><span class="n">se</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">scal_coef</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -862,8 +882,9 @@ FAI_83    0.404 (0.032)
 $H
 Scale H      se 
   0.428 (0.026) 
-
-$Hij
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>$Hij
         FAI_49  se      FAI_106 se      FAI_60  se      FAI_124 se      FAI_5  
 FAI_49                   0.561  (0.057)  0.608  (0.054)  0.601  (0.048)  0.212 
 FAI_106  0.561  (0.057)                  0.617  (0.042)  0.722  (0.039)  0.317 
@@ -1058,8 +1079,8 @@ H rappresenta la scalabilità complessiva dell’intero insieme di item. L’int
 <p>È possibile ottenere il numero di valori negativi <span class="math notranslate nohighlight">\(H_{ij}\)</span> per ciascun item usando il codice seguente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scal_coef</span> <span class="o">&lt;-</span> <span class="n">coefH</span><span class="p">(</span><span class="n">good_items</span><span class="p">,</span> <span class="n">se</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">)</span><span class="err">$</span><span class="n">Hij</span>
-<span class="n">apply</span><span class="p">(</span><span class="n">scal_coef</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">))</span> <span class="o">|&gt;</span> <span class="nb">print</span><span class="p">()</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">scal_coef</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">coefH</span><span class="p">(</span><span class="n">good_items</span><span class="p">,</span><span class="w"> </span><span class="n">se</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="o">$</span><span class="n">Hij</span>
+<span class="nf">apply</span><span class="p">(</span><span class="n">scal_coef</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1080,8 +1101,9 @@ $Hi
 
 $H
 [1] 0.4279251
-
- FAI_49 FAI_106  FAI_60 FAI_124   FAI_5  FAI_81  FAI_83 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> FAI_49 FAI_106  FAI_60 FAI_124   FAI_5  FAI_81  FAI_83 
       0       0       0       0       0       0       0 
 </pre></div>
 </div>
@@ -1090,7 +1112,7 @@ $H
 <p>L’istruzione seguente esegue la procedura frequentista del test di ipotesi, con l’ipotesi alternativa che i coefficienti di scalabilità sono maggiori di zero. Il test è unidirezionale, dunque il valore soglia della statistica <span class="math notranslate nohighlight">\(z\)</span> è 1.65.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coefZ</span><span class="p">(</span><span class="n">good_items</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="nb">print</span><span class="p">()</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">coefZ</span><span class="p">(</span><span class="n">good_items</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1122,8 +1144,8 @@ $Z
 <p>Come spiegato in precedenza, la monotonicità è un’importante assunzione della MSA. La probabilità di una risposta corretta dovrebbe aumentare con θ. La monotonicità può essere esaminata con il seguente codice:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">monoton</span> <span class="o">&lt;-</span> <span class="n">check</span><span class="o">.</span><span class="n">monotonicity</span><span class="p">(</span><span class="n">good_items</span><span class="p">)</span>
-<span class="n">summary</span><span class="p">(</span><span class="n">monoton</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="nb">print</span><span class="p">()</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">monoton</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">check.monotonicity</span><span class="p">(</span><span class="n">good_items</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">monoton</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1157,21 +1179,21 @@ FAI_83   0.40  21   0       0     0   0       0    0     0    0
 <p>Un grafico della monotonicità per una coppia di item si ottiene nel modo seguente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">check</span><span class="o">.</span><span class="n">monotonicity</span><span class="p">(</span><span class="n">good_items</span><span class="p">),</span> <span class="n">item</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="nf">check.monotonicity</span><span class="p">(</span><span class="n">good_items</span><span class="p">),</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/f8c954ee6b27f61bfdcb26a4f52e941ab7fc6287c0321fe3de8b8e37e6131df7.png"><img alt="../_images/f8c954ee6b27f61bfdcb26a4f52e941ab7fc6287c0321fe3de8b8e37e6131df7.png" src="../_images/f8c954ee6b27f61bfdcb26a4f52e941ab7fc6287c0321fe3de8b8e37e6131df7.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/ec25ddd8c2ab72b531aedc0cb687c188ded70b625d5f166a956cd983a0c88ade.png"><img alt="../_images/ec25ddd8c2ab72b531aedc0cb687c188ded70b625d5f166a956cd983a0c88ade.png" src="../_images/ec25ddd8c2ab72b531aedc0cb687c188ded70b625d5f166a956cd983a0c88ade.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/c85a967a3e29d20a8000df8d208e196506d69416eebd9c7f452a1e3295bff79a.png"><img alt="../_images/c85a967a3e29d20a8000df8d208e196506d69416eebd9c7f452a1e3295bff79a.png" src="../_images/c85a967a3e29d20a8000df8d208e196506d69416eebd9c7f452a1e3295bff79a.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/77527c03037e1fb9ab22b9f96c9b6f3c40d6e0f06a22f0ce29b97f493e0526ee.png"><img alt="../_images/77527c03037e1fb9ab22b9f96c9b6f3c40d6e0f06a22f0ce29b97f493e0526ee.png" src="../_images/77527c03037e1fb9ab22b9f96c9b6f3c40d6e0f06a22f0ce29b97f493e0526ee.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 <p>La figura di questo esempio illustra i grafici di monotonicità per gli Item 49 e 106. Il grafico è diviso in due pannelli. Il pannello sul lato sinistro mostra le Funzioni di Risposta del Passaggio dell’Item (ISRFs), mentre il pannello sul lato destro mostra la Funzione di Risposta all’Item (IRF) complessiva per ciascun item. Il grafico evidenzia che sia l’IRF sia le ISRFs sono sempre non decrescenti per l’item 49; per l’item 106, invece, si osserva una piccola violazione della monotonicità.</p>
 <p>Se esaminiamo tutti gli item dell’area relativa alle caratteristiche del bambino (non solo quelli selezionati dalla procedura AISP) notiamo come, per alcuni item, si osserva un numero di violazioni maggiore di zero.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">monoton2</span> <span class="o">&lt;-</span> <span class="n">check</span><span class="o">.</span><span class="n">monotonicity</span><span class="p">(</span><span class="n">subscale_data</span><span class="p">)</span>
-<span class="n">summary</span><span class="p">(</span><span class="n">monoton2</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="nb">print</span><span class="p">()</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">monoton2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">check.monotonicity</span><span class="p">(</span><span class="n">subscale_data</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">monoton2</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1207,8 +1229,8 @@ FAI_1    0.10  21   0    0.00  0.00 0.00  0.0000 0.00     0    0
 <p>Il passo successivo nella MSA è indagare l’ordinamento invariante degli item (IIO) o la non intersezione delle Funzioni di Risposta all’Item (IRFs). È fondamentale determinare se l’ordine degli item sia lo stesso per tutti i rispondenti con diversi livelli del tratto. Esistono diversi metodi per esaminare l’IIO. Il metodo predefinito nel pacchetto R <code class="docutils literal notranslate"><span class="pre">mokken</span></code> è l’IIO manifesto o MIIO (Manifest IIO) (Ligtvoet, Van der Ark, Te Marvelde &amp; Sijtsma, 2010). Per esaminare l’ordinamento invariante degli item, eseguiamo il seguente codice.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iio</span> <span class="o">&lt;-</span> <span class="n">check</span><span class="o">.</span><span class="n">iio</span><span class="p">(</span><span class="n">good_items</span><span class="p">)</span>
-<span class="n">summary</span><span class="p">(</span><span class="n">iio</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="nb">print</span><span class="p">()</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">iio</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">check.iio</span><span class="p">(</span><span class="n">good_items</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">iio</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1247,32 +1269,32 @@ $HT
 <p>Per esaminare graficamente queste intersezione, usiamo il codice seguente.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">iio</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">iio</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/d941a71f6bab01564b10235546ff91696922bf419478b484d93dce9ef993c1ee.png"><img alt="../_images/d941a71f6bab01564b10235546ff91696922bf419478b484d93dce9ef993c1ee.png" src="../_images/d941a71f6bab01564b10235546ff91696922bf419478b484d93dce9ef993c1ee.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/6d05ac50392b24890b3d3d526b3e9f00d6c899183d25423703c33966cf171edd.png"><img alt="../_images/6d05ac50392b24890b3d3d526b3e9f00d6c899183d25423703c33966cf171edd.png" src="../_images/6d05ac50392b24890b3d3d526b3e9f00d6c899183d25423703c33966cf171edd.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/7db2fb6549d8acac19b16e5f606dfe1ce70714af7811d7040ded39b69b3e09ba.png"><img alt="../_images/7db2fb6549d8acac19b16e5f606dfe1ce70714af7811d7040ded39b69b3e09ba.png" src="../_images/7db2fb6549d8acac19b16e5f606dfe1ce70714af7811d7040ded39b69b3e09ba.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/abcb614a5b867415bbf0c7eed30576a5419003733393407d9a1bc54b18a90510.png"><img alt="../_images/abcb614a5b867415bbf0c7eed30576a5419003733393407d9a1bc54b18a90510.png" src="../_images/abcb614a5b867415bbf0c7eed30576a5419003733393407d9a1bc54b18a90510.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/317ae3c2d32bf99ea5483eedcff83c99342b763a33d9dd2f213e9050ce228585.png"><img alt="../_images/317ae3c2d32bf99ea5483eedcff83c99342b763a33d9dd2f213e9050ce228585.png" src="../_images/317ae3c2d32bf99ea5483eedcff83c99342b763a33d9dd2f213e9050ce228585.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/84e6f61d33e993c96b10aface4455a3e7bb73603fad344870a3626189f04fb06.png"><img alt="../_images/84e6f61d33e993c96b10aface4455a3e7bb73603fad344870a3626189f04fb06.png" src="../_images/84e6f61d33e993c96b10aface4455a3e7bb73603fad344870a3626189f04fb06.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/7d39db628e6b654a30a46c3c3e6d41284d6f9b4a0b39591c71c97737e27d929e.png"><img alt="../_images/7d39db628e6b654a30a46c3c3e6d41284d6f9b4a0b39591c71c97737e27d929e.png" src="../_images/7d39db628e6b654a30a46c3c3e6d41284d6f9b4a0b39591c71c97737e27d929e.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/ac0d74ceae7f5b0257f9043a9ad68ecb4333fdef8644f10eb47aed976d2d2f11.png"><img alt="../_images/ac0d74ceae7f5b0257f9043a9ad68ecb4333fdef8644f10eb47aed976d2d2f11.png" src="../_images/ac0d74ceae7f5b0257f9043a9ad68ecb4333fdef8644f10eb47aed976d2d2f11.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/a8b181e884741b10987c1ce0c0e7c8f0a1ee921bf61366398fcff8109489c67d.png"><img alt="../_images/a8b181e884741b10987c1ce0c0e7c8f0a1ee921bf61366398fcff8109489c67d.png" src="../_images/a8b181e884741b10987c1ce0c0e7c8f0a1ee921bf61366398fcff8109489c67d.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/5ee74ee89647dbe9f63a98e929a643d474fd3a65cda8aa1a117b5f3c72782cad.png"><img alt="../_images/5ee74ee89647dbe9f63a98e929a643d474fd3a65cda8aa1a117b5f3c72782cad.png" src="../_images/5ee74ee89647dbe9f63a98e929a643d474fd3a65cda8aa1a117b5f3c72782cad.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/ea0241ba3dc11aa7d6f0c43f792079dfbaabede806820fd5255efae5ff76e80c.png"><img alt="../_images/ea0241ba3dc11aa7d6f0c43f792079dfbaabede806820fd5255efae5ff76e80c.png" src="../_images/ea0241ba3dc11aa7d6f0c43f792079dfbaabede806820fd5255efae5ff76e80c.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/c68685b3747c1472ccf356c68455181c1b0e740a690145412b0aefa10a083575.png"><img alt="../_images/c68685b3747c1472ccf356c68455181c1b0e740a690145412b0aefa10a083575.png" src="../_images/c68685b3747c1472ccf356c68455181c1b0e740a690145412b0aefa10a083575.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/104ba5e885b0b07674588b6bb6a2118c1b3b6da02d5439458a5c53f16e80174c.png"><img alt="../_images/104ba5e885b0b07674588b6bb6a2118c1b3b6da02d5439458a5c53f16e80174c.png" src="../_images/104ba5e885b0b07674588b6bb6a2118c1b3b6da02d5439458a5c53f16e80174c.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/9214ce1349f703437cedc7480eca8b6a4f83006cf342743067a7de7acd487ecb.png"><img alt="../_images/9214ce1349f703437cedc7480eca8b6a4f83006cf342743067a7de7acd487ecb.png" src="../_images/9214ce1349f703437cedc7480eca8b6a4f83006cf342743067a7de7acd487ecb.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/2efc879ebf95cd319b35f6230804dc5f019f7790da941c824ce6230fb7b655cf.png"><img alt="../_images/2efc879ebf95cd319b35f6230804dc5f019f7790da941c824ce6230fb7b655cf.png" src="../_images/2efc879ebf95cd319b35f6230804dc5f019f7790da941c824ce6230fb7b655cf.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/ee72907d9156921394599d844836ee5028fdda04386804dca631720a968a5334.png"><img alt="../_images/ee72907d9156921394599d844836ee5028fdda04386804dca631720a968a5334.png" src="../_images/ee72907d9156921394599d844836ee5028fdda04386804dca631720a968a5334.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/264f708857a219ae10430e120cab95adb2b1fd8fec2a8b29e01206fa105d37a0.png"><img alt="../_images/264f708857a219ae10430e120cab95adb2b1fd8fec2a8b29e01206fa105d37a0.png" src="../_images/264f708857a219ae10430e120cab95adb2b1fd8fec2a8b29e01206fa105d37a0.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/25c30df15b0fe0b5ada08720f8749046a4582697214fbdbaf4f7fe2253c8051d.png"><img alt="../_images/25c30df15b0fe0b5ada08720f8749046a4582697214fbdbaf4f7fe2253c8051d.png" src="../_images/25c30df15b0fe0b5ada08720f8749046a4582697214fbdbaf4f7fe2253c8051d.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/a79bbd2cbafe8646ef77decaeee7229f5001e75fd122661e2ba41e23752ca9c7.png"><img alt="../_images/a79bbd2cbafe8646ef77decaeee7229f5001e75fd122661e2ba41e23752ca9c7.png" src="../_images/a79bbd2cbafe8646ef77decaeee7229f5001e75fd122661e2ba41e23752ca9c7.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/a10a7d0d11262316fb26604267666f1afa145fad114e5d782a12259589aa0ff5.png"><img alt="../_images/a10a7d0d11262316fb26604267666f1afa145fad114e5d782a12259589aa0ff5.png" src="../_images/a10a7d0d11262316fb26604267666f1afa145fad114e5d782a12259589aa0ff5.png" style="width: 420px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/3e1084928ce95834b98a58d814e8d2c07e82c08297b347d15eb7cc67ddce1b56.png"><img alt="../_images/3e1084928ce95834b98a58d814e8d2c07e82c08297b347d15eb7cc67ddce1b56.png" src="../_images/3e1084928ce95834b98a58d814e8d2c07e82c08297b347d15eb7cc67ddce1b56.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/1ce4410ee7f2b70e3ebed22c16883535def0a8dd3c248f5c259c94e49ce31e46.png"><img alt="../_images/1ce4410ee7f2b70e3ebed22c16883535def0a8dd3c248f5c259c94e49ce31e46.png" src="../_images/1ce4410ee7f2b70e3ebed22c16883535def0a8dd3c248f5c259c94e49ce31e46.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/7ac225df8176d33c429318480eef22bf734ecb028fa2200f66a24c29990dc004.png"><img alt="../_images/7ac225df8176d33c429318480eef22bf734ecb028fa2200f66a24c29990dc004.png" src="../_images/7ac225df8176d33c429318480eef22bf734ecb028fa2200f66a24c29990dc004.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/33b9fec02c6e0f276801e5d0bebcd8588c1a077e570302cd7c007e19f2b2e097.png"><img alt="../_images/33b9fec02c6e0f276801e5d0bebcd8588c1a077e570302cd7c007e19f2b2e097.png" src="../_images/33b9fec02c6e0f276801e5d0bebcd8588c1a077e570302cd7c007e19f2b2e097.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/3a6d0db1168874a26cfbf71aa8cd1d478accf3c9885032e6ec17dddf336ff309.png"><img alt="../_images/3a6d0db1168874a26cfbf71aa8cd1d478accf3c9885032e6ec17dddf336ff309.png" src="../_images/3a6d0db1168874a26cfbf71aa8cd1d478accf3c9885032e6ec17dddf336ff309.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/b2f2710d076d4b4cec2640afe2645787f3cdea466d6c6b70470f991e46b1c5b5.png"><img alt="../_images/b2f2710d076d4b4cec2640afe2645787f3cdea466d6c6b70470f991e46b1c5b5.png" src="../_images/b2f2710d076d4b4cec2640afe2645787f3cdea466d6c6b70470f991e46b1c5b5.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/fe83da73572a02ca24410a0566aa1aee8f123475841f212d0a4cb35e2e484138.png"><img alt="../_images/fe83da73572a02ca24410a0566aa1aee8f123475841f212d0a4cb35e2e484138.png" src="../_images/fe83da73572a02ca24410a0566aa1aee8f123475841f212d0a4cb35e2e484138.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/a7009bff13200f6f45fa396884439f1d2c168d849823fb76ebf3731b46bcdf4e.png"><img alt="../_images/a7009bff13200f6f45fa396884439f1d2c168d849823fb76ebf3731b46bcdf4e.png" src="../_images/a7009bff13200f6f45fa396884439f1d2c168d849823fb76ebf3731b46bcdf4e.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/69d82168348672c2b801555536fef622c506f48678a8dffcf5b8f06cfe87e460.png"><img alt="../_images/69d82168348672c2b801555536fef622c506f48678a8dffcf5b8f06cfe87e460.png" src="../_images/69d82168348672c2b801555536fef622c506f48678a8dffcf5b8f06cfe87e460.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/9ac997eeec071a10650160afeb061984f9e846448e9ca79c4a70499c6667b79e.png"><img alt="../_images/9ac997eeec071a10650160afeb061984f9e846448e9ca79c4a70499c6667b79e.png" src="../_images/9ac997eeec071a10650160afeb061984f9e846448e9ca79c4a70499c6667b79e.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/aa709a6f3900e87f3aa1ab96fe4a86a99ed482a06f97381375d33d54e48b657d.png"><img alt="../_images/aa709a6f3900e87f3aa1ab96fe4a86a99ed482a06f97381375d33d54e48b657d.png" src="../_images/aa709a6f3900e87f3aa1ab96fe4a86a99ed482a06f97381375d33d54e48b657d.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/78c74efe1ed87082fbf80c6a6e2fcd1e1d590990b0a3262b6ff2700a1981ded9.png"><img alt="../_images/78c74efe1ed87082fbf80c6a6e2fcd1e1d590990b0a3262b6ff2700a1981ded9.png" src="../_images/78c74efe1ed87082fbf80c6a6e2fcd1e1d590990b0a3262b6ff2700a1981ded9.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/1444ba1c10f587f158c39d03c83dd61f03c42d168386bd28df1714770605f164.png"><img alt="../_images/1444ba1c10f587f158c39d03c83dd61f03c42d168386bd28df1714770605f164.png" src="../_images/1444ba1c10f587f158c39d03c83dd61f03c42d168386bd28df1714770605f164.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/157138c4b936b820d9597b5b1c5902726fd30a98feb5ea752ebf6fc8f2c9fdbf.png"><img alt="../_images/157138c4b936b820d9597b5b1c5902726fd30a98feb5ea752ebf6fc8f2c9fdbf.png" src="../_images/157138c4b936b820d9597b5b1c5902726fd30a98feb5ea752ebf6fc8f2c9fdbf.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/f6e83b669a8091631dfb0a796d75a0eb1be8bc80fa7811559aadc63a553fc8d1.png"><img alt="../_images/f6e83b669a8091631dfb0a796d75a0eb1be8bc80fa7811559aadc63a553fc8d1.png" src="../_images/f6e83b669a8091631dfb0a796d75a0eb1be8bc80fa7811559aadc63a553fc8d1.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/ca6863feee8ec064bce156fa127d07fa339fd7eb38a4abb9ba5452d1d47b0e48.png"><img alt="../_images/ca6863feee8ec064bce156fa127d07fa339fd7eb38a4abb9ba5452d1d47b0e48.png" src="../_images/ca6863feee8ec064bce156fa127d07fa339fd7eb38a4abb9ba5452d1d47b0e48.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/e68ef5cf2e795c9c06a2bdaa39b558d42cd37784fc69d3b63dbeb7b3cc5e08e1.png"><img alt="../_images/e68ef5cf2e795c9c06a2bdaa39b558d42cd37784fc69d3b63dbeb7b3cc5e08e1.png" src="../_images/e68ef5cf2e795c9c06a2bdaa39b558d42cd37784fc69d3b63dbeb7b3cc5e08e1.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/1a70b1e8fc6fcda8509aa631a8267ec3ce83ba71756e1f698083293a1b4b9abf.png"><img alt="../_images/1a70b1e8fc6fcda8509aa631a8267ec3ce83ba71756e1f698083293a1b4b9abf.png" src="../_images/1a70b1e8fc6fcda8509aa631a8267ec3ce83ba71756e1f698083293a1b4b9abf.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/724a2b37662b5f3ee83b0a4b682dd4a6c8efcc976772a0b7f11cbbbf8c625fed.png"><img alt="../_images/724a2b37662b5f3ee83b0a4b682dd4a6c8efcc976772a0b7f11cbbbf8c625fed.png" src="../_images/724a2b37662b5f3ee83b0a4b682dd4a6c8efcc976772a0b7f11cbbbf8c625fed.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/d110c9f9fed2d15250216933c75cb9010898640582a6be4e1a170d6642aaadc8.png"><img alt="../_images/d110c9f9fed2d15250216933c75cb9010898640582a6be4e1a170d6642aaadc8.png" src="../_images/d110c9f9fed2d15250216933c75cb9010898640582a6be4e1a170d6642aaadc8.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/7c6564fdb4a9eff6f20847a2f3fa2ddb4924c61cdc8868a902ed805edd9706b0.png"><img alt="../_images/7c6564fdb4a9eff6f20847a2f3fa2ddb4924c61cdc8868a902ed805edd9706b0.png" src="../_images/7c6564fdb4a9eff6f20847a2f3fa2ddb4924c61cdc8868a902ed805edd9706b0.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/50966a135149465191614c492b617f1b6e9ebac27ca67897b086609dbc05813d.png"><img alt="../_images/50966a135149465191614c492b617f1b6e9ebac27ca67897b086609dbc05813d.png" src="../_images/50966a135149465191614c492b617f1b6e9ebac27ca67897b086609dbc05813d.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 </section>
@@ -1281,8 +1303,8 @@ $HT
 <p>Per indagare sulla non intersezione delle funzioni di risposta degli step degli item si possono impiegare le matrici P++ e P– (Molenaar &amp; Sijtsma, 2000).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pmatrix</span> <span class="o">&lt;-</span> <span class="n">check</span><span class="o">.</span><span class="n">pmatrix</span><span class="p">(</span><span class="n">good_items</span><span class="p">)</span>
-<span class="n">summary</span><span class="p">(</span><span class="n">pmatrix</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="nb">print</span><span class="p">()</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pmatrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">check.pmatrix</span><span class="p">(</span><span class="n">good_items</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">pmatrix</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1302,20 +1324,20 @@ FAI_83   0.40 1920  17    0.01  0.06 0.68   4e-04 4.60    16   78
 <p>Come spiegato nelle sezioni precedenti, la colonna ‘#vi’ indica il numero di violazioni delle ISRF. La colonna ‘#zsig’ mostra il numero di violazioni statisticamente significative. Le violazioni possono anche essere controllate graficamente utilizzando il seguente codice:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">check</span><span class="o">.</span><span class="n">pmatrix</span><span class="p">(</span><span class="n">good_items</span><span class="p">),</span> <span class="n">item</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="nf">check.pmatrix</span><span class="p">(</span><span class="n">good_items</span><span class="p">),</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/f8f416947d38e8e17813438ce134e945bbddc06dfe2d801dfad21e5f1467d61f.png"><img alt="../_images/f8f416947d38e8e17813438ce134e945bbddc06dfe2d801dfad21e5f1467d61f.png" src="../_images/f8f416947d38e8e17813438ce134e945bbddc06dfe2d801dfad21e5f1467d61f.png" style="width: 679.6117px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/cda0673bba59294868d78e76b3fb9c0ce7c6d6dfd3ec384a59e82ef17a4c34b7.png"><img alt="../_images/cda0673bba59294868d78e76b3fb9c0ce7c6d6dfd3ec384a59e82ef17a4c34b7.png" src="../_images/cda0673bba59294868d78e76b3fb9c0ce7c6d6dfd3ec384a59e82ef17a4c34b7.png" style="width: 679.6117px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/187b15b779695e9ffdaa2f5242909693853b3e2ee0d2ddfe9d89b5254d87e0f0.png"><img alt="../_images/187b15b779695e9ffdaa2f5242909693853b3e2ee0d2ddfe9d89b5254d87e0f0.png" src="../_images/187b15b779695e9ffdaa2f5242909693853b3e2ee0d2ddfe9d89b5254d87e0f0.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/f09c2b8776a9bea17113fd1a2e01281007bf5784cce1cf1cecbe4841a2f6e360.png"><img alt="../_images/f09c2b8776a9bea17113fd1a2e01281007bf5784cce1cf1cecbe4841a2f6e360.png" src="../_images/f09c2b8776a9bea17113fd1a2e01281007bf5784cce1cf1cecbe4841a2f6e360.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 <p>La non intersezione delle ISRF può essere esaminata anche con il metodo del punteggio residuo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">restscore</span> <span class="o">&lt;-</span> <span class="n">check</span><span class="o">.</span><span class="n">restscore</span><span class="p">(</span><span class="n">good_items</span><span class="p">)</span> 
-<span class="n">summary</span><span class="p">(</span><span class="n">restscore</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="nb">print</span><span class="p">()</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">restscore</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">check.restscore</span><span class="p">(</span><span class="n">good_items</span><span class="p">)</span><span class="w"> </span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">restscore</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1335,13 +1357,13 @@ FAI_83   0.40 288   9    0.03  0.07 0.40  0.0014 2.07     1   36
 <p>I risultati del metodo del punteggio residuo sono diversi da quelli delle matrici P++ e P–. L’output viene interpretato come abbiamo fatto in precedenza. La colonna ‘#vi’ indica il numero di violazioni delle ISRF. La colonna ‘#zsig’ mostra il numero di violazioni statisticamente significative. Questa colonna mostra che il numero di violazioni statisticamente significative è molto inferiore rispetto a quelle riportate dalle matrici P++ e P–. La violazione della non intersezione può essere esaminata graficamente nel modo seguente. Per esempio, consideriamo gli item FAI_49 e FAI_5.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">restscore</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">pairs</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">restscore</span><span class="p">,</span><span class="w"> </span><span class="n">item.pairs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/21085ec8b49d5fbbc112431c6d489e440dfb57b73d03e07f7641702b59188e6d.png"><img alt="../_images/21085ec8b49d5fbbc112431c6d489e440dfb57b73d03e07f7641702b59188e6d.png" src="../_images/21085ec8b49d5fbbc112431c6d489e440dfb57b73d03e07f7641702b59188e6d.png" style="width: 679.6117px; height: 420px;" /></a>
-<a class="reference internal image-reference" href="../_images/2f03477e9f911f3fafecba8486b2f7767350b4c50b3b3a2f1363ceaaa6525281.png"><img alt="../_images/2f03477e9f911f3fafecba8486b2f7767350b4c50b3b3a2f1363ceaaa6525281.png" src="../_images/2f03477e9f911f3fafecba8486b2f7767350b4c50b3b3a2f1363ceaaa6525281.png" style="width: 679.6117px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/53a8fc665dbea5d33b3b9d1f190e763b517d43fcc43674aa459e29396e0011d9.png"><img alt="../_images/53a8fc665dbea5d33b3b9d1f190e763b517d43fcc43674aa459e29396e0011d9.png" src="../_images/53a8fc665dbea5d33b3b9d1f190e763b517d43fcc43674aa459e29396e0011d9.png" style="width: 420px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/daa922af3f91b7626e8f21cb5b75b6d51245e233dc6fea4eab08542fe7b5a67d.png"><img alt="../_images/daa922af3f91b7626e8f21cb5b75b6d51245e233dc6fea4eab08542fe7b5a67d.png" src="../_images/daa922af3f91b7626e8f21cb5b75b6d51245e233dc6fea4eab08542fe7b5a67d.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 </section>
@@ -1357,20 +1379,20 @@ FAI_83   0.40 288   9    0.03  0.07 0.40  0.0014 2.07     1   36
 <p>Per ottenere queste stime dell’affidabilità è possibile eseguire il seguente codice.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">check</span><span class="o">.</span><span class="n">reliability</span><span class="p">(</span><span class="n">good_items</span><span class="p">,</span> <span class="n">LCRC</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">check.reliability</span><span class="p">(</span><span class="n">good_items</span><span class="p">,</span><span class="w"> </span><span class="n">LCRC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><dl>
 	<dt>$MS</dt>
-		<dd>0.819110476790128</dd>
+		<dd>0.820395147430261</dd>
 	<dt>$alpha</dt>
 		<dd>0.81675073603741</dd>
 	<dt>$lambda.2</dt>
-		<dd>0.824148383038108</dd>
+		<dd>0.824148383038109</dd>
 	<dt>$LCRC</dt>
-		<dd>0.843559865692261</dd>
+		<dd>0.84355986569226</dd>
 </dl>
 </div></div>
 </div>
@@ -1381,8 +1403,8 @@ FAI_83   0.40 288   9    0.03  0.07 0.40  0.0014 2.07     1   36
 <p>Gli outlier sono persone con modelli di risposta aberranti o molti errori di Guttman. Sijtsma e van der Ark (2017) raccomandano di rimuovere gli outlier e di rieseguire l’analisi senza di essi. Se c’è una differenza notevole nei risultati, allora la rimozione degli outlier è giustificata. Per ottenere il numero di errori di Guttman per ogni rispondente eseguiamo il seguente codice:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gutt</span> <span class="o">&lt;-</span> <span class="n">check</span><span class="o">.</span><span class="n">errors</span><span class="p">(</span><span class="n">good_items</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">gutt</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">gutt</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">check.errors</span><span class="p">(</span><span class="n">good_items</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">gutt</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1422,19 +1444,19 @@ $UGplus$U2Gplus
 <p>Il primo valore, 54.5, è il limite per il numero di errori di Guttman se la distribuzione è approssimativamente normale. I rispondenti con un numero di errori di Guttman superiore al limite possono essere considerati sospetti. Il valore 354.5259 è un limite di soglia per il numero di errori di Guttman se la distribuzione è asimmetrica.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist</span><span class="p">(</span><span class="n">gutt</span><span class="err">$</span><span class="n">Gplus</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">hist</span><span class="p">(</span><span class="n">gutt</span><span class="o">$</span><span class="n">Gplus</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/e4e57633d50f8750ff4efa2356a617ac3e86435a16b8a4940e980fefaaea2494.png"><img alt="../_images/e4e57633d50f8750ff4efa2356a617ac3e86435a16b8a4940e980fefaaea2494.png" src="../_images/e4e57633d50f8750ff4efa2356a617ac3e86435a16b8a4940e980fefaaea2494.png" style="width: 679.6117px; height: 420px;" /></a>
+<a class="reference internal image-reference" href="../_images/42e1de916e185ba8c4de258fd8a58efd47bd5d712073fe7e692bec964c3131f8.png"><img alt="../_images/42e1de916e185ba8c4de258fd8a58efd47bd5d712073fe7e692bec964c3131f8.png" src="../_images/42e1de916e185ba8c4de258fd8a58efd47bd5d712073fe7e692bec964c3131f8.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
 <p>Per il caso presente, l’istogramma del numero di errori di Gutmann mostra che la loro distribuzione è asimmetrica positiva. Pertanto, possiamo scegliere il secondo limite soglia. Per trovare le persone con valori G+ sopra il Tucky fence superiore, eseguiamo il seguente codice.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">err</span> <span class="o">&lt;-</span> <span class="n">gutt</span><span class="err">$</span><span class="n">Gplus</span> 
-<span class="n">which</span><span class="p">(</span><span class="n">err</span> <span class="o">&gt;</span> <span class="mf">354.5259</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">err</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gutt</span><span class="o">$</span><span class="n">Gplus</span><span class="w"> </span>
+<span class="nf">which</span><span class="p">(</span><span class="n">err</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">354.5259</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1457,21 +1479,21 @@ $UGplus$U2Gplus
 <h2><span class="section-number">68.11. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sessionInfo</span><span class="p">()</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.3.2 (2023-10-31)
-Platform: aarch64-apple-darwin20 (64-bit)
-Running under: macOS Sonoma 14.3.1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.3.3 (2024-02-29)
+Platform: x86_64-apple-darwin20 (64-bit)
+Running under: macOS Sonoma 14.4.1
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib 
-LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
 
 locale:
-[1] C
+[1] en_US.UTF-8/UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 
 time zone: Europe/Rome
 tzcode source: internal
@@ -1482,58 +1504,58 @@ attached base packages:
 
 other attached packages:
  [1] mokken_3.1.0         poLCA_1.6.0.1        MASS_7.3-60.0.1     
- [4] scatterplot3d_0.3-44 mirt_1.41            lattice_0.22-5      
+ [4] scatterplot3d_0.3-44 mirt_1.41            lattice_0.22-6      
  [7] TAM_4.2-21           CDM_8.2-6            mvtnorm_1.2-4       
 [10] ggokabeito_0.1.0     viridis_0.6.5        viridisLite_0.4.2   
 [13] ggpubr_0.6.0         ggExtra_0.10.1       bayesplot_1.11.1    
-[16] gridExtra_2.3        patchwork_1.2.0      semTools_0.5-6      
-[19] semPlot_1.1.6        lavaan_0.6-17        psych_2.4.1         
+[16] gridExtra_2.3        patchwork_1.2.0      semTools_0.5-6.920  
+[19] semPlot_1.1.6        lavaan_0.6-17        psych_2.4.3         
 [22] scales_1.3.0         markdown_1.12        knitr_1.45          
 [25] lubridate_1.9.3      forcats_1.0.0        stringr_1.5.1       
 [28] dplyr_1.1.4          purrr_1.0.2          readr_2.1.5         
-[31] tidyr_1.3.1          tibble_3.2.1         ggplot2_3.4.4       
+[31] tidyr_1.3.1          tibble_3.2.1         ggplot2_3.5.1       
 [34] tidyverse_2.0.0      here_1.0.1          
 
 loaded via a namespace (and not attached):
-  [1] rstudioapi_0.15.0    jsonlite_1.8.8       magrittr_2.0.3      
+  [1] rstudioapi_0.16.0    jsonlite_1.8.8       magrittr_2.0.3      
   [4] TH.data_1.1-2        estimability_1.5     nloptr_2.0.3        
-  [7] rmarkdown_2.25       vctrs_0.6.5          minqa_1.2.6         
- [10] base64enc_0.1-3      rstatix_0.7.2        htmltools_0.5.7     
+  [7] rmarkdown_2.26       vctrs_0.6.5          minqa_1.2.6         
+ [10] base64enc_0.1-3      rstatix_0.7.2        htmltools_0.5.8.1   
  [13] broom_1.0.5          Formula_1.2-5        dcurver_0.9.2       
  [16] htmlwidgets_1.6.4    plyr_1.8.9           sandwich_3.1-0      
  [19] emmeans_1.10.0       zoo_1.8-12           uuid_1.2-0          
- [22] admisc_0.34          igraph_2.0.2         mime_0.12           
+ [22] admisc_0.35          igraph_2.0.3         mime_0.12           
  [25] lifecycle_1.0.4      pkgconfig_2.0.3      Matrix_1.6-5        
- [28] R6_2.5.1             fastmap_1.1.1        shiny_1.8.0         
- [31] digest_0.6.34        OpenMx_2.21.11       fdrtool_1.2.17      
- [34] colorspace_2.1-0     rprojroot_2.0.4      Hmisc_5.1-1         
+ [28] R6_2.5.1             fastmap_1.1.1        shiny_1.8.1.1       
+ [31] digest_0.6.35        OpenMx_2.21.11       fdrtool_1.2.17      
+ [34] colorspace_2.1-0     rprojroot_2.0.4      Hmisc_5.1-2         
  [37] vegan_2.6-4          fansi_1.0.6          timechange_0.3.0    
- [40] mgcv_1.9-1           abind_1.4-5          compiler_4.3.2      
+ [40] mgcv_1.9-1           abind_1.4-5          compiler_4.3.3      
  [43] withr_3.0.0          glasso_1.11          htmlTable_2.4.2     
  [46] backports_1.4.1      carData_3.0-5        ggsignif_0.6.4      
- [49] GPArotation_2024.2-1 corpcor_1.6.10       permute_0.9-7       
- [52] gtools_3.9.5         tools_4.3.2          pbivnorm_0.6.0      
- [55] foreign_0.8-86       zip_2.3.1            httpuv_1.6.14       
+ [49] GPArotation_2024.3-1 corpcor_1.6.10       permute_0.9-7       
+ [52] gtools_3.9.5         tools_4.3.3          pbivnorm_0.6.0      
+ [55] foreign_0.8-86       zip_2.3.1            httpuv_1.6.15       
  [58] nnet_7.3-19          glue_1.7.0           quadprog_1.5-8      
- [61] nlme_3.1-164         promises_1.2.1       lisrelToR_0.3       
- [64] grid_4.3.2           pbdZMQ_0.3-11        checkmate_2.3.1     
+ [61] nlme_3.1-164         promises_1.3.0       lisrelToR_0.3       
+ [64] grid_4.3.3           pbdZMQ_0.3-11        checkmate_2.3.1     
  [67] cluster_2.1.6        reshape2_1.4.4       generics_0.1.3      
- [70] gtable_0.3.4         tzdb_0.4.0           data.table_1.15.0   
+ [70] gtable_0.3.5         tzdb_0.4.0           data.table_1.15.4   
  [73] hms_1.1.3            Deriv_4.1.3          car_3.1-2           
  [76] utf8_1.2.4           sem_3.1-15           pillar_1.9.0        
  [79] IRdisplay_1.1        rockchalk_1.8.157    later_1.3.2         
- [82] splines_4.3.2        survival_3.5-8       kutils_1.73         
- [85] tidyselect_1.2.0     miniUI_0.1.1.1       pbapply_1.7-2       
- [88] xfun_0.42            qgraph_1.9.8         arm_1.13-1          
- [91] stringi_1.8.3        boot_1.3-29          evaluate_0.23       
+ [82] splines_4.3.3        survival_3.5-8       kutils_1.73         
+ [85] tidyselect_1.2.1     miniUI_0.1.1.1       pbapply_1.7-2       
+ [88] xfun_0.43            qgraph_1.9.8         arm_1.13-1          
+ [91] stringi_1.8.3        boot_1.3-30          evaluate_0.23       
  [94] codetools_0.2-19     mi_1.1               cli_3.6.2           
  [97] RcppParallel_5.1.7   IRkernel_1.3.2       rpart_4.1.23        
-[100] xtable_1.8-4         repr_1.1.6           munsell_0.5.0       
+[100] xtable_1.8-4         repr_1.1.6           munsell_0.5.1       
 [103] Rcpp_1.0.12          polycor_0.8-1        coda_0.19-4.1       
-[106] png_0.1-8            XML_3.99-0.16.1      parallel_4.3.2      
-[109] ellipsis_0.3.2       jpeg_0.1-10          lme4_1.1-35.1       
-[112] openxlsx_4.2.5.2     crayon_1.5.2         rlang_1.1.3         
-[115] multcomp_1.4-25      mnormt_2.1.1        
+[106] png_0.1-8            XML_3.99-0.16.1      parallel_4.3.3      
+[109] jpeg_0.1-10          lme4_1.1-35.3        openxlsx_4.2.5.2    
+[112] crayon_1.5.2         rlang_1.1.3          multcomp_1.4-25     
+[115] mnormt_2.1.1        
 </pre></div>
 </div>
 </div>
@@ -1550,16 +1572,16 @@ loaded via a namespace (and not attached):
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "r"
         },
         kernelOptions: {
-            name: "python3",
+            name: "ir",
             path: "./_mokken"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'ir'</script>
 
                 </article>
               
