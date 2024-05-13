@@ -505,7 +505,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="modelli-di-crescita-latenti-a-gruppi-multipli">
 <span id="lgm-groups-notebook"></span><h1><span class="section-number">80. </span>Modelli di crescita latenti a gruppi multipli<a class="headerlink" href="#modelli-di-crescita-latenti-a-gruppi-multipli" title="Link to this heading">#</a></h1>
 <p>Nel capitolo precedente, abbiamo approfondito i modelli di crescita con covarianti invarianti nel tempo. In questo capitolo, esploreremo un approccio alternativo per studiare le differenze individuali nel cambiamento: l’analisi comparativa tra gruppi (McArdle, 1989; McArdle &amp; Hamagami, 1996). Sebbene i modelli di crescita con covarianti invarianti nel tempo siano efficaci nell’analizzare le differenze nelle traiettorie medie di crescita, questi modelli presentano limitazioni nell’indagare altri aspetti dei cambiamenti intrapersonali e delle differenze interpersonali in tali processi.</p>
-<p>Senza adeguati ampliamenti, i modelli basati esclusivamente su covarianti invarianti nel tempo non forniscono informazioni sulle variazioni nelle varianze e covarianze tra i fattori di crescita, né sulla variabilità residua e sulla dinamica dei cambiamenti intrapersonali. Nel presente capitolo, dimostreremo come l’approccio di confronto tra gruppi possa essere impiegato per esaminare le differenze in qualsiasi aspetto del modello di crescita. Questa flessibilità metodologica ci permette di acquisire una comprensione più profonda su come e perché gli individui mostrino percorsi di sviluppo diversificati.</p>
+<p>Senza adeguati ampliamenti, i modelli basati esclusivamente su covarianti invarianti nel tempo non forniscono informazioni sulle variazioni nelle varianze e covarianze tra i fattori di crescita, né sulla variabilità residua e, soprattutto, sulla dinamica dei cambiamenti intrapersonali. Nel presente capitolo, mostreremo come l’approccio di confronto tra gruppi possa essere impiegato per esaminare le differenze in qualsiasi aspetto del modello di crescita. Questa flessibilità metodologica ci permette di acquisire una comprensione più profonda su come e perché gli individui mostrino percorsi di sviluppo diversificati.</p>
 <p>Per i nostri esempi, utilizziamo i punteggi di rendimento in matematica dai dati  NLSY-CYA [si veda <span id="id1">Grimm <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id27" title="Kevin J Grimm, Nilam Ram, and Ryne Estabrook. Growth modeling: Structural equation and multilevel modeling approaches. Guilford Publications, 2016.">GRE16</a>]</span>]. Importiamo i dati.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -637,7 +637,7 @@ document.write(`
 </div>
 <section id="invarianza-tra-gruppi">
 <h2><span class="section-number">80.1. </span>Invarianza tra gruppi<a class="headerlink" href="#invarianza-tra-gruppi" title="Link to this heading">#</a></h2>
-<p>Definiamo il modello di crescita latente per i due gruppi.</p>
+<p>Definiamo il modello di crescita latente senza distinguere i due gruppi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># writing out linear growth model in full SEM way</span>
@@ -693,7 +693,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Adattiamo il modello ai dati specificando la separazione delle osservazioni in due gruppi e introducendo i vincoli di eguaglianza tra gruppi sulle saturazioni fattoriali, le medie, le varianze, le covarianze, e i residui. In questo modello, sostanzialmente, non c’è alcune differenza tra gruppi.</p>
+<p>Il modello presentato è progettato per esaminare i dati tenendo in considerazione le possibili differenze attribuibili al peso alla nascita, come indicato dalla variabile <code class="docutils literal notranslate"><span class="pre">lb_wght</span></code>. Nel codice che segue, il modello viene adattato ai dati dividendo le osservazioni in due gruppi distinti. Per assicurare la comparabilità tra i gruppi, imponiamo vincoli di invarianza su vari aspetti del modello, inclusi i carichi fattoriali, le medie, le varianze, le covarianze e i residui delle variabili osservate. Attraverso questi vincoli, il modello assume che non ci siano differenze sostanziali nei parametri strutturali tra i gruppi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mg_math_lavaan_fitM1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sem</span><span class="p">(</span><span class="n">mg_math_lavaan_model</span><span class="p">,</span>
@@ -943,10 +943,11 @@ Variances:
 <a class="reference internal image-reference" href="../_images/f1d5203bf3759eb22d06c3e9df9c7eb6edded8d8cc6adf54ef7d2a20ffcd28d6.png"><img alt="../_images/f1d5203bf3759eb22d06c3e9df9c7eb6edded8d8cc6adf54ef7d2a20ffcd28d6.png" src="../_images/f1d5203bf3759eb22d06c3e9df9c7eb6edded8d8cc6adf54ef7d2a20ffcd28d6.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
+<p>Vengono prodotti due diagrammi di percorso, uno per gruppo. Però hanno la stessa struttura.</p>
 </section>
 <section id="vincoli-sulle-medie">
 <h2><span class="section-number">80.2. </span>Vincoli sulle medie<a class="headerlink" href="#vincoli-sulle-medie" title="Link to this heading">#</a></h2>
-<p>Trasformiamo ora il modello restrittivo specificato in precedenza allentando via via i vincoli che abbiamo introdotto. In questo modello rendiamo possibile la differenza tra le medie nei due gruppi.</p>
+<p>Ora trasformiamo il modello restrittivo specificato in precedenza allentando via via i vincoli che abbiamo introdotto. Nel codice seguente specifichiamo un modello che rende possibile la differenza tra le medie nei due gruppi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mg_math_lavaan_fitM2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sem</span><span class="p">(</span><span class="n">mg_math_lavaan_model</span><span class="p">,</span>
@@ -1207,11 +1208,11 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 </div>
 </div>
 </div>
-<p>Non vi è evidenza che consentire una differenza tra medie tra gruppi migliori l’adattamento del modello.</p>
+<p>Non vi è evidenza che l’adattamento del modello miglira consentendo una differenza tra medie tra i due gruppi.</p>
 </section>
 <section id="vincoli-sulle-varianze-covarianze">
 <h2><span class="section-number">80.3. </span>Vincoli sulle varianze/covarianze<a class="headerlink" href="#vincoli-sulle-varianze-covarianze" title="Link to this heading">#</a></h2>
-<p>Nel modello M3 consentiamo che anche le varianza e le covarianza differiscano tra gruppi, oltre alle medie.</p>
+<p>Nel modello M3 consentiamo una differenza tra gruppi, oltre che tra le medie, anche tra le varianze e le covarianze.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mg_math_lavaan_fitM3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sem</span><span class="p">(</span><span class="n">mg_math_lavaan_model</span><span class="p">,</span>
@@ -1467,7 +1468,7 @@ mg_math_lavaan_fitM2 62 15948 15987 243.91     2.7283     0       3     0.4354
 </div>
 </div>
 </div>
-<p>Non ci sono evidenze che una differenza nelle varianze e nelle covarianze tra gruppi migliori la bontà dell’adattamento del modello ai dati.</p>
+<p>Non ci sono evidenze che la bontà dell’adattamento del modello ai dati migliori consentendo una differenza nelle varianze e nelle covarianze tra i gruppi.</p>
 </section>
 <section id="vincoli-sui-residui">
 <h2><span class="section-number">80.4. </span>Vincoli sui residui<a class="headerlink" href="#vincoli-sui-residui" title="Link to this heading">#</a></h2>
@@ -1785,8 +1786,8 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 </div>
 </div>
 </div>
-<p>Anche in questo caso non otteniamo un risultato che fornisce evidenza di differenze tra i due gruppi.</p>
-<p>In sintesi, possiamo dire che le evidenze presenti suggeriscono che i modelli di crescita latente per di due gruppi hanno parametri uguali per ciò che concerne le saturazioni fattoriali, le medie, le varianze, le covarianze e i residui.</p>
+<p>Anche in questo caso non otteniamo un risultato che fornisce evidenze di differenze sostanziali tra i due gruppi.</p>
+<p>In sintesi, possiamo dire che i modelli di crescita latente tra i due gruppi hanno parametri uguali per ciò che concerne le saturazioni fattoriali, le medie, le varianze, le covarianze e i residui.</p>
 </section>
 <section id="considerazioni-conclusive">
 <h2><span class="section-number">80.5. </span>Considerazioni Conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h2>

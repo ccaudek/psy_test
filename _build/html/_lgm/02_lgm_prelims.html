@@ -495,6 +495,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attendibilita">72.4. Attendibilità</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-con-lmer">72.4.1. Analisi con <code class="docutils literal notranslate"><span class="pre">lmer</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulazione-del-modello">72.4.2. Formulazione del modello</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-2-marginale-marginal-r-2">72.4.3. <span class="math notranslate nohighlight">\( R^2 \)</span> Marginale (Marginal <span class="math notranslate nohighlight">\( R^2 \)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-2-condizionale-conditional-r-2">72.4.4. <span class="math notranslate nohighlight">\( R^2 \)</span> Condizionale (Conditional <span class="math notranslate nohighlight">\( R^2 \)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-2-marginale-marginal-f-2">72.4.5. <span class="math notranslate nohighlight">\( F^2 \)</span> Marginale (Marginal <span class="math notranslate nohighlight">\( F^2 \)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-2-condizionale-conditional-f-2">72.4.6. <span class="math notranslate nohighlight">\( F^2 \)</span> Condizionale (Conditional <span class="math notranslate nohighlight">\( F^2 \)</span>)</a></li>
 </ul>
 </li>
 </ul>
@@ -894,7 +898,10 @@ anti     0.01  -0.07    0.02    0.52 -0.05  0.04  0.04  0.06  0.13  -0.01  1.00
 <div class="cell_output docutils container">
 <div class="output text_html">0.287226339155697</div></div>
 </div>
-<p>In ambito di modelli LGM, l’ICC può essere utilizzato per stimare l’affidabilità delle medie intra-individuali dei fattori latenti, ma non è applicabile per l’affidabilità delle variazioni intra-individuali delle traiettorie di sviluppo. Per queste ultime, altre misure di affidabilità sono necessarie e hanno alcune limitazioni pratiche. Ad esempio, il coefficiente di affidabilità test-retest può essere utilizzato per stimare l’affidabilità intra-individuale delle traiettorie di sviluppo calcolate in due momenti temporali diversi, ma richiede l’assunzione che i punteggi veri non cambino nel tempo. In alternativa, le forme parallele dei test possono essere utilizzate per misurare l’affidabilità delle traiettorie intra-individuali, ma queste non sono sempre disponibili. Per stimare l’affidabilità della componente sistematica della variazione intra-individuale delle traiettorie di sviluppo, sono necessari metodi di stima specifici che sono ancora oggetto di dibattito nella letteratura metodologica corrente.</p>
+<p>Nel contesto dei modelli di crescita latente (LGM), l’indice di correlazione intraclasse (ICC) è utilizzato per stimare l’affidabilità delle medie intra-individuali dei fattori latenti. Tuttavia, l’ICC non è adatto per valutare l’affidabilità delle variazioni intra-individuali nelle traiettorie di sviluppo. Per quest’ultimo scopo, sono necessarie misure di affidabilità alternative, le quali presentano alcune limitazioni pratiche.</p>
+<p>Una delle possibili misure è il coefficiente di affidabilità test-retest, utilizzabile per stimare l’affidabilità intra-individuale delle traiettorie di sviluppo osservate in due momenti temporali distinti. Questo metodo, tuttavia, presuppone che i punteggi veri rimangano stabili nel tempo, il che non sempre corrisponde alla realtà dei fenomeni in studio.</p>
+<p>Un’altra opzione è l’uso delle forme parallele dei test, che possono fornire una misura dell’affidabilità delle traiettorie intra-individuali. Tuttavia, la disponibilità di forme parallele affidabili è spesso limitata, rendendo questo approccio meno praticabile.</p>
+<p>Infine, per stimare l’affidabilità della componente sistematica della variazione intra-individuale nelle traiettorie di sviluppo, sono necessari metodi di stima specifici. Questi metodi sono ancora al centro di un attivo dibattito nella letteratura metodologica, riflettendo la complessità e le sfide associate alla loro implementazione e interpretazione.</p>
 <p>Prima di descrivere in dettaglio i modelli LGM, consideramo l’analisi dei dati longitudinali con i modelli misti. In R, queste analisi vengono svolte mediante la funzione <code class="docutils literal notranslate"><span class="pre">lmer</span></code> del pacchetto <code class="docutils literal notranslate"><span class="pre">lme4</span></code>.</p>
 <section id="analisi-con-lmer">
 <h3><span class="section-number">72.4.1. </span>Analisi con <code class="docutils literal notranslate"><span class="pre">lmer</span></code><a class="headerlink" href="#analisi-con-lmer" title="Link to this heading">#</a></h3>
@@ -975,6 +982,42 @@ anti     0.01  -0.07    0.02    0.52 -0.05  0.04  0.04  0.06  0.13  -0.01  1.00
 </div>
 </div>
 <p>In un modello misto, i coefficienti delle rette di regressione di ciascun soggetto sono considerati come componenti casuali di una distribuzione di coefficienti relativi all’intercetta e alla pendenza complessive del gruppo. Questi coefficienti casuali possono essere modellati specificando una componente casuale <code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">+</span> <span class="pre">grado</span> <span class="pre">|</span> <span class="pre">id)</span></code>. In questo tipo di modello, esiste una correlazione tra i parametri delle intercette e quelli delle pendenze individuali. Ciò significa che le componenti di varianza attribuibili ai vari effetti del modello (fissi e casuali) non sono più indipendenti e la varianza totale non può essere scomposta in componenti indipendenti.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Linear mixed model fit by REML [&#39;lmerMod&#39;]
+Formula: math ~ grade + (1 + grade | id)
+   Data: nlsy_math_long
+
+REML criterion at convergence: 15941
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-3.02728 -0.52567  0.00174  0.54025  2.54129 
+
+Random effects:
+ Groups   Name        Variance Std.Dev. Corr 
+ id       (Intercept) 68.4055  8.2708        
+          grade        0.7392  0.8597   -0.24
+ Residual             36.2364  6.0197        
+Number of obs: 2221, groups:  id, 932
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept) 26.58805    0.47203   56.33
+grade        4.33956    0.08741   49.65
+
+Correlation of Fixed Effects:
+      (Intr)
+grade -0.771
+</pre></div>
+</div>
+</div>
+</div>
 <p>Per estrarre le componenti di varianza di un modello misto, è possibile utilizzare le funzioni fornite dal pacchetto <code class="docutils literal notranslate"><span class="pre">insight</span></code>. Ad esempio, nel caso dell’esempio presentato, i risultati possono essere ottenuti attraverso l’oggetto creato dalla funzione <code class="docutils literal notranslate"><span class="pre">lmer</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1099,6 +1142,36 @@ attr(,&quot;class&quot;)
 </div>
 </div>
 </div>
+<p>Le metriche rilevanti in questo output sono il <span class="math notranslate nohighlight">\( R^2 \)</span> marginale e condizionale e il <span class="math notranslate nohighlight">\( F^2 \)</span> marginale e condizionale. Questi indici offrono diverse prospettive sulla varianza spiegata dal modello. Ecco una spiegazione dettagliata di ciascuno:</p>
+</section>
+<section id="r-2-marginale-marginal-r-2">
+<h3><span class="section-number">72.4.3. </span><span class="math notranslate nohighlight">\( R^2 \)</span> Marginale (Marginal <span class="math notranslate nohighlight">\( R^2 \)</span>)<a class="headerlink" href="#r-2-marginale-marginal-r-2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Definizione</strong>: Il <span class="math notranslate nohighlight">\( R^2 \)</span> marginale quantifica la proporzione di varianza spiegata dalle variabili fisse del modello, ignorando gli effetti casuali. Questo indice mostra quanto bene le variabili fisse, nel loro complesso, sono in grado di spiegare la varianza nelle osservazioni.</p></li>
+<li><p><strong>Valore nell’output</strong>: 0.3553142, che indica che il 35.53% della varianza totale è spiegata dalle sole variabili fisse.</p></li>
+</ul>
+</section>
+<section id="r-2-condizionale-conditional-r-2">
+<h3><span class="section-number">72.4.4. </span><span class="math notranslate nohighlight">\( R^2 \)</span> Condizionale (Conditional <span class="math notranslate nohighlight">\( R^2 \)</span>)<a class="headerlink" href="#r-2-condizionale-conditional-r-2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Definizione</strong>: Il <span class="math notranslate nohighlight">\( R^2 \)</span> condizionale considera sia le variabili fisse sia gli effetti casuali nel modello. Mostra la proporzione totale di varianza spiegata dal modello intero.</p></li>
+<li><p><strong>Valore nell’output</strong>: 0.781476, che indica che il 78.15% della varianza totale è spiegata considerando sia le variabili fisse che gli effetti casuali.</p></li>
+</ul>
+</section>
+<section id="f-2-marginale-marginal-f-2">
+<h3><span class="section-number">72.4.5. </span><span class="math notranslate nohighlight">\( F^2 \)</span> Marginale (Marginal <span class="math notranslate nohighlight">\( F^2 \)</span>)<a class="headerlink" href="#f-2-marginale-marginal-f-2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Definizione</strong>: Il <span class="math notranslate nohighlight">\( F^2 \)</span> marginale è un’altra misura di effetto del modello e si calcola come il rapporto tra la varianza spiegata dalle variabili fisse e la varianza non spiegata (ossia <span class="math notranslate nohighlight">\( \frac{R^2}{1 - R^2} \)</span>). Fornisce una misura di quanto forte sia l’impatto delle variabili fisse rispetto alla varianza residua.</p></li>
+<li><p><strong>Valore nell’output</strong>: 0.5511433, che riflette la forza relativa delle variabili fisse oltre la varianza casuale.</p></li>
+</ul>
+</section>
+<section id="f-2-condizionale-conditional-f-2">
+<h3><span class="section-number">72.4.6. </span><span class="math notranslate nohighlight">\( F^2 \)</span> Condizionale (Conditional <span class="math notranslate nohighlight">\( F^2 \)</span>)<a class="headerlink" href="#f-2-condizionale-conditional-f-2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Definizione</strong>: Similmente al <span class="math notranslate nohighlight">\( F^2 \)</span> marginale, il <span class="math notranslate nohighlight">\( F^2 \)</span> condizionale è il rapporto tra la varianza spiegata dal modello completo (variabili fisse più effetti casuali) e la varianza non spiegata.</p></li>
+<li><p><strong>Valore nell’output</strong>: 3.576157, indicando una forte influenza combinata delle variabili fisse e degli effetti casuali rispetto alla varianza non spiegata.</p></li>
+</ul>
+<p>Questi indici sono utili per valutare quanto bene il modello si adatta ai dati e per confrontare la performance tra diversi modelli.</p>
 </section>
 </section>
 </section>
@@ -1176,6 +1249,10 @@ attr(,&quot;class&quot;)
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attendibilita">72.4. Attendibilità</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-con-lmer">72.4.1. Analisi con <code class="docutils literal notranslate"><span class="pre">lmer</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulazione-del-modello">72.4.2. Formulazione del modello</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-2-marginale-marginal-r-2">72.4.3. <span class="math notranslate nohighlight">\( R^2 \)</span> Marginale (Marginal <span class="math notranslate nohighlight">\( R^2 \)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-2-condizionale-conditional-r-2">72.4.4. <span class="math notranslate nohighlight">\( R^2 \)</span> Condizionale (Conditional <span class="math notranslate nohighlight">\( R^2 \)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-2-marginale-marginal-f-2">72.4.5. <span class="math notranslate nohighlight">\( F^2 \)</span> Marginale (Marginal <span class="math notranslate nohighlight">\( F^2 \)</span>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-2-condizionale-conditional-f-2">72.4.6. <span class="math notranslate nohighlight">\( F^2 \)</span> Condizionale (Conditional <span class="math notranslate nohighlight">\( F^2 \)</span>)</a></li>
 </ul>
 </li>
 </ul>

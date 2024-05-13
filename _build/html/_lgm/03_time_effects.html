@@ -524,9 +524,9 @@ document.write(`
 </ul>
 <p>In un contesto longitudinale, il modello include tre fattori latenti:</p>
 <ul class="simple">
-<li><p>un fattore che rappresenta il livello latente in un momento specifico (punto <em>a</em>);</p></li>
-<li><p>un fattore che indica il cambiamento latente tra due momenti (punto <em>b</em>);</p></li>
-<li><p>un fattore per l’errore di misurazione in ciascun momento (punto <em>c</em>).</p></li>
+<li><p>un fattore che rappresenta il livello latente in un momento specifico;</p></li>
+<li><p>un fattore che indica il cambiamento latente tra due momenti;</p></li>
+<li><p>un fattore per l’errore di misurazione in ciascun momento.</p></li>
 </ul>
 <p>Per esplorare le peculiarità di un modello di misurazione longitudinale, consideriamo il caso dello stesso costrutto misurato in due distinte occasioni temporali. Il punteggio osservato di un individuo in un tempo specifico è dato da:</p>
 <div class="math notranslate nohighlight">
@@ -621,7 +621,7 @@ $ other    &lt;int&gt; 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
 </div>
 </div>
 <p>La specificazione del modello SEM longitudinale per questi dati in <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> può essere formulata in modo simile a un modello CFA per un singolo momento del tempo. In questo caso, ci sono due fattori comuni, che chiameremo <code class="docutils literal notranslate"><span class="pre">Fattore_T1</span></code> e <code class="docutils literal notranslate"><span class="pre">Fattore_T2</span></code>, che vengono identificati dagli indicatori misurati nei due momenti del tempo. Questi due fattori comuni sono correlati tra loro.</p>
-<p>Tuttavia, la differenza chiave rispetto ai casi precedenti è che i fattori specifici di ciascun indicatore nei due momenti del tempo sono anche correlati tra loro. Questo significa che, oltre alla correlazione tra i fattori comuni <code class="docutils literal notranslate"><span class="pre">Fattore_T1</span></code> e <code class="docutils literal notranslate"><span class="pre">Fattore_T2</span></code>, dobbiamo anche specificare la correlazione tra i fattori specifici dei singoli indicatori nei due momenti del tempo.</p>
+<p>Tuttavia, la differenza chiave rispetto ai casi precedenti è che anche i fattori specifici di ciascun indicatore nei due momenti del tempo sono correlati tra loro. Questo significa che, oltre alla correlazione tra i fattori comuni <code class="docutils literal notranslate"><span class="pre">Fattore_T1</span></code> e <code class="docutils literal notranslate"><span class="pre">Fattore_T2</span></code>, dobbiamo anche specificare la correlazione tra i fattori specifici dei singoli indicatori nei due momenti del tempo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
@@ -665,10 +665,10 @@ $ other    &lt;int&gt; 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
 </div>
 </div>
 </div>
-<p>Le covarianze tra gli errori degli indicatori corrispondenti tra T1 e T2 sono stimate, indicando potenziali correlazioni tra gli errori degli stessi indicatori nei due momenti temporali.</p>
+<p>Le covarianze tra gli errori degli indicatori corrispondenti tra T1 e T2 vengono stimate, indicando potenziali correlazioni tra gli errori degli stessi indicatori nei due momenti temporali.</p>
 <p>In questo modello, i carichi fattoriali e le intercettazioni non sono ancora eguagliati nel tempo, il che significa che ogni set di indicatori è libero di avere relazioni uniche con il proprio fattore latente in ciascun momento temporale.</p>
 <p>Questo modello è definito “configural-invariant” perché mantiene la stessa struttura fattoriale (o configurazione) nel tempo, ma non impone ancora l’equivalenza dei parametri tra i due momenti temporali.</p>
-<p>Il modello configural-invariant è spesso il punto di partenza per testare l’invarianza longitudinale in SEM, poiché stabilisce una base di confronto prima di imporre vincoli più stringenti come l’invarianza dei carichi fattoriali o delle intercette nei modelli successivi.</p>
+<p>Il modello configural-invariant è spesso il punto di partenza per testare l’invarianza longitudinale nei SEM, poiché stabilisce una base di confronto prima di imporre vincoli più stringenti come l’invarianza dei carichi fattoriali o delle intercette nei modelli successivi.</p>
 <p>Adattiamo il modello ai dati.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -744,7 +744,7 @@ $ other    &lt;int&gt; 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
 </div>
 </div>
 </div>
-<p>Potremmo pensare che modello di baseline (con cui possono essere confrontati i modelli che descrivono il cambiamento temporale) sia semplicemente il modello in cui non sono permesse covarianze.</p>
+<p>Potremmo pensare che modello di baseline (con cui possono essere confrontati i modelli che descrivono il cambiamento temporale) sia semplicemente il modello in cui non sono permesse covarianze tra i due fattori comuni latenti nei due momenti del tempo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
@@ -859,7 +859,7 @@ $ other    &lt;int&gt; 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
 </div>
 </div>
 </div>
-<p>Tuttavia, <span id="id2">Little [<a class="reference internal" href="../z_biblio.html#id9" title="Todd D Little. Longitudinal structural equation modeling. Guilford Press, 2023.">Lit23</a>]</span> fa notare che, nel contesto dei disegni longitudinali, il modello di base adeguato prevede che vengano aggiunte al modello nullo delle aspettative aggiuntive, specificatamente che le medie e le varianze rimangano invariate nel tempo. Questa specificazione ampliata del modello nullo fornisce il confronto appropriato per analizzare e interpretare i dati longitudinali.</p>
+<p>Tuttavia, come sottolineato da <span id="id2">Little [<a class="reference internal" href="../z_biblio.html#id9" title="Todd D Little. Longitudinal structural equation modeling. Guilford Press, 2023.">Lit23</a>]</span>, il modello base adeguato richiede l’aggiunta di specifiche aspettative. In particolare, è essenziale presupporre che medie e varianze restino costanti nel tempo. Questo ampliamento del modello nullo offre un punto di confronto idoneo per analizzare e interpretare efficacemente i dati longitudinali.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod_3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
@@ -886,7 +886,7 @@ $ other    &lt;int&gt; 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
 <span class="s">  PAT2P2 ~~ a2*PAT2P2</span>
 <span class="s">  PAT2P3 ~~ a3*PAT2P3</span>
 
-<span class="s">  # Specifica delle medie degli indicatori (intercettazioni) uguali tra i due tempi</span>
+<span class="s">  # Specifica delle medie degli indicatori (intercette) uguali tra i due tempi</span>
 <span class="s">  # PAT1P1 ~ m1</span>
 <span class="s">  # PAT1P2 ~ m2</span>
 <span class="s">  # PAT1P3 ~ m3</span>

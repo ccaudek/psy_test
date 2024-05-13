@@ -486,12 +486,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valutare-il-contributo-delle-covariate">79.1. Valutare il contributo delle covariate</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confronto-con-il-modello-misto">79.2. Confronto con il modello misto</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-importanti">79.3. Considerazioni Importanti</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varianza-spiegata">79.3.1. Varianza Spiegata</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficienti-standardizzati">79.3.2. Coefficienti Standardizzati</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">79.3.3. Considerazioni Conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definizione-delle-variabili-latenti">79.1. Definizione delle Variabili Latenti:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vincoli-sui-carichi-fattoriali">79.2. Vincoli sui Carichi Fattoriali:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scopo-di-questi-vincoli">79.3. Scopo di Questi Vincoli:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valutare-il-contributo-delle-covariate">79.4. Valutare il contributo delle covariate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confronto-con-il-modello-misto">79.5. Confronto con il modello misto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-importanti">79.6. Considerazioni Importanti</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varianza-spiegata">79.6.1. Varianza Spiegata</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficienti-standardizzati">79.6.2. Coefficienti Standardizzati</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">79.6.3. Considerazioni Conclusive</a></li>
 </ul>
 </li>
 </ul>
@@ -736,6 +739,31 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Nel modello di crescita lineare qui definito, la parte delle intercette riguarda la definizione di una variabile latente che rappresenta il punto di partenza (intercetta) delle misurazioni ripetute nel tempo. L’intercetta, in questo contesto, è essenzialmente il livello iniziale da cui parte la traiettoria di crescita individuale.</p>
+<section id="definizione-delle-variabili-latenti">
+<h2><span class="section-number">79.1. </span>Definizione delle Variabili Latenti:<a class="headerlink" href="#definizione-delle-variabili-latenti" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Intercept (<code class="docutils literal notranslate"><span class="pre">eta1</span></code>)</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">eta1</span></code> è la variabile latente che rappresenta l’intercetta del modello di crescita lineare.</p></li>
+<li><p>La formula <code class="docutils literal notranslate"><span class="pre">eta1</span> <span class="pre">=~</span> <span class="pre">1*math2</span> <span class="pre">+</span> <span class="pre">1*math3</span> <span class="pre">+</span> <span class="pre">1*math4</span> <span class="pre">+</span> <span class="pre">1*math5</span> <span class="pre">+</span> <span class="pre">1*math6</span> <span class="pre">+</span> <span class="pre">1*math7</span> <span class="pre">+</span> <span class="pre">1*math8</span></code> significa che <code class="docutils literal notranslate"><span class="pre">eta1</span></code> è definita come un fattore che ha un carico fattoriale di <code class="docutils literal notranslate"><span class="pre">1</span></code> per ciascuna delle misure temporali (<code class="docutils literal notranslate"><span class="pre">math2</span></code> a <code class="docutils literal notranslate"><span class="pre">math8</span></code>). Questo implica che l’intercetta è costante attraverso tutte le misure temporali, rappresentando il livello iniziale comune per tutte le osservazioni.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="vincoli-sui-carichi-fattoriali">
+<h2><span class="section-number">79.2. </span>Vincoli sui Carichi Fattoriali:<a class="headerlink" href="#vincoli-sui-carichi-fattoriali" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>I carichi fattoriali fissati a <code class="docutils literal notranslate"><span class="pre">1</span></code> per l’intercetta indicano che il cambiamento nel punteggio matematico da un’osservazione all’altra è attribuito esclusivamente alla pendenza (slope) e non all’intercetta. L’intercetta rimane costante come il valore di partenza.</p></li>
+</ul>
+</section>
+<section id="scopo-di-questi-vincoli">
+<h2><span class="section-number">79.3. </span>Scopo di Questi Vincoli:<a class="headerlink" href="#scopo-di-questi-vincoli" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Controllo delle Stime</strong>: Fissare i carichi dell’intercetta permette di separare l’effetto dell’intercetta (punto di partenza) dall’effetto della pendenza (cambiamento nel tempo). Questo è cruciale in studi longitudinali dove si desidera distinguere tra il livello iniziale e la velocità di crescita.</p></li>
+<li><p><strong>Identificabilità del Modello</strong>: In modelli di equazioni strutturali, particolarmente in quelli con variabili latenti, è necessario imporre alcuni vincoli per rendere il modello statisticamente identificabile. Fissare i carichi fattoriali dell’intercetta a <code class="docutils literal notranslate"><span class="pre">1</span></code> è un modo comune per assicurare che il modello abbia una soluzione unica.</p></li>
+</ul>
+<p>Il vincolo sui carichi fattoriali dell’intercetta nel tuo modello di crescita lineare assicura che l’intercetta rappresenti un effetto costante attraverso tutte le misurazioni, focalizzando l’analisi sulla variazione attribuibile alla pendenza e altri covariati nel tempo. Questo rende più chiara l’interpretazione dei risultati e migliora la precisione delle stime relative agli effetti longitudinali studiati.</p>
 <p>Adattiamo il modello ai dati.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -908,7 +936,7 @@ Variances:
 </div>
 <p>Interpretazione dei risultati per <code class="docutils literal notranslate"><span class="pre">eta1</span></code> (Intercetta).</p>
 <ul class="simple">
-<li><p><strong>lb_wght</strong>: L’effetto stimato di <code class="docutils literal notranslate"><span class="pre">lb_wght</span></code> sull’intercetta (eta1) è di -2.716 con uno standard error di 1.294. Questo valore di -2.716 indica che avere un peso alla nascita basso (codificato come 1) è associato ad una riduzione media di 2.716 unità nel valore iniziale di <code class="docutils literal notranslate"><span class="pre">eta1</span></code>, rispetto a un peso alla nascita normale (codificato come 0). Questo risultato è statisticamente significativo, come indicato dal valore di P (0.036), che è inferiore a 0.05.</p></li>
+<li><p><strong>lb_wght</strong>: L’effetto stimato di <code class="docutils literal notranslate"><span class="pre">lb_wght</span></code> sull’intercetta (eta1) è di -2.716 con uno standard error di 1.294. Questo valore di -2.716 indica che avere un peso alla nascita basso (codificato come 1) è associato ad una riduzione media di 2.716 unità nel valore iniziale di <code class="docutils literal notranslate"><span class="pre">eta1</span></code>, rispetto a un peso alla nascita normale (codificato come 0). Questo risultato è degno di nota, come indicato dal valore di P (0.036), che è inferiore a 0.05.</p></li>
 <li><p><strong>anti_k1</strong>: Per <code class="docutils literal notranslate"><span class="pre">anti_k1</span></code>, l’effetto stimato sull’intercetta è di -0.551 con uno standard error di 0.232. Questo suggerisce che per ogni unità di aumento nel punteggio di comportamento antisociale (anti_k1), il valore iniziale di <code class="docutils literal notranslate"><span class="pre">eta1</span></code> diminuisce in media di 0.551 unità. Anche questo risultato è statisticamente significativo, con un valore di P di 0.018.</p></li>
 </ul>
 <p>Interpretazione dei risultati per <code class="docutils literal notranslate"><span class="pre">eta2</span></code> (Pendenza).</p>
@@ -916,7 +944,7 @@ Variances:
 <li><p><strong>lb_wght</strong>: Per la pendenza (eta2), l’effetto stimato di <code class="docutils literal notranslate"><span class="pre">lb_wght</span></code> è di 0.625 con uno standard error di 0.333. Ciò indica che avere un peso alla nascita basso è associato ad un aumento medio di 0.625 unità nella pendenza di <code class="docutils literal notranslate"><span class="pre">eta2</span></code>, rispetto a un peso normale alla nascita. Tuttavia, questo risultato non è statisticamente significativo al livello del 5%, dato che il valore di P è 0.061, che è leggermente superiore a 0.05.</p></li>
 <li><p><strong>anti_k1</strong>: L’effetto stimato di <code class="docutils literal notranslate"><span class="pre">anti_k1</span></code> sulla pendenza è molto piccolo (-0.019) e non è statisticamente significativo (valore di P = 0.743), suggerendo che non c’è una relazione chiara tra il comportamento antisociale in età precoce e il cambiamento nel tempo di <code class="docutils literal notranslate"><span class="pre">eta2</span></code>.</p></li>
 </ul>
-<p>In sintesi, il peso alla nascita basso e i comportamenti antisociali sembrano influenzare negativamente il valore iniziale (intercetta) del costrutto misurato. Il peso alla nascita e i comportamenti antisociali non sembrano avere un impatto significativo sulla pendenza.</p>
+<p>In sintesi, il peso alla nascita basso e i comportamenti antisociali sembrano influenzare negativamente il valore iniziale (intercetta) del costrutto misurato. Il peso alla nascita e i comportamenti antisociali non sembrano avere un impatto robusto sulla pendenza, ovvero sul tasso di cambiamento del costrutto misurato.</p>
 <p>Creiamo un diagramma di percorso.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -937,9 +965,10 @@ Variances:
 <a class="reference internal image-reference" href="../_images/1d2df745cb26e90b9d1ecef46c4e2fd514308ccf0b2524cbc5aab872a102cf22.png"><img alt="../_images/1d2df745cb26e90b9d1ecef46c4e2fd514308ccf0b2524cbc5aab872a102cf22.png" src="../_images/1d2df745cb26e90b9d1ecef46c4e2fd514308ccf0b2524cbc5aab872a102cf22.png" style="width: 420px; height: 420px;" /></a>
 </div>
 </div>
+</section>
 <section id="valutare-il-contributo-delle-covariate">
-<h2><span class="section-number">79.1. </span>Valutare il contributo delle covariate<a class="headerlink" href="#valutare-il-contributo-delle-covariate" title="Link to this heading">#</a></h2>
-<p>Una domanda comune in questo approccio per comprendere le associazioni tra covarianti invarianti nel tempo e traiettorie individuali è se l’aggiunta dei covarianti invarianti nel tempo sia stata utile. Nel framework di modellazione multilivello, i -2LL ottenuti quando si adattano modelli con e senza i covarianti invarianti nel tempo possono essere confrontati direttamente (se nessun partecipante è stato escluso dall’analisi a causa di dati incompleti sui covarianti invarianti nel tempo), fornendo un modo per valutare l’adattamento relativo del modello. Specificamente, possiamo esaminare la differenza tra i -2LL rispetto alla differenza nel numero di parametri stimati (o differenza nei gradi di libertà).</p>
+<h2><span class="section-number">79.4. </span>Valutare il contributo delle covariate<a class="headerlink" href="#valutare-il-contributo-delle-covariate" title="Link to this heading">#</a></h2>
+<p>Una questione frequente nell’analisi delle associazioni tra covariate invarianti nel tempo e le traiettorie di crescita individuali riguarda l’utilità dell’inclusione di tali covariate nei modelli. Nel contesto della modellazione multilivello, è possibile confrontare direttamente i valori del log-likelihood negativo (-2LL) dei modelli che includono o escludono le covariate invarianti nel tempo. Questo confronto è fattibile solo se tutti i partecipanti sono inclusi nell’analisi, senza esclusioni dovute a dati mancanti sulle covariate invarianti nel tempo. Tale confronto fornisce un metodo valido per valutare l’adeguatezza relativa dei modelli. In particolare, possiamo esaminare la differenza tra i valori di -2LL in relazione alla differenza nel numero di parametri stimati, ovvero la differenza nei gradi di libertà del modello.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#writing out linear growth model with tic in full SEM way </span>
@@ -1225,11 +1254,24 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 </div>
 </div>
 </div>
-<p>Nel nostro esempio, il -2LL per il modello di crescita lineare era 15.937 e il -2LL per il modello di crescita lineare con due predittori invarianti nel tempo (basso peso alla nascita e comportamenti antisociali) dell’intercetta e della pendenza era 15.923, una differenza di 14. La differenza nel numero di parametri stimati era (19 – 15) = 4. Quindi, il miglioramento dell’adattamento era significativo (χ2(4) = 14, p &lt; .01), indicando che basso peso alla nascita e comportamenti antisociali erano predittori utili. Parallelamente alle differenze nei -2LL, le differenze in AIC e BIC hanno anche indicato un miglioramento nell’adattamento del modello (criteri di informazione più bassi indicano un migliore adattamento) quando i covarianti invarianti nel tempo erano inclusi nel modello.</p>
-<p>Nel framework di modellazione delle equazioni strutturali, è tipico valutare l’adattamento globale (ad esempio, RMSEA, CFI, TLI); tuttavia, raramente l’aggiunta di covarianti invarianti nel tempo cambia significativamente questi indici. L’adattamento relativo dei modelli può essere informativo come nel framework di modellazione multilivello. Come sopra, le differenze nei -2LL (o χ2) possono essere calcolate per testare se l’inclusione dei covarianti invarianti nel tempo ha migliorato significativamente l’adattamento del modello. Si noti che, nel framework di modellazione delle equazioni strutturali, il modello di confronto (baseline) non è semplicemente un modello senza i covarianti invarianti nel tempo. Piuttosto, è un modello che include i covarianti invarianti nel tempo ma vincola i loro effetti sull’intercetta e sulla pendenza a 0.</p>
+<p>Nel nostro esempio, il test del rapport tra verosimiglianze produce un risultato di 14.245 con 4 gradi di libertà. Quindi, il miglioramento dell’adattamento dipendente dall’aggiunta delle covariate è degno di nota (χ2(4) = 14.24, p &lt; .001), indicando che basso peso alla nascita e comportamenti antisociali sono predittori utili.</p>
+<p>Nell’ambito delle equazioni strutturali, si valuta tipicamente l’adattamento globale del modello attraverso indici come RMSEA, CFI e TLI. Tuttavia, l’inclusione di covariate invarianti nel tempo raramente altera significativamente questi indici. Nonostante ciò, l’adattamento relativo tra i modelli può fornire informazioni preziose, simili a quelle ottenibili nella modellazione multilivello. Come accennato, le differenze nei -2LL (o nei valori di χ2) possono essere utilizzate per verificare se l’aggiunta di covariate invarianti nel tempo migliora significativamente l’adattamento del modello. È importante notare che, nel contesto delle equazioni strutturali, il modello di confronto (o baseline) non è semplicemente privo di covariate invarianti nel tempo, ma piuttosto include tali covariate con i loro effetti su intercetta e pendenza vincolati a zero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">fitMeasures</span><span class="p">(</span><span class="n">lg_math_tic_lavaan_fit</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;chisq&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;df&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;pvalue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cfi&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rmsea&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  chisq      df  pvalue     cfi   rmsea 
+220.221  39.000   0.000   0.788   0.071 
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="confronto-con-il-modello-misto">
-<h2><span class="section-number">79.2. </span>Confronto con il modello misto<a class="headerlink" href="#confronto-con-il-modello-misto" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">79.5. </span>Confronto con il modello misto<a class="headerlink" href="#confronto-con-il-modello-misto" title="Link to this heading">#</a></h2>
 <p>Eseguiamo ora l’analisi statistica utilizzando un modello misto con intercetta e pendenza casuale. Confronteremo un modello ridotto, che include solo l’effetto del tempo, con un modello completo che include le covariate esaminate in precedenza. Il modello completo include gli effetti principali delle covariate e l’interazione tra le covariate e il tempo.</p>
 <p>Adattiamo il modello “completo”.</p>
 <div class="cell docutils container">
@@ -1248,7 +1290,7 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in checkConv(attr(opt, &quot;derivs&quot;), opt$par, ctrl = control$checkConv, :
-“Model failed to converge with max|grad| = 0.00577356 (tol = 0.002, component 1)”
+“Model failed to converge with max|grad| = 0.0057725 (tol = 0.002, component 1)”
 </pre></div>
 </div>
 </div>
@@ -1275,9 +1317,9 @@ Scaled residuals:
 
 Random effects:
  Groups   Name        Variance Std.Dev. Corr 
- id       (Intercept) 63.0652  7.941         
-          grade_c2     0.7141  0.845    -0.01
- Residual             36.2543  6.021         
+ id       (Intercept) 63.0653  7.9414        
+          grade_c2     0.7141  0.8451   -0.01
+ Residual             36.2543  6.0212        
 Number of obs: 2221, groups:  id, 932
 
 Fixed effects:
@@ -1297,7 +1339,7 @@ anti_k1     -0.671  0.358 -0.025
 I(grd_2*l_)  0.091 -0.168 -0.532  0.026       
 I(gr_2*a_1)  0.343 -0.660  0.026 -0.529 -0.055
 optimizer (nloptwrap) convergence code: 0 (OK)
-Model failed to converge with max|grad| = 0.00577356 (tol = 0.002, component 1)
+Model failed to converge with max|grad| = 0.0057725 (tol = 0.002, component 1)
 </pre></div>
 </div>
 </div>
@@ -1337,39 +1379,46 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 </div>
 </div>
 </div>
-<p>La differenza nei -2LL tra questi due modelli era 14, con una differenza di 4 gradi di libertà, χ2(4) = 14, p &lt; .01. Questa differenza è identica a quella ottenuta confrontando i modelli nel framework di modellazione LGM. Giungiamo alla stessa conclusione riguardo l’importanza del basso peso alla nascita e dei comportamenti antisociali nel framework di modellazione multilivello e quando esaminiamo le differenze nelle traiettorie matematiche dei bambini.</p>
+<p>La differenza nei -2LL tra i due modelli analizzati è di 14.25, con una differenza di 4 gradi di libertà, risultando in un valore di χ2(4) = 14.25 e un p-value inferiore a .001. Questa differenza è coerente con quella osservata nei precedenti confronti tra modelli nel contesto della modellazione di crescita latente (LGM). Di conseguenza, arriviamo alla stessa conclusione sull’importanza del basso peso alla nascita e dei comportamenti antisociali, sia nel framework di modellazione multilivello che nell’analisi delle differenze nelle traiettorie latenti matematiche nei bambini.</p>
 </section>
 <section id="considerazioni-importanti">
-<h2><span class="section-number">79.3. </span>Considerazioni Importanti<a class="headerlink" href="#considerazioni-importanti" title="Link to this heading">#</a></h2>
-<p>La maggior parte delle ricerche nel modello di crescita cerca di comprendere come le caratteristiche interpersonali (ovvero, i covarianti invarianti nel tempo) siano associate a differenze interpersonali nei cambiamenti intrapersonali catturati dai dati longitudinali. Nel nostro esempio illustrativo, ci siamo limitati a due covarianti invarianti nel tempo per semplicità. Tuttavia, è possibile includere contemporaneamente nel modello diversi covarianti invarianti nel tempo e le interazioni tra di essi. Come in tutte le analisi di regressione, è essenziale un’adeguata scala e centratura dei covarianti invarianti nel tempo per ottenere stime di parametri sostanzialmente significative. Tutte le pratiche comuni nella regressione, come l’esame delle interazioni (moderazione) tra i covarianti invarianti nel tempo, relazioni non lineari e test di mediazione, sono possibili e implementate in modi tipici. Ad esempio, è possibile calcolare variabili prodotto, includerle nel dataset e inserirle come predittori aggiuntivi per esaminare effetti interattivi. Inoltre, gli effetti dei covarianti invarianti nel tempo possono essere aggiunti al modello in modo gerarchico per isolare se il loro inserimento ha migliorato significativamente l’adattamento del modello (simile all’esame del cambiamento significativo in R^2).</p>
+<h2><span class="section-number">79.6. </span>Considerazioni Importanti<a class="headerlink" href="#considerazioni-importanti" title="Link to this heading">#</a></h2>
+<p>La maggior parte delle ricerche nel modello di crescita cerca di comprendere come le caratteristiche interpersonali (ovvero, i covarianti invarianti nel tempo) siano associate a differenze interpersonali nei cambiamenti intrapersonali catturati dai dati longitudinali. Nel nostro esempio illustrativo, ci siamo limitati a due covarianti invarianti nel tempo per semplicità. Tuttavia, è possibile includere contemporaneamente nel modello diversi covarianti invarianti nel tempo e le interazioni tra di essi. Come in tutte le analisi di regressione, è essenziale un’adeguata scala e centratura dei covarianti invarianti nel tempo per ottenere stime di parametri interpretabili. Tutte le pratiche comuni nella regressione, come l’esame delle interazioni (moderazione) tra i covarianti invarianti nel tempo, relazioni non lineari e test di mediazione, sono possibili e implementate in modi tipici. Ad esempio, è possibile calcolare variabili prodotto, includerle nel dataset e inserirle come predittori aggiuntivi per esaminare effetti interattivi. Inoltre, gli effetti dei covarianti invarianti nel tempo possono essere aggiunti al modello in modo gerarchico per determinare se il loro inserimento ha migliorato in maniera rilevante l’adattamento del modello (una procedura simile all’esame del cambiamento in R^2).</p>
 <section id="varianza-spiegata">
-<h3><span class="section-number">79.3.1. </span>Varianza Spiegata<a class="headerlink" href="#varianza-spiegata" title="Link to this heading">#</a></h3>
-<p>Oltre a valutare l’importanza dei covarianti invarianti nel tempo, i ricercatori vogliono anche sapere quanto della varianza nell’intercetta e nella pendenza sia stata spiegata dai covarianti invarianti nel tempo. In altre parole, quale proporzione delle differenze interpersonali nell’intercetta e nelle pendenze è stata spiegata dai covarianti invarianti nel tempo. Nei framework di modellazione multilivello e di equazioni strutturali, è possibile confrontare le stime di varianza dell’intercetta e della pendenza ottenute in modelli con e senza covarianti invarianti nel tempo. Nel nostro esempio, ad esempio, la stima della varianza dell’intercetta era 64.562 per il modello di crescita lineare senza covarianti invarianti nel tempo e 63.064 quando il basso peso alla nascita e i comportamenti antisociali erano inclusi come covarianti invarianti nel tempo. La differenza tra le varianze stimate era di 1.498. Convertendo questa differenza in una proporzione della varianza originale, troviamo che i covarianti invarianti nel tempo hanno spiegato lo 0.023 (1.498/64.562) ovvero il 2.3% delle differenze interpersonali nell’intercetta. Calcoli simili per la pendenza hanno prodotto una varianza spiegata dello 0.027 (2.7%).</p>
+<h3><span class="section-number">79.6.1. </span>Varianza Spiegata<a class="headerlink" href="#varianza-spiegata" title="Link to this heading">#</a></h3>
+<p>Nell’ambito della ricerca sulle covariate invarianti nel tempo, un aspetto cruciale è determinare quanto della varianza nelle intercette e nelle pendenze sia spiegata da queste covariate. In altre parole, si cerca di quantificare quale percentuale delle differenze interpersonali nelle intercette e pendenze sia attribuibile alle covariate invarianti nel tempo. Sia nei framework di modellazione multilivello che nelle equazioni strutturali, è possibile confrontare le stime di varianza per intercette e pendenze ottenute da modelli con e senza le covariate invarianti nel tempo.</p>
+<p>Nel nostro esempio, la varianza dell’intercetta stimata era di 64.562 nel modello di crescita lineare senza covariate, e si riduceva a 63.064 quando il basso peso alla nascita e i comportamenti antisociali erano inclusi come covariate. La differenza di varianza stimata è di 1.498. Convertendo questa differenza in una proporzione della varianza originale, troviamo che le covariate invarianti nel tempo spiegano il 2.3% (1.498/64.562) delle differenze interpersonali nell’intercetta. Calcoli simili per la pendenza indicano che queste covariate spiegano il 2.7% della varianza. Questi risultati suggeriscono che la quota di varianza delle differenze individuali nelle variabili latenti delle intercette e delle pendenze delle traiettorie di sviluppo latente delle abilità matematiche, attribuibili al basso peso alla nascita e ai comportamenti antisociali, è relativamente modesta.</p>
 </section>
 <section id="coefficienti-standardizzati">
-<h3><span class="section-number">79.3.2. </span>Coefficienti Standardizzati<a class="headerlink" href="#coefficienti-standardizzati" title="Link to this heading">#</a></h3>
-<p>Nell’ambito della ricerca, oltre alla valutazione della varianza spiegata, può essere utile calcolare i coefficienti standardizzati. Questi aiutano a determinare l’importanza di ciascun predittore e funzionano come una misura della grandezza dell’effetto. I coefficienti di regressione di secondo livello (percorsi), che partono dai covarianti invarianti nel tempo verso l’intercetta e la pendenza, sono inizialmente non standardizzati. Per ottenere i coefficienti standardizzati, è necessario moltiplicare il coefficiente non standardizzato per il rapporto tra la deviazione standard del predittore (cioè, il covariante invariante nel tempo) e quella del risultato (cioè, l’intercetta o la pendenza).</p>
-<p>La formula generale per il calcolo di un coefficiente standardizzato è:</p>
+<h3><span class="section-number">79.6.2. </span>Coefficienti Standardizzati<a class="headerlink" href="#coefficienti-standardizzati" title="Link to this heading">#</a></h3>
+<p>Nel campo della ricerca, oltre all’analisi della varianza spiegata, è spesso utile calcolare i coefficienti standardizzati. Questi coefficienti forniscono una misura dell’importanza relativa di ciascun predittore, agendo come indicatori della grandezza dell’effetto. I coefficienti di regressione di secondo livello, che legano i covarianti invarianti nel tempo all’intercetta e alla pendenza, sono inizialmente calcolati in forma non standardizzata. Per ottenere i coefficienti standardizzati, è necessario moltiplicare il coefficiente non standardizzato per il rapporto tra la deviazione standard del predittore e quella del risultato.</p>
+<p>La formula generale per calcolare un coefficiente standardizzato è la seguente:</p>
 <div class="math notranslate nohighlight">
-\[ \beta^* = \frac{b \times \sigma_{\text{predittore}}}{\sigma_{\text{risultato}}} \]</div>
-<p>Dove:</p>
+\[ 
+\beta^* = \frac{b \cdot \sigma_x}{\sigma_y} 
+\]</div>
+<p>dove:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\beta^*\)</span> rappresenta il coefficiente standardizzato.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta^*\)</span> è il coefficiente standardizzato.</p></li>
 <li><p><span class="math notranslate nohighlight">\(b\)</span> è il coefficiente non standardizzato.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\sigma_{\text{predittore}}\)</span> è la deviazione standard del predittore, come i comportamenti antisociali nel nostro caso.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\sigma_{\text{risultato}}\)</span> è la deviazione standard del risultato, come l’intercetta nel nostro caso.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_x\)</span> è la deviazione standard del predittore, come ad esempio i comportamenti antisociali.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_y\)</span> è la deviazione standard del risultato, come l’intercetta.</p></li>
 </ul>
 <p>Applicando questa formula, il coefficiente standardizzato per l’effetto dei comportamenti antisociali sull’intercetta è dato da:</p>
 <div class="math notranslate nohighlight">
-\[ \beta^* = \frac{-0.551 \times \sigma_{\text{anti_k1}}}{\sqrt{63.065 + (0.080 \times \sigma_{\text{X1}} \times 0.080) + (-0.551 \times \sigma_{\text{anti_k1}} \times -0.551) + 2 \times (0.080 \times \sigma_{\text{X1,anti_k1}} \times -0.551)}} \]</div>
-<p>Qui, <span class="math notranslate nohighlight">\(\sigma_{\text{anti_k1}}\)</span> rappresenta la deviazione standard dei comportamenti antisociali, <span class="math notranslate nohighlight">\(\sigma_{\text{X1}}\)</span> è la deviazione standard di un altro predittore, se presente, e <span class="math notranslate nohighlight">\(\sigma_{\text{X1,anti_k1}}\)</span> è la covarianza tra i due predittori.</p>
-<p>In conclusione, il calcolo produce:</p>
+\[ 
+\beta^* = \frac{-0.551 \times \sigma_{\text{anti\_k1}}}{\sqrt{63.065 + (0.080 \times \sigma_{\text{X1}}^2) + (-0.551 \times \sigma_{\text{anti\_k1}}^2) + 2 \times (0.080 \times \sigma_{\text{X1,anti\_k1}} \times -0.551)}} 
+\]</div>
+<p>Qui, <span class="math notranslate nohighlight">\(\sigma_{\text{anti\_k1}}\)</span> rappresenta la deviazione standard dei comportamenti antisociali, <span class="math notranslate nohighlight">\(\sigma_{\text{X1}}\)</span> è la deviazione standard di un altro predittore, se presente, e <span class="math notranslate nohighlight">\(\sigma_{\text{X1,anti\_k1}}\)</span> è la covarianza tra i due predittori.</p>
+<p>Semplificando i calcoli, si ottiene:</p>
 <div class="math notranslate nohighlight">
-\[ -0.551 \times 2.312 / \sqrt{63.065 + (0.080 \times 0.074 \times 0.080) + (-0.551 \times 2.312 \times -0.551) + 2 \times (0.080 \times 0.007 \times -0.551)} = -0.105 \]</div>
-<p>Quindi, l’effetto dei comportamenti antisociali sui punteggi di matematica di seconda elementare è risultato essere di piccola entità.</p>
+\[ 
+-0.551 \times 2.312 / \sqrt{63.065 + (0.080 \times 0.074^2) + (-0.551 \times 2.312^2) + 2 \times (0.080 \times 0.007 \times -0.551)} = -0.105 
+\]</div>
+<p>Quindi, l’effetto dei comportamenti antisociali sui punteggi di matematica a livello di seconda elementare risulta essere di piccola entità.</p>
 </section>
 <section id="considerazioni-conclusive">
-<h3><span class="section-number">79.3.3. </span>Considerazioni Conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">79.6.3. </span>Considerazioni Conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h3>
 <p>In questo capitolo, abbiamo esaminato il modello di crescita lineare con covarianti invarianti nel tempo, un modello spesso utilizzato per esaminare le differenze individuali nella crescita e nel cambiamento. L’uso di questo modello implica una serie di assunzioni. Innanzitutto, il modello presume l’invarianza della struttura del cambiamento per tutte le persone. Ciò significa che si assume che tutti i bambini, indipendentemente dai loro punteggi sui covarianti invarianti nel tempo, seguano una traiettoria di crescita lineare. Inoltre, abbiamo ipotizzato che la grandezza della varianza residua nell’intercetta e nella pendenza, così come la covarianza residua tra l’intercetta e la pendenza, siano le stesse per i bambini con valori diversi sui covarianti invarianti nel tempo.</p>
 <p>Assumiamo anche che la varianza residua dei punteggi osservati sia equivalente per tutti i bambini. In altre parole, indipendentemente dai valori dei covarianti invarianti nel tempo, l’inadeguatezza del modello lineare è identica. Nel nostro esempio, abbiamo ipotizzato che la grandezza delle fluttuazioni annuali nelle prestazioni matematiche dei bambini con livelli inferiori o superiori di comportamento antisociale fosse equivalente. Dato che queste assunzioni potrebbero essere vere o meno, esse dovrebbero essere attentamente considerate prima di intraprendere tali analisi.</p>
 <p>Nel prossimo capitolo, discuteremo i modelli di crescita per gruppi multipli che facilitano un esame approfondito di queste assunzioni per determinati tipi di covarianti invarianti nel tempo, in particolare quelli che sono variabili categoriche, ordinali o variabili continue che sono state categorizzate (ad esempio, tramite uno split mediano). Questo approccio permette una verifica più accurata e specifica delle ipotesi del modello in contesti diversi e con differenti tipologie di dati.</p>
@@ -1441,12 +1490,15 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valutare-il-contributo-delle-covariate">79.1. Valutare il contributo delle covariate</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confronto-con-il-modello-misto">79.2. Confronto con il modello misto</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-importanti">79.3. Considerazioni Importanti</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varianza-spiegata">79.3.1. Varianza Spiegata</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficienti-standardizzati">79.3.2. Coefficienti Standardizzati</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">79.3.3. Considerazioni Conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definizione-delle-variabili-latenti">79.1. Definizione delle Variabili Latenti:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vincoli-sui-carichi-fattoriali">79.2. Vincoli sui Carichi Fattoriali:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scopo-di-questi-vincoli">79.3. Scopo di Questi Vincoli:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valutare-il-contributo-delle-covariate">79.4. Valutare il contributo delle covariate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confronto-con-il-modello-misto">79.5. Confronto con il modello misto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-importanti">79.6. Considerazioni Importanti</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varianza-spiegata">79.6.1. Varianza Spiegata</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficienti-standardizzati">79.6.2. Coefficienti Standardizzati</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">79.6.3. Considerazioni Conclusive</a></li>
 </ul>
 </li>
 </ul>
