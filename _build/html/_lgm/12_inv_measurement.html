@@ -491,13 +491,19 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-invarianza-configurale">82.2.1. Modello di invarianza configurale</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-invarianza-debole">82.2.2. Modello di invarianza debole</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-invarianza-forte">82.2.3. Modello di invarianza forte</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invarianza-stretta">82.2.4. Invarianza stretta</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invarianza-rigorosa">82.2.4. Invarianza rigorosa</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confronto-tra-modelli">82.3. Confronto tra modelli</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-growth-model">82.4. Second-Order Growth Model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#traiettorie-di-sviluppo">82.5. Traiettorie di sviluppo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">82.6. Considerazioni Conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">82.6. Considerazioni Conclusive</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importanza-dell-invarianza-della-misurazione-nel-cambiamento-longitudinale">82.6.1. Importanza dell’Invarianza della Misurazione nel Cambiamento Longitudinale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#approccio-alla-non-invarianza">82.6.2. Approccio alla Non Invarianza</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vantaggi-dei-modelli-di-crescita-di-secondo-ordine">82.6.3. Vantaggi dei Modelli di Crescita di Secondo Ordine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precisione-nell-analisi-dei-fattori-longitudinali">82.6.4. Precisione nell’Analisi dei Fattori Longitudinali</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -511,9 +517,9 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="invarianza-di-misurazione">
 <span id="inv-meas-lgm-notebook"></span><h1><span class="section-number">82. </span>Invarianza di Misurazione<a class="headerlink" href="#invarianza-di-misurazione" title="Link to this heading">#</a></h1>
-<p>Un concetto chiave nei modelli di crescita latente è stabilire una metrica comune per le variabili latenti nel tempo. A differenza delle variabili osservate, le variabili latenti non hanno una scala intrinseca e longitudinalmente è necessario che quella scala sia la stessa nel tempo. Questo viene fatto testando l’invarianza fattoriale. L’invarianza fattoriale è un test che verifica se la relazione tra le variabili latenti e le variabili osservate è la stessa in diversi momenti del tempo. Se l’invarianza fattoriale è soddisfatta, significa che le variabili latenti hanno la stessa scala in tutti i tempi.</p>
-<p>Abbiamo già visto come si può affrontare il problema dell’invarianza fattoriale nel caso di costrutti misurati in diversi momenti del tempo, ma non abbiamo considerato una modellizzazione lineare del tempo. In questo capitolo, introduciamo il test di invarianza di misura nel contesto di un modello a fattore longitudinale e come un modello di crescita latente di secondo ordine possa essere utilizzato per descrivere il cambiamento lineare in un fattore latente.</p>
-<p>Questo tutorial segue l’esempio fornito nel Capitolo 14 di <span id="id1">Grimm <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id27" title="Kevin J Grimm, Nilam Ram, and Ryne Estabrook. Growth modeling: Structural equation and multilevel modeling approaches. Guilford Publications, 2016.">GRE16</a>]</span>. Utilizzando dati con tre misurazioni temporali successive dall’ECLS-K, testiamo l’invarianza fattoriale e quindi utilizziamo un modello di crescita di secondo ordine per descrivere il cambiamento nei punteggi del fattore nel tempo.</p>
+<p>Un concetto chiave nei modelli di crescita latente è la necessità di stabilire una metrica comune per le variabili latenti nel tempo. A differenza delle variabili osservate, le variabili latenti non possiedono una scala intrinseca, pertanto, longitudinalmente, è fondamentale che tale scala rimanga coerente nel tempo. Questo si ottiene testando l’invarianza fattoriale. L’invarianza fattoriale è un test che verifica se la relazione tra le variabili latenti e le variabili osservate rimane costante in diversi momenti temporali. Se l’invarianza fattoriale è soddisfatta, significa che le variabili latenti mantengono la stessa scala in tutti i tempi.</p>
+<p>In precedenza, abbiamo esplorato come affrontare il problema dell’invarianza fattoriale nel contesto di costrutti misurati in diversi momenti temporali, senza considerare una modellizzazione lineare del tempo. In questo capitolo, introduciamo il test di invarianza di misura nel contesto di un modello a fattore longitudinale e descriviamo come un modello di crescita latente di secondo ordine possa essere utilizzato per rappresentare il cambiamento lineare in un fattore latente.</p>
+<p>Questo tutorial segue l’esempio fornito nel Capitolo 14 di <span id="id1">Grimm <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id27" title="Kevin J Grimm, Nilam Ram, and Ryne Estabrook. Growth modeling: Structural equation and multilevel modeling approaches. Guilford Publications, 2016.">GRE16</a>]</span>. Utilizzando dati con tre misurazioni temporali successive dall’Early Childhood Longitudinal Study - Kindergarten Class (ECLS-K), testiamo l’invarianza fattoriale e successivamente utilizziamo un modello di crescita di secondo ordine per descrivere il cambiamento nei punteggi del fattore nel tempo.</p>
 <section id="invarianza-fttoriale-longitudinale">
 <h2><span class="section-number">82.1. </span>Invarianza Fttoriale Longitudinale<a class="headerlink" href="#invarianza-fttoriale-longitudinale" title="Link to this heading">#</a></h2>
 <p>L’invarianza fattoriale longitudinale si riferisce all’equivalenza di alcuni parametri del modello a fattore comune in diversi momenti del tempo. In altre parole, l’invarianza fattoriale longitudinale significa che la struttura fattoriale, le relazioni tra i fattori e le variabili latenti e osservate, e le proprietà statistiche delle variabili latenti sono le stesse in diversi momenti del tempo.</p>
@@ -530,7 +536,7 @@ document.write(`
 </section>
 <section id="un-esempio-concreto">
 <h2><span class="section-number">82.2. </span>Un Esempio Concreto<a class="headerlink" href="#un-esempio-concreto" title="Link to this heading">#</a></h2>
-<p>Per illustrare l’utilizzo del modello fattoriale longitudinale comune e del modello di crescita di secondo ordine, utilizziamo un campione casuale di osservazioni dallo studio longitudinale dell’infanzia precoce - coorte del kindergarten (ECLS-K). Test di lettura, matematica e scienze sono stati somministrati in terza, quinta e ottava elementare, e questi tre test sono considerati indicatori di un fattore comune di successo scolastico. I punteggi utilizzati in questa analisi sono il numero stimato di risposte corrette.</p>
+<p>Per illustrare l’utilizzo del modello fattoriale longitudinale comune e del modello di crescita di secondo ordine, utilizziamo un campione casuale di osservazioni tratte dallo studio longitudinale dell’infanzia precoce - coorte del kindergarten (ECLS-K). Test di lettura, matematica e scienze sono stati somministrati in terza, quinta e ottava elementare, e questi tre test sono considerati indicatori di un fattore comune di successo scolastico. I punteggi utilizzati in questa analisi sono il numero stimato di risposte corrette.</p>
 <p>Utilizzando questi dati valutiamo l’invarianza fattoriale e poi usiamo un modello di crescita latente di secondo ordine per descrivere il cambiamento nei punteggi fattoriali nel tempo.</p>
 <p>Importiamo i dati.</p>
 <div class="cell docutils container">
@@ -651,7 +657,7 @@ m_g8 0.66 0.68 0.81 0.70 0.71 0.85 0.78 0.75 1.00
 <section id="modello-di-invarianza-configurale">
 <h3><span class="section-number">82.2.1. </span>Modello di invarianza configurale<a class="headerlink" href="#modello-di-invarianza-configurale" title="Link to this heading">#</a></h3>
 <p>Il modello di invarianza configurale impone pochi vincoli sulla struttura del fattore nel tempo. L’unico vincolo è che il numero di fattori e la struttura delle saturazioni fattoriali siano uguali nelle diverse occasioni di misurazione. Definiamo un fattore “rendimento accademico” per ciascuna delle 3 occasioni, utilizzando le variabili di matematica, scienze e lettura relative a quella misurazione temporale.</p>
-<p>Anche se il fattore comune può essere interpretato in modo simile in ciascuna occasione di misurazione (ad esempio, chiamato “rendimento accademico”), questo modello non impone o assume che i fattori specifici per il tempo misurino lo stesso costrutto o che siano misurati sulla stessa scala.</p>
+<p>Anche se il fattore comune può essere interpretato in modo simile in ciascuna occasione di misurazione, questo modello non impone o assume che i fattori specifici per il tempo misurino lo stesso costrutto o che siano misurati sulla stessa scala.</p>
 <p>Definiamo il modello nella sintassi di lavaan.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -718,6 +724,42 @@ m_g8 0.66 0.68 0.81 0.70 0.71 0.85 0.78 0.75 1.00
 </div>
 </div>
 </div>
+<p>Nel modello, abbiamo tre variabili latenti (<span class="math notranslate nohighlight">\(\eta1\)</span>, <span class="math notranslate nohighlight">\(\eta2\)</span>, <span class="math notranslate nohighlight">\(\eta3\)</span>) misurate in tre diversi momenti temporali, ciascuna con tre indicatori (variabili osservate).</p>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(\eta1\)</span></strong>: Fattore latente al tempo 1 (prima misurazione)</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(lambda_S\)</span>: Saturazione fattoriale per <span class="math notranslate nohighlight">\(s_g3\)</span> (indicatore al tempo 1)</p></li>
+<li><p><span class="math notranslate nohighlight">\(lambda_R3\)</span>: Saturazione fattoriale per <span class="math notranslate nohighlight">\(r_g3\)</span> (indicatore al tempo 1)</p></li>
+<li><p><span class="math notranslate nohighlight">\(lambda_M3\)</span>: Saturazione fattoriale per <span class="math notranslate nohighlight">\(m_g3\)</span> (indicatore al tempo 1)</p></li>
+</ul>
+</li>
+<li><p><strong><span class="math notranslate nohighlight">\(\eta2\)</span></strong>: Fattore latente al tempo 2 (seconda misurazione)</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(lambda_S\)</span>: Saturazione fattoriale per <span class="math notranslate nohighlight">\(s_g5\)</span> (indicatore al tempo 2)</p></li>
+<li><p><span class="math notranslate nohighlight">\(lambda_R5\)</span>: Saturazione fattoriale per <span class="math notranslate nohighlight">\(r_g5\)</span> (indicatore al tempo 2)</p></li>
+<li><p><span class="math notranslate nohighlight">\(lambda_M5\)</span>: Saturazione fattoriale per <span class="math notranslate nohighlight">\(m_g5\)</span> (indicatore al tempo 2)</p></li>
+</ul>
+</li>
+<li><p><strong><span class="math notranslate nohighlight">\(\eta3\)</span></strong>: Fattore latente al tempo 3 (terza misurazione)</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(lambda_S\)</span>: Saturazione fattoriale per <span class="math notranslate nohighlight">\(s_g8\)</span> (indicatore al tempo 3)</p></li>
+<li><p><span class="math notranslate nohighlight">\(lambda_R8\)</span>: Saturazione fattoriale per <span class="math notranslate nohighlight">\(r_g8\)</span> (indicatore al tempo 3)</p></li>
+<li><p><span class="math notranslate nohighlight">\(lambda_M8\)</span>: Saturazione fattoriale per <span class="math notranslate nohighlight">\(m_g8\)</span> (indicatore al tempo 3)</p></li>
+</ul>
+</li>
+</ul>
+<p>Per identificare il modello, è necessario vincolare almeno un Saturazione fattoriale per ciascun fattore latente (<span class="math notranslate nohighlight">\(\lambda_S\)</span>) per essere uguale attraverso tutte le misurazioni temporali. Questo vincolo aiuta a stabilire una scala comune per le variabili latenti.</p>
+<ul class="simple">
+<li><p>La varianza di <span class="math notranslate nohighlight">\(\eta1\)</span> è fissata a 1 per la scala.</p></li>
+<li><p>Le varianze di <span class="math notranslate nohighlight">\(\eta2\)</span> e <span class="math notranslate nohighlight">\(\eta3\)</span> sono libere di variare.</p></li>
+<li><p>Le covarianze tra <span class="math notranslate nohighlight">\(\eta1\)</span>, <span class="math notranslate nohighlight">\(\eta2\)</span> e <span class="math notranslate nohighlight">\(\eta3\)</span> sono stimate per permettere la correlazione tra le variabili latenti nel tempo.</p></li>
+<li><p>Le varianze delle variabili osservate sono stimate per ciascun momento temporale.</p></li>
+<li><p>Le covarianze tra le stesse variabili osservate nei diversi momenti temporali sono stimate per tenere conto delle correlazioni tra gli errori.</p></li>
+<li><p>L’intercetta di <span class="math notranslate nohighlight">\(\eta1\)</span> è fissata a 0 per la scala.</p></li>
+<li><p>Le intercette di <span class="math notranslate nohighlight">\(\eta2\)</span> e <span class="math notranslate nohighlight">\(\eta3\)</span> sono libere di variare.</p></li>
+<li><p>Le intercette delle variabili osservate sono stimate per ciascun momento temporale.</p></li>
+</ul>
+<p>Il modello di invarianza configurale verifica se la struttura dei fattori e le saturazioni fattoriali sono consistenti attraverso diversi momenti temporali. Questo è il primo passo per stabilire una metrica comune per le variabili latenti nel tempo, essenziale per una corretta interpretazione dei cambiamenti longitudinali. Se l’invarianza configurale è soddisfatta, possiamo procedere a testare forme più restrittive di invarianza, come l’invarianza metrico e l’invarianza scalare.</p>
 <p>Adattiamo il modello ai dati.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -901,7 +943,17 @@ Variances:
 <section id="modello-di-invarianza-debole">
 <h3><span class="section-number">82.2.2. </span>Modello di invarianza debole<a class="headerlink" href="#modello-di-invarianza-debole" title="Link to this heading">#</a></h3>
 <p>Il modello di invarianza debole impone che la matrice di saturazioni fattoriali sia identica in tutte le occasioni di misurazione. Questo implica che le strutture di covarianza nel tempo siano proporzionali. Tuttavia, il modello permette che le intercette delle variabili osservate possano variare nel tempo e quindi non consente di esaminare il cambiamento longitudinale del fattore.</p>
-<p>Definiamo il modello usando la sintassi di lavaan.</p>
+<p>Per comprendere perché, quando il modello permette che le intercette delle variabili osservate possano variare nel tempo, non è possibile esaminare il cambiamento longitudinale del fattore, è necessario approfondire il ruolo delle intercette nell’invarianza fattoriale e come influenzano la possibilità di interpretare correttamente i cambiamenti nel tempo.</p>
+<p>Le intercette delle variabili osservate rappresentano i valori medi di queste variabili quando le variabili latenti sono uguali a zero.</p>
+<p>Quando un modello soddisfa l’invarianza forte, significa che le intercette delle variabili osservate sono uguali nel tempo. Questo ha diverse implicazioni. Se le intercette delle variabili osservate sono costanti nel tempo, allora qualsiasi cambiamento nelle medie delle variabili osservate può essere attribuito interamente ai cambiamenti nelle variabili latenti. Questo è fondamentale perché garantisce che la scala delle variabili latenti sia la stessa in ogni punto temporale, permettendo una comparazione diretta delle medie delle variabili latenti nel tempo.</p>
+<p>Se il modello permette che le intercette delle variabili osservate possano variare nel tempo, non è possibile esaminare il cambiamento longitudinale del fattore.</p>
+<ol class="arabic simple">
+<li><p><strong>Attribuzione dei Cambiamenti</strong>: Se le intercette delle variabili osservate cambiano nel tempo, diventa ambiguo distinguere se i cambiamenti nelle medie delle variabili osservate siano dovuti ai cambiamenti nei fattori latenti o ai cambiamenti nelle intercette stesse.</p></li>
+<li><p><strong>Scala Non Costante</strong>: Quando le intercette delle variabili osservate variano, la scala delle variabili latenti non è più la stessa in tutti i momenti temporali. Questo significa che i cambiamenti osservati nelle variabili latenti potrebbero riflettere, almeno in parte, cambiamenti nelle intercette piuttosto che cambiamenti reali nelle variabili latenti.</p></li>
+<li><p><strong>Interpretazione Difficile</strong>: Senza una scala comune, interpretare le medie delle variabili latenti nel tempo diventa problematico. Non è possibile dire con certezza se un cambiamento osservato nelle variabili latenti sia reale o artefatto della variazione nelle intercette.</p></li>
+</ol>
+<p>In sintesi, le intercette delle variabili osservate giocano un ruolo cruciale nell’assicurare che la scala delle variabili latenti sia costante nel tempo. L’invarianza forte, che impone l’uguaglianza delle intercette delle variabili osservate, è essenziale per interpretare correttamente i cambiamenti longitudinali dei fattori latenti. Senza questa invarianza, i cambiamenti nelle medie delle variabili osservate non possono essere attribuiti univocamente ai cambiamenti nei fattori latenti, rendendo impossibile esaminare accuratamente il cambiamento longitudinale del fattore.</p>
+<p>Definiamo ora il modello usando la sintassi di lavaan.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">weak_invar</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot; #opening quote</span>
@@ -1396,9 +1448,9 @@ Variances:
 </div>
 </div>
 </section>
-<section id="invarianza-stretta">
-<h3><span class="section-number">82.2.4. </span>Invarianza stretta<a class="headerlink" href="#invarianza-stretta" title="Link to this heading">#</a></h3>
-<p>Il modello di invarianza rigorosa impone vincoli aggiuntivi sulle saturazioni fattoriali, sulle intercette delle variabili osservate e sulle varianze uniche. Quando l’invarianza fattoriale rigorosa è soddisfatta, i cambiamenti longitudinali nelle medie osservate, nelle varianze e nelle covarianze ci informano sui cambiamenti longitudinali dei fattori.</p>
+<section id="invarianza-rigorosa">
+<h3><span class="section-number">82.2.4. </span>Invarianza rigorosa<a class="headerlink" href="#invarianza-rigorosa" title="Link to this heading">#</a></h3>
+<p>Il modello di invarianza rigorosa (o stretta) è una forma più restrittiva di invarianza fattoriale. In questo modello, si impongono vincoli aggiuntivi non solo sulle saturazioni fattoriali (caricamenti dei fattori) e sulle intercette delle variabili osservate, ma anche sulle varianze uniche (errori residui delle variabili osservate). Quando questi vincoli sono soddisfatti, i cambiamenti longitudinali nelle medie, varianze e covarianze delle variabili osservate riflettono direttamente i cambiamenti longitudinali dei fattori latenti.</p>
 <p>Definiamo il modello con la sintassi di lavaan.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1465,6 +1517,13 @@ Variances:
 </div>
 </div>
 </div>
+<p>Quando l’invarianza rigorosa è soddisfatta, possiamo interpretare i cambiamenti longitudinali delle variabili osservate come cambiamenti nei fattori latenti stessi.</p>
+<ul class="simple">
+<li><p><strong>Saturazioni Fattoriali Costanti</strong>: Le saturazioni fattoriali (<span class="math notranslate nohighlight">\(\lambda\)</span>) rimangono invariati nel tempo, indicando che la relazione tra le variabili osservate e i fattori latenti non cambia.</p></li>
+<li><p><strong>Intercette Costanti</strong>: Le intercette (<span class="math notranslate nohighlight">\(\tau\)</span>) delle variabili osservate sono costanti, il che significa che qualsiasi cambiamento nelle medie osservate può essere attribuito ai cambiamenti nelle medie dei fattori latenti.</p></li>
+<li><p><strong>Varianze Uniche Costanti</strong>: Le varianze degli errori (<span class="math notranslate nohighlight">\(\theta\)</span>) delle variabili osservate sono costanti, il che significa che il rumore o errore nelle misurazioni non varia nel tempo, permettendo una valutazione accurata dei cambiamenti nelle variabili latenti.</p></li>
+</ul>
+<p>Questo modello è il più restrittivo tra quelli di invarianza fattoriale, ma fornisce la base più solida per analisi longitudinali robuste e interpretazioni accurate dei cambiamenti nei costrutti latenti.</p>
 <p>Adattiamo il modello ai dati.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1784,11 +1843,11 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 </div>
 </div>
 </div>
-<p>Nel caso presente, solo l’invarianza configurale è giustificata dal test di verosimiglianze. L’esame degli indici di bontà di adattamento, comunque, suggerisce che l’invarianza debole sembra giustificata per questi dati. &#64;grimm2016growth concludono invece che anche l’invarianza forte è giustificata per questi dati.</p>
+<p>Nel caso presente, solo l’invarianza configurale è giustificata dal test di verosimiglianze. L’esame degli indici di bontà di adattamento, comunque, suggerisce che l’invarianza debole sembra giustificata per questi dati. <span id="id2">Grimm <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id27" title="Kevin J Grimm, Nilam Ram, and Ryne Estabrook. Growth modeling: Structural equation and multilevel modeling approaches. Guilford Publications, 2016.">GRE16</a>]</span> concludono invece che, per questi dati, anche l’invarianza forte è giustificata.</p>
 </section>
 <section id="second-order-growth-model">
 <h2><span class="section-number">82.4. </span>Second-Order Growth Model<a class="headerlink" href="#second-order-growth-model" title="Link to this heading">#</a></h2>
-<p>Una volta che abbiamo dimostrato che l’invarianza forte o rigorosa è supportata per il modello di crescita latente, possiamo esaminare i cambiamenti nei punteggi  fattoriali.</p>
+<p>Una volta che abbiamo dimostrato che l’invarianza forte o rigorosa è supportata dal modello di crescita latente, possiamo esaminare i cambiamenti nei punteggi  fattoriali.</p>
 <p>In questo esempio, imponiamo l’invarianza fattoriale rigorosa e modelliamo il cambiamento nei punteggi fattoriali del rendimento accademico dei bambini utilizzando un Second-Order Growth Model. Si noti che devono essere apportate alcune altre modifiche per l’identificazione e la scala.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1872,7 +1931,7 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 </div>
 </div>
 <p>La sintassi lavaan per il modello di crescita latente di secondo ordine è simile alla sintassi per il modello di crescita latente di primo ordine. La differenza principale è che il modello di secondo ordine include un fattore latente di secondo ordine, che è rappresentato da una variabile latente aggiuntiva.</p>
-<p>La prima parte della sintassi definisce le variabili latenti di primo ordine. Le variabili latenti sono rappresentate da variabili latenti con i simboli <code class="docutils literal notranslate"><span class="pre">eta</span></code>. In questo caso, i carichi fattoriali sono fissati a 15.176 per le variabili scientifiche.</p>
+<p>La prima parte della sintassi definisce le variabili latenti di primo ordine. Le variabili latenti sono rappresentate da variabili latenti con i simboli <code class="docutils literal notranslate"><span class="pre">eta</span></code>. In questo caso, i carichi fattoriali sono fissati a 15.176 per le variabili relative alle scienze.</p>
 <p>La seconda parte della sintassi definisce il fattore latente di secondo ordine. Il fattore latente di secondo ordine è rappresentato da una variabile latente con il simbolo <code class="docutils literal notranslate"><span class="pre">xi</span></code>. In questo caso, il primo e l’ultimo carico fattoriale sono fissati a 0 e 1, rispettivamente. Il secondo carico fattoriale è stimato dai dati.</p>
 <p>La terza parte della sintassi definisce le varianze e le covarianze delle variabili latenti. In questo caso, le varianze delle variabili latenti di primo ordine sono fissate a <code class="docutils literal notranslate"><span class="pre">psi</span></code>.</p>
 <p>La quarta parte della sintassi definisce le varianze e le covarianze del fattore latente di secondo ordine. In questo caso, per le varianze del fattore latente di secondo ordine si forniscono i valori iniziali dei parametri <code class="docutils literal notranslate"><span class="pre">start(0.8)</span></code> e <code class="docutils literal notranslate"><span class="pre">start(0.5)</span></code>.</p>
@@ -2137,11 +2196,26 @@ Variances:
 </section>
 <section id="considerazioni-conclusive">
 <h2><span class="section-number">82.6. </span>Considerazioni Conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h2>
-<p>Non possiamo sottolineare abbastanza l’importanza dell’invarianza della misurazione quando si studia il cambiamento nel tempo. L’invarianza della misurazione è spesso assunta perché vengono tipicamente esaminati modelli con indicatori singoli e la verifica dell’invarianza della misurazione è impossibile con tali dati. Anche con dati multivariati, questa ipotesi è spesso non verificata con dati longitudinali a causa di campioni troppo piccoli e mancanza di potenza statistica. Ma quando è possibile, è necessario valutare il grado di invarianza della misurazione presente nelle variabili osservate nel tempo.</p>
-<p>I ricercatori spesso si limitano a decidere se la misurazione è invariante o meno, ovvero se i parametri sono identici o meno. Tuttavia, questo approccio potrebbe non essere appropriato se non si tiene conto del grado di non invarianza. È importante, infatti, che il campo della ricerca consideri gli effetti della non invarianza della misurazione. Un modo per pensare a questo è che i parametri di misurazione non sono mai perfettamente identici, e quindi è necessario considerare quale grado di non invarianza non sia accettabile per proseguire con l’analisi (ad esempio, la modellazione del cambiamento) e quale grado di non invarianza sia accettabile per proseguire con l’analisi.</p>
-<p>I modelli di crescita di secondo ordine presentano diversi vantaggi rispetto ai modelli di crescita di primo ordine. Innanzitutto, essi consentono di rilevare con maggiore potenza la variabilità nel cambiamento e le covarianze tra i cambiamenti. In altre parole, è più probabile che si rilevino associazioni significative tra le intercette e le pendenze di secondo ordine rispetto alle intercette e alle pendenze di primo ordine.</p>
-<p>In secondo luogo, i modelli di crescita di secondo ordine possono essere adattati anche quando la misurazione del costrutto cambia nel tempo. Ad esempio, McArdle e Hamagami (2004) hanno adattato un modello di crescita di secondo ordine a dati longitudinali sull’intelligenza in cui lo Stanford-Binet è stato somministrato ai partecipanti quando erano bambini, lo Stanford-Binet e la Scala Wechsler di intelligenza per adulti sono stati somministrati ai partecipanti quando erano giovani adulti, e la Scala Wechsler di intelligenza per adulti è stata somministrata ai partecipanti quando erano adulti. Utilizzando modelli di primo ordine, sarebbe stato possibile modellare il cambiamento solo per specifici intervalli di età (infanzia-età adulta e età adulta-età adulta). I modelli di crescita di secondo ordine, invece, hanno consentito di studiare i cambiamenti dall’infanzia all’età adulta.</p>
-<p>Utilizzando indicatori molteplici all’interno del framework di analisi dei fattori longitudinali, possiamo descrivere il cambiamento con maggiore precisione. Questo perché siamo in grado di filtrare il rumore di misura utilizzando un modello di misura multivariato. In questo modo, possiamo espandere le possibilità di indagine e studio delle differenze interindividuali nel cambiamento intra-individuale.</p>
+<section id="importanza-dell-invarianza-della-misurazione-nel-cambiamento-longitudinale">
+<h3><span class="section-number">82.6.1. </span>Importanza dell’Invarianza della Misurazione nel Cambiamento Longitudinale<a class="headerlink" href="#importanza-dell-invarianza-della-misurazione-nel-cambiamento-longitudinale" title="Link to this heading">#</a></h3>
+<p>L’invarianza della misurazione è cruciale quando si studia il cambiamento nel tempo. Questo concetto è spesso assunto nei modelli con indicatori singoli, poiché la verifica dell’invarianza è impossibile con tali dati. Anche con dati multivariati, la verifica dell’invarianza è spesso trascurata nei dati longitudinali a causa di campioni troppo piccoli e mancanza di potenza statistica. Tuttavia, quando possibile, è essenziale valutare il grado di invarianza della misurazione nelle variabili osservate nel tempo.</p>
+</section>
+<section id="approccio-alla-non-invarianza">
+<h3><span class="section-number">82.6.2. </span>Approccio alla Non Invarianza<a class="headerlink" href="#approccio-alla-non-invarianza" title="Link to this heading">#</a></h3>
+<p>I ricercatori spesso si concentrano semplicemente sul decidere se la misurazione è invariante o meno, cioè se i parametri sono identici o meno. Questo approccio può essere limitativo se non si considera il grado di non invarianza. È importante che la ricerca prenda in considerazione gli effetti della non invarianza della misurazione. In pratica, i parametri di misurazione non sono mai perfettamente identici, quindi è cruciale determinare quale grado di non invarianza sia accettabile per proseguire con l’analisi del cambiamento e quale grado sia invece inaccettabile.</p>
+</section>
+<section id="vantaggi-dei-modelli-di-crescita-di-secondo-ordine">
+<h3><span class="section-number">82.6.3. </span>Vantaggi dei Modelli di Crescita di Secondo Ordine<a class="headerlink" href="#vantaggi-dei-modelli-di-crescita-di-secondo-ordine" title="Link to this heading">#</a></h3>
+<p>I modelli di crescita di secondo ordine offrono vantaggi significativi rispetto ai modelli di crescita di primo ordine:</p>
+<ol class="arabic simple">
+<li><p><strong>Maggiore Potenza nel Rilevare Variabilità</strong>: Questi modelli consentono di rilevare con maggiore potenza la variabilità nel cambiamento e le covarianze tra i cambiamenti. Di conseguenza, è più probabile rilevare associazioni tra le intercette e le pendenze di secondo ordine rispetto ai modelli di primo ordine.</p></li>
+<li><p><strong>Adattabilità ai Cambiamenti nella Misurazione del Costrutto</strong>: I modelli di crescita di secondo ordine possono essere adattati anche quando la misurazione del costrutto cambia nel tempo. Ad esempio, McArdle e Hamagami (2004) hanno adattato un modello di crescita di secondo ordine a dati longitudinali sull’intelligenza, dove sono stati utilizzati strumenti diversi (Stanford-Binet e Scala Wechsler di intelligenza per adulti) in diverse fasi della vita dei partecipanti. Utilizzando modelli di primo ordine, sarebbe stato possibile modellare il cambiamento solo per specifici intervalli di età, mentre i modelli di secondo ordine hanno permesso di studiare i cambiamenti dall’infanzia all’età adulta.</p></li>
+</ol>
+</section>
+<section id="precisione-nell-analisi-dei-fattori-longitudinali">
+<h3><span class="section-number">82.6.4. </span>Precisione nell’Analisi dei Fattori Longitudinali<a class="headerlink" href="#precisione-nell-analisi-dei-fattori-longitudinali" title="Link to this heading">#</a></h3>
+<p>Utilizzando indicatori multipli all’interno del framework di analisi dei fattori longitudinali, è possibile descrivere il cambiamento con maggiore precisione. Questo approccio consente di filtrare il rumore di misura utilizzando un modello di misura multivariato, espandendo le possibilità di indagine e studio delle differenze interindividuali nel cambiamento intra-individuale. In altre parole, l’uso di modelli di crescita di secondo ordine e l’analisi dei fattori longitudinali permettono di ottenere una comprensione più dettagliata e accurata dei cambiamenti nel tempo, migliorando la qualità delle conclusioni tratte dagli studi longitudinali.</p>
+</section>
 </section>
 </section>
 
@@ -2214,13 +2288,19 @@ Variances:
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-invarianza-configurale">82.2.1. Modello di invarianza configurale</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-invarianza-debole">82.2.2. Modello di invarianza debole</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-invarianza-forte">82.2.3. Modello di invarianza forte</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invarianza-stretta">82.2.4. Invarianza stretta</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invarianza-rigorosa">82.2.4. Invarianza rigorosa</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confronto-tra-modelli">82.3. Confronto tra modelli</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-growth-model">82.4. Second-Order Growth Model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#traiettorie-di-sviluppo">82.5. Traiettorie di sviluppo</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">82.6. Considerazioni Conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">82.6. Considerazioni Conclusive</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importanza-dell-invarianza-della-misurazione-nel-cambiamento-longitudinale">82.6.1. Importanza dell’Invarianza della Misurazione nel Cambiamento Longitudinale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#approccio-alla-non-invarianza">82.6.2. Approccio alla Non Invarianza</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vantaggi-dei-modelli-di-crescita-di-secondo-ordine">82.6.3. Vantaggi dei Modelli di Crescita di Secondo Ordine</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precisione-nell-analisi-dei-fattori-longitudinali">82.6.4. Precisione nell’Analisi dei Fattori Longitudinali</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
