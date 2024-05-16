@@ -1,0 +1,988 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>20. Teoria della generalizzabilità &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css?v=ffeaf963" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6ba04eab" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VMXNE4BCDL"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_gtheory/01_gtheory';</script>
+    <script src="../_static/custom.js?v=3f5092eb"></script>
+    <link rel="canonical" href="https://ccaudek.github.io/psy_test/_gtheory/01_gtheory.html" />
+    <link rel="icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="21. La validità del test" href="../_validity/01_validity.html" />
+    <link rel="prev" title="19. ✏️ Esercizi" href="../_raters/E1_irr.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Scaling psicometrico</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/01_expval_var.html">1. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/02_joint_prob.html">2. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/03_measurement.html">3. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/04_norms.html">4. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/05_regression.html">5. L’analisi di regressione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E1_likert.html">6. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E2_optimal_scoring.html">7. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E3_thurstone.html">8. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/01_ctt_1.html">9. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/02_ctt_2.html">10. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/03_ctt_3.html">11. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/04_err_std_mis.html">12. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/05_err_std_stima.html">13. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/06_applications_ctt.html">14. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E1_ctt.html">15. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E2_item_analyses.html">16. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/01_multilevel_1.html">17. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/02_interrater_reliability.html">18. L’affidabilità tra giudici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/E1_irr.html">19. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">20. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/01_validity.html">21. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/02_relations_to_other_vars.html">22. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sviluppo degli item</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_items/01_item_development.html">23. Lo sviluppo degli item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_items/02_item_analysis.html">24. Analisi degli item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">25. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale esplorativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/01_intro_fa.html">26. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/02_analisi_fattoriale_1.html">27. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/03_analisi_fattoriale_2.html">28. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/04_analisi_fattoriale_3.html">29. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/05_factor_scores.html">30. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/06_constraints_on_parms.html">31. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/07_total_score.html">32. Punteggio totale e modello fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione strumenti</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">33. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">34. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">35. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">36. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">37. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/01_cfa.html">38. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/E_01.html">39. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/02_meanstructure.html">40. La struttura delle medie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/03_cat_data.html">41. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/04_mmm.html">42. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/05_bifactor.html">43. Modello bifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/06_efa_lavaan.html">44. Exploratory Structural Equation Modeling (ESEM)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/01_sem_intro.html">45. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/02_data_preparation.html">46. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/E_01.html">47. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/03_gof.html">48. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/04_mod_comp.html">49. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/05_cfa_mod_comp.html">50. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/06_refine_solution.html">51. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/07_group_invariance.html">52. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/08_multilevel_sem.html">53. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/09_structural_regr.html">54. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/10_missing_data.html">55. Dati mancanti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/11_small_samples.html">56. Modellizzazione SEM in Piccoli Campioni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/12_temp_reliability.html">57. Affidabilità longitudinale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_irt/01_logistic_regr.html">58. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/E_01.html">59. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/02_rasch_model.html">60. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/03_assumptions.html">61. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/04_estimation.html">62. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/05_1pl_2pl_3pl.html">63. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/06_implementation.html">64. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/07_polytomous_graded.html">65. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mokken Scales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/01_core_issues.html">66. Analisi della Scala di Mokken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/02_tutorial.html">67. Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/03_applications.html">68. Applicazione Pratica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/01_development.html">69. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/02_tutorial.html">70. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/01_lgm_intro.html">71. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/02_lgm_prelims.html">72. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/03_time_effects.html">73. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/04_invariance.html">74. Invarianza Fattoriale Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/05_intro_panel.html">75. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/06_lgm_mixed.html">76. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/07_growth_1.html">77. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/08_growth_cont.html">78. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/09_time_inv_cov.html">79. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/10_growth_groups.html">80. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/11_bivariate_tvc_models.html">81. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/12_inv_measurement.html">82. Invarianza di Misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/13_latent_change.html">83. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/750_latent_change.html">84. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/751_biv_change.html">85. Modello LCS bivariato</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">86. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a1_intro_r.html">87. Linguaggio R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a2_sums.html">88. Simbolo di somma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a3_calculus.html">89. Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a4_linear_alg.html">90. Elementi di algebra lineare</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_gtheory/01_gtheory.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Teoria della generalizzabilità</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#molteplici-fonti-di-errore-di-misurazione">20.1. Molteplici fonti di errore di misurazione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differenze-tra-la-teoria-g-e-la-ctt">20.2. Differenze tra la teoria G e la CTT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fattori-incrociati-o-nidificati">20.3. Fattori incrociati o nidificati</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fattori-casuali-o-fissi">20.4. Fattori casuali o fissi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-teoria-g">20.5. La teoria G</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#affidabilita">20.6. Affidabilità</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">20.6.1. Un esempio concreto</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusioni">20.7. Conclusioni</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">20.8. Session Info</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="teoria-della-generalizzabilita">
+<span id="gtheory-notebook"></span><h1><span class="section-number">20. </span>Teoria della generalizzabilità<a class="headerlink" href="#teoria-della-generalizzabilita" title="Link to this heading">#</a></h1>
+<p>Nei precedenti capitoli è stato illustrato come la Teoria Classica dei Test (CTT) identifichi l’errore di misurazione come una fonte di varianza non spiegata e definisca l’affidabilità come la proporzione di varianza vera rispetto alla varianza totale, che include anche l’errore di misurazione. La teoria della generalizzabilità estende questo concetto nella CTT, consentendo di distinguere tra diverse fonti di errore di misurazione in casi di disegni complessi, come errori associati alle persone, alle occasioni e agli item.</p>
+<p>Questo capitolo si concentra su un’applicazione specifica della teoria della generalizzabilità, che è quella di stimare l’affidabilità delle misure all’interno di un disegno longitudinale. Nel corso di questo tutorial, esploreremo come affrontare questa sfida utilizzando il framework della teoria della generalizzabilità. Nei capitoli successivi esamineremo un approccio alternativo per risolvere lo stesso problema, che è il <em>Latent Growth Modeling</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">suppressPackageStartupMessages</span><span class="p">({</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;lme4&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># for multilevel models</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;tidyr&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># for data management</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="molteplici-fonti-di-errore-di-misurazione">
+<h2><span class="section-number">20.1. </span>Molteplici fonti di errore di misurazione<a class="headerlink" href="#molteplici-fonti-di-errore-di-misurazione" title="Link to this heading">#</a></h2>
+<p>La Teoria della Generalizzabilità, nota anche come “Generalizability Theory,” è una teoria statistica che fornisce un quadro per studiare l’affidabilità e la validità delle misurazioni in diversi contesti. In questa teoria, i fattori che possono contribuire all’errore nelle misurazioni vengono chiamati “facets” (es. valutatori, compiti, occasioni). Ogni fattore può essere considerato fisso o casuale.</p>
+<p>La terminologia utilizzata è la seguente:</p>
+<ul class="simple">
+<li><p>Le “condizioni” (condition) rappresentano i livelli dei vari fattori.</p></li>
+<li><p>L’oggetto di misurazione (Object of Measurement), che di solito sono le persone, non è considerato un fattore ma è sempre considerato casuale.</p></li>
+<li><p>L‘“Universo delle Operazioni Ammissibili” (Universe of Admissible Operations, UAO) è un ampio insieme di condizioni alle quali si vogliono generalizzare i risultati osservati.</p></li>
+<li><p>Lo “Score dell’Universo” (Universe Score) rappresenta il punteggio medio di una persona considerando tutte le possibili combinazioni di condizioni nell’UAO.</p></li>
+<li><p>Lo studio “G” (G Study) mira a ottenere informazioni accurate sulla grandezza dei fattori di errore.</p></li>
+<li><p>Lo studio “D” (D Study) riguarda la progettazione di uno scenario di misurazione con il livello desiderato di affidabilità utilizzando il minor numero possibile di condizioni.</p></li>
+</ul>
+<p>La Teoria della Generalizzabilità è particolarmente utile quando si desidera valutare l’affidabilità e la validità delle misurazioni in situazioni complesse, in cui diversi fattori possono influenzare l’errore di misurazione.</p>
+</section>
+<section id="differenze-tra-la-teoria-g-e-la-ctt">
+<h2><span class="section-number">20.2. </span>Differenze tra la teoria G e la CTT<a class="headerlink" href="#differenze-tra-la-teoria-g-e-la-ctt" title="Link to this heading">#</a></h2>
+<p>La Teoria G e la Teoria Classica dei Test (CTT) sono due approcci distinti per valutare l’affidabilità di un test psicometrico. La Teoria G fornisce una valutazione più completa delle fonti di errore di misurazione, consentendo di stimare simultaneamente molteplici fonti di errore in un’unica analisi. I coefficienti di affidabilità nella Teoria G tengono conto di tutte le fonti misurate di errore, fornendo una stima più accurata dell’affidabilità complessiva del test.</p>
+<p>D’altra parte, la Teoria CTT permette di stimare solo una fonte di errore di misurazione alla volta. I coefficienti di affidabilità nella Teoria CTT si concentrano su una sola fonte di errore e non forniscono una visione completa dell’affidabilità del test. Inoltre, la Teoria G offre un metodo per determinare il numero di livelli di ciascuna fonte di errore necessari per ottenere livelli di affidabilità accettabili. Ciò consente di ottimizzare il design del test e garantire che il test sia affidabile in diverse situazioni e condizioni. Infine, la Teoria G fornisce coefficienti di affidabilità sia per decisioni riferite a norme (come classificazioni rispetto a una distribuzione di riferimento) che per decisioni riferite a criteri specifici (come confronti con standard prestabiliti). D’altro canto, i coefficienti di affidabilità più comunemente utilizzati nella Teoria CTT sono più adatti per test riferiti a norme, mentre per test riferiti a criteri possono essere meno accurati.</p>
+<p>In sintesi, la Teoria G offre una valutazione più completa e accurata dell’affidabilità di un test, considerando diverse fonti di errore e fornendo informazioni utili per ottimizzare il design del test. La Teoria CTT, sebbene più semplice, è limitata nella sua capacità di catturare la complessità delle fonti di errore di misurazione. Pertanto, la Teoria G è spesso preferita quando si tratta di valutare l’affidabilità di test psicometrici complessi e con molteplici fonti di variabilità.</p>
+</section>
+<section id="fattori-incrociati-o-nidificati">
+<h2><span class="section-number">20.3. </span>Fattori incrociati o nidificati<a class="headerlink" href="#fattori-incrociati-o-nidificati" title="Link to this heading">#</a></h2>
+<p>Un concetto fondamentale della teoria della generalizzabilità è la gerarchia dei dati, che si riferisce alla struttura del disegno di ricerca. Esistono due tipi principali di disegni: annidati (<em>nested</em>) e incrociati (<em>crossed</em>). Nei disegni annidati, i livelli di un fattore sono contenuti all’interno dei livelli di un altro; nei disegni incrociati, ogni livello di un fattore si combina con tutti i livelli di un altro fattore.</p>
+<p>Consideriamo ad esempio uno studio in cui diversi psicologi valutano l’intelligenza di studenti in diverse scuole. Se ogni psicologo valuta gli studenti di tutte le scuole, allora i fattori “psicologo” e “scuola” sono incrociati. Ciò significa che tutte le combinazioni di psicologi e scuole sono rappresentate nel campione.</p>
+<p>D’altra parte, supponiamo che vi siano gruppi distinti di psicologi assegnati a diverse scuole. Ad esempio, un gruppo di psicologi potrebbe valutare gli studenti di una scuola, mentre un altro gruppo di psicologi potrebbe valutare gli studenti di un’altra scuola. In questo caso, i valutatori sono nidificati all’interno delle scuole. Ciò significa che ogni scuola ha un gruppo specifico di psicologi associati a essa per le valutazioni.</p>
+<p>La distinzione tra fattori incrociati e nidificati è importante perché influisce sulla generalizzabilità delle conclusioni dello studio. Nel caso incrociato, le conclusioni possono essere generalizzate a tutte le combinazioni di valutatori e scuole presenti nel campione. Nel caso nidificato, le conclusioni possono essere generalizzate solo alle scuole specifiche associate ai rispettivi gruppi di valutatori.</p>
+</section>
+<section id="fattori-casuali-o-fissi">
+<h2><span class="section-number">20.4. </span>Fattori casuali o fissi<a class="headerlink" href="#fattori-casuali-o-fissi" title="Link to this heading">#</a></h2>
+<p>Un secondo concetto fondamentale della teoria della generalizzabilità riguarda la distinzione tra fattori casuali e fattori fissi in un disegno di ricerca. Un fattore è detto casuale quando le sue condizioni specifiche nello studio sono viste come un campione di un universo più ampio di condizioni, e si presume che queste siano equivalenti e interscambiabili con qualsiasi altra condizione nello stesso universo (Universo delle Operazioni Ammissibili, UAO). Ciò consente di generalizzare i risultati dello studio a tutte le condizioni all’interno dell’UAO. Ad esempio, i valutatori in uno studio sono considerati un fattore casuale se si assume che le valutazioni di uno siano sostituibili con quelle di un altro.</p>
+<p>Contrariamente, un fattore fisso si concentra su condizioni specifiche e predeterminate, che costituiscono il completo insieme di interesse per il ricercatore. Questo approccio è utilizzato quando lo scopo è analizzare l’effetto di queste condizioni particolari senza cercare di generalizzare i risultati oltre a queste. Ad esempio, consideriamo uno studio sull’effetto di diverse terapie sulla riduzione dell’ansia in pazienti affetti da disturbi d’ansia, dove si esaminano specificamente tre tipi di terapia: Terapia A, Terapia B e Terapia C. Se ogni paziente partecipa a una ed una sola di queste terapie, selezionata in modo casuale, il fattore “Tipo di Terapia” è considerato fisso perché l’intenzione è di valutare l’effetto specifico di queste terapie selezionate, non di altre potenziali terapie non incluse nello studio.</p>
+</section>
+<section id="la-teoria-g">
+<h2><span class="section-number">20.5. </span>La teoria G<a class="headerlink" href="#la-teoria-g" title="Link to this heading">#</a></h2>
+<p>In questo capitolo, esamineremo uno specifico uso della Teoria della Generalizzabilità in uno studio longitudinale. Specificamente, ci porremo il problema di stimare l’affidabilità delle misure dei partecipanti nel tempo.</p>
+<p>Supponiamo di condurre uno studio in cui vogliamo valutare le performance di diversi studenti nel corso del tempo. Raccogliamo i punteggi di cinque studenti (A, B, C, D, E) su un compito misurato in tre diverse occasioni temporali (T1, T2, T3). Il nostro obiettivo è comprendere come variano le performance tra gli studenti e nel corso del tempo. Il disegno è persona-per-tempo (5 persone x 3 occasioni di misurazione).</p>
+<p>L’equazione di decomposizione della varianza degli score osservati in questo disegno è la seguente:</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma^2(X_{pt}) = \sigma^2_p + \sigma^2_t + \sigma^2_{pt} + \sigma^2_{pt,e},
+\]</div>
+<p>dove:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\sigma^2_p\)</span>: rappresenta l’effetto principale delle persone, ovvero quanto variano le performance tra gli studenti.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma^2_t\)</span>: indica l’effetto principale del tempo, ovvero quanto variano le performance degli studenti nel corso del tempo.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma^2_{pt}\)</span>: rappresenta l’interazione persona-per-tempo, ovvero quanto variano le performance degli studenti nel corso del tempo.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma^2_{pt,e}\)</span>: è la varianza residua o non misurata, che include l’errore casuale e altre fonti di varianza non considerate nel disegno.</p></li>
+</ul>
+<p>In un secondo esempio, consideriamo un disegno a tre fattori. Supponiamo di condurre uno studio per valutare le performance di diversi studenti (A, B, C, D, E) su diversi compiti (item) nel corso del tempo (T1, T2, T3). Vogliamo comprendere come le performance degli studenti possono variare tra gli item, nel tempo e se ci sono interazioni tra questi fattori. Il disegno è persona-per-item-per-tempo (5 persone x 3 item x 3 occasioni di misura).</p>
+<p>L’equazione di decomposizione della varianza degli score osservati in questo disegno sarà la seguente:</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma^2(X_{pit}) = \sigma^2_p + \sigma^2_i + \sigma^2_t + \sigma^2_{pi} + \sigma^2_{pt} + \sigma^2_{it} + \sigma^2_{pit,e},
+\]</div>
+<p>dove:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\sigma^2_p\)</span>: rappresenta l’effetto principale delle persone, ovvero quanto variano le performance tra gli studenti.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma^2_i\)</span>: indica l’effetto principale degli item, ovvero quanto variano i punteggi dei compiti tra i diversi item.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma^2_t\)</span>: rappresenta l’effetto principale del tempo, ovvero quanto variano le performance degli studenti nel corso del tempo.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma^2_{pi}\)</span>: indica l’interazione persona-per-item, ovvero quanto variano le performance degli studenti tra i diversi compiti.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma^2_{pt}\)</span>: rappresenta l’interazione persona-per-tempo, ovvero quanto variano le performance degli studenti nel corso del tempo.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma^2_{it}\)</span>: indica l’interazione item-per-tempo, ovvero quanto variano i punteggi dei compiti nel corso del tempo.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma^2_{pit,e}\)</span>: è la varianza residua o non misurata, che include l’errore casuale e altre fonti di varianza non considerate nel disegno.</p></li>
+</ul>
+<p>Questi modelli ci permettono di analizzare come ciascuna fonte di variabilità influenzi i punteggi osservati.</p>
+</section>
+<section id="affidabilita">
+<h2><span class="section-number">20.6. </span>Affidabilità<a class="headerlink" href="#affidabilita" title="Link to this heading">#</a></h2>
+<p>Il Cambiamento di Affidabilità, nota come Cambiamento di Affidabilità (RC, da <em>Reliability Change</em>), valuta in che misura le variazioni nei punteggi di soggetti, valutati ripetutamente nel tempo, riflettano cambiamenti reali piuttosto che essere causate da errori di misurazione. Questo indice è fondamentale in studi longitudinali, dove si osserva lo stesso gruppo di individui in più occasioni, per stabilire se i cambiamenti nei punteggi sono sistematici e affidabili, legati al tempo e alle caratteristiche uniche dei partecipanti. Un alto valore di RC indica che le misurazioni sono coerenti nel tempo, suggerendo che qualsiasi variazione rilevata rappresenti un vero cambiamento nel comportamento o nelle risposte dei soggetti. Pertanto, l’RC aiuta a distinguere tra cambiamenti autentici e fluttuazioni dovute a inesattezze nella raccolta dei dati.</p>
+<p>Ad esempio, nel caso di un disegno a tre fattori (perone <span class="math notranslate nohighlight">\(\times\)</span> item <span class="math notranslate nohighlight">\(\times\)</span> tempo), la formula di RC è la seguente:</p>
+<div class="math notranslate nohighlight">
+\[
+R_c = \frac{\sigma^2_{TP}}{\sigma^2_{TP} + \frac{1}{k}(\sigma^2_{TPI} + \sigma^2_{v})},
+\]</div>
+<p>dove:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(R_c\)</span> rappresenta la misura di affidabilità focale (Reliability Change).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma^2_{TP}\)</span> è la varianza tra il tempo e le persone (time by person variance).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma^2_{TPI}\)</span> è la varianza dell’interazione tra il tempo, le persone e gli item.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma^2_{v}\)</span> è la varianza dell’errore (error variance).</p></li>
+<li><p><span class="math notranslate nohighlight">\(k\)</span> è il numero di item utilizzati.</p></li>
+</ul>
+<p>Il numeratore contiene solo una componente, ovvero la varianza tra il tempo e le persone, <span class="math notranslate nohighlight">\(\sigma^2_{TP}\)</span>. Il denominatore invece contiene la stessa componente di varianza, sommata alla componente di varianza dell’errore, divisa per il numero di item <span class="math notranslate nohighlight">\(k\)</span>. Si noti che la componente di varianza dell’errore è la somma <span class="math notranslate nohighlight">\(\sigma^2_{TPI} + \sigma^2_{v}\)</span>.</p>
+<section id="un-esempio-concreto">
+<h3><span class="section-number">20.6.1. </span>Un esempio concreto<a class="headerlink" href="#un-esempio-concreto" title="Link to this heading">#</a></h3>
+<p>Applichiamo questi concetti ai dati di Bolger e Laurenceau (2013) riguardanti uno studio che ha coinvolto 50 persone valutate per 10 giorni su 4 item. Gli item sono “interessato,” “determinato,” “entusiasta” e “ispirato,” rispettivamente. Le valutazioni per ciascun item sono state fatte su una scala da 1 (per niente) a 5 (estremamente).</p>
+<p>Nel contesto della Teoria della Generalizzabilità, possiamo esaminare la variabilità dei punteggi dei partecipanti e suddividerla nelle diverse fonti di errore, che in questo caso includono la variazione dovuta ai diversi partecipanti (fonte di errore “Valutatori”), a diversi giorni (fonte di errore “Giorni”) e agli item specifici utilizzati (fonte di errore “Item”). Possiamo valutare quanto della variazione totale nei punteggi è attribuibile a ciascuna di queste fonti di errore.</p>
+<p>Per ottenere misure più precise e generalizzabili degli stati emotivi delle persone, possiamo calcolare gli “Score dell’Universo” per ciascun individuo. Gli score dell’universo rappresentano la media dei loro punteggi su tutti gli item, in tutti i giorni e su tutti i partecipanti. Questi score ci forniranno una stima più accurata del livello medio di “interessato,” “determinato,” “entusiasta” e “ispirato” per ciascun partecipante, considerando tutte le fonti di errore specificate.</p>
+<p>Infine, utilizzando la Teoria della Generalizzabilità, possiamo progettare uno studio ottimale (“D Study”) per massimizzare l’affidabilità delle misurazioni con il minor numero possibile di partecipanti, giorni e item. In questo modo, otterremo misurazioni più affidabili senza la necessità di sottoporre i partecipanti a un numero eccessivo di giorni di valutazione o di utilizzare troppi item.</p>
+<p>In questo esempio, ci poniamo la seguente domanda: “Le variazioni all’interno dei soggetti possono essere misurate in modo affidabile?” Per rispondere a questa domanda, dobbiamo specificare le dimensioni di generalizzabilità. In questo caso, le dimensioni sono i momenti nel tempo, le persone e gli item.</p>
+<p>Per condurre questa analisi, useremo un modello a effetti misti per ciascuna delle dimensioni specificate.</p>
+<p>Iniziamo leggendo i dati di Bolger e Laurenceau (2013).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;https://quantdev.ssri.psu.edu/sites/qdev/files/psychometrics.csv&quot;</span>
+<span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 4</caption>
+<thead>
+	<tr><th></th><th scope=col>person</th><th scope=col>time</th><th scope=col>item</th><th scope=col>y</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>301</td><td>1</td><td>1</td><td>2</td></tr>
+	<tr><th scope=row>2</th><td>301</td><td>1</td><td>2</td><td>2</td></tr>
+	<tr><th scope=row>3</th><td>301</td><td>1</td><td>3</td><td>3</td></tr>
+	<tr><th scope=row>4</th><td>301</td><td>1</td><td>4</td><td>4</td></tr>
+	<tr><th scope=row>5</th><td>301</td><td>2</td><td>1</td><td>2</td></tr>
+	<tr><th scope=row>6</th><td>301</td><td>2</td><td>2</td><td>3</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Ricodifichiamo la variabile <code class="docutils literal notranslate"><span class="pre">item</span></code> in modo che sia categorica utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">factor()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="o">$</span><span class="n">item</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">factor</span><span class="p">(</span><span class="n">d</span><span class="o">$</span><span class="n">item</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il pacchetto lme4 contiene la funzione lmer(), che permette di adattare un modello lineare a effetti misti a un specifico set di dati. Utilizzando il summary() del nostro modello, possiamo osservare gli effetti di ciascuna dimensione di generalizzabilità. Questo modello è specificato solo con l’intercetta (ANOVA con effetti casuali) allo scopo di comprendere le fonti di variabilità tra le diverse dimensioni.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">model1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lmer</span><span class="p">(</span>
+<span class="w">    </span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span>
+<span class="w">        </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">person</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">        </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">time</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">        </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">item</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">        </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">person</span><span class="o">:</span><span class="n">time</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">        </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">person</span><span class="o">:</span><span class="n">item</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">        </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">time</span><span class="o">:</span><span class="n">item</span><span class="p">),</span>
+<span class="w">    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span>
+<span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">model1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>boundary (singular) fit: see help(&#39;isSingular&#39;)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Linear mixed model fit by REML [&#39;lmerMod&#39;]
+Formula: y ~ 1 + (1 | person) + (1 | time) + (1 | item) + (1 | person:time) +  
+    (1 | person:item) + (1 | time:item)
+   Data: d
+
+REML criterion at convergence: 4046.2
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-3.2721 -0.5310 -0.0105  0.5044  3.8614 
+
+Random effects:
+ Groups      Name        Variance Std.Dev.
+ person:time (Intercept) 0.255270 0.50524 
+ person:item (Intercept) 0.190111 0.43602 
+ person      (Intercept) 0.361780 0.60148 
+ time:item   (Intercept) 0.004983 0.07059 
+ time        (Intercept) 0.000000 0.00000 
+ item        (Intercept) 0.048596 0.22044 
+ Residual                0.299542 0.54730 
+Number of obs: 1802, groups:  
+person:time, 455; person:item, 200; person, 50; time:item, 40; time, 10; item, 4
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)   2.4340     0.1456   16.71
+optimizer (nloptwrap) convergence code: 0 (OK)
+boundary (singular) fit: see help(&#39;isSingular&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Utilizzando la funzione VarCorr(), possiamo estrarre e salvare ciascun valore di varianza dalla tabella di riepilogo dei risultati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">personTime</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">VarCorr</span><span class="p">(</span><span class="n">model1</span><span class="p">)[[</span><span class="m">1</span><span class="p">]][</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">])</span><span class="w"> </span><span class="c1"># person:time</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.255269639833384</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">personItem</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">VarCorr</span><span class="p">(</span><span class="n">model1</span><span class="p">)[[</span><span class="m">2</span><span class="p">]][</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">])</span><span class="w"> </span><span class="c1"># person:item</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.190111149527465</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">person</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">VarCorr</span><span class="p">(</span><span class="n">model1</span><span class="p">)[[</span><span class="m">3</span><span class="p">]][</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">])</span><span class="w"> </span><span class="c1"># person</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.361779969207163</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">timeItem</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">VarCorr</span><span class="p">(</span><span class="n">model1</span><span class="p">)[[</span><span class="m">4</span><span class="p">]][</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">])</span><span class="w"> </span><span class="c1">#time:item </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.0049825530102678</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">time</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">VarCorr</span><span class="p">(</span><span class="n">model1</span><span class="p">)[[</span><span class="m">5</span><span class="p">]][</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">])</span><span class="w"> </span><span class="c1">#time </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">item</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">VarCorr</span><span class="p">(</span><span class="n">model1</span><span class="p">)[[</span><span class="m">6</span><span class="p">]][</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">])</span><span class="w"> </span><span class="c1"># item</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.048595807382779</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">residual</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sigma</span><span class="p">(</span><span class="n">model1</span><span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="c1"># residual</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.299542275223018</div></div>
+</div>
+<p>Tornando alla nostra domanda iniziale: Esistono differenze affidabili all’interno di una persona nel corso del tempo?</p>
+<p>Utilizzeremo la seguente formula per calcolare il coefficiente di affidabilità:</p>
+<div class="math notranslate nohighlight">
+\[
+R_c = \frac{\sigma^2_{\text{persona:tempo}}}{\sigma^2_{\text{persona:tempo}} + \frac{\sigma^2_{\text{persona:tempo:item}} + \sigma^2_{\text{errore}}}{k}},
+\]</div>
+<p>dove <span class="math notranslate nohighlight">\(k\)</span> si riferisce al numero di elementi. Nel nostro caso, <span class="math notranslate nohighlight">\(k\)</span>=4.</p>
+<p>Non possiamo distinguere il termine <span class="math notranslate nohighlight">\(\sigma^2_{\text{persona:tempo:item}}\)</span> da <span class="math notranslate nohighlight">\(\sigma^2_{\text{errore}}\)</span>, quindi useremo il termine di errore residuo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">k</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">4</span>
+<span class="p">(</span><span class="n">Rc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">personTime</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">personTime</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">residual</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">k</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.773180713657603</div></div>
+</div>
+<p>Questo coefficiente rappresenta il grado di adeguatezza e sistematicità delle misurazioni ripetute. Utilizzando le stesse regole interpretative del coefficiente alfa di Cronbach, possiamo determinare che quattro elementi possono catturare il cambiamento all’interno di una persona in modo affidabile, con <span class="math notranslate nohighlight">\(R_c = 0.77\)</span>.</p>
+<p>Un altro coefficiente di interesse è <span class="math notranslate nohighlight">\(R_{1F}\)</span>, che viene calcolato come:</p>
+<div class="math notranslate nohighlight">
+\[
+R_{1F} = \frac{\sigma^2_{\text{persona}} + \left(\frac{\sigma^2_{\text{persona:item}}}{k}\right)}{\sigma^2_{\text{persona}} + \left(\frac{\sigma^2_{\text{persona:item}}}{k}\right) + \left(\frac{\sigma^2_{\text{errore}}}{k}\right)}
+\]</div>
+<p>dove <span class="math notranslate nohighlight">\(k\)</span> si riferisce al numero di item. Nel nostro caso, <span class="math notranslate nohighlight">\(k\)</span>=4.</p>
+<p>Per i dati presenti, abbiamo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">k</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">4</span>
+<span class="p">(</span><span class="n">R1f</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">person</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">personItem</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">k</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">person</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">personItem</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">residual</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">k</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.84533952684148</div></div>
+</div>
+<p>Il coefficiente di affidabilità <span class="math notranslate nohighlight">\(R_{1F}\)</span> rappresenta la stima attesa dell’affidabilità tra le persone per un giorno fisso, una sorta di media degli alfa di Cronbach specifici per ogni giorno in diverse occasioni. Utilizzando le stesse regole interpretative del coefficiente alfa di Cronbach, possiamo concludere che quattro item possono catturare in modo affidabile le differenze tra le persone in qualsiasi giorno specifico, con <span class="math notranslate nohighlight">\(R_{1F}\)</span> = 0.85.</p>
+</section>
+</section>
+<section id="conclusioni">
+<h2><span class="section-number">20.7. </span>Conclusioni<a class="headerlink" href="#conclusioni" title="Link to this heading">#</a></h2>
+<p>La Teoria della Generalizzabilità (G theory) fornisce un quadro completo per stimare l’impatto di molteplici fonti di errore di misurazione simultaneamente. La G theory si basa su un modello ANOVA in cui i fattori sono chiamati “facet” (fattori) e i loro livelli sono noti come “conditions” (condizioni). Ad esempio, gli studenti potrebbero essere valutati su un insieme di compiti da un gruppo di valutatori in diverse occasioni. Compiti, valutatori e occasioni potrebbero tutti contribuire all’errore di misurazione e verrebbero considerati “facet” nel disegno della G theory. La varianza dovuta a questi “facet” e alle loro interazioni potrebbe essere stimata, e le loro relative contribuzioni alla varianza dell’errore di misurazione valutate.</p>
+<p>Il concetto di generalizzabilità o affidabilità nella G theory è analogo al concetto di affidabilità nella CTT. Nella G theory, l’interesse è rivolto al grado in cui i punteggi osservati ottenuti in un determinato insieme di condizioni possono essere generalizzati alla media del punteggio che potrebbe essere ottenuto in un insieme di condizioni più ampiamente definite, noto come “UAO” (Universal Attribute Object). L’UAO è definito dal ricercatore e include tutte le condizioni che produrrebbero punteggi accettabili. Il grado in cui i punteggi si generalizzano dalle condizioni osservate all’UAO è definito come affidabilità. Livelli elevati di affidabilità indicano che i punteggi ottenuti nelle condizioni osservate si generalizzeranno ai punteggi universali delle persone. Il punteggio universale è analogo al punteggio vero nella CTT e può essere concepito come il punteggio medio che una persona otterrebbe se sottoposta a ripetuti test in tutte le possibili combinazioni di condizioni presenti nell’UAO.</p>
+</section>
+<section id="session-info">
+<h2><span class="section-number">20.8. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.3.3 (2024-02-29)
+Platform: x86_64-apple-darwin20 (64-bit)
+Running under: macOS Sonoma 14.3.1
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
+
+locale:
+[1] en_US.UTF-8/UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: Europe/Rome
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] tidyr_1.3.1   lme4_1.1-35.1 Matrix_1.6-5 
+
+loaded via a namespace (and not attached):
+ [1] crayon_1.5.2     vctrs_0.6.5      nlme_3.1-164     cli_3.6.2       
+ [5] rlang_1.1.3      purrr_1.0.2      generics_0.1.3   jsonlite_1.8.8  
+ [9] minqa_1.2.6      glue_1.7.0       htmltools_0.5.7  IRdisplay_1.1   
+[13] IRkernel_1.3.2   fansi_1.0.6      grid_4.3.3       tibble_3.2.1    
+[17] evaluate_0.23    MASS_7.3-60.0.1  fastmap_1.1.1    base64enc_0.1-3 
+[21] lifecycle_1.0.4  compiler_4.3.3   dplyr_1.1.4      pkgconfig_2.0.3 
+[25] Rcpp_1.0.12      pbdZMQ_0.3-11    lattice_0.22-5   digest_0.6.34   
+[29] R6_2.5.1         nloptr_2.0.3     tidyselect_1.2.0 repr_1.1.6      
+[33] utf8_1.2.4       pillar_1.9.0     splines_4.3.3    magrittr_2.0.3  
+[37] uuid_1.2-0       tools_4.3.3      boot_1.3-29     
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_gtheory"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../_raters/E1_irr.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">19. </span>✏️ Esercizi</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../_validity/01_validity.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">21. </span>La validità del test</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#molteplici-fonti-di-errore-di-misurazione">20.1. Molteplici fonti di errore di misurazione</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differenze-tra-la-teoria-g-e-la-ctt">20.2. Differenze tra la teoria G e la CTT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fattori-incrociati-o-nidificati">20.3. Fattori incrociati o nidificati</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fattori-casuali-o-fissi">20.4. Fattori casuali o fissi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-teoria-g">20.5. La teoria G</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#affidabilita">20.6. Affidabilità</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">20.6.1. Un esempio concreto</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusioni">20.7. Conclusioni</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">20.8. Session Info</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

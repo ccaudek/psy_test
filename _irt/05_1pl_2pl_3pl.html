@@ -1,0 +1,1480 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>63. Oltre il Modello di Rasch &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css?v=ffeaf963" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6ba04eab" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VMXNE4BCDL"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_irt/05_1pl_2pl_3pl';</script>
+    <script src="../_static/custom.js?v=3f5092eb"></script>
+    <link rel="canonical" href="https://ccaudek.github.io/psy_test/_irt/05_1pl_2pl_3pl.html" />
+    <link rel="icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="64. Implementazione" href="06_implementation.html" />
+    <link rel="prev" title="62. Stima" href="04_estimation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Scaling psicometrico</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/01_expval_var.html">1. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/02_joint_prob.html">2. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/03_measurement.html">3. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/04_norms.html">4. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/05_regression.html">5. L’analisi di regressione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E1_likert.html">6. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E2_optimal_scoring.html">7. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E3_thurstone.html">8. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/01_ctt_1.html">9. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/02_ctt_2.html">10. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/03_ctt_3.html">11. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/04_err_std_mis.html">12. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/05_err_std_stima.html">13. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/06_applications_ctt.html">14. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E1_ctt.html">15. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E2_item_analyses.html">16. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/01_multilevel_1.html">17. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/02_interrater_reliability.html">18. L’affidabilità tra giudici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/E1_irr.html">19. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/01_gtheory.html">20. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/01_validity.html">21. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/02_relations_to_other_vars.html">22. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sviluppo degli item</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_items/01_item_development.html">23. Lo sviluppo degli item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_items/02_item_analysis.html">24. Analisi degli item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">25. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale esplorativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/01_intro_fa.html">26. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/02_analisi_fattoriale_1.html">27. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/03_analisi_fattoriale_2.html">28. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/04_analisi_fattoriale_3.html">29. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/05_factor_scores.html">30. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/06_constraints_on_parms.html">31. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/07_total_score.html">32. Punteggio totale e modello fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione strumenti</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">33. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">34. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">35. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">36. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">37. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/01_cfa.html">38. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/E_01.html">39. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/02_meanstructure.html">40. La struttura delle medie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/03_cat_data.html">41. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/04_mmm.html">42. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/05_bifactor.html">43. Modello bifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/06_efa_lavaan.html">44. Exploratory Structural Equation Modeling (ESEM)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/01_sem_intro.html">45. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/02_data_preparation.html">46. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/E_01.html">47. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/03_gof.html">48. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/04_mod_comp.html">49. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/05_cfa_mod_comp.html">50. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/06_refine_solution.html">51. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/07_group_invariance.html">52. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/08_multilevel_sem.html">53. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/09_structural_regr.html">54. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/10_missing_data.html">55. Dati mancanti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/11_small_samples.html">56. Modellizzazione SEM in Piccoli Campioni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/12_temp_reliability.html">57. Affidabilità longitudinale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_logistic_regr.html">58. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="E_01.html">59. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_rasch_model.html">60. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_assumptions.html">61. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_estimation.html">62. Stima</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">63. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_implementation.html">64. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_polytomous_graded.html">65. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mokken Scales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/01_core_issues.html">66. Analisi della Scala di Mokken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/02_tutorial.html">67. Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/03_applications.html">68. Applicazione Pratica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/01_development.html">69. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/02_tutorial.html">70. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/01_lgm_intro.html">71. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/02_lgm_prelims.html">72. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/03_time_effects.html">73. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/04_invariance.html">74. Invarianza Fattoriale Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/05_intro_panel.html">75. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/06_lgm_mixed.html">76. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/07_growth_1.html">77. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/08_growth_cont.html">78. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/09_time_inv_cov.html">79. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/10_growth_groups.html">80. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/11_bivariate_tvc_models.html">81. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/12_inv_measurement.html">82. Invarianza di Misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/13_latent_change.html">83. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/750_latent_change.html">84. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/751_biv_change.html">85. Modello LCS bivariato</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">86. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a1_intro_r.html">87. Linguaggio R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a2_sums.html">88. Simbolo di somma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a3_calculus.html">89. Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a4_linear_alg.html">90. Elementi di algebra lineare</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_irt/05_1pl_2pl_3pl.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Oltre il Modello di Rasch</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-ad-un-parametro">63.1. Modello ad Un Parametro</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-rasch-e-modello-1pl">63.1.1. Modello di Rasch e Modello 1PL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discriminazione">63.1.2. Discriminazione</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-irt-a-due-parametri">63.2. Modello IRT a due parametri</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-irt-a-tre-parametri">63.3. Modello IRT a tre parametri</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-dei-parametri">63.4. Interpretazione dei parametri</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#invarianza-di-gruppo-dei-parametri-degli-item-nella-irt">63.5. Invarianza di Gruppo dei Parametri degli Item nella IRT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">63.6. Considerazioni Conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">63.7. Session Info</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="oltre-il-modello-di-rasch">
+<span id="oltre-rasch-notebook"></span><h1><span class="section-number">63. </span>Oltre il Modello di Rasch<a class="headerlink" href="#oltre-il-modello-di-rasch" title="Link to this heading">#</a></h1>
+<p>Nell’ambito dei modelli IRT, il modello di Rasch impone i vincoli più restrittivi. Tali vincoli possono essere rilassati progressivamente definendo quelli che vengono chiamati modelli 1PL, 2PL e 3Pl.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">source</span><span class="p">(</span><span class="s">&quot;../_common.R&quot;</span><span class="p">)</span>
+
+<span class="nf">suppressPackageStartupMessages</span><span class="p">({</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;eRm&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;mirt&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;grid&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;TAM&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="c1"># devtools::install_github(&quot;masurp/ggmirt&quot;)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;ggmirt&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;psychotools&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;latex2exp&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il set di dati <code class="docutils literal notranslate"><span class="pre">data.fims.Aus.Jpn.scored</span></code> contiene le risposte valutate fornite da studenti australiani e giapponesi per un sottoinsieme di item nello studio “First International Mathematics Study” (FIMS, Husén, 1967). Ogni item rappresenta un problema matematico, e i valori <code class="docutils literal notranslate"><span class="pre">1</span></code> indicano una risposta corretta, mentre i valori <code class="docutils literal notranslate"><span class="pre">0</span></code> indicano una risposta incorretta.</p>
+<p>Ad esempio:</p>
+<p><strong>QUESTION 1 (FIMS1)</strong>
+43.0 - 17.6 is equal to ______ (Ans:  25.4)</p>
+<p><strong>QUESTION 2 (FIMS2)</strong></p>
+<p>How many seven-man teams can you make out of 7 nine-man teams?
+A. 7 	B. 8 	C. 9 	D. 16 	E. 63 	(Ans: C)</p>
+<p><strong>QUESTION 10 (FIMS18)</strong></p>
+<p>There are 227 boys in a school. Every boy in the school belongs to either the music club or the sports club, and some boys belong to both clubs. The music club has 120 members, and 36 of these are also members of the sports club. What is the total membership of the sports club? _______________	 (Ans: 143)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">data</span><span class="p">(</span><span class="n">data.fims.Aus.Jpn.scored</span><span class="p">,</span><span class="w"> </span><span class="n">package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;TAM&quot;</span><span class="p">)</span>
+<span class="n">fims</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.fims.Aus.Jpn.scored</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">dim</span><span class="p">(</span><span class="n">fims</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>6371</li><li>16</li></ol>
+</div></div>
+</div>
+<p>Nelle analisi successive ci limiteremo alle risposte dei primi 400 partecipanti. Per facilitare la manipolazione dei dati, cambiamo il nome delle colonne.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">responses</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fims</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">400</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="o">:</span><span class="m">15</span><span class="p">]</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">gsub</span><span class="p">(</span><span class="s">&quot;M1PTI&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;I&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">responses</span><span class="p">))</span>
+<span class="nf">glimpse</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rows: 400
+Columns: 14
+$ I1  &lt;dbl&gt; 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, …
+$ I2  &lt;dbl&gt; 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, …
+$ I3  &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, …
+$ I6  &lt;dbl&gt; 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, …
+$ I7  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ I11 &lt;dbl&gt; 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, …
+$ I12 &lt;dbl&gt; 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ I14 &lt;dbl&gt; 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, …
+$ I17 &lt;dbl&gt; 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, …
+$ I18 &lt;dbl&gt; 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, …
+$ I19 &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ I21 &lt;dbl&gt; 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ I22 &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, …
+$ I23 &lt;dbl&gt; 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, …
+</pre></div>
+</div>
+</div>
+</div>
+<section id="modello-ad-un-parametro">
+<h2><span class="section-number">63.1. </span>Modello ad Un Parametro<a class="headerlink" href="#modello-ad-un-parametro" title="Link to this heading">#</a></h2>
+<p>Il modello ad un parametro è formulato nel modo seguente:</p>
+<div class="math notranslate nohighlight" id="equation-eq-1pl-model">
+<span class="eqno">(63.1)<a class="headerlink" href="#equation-eq-1pl-model" title="Link to this equation">#</a></span>\[ 
+\begin{equation}
+P(X_i = 1 \mid \theta_v, \alpha, \delta_i) = \frac{\exp(\alpha(\theta_v - \delta_i))}{1 + \exp(\alpha(\theta_v - \delta_i))} = \frac{1}{1 + \exp(-\alpha(\theta_v - \delta_i))},
+\end{equation}
+\]</div>
+<p>dove <span class="math notranslate nohighlight">\(\alpha\)</span> rappresenta la pendenza delle ICC. L’assenza di un pedice significa che <span class="math notranslate nohighlight">\(\alpha\)</span> non varia tra gli item.</p>
+<p>Nel contesto del modello IRT (Teoria della Risposta all’Item) a un parametro, il parametro <span class="math notranslate nohighlight">\(\alpha\)</span> è collegato alla pendenza della Funzione di Risposta all’Item (IRF). Esso riflette quanto bene un item è in grado di discriminare tra individui situati in punti diversi lungo il continuum. Di conseguenza, <span class="math notranslate nohighlight">\(\alpha\)</span> è noto come il parametro di discriminazione dell’item.</p>
+<p>Per facilitare la comprensione, supponiamo di avere tre item con diversi valori di <span class="math notranslate nohighlight">\(\alpha\)</span>, tutti posizionati a <span class="math notranslate nohighlight">\(0.0\)</span> (cioè, <span class="math notranslate nohighlight">\(\delta_1 = \delta_2 = \delta_3 = 0\)</span>). I nostri tre parametri di discriminazione sono <span class="math notranslate nohighlight">\(0\)</span>, <span class="math notranslate nohighlight">\(1\)</span> e <span class="math notranslate nohighlight">\(2\)</span>. Inoltre, abbiamo un rispondente A situato a <span class="math notranslate nohighlight">\(-1\)</span> (<span class="math notranslate nohighlight">\(\theta_A = -1\)</span>) e un altro rispondente B situato a <span class="math notranslate nohighlight">\(1\)</span> (cioè, <span class="math notranslate nohighlight">\(\theta_B = 1\)</span>). Per l’item con <span class="math notranslate nohighlight">\(\alpha = 0.0\)</span>, la nostra IRF e la linea di regressione logit sono orizzontali. Di conseguenza, la probabilità prevista di una risposta di tipo 1 per entrambi i rispondenti è <span class="math notranslate nohighlight">\(0.5\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+P(X_i = 1 \mid \theta, \delta_i) = 0.5.
+\]</div>
+<p>In questo caso, l’item non fornisce alcuna informazione utile per differenziare tra i due rispondenti. Questa mancanza di potere discriminatorio è una funzione diretta di <span class="math notranslate nohighlight">\(\alpha = 0.0\)</span>.</p>
+<p>Al contrario, con il secondo item (<span class="math notranslate nohighlight">\(\alpha = 1\)</span>) abbiamo previsioni diverse per i nostri rispondenti:</p>
+<div class="math notranslate nohighlight">
+\[
+P(X_i = 1 \mid \theta, \delta_i) = \frac{1}{1 + e^{-(\theta - \delta_i)}}.
+\]</div>
+<p>Per il rispondente A la probabilità <span class="math notranslate nohighlight">\(p_2 = 0.2689\)</span> e per il rispondente B <span class="math notranslate nohighlight">\(p_2 = 0.7311\)</span>. Pertanto, il parametro <span class="math notranslate nohighlight">\(\alpha\)</span> di questo item ci permette di distinguere tra i due rispondenti.</p>
+<p>Sviluppando ulteriormente questa idea, troviamo che il terzo item (<span class="math notranslate nohighlight">\(\alpha = 2.0\)</span>) avrebbe l’ICC (e la linea di regressione logit) più ripida dei tre item. Questa ripidità si riflette in una maggiore differenza nelle probabilità previste per i nostri rispondenti rispetto ai due item precedenti:</p>
+<div class="math notranslate nohighlight">
+\[
+P(X_i = 1 \mid \theta, \delta_i) = \frac{1}{1 + e^{-2(\theta - \delta_i)}}.
+\]</div>
+<p>Ovvero, per questo item il rispondente A ha una probabilità <span class="math notranslate nohighlight">\(p_3 = 0.1192\)</span> e per il rispondente B <span class="math notranslate nohighlight">\(p_3 = 0.8808\)</span>. In breve, l’entità della differenza in queste probabilità previste è una funzione diretta del parametro <span class="math notranslate nohighlight">\(\alpha\)</span> dell’item. Pertanto, gli item con <span class="math notranslate nohighlight">\(\alpha\)</span> maggiori (cioè con linee di regressione logit e IRF più ripide) discriminano meglio tra i rispondenti situati in punti diversi del continuum rispetto agli item con <span class="math notranslate nohighlight">\(\alpha\)</span> minori.</p>
+<p>In sintesi, maggiore è il valore di <span class="math notranslate nohighlight">\(\alpha\)</span>, più ripida sarà la curva ICC e maggiore sarà la discriminazione tra individui con diversi livelli di abilità <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<section id="modello-di-rasch-e-modello-1pl">
+<h3><span class="section-number">63.1.1. </span>Modello di Rasch e Modello 1PL<a class="headerlink" href="#modello-di-rasch-e-modello-1pl" title="Link to this heading">#</a></h3>
+<p>Per riassumere, sia il modello 1PL che il modello di Rasch richiedono che gli item abbiano un parametro <span class="math notranslate nohighlight">\(\alpha\)</span> costante, ma permettono che gli item differiscano nelle loro posizioni. Nel modello di Rasch, questo parametro costante è fissato a <span class="math notranslate nohighlight">\(1.0\)</span>, mentre nel modello 1PL, <span class="math notranslate nohighlight">\(\alpha\)</span> non deve necessariamente essere uguale a <span class="math notranslate nohighlight">\(1.0\)</span>. Matematicamente, i modelli 1PL e Rasch sono equivalenti e i valori di un modello possono essere trasformati nell’altro attraverso una riscalatura appropriata.</p>
+<p>Tuttavia, per alcuni, il modello di Rasch rappresenta una prospettiva filosofica diversa da quella incarnata nel modello 1PL. Il modello 1PL si concentra sull’adattare i dati nel miglior modo possibile, data la struttura del modello. Al contrario, il modello di Rasch viene utilizzato per costruire la variabile di interesse (cfr. Andrich, 1988; Wilson, 2005; Wright, 1984; Wright &amp; Masters, 1982; Wright &amp; Stone, 1979). In breve, questa prospettiva sostiene che il modello di Rasch sia lo standard secondo il quale si può creare uno strumento per misurare una variabile. Questa visione è analoga a ciò che avviene nelle scienze fisiche. Ad esempio, consideriamo la misurazione del tempo. La misurazione del tempo implica un processo ripetitivo che segna incrementi uguali (cioè, unità) della variabile latente del tempo. Per misurare il tempo, dobbiamo definire la nostra unità (ad esempio, un periodo standard di oscillazione). Con il modello di Rasch, l’unità è definita come il logit, ossia la distanza sul nostro continuum che porta a un aumento del rapporto di successo di un fattore uguale alla costante trascendentale <span class="math notranslate nohighlight">\(e\)</span>. Pertanto, analogamente alla misurazione del tempo, le nostre misurazioni con un modello a un parametro si basano sull’uso (ripetitivo) di un’unità che rimane costante nella nostra metrica.</p>
+<p>Per semplicità, nel seguito utilizzeremo il termine generale modello 1PL per riferirci sia alla situazione in cui <span class="math notranslate nohighlight">\(\alpha = 1.0\)</span> (cioè, il modello di Rasch) sia alla situazione in cui <span class="math notranslate nohighlight">\(\alpha\)</span> è uguale a qualche altra costante. Tuttavia, quando usiamo il termine modello di Rasch, ci riferiamo soltanto alla situazione in cui <span class="math notranslate nohighlight">\(\alpha = 1.0\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mirt_rm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mirt</span><span class="p">(</span><span class="n">responses</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Rasch&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration: 1, Log-Lik: -2816.924, Max-Change: 0.03346
+Iteration: 2, Log-Lik: -2816.650, Max-Change: 0.02041
+Iteration: 3, Log-Lik: -2816.562, Max-Change: 0.01357
+Iteration: 4, Log-Lik: -2816.520, Max-Change: 0.01027
+Iteration: 5, Log-Lik: -2816.501, Max-Change: 0.00584
+Iteration: 6, Log-Lik: -2816.493, Max-Change: 0.00395
+Iteration: 7, Log-Lik: -2816.490, Max-Change: 0.00307
+Iteration: 8, Log-Lik: -2816.488, Max-Change: 0.00174
+Iteration: 9, Log-Lik: -2816.487, Max-Change: 0.00118
+Iteration: 10, Log-Lik: -2816.487, Max-Change: 0.00094
+Iteration: 11, Log-Lik: -2816.487, Max-Change: 0.00054
+Iteration: 12, Log-Lik: -2816.487, Max-Change: 0.00036
+Iteration: 13, Log-Lik: -2816.487, Max-Change: 0.00028
+Iteration: 14, Log-Lik: -2816.487, Max-Change: 0.00016
+Iteration: 15, Log-Lik: -2816.487, Max-Change: 0.00011
+Iteration: 16, Log-Lik: -2816.487, Max-Change: 0.00008
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="discriminazione">
+<h3><span class="section-number">63.1.2. </span>Discriminazione<a class="headerlink" href="#discriminazione" title="Link to this heading">#</a></h3>
+<p>La formula generale per una curva caratteristica dell’item (ICC) in un modello 1PL è:</p>
+<div class="math notranslate nohighlight">
+\[ 
+P(\theta) = \frac{1}{1 + \exp(-a \cdot (\theta - b))},
+\]</div>
+<p>dove:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( P(\theta) \)</span> è la probabilità di una risposta corretta.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \theta \)</span> è l’abilità del rispondente.</p></li>
+<li><p><span class="math notranslate nohighlight">\( a \)</span> è il parametro di discriminazione dell’item, fisso per tutti gli item.</p></li>
+<li><p><span class="math notranslate nohighlight">\( b \)</span> è il parametro di difficoltà dell’item.</p></li>
+</ul>
+<p>Nel modello di Rasch, il parametro di discriminazione <span class="math notranslate nohighlight">\(a\)</span> viene fissato a 1 per tutti gli item, per cui otteniamo</p>
+<div class="math notranslate nohighlight">
+\[ 
+P(\theta) = \frac{1}{1 + \exp(-(\theta - b))}.
+\]</div>
+<p>Il concetto di “discriminazione” nel contesto dei modelli di risposta all’item (IRT) si riferisce alla capacità di un item di distinguere tra individui con abilità leggermente superiore e quelli con abilità leggermente inferiore rispetto alla difficoltà dell’item stesso. Questa capacità discriminante è caratterizzata dalla pendenza della curva caratteristica dell’item (ICC) “nel mezzo”, ovvero per livelli di abilità vicini alla difficoltà dell’item, con discriminazioni più elevate che corrispondono a pendenze più ripide.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definizione della funzione sigmoide per rappresentare le ICC</span>
+<span class="n">sigmoid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="o">-</span><span class="n">beta</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">0</span><span class="p">)))</span>
+<span class="p">}</span>
+
+<span class="c1"># Creazione di una sequenza di livelli di abilità</span>
+<span class="n">abilities</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">-2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span>
+
+<span class="c1"># Calcolo delle probabilità per due item con diversi valori di discriminazione</span>
+<span class="c1"># Per l&#39;item di sinistra (discriminazione inferiore, beta=1)</span>
+<span class="n">probabilities_left</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sigmoid</span><span class="p">(</span><span class="n">abilities</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+
+<span class="c1"># Per l&#39;item di destra (discriminazione superiore, beta=2)</span>
+<span class="n">probabilities_right</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sigmoid</span><span class="p">(</span><span class="n">abilities</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+
+<span class="c1"># Creazione del dataframe per ggplot</span>
+<span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Ability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="n">abilities</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
+<span class="w">    </span><span class="n">Probability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">probabilities_left</span><span class="p">,</span><span class="w"> </span><span class="n">probabilities_right</span><span class="p">),</span>
+<span class="w">    </span><span class="n">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Lower Discrimination (beta=1)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Higher Discrimination (beta=2)&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">each</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Creazione del grafico</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Probability</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Item</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;orange&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span>
+<span class="w">        </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">            </span><span class="n">Ability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">-0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span>
+<span class="w">            </span><span class="n">Probability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">sigmoid</span><span class="p">(</span><span class="m">-0.5</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="nf">sigmoid</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="nf">sigmoid</span><span class="p">(</span><span class="m">-0.5</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="nf">sigmoid</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)),</span>
+<span class="w">            </span><span class="n">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Lower Discrimination (beta=1)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Lower Discrimination (beta=1)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Higher Discrimination (beta=2)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Higher Discrimination (beta=2)&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">),</span>
+<span class="w">        </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ability</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Probability</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Item</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Item Characteristic Curves (ICCs) for Different Discriminations&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">xlab</span><span class="p">(</span><span class="s">&quot;Ability (theta)&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">ylab</span><span class="p">(</span><span class="s">&quot;Probability of Correct Response&quot;</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/4eae287109be7e52567830e6c795c3cb9a16a2d03bc2a03becfabe59f2bfb7ab.png"><img alt="../_images/4eae287109be7e52567830e6c795c3cb9a16a2d03bc2a03becfabe59f2bfb7ab.png" src="../_images/4eae287109be7e52567830e6c795c3cb9a16a2d03bc2a03becfabe59f2bfb7ab.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Consideriamo due diverse Curve Caratteristiche dell’Item (ICC) per item con difficoltà zero.
+In questa funzione, <code class="docutils literal notranslate"><span class="pre">sigmoid</span> <span class="pre">&lt;-</span> <span class="pre">function(x,</span> <span class="pre">beta)</span> <span class="pre">{</span> <span class="pre">1</span> <span class="pre">/</span> <span class="pre">(1</span> <span class="pre">+</span> <span class="pre">exp(-beta</span> <span class="pre">*</span> <span class="pre">(x</span> <span class="pre">-</span> <span class="pre">0)))</span> <span class="pre">}``,</span> <span class="pre">il</span> <span class="pre">parametro</span> </code>beta` rappresenta la discriminazione dell’item, mentre la difficoltà dell’item è implicitamente fissata a zero (b = 0). Questa funzione, quindi, non modella direttamente variazioni nella difficoltà dell’item, ma solo nella discriminazione.</p>
+<p>Le ICC sono calcolate per due item con diversi livelli di discriminazione, rappresentati come “Lower Discrimination (beta=1)” e “Higher Discrimination (beta=2)” nel grafico. Le probabilità che persone con abilità di −0.5 e +0.5 risolvano correttamente l’item sono rispettivamente approssimativamente 0.38 e 0.62 per l’item con discriminazione inferiore (beta=1, rappresentato con la curva blu)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sigmoid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="o">-</span><span class="n">beta</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">0</span><span class="p">)))</span>
+<span class="p">}</span>
+<span class="nf">sigmoid</span><span class="p">(</span><span class="m">-0.5</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+<span class="nf">sigmoid</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.377540668798145</div><div class="output text_html">0.622459331201855</div></div>
+</div>
+<p>e 0.27 e 0.73 per l’item con discriminazione superiore (beta=2, rappresentato con la curva arancione)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sigmoid</span><span class="p">(</span><span class="m">-0.5</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="nf">sigmoid</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.268941421369995</div><div class="output text_html">0.731058578630005</div></div>
+</div>
+<p>Ciò indica che due persone con una differenza di 1 nella loro abilità mostrano una differenza di 0.24 nella loro probabilità di risolvere correttamente l’item con discriminazione inferiore (curva blu) e una differenza di 0.46 per l’item con discriminazione superiore (curva arancione).</p>
+<p>La pendenza al centro dell’ICC, dove la curva è quasi lineare, può essere approssimata da questa differenza sull’asse y divisa per la differenza sull’asse x, risultando in circa 0.24 per l’item con discriminazione inferiore e 0.46 per quello con discriminazione superiore. In termini più semplici, la pendenza è una misura di quanto rapidamente la probabilità di una risposta corretta aumenta (o diminuisce) in relazione a un cambiamento nell’abilità dell’individuo. Una pendenza più ripida, come quella dell’item con discriminazione superiore (curva arancione), indica una maggiore discriminazione, cioè l’item è più efficace nel distinguere tra persone con livelli di abilità leggermente differenti.</p>
+<p>Nel Modello di Rasch, si assume che tutti gli item abbiano la stessa discriminazione, con una pendenza di 1. Questo è evidente dalla formula del modello, dove l’unico parametro per ciascun item <span class="math notranslate nohighlight">\(i\)</span> è la sua difficoltà <span class="math notranslate nohighlight">\(\beta_i\)</span>, senza parametri aggiuntivi per modellare la discriminazione. Tuttavia, questo approccio è spesso considerato troppo rigido dal punto di vista della modellazione, poiché molti test reali contengono item con discriminazioni disuguali. In contrasto, il modello logistico a due parametri (2PL) di Birnbaum incorpora un parametro di pendenza, permettendo a ciascun item di avere una discriminazione diversa.</p>
+<p>In sintesi, la discriminazione in un test psicometrico è un concetto chiave che descrive quanto efficacemente un item può differenziare tra rispondenti con abilità simili ma non identiche. Maggiore è la discriminazione, più efficacemente l’item può identificare le differenze sottili nelle abilità dei rispondenti.</p>
+</section>
+</section>
+<section id="modello-irt-a-due-parametri">
+<h2><span class="section-number">63.2. </span>Modello IRT a due parametri<a class="headerlink" href="#modello-irt-a-due-parametri" title="Link to this heading">#</a></h2>
+<p>Il modello 2PL, noto come “Modello IRT a due parametri”, prevede che le curve caratteristiche degli item non siano tra loro parallele. Questo modello utilizza due parametri per descrivere le curve caratteristiche di ciascun item: il parametro di difficoltà <span class="math notranslate nohighlight">\(\delta_i\)</span> e il parametro di discriminazione <span class="math notranslate nohighlight">\(\alpha_i\)</span>. Il parametro <span class="math notranslate nohighlight">\(\alpha_i\)</span> consente alle curve caratteristiche di avere pendenze diverse e riflette la capacità discriminante dell’item rispetto alla variabile latente. Le curve caratteristiche nel modello 2PL hanno la seguente forma:</p>
+<div class="math notranslate nohighlight" id="equation-eq-2pl">
+<span class="eqno">(63.2)<a class="headerlink" href="#equation-eq-2pl" title="Link to this equation">#</a></span>\[
+\begin{equation} 
+  Pr(X_{vi} = 1 \mid \theta_v, \delta_i, \alpha_i) = \frac{\exp(\alpha_i(\theta_v-\delta_i))}{1+ \exp(\alpha_i(\theta_v-\delta_i))}.
+\end{equation}
+\]</div>
+<p>Adattiamo il modello 2PL ai dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mirt_2pl</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mirt</span><span class="p">(</span><span class="n">responses</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;2PL&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration: 1, Log-Lik: -2818.855, Max-Change: 0.66304
+Iteration: 2, Log-Lik: -2772.597, Max-Change: 0.26013
+Iteration: 3, Log-Lik: -2762.517, Max-Change: 0.12884
+Iteration: 4, Log-Lik: -2760.353, Max-Change: 0.06587
+Iteration: 5, Log-Lik: -2759.824, Max-Change: 0.03961
+Iteration: 6, Log-Lik: -2759.675, Max-Change: 0.02169
+Iteration: 7, Log-Lik: -2759.622, Max-Change: 0.01040
+Iteration: 8, Log-Lik: -2759.609, Max-Change: 0.00642
+Iteration: 9, Log-Lik: -2759.605, Max-Change: 0.00396
+Iteration: 10, Log-Lik: -2759.602, Max-Change: 0.00160
+Iteration: 11, Log-Lik: -2759.602, Max-Change: 0.00089
+Iteration: 12, Log-Lik: -2759.602, Max-Change: 0.00064
+Iteration: 13, Log-Lik: -2759.601, Max-Change: 0.00020
+Iteration: 14, Log-Lik: -2759.601, Max-Change: 0.00009
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo le curve caratteristiche degli item.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">mirt_2pl</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;trace&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/10b22b32c5f35d5dedd9165ef7af5c2aa4f417c17970c40cfcc685276ce3ae17.png"><img alt="../_images/10b22b32c5f35d5dedd9165ef7af5c2aa4f417c17970c40cfcc685276ce3ae17.png" src="../_images/10b22b32c5f35d5dedd9165ef7af5c2aa4f417c17970c40cfcc685276ce3ae17.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">mirt_2pl</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;trace&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">facet_items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/1f0a0280da1eb7d1a90e96255f76de4660f91275a991e3fef8d7ffa58df446b0.png"><img alt="../_images/1f0a0280da1eb7d1a90e96255f76de4660f91275a991e3fef8d7ffa58df446b0.png" src="../_images/1f0a0280da1eb7d1a90e96255f76de4660f91275a991e3fef8d7ffa58df446b0.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Possiamo visualizzare le stime dei parametri degli item per il 2PL utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">coef()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">coef</span><span class="p">(</span><span class="n">mirt_2pl</span><span class="p">,</span><span class="w"> </span><span class="n">IRTpars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">simplify</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><dl>
+	<dt>$items</dt>
+		<dd><table class="dataframe">
+<caption>A matrix: 14 × 4 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>a</th><th scope=col>b</th><th scope=col>g</th><th scope=col>u</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>I1</th><td> 1.1474247</td><td>-1.02151843</td><td>0</td><td>1</td></tr>
+	<tr><th scope=row>I2</th><td> 1.7687105</td><td>-0.91065318</td><td>0</td><td>1</td></tr>
+	<tr><th scope=row>I3</th><td> 1.3724569</td><td>-1.67979991</td><td>0</td><td>1</td></tr>
+	<tr><th scope=row>I6</th><td> 1.4786119</td><td>-0.04254241</td><td>0</td><td>1</td></tr>
+	<tr><th scope=row>I7</th><td> 1.0714345</td><td> 2.44143950</td><td>0</td><td>1</td></tr>
+	<tr><th scope=row>I11</th><td> 1.5944811</td><td>-0.95699944</td><td>0</td><td>1</td></tr>
+	<tr><th scope=row>I12</th><td> 0.7033227</td><td> 1.07888714</td><td>0</td><td>1</td></tr>
+	<tr><th scope=row>I14</th><td> 0.7707027</td><td>-0.61243178</td><td>0</td><td>1</td></tr>
+	<tr><th scope=row>I17</th><td> 0.7066769</td><td> 1.75774430</td><td>0</td><td>1</td></tr>
+	<tr><th scope=row>I18</th><td> 0.7498268</td><td>-0.50187180</td><td>0</td><td>1</td></tr>
+	<tr><th scope=row>I19</th><td> 1.8311083</td><td> 1.45897744</td><td>0</td><td>1</td></tr>
+	<tr><th scope=row>I21</th><td>-0.2139602</td><td>-7.07607206</td><td>0</td><td>1</td></tr>
+	<tr><th scope=row>I22</th><td> 0.2769275</td><td> 7.65692247</td><td>0</td><td>1</td></tr>
+	<tr><th scope=row>I23</th><td> 1.5212898</td><td>-1.50340795</td><td>0</td><td>1</td></tr>
+</tbody>
+</table>
+</dd>
+	<dt>$means</dt>
+		<dd><strong>F1:</strong> 0</dd>
+	<dt>$cov</dt>
+		<dd><table class="dataframe">
+<caption>A matrix: 1 × 1 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>F1</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>F1</th><td>1</td></tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div></div>
+</div>
+<p>Effettuiamo un confronto tra il modello di Rash e il modello 2PL.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">anova</span><span class="p">(</span><span class="n">mirt_rm</span><span class="p">,</span><span class="w"> </span><span class="n">mirt_2pl</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A mirt_df: 2 × 8</caption>
+<thead>
+	<tr><th></th><th scope=col>AIC</th><th scope=col>SABIC</th><th scope=col>HQ</th><th scope=col>BIC</th><th scope=col>logLik</th><th scope=col>X2</th><th scope=col>df</th><th scope=col>p</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>mirt_rm</th><td>5662.973</td><td>5675.249</td><td>5686.683</td><td>5722.845</td><td>-2816.487</td><td>      NA</td><td>NA</td><td>NA</td></tr>
+	<tr><th scope=row>mirt_2pl</th><td>5575.203</td><td>5598.118</td><td>5619.462</td><td>5686.964</td><td>-2759.601</td><td>113.7703</td><td>13</td><td> 0</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Questo indica che il 2PL fornisce un adattamento significativamente migliore rispetto al modello di Rasch, suggerendo che gli item non hanno tutti la stessa pendenza.</p>
+</section>
+<section id="modello-irt-a-tre-parametri">
+<h2><span class="section-number">63.3. </span>Modello IRT a tre parametri<a class="headerlink" href="#modello-irt-a-tre-parametri" title="Link to this heading">#</a></h2>
+<p>Per considerare l’eventuale tendenza dei rispondenti a indovinare, i modelli IRT introducono un ulteriore parametro, denotato con <span class="math notranslate nohighlight">\(\gamma_i\)</span>. Il modello a tre parametri (3PL) assume la seguente forma:</p>
+<div class="math notranslate nohighlight" id="equation-eq-3pl">
+<span class="eqno">(63.3)<a class="headerlink" href="#equation-eq-3pl" title="Link to this equation">#</a></span>\[
+\begin{equation} 
+Pr(X_{vi} = 1 \mid \theta_v, \delta_i, \alpha_i, \gamma_i) = \gamma_i + (1-\gamma_i) \frac{\exp(\alpha_i(\theta_v-\delta_i))}{1 + \exp(\alpha_i(\theta_v-\delta_i))}.
+\end{equation}
+\]</div>
+<p>Il parametro <span class="math notranslate nohighlight">\(\gamma_i\)</span> ha l’effetto di introdurre un asintoto orizzontale maggiore di zero per valori di <span class="math notranslate nohighlight">\(\theta_v\)</span> tendenti a <span class="math notranslate nohighlight">\(-\infty\)</span>. In altre parole, per item con <span class="math notranslate nohighlight">\(\gamma_i = 0.25\)</span>, la probabilità di risposta corretta dovuta al caso è almeno pari a 0.25, anche per i livelli di abilità latente più bassi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mirt_3pl</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mirt</span><span class="p">(</span><span class="n">responses</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;3PL&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration: 1, Log-Lik: -2907.091, Max-Change: 3.31584
+Iteration: 2, Log-Lik: -2772.694, Max-Change: 1.28437
+Iteration: 3, Log-Lik: -2752.349, Max-Change: 0.91384
+Iteration: 4, Log-Lik: -2745.974, Max-Change: 0.69216
+Iteration: 5, Log-Lik: -2743.438, Max-Change: 0.50378
+Iteration: 6, Log-Lik: -2742.271, Max-Change: 0.68486
+Iteration: 7, Log-Lik: -2741.541, Max-Change: 0.59761
+Iteration: 8, Log-Lik: -2740.785, Max-Change: 0.74759
+Iteration: 9, Log-Lik: -2740.617, Max-Change: 1.85539
+Iteration: 10, Log-Lik: -2740.417, Max-Change: 0.60454
+Iteration: 11, Log-Lik: -2740.374, Max-Change: 3.18943
+Iteration: 12, Log-Lik: -2740.327, Max-Change: 0.52006
+Iteration: 13, Log-Lik: -2740.324, Max-Change: 0.51847
+Iteration: 14, Log-Lik: -2740.301, Max-Change: 0.49143
+Iteration: 15, Log-Lik: -2740.282, Max-Change: 0.48597
+Iteration: 16, Log-Lik: -2740.213, Max-Change: 0.01722
+Iteration: 17, Log-Lik: -2740.211, Max-Change: 0.00752
+Iteration: 18, Log-Lik: -2740.210, Max-Change: 0.00116
+Iteration: 19, Log-Lik: -2740.210, Max-Change: 0.00410
+Iteration: 20, Log-Lik: -2740.210, Max-Change: 0.00015
+Iteration: 21, Log-Lik: -2740.210, Max-Change: 0.00074
+Iteration: 22, Log-Lik: -2740.210, Max-Change: 0.00017
+Iteration: 23, Log-Lik: -2740.210, Max-Change: 0.00069
+Iteration: 24, Log-Lik: -2740.210, Max-Change: 0.00064
+Iteration: 25, Log-Lik: -2740.210, Max-Change: 0.00024
+Iteration: 26, Log-Lik: -2740.210, Max-Change: 0.00057
+Iteration: 27, Log-Lik: -2740.210, Max-Change: 0.00018
+Iteration: 28, Log-Lik: -2740.210, Max-Change: 0.00015
+Iteration: 29, Log-Lik: -2740.210, Max-Change: 0.00053
+Iteration: 30, Log-Lik: -2740.210, Max-Change: 0.00056
+Iteration: 31, Log-Lik: -2740.210, Max-Change: 0.00025
+Iteration: 32, Log-Lik: -2740.210, Max-Change: 0.00048
+Iteration: 33, Log-Lik: -2740.210, Max-Change: 0.00019
+Iteration: 34, Log-Lik: -2740.210, Max-Change: 0.00015
+Iteration: 35, Log-Lik: -2740.210, Max-Change: 0.00045
+Iteration: 36, Log-Lik: -2740.210, Max-Change: 0.00011
+Iteration: 37, Log-Lik: -2740.210, Max-Change: 0.00046
+Iteration: 38, Log-Lik: -2740.210, Max-Change: 0.00023
+Iteration: 39, Log-Lik: -2740.210, Max-Change: 0.00041
+Iteration: 40, Log-Lik: -2740.210, Max-Change: 0.00030
+Iteration: 41, Log-Lik: -2740.210, Max-Change: 0.00009
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo le curve caratteristiche degli item.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">mirt_3pl</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;trace&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">facet_items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/1e9affe6526444b667b0b2ab7c34b13a6c773086e91a1c011d939c88bf66be05.png"><img alt="../_images/1e9affe6526444b667b0b2ab7c34b13a6c773086e91a1c011d939c88bf66be05.png" src="../_images/1e9affe6526444b667b0b2ab7c34b13a6c773086e91a1c011d939c88bf66be05.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Un elemento chiave del modello 3PL è che l’asintoto inferiore, rappresentato dal parametro <span class="math notranslate nohighlight">\(\gamma_i\)</span>, assume un valore maggiore di zero. Questo implica che la probabilità di una risposta corretta, rappresentata da <span class="math notranslate nohighlight">\(\gamma_i\)</span>, risulta essere superiore a 0.5 per valori relativamente bassi di abilità latente. In altre parole, gli item con <span class="math notranslate nohighlight">\(\gamma_i &gt; 0\)</span> forniscono una probabilità di risposta corretta più alta anche per rispondenti con livelli di abilità latente relativamente bassi.</p>
+<p>Ciò comporta che tali item risultano essere più facili per i rispondenti con abilità latente inferiore, in confronto agli item con <span class="math notranslate nohighlight">\(\gamma_i = 0\)</span>. Questa caratteristica dei modelli 3PL permette di includere il tasso di guessing nella probabilità di risposta corretta e offre una maggiore flessibilità nella modellazione del comportamento degli item rispetto al modello a due parametri (2PL), nel quale l’asintoto inferiore è pari a zero.</p>
+<p>A negative slope indicates that, all else being equal, a person with a higher value on the latent trait is less likely to give a positive response than a person with a lower value. What a negative slope estimate means for test construction depends on context. For achievement tests, a negative slope indicates that a test item is not behaving like it should. For other psychological tests, such as personality or attitude scales, nega- tive slopes may be intended for some of the items. In this setting, test designers routinely use negatively worded items. A negatively worded version of “I like long walks on the beach”, for example, might be “I do not like long walks on the beach”. A person agreeing with the first would ideally disagree with the second3, so we could legitimately get a negative slope when the version we use is in the opposite direction to the rest of the items.</p>
+<p>Possiamo visualizzare le stime dei parametri degli item per il 3PL utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">coef()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">coef</span><span class="p">(</span><span class="n">mirt_3pl</span><span class="p">,</span><span class="w"> </span><span class="n">IRTpars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">simplify</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><dl>
+	<dt>$items</dt>
+		<dd><table class="dataframe">
+<caption>A matrix: 14 × 4 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>a</th><th scope=col>b</th><th scope=col>g</th><th scope=col>u</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>I1</th><td> 1.4097712</td><td>-0.49321069</td><td>2.441664e-01</td><td>1</td></tr>
+	<tr><th scope=row>I2</th><td> 2.6665125</td><td>-0.40357732</td><td>2.909004e-01</td><td>1</td></tr>
+	<tr><th scope=row>I3</th><td> 1.4449658</td><td>-1.63252646</td><td>1.224781e-04</td><td>1</td></tr>
+	<tr><th scope=row>I6</th><td> 1.5135421</td><td> 0.00860713</td><td>1.949812e-02</td><td>1</td></tr>
+	<tr><th scope=row>I7</th><td> 1.1634394</td><td> 2.29703116</td><td>1.177019e-05</td><td>1</td></tr>
+	<tr><th scope=row>I11</th><td> 1.4873719</td><td>-0.98362215</td><td>1.450244e-05</td><td>1</td></tr>
+	<tr><th scope=row>I12</th><td> 2.1309230</td><td> 1.27506046</td><td>2.074352e-01</td><td>1</td></tr>
+	<tr><th scope=row>I14</th><td> 0.8047002</td><td>-0.58574323</td><td>6.144279e-05</td><td>1</td></tr>
+	<tr><th scope=row>I17</th><td> 3.0758348</td><td> 1.31997827</td><td>1.380818e-01</td><td>1</td></tr>
+	<tr><th scope=row>I18</th><td> 0.7239776</td><td>-0.51031734</td><td>4.102312e-05</td><td>1</td></tr>
+	<tr><th scope=row>I19</th><td> 1.8437010</td><td> 1.44860652</td><td>3.537302e-06</td><td>1</td></tr>
+	<tr><th scope=row>I21</th><td>-5.2635778</td><td>-2.27061550</td><td>1.671759e-01</td><td>1</td></tr>
+	<tr><th scope=row>I22</th><td> 9.1791591</td><td> 1.98999438</td><td>8.967797e-02</td><td>1</td></tr>
+	<tr><th scope=row>I23</th><td> 1.6252401</td><td>-1.45226821</td><td>4.396566e-05</td><td>1</td></tr>
+</tbody>
+</table>
+</dd>
+	<dt>$means</dt>
+		<dd><strong>F1:</strong> 0</dd>
+	<dt>$cov</dt>
+		<dd><table class="dataframe">
+<caption>A matrix: 1 × 1 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>F1</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>F1</th><td>1</td></tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div></div>
+</div>
+<p>Effettuiamo il confronto tra i modelli 2PL e 3PL.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">anova</span><span class="p">(</span><span class="n">mirt_2pl</span><span class="p">,</span><span class="w"> </span><span class="n">mirt_3pl</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A mirt_df: 2 × 8</caption>
+<thead>
+	<tr><th></th><th scope=col>AIC</th><th scope=col>SABIC</th><th scope=col>HQ</th><th scope=col>BIC</th><th scope=col>logLik</th><th scope=col>X2</th><th scope=col>df</th><th scope=col>p</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>mirt_2pl</th><td>5575.203</td><td>5598.118</td><td>5619.462</td><td>5686.964</td><td>-2759.601</td><td>      NA</td><td>NA</td><td>          NA</td></tr>
+	<tr><th scope=row>mirt_3pl</th><td>5564.419</td><td>5598.792</td><td>5630.808</td><td>5732.061</td><td>-2740.210</td><td>38.78358</td><td>14</td><td>0.0003938891</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Il modello 2PL deriva dal modello 3PL impostando un tipo specifico di parametro, ovvero il parametro di guessing, a un valore di 0. Il parametro di guessing nel modello 3PL rappresenta la probabilità che un candidato indovini correttamente un item, anche se non possiede la competenza richiesta per rispondere. Poiché il parametro di guessing può assumere valori tra 0 e 1, ciò significa che il modello ristretto nella nostra analisi, che è il modello 2PL, deriva dal modello più generale impostando un parametro a un valore ai limiti del suo spazio parametrico. In questo scenario, il classico test del rapporto di verosimiglianza può portare a risultati inaccurati.</p>
+<p>Pertanto, per interpretare il confronto tra i due modelli utilizziamo solo gli indici di informazione per confrontare il modello 2PL e il modello 3PL. Mentre l’AIC indica una preferenza per il modello 3PL (forse a causa del guessing presente in alcuni item), il BIC mostra una lieve preferenza per il modello 2PL più semplice, poiché penalizza maggiormente l’uso di un maggior numero di parametri nel modello.</p>
+</section>
+<section id="interpretazione-dei-parametri">
+<h2><span class="section-number">63.4. </span>Interpretazione dei parametri<a class="headerlink" href="#interpretazione-dei-parametri" title="Link to this heading">#</a></h2>
+<p>In un certo senso, l’analisi IRT può essere paragonata all’analisi fattoriale nella Teoria Classica dei Test (CTT). Utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">summary()</span></code>, otteniamo quella che è nota come soluzione fattoriale, che include i carichi fattoriali (<code class="docutils literal notranslate"><span class="pre">F1</span></code>) e le comunalità (<code class="docutils literal notranslate"><span class="pre">h2</span></code>). Queste ultime, essendo i carichi fattoriali al quadrato, vengono interpretate come la varianza spiegata dall’attributo latente in ciascun item. Nella maggior parte dei casi, quasi tutti gli item mostrano una relazione sostanziale (carichi &gt; 0.50) con il tratto latente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Factor solution</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">mirt_3pl</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        F1    h2
+I1   0.638 0.407
+I2   0.843 0.711
+I3   0.647 0.419
+I6   0.665 0.442
+I7   0.564 0.318
+I11  0.658 0.433
+I12  0.781 0.611
+I14  0.427 0.183
+I17  0.875 0.766
+I18  0.391 0.153
+I19  0.735 0.540
+I21 -0.951 0.905
+I22  0.983 0.967
+I23  0.691 0.477
+
+SS loadings:  7.33 
+Proportion Var:  0.524 
+
+Factor correlations: 
+
+   F1
+F1  1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nell’IRT, tuttavia, siamo solitamente più interessati ai parametri effettivi dell’IRT come discusso sopra (discriminazione, difficoltà e probabilità di indovinare). Tali parametri possono essere estratti come segue:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">params3PL</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">coef</span><span class="p">(</span><span class="n">mirt_3pl</span><span class="p">,</span><span class="w"> </span><span class="n">IRTpars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">simplify</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">round</span><span class="p">(</span><span class="n">params3PL</span><span class="o">$</span><span class="n">items</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="c1"># g = c = guessing parameter</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 14 × 4 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>a</th><th scope=col>b</th><th scope=col>g</th><th scope=col>u</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>I1</th><td> 1.41</td><td>-0.49</td><td>0.24</td><td>1</td></tr>
+	<tr><th scope=row>I2</th><td> 2.67</td><td>-0.40</td><td>0.29</td><td>1</td></tr>
+	<tr><th scope=row>I3</th><td> 1.44</td><td>-1.63</td><td>0.00</td><td>1</td></tr>
+	<tr><th scope=row>I6</th><td> 1.51</td><td> 0.01</td><td>0.02</td><td>1</td></tr>
+	<tr><th scope=row>I7</th><td> 1.16</td><td> 2.30</td><td>0.00</td><td>1</td></tr>
+	<tr><th scope=row>I11</th><td> 1.49</td><td>-0.98</td><td>0.00</td><td>1</td></tr>
+	<tr><th scope=row>I12</th><td> 2.13</td><td> 1.28</td><td>0.21</td><td>1</td></tr>
+	<tr><th scope=row>I14</th><td> 0.80</td><td>-0.59</td><td>0.00</td><td>1</td></tr>
+	<tr><th scope=row>I17</th><td> 3.08</td><td> 1.32</td><td>0.14</td><td>1</td></tr>
+	<tr><th scope=row>I18</th><td> 0.72</td><td>-0.51</td><td>0.00</td><td>1</td></tr>
+	<tr><th scope=row>I19</th><td> 1.84</td><td> 1.45</td><td>0.00</td><td>1</td></tr>
+	<tr><th scope=row>I21</th><td>-5.26</td><td>-2.27</td><td>0.17</td><td>1</td></tr>
+	<tr><th scope=row>I22</th><td> 9.18</td><td> 1.99</td><td>0.09</td><td>1</td></tr>
+	<tr><th scope=row>I23</th><td> 1.63</td><td>-1.45</td><td>0.00</td><td>1</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>I valori dei parametri di pendenza (parametri <code class="docutils literal notranslate"><span class="pre">a</span></code>) variano da 0.80 a 9.18. Il parametro <code class="docutils literal notranslate"><span class="pre">a</span></code> è una misura di quanto bene un item differenzia individui con diversi livelli di abilità <span class="math notranslate nohighlight">\(\theta\)</span>. Valori più grandi, o pendenze più ripide, sono migliori per differenziare i rispondenti. La pendenza può anche essere interpretata come un indicatore della forza della relazione tra un item e un tratto latente, con valori di pendenza più alti che corrispondono a relazioni più forti.</p>
+<p>Anche i parametri di difficoltà (parametro <code class="docutils literal notranslate"><span class="pre">b</span></code>) sono elencati per ciascun item. I parametri di difficoltà sono interpretati come il valore di <span class="math notranslate nohighlight">\(\theta\)</span> che corrisponde a una probabilità del 50% di rispondere correttamente a (o al di sopra di tale posizione) un item. Nel caso presente, i parametri di difficoltà mostrano che gli item coprono un’ampia gamma del tratto latente.</p>
+</section>
+<section id="invarianza-di-gruppo-dei-parametri-degli-item-nella-irt">
+<h2><span class="section-number">63.5. </span>Invarianza di Gruppo dei Parametri degli Item nella IRT<a class="headerlink" href="#invarianza-di-gruppo-dei-parametri-degli-item-nella-irt" title="Link to this heading">#</a></h2>
+<p>Una caratteristica rilevante della teoria della IRT è l’invarianza dei parametri degli item rispetto al livello di abilità degli esaminandi che rispondono agli item. Ciò significa che i parametri degli item sono ciò che si definisce “invarianti di gruppo”. Questo aspetto della teoria può essere spiegato come segue.</p>
+<p>Immaginiamo due gruppi di esaminandi, entrambi estratti dalla stessa popolazione. Il primo gruppo presenta punteggi di abilità variabili da -3 a -1, con una media di -2, mentre il secondo gruppo ha punteggi che vanno da +1 a +3, con una media di +2. Si calcola la proporzione osservata di risposte corrette a un determinato item, per ogni livello di abilità, in entrambi i gruppi. Utilizzando la procedura di stima a massima verosimiglianza, si adatta una curva caratteristica dell’item ai dati, ottenendo stime dei parametri dell’item, ad esempio, b = 0.39 e a = 1.27. La curva caratteristica dell’item definita da queste stime viene poi tracciata per l’intervallo di abilità del primo gruppo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">groupinv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">mdl</span><span class="p">,</span><span class="w"> </span><span class="n">t1l</span><span class="p">,</span><span class="w"> </span><span class="n">t1u</span><span class="p">,</span><span class="w"> </span><span class="n">t2l</span><span class="p">,</span><span class="w"> </span><span class="n">t2u</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nf">if </span><span class="p">(</span><span class="nf">missing</span><span class="p">(</span><span class="n">t1l</span><span class="p">))</span><span class="w"> </span><span class="n">t1l</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">-3</span>
+<span class="w">    </span><span class="nf">if </span><span class="p">(</span><span class="nf">missing</span><span class="p">(</span><span class="n">t1u</span><span class="p">))</span><span class="w"> </span><span class="n">t1u</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">-1</span>
+<span class="w">    </span><span class="nf">if </span><span class="p">(</span><span class="nf">missing</span><span class="p">(</span><span class="n">t2l</span><span class="p">))</span><span class="w"> </span><span class="n">t2l</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="nf">if </span><span class="p">(</span><span class="nf">missing</span><span class="p">(</span><span class="n">t2u</span><span class="p">))</span><span class="w"> </span><span class="n">t2u</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">3</span>
+<span class="w">    </span><span class="n">theta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">-3</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">1875</span><span class="p">)</span>
+<span class="w">    </span><span class="n">f</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">21</span><span class="p">,</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
+<span class="w">    </span><span class="n">wb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">runif</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">-3</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="w">    </span><span class="n">wa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">runif</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="m">2.8</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="w">    </span><span class="n">wc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">runif</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">35</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">if </span><span class="p">(</span><span class="n">mdl</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">mdl</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">wc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nf">if </span><span class="p">(</span><span class="n">mdl</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">wa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nf">for </span><span class="p">(</span><span class="n">g</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">P</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">wc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">wc</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="o">-</span><span class="n">wa</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">theta</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">wb</span><span class="p">)))</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">P</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">f</span>
+<span class="w">    </span><span class="n">lowerg1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="nf">for </span><span class="p">(</span><span class="n">g</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nf">if </span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="n">g</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">t1l</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">lowerg1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lowerg1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">upperg1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="nf">for </span><span class="p">(</span><span class="n">g</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nf">if </span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="n">g</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">t1u</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">upperg1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">upperg1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">theta1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">theta</span><span class="p">[</span><span class="n">lowerg1</span><span class="o">:</span><span class="n">upperg1</span><span class="p">]</span>
+<span class="w">    </span><span class="n">p1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">p</span><span class="p">[</span><span class="n">lowerg1</span><span class="o">:</span><span class="n">upperg1</span><span class="p">]</span>
+<span class="w">    </span><span class="n">lowerg2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="nf">for </span><span class="p">(</span><span class="n">g</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nf">if </span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="n">g</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">t2l</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">lowerg2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lowerg2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">upperg2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="nf">for </span><span class="p">(</span><span class="n">g</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nf">if </span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="n">g</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">t2u</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">upperg2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">upperg2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">theta2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">theta</span><span class="p">[</span><span class="n">lowerg2</span><span class="o">:</span><span class="n">upperg2</span><span class="p">]</span>
+<span class="w">    </span><span class="n">p2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">p</span><span class="p">[</span><span class="n">lowerg2</span><span class="o">:</span><span class="n">upperg2</span><span class="p">]</span>
+<span class="w">    </span><span class="n">theta12</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">theta1</span><span class="p">,</span><span class="w"> </span><span class="n">theta2</span><span class="p">)</span>
+<span class="w">    </span><span class="n">p12</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">par</span><span class="p">(</span><span class="n">lab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">))</span>
+<span class="w">    </span><span class="nf">plot</span><span class="p">(</span><span class="n">theta12</span><span class="p">,</span><span class="w"> </span><span class="n">p12</span><span class="p">,</span>
+<span class="w">        </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-3</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">        </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Ability&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Probability of Correct Response&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="nf">if </span><span class="p">(</span><span class="n">mdl</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">maintext</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Pooled Groups&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;b=&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">wb</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nf">if </span><span class="p">(</span><span class="n">mdl</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">maintext</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Pooled Groups&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;a=&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">wa</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;b=&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">wb</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nf">if </span><span class="p">(</span><span class="n">mdl</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">maintext</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span>
+<span class="w">            </span><span class="s">&quot;Pooled Groups&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s">&quot;a=&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">wa</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;b=&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">wb</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;c=&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">wc</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nf">par</span><span class="p">(</span><span class="n">new</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;T&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">plot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="w"> </span><span class="n">P</span><span class="p">,</span>
+<span class="w">        </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-3</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;l&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">maintext</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="nf">groupinv</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">-3</span><span class="p">,</span><span class="w"> </span><span class="m">-1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/24aaf20890f2b9cc5bc14d1d17ae2d2ba69ead5106b37877b0b104ec5efbf4c4.png"><img alt="../_images/24aaf20890f2b9cc5bc14d1d17ae2d2ba69ead5106b37877b0b104ec5efbf4c4.png" src="../_images/24aaf20890f2b9cc5bc14d1d17ae2d2ba69ead5106b37877b0b104ec5efbf4c4.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Il punto fondamentale è che gli stessi valori dei parametri a e b si otterrebbero applicando il modello IRT esclusivamente ai dati del primo o del secondo gruppo. Di conseguenza, i parametri dell’item sono invarianti di gruppo. Questa invarianza è una caratteristica potente della teoria della risposta all’item, indicando che i valori dei parametri dell’item sono una proprietà dell’item stesso, non del gruppo che ha risposto all’item. Questo si contrappone alla teoria classica dei test, dove la difficoltà di un item è determinata dalla proporzione complessiva di risposte corrette da parte di un gruppo di esaminandi.</p>
+<p>Sebbene i parametri degli item - definiti come attributi intrinseci degli item indipendentemente dalle popolazioni di esaminandi - siano teoricamente invarianti tra gruppi diversi estratti dalla medesima popolazione, le stime ottenute di tali parametri attraverso procedure di massima verosimiglianza possono differire a causa della variabilità campionaria.</p>
+<p>In termini statistici, la stima dei parametri degli item per un dato campione è uno stimatore dei parametri reali della popolazione, ma è soggetta a errore campionario. L’errore campionario è direttamente proporzionale alla dimensione del campione e alla varianza dei dati all’interno del campione. Pertanto, benché i valori reali dei parametri degli item siano costanti tra i gruppi estratti dalla stessa popolazione, le stime campionarie di questi parametri mostreranno una distribuzione attorno al vero valore popolazionale, con una variabilità che riflette l’errore campionario.</p>
+<p>Inoltre, è fondamentale che l’item venga utilizzato per misurare lo stesso tratto latente in entrambi i gruppi. I parametri di un item non mantengono l’invarianza di gruppo se utilizzati fuori contesto, ovvero per misurare un tratto latente diverso, con esaminandi da una popolazione non adeguata, o se i due gruppi provengono da popolazioni diverse.</p>
+<p>L’invarianza di gruppo dei parametri degli item illustra anche una caratteristica fondamentale della curva caratteristica dell’item. Come affermato nei capitoli precedenti, questa curva rappresenta la relazione tra la probabilità di risposta corretta all’item e la scala di abilità. Il principio di invarianza riflette questo, poiché i parametri dell’item sono indipendenti dalla distribuzione degli esaminandi sulla scala di abilità. Da un punto di vista pratico, ciò significa che i parametri dell’intera curva caratteristica dell’item possono essere stimati da qualsiasi segmento della curva.</p>
+<p>Facciamo un esempio e consideriamo la statistica DIF per il primo item del test, in funzione del genere.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">responses</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.factor</span><span class="p">(</span><span class="n">fims</span><span class="o">$</span><span class="n">SEX</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">400</span><span class="p">]))</span>
+<span class="nf">levels</span><span class="p">(</span><span class="n">dd</span><span class="o">$</span><span class="n">gender</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;male&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;female&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dif_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">multipleGroup</span><span class="p">(</span>
+<span class="w">    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dd</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">14</span><span class="p">],</span>
+<span class="w">    </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">    </span><span class="n">itemtype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;3PL&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dd</span><span class="o">$</span><span class="n">gender</span><span class="p">,</span>
+<span class="w">    </span><span class="n">invariance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">colnames</span><span class="p">(</span><span class="n">dd</span><span class="p">)[</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">)],</span><span class="w"> </span><span class="s">&quot;free_means&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;free_var&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dif_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">DIF</span><span class="p">(</span>
+<span class="w">    </span><span class="n">MGmodel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dif_model</span><span class="p">,</span>
+<span class="w">    </span><span class="n">which.par</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;a1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;d&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;g&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">items2test</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="c1"># Testa il DIF solo per l&#39;item 2</span>
+<span class="w">    </span><span class="n">p.adjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;BH&quot;</span><span class="w"> </span><span class="c1"># Adjust per multiple testing usando Benjamini-Hochberg</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dif_test</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A mirt_df: 1 × 10</caption>
+<thead>
+	<tr><th></th><th scope=col>groups</th><th scope=col>converged</th><th scope=col>AIC</th><th scope=col>SABIC</th><th scope=col>HQ</th><th scope=col>BIC</th><th scope=col>X2</th><th scope=col>df</th><th scope=col>p</th><th scope=col>adj_p</th></tr>
+	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;lgl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>I1</th><td>male,female</td><td>TRUE</td><td>0.4668205</td><td>2.922015</td><td>5.208836</td><td>12.44121</td><td>5.53318</td><td>3</td><td>0.1366675</td><td>0.1366675</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>L’ipotesi nulla non può essere rigettata. Dunque, per questo item non ci sono evidenze di  Differential Item Functioning (DIF).</p>
+</section>
+<section id="considerazioni-conclusive">
+<h2><span class="section-number">63.6. </span>Considerazioni Conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h2>
+<p>Il pacchetto <code class="docutils literal notranslate"><span class="pre">mirt</span></code> (Chalmers, 2021) offre funzionalità per l’adattamento di una varietà di modelli IRT, inclusi i modelli Rasch, 2PL e 3PL, nonché diversi modelli per risposte politomiche utilizzando la massima verosimiglianza marginale. In questo capitolo, abbiamo esplorato come sia possibile confrontare i modelli 1PL, 2PL e 3PL, che sono stati adattati ai dati usando <code class="docutils literal notranslate"><span class="pre">mirt</span></code>, attraverso il test del rapporto di verosimiglianza e gli indici di informazione.</p>
+</section>
+<section id="session-info">
+<h2><span class="section-number">63.7. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.3.3 (2024-02-29)
+Platform: x86_64-apple-darwin20 (64-bit)
+Running under: macOS Sonoma 14.4.1
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
+
+locale:
+[1] en_US.UTF-8/UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: Europe/Rome
+tzcode source: internal
+
+attached base packages:
+[1] grid      stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] latex2exp_0.9.6    psychotools_0.7-3  ggmirt_0.1.0       TAM_4.2-21        
+ [5] CDM_8.2-6          mvtnorm_1.2-4      mirt_1.41          lattice_0.22-6    
+ [9] eRm_1.0-6          ggokabeito_0.1.0   viridis_0.6.5      viridisLite_0.4.2 
+[13] ggpubr_0.6.0       ggExtra_0.10.1     bayesplot_1.11.1   gridExtra_2.3     
+[17] patchwork_1.2.0    semTools_0.5-6.920 semPlot_1.1.6      lavaan_0.6-17     
+[21] psych_2.4.3        scales_1.3.0       markdown_1.12      knitr_1.45        
+[25] lubridate_1.9.3    forcats_1.0.0      stringr_1.5.1      dplyr_1.1.4       
+[29] purrr_1.0.2        readr_2.1.5        tidyr_1.3.1        tibble_3.2.1      
+[33] ggplot2_3.5.1      tidyverse_2.0.0    here_1.0.1        
+
+loaded via a namespace (and not attached):
+  [1] rstudioapi_0.16.0    jsonlite_1.8.8       magrittr_2.0.3      
+  [4] TH.data_1.1-2        estimability_1.5     farver_2.1.1        
+  [7] nloptr_2.0.3         rmarkdown_2.26       vctrs_0.6.5         
+ [10] minqa_1.2.6          base64enc_0.1-3      rstatix_0.7.2       
+ [13] htmltools_0.5.8.1    broom_1.0.5          Formula_1.2-5       
+ [16] dcurver_0.9.2        htmlwidgets_1.6.4    plyr_1.8.9          
+ [19] sandwich_3.1-0       emmeans_1.10.0       zoo_1.8-12          
+ [22] uuid_1.2-0           admisc_0.35          igraph_2.0.3        
+ [25] mime_0.12            lifecycle_1.0.4      pkgconfig_2.0.3     
+ [28] Matrix_1.6-5         R6_2.5.1             fastmap_1.1.1       
+ [31] shiny_1.8.1.1        digest_0.6.35        OpenMx_2.21.11      
+ [34] fdrtool_1.2.17       colorspace_2.1-0     rprojroot_2.0.4     
+ [37] Hmisc_5.1-2          vegan_2.6-4          labeling_0.4.3      
+ [40] fansi_1.0.6          timechange_0.3.0     mgcv_1.9-1          
+ [43] abind_1.4-5          compiler_4.3.3       withr_3.0.0         
+ [46] glasso_1.11          htmlTable_2.4.2      backports_1.4.1     
+ [49] carData_3.0-5        ggsignif_0.6.4       MASS_7.3-60.0.1     
+ [52] GPArotation_2024.3-1 corpcor_1.6.10       permute_0.9-7       
+ [55] gtools_3.9.5         tools_4.3.3          pbivnorm_0.6.0      
+ [58] foreign_0.8-86       zip_2.3.1            httpuv_1.6.15       
+ [61] nnet_7.3-19          glue_1.7.0           quadprog_1.5-8      
+ [64] nlme_3.1-164         promises_1.3.0       lisrelToR_0.3       
+ [67] pbdZMQ_0.3-11        checkmate_2.3.1      cluster_2.1.6       
+ [70] reshape2_1.4.4       generics_0.1.3       gtable_0.3.5        
+ [73] tzdb_0.4.0           data.table_1.15.4    hms_1.1.3           
+ [76] Deriv_4.1.3          car_3.1-2            utf8_1.2.4          
+ [79] sem_3.1-15           pillar_1.9.0         IRdisplay_1.1       
+ [82] rockchalk_1.8.157    later_1.3.2          splines_4.3.3       
+ [85] survival_3.5-8       kutils_1.73          tidyselect_1.2.1    
+ [88] miniUI_0.1.1.1       pbapply_1.7-2        xfun_0.43           
+ [91] qgraph_1.9.8         arm_1.13-1           stringi_1.8.3       
+ [94] boot_1.3-30          evaluate_0.23        codetools_0.2-19    
+ [97] mi_1.1               cli_3.6.2            RcppParallel_5.1.7  
+[100] IRkernel_1.3.2       rpart_4.1.23         xtable_1.8-4        
+[103] repr_1.1.6           munsell_0.5.1        Rcpp_1.0.12         
+[106] polycor_0.8-1        coda_0.19-4.1        png_0.1-8           
+[109] XML_3.99-0.16.1      parallel_4.3.3       jpeg_0.1-10         
+[112] lme4_1.1-35.3        openxlsx_4.2.5.2     crayon_1.5.2        
+[115] rlang_1.1.3          multcomp_1.4-25      mnormt_2.1.1        
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_irt"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_estimation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">62. </span>Stima</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="06_implementation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">64. </span>Implementazione</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-ad-un-parametro">63.1. Modello ad Un Parametro</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-rasch-e-modello-1pl">63.1.1. Modello di Rasch e Modello 1PL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discriminazione">63.1.2. Discriminazione</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-irt-a-due-parametri">63.2. Modello IRT a due parametri</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-irt-a-tre-parametri">63.3. Modello IRT a tre parametri</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-dei-parametri">63.4. Interpretazione dei parametri</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#invarianza-di-gruppo-dei-parametri-degli-item-nella-irt">63.5. Invarianza di Gruppo dei Parametri degli Item nella IRT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">63.6. Considerazioni Conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">63.7. Session Info</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

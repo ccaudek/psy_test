@@ -1,0 +1,1264 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>44. Exploratory Structural Equation Modeling (ESEM) &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css?v=ffeaf963" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6ba04eab" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VMXNE4BCDL"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_cfa/06_efa_lavaan';</script>
+    <script src="../_static/custom.js?v=3f5092eb"></script>
+    <link rel="canonical" href="https://ccaudek.github.io/psy_test/_cfa/06_efa_lavaan.html" />
+    <link rel="icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="45. Introduzione ai Modelli SEM" href="../_sem/01_sem_intro.html" />
+    <link rel="prev" title="43. Modello bifattoriale" href="05_bifactor.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Scaling psicometrico</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/01_expval_var.html">1. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/02_joint_prob.html">2. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/03_measurement.html">3. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/04_norms.html">4. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/05_regression.html">5. L’analisi di regressione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E1_likert.html">6. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E2_optimal_scoring.html">7. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E3_thurstone.html">8. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/01_ctt_1.html">9. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/02_ctt_2.html">10. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/03_ctt_3.html">11. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/04_err_std_mis.html">12. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/05_err_std_stima.html">13. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/06_applications_ctt.html">14. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E1_ctt.html">15. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E2_item_analyses.html">16. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/01_multilevel_1.html">17. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/02_interrater_reliability.html">18. L’affidabilità tra giudici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/E1_irr.html">19. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/01_gtheory.html">20. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/01_validity.html">21. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/02_relations_to_other_vars.html">22. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sviluppo degli item</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_items/01_item_development.html">23. Lo sviluppo degli item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_items/02_item_analysis.html">24. Analisi degli item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">25. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale esplorativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/01_intro_fa.html">26. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/02_analisi_fattoriale_1.html">27. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/03_analisi_fattoriale_2.html">28. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/04_analisi_fattoriale_3.html">29. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/05_factor_scores.html">30. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/06_constraints_on_parms.html">31. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/07_total_score.html">32. Punteggio totale e modello fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione strumenti</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">33. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">34. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">35. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">36. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">37. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_cfa.html">38. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="E_01.html">39. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_meanstructure.html">40. La struttura delle medie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_cat_data.html">41. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_mmm.html">42. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_bifactor.html">43. Modello bifattoriale</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">44. Exploratory Structural Equation Modeling (ESEM)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/01_sem_intro.html">45. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/02_data_preparation.html">46. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/E_01.html">47. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/03_gof.html">48. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/04_mod_comp.html">49. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/05_cfa_mod_comp.html">50. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/06_refine_solution.html">51. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/07_group_invariance.html">52. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/08_multilevel_sem.html">53. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/09_structural_regr.html">54. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/10_missing_data.html">55. Dati mancanti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/11_small_samples.html">56. Modellizzazione SEM in Piccoli Campioni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/12_temp_reliability.html">57. Affidabilità longitudinale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_irt/01_logistic_regr.html">58. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/E_01.html">59. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/02_rasch_model.html">60. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/03_assumptions.html">61. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/04_estimation.html">62. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/05_1pl_2pl_3pl.html">63. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/06_implementation.html">64. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/07_polytomous_graded.html">65. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mokken Scales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/01_core_issues.html">66. Analisi della Scala di Mokken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/02_tutorial.html">67. Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/03_applications.html">68. Applicazione Pratica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/01_development.html">69. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/02_tutorial.html">70. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/01_lgm_intro.html">71. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/02_lgm_prelims.html">72. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/03_time_effects.html">73. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/04_invariance.html">74. Invarianza Fattoriale Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/05_intro_panel.html">75. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/06_lgm_mixed.html">76. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/07_growth_1.html">77. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/08_growth_cont.html">78. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/09_time_inv_cov.html">79. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/10_growth_groups.html">80. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/11_bivariate_tvc_models.html">81. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/12_inv_measurement.html">82. Invarianza di Misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/13_latent_change.html">83. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/750_latent_change.html">84. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/751_biv_change.html">85. Modello LCS bivariato</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">86. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a1_intro_r.html">87. Linguaggio R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a2_sums.html">88. Simbolo di somma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a3_calculus.html">89. Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a4_linear_alg.html">90. Elementi di algebra lineare</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_cfa/06_efa_lavaan.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Exploratory Structural Equation Modeling (ESEM)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitazioni-della-cfa">44.1. Limitazioni della CFA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploratory-structural-equation-modeling">44.2. Exploratory Structural Equation Modeling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otto-misure-di-personalita">44.3. Otto Misure di Personalità</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">44.4. Considerazioni Conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">44.5. Session Info</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="exploratory-structural-equation-modeling-esem">
+<span id="esem-lavaan-notebook"></span><h1><span class="section-number">44. </span>Exploratory Structural Equation Modeling (ESEM)<a class="headerlink" href="#exploratory-structural-equation-modeling-esem" title="Link to this heading">#</a></h1>
+<p>L’<em>Exploratory Structural Equation Modeling</em> (ESEM) è un framework analitico che integra i modelli di misurazione dell’Analisi Fattoriale Esplorativa (EFA) con il più strutturato approccio della Confirmatory Factor Analysis (CFA). Questa integrazione permette di godere dei benefici tipici della CFA, come la specificità e la rigore, pur mantenendo la flessibilità dell’EFA, che considera le saturazioni incrociate tra i fattori.</p>
+<p>Inoltre, lo sviluppo della rotazione target nell’ESEM facilita la definizione a priori dei principali carichi fattoriali, mentre consente che i carichi incrociati rimangano il più possibile vicini a zero, ma siano stimati in maniera libera. Questa tecnica di rotazione consente di applicare il modello in modo confermativo, basandosi su una struttura fattoriale predefinita, pur adottando una flessibilità tipica dell’EFA.</p>
+<p>In questo modo, l’ESEM si presta sia a usi confermativi che esplorativi, combinando i vantaggi di entrambi gli approcci — EFA e CFA — in un unico modello comprensivo.</p>
+<section id="limitazioni-della-cfa">
+<h2><span class="section-number">44.1. </span>Limitazioni della CFA<a class="headerlink" href="#limitazioni-della-cfa" title="Link to this heading">#</a></h2>
+<p>Nel modello di misurazione di Confirmatory Factor Analysis (CFA), comunemente adottato nella ricerca psicologica, solitamente sappiamo quali indicatori appartengono a ciascun fattore latente, una struttura denominata “a priori”. Questo approccio è utilizzato per verificare se la struttura fattoriale presunta corrisponde effettivamente ai dati raccolti.</p>
+<p>Tuttavia, nonostante la popolarità della CFA, essa presenta delle limitazioni significative. I modelli CFA spesso risultano eccessivamente semplici e restrittivi, presupponendo “fattori puri”, cioè assumento che ciascun item saturi solamente sui suoi fattori latenti predeterminati, con saturazioni incrociate (ovvero, contributi di un item a fattori non primari) vincolate a zero. Questa restrizione può non riflettere adeguatamente la realtà di molte misure psicologiche, dove gli item tendono a riflettere più di un costrutto. Questo approccio può portare a una rappresentazione artificiale delle relazioni tra gli item e i fattori, risultando in statistiche di adattamento del modello sovrastimate e correlazioni tra fattori positivamente distorte. Studi di simulazione hanno mostrato che anche piccole saturazioni incrociate, se ignorate, possono portare ad una distorsione nelle stime dei parametri.</p>
+<p>Un altro problema è rappresentato dagli indici di bontà di adattamento utilizzati nei modelli CFA, che sono spesso troppo restrittivi per strumenti psicologici multifattoriali, rendendo quasi impossibile ottenere un “buon” adattamento senza significative modifiche ai modelli. Tuttavia, quando analizzati a livello di item e per affidabilità, i modelli che non mostrano un buon adattamento possono comunque indicare saturazioni ragionevoli e alti livelli di affidabilità.</p>
+<p>In risposta a queste sfide, sono stati sviluppati approcci più flessibili e robusti, come l’<em>Exploratory Structural Equation Modeling</em> (ESEM).</p>
+</section>
+<section id="exploratory-structural-equation-modeling">
+<h2><span class="section-number">44.2. </span>Exploratory Structural Equation Modeling<a class="headerlink" href="#exploratory-structural-equation-modeling" title="Link to this heading">#</a></h2>
+<p>L’ESEM combina elementi delle CFA e dell’Exploratory Factor Analysis (EFA) all’interno del tradizionale framework delle Equazioni Strutturali (SEM). Questo approccio rappresenta un compromesso tra la ricerca iterativa di soluzioni fattoriali ottimali, tipica dell’EFA, e la modellazione teorica restrittiva delle CFA.</p>
+<p>L’ESEM è essenzialmente un metodo confermativo che permette anche un’esplorazione attraverso l’uso di rotazioni mirate, mantenendo la presenza di caricamenti incrociati, seppur minimizzati. All’interno dell’ESEM, il ricercatore può prevedere a priori una struttura fattoriale, similmente a quanto avviene nelle CFA, ma con una maggiore flessibilità permessa dalla possibilità di modellare saturazioni incrociate.</p>
+<p>Nell’ESEM, i fattori generali e specifici devono essere specificati come totalmente indipendenti, e le rotazioni ortogonali sono comuni nei modelli bifattoriali. I metodi di rotazione più usati nell’ESEM includono le rotazioni geomin e target, con rotazioni ortogonali adatte ai modelli più complessi.</p>
+<p>Le analisi di simulazione indicano che le correlazioni tra i fattori latenti ottenute con l’ESEM sono generalmente meno distorte e più vicine alle vere associazioni, rendendo i modelli ESEM più coerenti con le teorie sottostanti e le intenzioni degli strumenti psicometrici misurati.</p>
+<p>Quando un modello ESEM include solo una parte di misurazione, viene definito come “analisi fattoriale esplorativa” o EFA. Se il modello include anche una parte strutturale, come regressioni tra variabili latenti, è classificato come “modello di equazioni strutturali esplorativo” o ESEM.</p>
+</section>
+<section id="otto-misure-di-personalita">
+<h2><span class="section-number">44.3. </span>Otto Misure di Personalità<a class="headerlink" href="#otto-misure-di-personalita" title="Link to this heading">#</a></h2>
+<p>In questo esempio pratico analizzeremo nuovamente i dati di <span id="id1">Brown [<a class="reference internal" href="../z_biblio.html#id56" title="Timothy A Brown. Confirmatory factor analysis for applied research. Guilford publications, 2015.">Bro15</a>]</span>, ovvero otto misure di personalità raccolte su un campione di 250 pazienti che hanno concluso un programma di psicoterapia. Utilizzeremo un’analisi EFA mediante la funzione <code class="docutils literal notranslate"><span class="pre">efa()</span></code> di <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>.</p>
+<p>Gli item sono i seguenti:</p>
+<ul class="simple">
+<li><p>anxiety (N1),</p></li>
+<li><p>hostility (N2),</p></li>
+<li><p>depression (N3),</p></li>
+<li><p>self-consciousness (N4),</p></li>
+<li><p>warmth (E1),</p></li>
+<li><p>gregariousness (E2),</p></li>
+<li><p>assertiveness (E3),</p></li>
+<li><p>positive emotions (E4).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">varnames</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;N1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;N2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;N3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;N4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;E1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;E2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;E3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;E4&quot;</span><span class="p">)</span>
+<span class="n">sds</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;5.7  5.6  6.4  5.7  6.0  6.2  5.7  5.6&quot;</span>
+
+<span class="n">cors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s"> 1.000</span>
+<span class="s"> 0.767  1.000</span>
+<span class="s"> 0.731  0.709  1.000</span>
+<span class="s"> 0.778  0.738  0.762  1.000</span>
+<span class="s">-0.351  -0.302  -0.356  -0.318  1.000</span>
+<span class="s">-0.316  -0.280  -0.300  -0.267  0.675  1.000</span>
+<span class="s">-0.296  -0.289  -0.297  -0.296  0.634  0.651  1.000</span>
+<span class="s">-0.282  -0.254  -0.292  -0.245  0.534  0.593  0.566  1.000&quot;</span>
+
+<span class="n">psychot_cor_mat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">getCov</span><span class="p">(</span><span class="n">cors</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">varnames</span><span class="p">)</span>
+<span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">250</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Definiamo un modello ad un solo fattore comune.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1-factor model</span>
+<span class="n">f1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;</span>
+<span class="s">    efa(&quot;efa&quot;)*f1 =~ N1 + N2 + N3 + N4 + E1 + E2 + E3 + E4</span>
+<span class="s">&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Definiamo un modello con due fattori comuni.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2-factor model</span>
+<span class="n">f2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;</span>
+<span class="s">    efa(&quot;efa&quot;)*f1 +</span>
+<span class="s">    efa(&quot;efa&quot;)*f2 =~ N1 + N2 + N3 + N4 + E1 + E2 + E3 + E4</span>
+<span class="s">&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo ai dati il modello ad un fattore comune.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">efa_f1</span><span class="w"> </span><span class="o">&lt;-</span><span class="nf">cfa</span><span class="p">(</span>
+<span class="w">    </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f1</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.cov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">psychot_cor_mat</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.nobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">250</span><span class="p">,</span>
+<span class="w">    </span><span class="n">rotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;oblimin&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo la soluzione ottenuta.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">semPlot</span><span class="o">::</span><span class="nf">semPaths</span><span class="p">(</span><span class="n">efa_f1</span><span class="p">,</span>
+<span class="w">    </span><span class="n">what</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;col&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;std&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mx&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;tree2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nCharNodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">,</span>
+<span class="w">    </span><span class="n">shapeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rectangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/ee0d6ff0d47f6f83a22a7f353f4e88caf99f7f67eb55481b6113573791bfea96.png"><img alt="../_images/ee0d6ff0d47f6f83a22a7f353f4e88caf99f7f67eb55481b6113573791bfea96.png" src="../_images/ee0d6ff0d47f6f83a22a7f353f4e88caf99f7f67eb55481b6113573791bfea96.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span>
+<span class="w">    </span><span class="n">efa_f1</span><span class="p">,</span>
+<span class="w">    </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">standardized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">rsquare</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span>
+<span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 2 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        16
+
+  Rotation method                      OBLIMIN OBLIQUE
+  Oblimin gamma                                      0
+  Rotation algorithm (rstarts)                GPA (30)
+  Standardized metric                             TRUE
+  Row weights                                     None
+
+  Number of observations                           250
+
+Model Test User Model:
+                                                      
+  Test statistic                               375.327
+  Degrees of freedom                                20
+  P-value (Chi-square)                           0.000
+
+Model Test Baseline Model:
+
+  Test statistic                              1253.791
+  Degrees of freedom                                28
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.710
+  Tucker-Lewis Index (TLI)                       0.594
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -2394.637
+  Loglikelihood unrestricted model (H1)      -2206.974
+                                                      
+  Akaike (AIC)                                4821.275
+  Bayesian (BIC)                              4877.618
+  Sample-size adjusted Bayesian (SABIC)       4826.897
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.267
+  90 Percent confidence interval - lower         0.243
+  90 Percent confidence interval - upper         0.291
+  P-value H_0: RMSEA &lt;= 0.050                    0.000
+  P-value H_0: RMSEA &gt;= 0.080                    1.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.187
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  f1 =~ efa                                                             
+    N1                0.879    0.051   17.333    0.000    0.879    0.880
+    N2                0.841    0.052   16.154    0.000    0.841    0.842
+    N3                0.841    0.052   16.175    0.000    0.841    0.843
+    N4                0.870    0.051   17.065    0.000    0.870    0.872
+    E1               -0.438    0.062   -7.041    0.000   -0.438   -0.439
+    E2               -0.398    0.063   -6.327    0.000   -0.398   -0.398
+    E3               -0.398    0.063   -6.342    0.000   -0.398   -0.399
+    E4               -0.364    0.063   -5.746    0.000   -0.364   -0.364
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .N1                0.224    0.028    7.915    0.000    0.224    0.225
+   .N2                0.289    0.033    8.880    0.000    0.289    0.290
+   .N3                0.288    0.032    8.866    0.000    0.288    0.289
+   .N4                0.239    0.029    8.174    0.000    0.239    0.240
+   .E1                0.804    0.073   10.963    0.000    0.804    0.807
+   .E2                0.838    0.076   11.008    0.000    0.838    0.841
+   .E3                0.837    0.076   11.007    0.000    0.837    0.841
+   .E4                0.864    0.078   11.041    0.000    0.864    0.867
+    f1                1.000                               1.000    1.000
+
+R-Square:
+                   Estimate
+    N1                0.775
+    N2                0.710
+    N3                0.711
+    N4                0.760
+    E1                0.193
+    E2                0.159
+    E3                0.159
+    E4                0.133
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">standardizedSolution</span><span class="p">(</span><span class="n">efa_f1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A lavaan.data.frame: 17 × 9</caption>
+<thead>
+	<tr><th scope=col>lhs</th><th scope=col>op</th><th scope=col>rhs</th><th scope=col>est.std</th><th scope=col>se</th><th scope=col>z</th><th scope=col>pvalue</th><th scope=col>ci.lower</th><th scope=col>ci.upper</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>f1</td><td>=~</td><td>N1</td><td> 0.8803717</td><td>0.01821233</td><td>48.339322</td><td>0.000000e+00</td><td> 0.8446762</td><td> 0.9160673</td></tr>
+	<tr><td>f1</td><td>=~</td><td>N2</td><td> 0.8424369</td><td>0.02179745</td><td>38.648409</td><td>0.000000e+00</td><td> 0.7997147</td><td> 0.8851591</td></tr>
+	<tr><td>f1</td><td>=~</td><td>N3</td><td> 0.8431190</td><td>0.02173170</td><td>38.796733</td><td>0.000000e+00</td><td> 0.8005257</td><td> 0.8857124</td></tr>
+	<tr><td>f1</td><td>=~</td><td>N4</td><td> 0.8719792</td><td>0.01898826</td><td>45.922019</td><td>0.000000e+00</td><td> 0.8347629</td><td> 0.9091955</td></tr>
+	<tr><td>f1</td><td>=~</td><td>E1</td><td>-0.4389273</td><td>0.05368053</td><td>-8.176656</td><td>2.220446e-16</td><td>-0.5441392</td><td>-0.3337153</td></tr>
+	<tr><td>f1</td><td>=~</td><td>E2</td><td>-0.3983268</td><td>0.05581495</td><td>-7.136560</td><td>9.570122e-13</td><td>-0.5077221</td><td>-0.2889315</td></tr>
+	<tr><td>f1</td><td>=~</td><td>E3</td><td>-0.3991904</td><td>0.05577170</td><td>-7.157580</td><td>8.211209e-13</td><td>-0.5085009</td><td>-0.2898799</td></tr>
+	<tr><td>f1</td><td>=~</td><td>E4</td><td>-0.3644271</td><td>0.05743899</td><td>-6.344595</td><td>2.230112e-10</td><td>-0.4770055</td><td>-0.2518488</td></tr>
+	<tr><td>N1</td><td>~~</td><td>N1</td><td> 0.2249456</td><td>0.03206479</td><td> 7.015345</td><td>2.293721e-12</td><td> 0.1620998</td><td> 0.2877914</td></tr>
+	<tr><td>N2</td><td>~~</td><td>N2</td><td> 0.2903001</td><td>0.03672516</td><td> 7.904666</td><td>2.664535e-15</td><td> 0.2183201</td><td> 0.3622801</td></tr>
+	<tr><td>N3</td><td>~~</td><td>N3</td><td> 0.2891503</td><td>0.03664399</td><td> 7.890797</td><td>3.108624e-15</td><td> 0.2173294</td><td> 0.3609712</td></tr>
+	<tr><td>N4</td><td>~~</td><td>N4</td><td> 0.2396523</td><td>0.03311262</td><td> 7.237491</td><td>4.569678e-13</td><td> 0.1747527</td><td> 0.3045518</td></tr>
+	<tr><td>E1</td><td>~~</td><td>E1</td><td> 0.8073429</td><td>0.04708357</td><td>17.147019</td><td>0.000000e+00</td><td> 0.7150608</td><td> 0.8996250</td></tr>
+	<tr><td>E2</td><td>~~</td><td>E2</td><td> 0.8413358</td><td>0.04442120</td><td>18.939962</td><td>0.000000e+00</td><td> 0.7542718</td><td> 0.9283997</td></tr>
+	<tr><td>E3</td><td>~~</td><td>E3</td><td> 0.8406470</td><td>0.04448315</td><td>18.898100</td><td>0.000000e+00</td><td> 0.7534617</td><td> 0.9278324</td></tr>
+	<tr><td>E4</td><td>~~</td><td>E4</td><td> 0.8671929</td><td>0.04181755</td><td>20.737533</td><td>0.000000e+00</td><td> 0.7852320</td><td> 0.9491538</td></tr>
+	<tr><td>f1</td><td>~~</td><td>f1</td><td> 1.0000000</td><td>0.00000000</td><td>       NA</td><td>          NA</td><td> 1.0000000</td><td> 1.0000000</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lavaan</span><span class="o">::</span><span class="nf">residuals</span><span class="p">(</span><span class="n">efa_f1</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;cor&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>$type
+[1] &quot;cor.bollen&quot;
+
+$cov
+       N1     N2     N3     N4     E1     E2     E3     E4
+N1  0.000                                                 
+N2  0.025  0.000                                          
+N3 -0.011 -0.001  0.000                                   
+N4  0.010  0.003  0.027  0.000                            
+E1  0.035  0.068  0.014  0.065  0.000                     
+E2  0.035  0.056  0.036  0.080  0.500  0.000              
+E3  0.055  0.047  0.040  0.052  0.459  0.492  0.000       
+E4  0.039  0.053  0.015  0.073  0.374  0.448  0.421  0.000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo ai dati il modello a due fattori comuni.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">efa_f2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cfa</span><span class="p">(</span>
+<span class="w">    </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f2</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.cov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">psychot_cor_mat</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.nobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">250</span><span class="p">,</span>
+<span class="w">    </span><span class="n">rotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;oblimin&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo la soluzione ottenuta.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">semPlot</span><span class="o">::</span><span class="nf">semPaths</span><span class="p">(</span><span class="n">efa_f2</span><span class="p">,</span>
+<span class="w">    </span><span class="n">what</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;col&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;std&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mx&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;tree2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nCharNodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">,</span>
+<span class="w">    </span><span class="n">shapeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rectangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/2620587c529bd5f1618031cd4247069f26cdb8d61519d033adc45a0b40f435d5.png"><img alt="../_images/2620587c529bd5f1618031cd4247069f26cdb8d61519d033adc45a0b40f435d5.png" src="../_images/2620587c529bd5f1618031cd4247069f26cdb8d61519d033adc45a0b40f435d5.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span>
+<span class="w">    </span><span class="n">efa_f2</span><span class="p">,</span>
+<span class="w">    </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">standardized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">rsquare</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span>
+<span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 1 iteration
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        23
+
+  Rotation method                      OBLIMIN OBLIQUE
+  Oblimin gamma                                      0
+  Rotation algorithm (rstarts)                GPA (30)
+  Standardized metric                             TRUE
+  Row weights                                     None
+
+  Number of observations                           250
+
+Model Test User Model:
+                                                      
+  Test statistic                                 9.811
+  Degrees of freedom                                13
+  P-value (Chi-square)                           0.709
+
+Model Test Baseline Model:
+
+  Test statistic                              1253.791
+  Degrees of freedom                                28
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    1.000
+  Tucker-Lewis Index (TLI)                       1.006
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -2211.879
+  Loglikelihood unrestricted model (H1)      -2206.974
+                                                      
+  Akaike (AIC)                                4469.758
+  Bayesian (BIC)                              4550.752
+  Sample-size adjusted Bayesian (SABIC)       4477.840
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.000
+  90 Percent confidence interval - lower         0.000
+  90 Percent confidence interval - upper         0.048
+  P-value H_0: RMSEA &lt;= 0.050                    0.957
+  P-value H_0: RMSEA &gt;= 0.080                    0.001
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.010
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  f1 =~ efa                                                             
+    N1                0.874    0.053   16.592    0.000    0.874    0.876
+    N2                0.851    0.055   15.551    0.000    0.851    0.853
+    N3                0.826    0.054   15.179    0.000    0.826    0.828
+    N4                0.896    0.053   16.802    0.000    0.896    0.898
+    E1               -0.046    0.040   -1.138    0.255   -0.046   -0.046
+    E2                0.035    0.034    1.030    0.303    0.035    0.035
+    E3                0.000    0.040    0.010    0.992    0.000    0.000
+    E4               -0.006    0.049   -0.131    0.896   -0.006   -0.006
+  f2 =~ efa                                                             
+    N1               -0.017    0.032   -0.539    0.590   -0.017   -0.017
+    N2                0.011    0.035    0.322    0.748    0.011    0.011
+    N3               -0.035    0.036   -0.949    0.343   -0.035   -0.035
+    N4                0.031    0.031    0.994    0.320    0.031    0.031
+    E1                0.776    0.059   13.125    0.000    0.776    0.778
+    E2                0.854    0.058   14.677    0.000    0.854    0.855
+    E3                0.785    0.060   13.106    0.000    0.785    0.787
+    E4                0.695    0.063   10.955    0.000    0.695    0.697
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  f1 ~~                                                                 
+    f2               -0.432    0.059   -7.345    0.000   -0.432   -0.432
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .N1                0.218    0.028    7.790    0.000    0.218    0.219
+   .N2                0.279    0.032    8.693    0.000    0.279    0.280
+   .N3                0.287    0.032    8.907    0.000    0.287    0.289
+   .N4                0.216    0.029    7.578    0.000    0.216    0.217
+   .E1                0.361    0.044    8.226    0.000    0.361    0.362
+   .E2                0.292    0.043    6.787    0.000    0.292    0.293
+   .E3                0.379    0.046    8.315    0.000    0.379    0.381
+   .E4                0.509    0.053    9.554    0.000    0.509    0.511
+    f1                1.000                               1.000    1.000
+    f2                1.000                               1.000    1.000
+
+R-Square:
+                   Estimate
+    N1                0.781
+    N2                0.720
+    N3                0.711
+    N4                0.783
+    E1                0.638
+    E2                0.707
+    E3                0.619
+    E4                0.489
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">standardizedSolution</span><span class="p">(</span><span class="n">efa_f2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A lavaan.data.frame: 27 × 9</caption>
+<thead>
+	<tr><th scope=col>lhs</th><th scope=col>op</th><th scope=col>rhs</th><th scope=col>est.std</th><th scope=col>se</th><th scope=col>z</th><th scope=col>pvalue</th><th scope=col>ci.lower</th><th scope=col>ci.upper</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>f1</td><td>=~</td><td>N1</td><td> 0.8761395232</td><td>0.02407374</td><td>36.39399384</td><td>0.000000e+00</td><td> 0.82895586</td><td> 0.92332319</td></tr>
+	<tr><td>f1</td><td>=~</td><td>N2</td><td> 0.8531678270</td><td>0.02702386</td><td>31.57091115</td><td>0.000000e+00</td><td> 0.80020204</td><td> 0.90613362</td></tr>
+	<tr><td>f1</td><td>=~</td><td>N3</td><td> 0.8279481145</td><td>0.02867524</td><td>28.87327885</td><td>0.000000e+00</td><td> 0.77174568</td><td> 0.88415055</td></tr>
+	<tr><td>f1</td><td>=~</td><td>N4</td><td> 0.8978425346</td><td>0.02300070</td><td>39.03544436</td><td>0.000000e+00</td><td> 0.85276199</td><td> 0.94292308</td></tr>
+	<tr><td>f1</td><td>=~</td><td>E1</td><td>-0.0459319488</td><td>0.04188336</td><td>-1.09666348</td><td>2.727885e-01</td><td>-0.12802182</td><td> 0.03615792</td></tr>
+	<tr><td>f1</td><td>=~</td><td>E2</td><td> 0.0348802799</td><td>0.03211345</td><td> 1.08615802</td><td>2.774091e-01</td><td>-0.02806092</td><td> 0.09782148</td></tr>
+	<tr><td>f1</td><td>=~</td><td>E3</td><td> 0.0004048221</td><td>0.04030477</td><td> 0.01004402</td><td>9.919862e-01</td><td>-0.07859108</td><td> 0.07940073</td></tr>
+	<tr><td>f1</td><td>=~</td><td>E4</td><td>-0.0064182980</td><td>0.04931573</td><td>-0.13014707</td><td>8.964501e-01</td><td>-0.10307536</td><td> 0.09023876</td></tr>
+	<tr><td>f2</td><td>=~</td><td>N1</td><td>-0.0170399299</td><td>0.03201090</td><td>-0.53231646</td><td>5.945068e-01</td><td>-0.07978014</td><td> 0.04570028</td></tr>
+	<tr><td>f2</td><td>=~</td><td>N2</td><td> 0.0113498402</td><td>0.03500517</td><td> 0.32423325</td><td>7.457615e-01</td><td>-0.05725903</td><td> 0.07995871</td></tr>
+	<tr><td>f2</td><td>=~</td><td>N3</td><td>-0.0346710680</td><td>0.03754544</td><td>-0.92344282</td><td>3.557765e-01</td><td>-0.10825878</td><td> 0.03891664</td></tr>
+	<tr><td>f2</td><td>=~</td><td>N4</td><td> 0.0308917397</td><td>0.02998259</td><td> 1.03032261</td><td>3.028586e-01</td><td>-0.02787306</td><td> 0.08965654</td></tr>
+	<tr><td>f2</td><td>=~</td><td>E1</td><td> 0.7778646427</td><td>0.03799550</td><td>20.47254878</td><td>0.000000e+00</td><td> 0.70339484</td><td> 0.85233445</td></tr>
+	<tr><td>f2</td><td>=~</td><td>E2</td><td> 0.8553962991</td><td>0.03237211</td><td>26.42386727</td><td>0.000000e+00</td><td> 0.79194813</td><td> 0.91884447</td></tr>
+	<tr><td>f2</td><td>=~</td><td>E3</td><td> 0.7870607946</td><td>0.03768569</td><td>20.88486912</td><td>0.000000e+00</td><td> 0.71319819</td><td> 0.86092340</td></tr>
+	<tr><td>f2</td><td>=~</td><td>E4</td><td> 0.6965219261</td><td>0.04556084</td><td>15.28773160</td><td>0.000000e+00</td><td> 0.60722432</td><td> 0.78581954</td></tr>
+	<tr><td>N1</td><td>~~</td><td>N1</td><td> 0.2191956687</td><td>0.03170768</td><td> 6.91301577</td><td>4.744649e-12</td><td> 0.15704976</td><td> 0.28134157</td></tr>
+	<tr><td>N2</td><td>~~</td><td>N2</td><td> 0.2803386887</td><td>0.03624154</td><td> 7.73528689</td><td>1.021405e-14</td><td> 0.20930658</td><td> 0.35137080</td></tr>
+	<tr><td>N3</td><td>~~</td><td>N3</td><td> 0.2885084763</td><td>0.03644206</td><td> 7.91690962</td><td>2.442491e-15</td><td> 0.21708336</td><td> 0.35993360</td></tr>
+	<tr><td>N4</td><td>~~</td><td>N4</td><td> 0.2168781811</td><td>0.03209316</td><td> 6.75776865</td><td>1.401324e-11</td><td> 0.15397673</td><td> 0.27977963</td></tr>
+	<tr><td>E1</td><td>~~</td><td>E1</td><td> 0.3619601932</td><td>0.04713705</td><td> 7.67888939</td><td>1.598721e-14</td><td> 0.26957327</td><td> 0.45434711</td></tr>
+	<tr><td>E2</td><td>~~</td><td>E2</td><td> 0.2928483379</td><td>0.04628174</td><td> 6.32751356</td><td>2.491432e-10</td><td> 0.20213779</td><td> 0.38355888</td></tr>
+	<tr><td>E3</td><td>~~</td><td>E3</td><td> 0.3808103127</td><td>0.04868397</td><td> 7.82208813</td><td>5.107026e-15</td><td> 0.28539148</td><td> 0.47622914</td></tr>
+	<tr><td>E4</td><td>~~</td><td>E4</td><td> 0.5109551463</td><td>0.05301682</td><td> 9.63760518</td><td>0.000000e+00</td><td> 0.40704410</td><td> 0.61486620</td></tr>
+	<tr><td>f1</td><td>~~</td><td>f1</td><td> 1.0000000000</td><td>0.00000000</td><td>         NA</td><td>          NA</td><td> 1.00000000</td><td> 1.00000000</td></tr>
+	<tr><td>f2</td><td>~~</td><td>f2</td><td> 1.0000000000</td><td>0.00000000</td><td>         NA</td><td>          NA</td><td> 1.00000000</td><td> 1.00000000</td></tr>
+	<tr><td>f1</td><td>~~</td><td>f2</td><td>-0.4318172849</td><td>0.05799109</td><td>-7.44626950</td><td>9.592327e-14</td><td>-0.54547773</td><td>-0.31815684</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Anche se abbiamo introdotto finora soltanto la misura di bontà di adattamento del chi-quadrato, aggiungiamo qui il calcolo di altre misure di bontà di adattamento che discuteremo in seguito.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit_measures_robust</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;chisq&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;df&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;pvalue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cfi&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rmsea&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;srmr&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Confrontiamo le misure di bontà di adattamento del modello che ipotizza un solo fattore comune e il modello che ipotizza la presenza di due fattori comuni.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># collect them for each model</span>
+<span class="nf">rbind</span><span class="p">(</span>
+<span class="w">    </span><span class="nf">fitmeasures</span><span class="p">(</span><span class="n">efa_f1</span><span class="p">,</span><span class="w"> </span><span class="n">fit_measures_robust</span><span class="p">),</span>
+<span class="w">    </span><span class="nf">fitmeasures</span><span class="p">(</span><span class="n">efa_f2</span><span class="p">,</span><span class="w"> </span><span class="n">fit_measures_robust</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="c1"># wrangle</span>
+<span class="w">    </span><span class="nf">data.frame</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">mutate</span><span class="p">(</span>
+<span class="w">        </span><span class="n">chisq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">chisq</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">),</span>
+<span class="w">        </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.integer</span><span class="p">(</span><span class="n">df</span><span class="p">),</span>
+<span class="w">        </span><span class="n">pvalue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">pvalue</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&lt; .001&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pvalue</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">mutate_at</span><span class="p">(</span><span class="nf">vars</span><span class="p">(</span><span class="n">cfi</span><span class="o">:</span><span class="n">srmr</span><span class="p">),</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 2 × 6</caption>
+<thead>
+	<tr><th scope=col>chisq</th><th scope=col>df</th><th scope=col>pvalue</th><th scope=col>cfi</th><th scope=col>rmsea</th><th scope=col>srmr</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>375</td><td>20</td><td><span style=white-space:pre-wrap>&lt; .001           </span></td><td>0.71</td><td>0.267</td><td>0.187</td></tr>
+	<tr><td> 10</td><td>13</td><td>0.709310449320098</td><td>1.00</td><td>0.000</td><td>0.010</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lavaan</span><span class="o">::</span><span class="nf">residuals</span><span class="p">(</span><span class="n">efa_f2</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;cor&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>$type
+[1] &quot;cor.bollen&quot;
+
+$cov
+       N1     N2     N3     N4     E1     E2     E3     E4
+N1  0.000                                                 
+N2  0.018  0.000                                          
+N3 -0.014 -0.006  0.000                                   
+N4 -0.003 -0.013  0.017  0.000                            
+E1 -0.003  0.015 -0.012  0.000  0.000                     
+E2 -0.009 -0.004  0.006  0.007  0.006  0.000              
+E3  0.015 -0.008  0.011 -0.016  0.006 -0.010  0.000       
+E4 -0.001  0.000 -0.013  0.009 -0.024  0.006  0.016  0.000
+</pre></div>
+</div>
+</div>
+</div>
+<p>L’evidenza empirica supporta la superiorità del modello a due fattori rispetto a quello ad un solo fattore comune. In particolare, l’analisi fattoriale esplorativa svolta mediante la funzione <code class="docutils literal notranslate"><span class="pre">efa()</span></code> evidenzia la capacità del modello a due fattori di fornire una descrizione adeguata della struttura dei dati e di distinguere in modo sensato tra i due fattori ipotizzati.</p>
+</section>
+<section id="considerazioni-conclusive">
+<h2><span class="section-number">44.4. </span>Considerazioni Conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h2>
+<p>L’Exploratory Structural Equation Modeling (ESEM) rappresenta un ponte significativo tra i modelli di misurazione tradizionali dell’Exploratory Factor Analysis (EFA) e il più esteso quadro del Confirmatory Factor Analysis/Structural Equation Modeling (CFA/SEM). Grazie a questo, l’ESEM combina i benefici dell’EFA con quelli del CFA/SEM, fornendo un approccio più flessibile e inclusivo nell’analisi dei dati. Tale integrazione ha segnato un progresso notevole nella ricerca statistica, evidenziando l’importanza dell’EFA che precedentemente era sottovalutata.</p>
+<p>L’ESEM e il quadro bifattoriale-ESEM, in particolare, offrono una rappresentazione più fedele e precisa della multidimensionalità dei costrutti psicometrici, che è spesso presente nelle misurazioni. Questo approccio riconosce e gestisce meglio la natura multidimensionale dei costrutti, a differenza dell’approccio tradizionale del CFA, che tende a sovrastimare le correlazioni tra i fattori quando non considera adeguatamente la loro natura gerarchica e interconnessa (Asparouhov et al., 2015; Morin et al., 2020).</p>
+<p>Nonostante questi vantaggi, l’ESEM presenta alcune limitazioni che devono essere considerate:</p>
+<ol class="arabic simple">
+<li><p><strong>Complessità Computazionale</strong>: L’ESEM può essere più complesso e richiedere maggiori risorse computazionali rispetto agli approcci tradizionali, soprattutto quando si gestiscono grandi set di dati o modelli con molti fattori.</p></li>
+<li><p><strong>Interpretazione dei Risultati</strong>: A causa della sua flessibilità, l’ESEM può produrre risultati che sono più difficili da interpretare. Ad esempio, la sovrapposizione tra i fattori può complicare l’interpretazione dei costrutti.</p></li>
+<li><p><strong>Rischio di Overfitting</strong>: La maggiore flessibilità dell’ESEM può anche portare a un rischio maggiore di overfitting, specialmente in campioni più piccoli o con modelli eccessivamente complessi.</p></li>
+<li><p><strong>Necessità di Esperienza e Conoscenza</strong>: Per utilizzare efficacemente l’ESEM, è richiesta una comprensione approfondita della teoria sottostante e delle tecniche statistiche, che può essere una barriera per alcuni ricercatori.</p></li>
+</ol>
+<p>Nonostante queste limitazioni, ci si aspetta che ulteriori sviluppi e applicazioni dell’ESEM portino a soluzioni più integrate e a un consenso più ampio sulle migliori pratiche nell’uso di questo potente strumento statistico.</p>
+</section>
+<section id="session-info">
+<h2><span class="section-number">44.5. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.3.3 (2024-02-29)
+Platform: x86_64-apple-darwin20 (64-bit)
+Running under: macOS Sonoma 14.3.1
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
+
+locale:
+[1] en_US.UTF-8/UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: Europe/Rome
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] ggokabeito_0.1.0   viridis_0.6.5      viridisLite_0.4.2  ggpubr_0.6.0      
+ [5] ggExtra_0.10.1     bayesplot_1.11.1   gridExtra_2.3      patchwork_1.2.0   
+ [9] semTools_0.5-6.920 semPlot_1.1.6      lavaan_0.6-17      psych_2.4.1       
+[13] scales_1.3.0       markdown_1.12      knitr_1.45         lubridate_1.9.3   
+[17] forcats_1.0.0      stringr_1.5.1      dplyr_1.1.4        purrr_1.0.2       
+[21] readr_2.1.5        tidyr_1.3.1        tibble_3.2.1       ggplot2_3.5.0     
+[25] tidyverse_2.0.0    here_1.0.1        
+
+loaded via a namespace (and not attached):
+  [1] rstudioapi_0.15.0   jsonlite_1.8.8      magrittr_2.0.3     
+  [4] TH.data_1.1-2       estimability_1.5    nloptr_2.0.3       
+  [7] rmarkdown_2.26      vctrs_0.6.5         minqa_1.2.6        
+ [10] base64enc_0.1-3     rstatix_0.7.2       htmltools_0.5.7    
+ [13] broom_1.0.5         Formula_1.2-5       htmlwidgets_1.6.4  
+ [16] plyr_1.8.9          sandwich_3.1-0      emmeans_1.10.0     
+ [19] zoo_1.8-12          uuid_1.2-0          igraph_2.0.2       
+ [22] mime_0.12           lifecycle_1.0.4     pkgconfig_2.0.3    
+ [25] Matrix_1.6-5        R6_2.5.1            fastmap_1.1.1      
+ [28] shiny_1.8.0         numDeriv_2016.8-1.1 digest_0.6.34      
+ [31] OpenMx_2.21.11      fdrtool_1.2.17      colorspace_2.1-0   
+ [34] rprojroot_2.0.4     Hmisc_5.1-1         fansi_1.0.6        
+ [37] timechange_0.3.0    abind_1.4-5         compiler_4.3.3     
+ [40] withr_3.0.0         glasso_1.11         htmlTable_2.4.2    
+ [43] backports_1.4.1     carData_3.0-5       ggsignif_0.6.4     
+ [46] MASS_7.3-60.0.1     corpcor_1.6.10      gtools_3.9.5       
+ [49] tools_4.3.3         pbivnorm_0.6.0      foreign_0.8-86     
+ [52] zip_2.3.1           httpuv_1.6.14       nnet_7.3-19        
+ [55] glue_1.7.0          quadprog_1.5-8      nlme_3.1-164       
+ [58] promises_1.2.1      lisrelToR_0.3       grid_4.3.3         
+ [61] pbdZMQ_0.3-11       checkmate_2.3.1     cluster_2.1.6      
+ [64] reshape2_1.4.4      generics_0.1.3      gtable_0.3.4       
+ [67] tzdb_0.4.0          data.table_1.15.2   hms_1.1.3          
+ [70] car_3.1-2           utf8_1.2.4          sem_3.1-15         
+ [73] pillar_1.9.0        IRdisplay_1.1       rockchalk_1.8.157  
+ [76] later_1.3.2         splines_4.3.3       lattice_0.22-5     
+ [79] survival_3.5-8      kutils_1.73         tidyselect_1.2.0   
+ [82] miniUI_0.1.1.1      pbapply_1.7-2       stats4_4.3.3       
+ [85] xfun_0.42           qgraph_1.9.8        arm_1.13-1         
+ [88] stringi_1.8.3       boot_1.3-29         evaluate_0.23      
+ [91] codetools_0.2-19    mi_1.1              cli_3.6.2          
+ [94] RcppParallel_5.1.7  IRkernel_1.3.2      rpart_4.1.23       
+ [97] xtable_1.8-4        repr_1.1.6          munsell_0.5.0      
+[100] Rcpp_1.0.12         coda_0.19-4.1       png_0.1-8          
+[103] XML_3.99-0.16.1     parallel_4.3.3      ellipsis_0.3.2     
+[106] jpeg_0.1-10         lme4_1.1-35.1       mvtnorm_1.2-4      
+[109] openxlsx_4.2.5.2    crayon_1.5.2        rlang_1.1.3        
+[112] multcomp_1.4-25     mnormt_2.1.1       
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_cfa"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="05_bifactor.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">43. </span>Modello bifattoriale</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../_sem/01_sem_intro.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">45. </span>Introduzione ai Modelli SEM</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitazioni-della-cfa">44.1. Limitazioni della CFA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploratory-structural-equation-modeling">44.2. Exploratory Structural Equation Modeling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otto-misure-di-personalita">44.3. Otto Misure di Personalità</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">44.4. Considerazioni Conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">44.5. Session Info</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1045 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>61. Assunzioni e Proprietà del Modello di Rasch &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css?v=ffeaf963" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6ba04eab" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VMXNE4BCDL"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_irt/03_assumptions';</script>
+    <script src="../_static/custom.js?v=3f5092eb"></script>
+    <link rel="canonical" href="https://ccaudek.github.io/psy_test/_irt/03_assumptions.html" />
+    <link rel="icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="62. Stima" href="04_estimation.html" />
+    <link rel="prev" title="60. Modello di Rasch" href="02_rasch_model.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Scaling psicometrico</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/01_expval_var.html">1. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/02_joint_prob.html">2. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/03_measurement.html">3. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/04_norms.html">4. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/05_regression.html">5. L’analisi di regressione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E1_likert.html">6. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E2_optimal_scoring.html">7. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E3_thurstone.html">8. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/01_ctt_1.html">9. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/02_ctt_2.html">10. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/03_ctt_3.html">11. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/04_err_std_mis.html">12. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/05_err_std_stima.html">13. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/06_applications_ctt.html">14. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E1_ctt.html">15. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E2_item_analyses.html">16. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/01_multilevel_1.html">17. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/02_interrater_reliability.html">18. L’affidabilità tra giudici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/E1_irr.html">19. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/01_gtheory.html">20. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/01_validity.html">21. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/02_relations_to_other_vars.html">22. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sviluppo degli item</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_items/01_item_development.html">23. Lo sviluppo degli item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_items/02_item_analysis.html">24. Analisi degli item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">25. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale esplorativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/01_intro_fa.html">26. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/02_analisi_fattoriale_1.html">27. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/03_analisi_fattoriale_2.html">28. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/04_analisi_fattoriale_3.html">29. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/05_factor_scores.html">30. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/06_constraints_on_parms.html">31. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/07_total_score.html">32. Punteggio totale e modello fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione strumenti</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">33. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">34. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">35. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">36. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">37. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/01_cfa.html">38. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/E_01.html">39. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/02_meanstructure.html">40. La struttura delle medie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/03_cat_data.html">41. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/04_mmm.html">42. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/05_bifactor.html">43. Modello bifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/06_efa_lavaan.html">44. Exploratory Structural Equation Modeling (ESEM)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/01_sem_intro.html">45. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/02_data_preparation.html">46. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/E_01.html">47. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/03_gof.html">48. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/04_mod_comp.html">49. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/05_cfa_mod_comp.html">50. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/06_refine_solution.html">51. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/07_group_invariance.html">52. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/08_multilevel_sem.html">53. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/09_structural_regr.html">54. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/10_missing_data.html">55. Dati mancanti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/11_small_samples.html">56. Modellizzazione SEM in Piccoli Campioni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/12_temp_reliability.html">57. Affidabilità longitudinale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_logistic_regr.html">58. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="E_01.html">59. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_rasch_model.html">60. Modello di Rasch</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">61. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_estimation.html">62. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_1pl_2pl_3pl.html">63. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_implementation.html">64. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_polytomous_graded.html">65. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mokken Scales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/01_core_issues.html">66. Analisi della Scala di Mokken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/02_tutorial.html">67. Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/03_applications.html">68. Applicazione Pratica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/01_development.html">69. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/02_tutorial.html">70. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/01_lgm_intro.html">71. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/02_lgm_prelims.html">72. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/03_time_effects.html">73. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/04_invariance.html">74. Invarianza Fattoriale Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/05_intro_panel.html">75. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/06_lgm_mixed.html">76. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/07_growth_1.html">77. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/08_growth_cont.html">78. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/09_time_inv_cov.html">79. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/10_growth_groups.html">80. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/11_bivariate_tvc_models.html">81. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/12_inv_measurement.html">82. Invarianza di Misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/13_latent_change.html">83. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/750_latent_change.html">84. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/751_biv_change.html">85. Modello LCS bivariato</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">86. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a1_intro_r.html">87. Linguaggio R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a2_sums.html">88. Simbolo di somma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a3_calculus.html">89. Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a4_linear_alg.html">90. Elementi di algebra lineare</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_irt/03_assumptions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Assunzioni e Proprietà del Modello di Rasch</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistiche-sufficienti-definizione-e-applicazioni">61.1. Statistiche Sufficienti: Definizione e Applicazioni</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applicazioni-nel-modello-di-rasch">61.1.1. Applicazioni nel Modello di Rasch</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive-sul-modello-di-rasch">61.2. Considerazioni Conclusive sul Modello di Rasch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indipendenza-stocastica-locale-e-applicazioni-nel-modello-di-rasch">61.3. Indipendenza Stocastica Locale e Applicazioni nel Modello di Rasch</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concetto-di-indipendenza-stocastica-locale">61.3.1. Concetto di Indipendenza Stocastica Locale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indipendenza-nel-modello-di-rasch">61.3.2. Indipendenza nel Modello di Rasch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-dei-vettori-per-semplificare-il-modello">61.3.3. Uso dei Vettori per Semplificare il Modello</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitazioni-e-considerazioni">61.3.4. Limitazioni e Considerazioni</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estensione-della-probabilita-congiunta-dalle-singole-risposte-alla-collettivita">61.3.5. Estensione della Probabilità Congiunta: Dalle Singole Risposte alla Collettività</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilita-congiunta-delle-risposte-di-tutti-i-partecipanti">61.3.5.1. Probabilità Congiunta delle Risposte di Tutti i Partecipanti</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrice-delle-risposte-e-probabilita-congiunta">61.3.5.2. Matrice delle Risposte e Probabilità Congiunta</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#semplificazione-del-calcolo">61.3.5.3. Semplificazione del Calcolo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-sulla-validita-dell-assunzione-di-indipendenza">61.3.5.4. Considerazioni sulla Validità dell’Assunzione di Indipendenza</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implicazioni-del-teorema-di-andersen">61.3.5.5. Implicazioni del Teorema di Andersen</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidimensionalita-nel-modello-di-rasch">61.4. Unidimensionalità nel Modello di Rasch</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concetto-di-unidimensionalita">61.4.1. Concetto di Unidimensionalità</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicazioni-dell-unidimensionalita">61.4.2. Implicazioni dell’Unidimensionalità</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esempio-di-dif-e-multidimensionalita">61.4.3. Esempio di DIF e Multidimensionalità</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rilevazione-e-impatto-del-dif">61.4.4. Rilevazione e Impatto del DIF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-su-costrutti-psicologici-complessi">61.4.5. Considerazioni su Costrutti Psicologici Complessi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estensioni-multidimensionali-del-modello-di-rasch">61.4.6. Estensioni Multidimensionali del Modello di Rasch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusione">61.4.7. Conclusione</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scala-di-misurazione-nel-modello-di-rasch">61.5. Scala di Misurazione nel Modello di Rasch</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definizione-di-misurazione-secondo-stevens">61.5.1. Definizione di Misurazione secondo Stevens</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classificazione-delle-scale-di-misurazione">61.5.2. Classificazione delle Scale di Misurazione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applicazione-nel-modello-di-rasch">61.5.3. Applicazione nel Modello di Rasch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scalabilita-e-ricalibrazione">61.5.4. Scalabilità e Ricalibrazione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicazioni-della-scala-di-misurazione">61.5.5. Implicazioni della Scala di Misurazione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discussione-futura">61.5.6. Discussione Futura</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oggettivita-specifica-nei-test-psicometrici">61.6. Oggettività Specifica nei Test Psicometrici</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definizione-e-importanza-dell-oggettivita-specifica">61.6.1. Definizione e Importanza dell’Oggettività Specifica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verifica-dell-oggettivita-specifica">61.6.2. Verifica dell’Oggettività Specifica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formalizzazione-algebrica-dell-oggettivita-specifica">61.6.3. Formalizzazione Algebrica dell’Oggettività Specifica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applicazione-pratica-esempio-di-oggettivita-specifica">61.6.4. Applicazione Pratica: Esempio di Oggettività Specifica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitazioni-e-implicazioni">61.6.5. Limitazioni e Implicazioni</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-finali">61.6.6. Considerazioni Finali</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">61.7. Considerazioni conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">61.8. Session Info</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="assunzioni-e-proprieta-del-modello-di-rasch">
+<span id="rasch-assumptions-notebook"></span><h1><span class="section-number">61. </span>Assunzioni e Proprietà del Modello di Rasch<a class="headerlink" href="#assunzioni-e-proprieta-del-modello-di-rasch" title="Link to this heading">#</a></h1>
+<p>In questo capitolo, esaminiamo le proprietà importanti del modello di Rasch. Queste proprietà sono il motivo per cui il modello di Rasch è così teoricamente attraente e hanno portato al suo ampio utilizzo. Forse la proprietà più importante è il fatto che permette una misurazione oggettiva dei tratti latenti.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">source</span><span class="p">(</span><span class="s">&quot;../_common.R&quot;</span><span class="p">)</span>
+
+<span class="nf">suppressPackageStartupMessages</span><span class="p">({</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;tidyverse&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;grid&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;mirt&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;TAM&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="c1"># devtools::install_github(&quot;masurp/ggmirt&quot;)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;ggmirt&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;latex2exp&quot;</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="statistiche-sufficienti-definizione-e-applicazioni">
+<h2><span class="section-number">61.1. </span>Statistiche Sufficienti: Definizione e Applicazioni<a class="headerlink" href="#statistiche-sufficienti-definizione-e-applicazioni" title="Link to this heading">#</a></h2>
+<p>Una statistica è definita come una funzione dei dati osservati e serve comunemente a riassumere caratteristiche salienti di un insieme di dati. Un esempio chiaro è la media campionaria, calcolata come:</p>
+<div class="math notranslate nohighlight">
+\[ \bar{x} = \frac{1}{P} \sum_{p=1}^{P} x_p, \]</div>
+<p>dove <span class="math notranslate nohighlight">\(\bar{x}\)</span> rappresenta la media dei valori <span class="math notranslate nohighlight">\(x_p\)</span> per individui da 1 a <span class="math notranslate nohighlight">\(P\)</span>. Questa statistica è frequentemente impiegata per stimare il valore atteso di una popolazione, dato che sintetizza le informazioni riguardanti la media del campione.</p>
+<p>Esistono altre statistiche oltre a <span class="math notranslate nohighlight">\(\bar{x}\)</span>, ad esempio, si potrebbe utilizzare la media di soli alcuni valori selezionati, come <span class="math notranslate nohighlight">\(x^* = \frac{1}{3} (x_1 + x_3 + x_5)\)</span>. Tuttavia, questa alternativa, nonostante sia un valido stimatore, risulta generalmente meno accurata di <span class="math notranslate nohighlight">\(\bar{x}\)</span> perché non considera tutti i valori del campione, come <span class="math notranslate nohighlight">\(x_2, x_4\)</span>, ecc.</p>
+<p>Il concetto di <em>statistica sufficiente</em> emerge quando una statistica, come <span class="math notranslate nohighlight">\(\bar{x}\)</span>, cattura completamente tutte le informazioni necessarie sul parametro di interesse (in questo caso, la media) contenute nel campione. Le statistiche sufficienti sono particolarmente potenti perché, una volta conosciute, rendono superflue le informazioni aggiuntive fornite dai dati individuali.</p>
+<section id="applicazioni-nel-modello-di-rasch">
+<h3><span class="section-number">61.1.1. </span>Applicazioni nel Modello di Rasch<a class="headerlink" href="#applicazioni-nel-modello-di-rasch" title="Link to this heading">#</a></h3>
+<p>Nel contesto del modello di Rasch, utilizzato in teoria della risposta agli item (IRT), si identificano statistiche sufficienti specifiche per diversi parametri:</p>
+<ol class="arabic simple">
+<li><p><strong>Statistica Sufficiente per <span class="math notranslate nohighlight">\(\theta_p\)</span></strong>: Per il parametro di abilità di una persona <span class="math notranslate nohighlight">\(\theta_p\)</span>, la statistica sufficiente è il punteggio totale <span class="math notranslate nohighlight">\(r_p\)</span>, ottenuto sommando tutte le risposte corrette della persona <span class="math notranslate nohighlight">\(p\)</span> ai vari item. Questo punteggio riflette direttamente l’abilità della persona senza necessità di analizzare le risposte a ogni singolo item.</p></li>
+<li><p><strong>Statistica Sufficiente per <span class="math notranslate nohighlight">\(\beta_i\)</span></strong>: Analogamente, per il parametro di difficoltà dell’item <span class="math notranslate nohighlight">\(\beta_i\)</span>, la statistica sufficiente è data dal totale delle risposte corrette <span class="math notranslate nohighlight">\(c_i\)</span> a quell’item da parte di tutte le persone. Questa somma rappresenta la difficoltà intrinseca dell’item.</p></li>
+</ol>
+<p>Secondo il modello di Rasch, la probabilità che una persona <span class="math notranslate nohighlight">\(p\)</span> risponda correttamente all’item <span class="math notranslate nohighlight">\(i\)</span> è modellata tramite una funzione logistica della differenza tra abilità e difficoltà:</p>
+<div class="math notranslate nohighlight">
+\[ 
+P(Y_{pi} = 1 | \theta_p, \beta_i) = \frac{e^{(\theta_p - \beta_i)}}{1 + e^{(\theta_p - \beta_i)}}.
+\]</div>
+<p>In questo modello, il punteggio totale <span class="math notranslate nohighlight">\(r_p\)</span> e il numero totale di risposte corrette <span class="math notranslate nohighlight">\(c_i\)</span> diventano essenziali, poiché la distribuzione congiunta delle risposte corrette può essere completamente descritta da questi totali. Inoltre, l’indipendenza condizionale delle risposte, data l’abilità di una persona o la difficoltà di un item, supporta l’utilizzo dei punteggi totali come statistiche sufficienti.</p>
+<p>Queste proprietà del modello di Rasch evidenziano come le statistiche sufficienti, quali <span class="math notranslate nohighlight">\(r_p\)</span> e <span class="math notranslate nohighlight">\(c_i\)</span>, incorporino efficacemente tutte le informazioni necessarie per stimare i parametri di interesse, semplificando così il processo di analisi statistica.</p>
+</section>
+</section>
+<section id="considerazioni-conclusive-sul-modello-di-rasch">
+<h2><span class="section-number">61.2. </span>Considerazioni Conclusive sul Modello di Rasch<a class="headerlink" href="#considerazioni-conclusive-sul-modello-di-rasch" title="Link to this heading">#</a></h2>
+<p>Il modello di Rasch si basa su tre fondamentali assunzioni che ne garantiscono la validità e l’applicabilità: unidimensionalità, monotonicità e indipendenza locale.</p>
+<ol class="arabic simple">
+<li><p><strong>Unidimensionalità</strong>: Quest’assunzione presuppone che le risposte agli item di un test siano influenzate principalmente da un unico tratto latente o dimensione attributiva. Questo significa che il modello assume la predominanza di una sola caratteristica o abilità nel determinare le risposte, rendendo problematica la presenza di dimensioni multiple che richiederebbero un’analisi in uno spazio multidimensionale.</p></li>
+<li><p><strong>Monotonicità</strong>: L’assunzione di monotonicità stabilisce che con l’incremento del tratto latente (<span class="math notranslate nohighlight">\(\theta\)</span>), aumenta anche la probabilità di una risposta corretta. Ciò si allinea con l’intuizione generale nella misurazione: individui con un livello più elevato del tratto latente tendono a ottenere punteggi migliori nei test.</p></li>
+<li><p><strong>Indipendenza Locale</strong>: Questa assunzione afferma che, controllato il tratto latente, non dovrebbero esistere correlazioni tra le risposte a due item distinti. Eventuali associazioni osservate tra risposte a item diversi sono attribuibili unicamente al tratto latente. In altre parole, la risposta a un item non deve essere influenzata da o influenzare la risposta a un altro item, una volta controllato per il tratto latente.</p></li>
+</ol>
+</section>
+<section id="indipendenza-stocastica-locale-e-applicazioni-nel-modello-di-rasch">
+<h2><span class="section-number">61.3. </span>Indipendenza Stocastica Locale e Applicazioni nel Modello di Rasch<a class="headerlink" href="#indipendenza-stocastica-locale-e-applicazioni-nel-modello-di-rasch" title="Link to this heading">#</a></h2>
+<section id="concetto-di-indipendenza-stocastica-locale">
+<h3><span class="section-number">61.3.1. </span>Concetto di Indipendenza Stocastica Locale<a class="headerlink" href="#concetto-di-indipendenza-stocastica-locale" title="Link to this heading">#</a></h3>
+<p>In molti modelli statistici si presuppone che gli eventi siano stocasticamente indipendenti, ovvero che la realizzazione di un evento non fornisca informazioni sulla realizzazione degli altri. Questa assunzione di indipendenza stocastica è fondamentale perché semplifica notevolmente il calcolo delle probabilità congiunte. Ad esempio, consideriamo il lancio ripetuto di una moneta equilibrata: la probabilità di ottenere testa in ciascun lancio è del 50%, e la probabilità congiunta di ottenere testa due volte consecutive è data dal prodotto delle probabilità individuali:</p>
+<div class="math notranslate nohighlight">
+\[ \text{Pr}(testa, testa) = 0.5 \times 0.5 = 0.25. \]</div>
+<p>Questa formula utilizza l’indipendenza stocastica per calcolare la probabilità congiunta, ovvero sapere l’esito del primo lancio non cambia la probabilità del secondo.</p>
+</section>
+<section id="indipendenza-nel-modello-di-rasch">
+<h3><span class="section-number">61.3.2. </span>Indipendenza nel Modello di Rasch<a class="headerlink" href="#indipendenza-nel-modello-di-rasch" title="Link to this heading">#</a></h3>
+<p>Il modello di Rasch, utilizzato nella teoria della risposta agli item (IRT), si basa sull’assunzione di indipendenza stocastica locale per calcolare la probabilità congiunta delle risposte a un test. Assumendo che le risposte di una persona agli item di un test siano indipendenti data la sua abilità, possiamo calcolare la probabilità congiunta moltiplicando le probabilità individuali di risposta corretta ai singoli item:</p>
+<div class="math notranslate nohighlight">
+\[ 
+\text{Pr}(U_{p1} = u_{p1}, U_{p2} = u_{p2} | \theta_p, \beta_1, \beta_2) = \text{Pr}(U_{p1} = u_{p1} | \theta_p, \beta_1) \times \text{Pr}(U_{p2} = u_{p2} | \theta_p, \beta_2). 
+\]</div>
+</section>
+<section id="uso-dei-vettori-per-semplificare-il-modello">
+<h3><span class="section-number">61.3.3. </span>Uso dei Vettori per Semplificare il Modello<a class="headerlink" href="#uso-dei-vettori-per-semplificare-il-modello" title="Link to this heading">#</a></h3>
+<p>Nel modello di Rasch, l’uso dei vettori di risposta e dei parametri di difficoltà degli item facilita il calcolo delle probabilità congiunte per un test di più item. Ad esempio, definiamo <span class="math notranslate nohighlight">\(\beta = (\beta_1, ..., \beta_I)\)</span> come il vettore dei parametri di difficoltà e <span class="math notranslate nohighlight">\(U_{p\cdot} = (U_{p1}, ..., U_{pI})\)</span> come il vettore casuale delle risposte della persona <span class="math notranslate nohighlight">\(p\)</span>. La probabilità congiunta delle risposte si esprime come:</p>
+<div class="math notranslate nohighlight">
+\[ 
+\text{Pr}(U_{p\cdot} = u_{p\cdot} | \theta_p, \beta) = \prod_{i=1}^{I} \text{Pr}(U_{pi} = u_{pi} | \theta_p, \beta_i). 
+\]</div>
+<p>Questa formulazione permette di calcolare efficientemente la probabilità congiunta di un pattern di risposte utilizzando le proprietà dei prodotti e delle esponenziali:</p>
+<div class="math notranslate nohighlight">
+\[ 
+\text{Pr}(U_{p\cdot} = u_{p\cdot} \mid \theta_p, \beta) = \frac{\exp\{\theta_p r_p - \sum_{i=1}^{I} u_{pi} \beta_i\}}{\prod_{i=1}^{I} [1 + \exp(\theta_p - \beta_i)]}, 
+\]</div>
+<p>dove <span class="math notranslate nohighlight">\(r_p = \sum_{i=1}^{I} u_{pi}\)</span> rappresenta il numero totale di item risolti correttamente dalla persona <span class="math notranslate nohighlight">\(p\)</span>.</p>
+</section>
+<section id="limitazioni-e-considerazioni">
+<h3><span class="section-number">61.3.4. </span>Limitazioni e Considerazioni<a class="headerlink" href="#limitazioni-e-considerazioni" title="Link to this heading">#</a></h3>
+<p>Nonostante l’utilità dell’indipendenza stocastica locale, ci sono situazioni in cui questa assunzione può non essere valida, come nei test di matematica dove la soluzione di un problema dipende da quella di problemi precedenti, o nei testlet, dove gli item condividono un tema comune e le risposte possono essere correlate. In questi casi, la probabilità di risposta corretta agli item successivi può dipendere dalle risposte date agli item precedenti, violando l’assunzione di indipendenza stocastica locale.</p>
+<p>In sintesi, l’indipendenza stocastica locale è un principio potente nel modello di Rasch che facilita il calcolo delle probabilità congiunte nelle valutazioni standardizzate, ma è essenziale riconoscere i suoi limiti e applicarla in modo appropriato a seconda del contesto specifico del test.</p>
+</section>
+<section id="estensione-della-probabilita-congiunta-dalle-singole-risposte-alla-collettivita">
+<h3><span class="section-number">61.3.5. </span>Estensione della Probabilità Congiunta: Dalle Singole Risposte alla Collettività<a class="headerlink" href="#estensione-della-probabilita-congiunta-dalle-singole-risposte-alla-collettivita" title="Link to this heading">#</a></h3>
+<section id="probabilita-congiunta-delle-risposte-di-tutti-i-partecipanti">
+<h4><span class="section-number">61.3.5.1. </span>Probabilità Congiunta delle Risposte di Tutti i Partecipanti<a class="headerlink" href="#probabilita-congiunta-delle-risposte-di-tutti-i-partecipanti" title="Link to this heading">#</a></h4>
+<p>Possiamo estendere il concetto di probabilità congiunta da una singola persona a tutti i partecipanti di un test. Questo si realizza assumendo che le risposte di tutti i partecipanti siano stocasticamente indipendenti l’una dall’altra. A livello notazionale, raggruppiamo i parametri di abilità dei partecipanti, <span class="math notranslate nohighlight">\(\theta_p\)</span>, in un vettore <span class="math notranslate nohighlight">\(\theta\)</span>, dove ogni elemento corrisponde al parametro di abilità di un individuo. Analogamente, formiamo una matrice casuale <span class="math notranslate nohighlight">\(U\)</span>, dove ogni riga rappresenta le risposte di un singolo partecipante e ogni colonna si riferisce alle risposte a un singolo item.</p>
+</section>
+<section id="matrice-delle-risposte-e-probabilita-congiunta">
+<h4><span class="section-number">61.3.5.2. </span>Matrice delle Risposte e Probabilità Congiunta<a class="headerlink" href="#matrice-delle-risposte-e-probabilita-congiunta" title="Link to this heading">#</a></h4>
+<p>Le risposte effettive di ciascun partecipante sono raccolte in una matrice <span class="math notranslate nohighlight">\(u\)</span>. La cella nella riga <span class="math notranslate nohighlight">\(p\)</span> e colonna <span class="math notranslate nohighlight">\(i\)</span> contiene la risposta <span class="math notranslate nohighlight">\(u_{pi}\)</span>, ovvero la risposta del partecipante <span class="math notranslate nohighlight">\(p\)</span> all’item <span class="math notranslate nohighlight">\(i\)</span>. Utilizzando queste matrici, la probabilità congiunta delle risposte di tutti i partecipanti ai vari item è data da:</p>
+<div class="math notranslate nohighlight">
+\[ 
+\text{Pr}(U = u | \theta, \beta) = \prod_{p=1}^{P} \frac{\exp\{r_p \cdot \theta_p - \sum_{i=1}^{I} u_{pi} \cdot \beta_i\}}{\prod_{i=1}^{I} [1 + \exp(\theta_p - \beta_i)]}, 
+\]</div>
+<p>dove <span class="math notranslate nohighlight">\(r_p\)</span> indica il punteggio totale del partecipante <span class="math notranslate nohighlight">\(p\)</span>.</p>
+</section>
+<section id="semplificazione-del-calcolo">
+<h4><span class="section-number">61.3.5.3. </span>Semplificazione del Calcolo<a class="headerlink" href="#semplificazione-del-calcolo" title="Link to this heading">#</a></h4>
+<p>Il calcolo può essere ulteriormente semplificato considerando la somma di tutti i termini nel numeratore e distribuendo la somma sui termini <span class="math notranslate nohighlight">\(\theta_p\)</span> e <span class="math notranslate nohighlight">\(\beta_i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ 
+\text{Pr}(U = u | \theta, \beta) = \frac{\exp\{\sum_{p=1}^{P}r_p \cdot \theta_p - \sum_{p=1}^{P}\sum_{i=1}^{I} u_{pi} \cdot \beta_i\}}{\prod_{p=1}^{P} \prod_{i=1}^{I} [1 + \exp(\theta_p - \beta_i)]}. 
+\]</div>
+<p>Invertendo l’ordine delle sommatorie nel doppio sommatorio, e riconoscendo che i termini <span class="math notranslate nohighlight">\(\beta_i\)</span> sono costanti rispetto a <span class="math notranslate nohighlight">\(p\)</span>, possiamo riscrivere la somma come:</p>
+<div class="math notranslate nohighlight">
+\[ 
+\sum_{i=1}^{I}\sum_{p=1}^{P} u_{pi} \cdot \beta_i = \sum_{i=1}^{I} c_i \cdot \beta_i, 
+\]</div>
+<p>dove <span class="math notranslate nohighlight">\(c_i\)</span> rappresenta la somma totale delle risposte corrette all’item <span class="math notranslate nohighlight">\(i\)</span> da parte di tutti i partecipanti. Sostituendo nella formula finale, otteniamo:</p>
+<div class="math notranslate nohighlight">
+\[ 
+\text{Pr}(U = u | \theta, \beta) = \frac{\exp\{\sum_{p=1}^{P} r_p \cdot \theta_p - \sum_{i=1}^{I} c_i \cdot \beta_i\}}{\prod_{p=1}^{P} \prod_{i=1}^{I} [1 + \exp(\theta_p - \beta_i)]}, 
+\]</div>
+<p>che rappresenta la probabilità congiunta desiderata.</p>
+</section>
+<section id="considerazioni-sulla-validita-dell-assunzione-di-indipendenza">
+<h4><span class="section-number">61.3.5.4. </span>Considerazioni sulla Validità dell’Assunzione di Indipendenza<a class="headerlink" href="#considerazioni-sulla-validita-dell-assunzione-di-indipendenza" title="Link to this heading">#</a></h4>
+<p>Bisogna valutare criticamente l’assunzione che le risposte di diversi partecipanti siano indipendenti. Per esempio, questa assunzione non è valida quando un partecipante copia le risposte da un altro. L’indipendenza locale è cruciale per applicare correttamente il modello di Rasch e per semplificare i calcoli delle probabilità congiunte.</p>
+</section>
+<section id="implicazioni-del-teorema-di-andersen">
+<h4><span class="section-number">61.3.5.5. </span>Implicazioni del Teorema di Andersen<a class="headerlink" href="#implicazioni-del-teorema-di-andersen" title="Link to this heading">#</a></h4>
+<p>Il modello di Rasch e la sua formulazione si basano su questa indipendenza e su altre piccole assunzioni, come dimostrato dal teorema di Andersen. Verificare l’applicabilità di queste assunzioni è essenziale prima di implementare il modello in situazioni pratiche.</p>
+</section>
+</section>
+</section>
+<section id="unidimensionalita-nel-modello-di-rasch">
+<h2><span class="section-number">61.4. </span>Unidimensionalità nel Modello di Rasch<a class="headerlink" href="#unidimensionalita-nel-modello-di-rasch" title="Link to this heading">#</a></h2>
+<section id="concetto-di-unidimensionalita">
+<h3><span class="section-number">61.4.1. </span>Concetto di Unidimensionalità<a class="headerlink" href="#concetto-di-unidimensionalita" title="Link to this heading">#</a></h3>
+<p>Il modello di Rasch presuppone unidimensionalità, ovvero assume che esista una singola dimensione latente che ordina le persone secondo le loro abilità. Nel contesto dei test psicometrici, un test è considerato unidimensionale quando misura esclusivamente un’unica abilità specifica. Ad esempio, un test di matematica puro misurerebbe solo l’abilità matematica. Al contrario, test come il SAT, che valutano sia competenze matematiche che verbali, non sono unidimensionali perché ogni sezione misura una diversa dimensione di abilità.</p>
+</section>
+<section id="implicazioni-dell-unidimensionalita">
+<h3><span class="section-number">61.4.2. </span>Implicazioni dell’Unidimensionalità<a class="headerlink" href="#implicazioni-dell-unidimensionalita" title="Link to this heading">#</a></h3>
+<p>Un test ideale unidimensionale assegna a ciascun partecipante un singolo valore di abilità, riflettendo precisamente la competenza nella dimensione target del test. Tuttavia, la presenza di più dimensioni latenti può causare problemi come il Funzionamento Differenziale degli Item (DIF). Il DIF si verifica quando la difficoltà di specifici item varia tra diversi gruppi di candidati, indipendentemente dalle loro abilità nella dimensione misurata dal test.</p>
+</section>
+<section id="esempio-di-dif-e-multidimensionalita">
+<h3><span class="section-number">61.4.3. </span>Esempio di DIF e Multidimensionalità<a class="headerlink" href="#esempio-di-dif-e-multidimensionalita" title="Link to this heading">#</a></h3>
+<p>Consideriamo un test di matematica dove non solo la competenza matematica (la dimensione primaria) è rilevante, ma anche le abilità linguistiche (una dimensione secondaria) influenzano i risultati. Se due gruppi di candidati differiscono significativamente nelle loro abilità linguistiche, questa dimensione secondaria potrebbe distorcere i risultati del test, rendendo alcuni item più facili o difficili per un gruppo rispetto all’altro. Questo fenomeno evidenzia il DIF, dove gli item sono influenzati da fattori non direttamente pertinenti all’abilità che il test intende misurare.</p>
+</section>
+<section id="rilevazione-e-impatto-del-dif">
+<h3><span class="section-number">61.4.4. </span>Rilevazione e Impatto del DIF<a class="headerlink" href="#rilevazione-e-impatto-del-dif" title="Link to this heading">#</a></h3>
+<p>I test statistici per rilevare il DIF devono considerare la possibile presenza di multidimensionalità. Un test che non isoli adeguatamente la dimensione d’interesse può portare a valutazioni errate o ingiuste dei candidati. La presenza di DIF suggerisce che il test potrebbe non essere calibrato equamente per tutti i partecipanti o che alcuni item siano parziali verso determinati gruppi.</p>
+</section>
+<section id="considerazioni-su-costrutti-psicologici-complessi">
+<h3><span class="section-number">61.4.5. </span>Considerazioni su Costrutti Psicologici Complessi<a class="headerlink" href="#considerazioni-su-costrutti-psicologici-complessi" title="Link to this heading">#</a></h3>
+<p>Molti costrutti psicologici, come l’intelligenza, sono intrinsecamente multidimensionali. Ad esempio, il modello di intelligenza di Carroll (1993) propone una struttura gerarchica con categorie come l’intelligenza fluida e quella cristallizzata, dimostrando la complessità e la multidimensionalità del costrutto.</p>
+</section>
+<section id="estensioni-multidimensionali-del-modello-di-rasch">
+<h3><span class="section-number">61.4.6. </span>Estensioni Multidimensionali del Modello di Rasch<a class="headerlink" href="#estensioni-multidimensionali-del-modello-di-rasch" title="Link to this heading">#</a></h3>
+<p>Sebbene il modello di Rasch classico sia limitato alla misurazione di una singola dimensione, sono state sviluppate estensioni che possono gestire e incorporare dimensioni multiple. Queste versioni multidimensionali del modello di Rasch permettono una valutazione simultanea di più dimensioni, fornendo un’analisi più completa di costrutti psicologici complessi.</p>
+</section>
+<section id="conclusione">
+<h3><span class="section-number">61.4.7. </span>Conclusione<a class="headerlink" href="#conclusione" title="Link to this heading">#</a></h3>
+<p>L’unidimensionalità è una presunzione centrale nel modello di Rasch, essenziale per la validità dei test che mirano a misurare specifiche abilità. Tuttavia, la realtà dei costrutti psicologici spesso richiede un approccio più sfumato che tenga conto delle loro nature multidimensionali. Le estensioni multidimensionali del modello di Rasch rappresentano un adattamento cruciale per l’analisi di tali costrutti complessi, migliorando la precisione e l’equità delle valutazioni psicometriche.</p>
+</section>
+</section>
+<section id="scala-di-misurazione-nel-modello-di-rasch">
+<h2><span class="section-number">61.5. </span>Scala di Misurazione nel Modello di Rasch<a class="headerlink" href="#scala-di-misurazione-nel-modello-di-rasch" title="Link to this heading">#</a></h2>
+<section id="definizione-di-misurazione-secondo-stevens">
+<h3><span class="section-number">61.5.1. </span>Definizione di Misurazione secondo Stevens<a class="headerlink" href="#definizione-di-misurazione-secondo-stevens" title="Link to this heading">#</a></h3>
+<p>Secondo Stevens (1946), la misurazione è definita come “l’assegnazione di numeri a oggetti o eventi secondo regole”. Questa definizione, ampiamente riconosciuta in psicologia, abbraccia tanto la misurazione fisica (es. l’uso di un righello per misurare una distanza) quanto quella psicologica (es. l’uso di paradigmi per valutare la percezione del volume sonoro).</p>
+</section>
+<section id="classificazione-delle-scale-di-misurazione">
+<h3><span class="section-number">61.5.2. </span>Classificazione delle Scale di Misurazione<a class="headerlink" href="#classificazione-delle-scale-di-misurazione" title="Link to this heading">#</a></h3>
+<p>Stevens identifica quattro categorie principali di scale di misurazione:</p>
+<ol class="arabic simple">
+<li><p><strong>Scale Nominali</strong>: Numeri usati esclusivamente come etichette (es. numeri sulle maglie dei giocatori di calcio).</p></li>
+<li><p><strong>Scale Ordinali</strong>: Numeri utilizzati per stabilire un ordine (es. classifiche olimpiche).</p></li>
+<li><p><strong>Scale di Intervallo</strong>: Misurano distanze relative senza un punto zero naturale (es. gradi Celsius e Fahrenheit).</p></li>
+<li><p><strong>Scale di Rapporto</strong>: Simili alle scale di intervallo ma con un punto zero assoluto (es. lunghezza in metri o peso in chilogrammi).</p></li>
+</ol>
+</section>
+<section id="applicazione-nel-modello-di-rasch">
+<h3><span class="section-number">61.5.3. </span>Applicazione nel Modello di Rasch<a class="headerlink" href="#applicazione-nel-modello-di-rasch" title="Link to this heading">#</a></h3>
+<p>Nel modello di Rasch, la conversione delle misure di abilità da una unità a un’altra (da “Unità A” a “Unità B”) è analoga al cambio di unità di temperatura. Per esempio, ogni abilità <span class="math notranslate nohighlight">\(\theta_p\)</span> può essere trasformata in <span class="math notranslate nohighlight">\(\theta_p' = \theta_p - b\)</span> e ogni difficoltà dell’item <span class="math notranslate nohighlight">\(\beta_i\)</span> in <span class="math notranslate nohighlight">\(\beta_i' = \beta_i - b\)</span>, mantenendo inalterate le probabilità di una risposta corretta.</p>
+</section>
+<section id="scalabilita-e-ricalibrazione">
+<h3><span class="section-number">61.5.4. </span>Scalabilità e Ricalibrazione<a class="headerlink" href="#scalabilita-e-ricalibrazione" title="Link to this heading">#</a></h3>
+<p>Consideriamo un’ulteriore riscalatura da “Unità A” a “Unità C”, dove <span class="math notranslate nohighlight">\(\theta\)</span> diventa <span class="math notranslate nohighlight">\(\theta'' = (1/a) \cdot \theta\)</span> e <span class="math notranslate nohighlight">\(\beta\)</span> diventa <span class="math notranslate nohighlight">\(\beta'' = (1/a) \cdot \beta\)</span>. Questa trasformazione riduce le logit di un fattore <span class="math notranslate nohighlight">\(1/a\)</span>. Adattando la funzione logistica <span class="math notranslate nohighlight">\(f(x)\)</span> in modo che l’argomento sia scalato da <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(f(a \cdot x)\)</span>, manteniamo invariate le probabilità di una risposta corretta tra le Unità A e C.</p>
+</section>
+<section id="implicazioni-della-scala-di-misurazione">
+<h3><span class="section-number">61.5.5. </span>Implicazioni della Scala di Misurazione<a class="headerlink" href="#implicazioni-della-scala-di-misurazione" title="Link to this heading">#</a></h3>
+<p>Queste trasformazioni dimostrano che nel modello di Rasch gli item e le persone possono essere misurati su una scala di intervallo, ma il punto zero e la scala non sono intrinsecamente definiti. In pratica, questo implica la necessità di stabilire un punto zero e una scala per la funzione di risposta degli item, ad esempio fissando la difficoltà del primo item a zero, normalizzando la somma delle difficoltà a zero, o bilanciando la somma delle abilità a zero. La scala è comunemente impostata a 1 nel modello di Rasch, corrispondente alla standardizzazione della pendenza degli item.</p>
+</section>
+<section id="discussione-futura">
+<h3><span class="section-number">61.5.6. </span>Discussione Futura<a class="headerlink" href="#discussione-futura" title="Link to this heading">#</a></h3>
+<p>Nel prossimo capitolo dedicato alla stima dei parametri, esploreremo ulteriormente come selezionare e applicare queste convenzioni per calibrare efficacemente il modello di Rasch, garantendo che le misurazioni riflettano accuratamente le abilità e le difficoltà all’interno del contesto testato.</p>
+</section>
+</section>
+<section id="oggettivita-specifica-nei-test-psicometrici">
+<h2><span class="section-number">61.6. </span>Oggettività Specifica nei Test Psicometrici<a class="headerlink" href="#oggettivita-specifica-nei-test-psicometrici" title="Link to this heading">#</a></h2>
+<section id="definizione-e-importanza-dell-oggettivita-specifica">
+<h3><span class="section-number">61.6.1. </span>Definizione e Importanza dell’Oggettività Specifica<a class="headerlink" href="#definizione-e-importanza-dell-oggettivita-specifica" title="Link to this heading">#</a></h3>
+<p>L’oggettività specifica è un concetto fondamentale nei test psicometrici, volto a garantire l’equità nei confronti tra individui. Essa assicura che i confronti tra le persone siano determinati unicamente dalle loro abilità e non dagli specifici item utilizzati nel test. Questo principio implica che se un individuo ha una probabilità maggiore di rispondere correttamente a un item rispetto a un altro, allora questa superiorità dovrebbe manifestarsi uniformemente su tutti gli item del test. Analogamente, se un item risulta più facile per una persona, dovrebbe risultare più facile per chiunque altro.</p>
+</section>
+<section id="verifica-dell-oggettivita-specifica">
+<h3><span class="section-number">61.6.2. </span>Verifica dell’Oggettività Specifica<a class="headerlink" href="#verifica-dell-oggettivita-specifica" title="Link to this heading">#</a></h3>
+<p>Un metodo per controllare se un modello rispetta l’oggettività specifica è osservare le Curve di Caratteristica dell’Item (ICC). Nel modello di Rasch, l’oggettività specifica è soddisfatta se le ICC per diversi item non si incrociano, indicando che le probabilità di risposta corretta sono funzioni consistenti dell’abilità, indipendentemente dagli item specifici.</p>
+</section>
+<section id="formalizzazione-algebrica-dell-oggettivita-specifica">
+<h3><span class="section-number">61.6.3. </span>Formalizzazione Algebrica dell’Oggettività Specifica<a class="headerlink" href="#formalizzazione-algebrica-dell-oggettivita-specifica" title="Link to this heading">#</a></h3>
+<p>Secondo Irtel (1996), l’oggettività specifica può essere definita più rigorosamente attraverso il concetto di rapporto di probabilità. Per due persone <span class="math notranslate nohighlight">\( p \)</span> e <span class="math notranslate nohighlight">\( q \)</span> e un item <span class="math notranslate nohighlight">\( i \)</span>, definiamo <span class="math notranslate nohighlight">\( O_{pi} \)</span> come la probabilità che la persona <span class="math notranslate nohighlight">\( p \)</span> risponda correttamente all’item <span class="math notranslate nohighlight">\( i \)</span>. L’oggettività specifica richiede che il rapporto di probabilità tra le persone sia costante attraverso tutti gli item del test:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{O_{p1}}{O_{q1}} = \dots = \frac{O_{pI}}{O_{qI}}
+\]</div>
+<p>Questo implica che per ogni coppia di item <span class="math notranslate nohighlight">\( i \)</span> e <span class="math notranslate nohighlight">\( j \)</span>, il rapporto di probabilità tra due persone per l’item <span class="math notranslate nohighlight">\( i \)</span> sia uguale a quello per l’item <span class="math notranslate nohighlight">\( j \)</span>, ossia:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{O_{pi}}{O_{qi}} = \frac{O_{pj}}{O_{qj}}
+\]</div>
+<p>Ciò equivale matematicamente a che <span class="math notranslate nohighlight">\( O_{pi} \cdot O_{qj} = O_{pj} \cdot O_{qi} \)</span>.</p>
+</section>
+<section id="applicazione-pratica-esempio-di-oggettivita-specifica">
+<h3><span class="section-number">61.6.4. </span>Applicazione Pratica: Esempio di Oggettività Specifica<a class="headerlink" href="#applicazione-pratica-esempio-di-oggettivita-specifica" title="Link to this heading">#</a></h3>
+<p>Per illustrare, consideriamo Marco e Cora che completano un test di venti item. Se le probabilità (e di conseguenza le quote) di Marco risolvere il primo item sono 1:4 e quelle di Cora sono 1:1, l’oggettività specifica impone che il rapporto di 4:1 tra le quote di Cora e Marco debba rimanere costante per tutti i 20 item del test.</p>
+</section>
+<section id="limitazioni-e-implicazioni">
+<h3><span class="section-number">61.6.5. </span>Limitazioni e Implicazioni<a class="headerlink" href="#limitazioni-e-implicazioni" title="Link to this heading">#</a></h3>
+<p>Nonostante l’oggettività specifica fornisca un criterio rigoroso per la coerenza dei test, il suo uso può essere limitato da interpretazioni errate. Ad esempio, definire l’oggettività specifica come “indipendenza del campione” può portare a conclusioni erronee riguardo alla trasferibilità di un test tra gruppi diversi, come banchieri d’investimento e ingegneri del software, che potrebbero interpretare gli item in modo differente.</p>
+</section>
+<section id="considerazioni-finali">
+<h3><span class="section-number">61.6.6. </span>Considerazioni Finali<a class="headerlink" href="#considerazioni-finali" title="Link to this heading">#</a></h3>
+<p>L’oggettività specifica non è una proprietà che può essere universalmente garantita in tutti i contesti. È un’ipotesi di lavoro che deve essere continuamente verificata attraverso dati empirici. Rasch stesso ha sottolineato l’importanza di testare ripetutamente questa proprietà ogni volta che si raccolgono nuovi dati. Questa attenzione costante ai dettagli e alle variabili del contesto è cruciale per mantenere l’integrità e l’affidabilità dei test psicometrici.</p>
+</section>
+</section>
+<section id="considerazioni-conclusive">
+<h2><span class="section-number">61.7. </span>Considerazioni conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h2>
+<p>Il modello di Rasch si basa su tre fondamentali assunzioni che ne garantiscono la validità e l’applicabilità: unidimensionalità, monotonicità e indipendenza locale. La violazione di queste assunzioni può indicare la necessità di ricorrere a metodologie più complesse o a modelli alternativi per un’analisi accurata dei dati. Questo può richiedere un esame più approfondito dei dati o l’adozione di modelli statistici avanzati capaci di gestire la complessità delle informazioni raccolte.</p>
+<p>Un aspetto distintivo del modello di Rasch è la sua capacità di quantificare la difficoltà degli item indipendentemente dalle abilità dei partecipanti, grazie all’uso della stima di massima verosimiglianza condizionale. Questo approccio garantisce che la difficoltà di ciascun item venga determinata basandosi unicamente sulle risposte specifiche a quell’item, in maniera indipendente dal livello complessivo di abilità dei rispondenti.</p>
+<p>Questo principio di oggettività specifica è simile al concetto di invarianza in analisi di regressione, dove le caratteristiche di una linea di regressione (come pendenza e intercetta) non variano a seconda del campione analizzato. Analogamente, nel modello di Rasch, i parametri di difficoltà degli item restano costanti e non sono influenzati dalle competenze generali dei partecipanti, rendendo le valutazioni di difficoltà degli item stabili e affidabili, indipendentemente dalla varietà o dal livello di abilità del campione di rispondenti.</p>
+<p>L’oggettività specifica è particolarmente preziosa poiché elimina la necessità di selezionare campioni normati o rappresentativi della popolazione generale per la calibrazione degli item. Quasi qualsiasi gruppo di persone, purché con una varietà sufficiente nelle risposte, può essere utilizzato per stabilire la difficoltà degli item. Questo approccio si contrappone a quello dei test tradizionali, dove spesso è necessario un campione rappresentativo per sviluppare tabelle normative basate sulle percentuali di risposte corrette.</p>
+<p>In conclusione, il modello di Rasch offre un framework robusto per la misurazione psicometrica, pur richiedendo una verifica attenta delle sue assunzioni fondamentali per assicurare risultati di misurazione accurati e equi.</p>
+</section>
+<section id="session-info">
+<h2><span class="section-number">61.8. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.3.3 (2024-02-29)
+Platform: x86_64-apple-darwin20 (64-bit)
+Running under: macOS Sonoma 14.4.1
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
+
+locale:
+[1] en_US.UTF-8/UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: Europe/Rome
+tzcode source: internal
+
+attached base packages:
+[1] stats4    grid      stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] latex2exp_0.9.6    ggmirt_0.1.0       TAM_4.2-21         CDM_8.2-6         
+ [5] mvtnorm_1.2-4      mirt_1.41          lattice_0.22-6     ggokabeito_0.1.0  
+ [9] viridis_0.6.5      viridisLite_0.4.2  ggpubr_0.6.0       ggExtra_0.10.1    
+[13] bayesplot_1.11.1   gridExtra_2.3      patchwork_1.2.0    semTools_0.5-6.920
+[17] semPlot_1.1.6      lavaan_0.6-17      psych_2.4.3        scales_1.3.0      
+[21] markdown_1.12      knitr_1.45         lubridate_1.9.3    forcats_1.0.0     
+[25] stringr_1.5.1      dplyr_1.1.4        purrr_1.0.2        readr_2.1.5       
+[29] tidyr_1.3.1        tibble_3.2.1       ggplot2_3.5.1      tidyverse_2.0.0   
+[33] here_1.0.1        
+
+loaded via a namespace (and not attached):
+  [1] rstudioapi_0.16.0    jsonlite_1.8.8       magrittr_2.0.3      
+  [4] TH.data_1.1-2        estimability_1.5     nloptr_2.0.3        
+  [7] rmarkdown_2.26       vctrs_0.6.5          minqa_1.2.6         
+ [10] base64enc_0.1-3      rstatix_0.7.2        htmltools_0.5.8.1   
+ [13] broom_1.0.5          Formula_1.2-5        dcurver_0.9.2       
+ [16] htmlwidgets_1.6.4    plyr_1.8.9           sandwich_3.1-0      
+ [19] emmeans_1.10.0       zoo_1.8-12           uuid_1.2-0          
+ [22] admisc_0.35          igraph_2.0.3         mime_0.12           
+ [25] lifecycle_1.0.4      pkgconfig_2.0.3      Matrix_1.6-5        
+ [28] R6_2.5.1             fastmap_1.1.1        shiny_1.8.1.1       
+ [31] digest_0.6.35        OpenMx_2.21.11       fdrtool_1.2.17      
+ [34] colorspace_2.1-0     rprojroot_2.0.4      Hmisc_5.1-2         
+ [37] vegan_2.6-4          fansi_1.0.6          timechange_0.3.0    
+ [40] mgcv_1.9-1           abind_1.4-5          compiler_4.3.3      
+ [43] withr_3.0.0          glasso_1.11          htmlTable_2.4.2     
+ [46] backports_1.4.1      carData_3.0-5        ggsignif_0.6.4      
+ [49] MASS_7.3-60.0.1      GPArotation_2024.3-1 corpcor_1.6.10      
+ [52] permute_0.9-7        gtools_3.9.5         tools_4.3.3         
+ [55] pbivnorm_0.6.0       foreign_0.8-86       zip_2.3.1           
+ [58] httpuv_1.6.15        nnet_7.3-19          glue_1.7.0          
+ [61] quadprog_1.5-8       nlme_3.1-164         promises_1.3.0      
+ [64] lisrelToR_0.3        pbdZMQ_0.3-11        checkmate_2.3.1     
+ [67] cluster_2.1.6        reshape2_1.4.4       generics_0.1.3      
+ [70] gtable_0.3.5         tzdb_0.4.0           data.table_1.15.4   
+ [73] hms_1.1.3            Deriv_4.1.3          car_3.1-2           
+ [76] utf8_1.2.4           sem_3.1-15           pillar_1.9.0        
+ [79] IRdisplay_1.1        rockchalk_1.8.157    later_1.3.2         
+ [82] splines_4.3.3        survival_3.5-8       kutils_1.73         
+ [85] tidyselect_1.2.1     miniUI_0.1.1.1       pbapply_1.7-2       
+ [88] xfun_0.43            qgraph_1.9.8         arm_1.13-1          
+ [91] stringi_1.8.3        boot_1.3-30          evaluate_0.23       
+ [94] codetools_0.2-19     mi_1.1               cli_3.6.2           
+ [97] RcppParallel_5.1.7   IRkernel_1.3.2       rpart_4.1.23        
+[100] xtable_1.8-4         repr_1.1.6           munsell_0.5.1       
+[103] Rcpp_1.0.12          polycor_0.8-1        coda_0.19-4.1       
+[106] png_0.1-8            XML_3.99-0.16.1      parallel_4.3.3      
+[109] jpeg_0.1-10          lme4_1.1-35.3        openxlsx_4.2.5.2    
+[112] crayon_1.5.2         rlang_1.1.3          multcomp_1.4-25     
+[115] mnormt_2.1.1        
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_irt"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_rasch_model.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">60. </span>Modello di Rasch</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04_estimation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">62. </span>Stima</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistiche-sufficienti-definizione-e-applicazioni">61.1. Statistiche Sufficienti: Definizione e Applicazioni</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applicazioni-nel-modello-di-rasch">61.1.1. Applicazioni nel Modello di Rasch</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive-sul-modello-di-rasch">61.2. Considerazioni Conclusive sul Modello di Rasch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indipendenza-stocastica-locale-e-applicazioni-nel-modello-di-rasch">61.3. Indipendenza Stocastica Locale e Applicazioni nel Modello di Rasch</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concetto-di-indipendenza-stocastica-locale">61.3.1. Concetto di Indipendenza Stocastica Locale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indipendenza-nel-modello-di-rasch">61.3.2. Indipendenza nel Modello di Rasch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-dei-vettori-per-semplificare-il-modello">61.3.3. Uso dei Vettori per Semplificare il Modello</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitazioni-e-considerazioni">61.3.4. Limitazioni e Considerazioni</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estensione-della-probabilita-congiunta-dalle-singole-risposte-alla-collettivita">61.3.5. Estensione della Probabilità Congiunta: Dalle Singole Risposte alla Collettività</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilita-congiunta-delle-risposte-di-tutti-i-partecipanti">61.3.5.1. Probabilità Congiunta delle Risposte di Tutti i Partecipanti</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrice-delle-risposte-e-probabilita-congiunta">61.3.5.2. Matrice delle Risposte e Probabilità Congiunta</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#semplificazione-del-calcolo">61.3.5.3. Semplificazione del Calcolo</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-sulla-validita-dell-assunzione-di-indipendenza">61.3.5.4. Considerazioni sulla Validità dell’Assunzione di Indipendenza</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implicazioni-del-teorema-di-andersen">61.3.5.5. Implicazioni del Teorema di Andersen</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidimensionalita-nel-modello-di-rasch">61.4. Unidimensionalità nel Modello di Rasch</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concetto-di-unidimensionalita">61.4.1. Concetto di Unidimensionalità</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicazioni-dell-unidimensionalita">61.4.2. Implicazioni dell’Unidimensionalità</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esempio-di-dif-e-multidimensionalita">61.4.3. Esempio di DIF e Multidimensionalità</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rilevazione-e-impatto-del-dif">61.4.4. Rilevazione e Impatto del DIF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-su-costrutti-psicologici-complessi">61.4.5. Considerazioni su Costrutti Psicologici Complessi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estensioni-multidimensionali-del-modello-di-rasch">61.4.6. Estensioni Multidimensionali del Modello di Rasch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusione">61.4.7. Conclusione</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scala-di-misurazione-nel-modello-di-rasch">61.5. Scala di Misurazione nel Modello di Rasch</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definizione-di-misurazione-secondo-stevens">61.5.1. Definizione di Misurazione secondo Stevens</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classificazione-delle-scale-di-misurazione">61.5.2. Classificazione delle Scale di Misurazione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applicazione-nel-modello-di-rasch">61.5.3. Applicazione nel Modello di Rasch</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scalabilita-e-ricalibrazione">61.5.4. Scalabilità e Ricalibrazione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicazioni-della-scala-di-misurazione">61.5.5. Implicazioni della Scala di Misurazione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discussione-futura">61.5.6. Discussione Futura</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oggettivita-specifica-nei-test-psicometrici">61.6. Oggettività Specifica nei Test Psicometrici</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definizione-e-importanza-dell-oggettivita-specifica">61.6.1. Definizione e Importanza dell’Oggettività Specifica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verifica-dell-oggettivita-specifica">61.6.2. Verifica dell’Oggettività Specifica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formalizzazione-algebrica-dell-oggettivita-specifica">61.6.3. Formalizzazione Algebrica dell’Oggettività Specifica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applicazione-pratica-esempio-di-oggettivita-specifica">61.6.4. Applicazione Pratica: Esempio di Oggettività Specifica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitazioni-e-implicazioni">61.6.5. Limitazioni e Implicazioni</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-finali">61.6.6. Considerazioni Finali</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">61.7. Considerazioni conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">61.8. Session Info</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

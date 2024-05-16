@@ -1,0 +1,840 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>23. Lo sviluppo degli item &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css?v=ffeaf963" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6ba04eab" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VMXNE4BCDL"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_items/01_item_development';</script>
+    <script src="../_static/custom.js?v=3f5092eb"></script>
+    <link rel="canonical" href="https://ccaudek.github.io/psy_test/_items/01_item_development.html" />
+    <link rel="icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="24. Analisi degli item" href="02_item_analysis.html" />
+    <link rel="prev" title="22. Relazioni test-criterio" href="../_validity/02_relations_to_other_vars.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Scaling psicometrico</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/01_expval_var.html">1. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/02_joint_prob.html">2. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/03_measurement.html">3. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/04_norms.html">4. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/05_regression.html">5. L’analisi di regressione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E1_likert.html">6. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E2_optimal_scoring.html">7. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E3_thurstone.html">8. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/01_ctt_1.html">9. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/02_ctt_2.html">10. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/03_ctt_3.html">11. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/04_err_std_mis.html">12. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/05_err_std_stima.html">13. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/06_applications_ctt.html">14. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E1_ctt.html">15. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E2_item_analyses.html">16. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/01_multilevel_1.html">17. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/02_interrater_reliability.html">18. L’affidabilità tra giudici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/E1_irr.html">19. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/01_gtheory.html">20. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/01_validity.html">21. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/02_relations_to_other_vars.html">22. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sviluppo degli item</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">23. Lo sviluppo degli item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_item_analysis.html">24. Analisi degli item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">25. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale esplorativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/01_intro_fa.html">26. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/02_analisi_fattoriale_1.html">27. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/03_analisi_fattoriale_2.html">28. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/04_analisi_fattoriale_3.html">29. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/05_factor_scores.html">30. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/06_constraints_on_parms.html">31. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/07_total_score.html">32. Punteggio totale e modello fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione strumenti</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">33. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">34. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">35. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">36. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">37. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/01_cfa.html">38. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/E_01.html">39. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/02_meanstructure.html">40. La struttura delle medie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/03_cat_data.html">41. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/04_mmm.html">42. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/05_bifactor.html">43. Modello bifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/06_efa_lavaan.html">44. Exploratory Structural Equation Modeling (ESEM)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/01_sem_intro.html">45. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/02_data_preparation.html">46. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/E_01.html">47. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/03_gof.html">48. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/04_mod_comp.html">49. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/05_cfa_mod_comp.html">50. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/06_refine_solution.html">51. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/07_group_invariance.html">52. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/08_multilevel_sem.html">53. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/09_structural_regr.html">54. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/10_missing_data.html">55. Dati mancanti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/11_small_samples.html">56. Modellizzazione SEM in Piccoli Campioni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/12_temp_reliability.html">57. Affidabilità longitudinale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_irt/01_logistic_regr.html">58. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/E_01.html">59. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/02_rasch_model.html">60. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/03_assumptions.html">61. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/04_estimation.html">62. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/05_1pl_2pl_3pl.html">63. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/06_implementation.html">64. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/07_polytomous_graded.html">65. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mokken Scales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/01_core_issues.html">66. Analisi della Scala di Mokken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/02_tutorial.html">67. Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/03_applications.html">68. Applicazione Pratica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/01_development.html">69. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/02_tutorial.html">70. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/01_lgm_intro.html">71. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/02_lgm_prelims.html">72. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/03_time_effects.html">73. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/04_invariance.html">74. Invarianza Fattoriale Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/05_intro_panel.html">75. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/06_lgm_mixed.html">76. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/07_growth_1.html">77. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/08_growth_cont.html">78. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/09_time_inv_cov.html">79. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/10_growth_groups.html">80. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/11_bivariate_tvc_models.html">81. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/12_inv_measurement.html">82. Invarianza di Misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/13_latent_change.html">83. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/750_latent_change.html">84. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/751_biv_change.html">85. Modello LCS bivariato</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">86. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a1_intro_r.html">87. Linguaggio R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a2_sums.html">88. Simbolo di somma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a3_calculus.html">89. Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a4_linear_alg.html">90. Elementi di algebra lineare</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_items/01_item_development.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lo sviluppo degli item</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classificazione-degli-item-nei-test-psicometrici">23.1. Classificazione degli Item nei Test Psicometrici</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#item-oggettivi-e-soggettivi-un-continuum-di-valutazione">23.1.1. Item Oggettivi e Soggettivi: Un Continuum di Valutazione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classificazione-alternativa-risposta-selezionata-vs-risposta-costruita">23.1.2. Classificazione Alternativa: Risposta Selezionata vs Risposta Costruita</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#punti-di-forza-e-limitazioni">23.1.3. Punti di Forza e Limitazioni</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linee-guida-generali-per-la-redazione-di-item-di-test">23.2. Linee Guida Generali per la Redazione di Item di Test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-di-massima-prestazione">23.3. Test di Massima Prestazione</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#item-a-scelta-multipla">23.3.1. Item a Scelta Multipla</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#suggerimenti-per-sviluppare-item-a-scelta-multipla">23.3.1.1. Suggerimenti per Sviluppare Item a Scelta Multipla</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formato-di-risposta-vero-falso">23.4. Formato di Risposta Vero/Falso</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linee-guida-per-sviluppare-item-vero-falso">23.4.1. Linee Guida per Sviluppare Item Vero/Falso</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formato-di-risposta">23.5. Formato di Risposta</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#item-di-abbinamento">23.5.1. Item di Abbinamento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saggi">23.5.2. Saggi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formato-di-risposta-breve">23.6. Formato di Risposta Breve</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-di-risposta-tipica">23.6.1. Test di Risposta Tipica</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#linee-guida-per-la-redazione-di-item-in-test-di-risposta-tipica">23.6.1.1. Linee Guida per la Redazione di Item in Test di Risposta Tipica</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sommario">23.7. Sommario</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lo-sviluppo-degli-item">
+<span id="item-development-notebook"></span><h1><span class="section-number">23. </span>Lo sviluppo degli item<a class="headerlink" href="#lo-sviluppo-degli-item" title="Link to this heading">#</a></h1>
+<p>I test psicologici sono composti da item, quindi la bontà degli item determina la bontà del test. A prima vista, lo sviluppo di buoni item può sembrare un’impresa semplice e diretta, ma in realtà, la bontà degli item è determinata dalla attenta considerazione di diversi importanti fattori combinata con una valutazione quantitativa tramite specifiche procedure psicometriche. In questo capitolo, forniamo una discussione pratica su come sviluppare buoni item. Ciò include la discussione dei diversi formati di item disponibili agli autori di test e alcune linee guida di base per lo sviluppo degli item. Discutiamo lo sviluppo di item per test di massima prestazione e test di risposta tipica. Ricorderete che i test di massima prestazione sono progettati per determinare i limiti superiori delle abilità o conoscenze delle persone, mentre i test di risposta tipica valutano le loro caratteristiche quotidiane o abitudinarie. In un contesto occupazionale, un datore di lavoro potrebbe utilizzare un test di risposta tipica per determinare se un dipendente sta completando le attività quotidiane richieste per il lavoro e un test di massima prestazione per determinare se il dipendente ha la conoscenza o l’abilità necessaria per una promozione a un lavoro di livello superiore e più complesso. I test di massima prestazione e di risposta tipica hanno ruoli importanti nella valutazione psicologica, quindi consideriamo gli item utilizzati in entrambi i casi. Iniziamo questo capitolo con una breve panoramica dei formati di item più popolari prima di procedere con una discussione delle linee guida per lo sviluppo degli item.</p>
+<section id="classificazione-degli-item-nei-test-psicometrici">
+<h2><span class="section-number">23.1. </span>Classificazione degli Item nei Test Psicometrici<a class="headerlink" href="#classificazione-degli-item-nei-test-psicometrici" title="Link to this heading">#</a></h2>
+<p>Nel panorama della psicometria, la classificazione degli item di test è fondamentale per determinare la loro validità e affidabilità. Tradizionalmente, gli item si distinguono in due categorie principali: oggettivi e soggettivi. Questa bipartizione, seppur utile, non esaurisce l’ampiezza e la complessità della materia. Pertanto, è essenziale esplorare in modo più approfondito i criteri di classificazione e le loro implicazioni.</p>
+<section id="item-oggettivi-e-soggettivi-un-continuum-di-valutazione">
+<h3><span class="section-number">23.1.1. </span>Item Oggettivi e Soggettivi: Un Continuum di Valutazione<a class="headerlink" href="#item-oggettivi-e-soggettivi-un-continuum-di-valutazione" title="Link to this heading">#</a></h3>
+<p>La distinzione primaria tra item oggettivi e soggettivi si basa sul metodo di valutazione. Gli item oggettivi si caratterizzano per la presenza di un consenso ampio tra gli esperti circa la correttezza delle risposte, come nel caso degli item a scelta multipla, vero/falso e di abbinamento. In questi formati, la correttezza della risposta è inequivocabile e non presta il fianco a interpretazioni soggettive.</p>
+<p>Al contrario, gli item soggettivi implicano una maggiore discrezionalità nella valutazione. Esempi tipici sono gli item a tema o le risposte in un esame orale, dove l’apporto soggettivo del valutatore gioca un ruolo cruciale. Questa categoria di item richiede una valutazione più articolata e può portare a divergenze tra i valutatori.</p>
+</section>
+<section id="classificazione-alternativa-risposta-selezionata-vs-risposta-costruita">
+<h3><span class="section-number">23.1.2. </span>Classificazione Alternativa: Risposta Selezionata vs Risposta Costruita<a class="headerlink" href="#classificazione-alternativa-risposta-selezionata-vs-risposta-costruita" title="Link to this heading">#</a></h3>
+<p>Una classificazione più moderna e funzionale distingue gli item in base alla natura della risposta richiesta: risposta selezionata e risposta costruita. In questo schema, gli item a risposta selezionata includono quelli a scelta multipla, vero/falso e di abbinamento, dove la risposta è già fornita e il candidato deve selezionarla. Questi item permettono una valutazione rapida, oggettiva e affidabile, rendendoli particolarmente adatti per test di ampio respiro.</p>
+<p>Gli item a risposta costruita, invece, richiedono al candidato di generare una risposta, come nei casi di risposte brevi, saggi o valutazioni delle prestazioni. Questi item sono più idonei per valutare abilità cognitive di ordine superiore e competenze specifiche, ma sono più soggetti a valutazioni soggettive e richiedono un tempo maggiore sia per la risposta sia per la valutazione.</p>
+</section>
+<section id="punti-di-forza-e-limitazioni">
+<h3><span class="section-number">23.1.3. </span>Punti di Forza e Limitazioni<a class="headerlink" href="#punti-di-forza-e-limitazioni" title="Link to this heading">#</a></h3>
+<p>Ogni categoria di item presenta specifici punti di forza e limitazioni. Gli item a risposta selezionata sono efficienti, affidabili e permettono di includere un maggior numero di domande nel test, ma possono essere complessi da formulare e potrebbero non essere adatti per valutare tutte le tipologie di competenze. Inoltre, sono soggetti al rischio di risposte casuali o indovinate.</p>
+<p>Gli item a risposta costruita, d’altra parte, sono più adatti per valutare competenze complesse e abilità di ordine superiore, ma richiedono più tempo per la risposta e la valutazione, e possono essere influenzati da fattori estranei non correlati al costrutto da misurare.</p>
+<p>Nella scelta del formato di valutazione, il fattore determinante dovrebbe essere l’adeguatezza del formato nel misurare il costrutto di interesse in modo diretto e puro. La scelta dipenderà dagli obiettivi specifici del test e dalla natura del costrutto da valutare. In generale, si raccomanda di preferire gli item a risposta selezionata per la loro capacità di campionare ampiamente il dominio del contenuto e per le loro caratteristiche di valutazione più oggettive e affidabili. Tuttavia, gli item a risposta costruita sono indispensabili per valutare certe competenze e abilità cognitive di ordine superiore.</p>
+<p>In conclusione, una comprensione approfondita delle diverse tipologie di item e delle loro specificità è fondamentale per lo sviluppo di strumenti psicometrici efficaci e affidabili, in grado di fornire valutazioni precise e pertinenti ai costrutti psicologici in esame.</p>
+</section>
+</section>
+<section id="linee-guida-generali-per-la-redazione-di-item-di-test">
+<h2><span class="section-number">23.2. </span>Linee Guida Generali per la Redazione di Item di Test<a class="headerlink" href="#linee-guida-generali-per-la-redazione-di-item-di-test" title="Link to this heading">#</a></h2>
+<p>Vengono qui presentate alcune linee guida per lo sviluppo di vari tipi di item di test. Queste indicazioni devono però essere applicate in modo flessibile. L’obiettivo principale nella creazione di item di test è sviluppare domande che misurino in modo preciso il costrutto specificato, contribuendo alla validità psicometrica del test. I criteri usati per lo sviluppo degli item devono comunque sempre in primo luogo cercare di raggiungere quello che è l’obiettivo primario per cui il test viene costruito.</p>
+<ul class="simple">
+<li><p><strong>Fornire Istruzioni Chiare:</strong> È comune per i redattori di test inesperti assumere che i candidati sappiano come rispondere a diversi formati di item. Includere sempre istruzioni dettagliate che specificano chiaramente come il candidato debba rispondere a ciascun formato di item. Assumere che i candidati non abbiano mai visto un test simile e fornire istruzioni dettagliate per garantire che sappiano cosa ci si aspetta da loro. Tuttavia, istruzioni troppo lunghe e dettagliate possono diminuire la chiarezza.</p></li>
+<li><p><strong>Presentare il Problema in Modo Chiaro:</strong> Mantenere la redazione degli item il più semplice possibile. A meno che non si stia valutando la capacità di lettura, puntare a un livello di lettura basso. Evitare termini scientifici o tecnici non necessari, così come costruzioni di frasi complesse o ambigue.</p></li>
+<li><p><strong>Sviluppare Item Valutabili in Modo Decisivo:</strong> Assicurarsi che gli item abbiano risposte chiare su cui quasi tutti gli esperti sarebbero d’accordo. Nel caso di saggi e valutazioni delle prestazioni, considerare se gli esperti concorderebbero sulla qualità della prestazione nel compito.</p></li>
+<li><p><strong>Evitare Indizi Involontari:</strong> Fare attenzione a non includere indizi involontari che potrebbero guidare il candidato verso la risposta corretta.</p></li>
+<li><p><strong>Sistemare gli Item in Modo Sistematico:</strong> Organizzare gli item in modo che favoriscano la prestazione ottimale dei candidati. Se il test contiene più formati di item, raggrupparli in sezioni in base al tipo di item. Disporre gli item secondo il loro livello di difficoltà, iniziando da quelli più facili.</p></li>
+<li><p><strong>Mantenere gli Item su Una Pagina:</strong> Assicurarsi che ciascun item a risposta selezionata sia contenuto in una pagina, per evitare confusione e errori.</p></li>
+<li><p><strong>Personalizzare gli Item per la Popolazione di Riferimento:</strong> Considerare attentamente il tipo di clienti con cui il test sarà utilizzato e personalizzare gli item di conseguenza.</p></li>
+<li><p><strong>Minimizzare l’Impatto di Fattori Irrilevanti:</strong> Cercare e minimizzare i fattori cognitivi, motori e altri che sono necessari per rispondere correttamente agli item, ma irrilevanti per il costrutto misurato.</p></li>
+<li><p><strong>Evitare la Parafrasi del Materiale di Studio:</strong> Quando si preparano test di rendimento, evitare di usare la stessa formulazione presente nei libri di testo o altri materiali di studio.</p></li>
+<li><p><strong>Evitare Linguaggio Pregiudizievole o Offensivo:</strong> Rivedere attentamente gli item per lingua potenzialmente pregiudizievole o offensiva.</p></li>
+<li><p><strong>Usare un Formato di Stampa Chiaro e Leggibile:</strong> Utilizzare una dimensione e un interlinea del carattere chiari e appropriati per i candidati.</p></li>
+<li><p><strong>Determinare il Numero di Item da Includere:</strong> Considerare fattori come il tempo disponibile, l’età dei candidati, i tipi di item, l’ampiezza del materiale o degli argomenti valutati e il tipo di test.</p></li>
+</ul>
+<p>Queste linee guida sono fondamentali per lo sviluppo di item di test che siano non solo tecnicamente validi, ma anche accessibili e giusti per i candidati. L’applicazione flessibile e consapevole di queste indicazioni contribuirà significativamente all’efficacia e all’affidabilità degli strumenti di valutazione psicometrica.</p>
+</section>
+<section id="test-di-massima-prestazione">
+<h2><span class="section-number">23.3. </span>Test di Massima Prestazione<a class="headerlink" href="#test-di-massima-prestazione" title="Link to this heading">#</a></h2>
+<p>In questa sezione, ci concentreremo sullo sviluppo degli item per i test di massima prestazione, in particolare quelli progettati per valutare obiettivi educativi o di apprendimento. Sebbene tali linee guida siano pensate principalmente per i test di rendimento, molte di esse sono applicabili anche ai test di attitudine che utilizzano questi tipi di item. Inizieremo esaminando gli item a risposta selezionata, per poi passare agli item a risposta costruita. In sezioni successive, forniremo suggerimenti per sviluppare linee guida per i test di prestazione tipica.</p>
+<section id="item-a-scelta-multipla">
+<h3><span class="section-number">23.3.1. </span>Item a Scelta Multipla<a class="headerlink" href="#item-a-scelta-multipla" title="Link to this heading">#</a></h3>
+<p>Gli item a scelta multipla sono tra i più popolari nel formato a risposta selezionata. Sono molto diffusi perché applicabili in diverse aree tematiche e capaci di valutare obiettivi semplici e complessi. Generalmente, assumono la forma di una domanda o di un’affermazione incompleta, con un insieme di possibili risposte, una delle quali è corretta. La parte dell’item che presenta la domanda o l’affermazione incompleta è chiamata “stem” o “radice”. Le possibili risposte sono denominate “alternative”. L’alternativa corretta è detta “risposta”, mentre le alternative errate sono note come “distrattori”.</p>
+<section id="suggerimenti-per-sviluppare-item-a-scelta-multipla">
+<h4><span class="section-number">23.3.1.1. </span>Suggerimenti per Sviluppare Item a Scelta Multipla<a class="headerlink" href="#suggerimenti-per-sviluppare-item-a-scelta-multipla" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Usare un Formato Chiaro:</strong> Non esiste un formato universalmente accettato, ma alcune raccomandazioni sul layout possono migliorare la chiarezza.</p>
+<ul>
+<li><p>Numerare lo stem dell’item per un’identificazione facile.</p></li>
+<li><p>Indentare le alternative e identificarle con lettere.</p></li>
+<li><p>Non capitalizzare l’inizio delle alternative, a meno che non inizino con un nome proprio.</p></li>
+<li><p>Disporre le alternative in un elenco verticale per facilitarne la lettura rapida.</p></li>
+</ul>
+</li>
+<li><p><strong>Fornire Tutte le Informazioni Necessarie nello Stem dell’Item:</strong> Il problema o la domanda deve essere completamente sviluppato nello stem dell’item. Leggere lo stem dell’item senza esaminare le alternative per assicurarsi che sia sufficiente per comprendere la domanda.</p></li>
+<li><p><strong>Fornire da Tre a Cinque Alternative:</strong> L’uso di più alternative riduce la possibilità di indovinare la risposta corretta. Quattro è il numero più comune di alternative, ma cinque è raccomandato per ridurre ulteriormente il tasso di successo casuale.</p></li>
+<li><p><strong>Mantenere le Alternative Brevi e Ordinate:</strong> Le alternative devono essere il più brevi possibile e disposte in un ordine logico.</p></li>
+<li><p><strong>Evitare Affermazioni Negative nello Stem dell’Item:</strong> Limitare l’uso di termini come “eccetto”, “meno”, “mai” o “non”. In casi eccezionali, evidenziare i termini negativi con maiuscole, sottolineatura o grassetto.</p></li>
+<li><p><strong>Assicurare una Sola Risposta Corretta o la Migliore Risposta:</strong> Rivedere attentamente le alternative per garantire una sola risposta corretta o la migliore.</p></li>
+<li><p><strong>Coerenza Grammaticale tra Stem dell’Item e Alternative:</strong> Tutte le alternative devono essere grammaticalmente corrette rispetto allo stem dell’item.</p></li>
+<li><p><strong>Rendere Tutti i Distrattori Plausibili:</strong> I distrattori devono sembrare ragionevoli e basarsi su errori comuni.</p></li>
+<li><p><strong>Posizionare Casualmente la Risposta Corretta:</strong> Distribuire equamente la risposta corretta tra le posizioni delle alternative per evitare schemi prevedibili.</p></li>
+<li><p><strong>Limitare l’Uso di ‘Nessuna delle Precedenti’ e Evitare ‘Tutte le Precedenti’:</strong> Utilizzare “Nessuna delle sopra” con parsimonia e evitare completamente “Tutte le sopra”.</p></li>
+<li><p><strong>Limitare l’Uso di ‘Sempre’ e ‘Mai’ nelle Alternative:</strong> Evitare generalmente l’uso di termini assoluti come “sempre” e “mai”.</p></li>
+</ul>
+<p>Gli item a scelta multipla sono un formato efficace per la valutazione, grazie alla loro versatilità, valutazione oggettiva e affidabile, e capacità di coprire ampiamente il dominio del contenuto. Tuttavia, la loro redazione non è semplice e non sono adatti per misurare tutti gli obiettivi di apprendimento.</p>
+</section>
+</section>
+</section>
+<section id="formato-di-risposta-vero-falso">
+<h2><span class="section-number">23.4. </span>Formato di Risposta Vero/Falso<a class="headerlink" href="#formato-di-risposta-vero-falso" title="Link to this heading">#</a></h2>
+<p>Il formato di risposta vero/falso rappresenta una delle tipologie più popolari di item a risposta selezionata, seconda solo alla scelta multipla. Utilizzeremo il termine “vero/falso” per riferirci a una classe più ampia di item che possono includere formati binari, come accordo/disaccordo, corretto/errato, sì/no, fatto/opinione. Poiché il formato più comune è vero/falso, useremo questo termine in senso generico per indicare tutti gli item a due opzioni. Di seguito, forniremo linee guida per lo sviluppo di item vero/falso.</p>
+<section id="linee-guida-per-sviluppare-item-vero-falso">
+<h3><span class="section-number">23.4.1. </span>Linee Guida per Sviluppare Item Vero/Falso<a class="headerlink" href="#linee-guida-per-sviluppare-item-vero-falso" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Evitare Più di un’idea per Affermazione:</strong> Ogni item vero/falso dovrebbe affrontare una sola idea centrale. Evitare determinanti specifici e qualificatori che possano fungere da indizi per la risposta. Determinanti come “mai”, “sempre”, “nessuno” e “tutti” si trovano più frequentemente in affermazioni false e possono guidare i candidati non informati verso la risposta corretta. Al contrario, affermazioni moderate come “di solito”, “a volte” e “frequentemente” tendono a essere più veritiere e possono servire come indizi. Sebbene sia difficile evitare completamente i qualificatori, si consiglia di bilanciarli tra affermazioni vere e false per ridurne il valore come indizi.</p></li>
+<li><p><strong>Avere Affermazioni Vere e False di Lunghezza Simile:</strong> Spesso gli autori tendono a formulare affermazioni vere più lunghe di quelle false. Per evitare che la lunghezza diventi un indizio involontario, è necessario assicurarsi che non ci sia una differenza evidente tra la lunghezza delle affermazioni vere e quelle false.</p></li>
+<li><p><strong>Includere un Numero Approssimativamente Uguale di Affermazioni Vere e False:</strong> Alcuni candidati tendono a scegliere “Vero” quando non sono sicuri della risposta, e altri “Falso”. Per prevenire un incremento artificiale dei punteggi dovuto a questi schemi di risposta, è consigliato includere un numero approssimativamente uguale di item veri e falsi. Alcuni autori suggerivano che nel formato vero/falso, il 60% degli item dovesse essere vero. Tuttavia, ciò è utile solo in circostanze limitate e non si applica ai test di prestazione tipica, essendo superato dal problema degli schemi di risposta e delle strategie di indovinamento. È preferibile un equilibrio.</p></li>
+</ul>
+<p>Gli item vero/falso sono popolari nei test di massima prestazione. Sebbene possano essere valutati in modo oggettivo e affidabile e permettano ai candidati di rispondere a molti item in breve tempo, presentano varie debolezze. Ad esempio, sono spesso limitati alla valutazione di obiettivi di apprendimento piuttosto semplici e sono vulnerabili all’indovinamento. Prima di utilizzare gli item vero/falso, è raccomandato valutare i loro punti di forza e debolezze per assicurarsi che siano il formato più appropriato per valutare gli obiettivi specifici di apprendimento. Una checklist per lo sviluppo di item vero/falso può fornire un riferimento utile, applicabile anche ai formati sì/no spesso usati con individui più giovani.</p>
+</section>
+</section>
+<section id="formato-di-risposta">
+<h2><span class="section-number">23.5. </span>Formato di Risposta<a class="headerlink" href="#formato-di-risposta" title="Link to this heading">#</a></h2>
+<section id="item-di-abbinamento">
+<h3><span class="section-number">23.5.1. </span>Item di Abbinamento<a class="headerlink" href="#item-di-abbinamento" title="Link to this heading">#</a></h3>
+<p>Gli item di abbinamento (<em>Matching Items</em>) consistono in due colonne di parole o frasi: una colonna contiene i termini da abbinare (solitamente a sinistra, denominati “premesse”), e l’altra contiene le opzioni di risposta (a destra, chiamate “risposte”). Le premesse sono numerate, mentre le risposte sono identificate con lettere. Di seguito, alcune linee guida per lo sviluppo di questi item:</p>
+<ul class="simple">
+<li><p><strong>Limitare l’Uso di Materiali Omogenei:</strong> È fondamentale che le liste siano il più omogenee possibile, basate su un tema comune. Evitare di includere materiali eterogenei.</p></li>
+<li><p><strong>Specificare nella Direzione le Basi dell’Abbinamento:</strong> Indicare chiaramente nelle istruzioni la base logica per l’abbinamento delle premesse con le risposte.</p></li>
+<li><p><strong>Includere più Risposte che Premesse:</strong> Ciò riduce la possibilità che i candidati non informati indovinino correttamente tramite eliminazione.</p></li>
+<li><p><strong>Indicare che le Risposte Possono Essere Utilizzate Più Volte o Non Utilizzate:</strong> Questo riduce l’impatto dell’indovinamento.</p></li>
+<li><p><strong>Mantenere le Liste Brevi:</strong> Liste più brevi sono più gestibili sia per chi redige il test sia per chi lo svolge, evitando fattori confondenti come la memoria a breve termine.</p></li>
+<li><p><strong>Assicurare che le Risposte Siano Brevi e Ordinate Logicamente:</strong> Ciò facilita la scansione efficiente delle opzioni da parte dei candidati.</p></li>
+</ul>
+<p>Gli item di abbinamento possono essere valutati in modo oggettivo e affidabile, e sono relativamente facili da sviluppare. Tuttavia, hanno uno scopo limitato e possono promuovere la memorizzazione meccanica.</p>
+</section>
+<section id="saggi">
+<h3><span class="section-number">23.5.2. </span>Saggi<a class="headerlink" href="#saggi" title="Link to this heading">#</a></h3>
+<p>Un item di saggio pone al candidato una domanda o un problema da rispondere in un formato scritto aperto. Essendo item a risposta costruita, richiedono una risposta elaborata dal candidato, non la selezione tra alternative. Di seguito alcune linee guida:</p>
+<ul class="simple">
+<li><p><strong>Specificare Chiaramente il Compito di Valutazione:</strong> È cruciale che il compito richiesto dall’item di saggio sia chiaramente definito, specificando la forma e l’ambito della risposta attesa.</p></li>
+<li><p><strong>Utilizzare più Item a Risposta Ristretta Rispetto a Quelli a Risposta Estesa:</strong> Gli item a risposta ristretta sono più facili da valutare in modo affidabile e consentono una migliore campionatura del dominio di contenuto.</p></li>
+<li><p><strong>Sviluppare e Utilizzare una Rubrica di Valutazione:</strong> Una rubrica di valutazione fornisce indicazioni chiare per la valutazione di una risposta costruita, essenziale per una valutazione affidabile.</p></li>
+<li><p><strong>Limitare l’Uso degli Item di Saggio a Obiettivi Non Misurabili con Item a Risposta Selezionata:</strong> Gli item di saggio hanno limitazioni, inclusa la difficoltà di valutazione affidabile e una minore campionatura del dominio di contenuto.</p></li>
+</ul>
+<p>In generale, gli item di saggio sono adatti per misurare obiettivi complessi e sono relativamente facili da scrivere, ma presentano difficoltà nella valutazione affidabile e nella limitata campionatura del dominio di contenuto. Si raccomanda di limitare l’uso degli item di saggio alla misurazione di obiettivi che non sono facilmente valutabili tramite item a risposta selezionata.</p>
+</section>
+</section>
+<section id="formato-di-risposta-breve">
+<h2><span class="section-number">23.6. </span>Formato di Risposta Breve<a class="headerlink" href="#formato-di-risposta-breve" title="Link to this heading">#</a></h2>
+<p>Gli item a risposta breve richiedono al candidato di fornire una parola, frase, numero o simbolo in risposta a una domanda diretta. Possono anche essere formulati come frasi incomplete, in un formato talvolta definito come “completamento”. Rispetto agli item di saggio, gli item a risposta breve pongono limiti più stretti sulla natura e lunghezza della risposta. Praticamente, un item a risposta breve è simile a un item di saggio a risposta ristretta, ma con ulteriori restrizioni. Di seguito alcune indicazioni specifiche per la redazione di item a risposta breve:</p>
+<ul class="simple">
+<li><p><strong>Strutturare l’Item per una Risposta il più Breve Possibile:</strong> Gli item a risposta breve dovrebbero richiedere risposte concise, semplificando così la valutazione e rendendola più affidabile.</p></li>
+<li><p><strong>Garantire una Sola Risposta Corretta:</strong> È importante che ci sia una sola risposta corretta per ogni item, evitando interpretazioni multiple.</p></li>
+<li><p><strong>Preferire il Formato di Domanda Diretta alla Frase Incompleta:</strong> Generalmente, il formato di domanda diretta è meno confuso per i candidati. Utilizzare il formato di frase incompleta solo se questo comporta una maggiore brevità senza perdere in chiarezza.</p></li>
+<li><p><strong>Nel Formato di Frase Incompleta, Utilizzare un Solo Spazio Vuoto:</strong> Limitare ciascuna frase incompleta a uno spazio vuoto, preferibilmente vicino alla fine della frase, per maggior chiarezza.</p></li>
+<li><p><strong>Fornire Spazi Adeguati per le Risposte:</strong> Assicurarsi che ogni spazio vuoto fornisca spazio sufficiente per la risposta del candidato, evitando che la lunghezza dello spazio possa fornire indizi sulla risposta.</p></li>
+<li><p><strong>Per Domande Quantitative, Indicare il Grado di Precisione Richiesto:</strong> Specificare, ad esempio, se la risposta deve essere espressa in pollici, o se le frazioni devono essere ridotte ai minimi termini.</p></li>
+<li><p><strong>Creare una Rubrica di Valutazione e Applicarla in Modo Coerente:</strong> Come per gli item di saggio, è importante creare e utilizzare in modo coerente una rubrica di valutazione.</p></li>
+</ul>
+<p>Gli item a risposta breve, simili agli item di saggio, richiedono una risposta scritta dal candidato ma con limiti più ristretti nella formulazione della risposta. Sono adatti per misurare determinati obiettivi di apprendimento (ad esempio, calcoli matematici) e sono relativamente facili da scrivere. Tuttavia, come gli item di saggio, presentano sfide nella valutazione affidabile e dovrebbero essere usati in modo oculato. Una checklist può fornire una guida utile per lo sviluppo di questi item.</p>
+<section id="test-di-risposta-tipica">
+<h3><span class="section-number">23.6.1. </span>Test di Risposta Tipica<a class="headerlink" href="#test-di-risposta-tipica" title="Link to this heading">#</a></h3>
+<p>Dopo aver esaminato vari formati di item utilizzati nei test di massima prestazione, ci concentreremo sugli item comunemente usati nei test di risposta tipica, come le scale di personalità e di atteggiamento. Descriveremo diversi formati di item comuni a questi test e forniremo alcune linee guida generali per lo sviluppo di item. La valutazione di sentimenti, pensieri, dialoghi interni e altri comportamenti occulti è meglio realizzata tramite autovalutazione, che sarà il focus della nostra discussione. Tuttavia, come nei test di massima prestazione, esistono numerosi formati di item disponibili per le misure di autovalutazione.</p>
+<section id="linee-guida-per-la-redazione-di-item-in-test-di-risposta-tipica">
+<h4><span class="section-number">23.6.1.1. </span>Linee Guida per la Redazione di Item in Test di Risposta Tipica<a class="headerlink" href="#linee-guida-per-la-redazione-di-item-in-test-di-risposta-tipica" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Concentrarsi su Pensieri, Sentimenti e Comportamenti, non su Fatti:</strong> Nei test di risposta tipica, l’obiettivo è valutare le esperienze del candidato: i suoi pensieri, sentimenti e comportamenti tipici. Di conseguenza, si dovrebbero evitare affermazioni basate su informazioni fattuali che possono essere valutate come “corrette” o “errate”.</p></li>
+<li><p><strong>Limitare le Affermazioni a un Singolo Pensiero, Sentimento o Comportamento:</strong> Ogni affermazione dovrebbe concentrarsi su un solo pensiero, sentimento, comportamento o atteggiamento.</p></li>
+<li><p><strong>Evitare Affermazioni Universali:</strong> Per aumentare la varianza e migliorare l’affidabilità, si dovrebbero scrivere item che misurano le differenze individuali. Se tutti o quasi tutti rispondono a un item nello stesso modo, questo non contribuisce alla misurazione dei costrutti identificati.</p></li>
+<li><p><strong>Includere Item Formulati sia in Modo “Positivo/Favorevole” che “Negativo/Sfavorevole”:</strong> Come regola generale, usare una combinazione di item formulati in modo “positivo” e “negativo”. Ciò può incoraggiare i candidati a evitare uno stile di risposta in cui semplicemente segnano la stessa opzione di risposta su tutti gli item. Questo è più applicabile agli item Vero/Falso e alle scale Likert, e meno alle scale di valutazione dove si cerca di valutare la frequenza di pensieri, sentimenti e comportamenti problematici.</p></li>
+<li><p><strong>Utilizzare un Numero Appropriato di Opzioni:</strong> Per le scale di valutazione, 4 o 5 opzioni di risposta sembrano ottimali per sviluppare affidabilità senza allungare eccessivamente il tempo richiesto per completare le valutazioni. Le scale di valutazione con più di 4 o 5 opzioni raramente migliorano l’affidabilità o la validità dell’interpretazione dei punteggi del test e richiedono più tempo ai candidati per essere completate. Per gli item Likert, il numero massimo di opzioni sembra essere di sette gradini, con un piccolo aumento dell’affidabilità oltre tale numero.</p></li>
+<li><p><strong>Valutare i Benefici dell’Uso di un Numero Pari o Dispari di Opzioni:</strong> Negli item Likert, generalmente si raccomanda l’uso di un numero dispari di scelte con l’opzione centrale come “Neutrale” o “Indeciso”. Questo non è universalmente accettato poiché alcuni autori sostengono l’uso di un numero pari di scelte senza opzione neutra, basandosi sul fatto che alcuni rispondenti tendono a utilizzare eccessivamente la scelta neutra se disponibile. Ciò può risultare in una ridotta varianza e affidabilità. L’eliminazione dell’opzione neutra potrebbe frustrare alcuni rispondenti che potrebbero non completare gli item quando non hanno un’opinione forte. I dati mancanti possono essere un problema significativo in questi casi. La nostra raccomandazione è di usare un numero dispari di opzioni con un’opzione neutra. Con le scale di valutazione della frequenza, questo è meno importante poiché non è necessaria un’opzione “neutrale”.</p></li>
+<li><p><strong>Etichettare Chiaramente Ciascuna delle Opzioni nelle Scale di Valutazione e negli Item Likert:</strong> Per esempio, fornire etichette per ciascuna delle opzioni di risposta per risolvere eventuali incertezze.</p></li>
+<li><p><strong>Minimizzare l’Uso di Determinanti Specifici:</strong> L’uso di determinanti specifici come “mai”, “sempre”, “nessuno” e “tutti” dovrebbe essere usato con cautela in quanto possono complicare il processo di risposta.</p></li>
+<li><p><strong>Con i Bambini Piccoli, Considerare l’Uso di un Formato di Intervista:</strong> Per i bambini piccoli, prendere in considerazione l’utilizzo di un formato di intervista in cui gli item vengono letti al bambino. Questo può aiutare a ridurre la varianza irrilevante al costrutto introdotta dall’eliminazione dell’impatto delle abilità di lettura.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="sommario">
+<h2><span class="section-number">23.7. </span>Sommario<a class="headerlink" href="#sommario" title="Link to this heading">#</a></h2>
+<p>All’inizio di questo capitolo, viene fatta una distinzione principale tra gli item di test in base a se sono a risposta selezionata o a risposta costruita. Successivamente, vengono considerate le loro applicazioni nei test di massima prestazione e nei test di risposta tipica. Per i test di massima prestazione, gli item a risposta selezionata includono formati a scelta multipla, vero/falso e di abbinamento, mentre gli item a risposta costruita comprendono gli item a risposta breve e i saggi. Ogni tipo di item presenta punti di forza e debolezze che sono riassunti di seguito.</p>
+<p><strong>Item a Scelta Multipla:</strong> Molto popolari nei test di massima prestazione, presentano numerosi punti di forza come versatilità, valutazione oggettiva e affidabile, e campionatura efficiente del dominio di contenuto. La loro limitazione principale è che non sono efficaci per misurare tutti gli obiettivi e non sono facili da sviluppare.</p>
+<p><strong>Item Vero/Falso:</strong> Possono essere valutati in modo oggettivo e affidabile e permettono di rispondere a molti item in breve tempo. Tuttavia, hanno molte debolezze, come la limitazione a obiettivi di apprendimento semplici e una forte vulnerabilità all’indovinamento.</p>
+<p><strong>Item di Abbinamento:</strong> Anche questi possono essere valutati in modo oggettivo e affidabile, completati in maniera efficiente e sono relativamente facili da sviluppare. Le loro principali limitazioni includono uno scopo limitato e la possibilità di promuovere la memorizzazione meccanica.</p>
+<p><strong>Saggi:</strong> Presentano una domanda o un problema a cui il candidato risponde in formato scritto. I saggi danno una notevole libertà nella formulazione delle risposte, ma sono difficili da valutare in modo affidabile e offrono una campionatura limitata del contenuto. Sono tuttavia adatti per misurare molti obiettivi complessi.</p>
+<p><strong>Item a Risposta Breve:</strong> Simili ai saggi, richiedono una risposta scritta, ma con limiti più stretti. Sono adatti per misurare specifici obiettivi di apprendimento come i calcoli matematici e sono relativamente facili da scrivere.</p>
+<p>Gli item per i test di risposta tipica si concentrano sull’autovalutazione di sentimenti, pensieri, dialoghi interni e altri comportamenti occulti. Alcuni esempi:</p>
+<p><strong>Item Vero/Falso e Altri Item Dicotomici:</strong> Comuni nei test di risposta tipica, questi item si focalizzano sulle esperienze attuali del candidato.</p>
+<p><strong>Scale di Valutazione:</strong> Possono essere progettate sia per misure di autovalutazione sia per la valutazione di altri individui. A differenza degli item vero/falso che offrono solo due scelte, le scale di valutazione hanno tipicamente da quattro a cinque opzioni e denotano la frequenza.</p>
+<p>Gli item Likert, simili alle scale di valutazione, si concentrano sul grado di accordo piuttosto che sulla frequenza. Sono diventati il formato più popolare per la valutazione delle attitudini. In passato, le scale cumulative come quelle di Guttman e Thurstone erano popolari, ma le scale Likert si sono rivelate più facili da sviluppare e con proprietà psicometriche equivalenti o superiori.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./_items"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../_validity/02_relations_to_other_vars.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">22. </span>Relazioni test-criterio</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_item_analysis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">24. </span>Analisi degli item</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classificazione-degli-item-nei-test-psicometrici">23.1. Classificazione degli Item nei Test Psicometrici</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#item-oggettivi-e-soggettivi-un-continuum-di-valutazione">23.1.1. Item Oggettivi e Soggettivi: Un Continuum di Valutazione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classificazione-alternativa-risposta-selezionata-vs-risposta-costruita">23.1.2. Classificazione Alternativa: Risposta Selezionata vs Risposta Costruita</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#punti-di-forza-e-limitazioni">23.1.3. Punti di Forza e Limitazioni</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linee-guida-generali-per-la-redazione-di-item-di-test">23.2. Linee Guida Generali per la Redazione di Item di Test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-di-massima-prestazione">23.3. Test di Massima Prestazione</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#item-a-scelta-multipla">23.3.1. Item a Scelta Multipla</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#suggerimenti-per-sviluppare-item-a-scelta-multipla">23.3.1.1. Suggerimenti per Sviluppare Item a Scelta Multipla</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formato-di-risposta-vero-falso">23.4. Formato di Risposta Vero/Falso</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linee-guida-per-sviluppare-item-vero-falso">23.4.1. Linee Guida per Sviluppare Item Vero/Falso</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formato-di-risposta">23.5. Formato di Risposta</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#item-di-abbinamento">23.5.1. Item di Abbinamento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saggi">23.5.2. Saggi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formato-di-risposta-breve">23.6. Formato di Risposta Breve</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-di-risposta-tipica">23.6.1. Test di Risposta Tipica</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#linee-guida-per-la-redazione-di-item-in-test-di-risposta-tipica">23.6.1.1. Linee Guida per la Redazione di Item in Test di Risposta Tipica</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sommario">23.7. Sommario</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

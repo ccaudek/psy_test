@@ -1,0 +1,1347 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>54. Modelli di Regressione Strutturale &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css?v=ffeaf963" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6ba04eab" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VMXNE4BCDL"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_sem/09_structural_regr';</script>
+    <script src="../_static/custom.js?v=3f5092eb"></script>
+    <link rel="canonical" href="https://ccaudek.github.io/psy_test/_sem/09_structural_regr.html" />
+    <link rel="icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="55. Dati mancanti" href="10_missing_data.html" />
+    <link rel="prev" title="53. Modelli di Equazioni Strutturali Multilivello" href="08_multilevel_sem.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Scaling psicometrico</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/01_expval_var.html">1. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/02_joint_prob.html">2. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/03_measurement.html">3. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/04_norms.html">4. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/05_regression.html">5. L’analisi di regressione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E1_likert.html">6. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E2_optimal_scoring.html">7. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E3_thurstone.html">8. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/01_ctt_1.html">9. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/02_ctt_2.html">10. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/03_ctt_3.html">11. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/04_err_std_mis.html">12. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/05_err_std_stima.html">13. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/06_applications_ctt.html">14. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E1_ctt.html">15. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E2_item_analyses.html">16. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/01_multilevel_1.html">17. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/02_interrater_reliability.html">18. L’affidabilità tra giudici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/E1_irr.html">19. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/01_gtheory.html">20. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/01_validity.html">21. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/02_relations_to_other_vars.html">22. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sviluppo degli item</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_items/01_item_development.html">23. Lo sviluppo degli item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_items/02_item_analysis.html">24. Analisi degli item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">25. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale esplorativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/01_intro_fa.html">26. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/02_analisi_fattoriale_1.html">27. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/03_analisi_fattoriale_2.html">28. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/04_analisi_fattoriale_3.html">29. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/05_factor_scores.html">30. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/06_constraints_on_parms.html">31. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/07_total_score.html">32. Punteggio totale e modello fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione strumenti</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">33. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">34. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">35. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">36. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">37. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/01_cfa.html">38. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/E_01.html">39. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/02_meanstructure.html">40. La struttura delle medie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/03_cat_data.html">41. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/04_mmm.html">42. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/05_bifactor.html">43. Modello bifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/06_efa_lavaan.html">44. Exploratory Structural Equation Modeling (ESEM)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_sem_intro.html">45. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_preparation.html">46. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="E_01.html">47. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_gof.html">48. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_mod_comp.html">49. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_cfa_mod_comp.html">50. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_refine_solution.html">51. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_group_invariance.html">52. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_multilevel_sem.html">53. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">54. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_missing_data.html">55. Dati mancanti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_small_samples.html">56. Modellizzazione SEM in Piccoli Campioni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_temp_reliability.html">57. Affidabilità longitudinale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_irt/01_logistic_regr.html">58. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/E_01.html">59. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/02_rasch_model.html">60. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/03_assumptions.html">61. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/04_estimation.html">62. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/05_1pl_2pl_3pl.html">63. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/06_implementation.html">64. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/07_polytomous_graded.html">65. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mokken Scales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/01_core_issues.html">66. Analisi della Scala di Mokken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/02_tutorial.html">67. Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/03_applications.html">68. Applicazione Pratica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/01_development.html">69. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/02_tutorial.html">70. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/01_lgm_intro.html">71. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/02_lgm_prelims.html">72. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/03_time_effects.html">73. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/04_invariance.html">74. Invarianza Fattoriale Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/05_intro_panel.html">75. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/06_lgm_mixed.html">76. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/07_growth_1.html">77. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/08_growth_cont.html">78. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/09_time_inv_cov.html">79. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/10_growth_groups.html">80. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/11_bivariate_tvc_models.html">81. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/12_inv_measurement.html">82. Invarianza di Misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/13_latent_change.html">83. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/750_latent_change.html">84. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/751_biv_change.html">85. Modello LCS bivariato</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">86. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a1_intro_r.html">87. Linguaggio R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a2_sums.html">88. Simbolo di somma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a3_calculus.html">89. Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a4_linear_alg.html">90. Elementi di algebra lineare</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_sem/09_structural_regr.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modelli di Regressione Strutturale</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modellazione-in-due-fasi">54.1. Modellazione in Due Fasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#una-applicazione-concreta">54.2. Una Applicazione Concreta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strategie-avanzate-di-modellazione-per-i-modelli-di-regressione-strutturale">54.3. Strategie Avanzate di Modellazione per i Modelli di Regressione Strutturale</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modelli-di-regressione-strutturale">
+<span id="structural-regression-models-notebook"></span><h1><span class="section-number">54. </span>Modelli di Regressione Strutturale<a class="headerlink" href="#modelli-di-regressione-strutturale" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">source</span><span class="p">(</span><span class="s">&quot;../_common.R&quot;</span><span class="p">)</span>
+<span class="nf">suppressPackageStartupMessages</span><span class="p">({</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;lavaan&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;semPlot&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;knitr&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;markdown&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;patchwork&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;lme4&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;here&quot;</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Un comune modello nell’analisi delle equazioni strutturali (SEM) è il modello di regressione strutturale (Sr), noto anche come modello di percorso con variabili latenti o modello LISREL completo. La parte “strutturale” di un modello Sr rappresenta ipotesi sugli effetti diretti o indiretti tra variabili osservate o fattori comuni, mentre la parte di “misurazione” rappresenta la corrispondenza tra i fattori comuni e i loro indicatori.</p>
+<p>La specificazione di modelli Sr con indicatori continui e i requisiti per la loro identificazione saranno considerati per primi in questo capitolo. Successivamente, vengono delineate due diverse strategie per analizzare i modelli Sr completi in cui ogni variabile nel modello strutturale è un fattore comune e ciascuno ha molteplici indicatori. Queste strategie affrontano il problema di come identificare la fonte o le fonti di errore di specificazione, separando la valutazione della parte di misurazione del modello dall’analisi della sua parte strutturale.</p>
+<p>Inoltre, in questo capitolo vengono discussi anche i modelli Sr parziali con indicatori singoli per alcune, ma non tutte, le variabili nella parte strutturale del modello. Viene inoltre spiegato un metodo per specificare il modello che controlla esplicitamente la misurazione negli indicatori singoli senza influenzare l’adattamento del modello.</p>
+<p>Nella <a class="reference internal" href="#kline-15-1-fig"><span class="std std-numref">Fig. 54.1</span></a> (a), è rappresentato un modello di percorso con variabili manifeste. Viene assunto che la variabile esogena X1 sia misurata senza errore, sebbene questa assunzione sia spesso violata nella pratica. Le variabili endogene nel modello, come Y1 e Y4, possono avere errori casuali che si manifestano nelle loro perturbazioni.</p>
+<figure class="align-default" id="kline-15-1-fig">
+<a class="reference internal image-reference" href="../_images/kline_15_1.png"><img alt="../_images/kline_15_1.png" src="../_images/kline_15_1.png" style="height: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 54.1 </span><span class="caption-text">Esempi di un modello di percorso con variabili manifeste (a) e di un corrispondente modello di regressione strutturale completo con indicatori multipli per ogni fattore comune nella parte strutturale (b). (Figura tratta da <span id="id1">Kline [<a class="reference internal" href="../z_biblio.html#id8" title="Rex B Kline. Principles and practice of structural equation modeling. Guilford publications, 2023.">Kli23</a>]</span>)</span><a class="headerlink" href="#kline-15-1-fig" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>La Figura <a class="reference internal" href="#kline-15-1-fig"><span class="std std-numref">Fig. 54.1</span></a> (b) illustra un modello di Regressione Strutturale (SR) completo, che integra sia componenti strutturali sia di misurazione. In questo modello SR, a differenza del modello di percorso, ciascun indicatore (X1, Y1, Y4) è definito come uno tra numerosi indicatori associati a un fattore comune. Di conseguenza, tutte le variabili osservabili in questa figura includono termini di errore.</p>
+<p>Nella parte strutturale del modello, presentata nella Figura <a class="reference internal" href="#kline-15-1-fig"><span class="std std-numref">Fig. 54.1</span></a> (b), si osserva la rappresentazione degli stessi schemi di effetti causali diretti e indiretti trovati nel modello di percorso (mostrato nella Figura <a class="reference internal" href="#kline-15-1-fig"><span class="std std-numref">Fig. 54.1</span></a> (a)), ma applicati ai fattori comuni. Tale modello strutturale è di tipo ricorsivo, sebbene sia anche fattibile la progettazione di un modello SR con componenti strutturali non ricorsive. In questa figura, ogni fattore endogeno possiede una perturbazione specifica (<span class="math notranslate nohighlight">\(D_B\)</span>, <span class="math notranslate nohighlight">\(D_C\)</span>), che, a differenza dei modelli di percorso con variabili manifeste, riflettono unicamente cause non considerate e non errori di misurazione degli indicatori del fattore.</p>
+<p>Per quanto riguarda l’analisi delle medie, le osservazioni e i parametri nei modelli SR sono trattati allo stesso modo di quelli nei modelli di percorso e nei modelli di Analisi Fattoriale Confermativa (CFA), conformemente alle regole precedentemente stabilite. L’identificazione di un modello SR completo avviene quando sia la sua componente di misurazione, riformulata come un modello CFA, sia la parte strutturale risultano identificate. La regola di identificazione in due fasi implica che, per determinare se un modello SR completo sia identificato, è necessario esaminare separatamente ciascuna delle sue parti, ovvero quelle di misurazione e strutturale.</p>
+<section id="modellazione-in-due-fasi">
+<h2><span class="section-number">54.1. </span>Modellazione in Due Fasi<a class="headerlink" href="#modellazione-in-due-fasi" title="Link to this heading">#</a></h2>
+<p>Immaginiamo che un ricercatore abbia definito un modello di Regressione Strutturale (SR) completo, come mostrato nella <a class="reference internal" href="#kline-15-2-fig"><span class="std std-numref">Fig. 54.2</span></a>(a). Dopo aver raccolto i dati, il ricercatore adotta un approccio monofase per analizzare il modello, eseguendo una stima simultanea delle componenti di misurazione e strutturali. Tuttavia, i risultati rivelano che il modello non si adatta bene ai dati. Ciò solleva interrogativi sulla localizzazione del problema: è nella parte di misurazione, nella parte strutturale, o in entrambe? Identificare la fonte del problema con precisione può essere complesso usando un approccio monofase.</p>
+<figure class="align-default" id="kline-15-2-fig">
+<a class="reference internal image-reference" href="../_images/kline_15_2.png"><img alt="../_images/kline_15_2.png" src="../_images/kline_15_2.png" style="height: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 54.2 </span><span class="caption-text">Valutazione della regola in due fasi per l’identificazione di un modello di regressione strutturale completo presentato con simbolismo grafico compatto per i termini di errore degli indicatori nella parte di misurazione e le perturbazioni nella parte strutturale. (Figura tratta da <span id="id2">Kline [<a class="reference internal" href="../z_biblio.html#id8" title="Rex B Kline. Principles and practice of structural equation modeling. Guilford publications, 2023.">Kli23</a>]</span>)</span><a class="headerlink" href="#kline-15-2-fig" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Per affrontare questa sfida, la modellazione bifase, suggerita da Anderson e Gerbing (1988), propone un’euristica in due fasi per l’identificazione dei modelli SR completi:</p>
+<ol class="arabic simple">
+<li><p><strong>Primo Passaggio</strong>: Il modello SR originale viene trasformato in un modello di misurazione CFA. Questo modello riformulato viene quindi analizzato per valutare l’adattamento ai dati. Un cattivo adattamento del modello CFA potrebbe indicare errori nelle ipotesi di misurazione del ricercatore e suggerire che l’adattamento del modello SR originale potrebbe essere compromesso, specialmente se la sua parte strutturale è sovraidentificata.</p></li>
+<li><p><strong>Secondo Passaggio</strong>: Con un modello di misurazione CFA ritenuto valido dal primo passaggio, il secondo confronta l’adattamento del modello SR originale con quello di diversi modelli strutturali alternativi, utilizzando il test di differenza del chi-quadro.</p></li>
+</ol>
+<p>La modellazione bifase presenta diversi problemi. Primo, richiede di considerare tutte le opzioni possibili di riformulazione sia del modello CFA che del modello strutturale. Secondo, il processo può essere paragonato a un “giardino dei sentieri che si biforcano”, dove ogni decisione può portare a diverse possibili modifiche del modello originale. Terzo, esiste il rischio di capitalizzare sulle variazioni casuali quando si testano e si riformulano modelli correlati usando gli stessi dati.</p>
+<p>Un’altra sfida è rappresentata dai modelli equivalenti. Ad esempio, un modello CFA al Primo Passaggio e un modello SR corrispondente con una parte strutturale appena identificata al Secondo Passaggio potrebbero risultare equivalenti. La preferenza per il modello SR dovrebbe quindi basarsi su ragionamenti logici o essere supportata dal design dello studio.</p>
+<p>Se un modello di misurazione viene mantenuto al Primo Passaggio, esistono due approcci principali per testare il modello strutturale nel Secondo Passaggio: il Model building (ricerca in avanti) e il Model trimming (ricerca all’indietro). Chou e Bentler (2002) hanno osservato che la probabilità di identificare il modello SR corretto dipende significativamente dal modello inizialmente specificato. Inoltre, hanno trovato che il modello corretto veniva identificato circa il 60% delle volte nel Model trimming.</p>
+<p>È importante notare che se i carichi fattoriali variano notevolmente con diversi modelli strutturali, ciò indica che il modello di misurazione non è invariante e aumenta il rischio di confondimento interpretativo.</p>
+<p>Infine, alcuni studi hanno mostrato che le statistiche globali di adattamento standard possono essere più influenzate dalla componente di misurazione dei modelli SR rispetto alla parte strutturale. Tuttavia, i risultati delle simulazioni al computer indicano che non esiste un insieme universale di soglie per gli indici di adattamento approssimato che siano validi per tutti i tipi di modelli e dati.</p>
+</section>
+<section id="una-applicazione-concreta">
+<h2><span class="section-number">54.2. </span>Una Applicazione Concreta<a class="headerlink" href="#una-applicazione-concreta" title="Link to this heading">#</a></h2>
+<p>La <a class="reference internal" href="#kline-15-3-fig"><span class="std std-numref">Fig. 54.3</span></a> illustra un modello SR (Regressione Strutturale) iniziale che esplora il rendimento scolastico e l’adattamento in aula di studenti di età media corrispondente ai gradi 7-8. Il modello considera l’influenza dell’abilità cognitiva generale e del livello di rischio di disturbi psicopatologici. Uno degli indicatori di rischio deriva dalla diagnosi di disturbi psichiatrici maggiori nei genitori, mentre il secondo è basato sul livello socio-economico (SES) della famiglia, con punteggi più alti che indicano un SES inferiore. Le abilità cognitive sono valutate tramite i punteggi in ragionamento verbale, analisi visivo-spaziale e memoria, ottenuti da un test di QI somministrato individualmente.</p>
+<figure class="align-default" id="kline-15-3-fig">
+<a class="reference internal image-reference" href="../_images/kline_15_3.png"><img alt="../_images/kline_15_3.png" src="../_images/kline_15_3.png" style="height: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 54.3 </span><span class="caption-text">Modello iniziale completo di regressione strutturale del rendimento scolastico e dell’adattamento in classe come funzione dell’abilità cognitiva e del rischio di psicopatologia. (Figura tratta da <span id="id3">Kline [<a class="reference internal" href="../z_biblio.html#id8" title="Rex B Kline. Principles and practice of structural equation modeling. Guilford publications, 2023.">Kli23</a>]</span>)</span><a class="headerlink" href="#kline-15-3-fig" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Il modello comprende due fattori endogeni: il rendimento scolastico, valutato attraverso test standardizzati di lettura, aritmetica e ortografia, e l’adattamento in classe, misurato con tre indicatori forniti dagli insegnanti riguardo alla motivazione, stabilità emotiva e qualità delle relazioni sociali degli studenti. In questo modello strutturale, sia il rendimento scolastico sia l’adattamento in classe sono influenzati dall’abilità cognitiva e dal rischio, ma non vi è un effetto diretto o una covarianza delle perturbazioni tra questi due fattori endogeni, indicando che eventuali associazioni tra di essi sono attribuibili alle loro cause comuni, i fattori esogeni.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># input the correlations in lower diagnonal form</span>
+<span class="n">worlandLower.cor</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">1.00</span>
+<span class="s"> .70 1.00</span>
+<span class="s"> .65  .60 1.00</span>
+<span class="s"> .55  .50  .45 1.00</span>
+<span class="s"> .50  .45  .40  .70 1.00</span>
+<span class="s"> .35  .35  .30  .55  .50 1.00</span>
+<span class="s"> .30  .30  .30  .50  .45  .44 1.00</span>
+<span class="s"> .25  .20  .22  .41  .28  .34  .40 1.00</span>
+<span class="s"> .35  .32  .32  .48  .45  .42  .60  .45 1.00</span>
+<span class="s">-.25 -.24 -.22 -.21 -.18 -.15 -.15 -.12 -.17 1.00</span>
+<span class="s">-.22 -.26 -.30 -.25 -.22 -.18 -.17 -.14 -.20  .42 1.00 &quot;</span>
+
+<span class="c1"># name the variables and convert to full correlation matrix</span>
+<span class="n">worland.cor</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">getCov</span><span class="p">(</span><span class="n">worlandLower.cor</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;verbal&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;visual&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;memory&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;read&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spell&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;motive&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;harmony&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;stable&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;parent&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ses&quot;</span>
+<span class="p">))</span>
+
+<span class="c1"># add the standard deviations and convert to covariances</span>
+<span class="n">worland.cov</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">cor2cov</span><span class="p">(</span><span class="n">worland.cor</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">        </span><span class="m">13.75</span><span class="p">,</span><span class="w"> </span><span class="m">14.80</span><span class="p">,</span><span class="w"> </span><span class="m">12.60</span><span class="p">,</span><span class="w"> </span><span class="m">14.90</span><span class="p">,</span><span class="w"> </span><span class="m">15.25</span><span class="p">,</span><span class="w"> </span><span class="m">13.85</span><span class="p">,</span><span class="w"> </span><span class="m">9.50</span><span class="p">,</span><span class="w"> </span><span class="m">11.10</span><span class="p">,</span><span class="w"> </span><span class="m">8.70</span><span class="p">,</span>
+<span class="w">        </span><span class="m">12.00</span><span class="p">,</span><span class="w"> </span><span class="m">8.50</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Primo Passaggio nella modellazione in due fasi per un modello SR completo di rendimento scolastico e adattamento in classe</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4-factor CFA</span>
+<span class="n">worlandCFA.model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">    Cognitive =~ verbal + visual + memory</span>
+<span class="s">    Achieve =~ read + math + spell</span>
+<span class="s">    Adjust =~ motive + harmony + stable</span>
+<span class="s">    Risk =~ parent + ses </span>
+<span class="s"> &quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">worlandCFA</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">cfa</span><span class="p">(</span><span class="n">worlandCFA.model</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.cov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">worland.cov</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.nobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">158</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">semPlot</span><span class="o">::</span><span class="nf">semPaths</span><span class="p">(</span><span class="n">worlandCFA</span><span class="p">,</span>
+<span class="w">    </span><span class="n">what</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;col&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;par&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mx&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;tree2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nCharNodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">,</span>
+<span class="w">    </span><span class="n">shapeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rectangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/5d3e58716867bc1a547760dfbf8a70c8e997c3d21247786b8e71130497f2be97.png"><img alt="../_images/5d3e58716867bc1a547760dfbf8a70c8e997c3d21247786b8e71130497f2be97.png" src="../_images/5d3e58716867bc1a547760dfbf8a70c8e997c3d21247786b8e71130497f2be97.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">fitMeasures</span><span class="p">(</span><span class="n">worlandCFA</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;chisq&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;df&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cfi&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;tli&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rmsea&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;srmr&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> chisq     df    cfi    tli  rmsea   srmr 
+16.212 38.000  1.000  1.049  0.000  0.023 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># predicted correlation matrix for factors</span>
+<span class="n">lavaan</span><span class="o">::</span><span class="nf">lavInspect</span><span class="p">(</span><span class="n">worlandCFA</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cor.lv&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          Cogntv Achiev Adjust   Risk
+Cognitive  1.000                     
+Achieve    0.703  1.000              
+Adjust     0.500  0.751  1.000       
+Risk      -0.459 -0.401 -0.349  1.000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lavaan</span><span class="o">::</span><span class="nf">residuals</span><span class="p">(</span><span class="n">worlandCFA</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;standardized.mplus&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>$type
+[1] &quot;standardized.mplus&quot;
+
+$cov
+        verbal visual memory   read   math  spell motive harmny stable parent
+verbal   0.000                                                               
+visual   0.000  0.000                                                        
+memory   0.123 -0.130  0.000                                                 
+read     0.598  0.113 -0.285  0.000                                          
+math     0.505  0.038 -0.377  0.597  0.000                                   
+spell   -0.952 -0.255 -0.704 -0.667 -0.206  0.000                            
+motive  -0.821 -0.157  0.310 -0.042 -0.078  1.484  0.000                     
+harmony  0.117 -0.453  0.171  0.942 -1.179  1.196 -1.010  0.000              
+stable   0.285  0.112  0.566 -1.893 -0.467  0.942  0.422  0.436  0.000       
+parent  -0.092 -0.260 -0.157  0.234  0.379  0.157  0.301  0.020 -0.022  0.000
+ses      1.890 -0.247 -1.417 -0.370 -0.114 -0.112  0.213 -0.125 -0.362  0.000
+           ses
+verbal        
+visual        
+memory        
+read          
+math          
+spell         
+motive        
+harmony       
+stable        
+parent        
+ses      0.000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lavaan</span><span class="o">::</span><span class="nf">residuals</span><span class="p">(</span><span class="n">worlandCFA</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;cor.bollen&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>$type
+[1] &quot;cor.bollen&quot;
+
+$cov
+        verbal visual memory   read   math  spell motive harmny stable parent
+verbal   0.000                                                               
+visual   0.000  0.000                                                        
+memory   0.001 -0.002  0.000                                                 
+read     0.015  0.003 -0.010  0.000                                          
+math     0.017  0.001 -0.016  0.007  0.000                                   
+spell   -0.040 -0.012 -0.035 -0.010 -0.006  0.000                            
+motive  -0.031 -0.007  0.016 -0.001 -0.003  0.075  0.000                     
+harmony  0.006 -0.026  0.010  0.041 -0.053  0.071 -0.027  0.000              
+stable   0.011  0.005  0.028 -0.034 -0.015  0.045  0.005  0.012  0.000       
+parent  -0.003 -0.010 -0.007  0.008  0.017  0.009  0.015  0.001 -0.001  0.000
+ses      0.050 -0.010 -0.068 -0.012 -0.005 -0.006  0.010 -0.008 -0.016  0.000
+           ses
+verbal        
+visual        
+memory        
+read          
+math          
+spell         
+motive        
+harmony       
+stable        
+parent        
+ses      0.000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate factor reliability coefficients (semTools)</span>
+<span class="n">semTools</span><span class="o">::</span><span class="nf">reliability</span><span class="p">(</span><span class="n">worlandCFA</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       Cognitive   Achieve    Adjust      Risk
+alpha  0.8463118 0.8087788 0.7249416 0.5675488
+omega  0.8513712 0.8207835 0.7296141 0.5770344
+omega2 0.8513712 0.8207835 0.7296141 0.5770344
+omega3 0.8515872 0.8227890 0.7327431 0.5770344
+avevar 0.6588592 0.6101369 0.4744677 0.4094519
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Secondo Passaggio nella modellazione in due fasi per un modello SR completo di rendimento scolastico e adattamento in classe</strong></p>
+<p>I risultati del Passaggio 1 del metodo in due fasi, che si concentrava sul modello di misurazione, consentono di procedere all’analisi del modello SR originale, che prevede cinque percorsi nella <a class="reference internal" href="#kline-15-3-fig"><span class="std std-numref">Fig. 54.3</span></a>, nel Passaggio 2 del metodo. Anche questa seconda analisi ha portato a una soluzione ammissibile.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># step 2a</span>
+<span class="c1"># 4-factor SR model with 5 paths among factors</span>
+
+<span class="c1"># by default, lavaan frees the disturbance covariance</span>
+<span class="c1"># between a pair of outcomes in a structural model</span>
+<span class="c1"># when there is no direct effect between them</span>
+<span class="c1"># thus, this parameter is explicitly fixed to zero</span>
+<span class="c1"># in this analysis</span>
+
+<span class="n">worlandSRa_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">    # measurement part</span>
+<span class="s">    Cognitive =~ verbal + visual + memory</span>
+<span class="s">    Achieve =~ read + math + spell</span>
+<span class="s">    Adjust =~ motive + harmony + stable</span>
+<span class="s">    Risk =~ parent + ses</span>
+<span class="s">    # structural part (5 paths)</span>
+<span class="s">    Achieve ~ Cognitive + Risk</span>
+<span class="s">    Adjust ~ Cognitive + Risk</span>
+<span class="s">    # constrain disturbance covariance to zero</span>
+<span class="s">    Adjust ~~ 0*Achieve </span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">worlandSRa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">sem</span><span class="p">(</span><span class="n">worlandSRa_model</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.cov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">worland.cov</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.nobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">158</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">semPlot</span><span class="o">::</span><span class="nf">semPaths</span><span class="p">(</span><span class="n">worlandSRa</span><span class="p">,</span>
+<span class="w">    </span><span class="n">what</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;col&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;par&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mx&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;tree2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nCharNodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">,</span>
+<span class="w">    </span><span class="n">shapeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rectangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/7a7aaa71e504545f86fb02d6db10d1bbfc4d7c6f77b078e428d19cf6d08cb046.png"><img alt="../_images/7a7aaa71e504545f86fb02d6db10d1bbfc4d7c6f77b078e428d19cf6d08cb046.png" src="../_images/7a7aaa71e504545f86fb02d6db10d1bbfc4d7c6f77b078e428d19cf6d08cb046.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">fitMeasures</span><span class="p">(</span><span class="n">worlandSRa</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;chisq&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;df&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cfi&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;tli&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rmsea&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;srmr&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> chisq     df    cfi    tli  rmsea   srmr 
+49.747 39.000  0.983  0.976  0.042  0.074 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lavaan</span><span class="o">::</span><span class="nf">residuals</span><span class="p">(</span><span class="n">worlandSRa</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;standardized.mplus&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>$type
+[1] &quot;standardized.mplus&quot;
+
+$cov
+        verbal visual memory   read   math  spell motive harmny stable parent
+verbal   0.135                                                               
+visual   0.892  0.122                                                        
+memory   0.670  0.193  0.098                                                 
+read    -0.270 -0.710 -1.047  0.009                                          
+math    -0.004 -0.498 -0.910 -0.340     NA                                   
+spell   -1.008 -0.332 -0.808  0.034  0.202  0.030                            
+motive  -1.540 -0.721 -0.155  3.466  3.022  3.348  0.034                     
+harmony -0.289 -0.858 -0.173  2.903  1.340  2.579 -0.244  0.057              
+stable  -1.412 -1.235 -0.441  2.917  2.763  2.910  0.169  0.092  0.050       
+parent  -0.309 -0.394 -0.260  0.960  0.849  0.340  0.625  0.244  0.702     NA
+ses      1.413 -0.337 -1.439  0.567  0.478  0.135  0.653  0.157  0.546  1.467
+           ses
+verbal        
+visual        
+memory        
+read          
+math          
+spell         
+motive        
+harmony       
+stable        
+parent        
+ses         NA
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lavaan</span><span class="o">::</span><span class="nf">residuals</span><span class="p">(</span><span class="n">worlandSRa</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;cor.bollen&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>$type
+[1] &quot;cor.bollen&quot;
+
+$cov
+        verbal visual memory   read   math  spell motive harmny stable parent
+verbal   0.000                                                               
+visual   0.013  0.000                                                        
+memory   0.011  0.004  0.000                                                 
+read    -0.006 -0.019 -0.032  0.000                                          
+math     0.000 -0.017 -0.034 -0.002  0.000                                   
+spell   -0.042 -0.016 -0.040  0.000  0.005  0.000                            
+motive  -0.054 -0.031 -0.008  0.219  0.197  0.242  0.000                     
+harmony -0.015 -0.048 -0.010  0.199  0.090  0.192 -0.007  0.000              
+stable  -0.041 -0.045 -0.019  0.170  0.171  0.201  0.001  0.002  0.000       
+parent  -0.011 -0.017 -0.013  0.031  0.037  0.020  0.031  0.015  0.029  0.000
+ses      0.044 -0.014 -0.071  0.016  0.020  0.008  0.030  0.010  0.020  0.012
+           ses
+verbal        
+visual        
+memory        
+read          
+math          
+spell         
+motive        
+harmony       
+stable        
+parent        
+ses      0.000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sebbene gli indici di fit siano buoni, l’adattamento locale del modello con cinque percorsi tra i fattori è scarso. Ad esempio, i residui standardizzati per diverse coppie di indicatori dei fattori di rendimento e adattamento hanno spesso un valore maggiore di 2:</p>
+<ul class="simple">
+<li><p>Lettura, Motivazione, 3.466</p></li>
+<li><p>Ortografia, Motivazione,  3.348</p></li>
+<li><p>Lettura, Armonia, 2.903</p></li>
+</ul>
+<p>Basandosi su tutti questi risultati relativi all’adattamento globale e locale, il modello SR iniziale nella <a class="reference internal" href="#kline-15-3-fig"><span class="std std-numref">Fig. 54.3</span></a> con cinque percorsi tra i fattori è rifiutato.</p>
+<p>Esaminiamo i <em>modification indices</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">modificationIndices</span><span class="p">(</span><span class="n">worlandSRa</span><span class="p">,</span><span class="w"> </span><span class="n">sort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">minimum.value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A lavaan.data.frame: 6 × 8</caption>
+<thead>
+	<tr><th></th><th scope=col>lhs</th><th scope=col>op</th><th scope=col>rhs</th><th scope=col>mi</th><th scope=col>epc</th><th scope=col>sepc.lv</th><th scope=col>sepc.all</th><th scope=col>sepc.nox</th></tr>
+	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>126</th><td>Adjust </td><td>~ </td><td>Achieve</td><td>31.938548</td><td> 0.4553494</td><td>0.8558291</td><td>0.8558291</td><td>0.8558291</td></tr>
+	<tr><th scope=row>16</th><td>Achieve</td><td>~~</td><td>Adjust </td><td>31.938547</td><td>34.8789498</td><td>0.7039273</td><td>0.7039273</td><td>0.7039273</td></tr>
+	<tr><th scope=row>125</th><td>Achieve</td><td>~ </td><td>Adjust </td><td>31.938539</td><td> 1.0882050</td><td>0.5789865</td><td>0.5789865</td><td>0.5789865</td></tr>
+	<tr><th scope=row>44</th><td>Achieve</td><td>=~</td><td>motive </td><td> 5.438535</td><td> 0.1491767</td><td>1.9561758</td><td>0.2065710</td><td>0.2065710</td></tr>
+	<tr><th scope=row>54</th><td>Adjust </td><td>=~</td><td>spell  </td><td> 5.240735</td><td> 0.3894844</td><td>2.7174077</td><td>0.1968289</td><td>0.1968289</td></tr>
+	<tr><th scope=row>52</th><td>Adjust </td><td>=~</td><td>read   </td><td> 5.038370</td><td> 0.3467951</td><td>2.4195674</td><td>0.1629036</td><td>0.1629036</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>I risultati dei <em>modification indices</em> mostrano che l’assenza di un percorso tra i fattori di rendimento e adattamento nella <a class="reference internal" href="#kline-15-3-fig"><span class="std std-numref">Fig. 54.3</span></a> è chiaramente incoerente con i dati. Per aggiungere una covariazione tra i fattori di rendimento e adattamento abbiamo due opzioni: o aggiungere un effetto diretto tra i fattori o permettere alle loro perturbazioni di covariare. Ma sarebbe difficile giustificare un effetto diretto rispetto all’altro: scarse abilità scolastiche potrebbero peggiorare l’adattamento in classe tanto quanto i problemi comportamentali a scuola potrebbero influire negativamente sul rendimento. La specificazione di una causalità reciproca tra
+Rendimento e Adattamento renderebbe il modello strutturale non ricorsivo, ma il modello non sarebbe identificato senza imporre vincoli irrealistici. Riformuliamo dunque il modello della <a class="reference internal" href="#kline-15-3-fig"><span class="std std-numref">Fig. 54.3</span></a> permettendo alle perturbazioni tra i fattori di rendimento e adattamento di covariare.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># step 2b</span>
+<span class="c1"># 4-factor SR model with 6 paths among factors</span>
+<span class="c1"># this model is equivalent to the basic 4-factor</span>
+<span class="c1"># CFA measurement model analyzed in step 1</span>
+
+<span class="n">worlandSRb_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">    # measurement part</span>
+<span class="s">    Cognitive =~ verbal + visual + memory</span>
+<span class="s">    Achieve =~ read + math + spell</span>
+<span class="s">    Adjust =~ motive + harmony + stable</span>
+<span class="s">    Risk =~ parent + ses</span>
+<span class="s">    # structural part (6 paths)</span>
+<span class="s">    Achieve ~ Cognitive + Risk</span>
+<span class="s">    Adjust ~ Cognitive + Risk</span>
+<span class="s">    Adjust ~~ Achieve </span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">worlandSRb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">sem</span><span class="p">(</span><span class="n">worlandSRb_model</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.cov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">worland.cov</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.nobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">158</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">semPlot</span><span class="o">::</span><span class="nf">semPaths</span><span class="p">(</span><span class="n">worlandSRb</span><span class="p">,</span>
+<span class="w">    </span><span class="n">what</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;col&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;par&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mx&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;tree2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nCharNodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">,</span>
+<span class="w">    </span><span class="n">shapeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rectangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/34fd83a1e186db8870b75158b3c9f54f9d83b31ffbb4e697021144c88ac11824.png"><img alt="../_images/34fd83a1e186db8870b75158b3c9f54f9d83b31ffbb4e697021144c88ac11824.png" src="../_images/34fd83a1e186db8870b75158b3c9f54f9d83b31ffbb4e697021144c88ac11824.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">parameterEstimates</span><span class="p">(</span><span class="n">worlandSRb</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         lhs op       rhs     est     se      z pvalue ci.lower ci.upper
+1  Cognitive =~    verbal   1.000  0.000     NA     NA    1.000    1.000
+2  Cognitive =~    visual   1.000  0.090 11.144  0.000    0.824    1.175
+3  Cognitive =~    memory   0.788  0.077 10.217  0.000    0.637    0.940
+4    Achieve =~      read   1.000  0.000     NA     NA    1.000    1.000
+5    Achieve =~      math   0.925  0.083 11.100  0.000    0.761    1.088
+6    Achieve =~     spell   0.678  0.080  8.480  0.000    0.521    0.835
+7     Adjust =~    motive   1.000  0.000     NA     NA    1.000    1.000
+8     Adjust =~   harmony   0.861  0.136  6.311  0.000    0.593    1.128
+9     Adjust =~    stable   0.940  0.114  8.231  0.000    0.716    1.164
+10      Risk =~    parent   1.000  0.000     NA     NA    1.000    1.000
+11      Risk =~       ses   0.773  0.224  3.445  0.001    0.333    1.213
+12   Achieve  ~ Cognitive   0.719  0.109  6.574  0.000    0.504    0.933
+13   Achieve  ~      Risk  -0.175  0.190 -0.922  0.357   -0.548    0.198
+14    Adjust  ~ Cognitive   0.261  0.070  3.743  0.000    0.124    0.398
+15    Adjust  ~      Risk  -0.146  0.127 -1.153  0.249   -0.395    0.102
+16   Achieve ~~    Adjust  36.374  7.967  4.565  0.000   20.758   51.989
+17    verbal ~~    verbal  46.253  9.782  4.728  0.000   27.080   65.425
+18    visual ~~    visual  76.171 12.153  6.268  0.000   52.351   99.991
+19    memory ~~    memory  69.732  9.717  7.177  0.000   50.688   88.776
+20      read ~~      read  51.273 11.238  4.562  0.000   29.247   73.299
+21      math ~~      math  86.341 13.049  6.616  0.000   60.764  111.917
+22     spell ~~     spell 112.797 14.078  8.012  0.000   85.205  140.389
+23    motive ~~    motive  37.737  6.463  5.839  0.000   25.071   50.404
+24   harmony ~~   harmony  83.953 10.590  7.927  0.000   63.197  104.709
+25    stable ~~    stable  29.306  5.386  5.441  0.000   18.749   39.863
+26    parent ~~    parent  88.008 18.343  4.798  0.000   52.057  123.959
+27       ses ~~       ses  38.895 10.208  3.810  0.000   18.887   58.903
+28 Cognitive ~~ Cognitive 141.620 22.098  6.409  0.000   98.308  184.931
+29   Achieve ~~   Achieve  84.317 16.324  5.165  0.000   52.321  116.312
+30    Adjust ~~    Adjust  38.008  8.188  4.642  0.000   21.960   54.055
+31      Risk ~~      Risk  55.075 19.988  2.755  0.006   15.899   94.251
+32 Cognitive ~~      Risk -40.515 12.448 -3.255  0.001  -64.912  -16.118
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">fitMeasures</span><span class="p">(</span><span class="n">worlandSRb</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;chisq&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;df&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cfi&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;tli&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rmsea&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;srmr&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> chisq     df    cfi    tli  rmsea   srmr 
+16.212 38.000  1.000  1.049  0.000  0.023 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># predicted correlation matrix for factors</span>
+<span class="n">lavaan</span><span class="o">::</span><span class="nf">lavInspect</span><span class="p">(</span><span class="n">worlandSRb</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cor.lv&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          Cogntv Achiev Adjust   Risk
+Cognitive  1.000                     
+Achieve    0.703  1.000              
+Adjust     0.500  0.751  1.000       
+Risk      -0.459 -0.401 -0.349  1.000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lavaan</span><span class="o">::</span><span class="nf">residuals</span><span class="p">(</span><span class="n">worlandSRb</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;standardized.mplus&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>$type
+[1] &quot;standardized.mplus&quot;
+
+$cov
+        verbal visual memory   read   math  spell motive harmny stable parent
+verbal      NA                                                               
+visual  -0.003     NA                                                        
+memory   0.122 -0.131     NA                                                 
+read     0.597  0.113 -0.285     NA                                          
+math     0.504  0.038 -0.377  0.597     NA                                   
+spell   -0.952 -0.255 -0.704 -0.667 -0.206     NA                            
+motive  -0.821 -0.157  0.309 -0.042 -0.078  1.484     NA                     
+harmony  0.117 -0.453  0.171  0.942 -1.179  1.196 -1.010     NA              
+stable   0.284  0.112  0.566 -1.893 -0.467  0.942  0.422  0.436     NA       
+parent  -0.093 -0.261 -0.157  0.234  0.378  0.157  0.300  0.019 -0.023  0.040
+ses      1.891 -0.247 -1.417 -0.370 -0.114 -0.112  0.213 -0.125 -0.361  0.052
+           ses
+verbal        
+visual        
+memory        
+read          
+math          
+spell         
+motive        
+harmony       
+stable        
+parent        
+ses      0.020
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lavaan</span><span class="o">::</span><span class="nf">residuals</span><span class="p">(</span><span class="n">worlandSRb</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;cor.bollen&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>$type
+[1] &quot;cor.bollen&quot;
+
+$cov
+        verbal visual memory   read   math  spell motive harmny stable parent
+verbal   0.000                                                               
+visual   0.000  0.000                                                        
+memory   0.001 -0.002  0.000                                                 
+read     0.015  0.003 -0.010  0.000                                          
+math     0.017  0.001 -0.016  0.007  0.000                                   
+spell   -0.040 -0.012 -0.036 -0.010 -0.006  0.000                            
+motive  -0.031 -0.007  0.016 -0.001 -0.003  0.075  0.000                     
+harmony  0.006 -0.026  0.010  0.041 -0.053  0.071 -0.027  0.000              
+stable   0.011  0.005  0.028 -0.034 -0.015  0.045  0.005  0.012  0.000       
+parent  -0.003 -0.011 -0.007  0.008  0.017  0.009  0.015  0.001 -0.001  0.000
+ses      0.050 -0.010 -0.068 -0.012 -0.005 -0.006  0.010 -0.008 -0.016  0.000
+           ses
+verbal        
+visual        
+memory        
+read          
+math          
+spell         
+motive        
+harmony       
+stable        
+parent        
+ses      0.000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Confrontiamo i due modelli con il test del rapporto di verosimiglianza.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">lavTestLRT</span><span class="p">(</span><span class="n">worlandSRa</span><span class="p">,</span><span class="w"> </span><span class="n">worlandSRb</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A anova: 2 × 8</caption>
+<thead>
+	<tr><th></th><th scope=col>Df</th><th scope=col>AIC</th><th scope=col>BIC</th><th scope=col>Chisq</th><th scope=col>Chisq diff</th><th scope=col>RMSEA</th><th scope=col>Df diff</th><th scope=col>Pr(&gt;Chisq)</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>worlandSRb</th><td>38</td><td>12938.16</td><td>13023.92</td><td>16.21231</td><td>      NA</td><td>       NA</td><td>NA</td><td>          NA</td></tr>
+	<tr><th scope=row>worlandSRa</th><td>39</td><td>12969.70</td><td>13052.39</td><td>49.74654</td><td>33.53423</td><td>0.4537762</td><td> 1</td><td>7.002093e-09</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>L’adattamento del modello SR con 5 percorsi tra i fattori è significativamente peggiore rispetto a quello del modello CFA con 6 percorsi. Gli indici di fit del modello con 6 percorsi sono buoni così come il suo adattamento locale.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># standardized estimates with standard errors</span>
+<span class="n">lavaan</span><span class="o">::</span><span class="nf">standardizedSolution</span><span class="p">(</span><span class="n">worlandSRb</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         lhs op       rhs est.std    se      z pvalue ci.lower ci.upper
+1  Cognitive =~    verbal   0.868 0.032 27.075  0.000    0.805    0.931
+2  Cognitive =~    visual   0.806 0.037 21.720  0.000    0.733    0.879
+3  Cognitive =~    memory   0.747 0.043 17.470  0.000    0.663    0.831
+4    Achieve =~      read   0.876 0.031 28.212  0.000    0.815    0.937
+5    Achieve =~      math   0.791 0.038 20.778  0.000    0.717    0.866
+6    Achieve =~     spell   0.639 0.053 11.984  0.000    0.534    0.743
+7     Adjust =~    motive   0.761 0.049 15.552  0.000    0.665    0.857
+8     Adjust =~   harmony   0.561 0.065  8.657  0.000    0.434    0.688
+9     Adjust =~    stable   0.781 0.048 16.381  0.000    0.688    0.875
+10      Risk =~    parent   0.620 0.100  6.217  0.000    0.425    0.816
+11      Risk =~       ses   0.677 0.104  6.495  0.000    0.473    0.881
+12   Achieve  ~ Cognitive   0.657 0.079  8.358  0.000    0.503    0.811
+13   Achieve  ~      Risk  -0.100 0.107 -0.935  0.350   -0.310    0.110
+14    Adjust  ~ Cognitive   0.431 0.103  4.179  0.000    0.229    0.633
+15    Adjust  ~      Risk  -0.151 0.127 -1.186  0.236   -0.400    0.098
+16   Achieve ~~    Adjust   0.643 0.085  7.592  0.000    0.477    0.808
+17    verbal ~~    verbal   0.246 0.056  4.421  0.000    0.137    0.355
+18    visual ~~    visual   0.350 0.060  5.847  0.000    0.233    0.467
+19    memory ~~    memory   0.442 0.064  6.920  0.000    0.317    0.567
+20      read ~~      read   0.232 0.054  4.271  0.000    0.126    0.339
+21      math ~~      math   0.374 0.060  6.197  0.000    0.255    0.492
+22     spell ~~     spell   0.592 0.068  8.686  0.000    0.458    0.725
+23    motive ~~    motive   0.421 0.074  5.649  0.000    0.275    0.567
+24   harmony ~~   harmony   0.686 0.073  9.445  0.000    0.543    0.828
+25    stable ~~    stable   0.390 0.075  5.229  0.000    0.244    0.536
+26    parent ~~    parent   0.615 0.124  4.967  0.000    0.372    0.858
+27       ses ~~       ses   0.542 0.141  3.840  0.000    0.265    0.818
+28 Cognitive ~~ Cognitive   1.000 0.000     NA     NA    1.000    1.000
+29   Achieve ~~   Achieve   0.498 0.077  6.470  0.000    0.347    0.649
+30    Adjust ~~    Adjust   0.732 0.080  9.108  0.000    0.574    0.889
+31      Risk ~~      Risk   1.000 0.000     NA     NA    1.000    1.000
+32 Cognitive ~~      Risk  -0.459 0.098 -4.686  0.000   -0.651   -0.267
+</pre></div>
+</div>
+</div>
+</div>
+<p>La correlazione stimata tra i fattori esogeni abilità cognitiva e rischio, –.459, è sensata: è negativa (più alto il rischio, minore l’abilità cognitiva). Questa correlazione non è prossima a -1.0, il che suggerisce che i due fattori sono distinti e non quasi identici, confermando così l’ipotesi di validità discriminante.</p>
+<p>Analizzando gli impatti specifici, un incremento di un punto nel fattore cognitivo (misurato come varianza comune del ragionamento verbale) prevede un aumento di .719 punti nel rendimento scolastico (misurato come varianza comune dell’abilità di lettura), tenendo conto del fattore di rischio. In termini standardizzati, un aumento di una deviazione standard nell’abilità cognitiva si traduce in un aumento di .657 deviazioni standard nel rendimento scolastico, sempre controllando per il rischio.</p>
+<p>L’influenza del rischio sul rendimento scolastico è meno marcata: un incremento di un punto nel rischio (misurato come varianza comune del disturbo genitoriale) prevede una diminuzione di .175 punti nel rendimento scolastico. Standardizzando, un aumento di una deviazione standard nel rischio si associa a una diminuzione di .100 deviazioni standard nel rendimento, controllando per l’abilità cognitiva.</p>
+<p>La correlazione di perturbazione di .643 misura la relazione tra il rendimento scolastico e l’adattamento in classe, dopo aver escluso l’influenza di altri fattori noti, in questo caso l’abilità cognitiva e il rischio di psicopatologia. In termini più semplici, la correlazione di perturbazione ci dice quanto sono correlati il rendimento scolastico e l’adattamento in classe quando si tiene conto (o si “controlla”) dell’effetto dell’abilità cognitiva e del rischio. Un valore di .643 indica una correlazione moderatamente forte, suggerendo che quando il rendimento scolastico di uno studente migliora (o peggiora), anche il suo adattamento in classe tende a migliorare (o peggiorare) in modo simile, indipendentemente dal suo livello di abilità cognitiva o dal grado di rischio di psicopatologia.</p>
+<p>La presenza di questa correlazione parziale sostanziale implica che ci sono fattori non misurati nel modello che influenzano sia il rendimento scolastico sia l’adattamento in classe. Questi fattori non misurati potrebbero includere variabili come il sostegno familiare, la qualità dell’insegnamento, fattori ambientali o personalità dello studente. Importante è che questi fattori non misurati sono distinti sia dall’abilità cognitiva dello studente sia dal suo rischio di psicopatologia. In conclusione, il valore di .643 non solo mette in luce l’interdipendenza tra rendimento scolastico e adattamento in classe, ma suggerisce anche l’esistenza di altre variabili influenti che non sono state direttamente misurate o incluse nel modello. Questa informazione può essere preziosa per indirizzare ulteriori ricerche o interventi educativi.</p>
+</section>
+<section id="strategie-avanzate-di-modellazione-per-i-modelli-di-regressione-strutturale">
+<h2><span class="section-number">54.3. </span>Strategie Avanzate di Modellazione per i Modelli di Regressione Strutturale<a class="headerlink" href="#strategie-avanzate-di-modellazione-per-i-modelli-di-regressione-strutturale" title="Link to this heading">#</a></h2>
+<p>Oltre all’approccio tradizionale di modellazione in due fasi, esiste un metodo più complesso a quattro fasi per analizzare i modelli SR completi. Questa strategia, introdotta da Mulaik e Millsap nel 2000, amplia la modellazione bifase aggiungendo ulteriori analisi esplorative che possono portare a conclusioni più definitive in una serie più estesa di studi. Questo metodo prevede che ogni fattore comune abbia almeno quattro indicatori, numero ritenuto sufficiente per testare l’unidimensionalità con il test dell’annullamento della tetrade. I quattro indicatori rappresentano anche il numero minimo perché un modello CFA a singolo fattore sia considerato sovraidentificato. Il ricercatore testa quindi una serie di almeno quattro modelli gerarchicamente correlati, seguendo questi passaggi:</p>
+<ol class="arabic simple">
+<li><p><strong>Primo Passaggio</strong>: Il modello iniziale meno restrittivo è un modello EFA, dove ogni indicatore satura su tutti i fattori. Il numero di fattori è lo stesso dei modelli analizzati nei passaggi successivi. Questo modello viene analizzato con lo stesso metodo di stima utilizzato nei passaggi successivi, ad esempio il metodo ML per indicatori continui e normalmente distribuiti. Alternativamente, si possono usare tecniche come ESEM o E/CFA al posto dell’EFA. Questo passaggio serve a testare la correttezza provvisoria delle ipotesi riguardo al numero di fattori.</p></li>
+<li><p><strong>Secondo Passaggio</strong>: Corrisponde al Primo Passaggio della modellazione bifase. Qui, si specifica un modello CFA con alcuni carichi incrociati fissati a zero, identificando gli indicatori che non dipendono da certi fattori comuni. Se l’adattamento del modello CFA è ragionevole, si può procedere al test del modello SR; in caso contrario, il modello di misurazione va rivisto.</p></li>
+<li><p><strong>Terzo Passaggio</strong>: Si specifica il modello SR target con lo stesso schema di carichi incrociati fissati a zero del modello CFA del Secondo Passaggio. Tipicamente, la parte strutturale del modello SR include meno effetti diretti rispetto al totale delle covarianze tra fattori nel modello CFA. Se la parte strutturale del modello SR ha tanti percorsi quanti il modello CFA, i due modelli saranno equivalenti e questo passaggio può essere omesso.</p></li>
+<li><p><strong>Quarto Passaggio</strong>: Coinvolge test su ipotesi specifiche sui parametri definiti dall’inizio del processo. Questi test possono comportare l’applicazione di vincoli zero o altri, aumentando di uno dfM. I Passaggi 3 e 4 della modellazione a quattro fasi rappresentano una precisazione delle attività generali del Secondo Passaggio della modellazione bifase.</p></li>
+</ol>
+<p>Una delle critiche alla modellazione a quattro fasi riguarda la necessità di avere almeno quattro indicatori per fattore, condizione non sempre pratica o desiderabile, specialmente quando pochi indicatori, o anche un singolo indicatore ottimale, presentano migliori caratteristiche psicometriche rispetto a quattro. Tuttavia, Mulaik e Millsap hanno osservato che avere almeno quattro indicatori può compensare, in parte, le limitazioni di un campione più piccolo incrementando dfM.</p>
+<p>Entrambi gli approcci, bifase e quattro fasi, sfruttano la variazione casuale quando i modelli vengono testati e riformulati utilizzando gli stessi dati, e sono considerati migliori della modellazione monofase, dove non esiste una distinzione tra questioni di misurazione e struttura.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_sem"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="08_multilevel_sem.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">53. </span>Modelli di Equazioni Strutturali Multilivello</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="10_missing_data.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">55. </span>Dati mancanti</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modellazione-in-due-fasi">54.1. Modellazione in Due Fasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#una-applicazione-concreta">54.2. Una Applicazione Concreta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strategie-avanzate-di-modellazione-per-i-modelli-di-regressione-strutturale">54.3. Strategie Avanzate di Modellazione per i Modelli di Regressione Strutturale</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

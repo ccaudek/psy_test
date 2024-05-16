@@ -1,0 +1,1257 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>58. Modello di Regressione Logistica &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css?v=ffeaf963" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6ba04eab" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VMXNE4BCDL"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_irt/01_logistic_regr';</script>
+    <script src="../_static/custom.js?v=3f5092eb"></script>
+    <link rel="canonical" href="https://ccaudek.github.io/psy_test/_irt/01_logistic_regr.html" />
+    <link rel="icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="59. ✏️ Esercizi" href="E_01.html" />
+    <link rel="prev" title="57. Affidabilità longitudinale" href="../_sem/12_temp_reliability.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Scaling psicometrico</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/01_expval_var.html">1. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/02_joint_prob.html">2. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/03_measurement.html">3. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/04_norms.html">4. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/05_regression.html">5. L’analisi di regressione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E1_likert.html">6. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E2_optimal_scoring.html">7. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E3_thurstone.html">8. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/01_ctt_1.html">9. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/02_ctt_2.html">10. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/03_ctt_3.html">11. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/04_err_std_mis.html">12. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/05_err_std_stima.html">13. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/06_applications_ctt.html">14. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E1_ctt.html">15. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E2_item_analyses.html">16. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/01_multilevel_1.html">17. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/02_interrater_reliability.html">18. L’affidabilità tra giudici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/E1_irr.html">19. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/01_gtheory.html">20. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/01_validity.html">21. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/02_relations_to_other_vars.html">22. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sviluppo degli item</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_items/01_item_development.html">23. Lo sviluppo degli item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_items/02_item_analysis.html">24. Analisi degli item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">25. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale esplorativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/01_intro_fa.html">26. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/02_analisi_fattoriale_1.html">27. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/03_analisi_fattoriale_2.html">28. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/04_analisi_fattoriale_3.html">29. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/05_factor_scores.html">30. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/06_constraints_on_parms.html">31. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/07_total_score.html">32. Punteggio totale e modello fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione strumenti</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">33. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">34. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">35. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">36. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">37. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/01_cfa.html">38. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/E_01.html">39. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/02_meanstructure.html">40. La struttura delle medie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/03_cat_data.html">41. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/04_mmm.html">42. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/05_bifactor.html">43. Modello bifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/06_efa_lavaan.html">44. Exploratory Structural Equation Modeling (ESEM)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/01_sem_intro.html">45. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/02_data_preparation.html">46. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/E_01.html">47. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/03_gof.html">48. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/04_mod_comp.html">49. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/05_cfa_mod_comp.html">50. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/06_refine_solution.html">51. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/07_group_invariance.html">52. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/08_multilevel_sem.html">53. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/09_structural_regr.html">54. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/10_missing_data.html">55. Dati mancanti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/11_small_samples.html">56. Modellizzazione SEM in Piccoli Campioni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/12_temp_reliability.html">57. Affidabilità longitudinale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">58. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="E_01.html">59. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_rasch_model.html">60. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_assumptions.html">61. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_estimation.html">62. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_1pl_2pl_3pl.html">63. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_implementation.html">64. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_polytomous_graded.html">65. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mokken Scales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/01_core_issues.html">66. Analisi della Scala di Mokken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/02_tutorial.html">67. Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/03_applications.html">68. Applicazione Pratica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/01_development.html">69. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/02_tutorial.html">70. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/01_lgm_intro.html">71. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/02_lgm_prelims.html">72. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/03_time_effects.html">73. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/04_invariance.html">74. Invarianza Fattoriale Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/05_intro_panel.html">75. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/06_lgm_mixed.html">76. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/07_growth_1.html">77. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/08_growth_cont.html">78. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/09_time_inv_cov.html">79. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/10_growth_groups.html">80. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/11_bivariate_tvc_models.html">81. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/12_inv_measurement.html">82. Invarianza di Misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/13_latent_change.html">83. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/750_latent_change.html">84. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/751_biv_change.html">85. Modello LCS bivariato</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">86. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a1_intro_r.html">87. Linguaggio R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a2_sums.html">88. Simbolo di somma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a3_calculus.html">89. Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a4_linear_alg.html">90. Elementi di algebra lineare</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_irt/01_logistic_regr.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modello di Regressione Logistica</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-regressione-logistica-per-variabili-binarie">58.1. Modello di Regressione Logistica per Variabili Binarie</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-lineare-nelle-probabilita">58.2. Modello Lineare nelle Probabilità</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problemi-di-normalita">58.2.1. Problemi di Normalità</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problematiche-di-omoschedasticita">58.2.2. Problematiche di Omoschedasticità</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linearita">58.2.3. Linearità</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-lineare-nelle-probabilita-vincolato">58.3. Modello Lineare nelle Probabilità Vincolato</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regressione-logistica">58.4. Regressione Logistica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilita-odds-e-logit">58.5. Probabilità, Odds e Logit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trasformazione-inversa-del-logit">58.5.1. Trasformazione Inversa del Logit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelli-lineari-generalizzati">58.6. Modelli Lineari Generalizzati</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#componente-sistematica">58.7. Componente Sistematica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#componente-aleatoria">58.8. Componente Aleatoria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funzione-legame">58.9. Funzione Legame</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regressione-logistica-con-r">58.10. Regressione Logistica con R</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-dei-coefficienti">58.11. Interpretazione dei Coefficienti</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-basata-sui-log-odds">58.11.1. Interpretazione Basata sui Log-Odds</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-attraverso-l-odds-ratio">58.11.2. Interpretazione Attraverso l’Odds Ratio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-basata-sulle-probabilita-predette">58.11.3. Interpretazione Basata sulle Probabilità Predette</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">58.12. Considerazioni Conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">58.13. Session Info</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modello-di-regressione-logistica">
+<span id="logistic-reg-notebook"></span><h1><span class="section-number">58. </span>Modello di Regressione Logistica<a class="headerlink" href="#modello-di-regressione-logistica" title="Link to this heading">#</a></h1>
+<p>Prima di immergerci nell’esplorazione dei modelli di Teoria della Risposta all’Item (IRT), è fondamentale acquisire una solida comprensione del modello di regressione logistica. Questo modello, ampiamente utilizzato per analizzare dati categorici, ci serve come solido punto di partenza per comprendere i più complessi modelli IRT. La regressione logistica, infatti, si occupa di stimare la probabilità che un evento avvenga, date certe variabili predittive. Analogamente, i modelli IRT si focalizzano sulla probabilità che un esaminando risponda correttamente a un item, basandosi su parametri che descrivono sia l’abilità dell’esaminando sia le caratteristiche dell’item.</p>
+<p>Nonostante le somiglianze, i modelli IRT si distaccano in maniera sostanziale dalla regressione logistica per la loro capacità di modellare simultaneamente le proprietà degli item e le abilità degli individui. Mentre la regressione logistica assume che ogni osservazione sia indipendente, i modelli IRT considerano le interdipendenze tra le risposte agli item e tra gli item stessi. Nel presente capitolo, ci dedicheremo  ad esplorare il modello di regressione logistica.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">suppressPackageStartupMessages</span><span class="p">({</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;tidyverse&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;car&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;LaplacesDemon&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;gmodels&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;effects&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;psych&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;jtools&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="modello-di-regressione-logistica-per-variabili-binarie">
+<h2><span class="section-number">58.1. </span>Modello di Regressione Logistica per Variabili Binarie<a class="headerlink" href="#modello-di-regressione-logistica-per-variabili-binarie" title="Link to this heading">#</a></h2>
+<p>Il modello di regressione logistica si utilizza per analizzare la relazione tra una variabile dipendente dicotomica, che assume i valori di “successo” e “fallimento”, e una o più variabili indipendenti, che possono essere sia quantitative che qualitative. Consideriamo <span class="math notranslate nohighlight">\(n\)</span> osservazioni indipendenti, dove <span class="math notranslate nohighlight">\(Y_i\)</span> indica l’osservazione <span class="math notranslate nohighlight">\(i\)</span>-esima della variabile risposta, per <span class="math notranslate nohighlight">\(i=1, \dots, n\)</span>. Ogni osservazione è associata a un vettore di variabili esplicative <span class="math notranslate nohighlight">\((x_1, \dots, x_p)\)</span>. La relazione che vogliamo esaminare è tra la probabilità di successo <span class="math notranslate nohighlight">\(\pi_i\)</span> e le variabili esplicative, espressa dalla formula:</p>
+<div class="math notranslate nohighlight">
+\[
+P(Y=1 \mid X=x_i) = \pi_i.
+\]</div>
+<p>In questo contesto, la variabile dipendente <span class="math notranslate nohighlight">\(Y\)</span> segue una distribuzione di Bernoulli, con i seguenti possibili valori:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+y_i = 
+\begin{cases} 
+    1 &amp; \text{per un successo (per l'osservazione $i$-esima)},\\
+    0 &amp; \text{per un fallimento}.
+\end{cases}
+\end{split}\]</div>
+<p>Le probabilità associate a questi valori sono rispettivamente <span class="math notranslate nohighlight">\(\pi\)</span> per il successo e <span class="math notranslate nohighlight">\(1-\pi\)</span> per il fallimento:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+    P(Y_i = 1) &amp;= \pi,\\
+    P(Y_i = 0) &amp;= 1-\pi.
+\end{aligned}
+\end{split}\]</div>
+<p>Questo modello permette quindi di studiare come le variabili esplicative influenzino la probabilità di un evento binario, quali il successo o il fallimento.</p>
+<p>Per illustrare, consideriamo un dataset di 100 volontari, dove <code class="docutils literal notranslate"><span class="pre">age</span></code> è la variabile esplicativa e <code class="docutils literal notranslate"><span class="pre">chd</span></code> è la variabile risposta che indica la presenza (<code class="docutils literal notranslate"><span class="pre">chd</span></code> = 1) o assenza (<code class="docutils literal notranslate"><span class="pre">chd</span></code> = 0) di disturbi cardiaci. La media condizionata <span class="math notranslate nohighlight">\(\mathbb{E}(Y \mid X=x)\)</span> in una popolazione può essere vista come la proporzione di valori 1 per un dato punteggio <span class="math notranslate nohighlight">\(x\)</span> sulla variabile esplicativa (ad esempio, l’età), ovvero la probabilità condizionata <span class="math notranslate nohighlight">\(\pi_i\)</span> di osservare la presenza di sintomi cardiaci in un certo gruppo d’età:</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_i \equiv P(Y = 1 \mid X = x).
+\]</div>
+<p>Il valore atteso diventa:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}(Y \mid x) = \pi_i.
+\]</div>
+<p>Se <span class="math notranslate nohighlight">\(X\)</span> è una variabile discreta, possiamo calcolare la proporzione di <span class="math notranslate nohighlight">\(Y=1\)</span> per ogni valore di <span class="math notranslate nohighlight">\(X=x\)</span> nel campione. Queste proporzioni rappresentano una stima non parametrica della funzione di regressione di <span class="math notranslate nohighlight">\(Y\)</span> su <span class="math notranslate nohighlight">\(X\)</span>, e possono essere stimate tramite tecniche di smoothing, come indicato nella figura seguente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">chdage</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.table</span><span class="p">(</span><span class="s">&quot;../data/logistic_reg/chdage_dat.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">chdage</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>id</th><th scope=col>age</th><th scope=col>chd</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>1</td><td>20</td><td>0</td></tr>
+	<tr><th scope=row>2</th><td>2</td><td>23</td><td>0</td></tr>
+	<tr><th scope=row>3</th><td>3</td><td>24</td><td>0</td></tr>
+	<tr><th scope=row>4</th><td>5</td><td>25</td><td>1</td></tr>
+	<tr><th scope=row>5</th><td>4</td><td>25</td><td>0</td></tr>
+	<tr><th scope=row>6</th><td>7</td><td>26</td><td>0</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calcolo delle proporzioni di Y = 1 per ogni valore di X</span>
+<span class="n">prop_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">chdage</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">group_by</span><span class="p">(</span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">summarise</span><span class="p">(</span><span class="n">prop_chd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">chd</span><span class="p">))</span>
+
+<span class="c1"># Grafico con smoothing</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">prop_data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prop_chd</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># Mostra i punti di proporzione</span>
+<span class="w">    </span><span class="nf">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;loess&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">span</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># Regressione LOESS</span>
+<span class="w">    </span><span class="nf">labs</span><span class="p">(</span>
+<span class="w">        </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Stima Non Parametrica della Regressione di CHD su Age&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Età&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Proporzione di CHD = 1&quot;</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`geom_smooth()` using formula = &#39;y ~ x&#39;
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/fe4d6e9628461d159a1c80315a72efedb81882161cd6e7288e6a0ee4be275bdc.png"><img alt="../_images/fe4d6e9628461d159a1c80315a72efedb81882161cd6e7288e6a0ee4be275bdc.png" src="../_images/fe4d6e9628461d159a1c80315a72efedb81882161cd6e7288e6a0ee4be275bdc.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Per valori bassi della variabile <code class="docutils literal notranslate"><span class="pre">age</span></code> la proporzione condizionata di valori <span class="math notranslate nohighlight">\(Y=1\)</span> è prossima allo 0. Per valori alti dell’età la proporzione di valori <span class="math notranslate nohighlight">\(Y=1\)</span> è prossima a 1.0. A livelli di età intermedi, la curva di regressione non parametrica gradualmente approssima i valori 0 e 1 seguendo un andamento sigmoidale.</p>
+<p>Anche se nel caso presente la regressione non parametrica produce un risultato sensato, è utile rappresentare la dipendenza di <span class="math notranslate nohighlight">\(Y\)</span> da <span class="math notranslate nohighlight">\(X\)</span> con una semplice funzione, in particolare quando ci sono molteplici variabili esplicative.</p>
+</section>
+<section id="modello-lineare-nelle-probabilita">
+<h2><span class="section-number">58.2. </span>Modello Lineare nelle Probabilità<a class="headerlink" href="#modello-lineare-nelle-probabilita" title="Link to this heading">#</a></h2>
+<p>Introduciamo un modello lineare con le seguenti assunzioni standard:</p>
+<div class="math notranslate nohighlight">
+\[
+Y_i = \alpha + \beta X_i + \varepsilon_i,
+\]</div>
+<p>dove <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> segue una distribuzione normale con media 0 e varianza 1 (<span class="math notranslate nohighlight">\(\varepsilon_i \sim \mathcal{N}(0, 1)\)</span>) e gli errori <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> e <span class="math notranslate nohighlight">\(\varepsilon_j\)</span> sono indipendenti per ogni <span class="math notranslate nohighlight">\(i \neq j\)</span>. Il valore atteso di <span class="math notranslate nohighlight">\(Y_i\)</span> è quindi <span class="math notranslate nohighlight">\(\mathbb{E}(Y_i) = \alpha + \beta X_i\)</span>, portando a:</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_i = \alpha + \beta X_i.
+\]</div>
+<p>Questo è noto come <em>modello lineare nelle probabilità</em> (<em>linear probability model</em>). Tuttavia, questo approccio presenta una limitazione significativa: non garantisce che i valori predetti di <span class="math notranslate nohighlight">\(\pi_i\)</span> siano confinati nell’intervallo [0,1], come richiesto per le probabilità.</p>
+<section id="problemi-di-normalita">
+<h3><span class="section-number">58.2.1. </span>Problemi di Normalità<a class="headerlink" href="#problemi-di-normalita" title="Link to this heading">#</a></h3>
+<p>Considerando che <span class="math notranslate nohighlight">\(Y_i\)</span> può assumere solo i valori 0 o 1, i residui <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> risultano anch’essi dicotomici e quindi non possono seguire una distribuzione normale. Ad esempio, se <span class="math notranslate nohighlight">\(Y_i=1\)</span> con probabilità <span class="math notranslate nohighlight">\(\pi_i\)</span>, il residuo sarà:</p>
+<div class="math notranslate nohighlight">
+\[
+\varepsilon_i = 1 - \mathbb{E}(Y_i) = 1 - (\alpha + \beta X_i) = 1 - \pi_i.
+\]</div>
+<p>Se, invece, <span class="math notranslate nohighlight">\(Y_i=0\)</span> con probabilità <span class="math notranslate nohighlight">\(1-\pi_i\)</span>, il residuo sarà:</p>
+<div class="math notranslate nohighlight">
+\[
+\varepsilon_i = 0 - \mathbb{E}(Y_i) = 0 - (\alpha + \beta X_i) = - \pi_i.
+\]</div>
+<p>Tuttavia, se la dimensione del campione è grande, il teorema del limite centrale può mitigare l’importanza dell’assunzione di normalità per le stime dei minimi quadrati.</p>
+</section>
+<section id="problematiche-di-omoschedasticita">
+<h3><span class="section-number">58.2.2. </span>Problematiche di Omoschedasticità<a class="headerlink" href="#problematiche-di-omoschedasticita" title="Link to this heading">#</a></h3>
+<p>Utilizzare il metodo dei minimi quadrati può essere inappropriato in questo contesto poiché la varianza dei residui non è costante ma dipende dalla media, e quindi dalla variabile <span class="math notranslate nohighlight">\(X\)</span>. Assumendo che il modello sia lineare, abbiamo che <span class="math notranslate nohighlight">\(\mathbb{E}(\varepsilon_i)=0\)</span>. Sfruttando le relazioni sopra, la varianza dei residui si calcola come:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{V}(\varepsilon_i) = (1-\pi_i)\pi_i.
+\]</div>
+<p>Questa eteroschedasticità dei residui rappresenta un problema per le stime dei minimi quadrati nel modello lineare, specialmente quando le probabilità <span class="math notranslate nohighlight">\(\pi_i\)</span> sono vicine a 0 o 1.</p>
+</section>
+<section id="linearita">
+<h3><span class="section-number">58.2.3. </span>Linearità<a class="headerlink" href="#linearita" title="Link to this heading">#</a></h3>
+<p>Il maggiore inconveniente connesso all’adozione del modello lineare nelle probabilità deriva dal fatto che la stima della probabilità di successo, <span class="math notranslate nohighlight">\(P(\hat{Y}_i=1)=\hat{\pi}_i\)</span>, non è necessariamente compresa nell’intervallo (<span class="math notranslate nohighlight">\(0,1\)</span>), ma può essere sia negativa sia maggiore di 1. Nel caso dell’esempio in discussione, ciò significa che la retta dei minimi quadrati produce valori attesi <span class="math notranslate nohighlight">\(\hat{\pi}\)</span> inferiori a 0 per bassi valori della variabile età e valori <span class="math notranslate nohighlight">\(\hat{\pi}\)</span> superiori a 1 per valori di età alti.</p>
+</section>
+</section>
+<section id="modello-lineare-nelle-probabilita-vincolato">
+<h2><span class="section-number">58.3. </span>Modello Lineare nelle Probabilità Vincolato<a class="headerlink" href="#modello-lineare-nelle-probabilita-vincolato" title="Link to this heading">#</a></h2>
+<p>Una soluzione per mantenere <span class="math notranslate nohighlight">\(\pi\)</span> all’interno dell’intervallo (0, 1) è la seguente specificazione del modello:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\pi=
+\begin{cases}
+  0                           &amp;\text{se $\alpha + \beta X &lt; 0$},\\
+  \alpha + \beta X           &amp;\text{se $0 \leq \alpha + \beta X \leq 1$},\\
+  1 &amp;\text{se $\alpha + \beta X &gt; 1$}.
+\end{cases}
+\end{split}\]</div>
+<p>Questo <em>modello lineare nelle probabilità vincolato</em> mostra alcune instabilità, soprattutto a causa della sua dipendenza critica dai valori estremi di <span class="math notranslate nohighlight">\(\pi\)</span>, dove assume i valori 0 o 1. La linearità di <span class="math notranslate nohighlight">\(\pi = \alpha + \beta X\)</span> si basa fortemente sui punti in cui si verificano questi estremi. In particolare, la stima di <span class="math notranslate nohighlight">\(\pi = 0\)</span> può essere influenzata dal valore minimo di <span class="math notranslate nohighlight">\(X\)</span> associato a <span class="math notranslate nohighlight">\(Y=1\)</span>, mentre la stima di <span class="math notranslate nohighlight">\(\pi = 1\)</span> può dipendere dal valore massimo di <span class="math notranslate nohighlight">\(X\)</span> per cui <span class="math notranslate nohighlight">\(Y=0\)</span>. Questi valori estremi tendono a variare significativamente tra diversi campioni e possono diventare più estremi all’aumentare della dimensione del campione.</p>
+<p>La presenza di più variabili esplicative (<span class="math notranslate nohighlight">\(k \geq 2\)</span>) complica ulteriormente la stima dei parametri del modello. Inoltre, il modello mostra un cambiamento brusco nella pendenza della curva di regressione ai punti estremi (0 e 1 di <span class="math notranslate nohighlight">\(\pi\)</span>), risultando poco realistico in molte situazioni pratiche. Questo rende il modello meno adatto a descrivere relazioni complesse e gradualmente variabili tra <span class="math notranslate nohighlight">\(\pi\)</span> e <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<p>Una funzione che modella una relazione più fluida e continua tra <span class="math notranslate nohighlight">\(\pi\)</span> e <span class="math notranslate nohighlight">\(X\)</span> sarebbe più realistica e rappresentativa delle dinamiche osservate. Questo motiva la preferenza per modelli alternativi, come il modello di regressione logistica, che tende a fornire una rappresentazione più accurata e realistica delle interazioni tra variabili dicotomiche e esplicative.</p>
+</section>
+<section id="regressione-logistica">
+<h2><span class="section-number">58.4. </span>Regressione Logistica<a class="headerlink" href="#regressione-logistica" title="Link to this heading">#</a></h2>
+<p>Un metodo efficace per gestire il problema del vincolo sulle probabilità è specificare modelli non direttamente per le probabilità stesse, ma per una loro trasformazione che elimina tale vincolo. Invece di definire un modello lineare per la probabilità condizionata <span class="math notranslate nohighlight">\(\pi_i\)</span>, si può specificare un modello lineare per il logaritmo degli odds (logit):</p>
+<div class="math notranslate nohighlight">
+\[
+\eta_i = \log_e \frac{\pi_i}{1-\pi_i} = \alpha + \beta x_i,
+\]</div>
+<p>Questo approccio non presenta problemi poiché il logit <span class="math notranslate nohighlight">\(\eta\)</span> è sempre un numero reale, permettendo di modellare una trasformazione lineare di <span class="math notranslate nohighlight">\(\pi\)</span>. L’immagine che segue è stata generata calcolando i <em>logit empirici</em>, ovvero il logaritmo degli odds <span class="math notranslate nohighlight">\(\log_e(\hat{\pi}_i/(1-\hat{\pi}_i))\)</span> per 8 intervalli in cui è stata suddivisa la variabile “età”. Questa analisi mostra chiaramente una relazione lineare tra i logit empirici e l’età, evidenziando come la regressione logistica possa efficacemente modellare e interpretare relazioni tra variabili trasformate e fattori esplicativi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">xc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">24.5</span><span class="p">,</span><span class="w"> </span><span class="m">32</span><span class="p">,</span><span class="w"> </span><span class="m">37</span><span class="p">,</span><span class="w"> </span><span class="m">42</span><span class="p">,</span><span class="w"> </span><span class="m">47</span><span class="p">,</span><span class="w"> </span><span class="m">52</span><span class="p">,</span><span class="w"> </span><span class="m">57</span><span class="p">,</span><span class="w"> </span><span class="m">64.5</span><span class="p">)</span>
+<span class="n">yc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="m">0.13</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.33</span><span class="p">,</span><span class="w"> </span><span class="m">0.46</span><span class="p">,</span><span class="w"> </span><span class="m">0.63</span><span class="p">,</span><span class="w"> </span><span class="m">0.76</span><span class="p">,</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span>
+<span class="n">logit_y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">yc</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">yc</span><span class="p">))</span>
+<span class="n">fit2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">logit_y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">xc</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span>
+<span class="w">    </span><span class="n">xc</span><span class="p">,</span><span class="w"> </span><span class="n">logit_y</span><span class="p">,</span>
+<span class="w">    </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Eta&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Logit(Y)&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;n&quot;</span>
+<span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">xc</span><span class="p">,</span><span class="w"> </span><span class="n">logit_y</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">fit2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/1d476fe934ebd9e3c09fce9e88bfed024653fe17908c4a9e7a5124e6100eb4aa.png"><img alt="../_images/1d476fe934ebd9e3c09fce9e88bfed024653fe17908c4a9e7a5124e6100eb4aa.png" src="../_images/1d476fe934ebd9e3c09fce9e88bfed024653fe17908c4a9e7a5124e6100eb4aa.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+</section>
+<section id="probabilita-odds-e-logit">
+<h2><span class="section-number">58.5. </span>Probabilità, Odds e Logit<a class="headerlink" href="#probabilita-odds-e-logit" title="Link to this heading">#</a></h2>
+<p>La relazione tra probabilità, odds e logit viene illustrata nella tabella qui sotto. È importante notare che gli odds e il logit trasformano l’intervallo di probabilità (0, 1) in uno spettro più ampio. Gli odds rappresentano il rapporto tra la probabilità di un evento e la probabilità del suo complemento. Il logit, invece, è il logaritmo naturale degli odds, trasformando così l’intervallo di probabilità in tutta la linea dei numeri reali. Quando la probabilità è 0.5, gli odds sono 1 e il logit è 0. Logit negativi indicano probabilità inferiori a 0.5, mentre logit positivi indicano probabilità superiori a 0.5.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Probabilità (P)</p></th>
+<th class="head"><p>Odds (O)</p></th>
+<th class="head"><p>logit (L)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0.01</p></td>
+<td><p>0.01 / 0.99 = 0.0101</p></td>
+<td><p><span class="math notranslate nohighlight">\(\ln(\frac{0.01}{0.99}) = -4.60\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>0.05</p></td>
+<td><p>0.05 / 0.95 = 0.0526</p></td>
+<td><p><span class="math notranslate nohighlight">\(\ln(\frac{0.05}{0.95}) = -2.94\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>0.10</p></td>
+<td><p>0.10 / 0.90 = 0.1111</p></td>
+<td><p><span class="math notranslate nohighlight">\(\ln(\frac{0.10}{0.90}) = -2.20\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>0.30</p></td>
+<td><p>0.30 / 0.70 = 0.4286</p></td>
+<td><p><span class="math notranslate nohighlight">\(\ln(\frac{0.30}{0.70}) = -0.85\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>0.50</p></td>
+<td><p>0.50 / 0.50 = 1</p></td>
+<td><p><span class="math notranslate nohighlight">\(\ln(\frac{0.50}{0.50}) = 0.00\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>0.70</p></td>
+<td><p>0.70 / 0.30 = 2.3333</p></td>
+<td><p><span class="math notranslate nohighlight">\(\ln(\frac{0.70}{0.30}) = 0.85\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>0.90</p></td>
+<td><p>0.90 / 0.10 = 9</p></td>
+<td><p><span class="math notranslate nohighlight">\(\ln(\frac{0.90}{0.10}) = 2.20\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>0.95</p></td>
+<td><p>0.95 / 0.05 = 19</p></td>
+<td><p><span class="math notranslate nohighlight">\(\ln(\frac{0.95}{0.05}) = 2.94\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>0.99</p></td>
+<td><p>0.99 / 0.01 = 99</p></td>
+<td><p><span class="math notranslate nohighlight">\(\ln(\frac{0.99}{0.01}) = 4.60\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<section id="trasformazione-inversa-del-logit">
+<h3><span class="section-number">58.5.1. </span>Trasformazione Inversa del Logit<a class="headerlink" href="#trasformazione-inversa-del-logit" title="Link to this heading">#</a></h3>
+<p>La trasformazione inversa del logit, detta <em>antilogit</em>, consente di trasformare i logit in probabilità:</p>
+<div class="math notranslate nohighlight">
+\[
+  \pi_i =\frac{e^{\eta_i}}{1+e^{\eta_i}}.
+\]</div>
+<p>Logit e probabilità possono dunque essere trasformati gli uni nelle altre. La trasformazione inversa del logit consente di specificare un modello non lineare per le probabilità <span class="math notranslate nohighlight">\(\pi_i\)</span>. Tale modello non lineare è detto <em>logit</em>, o modello di regressione logistica:</p>
+<div class="math notranslate nohighlight">
+\[
+  \pi_i = \frac{e^{\eta_i}}{1+e^{\eta_i}} =  \frac{e^{\alpha + \beta x_i}}{1+e^{\alpha + \beta x_i}}.
+\]</div>
+<p>La funzione logistica ben rappresenta l’andamento sigmoidale delle proporzioni di casi <span class="math notranslate nohighlight">\(Y=1\)</span>, ovvero <span class="math notranslate nohighlight">\(\hat{\pi}_i = E(Y \mid x_i)\)</span> (le proporzioni di presenza di disturbi coronarici), in funzione di livelli crescenti della variabile <code class="docutils literal notranslate"><span class="pre">age</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">glm</span><span class="p">(</span><span class="n">chd</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">binomial</span><span class="p">(</span><span class="n">link</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;logit&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chdage</span><span class="p">)</span>
+<span class="n">logit_hat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fm</span><span class="o">$</span><span class="n">coef</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fm</span><span class="o">$</span><span class="n">coef</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">chdage</span><span class="o">$</span><span class="n">age</span>
+<span class="n">pi_hat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="n">logit_hat</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="n">logit_hat</span><span class="p">))</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">chdage</span><span class="o">$</span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">pi_hat</span><span class="p">,</span>
+<span class="w">    </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Eta&#39;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;P(CHD)&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;n&quot;</span>
+<span class="p">)</span>
+<span class="nf">lines</span><span class="p">(</span><span class="n">chdage</span><span class="o">$</span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">pi_hat</span><span class="p">)</span>
+<span class="n">xc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">24.5</span><span class="p">,</span><span class="w"> </span><span class="m">32</span><span class="p">,</span><span class="w"> </span><span class="m">37</span><span class="p">,</span><span class="w"> </span><span class="m">42</span><span class="p">,</span><span class="w"> </span><span class="m">47</span><span class="p">,</span><span class="w"> </span><span class="m">52</span><span class="p">,</span><span class="w"> </span><span class="m">57</span><span class="p">,</span><span class="w"> </span><span class="m">64.5</span><span class="p">)</span>
+<span class="n">yc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="m">0.13</span><span class="p">,</span><span class="w"> </span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="m">0.33</span><span class="p">,</span><span class="w"> </span><span class="m">0.46</span><span class="p">,</span><span class="w"> </span><span class="m">0.63</span><span class="p">,</span><span class="w"> </span><span class="m">0.76</span><span class="p">,</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">xc</span><span class="p">,</span><span class="w"> </span><span class="n">yc</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/e4e4f70fdad2caabe50699d92af32dca5cea38104d16f670cc9f17f654eeeefa.png"><img alt="../_images/e4e4f70fdad2caabe50699d92af32dca5cea38104d16f670cc9f17f654eeeefa.png" src="../_images/e4e4f70fdad2caabe50699d92af32dca5cea38104d16f670cc9f17f654eeeefa.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+</section>
+</section>
+<section id="modelli-lineari-generalizzati">
+<h2><span class="section-number">58.6. </span>Modelli Lineari Generalizzati<a class="headerlink" href="#modelli-lineari-generalizzati" title="Link to this heading">#</a></h2>
+<p>Nel caso di una variabile risposta binaria, il modello classico di regressione lineare si scontra con sfide specifiche:</p>
+<ol class="arabic simple">
+<li><p><strong>Distribuzione Binomiale</strong>: <span class="math notranslate nohighlight">\(Y_i\)</span> segue una distribuzione binomiale (con indice <span class="math notranslate nohighlight">\(n_i\)</span>, potenzialmente uguale a uno nel caso individuale), rendendo non applicabile l’ipotesi di normalità.</p></li>
+<li><p><strong>Limiti delle Probabilità</strong>: Utilizzando una specificazione lineare come <span class="math notranslate nohighlight">\(\pi_i= \beta_0 + \beta_1 x_i\)</span>, si possono ottenere stime di probabilità esterne all’intervallo 0-1.</p></li>
+<li><p><strong>Varianze Non Costanti</strong>: La varianza di <span class="math notranslate nohighlight">\(\varepsilon\)</span> varia in base alla specificazione del modello di probabilità, seguendo la formula <span class="math notranslate nohighlight">\(V(\varepsilon_i)=\pi_i(1-\pi_i)\)</span>.</p></li>
+</ol>
+<p>Per superare queste sfide, si utilizzano i Modelli Lineari Generalizzati (GLM). Questi modelli consentono l’uso di variabili risposta di diversa natura e includono:</p>
+<ul class="simple">
+<li><p><strong>Regressione Lineare</strong>: Per variabili dipendenti continue e variabili esplicative continue o qualitative.</p></li>
+<li><p><strong>Regressione Logistica</strong>: Per variabili risposta binarie.</p></li>
+<li><p><strong>Modello Loglineare di Poisson</strong>: Per modellare frequenze in tabelle di contingenza.</p></li>
+</ul>
+<p>I GLM allentano alcune ipotesi fondamentali del modello lineare classico, come linearità, normalità della componente erratica, e omoschedasticità delle osservazioni. Sono strutturati in tre componenti principali:</p>
+<ol class="arabic simple">
+<li><p><strong>Componente Aleatoria</strong>: Definisce la distribuzione di probabilità della variabile risposta <span class="math notranslate nohighlight">\(Y\)</span>.</p></li>
+<li><p><strong>Componente Sistematica</strong>: Specifica la relazione lineare tra le variabili esplicative e una trasformazione della variabile risposta.</p></li>
+<li><p><strong>Funzione Legame</strong>: Trasforma la media attesa <span class="math notranslate nohighlight">\(\mathbb{E}(Y)\)</span> in un formato che possa essere modellato linearmente rispetto alle variabili esplicative. Non è la variabile risposta stessa ad essere modellizzata direttamente, ma una sua trasformazione, come il logit nel caso della regressione logistica.</p></li>
+</ol>
+<p>Esempi di combinazioni di componenti aleatorie, funzioni di legame e sistematiche nei GLM includono:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Componente Aleatoria</p></th>
+<th class="head"><p>Funzione Legame</p></th>
+<th class="head"><p>Componente Sistematica</p></th>
+<th class="head"><p>Modello</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Gaussiana</p></td>
+<td><p>Identità</p></td>
+<td><p>Continua</p></td>
+<td><p>Regressione</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gaussiana</p></td>
+<td><p>Identità</p></td>
+<td><p>Categoriale</p></td>
+<td><p>Analisi della varianza</p></td>
+</tr>
+<tr class="row-even"><td><p>Gaussiana</p></td>
+<td><p>Identità</p></td>
+<td><p>Mista</p></td>
+<td><p>Analisi della covarianza</p></td>
+</tr>
+<tr class="row-odd"><td><p>Binomiale</p></td>
+<td><p>Logit</p></td>
+<td><p>Mista</p></td>
+<td><p>Regressione logistica</p></td>
+</tr>
+<tr class="row-even"><td><p>Poisson</p></td>
+<td><p>Logaritmo</p></td>
+<td><p>Mista</p></td>
+<td><p>Modello Loglineare</p></td>
+</tr>
+</tbody>
+</table>
+<p>Questa struttura rende i GLM particolarmente flessibili e adatti a una vasta gamma di situazioni statistiche, superando i limiti del modello lineare classico.</p>
+</section>
+<section id="componente-sistematica">
+<h2><span class="section-number">58.7. </span>Componente Sistematica<a class="headerlink" href="#componente-sistematica" title="Link to this heading">#</a></h2>
+<p>La componente sistematica mette in relazione un vettore (<span class="math notranslate nohighlight">\(\eta_1, \eta_2, \dots, \eta_k\)</span>) con le variabili esplicative mediante un modello lineare. Sia <span class="math notranslate nohighlight">\(X_{ij}\)</span> il valore della <span class="math notranslate nohighlight">\(j\)</span>-esima variabile esplicativa (<span class="math notranslate nohighlight">\(j=1, 2, \dots, p\)</span>) per l’<span class="math notranslate nohighlight">\(i\)</span>-esima osservazione (<span class="math notranslate nohighlight">\(i=1, \dots, k\)</span>). Allora</p>
+<div class="math notranslate nohighlight">
+\[
+\eta_i = \sum_j \beta_j X_{ij}.
+\]</div>
+<p>Questa combinazione lineare di variabili esplicative è chiamata il <em>predittore lineare</em>. Un <span class="math notranslate nohighlight">\(X_{ij}=1, \forall i\)</span> viene utilizzato per il coefficiente dell’intercetta del modello (talvolta denotata da <span class="math notranslate nohighlight">\(\alpha\)</span>).</p>
+</section>
+<section id="componente-aleatoria">
+<h2><span class="section-number">58.8. </span>Componente Aleatoria<a class="headerlink" href="#componente-aleatoria" title="Link to this heading">#</a></h2>
+<p>La  componente aleatoria del modello suppone l’esistenza di
+<span class="math notranslate nohighlight">\(k\)</span> osservazioni indipendenti <span class="math notranslate nohighlight">\(y_1, y_2, \dots, y_k\)</span>, ciascuna delle
+quali viene trattata come la realizzazione di una variabile casuale
+<span class="math notranslate nohighlight">\(Y_i\)</span>. Si assume che <span class="math notranslate nohighlight">\(Y_i\)</span> abbia una distribuzione binomiale:</p>
+<div class="math notranslate nohighlight">
+\[
+Y_i \sim Bin(n_i, \pi_i)
+\]</div>
+<p>con parametri <span class="math notranslate nohighlight">\(n_i\)</span> e <span class="math notranslate nohighlight">\(\pi_i\)</span>. Per dati individuali (uno per ciascun valore <span class="math notranslate nohighlight">\(x_i\)</span>), <span class="math notranslate nohighlight">\(n_i=1,
+    \forall i\)</span>.</p>
+</section>
+<section id="funzione-legame">
+<h2><span class="section-number">58.9. </span>Funzione Legame<a class="headerlink" href="#funzione-legame" title="Link to this heading">#</a></h2>
+<p>La  funzione legame <span class="math notranslate nohighlight">\(g(\cdot)\)</span>  mette in relazione il valore atteso della variabile risposta <span class="math notranslate nohighlight">\(Y_i\)</span> con la componente sistematica <span class="math notranslate nohighlight">\(\eta_i\)</span> del modello. Abbiamo visto che <span class="math notranslate nohighlight">\(\mathbb{E}(Y_i)=\pi_i\)</span>.
+Che relazione c’è tra <span class="math notranslate nohighlight">\(\pi_i\)</span> e il predittore lineare <span class="math notranslate nohighlight">\(\eta_i= \alpha + \sum_j  \beta_j X_{ij}\)</span>?
+La risposta a questa domanda è data dalla funzione legame:</p>
+<div class="math notranslate nohighlight">
+\[
+\eta_i = g(\pi_i) = \ln{\frac{\pi_i}{1-\pi_i}}
+\]</div>
+<p>Si noti che la funzione legame non trasforma la variabile risposta <span class="math notranslate nohighlight">\(Y_i\)</span> ma bensì il suo valore atteso <span class="math notranslate nohighlight">\(\pi_i\)</span>.</p>
+<p>La funzione legame è invertibile: anziché trasformare il valore atteso nel predittore lineare si può trasformare il predittore lineare nel valore atteso <span class="math notranslate nohighlight">\(\pi_i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_i = \frac{e^{\eta_i}}{1+e^{\eta_i}} =  \frac{e^{\alpha + \sum_j  \beta_j X_{ij}}}{1+e^{\alpha + \sum_j  \beta_j X_{ij}}}.
+\]</div>
+<p>Si ottiene così un modello non lineare per le probabilità <span class="math notranslate nohighlight">\(\pi_i\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">-5</span><span class="o">:</span><span class="m">5</span>
+<span class="n">prob</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">invlogit</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Funzione logistica&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Probabilita&#39;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Valori X&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/8c3c7f7ee98b89a3f70f7d5de3c95efd10d38f3f7e9c223cb2aaca49a53d2a8c.png"><img alt="../_images/8c3c7f7ee98b89a3f70f7d5de3c95efd10d38f3f7e9c223cb2aaca49a53d2a8c.png" src="../_images/8c3c7f7ee98b89a3f70f7d5de3c95efd10d38f3f7e9c223cb2aaca49a53d2a8c.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+</section>
+<section id="regressione-logistica-con-r">
+<h2><span class="section-number">58.10. </span>Regressione Logistica con R<a class="headerlink" href="#regressione-logistica-con-r" title="Link to this heading">#</a></h2>
+<p>La stima dei parametri del modello di regressione logistica per i dati in esame si ottiene in R utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">glm()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">glm</span><span class="p">(</span><span class="n">chd</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">age</span><span class="p">,</span>
+<span class="w">    </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">binomial</span><span class="p">(</span><span class="n">link</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;logit&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chdage</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si noti che è necessario specificare sia la funzione teorica (<code class="docutils literal notranslate"><span class="pre">family</span> <span class="pre">=</span> <span class="pre">binomial</span></code>) della componente erratica del modello, sia la funzione legame (<code class="docutils literal notranslate"><span class="pre">link</span> <span class="pre">=</span> <span class="pre">&quot;logit&quot;</span></code>). L’output della funzione <code class="docutils literal notranslate"><span class="pre">glm()</span></code> può essere visualizzato utilizzando  <code class="docutils literal notranslate"><span class="pre">summary()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">fm</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+glm(formula = chd ~ age, family = binomial(link = &quot;logit&quot;), data = chdage)
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept) -5.30945    1.13365  -4.683 2.82e-06 ***
+age          0.11092    0.02406   4.610 4.02e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 136.66  on 99  degrees of freedom
+Residual deviance: 107.35  on 98  degrees of freedom
+AIC: 111.35
+
+Number of Fisher Scoring iterations: 4
+</pre></div>
+</div>
+</div>
+</div>
+<p>Per i dati dell’esempio, le probabilità predette sono uguali a</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\pi}(x)=\frac{e^{-5.309 + 0.111 \times {\tt age}}}{1+e^{-5.309 + 0.111 \times {\tt age}}}.
+\]</div>
+<p>I logit stimati sono dati dall’equazione</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\eta}(x)=-5.309 + 0.111 \times {\tt age}.
+\]</div>
+</section>
+<section id="interpretazione-dei-coefficienti">
+<h2><span class="section-number">58.11. </span>Interpretazione dei Coefficienti<a class="headerlink" href="#interpretazione-dei-coefficienti" title="Link to this heading">#</a></h2>
+<p>Il modello di regressione logistica può essere interpretato focalizzandosi sui coefficienti di regressione.</p>
+<section id="interpretazione-basata-sui-log-odds">
+<h3><span class="section-number">58.11.1. </span>Interpretazione Basata sui Log-Odds<a class="headerlink" href="#interpretazione-basata-sui-log-odds" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Intercetta (-5.30945):</strong></p>
+<ul class="simple">
+<li><p>Rappresenta il log-odds di sviluppare CHD quando l’età è 0. Benché questo non sia praticamente realistico, offre un punto di riferimento teorico.</p></li>
+<li><p>Il valore negativo suggerisce una bassa probabilità di CHD a 0 anni.</p></li>
+</ul>
+</li>
+<li><p><strong>Coefficiente di Età (0.11092):</strong></p>
+<ul class="simple">
+<li><p>Indica la variazione dei log-odds di CHD per ogni anno aggiuntivo di età.</p></li>
+<li><p>Un valore positivo implica che, all’aumentare dell’età, aumenta anche la probabilità di CHD.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="interpretazione-attraverso-l-odds-ratio">
+<h3><span class="section-number">58.11.2. </span>Interpretazione Attraverso l’Odds Ratio<a class="headerlink" href="#interpretazione-attraverso-l-odds-ratio" title="Link to this heading">#</a></h3>
+<p>Per calcolare l’odds ratio associato all’età, si esponenzia il coefficiente:</p>
+<div class="math notranslate nohighlight">
+\[ 
+\text{Odds Ratio per Età} = e^{0.11092} \approx 1.12.
+\]</div>
+<p>Questo valore mostra la variazione degli odds di CHD per ogni incremento annuale di età. Un odds ratio maggiore di 1 indica un aumento della probabilità con l’età. Ad esempio, un odds ratio di 1.12 significa che per ogni anno in più, gli odds di avere CHD aumentano del 12%. L’odds ratio fornisce una visione relativa e intuitiva del cambiamento del rischio.</p>
+</section>
+<section id="interpretazione-basata-sulle-probabilita-predette">
+<h3><span class="section-number">58.11.3. </span>Interpretazione Basata sulle Probabilità Predette<a class="headerlink" href="#interpretazione-basata-sulle-probabilita-predette" title="Link to this heading">#</a></h3>
+<p>L’interpretazione più diretta e intuitiva dei coefficienti nel modello di regressione logistica è tramite il calcolo delle probabilità predette. A differenza dei coefficienti grezzi o degli odds ratio, le probabilità predette offrono una comprensione immediata dell’impatto delle variabili.</p>
+<p>Nel caso dello studio della probabilità di CHD in base all’età, si possono calcolare le probabilità predette di CHD per individui di diverse età. Questo metodo fornisce una rappresentazione chiara di come il rischio di CHD vari in funzione dell’età, rendendo l’interpretazione accessibile anche a chi non è esperto in statistica.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">effect_plot</span><span class="p">(</span><span class="n">fm</span><span class="p">,</span>
+<span class="w">    </span><span class="n">pred</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">plot.points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">jitter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/6a3f89d480a0a8b366a8f4b99343a8108b96e59671030221fbaafe2764f75519.png"><img alt="../_images/6a3f89d480a0a8b366a8f4b99343a8108b96e59671030221fbaafe2764f75519.png" src="../_images/6a3f89d480a0a8b366a8f4b99343a8108b96e59671030221fbaafe2764f75519.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+</section>
+</section>
+<section id="considerazioni-conclusive">
+<h2><span class="section-number">58.12. </span>Considerazioni Conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h2>
+<p>Nel caso di una variabile dipendente binaria <span class="math notranslate nohighlight">\(Y_i\)</span>, il tradizionale modello di regressione lineare non può essere applicato. Tale problema può essere risolto applicando il modello lineare non direttamente al valore atteso della variabile risposta, ma ad una sua trasformazione, il logit. La componente sistematica del modello di regressione lineare esprime il valore atteso della variabile dipendente come una funzione lineare dei predittori: <span class="math notranslate nohighlight">\(\mu_i = \boldsymbol{\beta x}_i\)</span>.</p>
+<p>Per il modello di regressione lineare, il valore atteso di <span class="math notranslate nohighlight">\(Y\)</span> è la media delle distribuzioni condizionate <span class="math notranslate nohighlight">\(Y \mid x_i\)</span>.</p>
+<p>Per il modello di regressione logistica, il valore atteso della variabile risposta binaria, condizionato ad un determinato valore della variabile esplicativa (o ad un insieme di valori del vettore di variabili esplicative) è uguale alla probabilità che <span class="math notranslate nohighlight">\(Y\)</span> assuma il valore 1:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}(Y \mid x_i) \equiv Pr(Y=1 \mid X=x_i) \equiv \pi_i.
+\]</div>
+<p>Tale valore atteso può essere interpretato come la proporzione di individui nella popolazione per i quali <span class="math notranslate nohighlight">\(Y=1\)</span> in corrispondenza di <span class="math notranslate nohighlight">\(X=x_i\)</span>.</p>
+<p>La componente sistematica del modello di regressione logistica rappresenta una trasformazione di <span class="math notranslate nohighlight">\(\pi_i\)</span> come funzione lineare dei predittori:</p>
+<div class="math notranslate nohighlight">
+\[
+\ln \frac{\pi_i}{1-\pi_i} = \alpha + \beta X_i.
+\]</div>
+<p>Il modello è dunque lineare nei logit. Equivalentemente, esponenziando</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\pi_i}{1-\pi_i} = \exp(\alpha + \beta X_i)
+\]</div>
+<p>l’odds stimato di <span class="math notranslate nohighlight">\(Y_i=1\)</span> è uguale a <span class="math notranslate nohighlight">\(\exp(\alpha + \beta X_i)\)</span>.</p>
+<p>La funzione antilogit trasforma il predittore lineare <span class="math notranslate nohighlight">\(\eta_i = \alpha + \beta X_i\)</span> nelle probabilità:</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_i = \frac{\exp(\alpha+\beta X_i)}{1 + \exp(\alpha+\beta X_i)}.
+\]</div>
+<p>Il modello di regressione logistica è un modello non lineare nelle probabilità (ovvero, rispetto al valore atteso della variabile risposta).</p>
+<p>La funzione logistica</p>
+<div class="math notranslate nohighlight">
+\[
+\Lambda(\eta) = \frac{\exp(\eta)}{1 + \exp(\eta)}
+\]</div>
+<p>viene  scelta quale funzione legame per trasformare la componente lineare del modello, <span class="math notranslate nohighlight">\(\eta_i =\alpha+\beta X_i\)</span>, nel valore atteso della variabile dipendente, <span class="math notranslate nohighlight">\(\pi_i\)</span>. Qualunque funzione cumulativa di probabilità potrebbe fungere da funzione legame, tuttavia, è conveniente scegliere la funzione logistica per facilità di interpretazione.</p>
+<p>La componente aleatoria del modello di regressione logistica, infine, ci porta a considerare la variabile dipendente come una variabile aleatoria binomiale, sia nel caso di dati raggruppati (con denomiatore binomiale uguale alla frequenza delle osservazioni in ciascun gruppo <span class="math notranslate nohighlight">\(n_i\)</span> corrispondente a modalità omogenee della/e variabile/i esplicativa/e) che nel caso di dati individuali (dove <span class="math notranslate nohighlight">\(n_i\)</span> = 1, <span class="math notranslate nohighlight">\(\forall i\)</span>).</p>
+</section>
+<section id="session-info">
+<h2><span class="section-number">58.13. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.3.3 (2024-02-29)
+Platform: x86_64-apple-darwin20 (64-bit)
+Running under: macOS Sonoma 14.4.1
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
+
+locale:
+[1] en_US.UTF-8/UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: Europe/Rome
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] jtools_2.2.2         psych_2.4.3          effects_4.2-2       
+ [4] gmodels_2.19.1       LaplacesDemon_16.1.6 car_3.1-2           
+ [7] carData_3.0-5        lubridate_1.9.3      forcats_1.0.0       
+[10] stringr_1.5.1        dplyr_1.1.4          purrr_1.0.2         
+[13] readr_2.1.5          tidyr_1.3.1          tibble_3.2.1        
+[16] ggplot2_3.5.1        tidyverse_2.0.0     
+
+loaded via a namespace (and not attached):
+ [1] gtable_0.3.5      insight_0.19.9    lattice_0.22-6    tzdb_0.4.0       
+ [5] vctrs_0.6.5       tools_4.3.3       generics_0.1.3    parallel_4.3.3   
+ [9] fansi_1.0.6       pkgconfig_2.0.3   Matrix_1.6-5      uuid_1.2-0       
+[13] lifecycle_1.0.4   farver_2.1.1      compiler_4.3.3    mnormt_2.1.1     
+[17] munsell_0.5.1     repr_1.1.6        mitools_2.4       survey_4.4-2     
+[21] htmltools_0.5.8.1 pillar_1.9.0      nloptr_2.0.3      crayon_1.5.2     
+[25] MASS_7.3-60.0.1   gdata_3.0.0       boot_1.3-30       abind_1.4-5      
+[29] nlme_3.1-164      gtools_3.9.5      tidyselect_1.2.1  digest_0.6.35    
+[33] stringi_1.8.3     pander_0.6.5      labeling_0.4.3    splines_4.3.3    
+[37] fastmap_1.1.1     grid_4.3.3        colorspace_2.1-0  cli_3.6.2        
+[41] magrittr_2.0.3    base64enc_0.1-3   survival_3.5-8    utf8_1.2.4       
+[45] IRdisplay_1.1     withr_3.0.0       scales_1.3.0      IRkernel_1.3.2   
+[49] timechange_0.3.0  nnet_7.3-19       lme4_1.1-35.3     pbdZMQ_0.3-11    
+[53] hms_1.1.3         evaluate_0.23     mgcv_1.9-1        rlang_1.1.3      
+[57] Rcpp_1.0.12       glue_1.7.0        DBI_1.2.2         minqa_1.2.6      
+[61] jsonlite_1.8.8    R6_2.5.1         
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_irt"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../_sem/12_temp_reliability.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">57. </span>Affidabilità longitudinale</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="E_01.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">59. </span>✏️ Esercizi</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-regressione-logistica-per-variabili-binarie">58.1. Modello di Regressione Logistica per Variabili Binarie</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-lineare-nelle-probabilita">58.2. Modello Lineare nelle Probabilità</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problemi-di-normalita">58.2.1. Problemi di Normalità</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problematiche-di-omoschedasticita">58.2.2. Problematiche di Omoschedasticità</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linearita">58.2.3. Linearità</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-lineare-nelle-probabilita-vincolato">58.3. Modello Lineare nelle Probabilità Vincolato</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regressione-logistica">58.4. Regressione Logistica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probabilita-odds-e-logit">58.5. Probabilità, Odds e Logit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trasformazione-inversa-del-logit">58.5.1. Trasformazione Inversa del Logit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelli-lineari-generalizzati">58.6. Modelli Lineari Generalizzati</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#componente-sistematica">58.7. Componente Sistematica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#componente-aleatoria">58.8. Componente Aleatoria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funzione-legame">58.9. Funzione Legame</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regressione-logistica-con-r">58.10. Regressione Logistica con R</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-dei-coefficienti">58.11. Interpretazione dei Coefficienti</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-basata-sui-log-odds">58.11.1. Interpretazione Basata sui Log-Odds</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-attraverso-l-odds-ratio">58.11.2. Interpretazione Attraverso l’Odds Ratio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-basata-sulle-probabilita-predette">58.11.3. Interpretazione Basata sulle Probabilità Predette</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">58.12. Considerazioni Conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">58.13. Session Info</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

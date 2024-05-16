@@ -1,0 +1,1082 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>43. Modello bifattoriale &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css?v=ffeaf963" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6ba04eab" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VMXNE4BCDL"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_cfa/05_bifactor';</script>
+    <script src="../_static/custom.js?v=3f5092eb"></script>
+    <link rel="canonical" href="https://ccaudek.github.io/psy_test/_cfa/05_bifactor.html" />
+    <link rel="icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="44. Exploratory Structural Equation Modeling (ESEM)" href="06_efa_lavaan.html" />
+    <link rel="prev" title="42. CFA per matrici multi-tratto multi-metodo" href="04_mmm.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Scaling psicometrico</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/01_expval_var.html">1. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/02_joint_prob.html">2. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/03_measurement.html">3. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/04_norms.html">4. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/05_regression.html">5. L’analisi di regressione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E1_likert.html">6. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E2_optimal_scoring.html">7. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E3_thurstone.html">8. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/01_ctt_1.html">9. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/02_ctt_2.html">10. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/03_ctt_3.html">11. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/04_err_std_mis.html">12. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/05_err_std_stima.html">13. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/06_applications_ctt.html">14. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E1_ctt.html">15. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E2_item_analyses.html">16. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/01_multilevel_1.html">17. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/02_interrater_reliability.html">18. L’affidabilità tra giudici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/E1_irr.html">19. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/01_gtheory.html">20. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/01_validity.html">21. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/02_relations_to_other_vars.html">22. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sviluppo degli item</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_items/01_item_development.html">23. Lo sviluppo degli item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_items/02_item_analysis.html">24. Analisi degli item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">25. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale esplorativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/01_intro_fa.html">26. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/02_analisi_fattoriale_1.html">27. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/03_analisi_fattoriale_2.html">28. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/04_analisi_fattoriale_3.html">29. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/05_factor_scores.html">30. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/06_constraints_on_parms.html">31. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/07_total_score.html">32. Punteggio totale e modello fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione strumenti</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">33. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">34. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">35. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">36. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">37. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_cfa.html">38. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="E_01.html">39. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_meanstructure.html">40. La struttura delle medie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_cat_data.html">41. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_mmm.html">42. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">43. Modello bifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_efa_lavaan.html">44. Exploratory Structural Equation Modeling (ESEM)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/01_sem_intro.html">45. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/02_data_preparation.html">46. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/E_01.html">47. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/03_gof.html">48. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/04_mod_comp.html">49. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/05_cfa_mod_comp.html">50. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/06_refine_solution.html">51. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/07_group_invariance.html">52. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/08_multilevel_sem.html">53. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/09_structural_regr.html">54. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/10_missing_data.html">55. Dati mancanti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/11_small_samples.html">56. Modellizzazione SEM in Piccoli Campioni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/12_temp_reliability.html">57. Affidabilità longitudinale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_irt/01_logistic_regr.html">58. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/E_01.html">59. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/02_rasch_model.html">60. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/03_assumptions.html">61. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/04_estimation.html">62. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/05_1pl_2pl_3pl.html">63. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/06_implementation.html">64. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/07_polytomous_graded.html">65. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mokken Scales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/01_core_issues.html">66. Analisi della Scala di Mokken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/02_tutorial.html">67. Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/03_applications.html">68. Applicazione Pratica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/01_development.html">69. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/02_tutorial.html">70. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/01_lgm_intro.html">71. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/02_lgm_prelims.html">72. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/03_time_effects.html">73. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/04_invariance.html">74. Invarianza Fattoriale Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/05_intro_panel.html">75. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/06_lgm_mixed.html">76. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/07_growth_1.html">77. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/08_growth_cont.html">78. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/09_time_inv_cov.html">79. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/10_growth_groups.html">80. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/11_bivariate_tvc_models.html">81. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/12_inv_measurement.html">82. Invarianza di Misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/13_latent_change.html">83. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/750_latent_change.html">84. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/751_biv_change.html">85. Modello LCS bivariato</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">86. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a1_intro_r.html">87. Linguaggio R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a2_sums.html">88. Simbolo di somma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a3_calculus.html">89. Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a4_linear_alg.html">90. Elementi di algebra lineare</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_cfa/05_bifactor.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modello bifattoriale</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struttura-fattoriale">43.1. Struttura Fattoriale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-pratico">43.2. Un esempio pratico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-level-indices">43.2.1. Model-Level Indices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-level-indices">43.2.2. Factor-Level Indices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#item-level-indices">43.2.3. Item-Level Indices</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-conclusive">43.3. Commenti e considerazioni conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">43.4. Session Info</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modello-bifattoriale">
+<span id="bifactor-notebook"></span><h1><span class="section-number">43. </span>Modello bifattoriale<a class="headerlink" href="#modello-bifattoriale" title="Link to this heading">#</a></h1>
+<p>L’obiettivo di questo capitolo è di presentare un’introduzione ai modelli bifattoriali che stanno trovando sempre più applicazioni nelle misure di personalità e psicopatologia.</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">source</span><span class="p">(</span><span class="s">&quot;../_common.R&quot;</span><span class="p">)</span>
+<span class="nf">suppressPackageStartupMessages</span><span class="p">({</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;psych&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;lavaan&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;BifactorIndicesCalculator&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;semPlot&quot;</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>Numerose misure psicologiche sono progettate per valutare individui su un singolo costrutto. Tuttavia, caratteristiche psicologiche complesse come depressione e ansia spesso si manifestano in modi vari. Di conseguenza, è consigliabile includere item che coprono diverse aree tematiche per assicurare una validità di contenuto adeguata. Pertanto, molte scale di valutazione comunemente usate producono dati che si prestano a interpretazioni valide sia attraverso un modello unidimensionale, con un forte fattore generale, sia tramite un modello multidimensionale, che comprende due o più fattori correlati.</p>
+<section id="struttura-fattoriale">
+<h2><span class="section-number">43.1. </span>Struttura Fattoriale<a class="headerlink" href="#struttura-fattoriale" title="Link to this heading">#</a></h2>
+<p>Recenti studi hanno evidenziato che, di fronte a misure che generano dati multidimensionali a causa di una diversificata struttura di contenuto, l’adozione di un modello di misurazione bifattoriale può essere particolarmente efficace per rappresentare la struttura sottostante. Questo modello suggerisce che le correlazioni tra gli item di un test possono essere spiegate attraverso due tipi di fattori: (a) un fattore generale che riflette la varianza condivisa tra tutti gli item, e (b) una serie di fattori di gruppo che catturano la varianza specifica non spiegata dal fattore generale e che è comune tra item simili in termini di contenuto. Generalmente, si ritiene che il fattore generale e i fattori di gruppo siano indipendenti.</p>
+<p>Il fattore generale rappresenta il costrutto principale che lo strumento si propone di misurare, mentre i fattori di gruppo individuano costrutti più specifici legati a sottodomini. I modelli bifattoriali sono utilizzati per diverse finalità importanti:</p>
+<ul class="simple">
+<li><p>Analizzare la distribuzione della varianza quando si presume che uno strumento misuri sia varianza generale sia specifica di gruppo.</p></li>
+<li><p>Gestire la multidimensionalità in modo che la misura risulti “essenzialmente unidimensionale”, pur presentando dimensioni secondarie.</p></li>
+<li><p>Verificare la presenza di un fattore generale sufficientemente robusto da giustificare l’uso di un modello di misurazione unidimensionale.</p></li>
+<li><p>Determinare l’adeguatezza di un punteggio complessivo e valutare l’utilità di analizzare le sottoscale specifiche.</p></li>
+</ul>
+<p>Questi approcci permettono una comprensione più profonda e una valutazione più accurata della struttura sottostante dei dati psicologici, offrendo agli specialisti gli strumenti per interpretare con maggiore precisione i risultati dei test psicologici.</p>
+</section>
+<section id="un-esempio-pratico">
+<h2><span class="section-number">43.2. </span>Un esempio pratico<a class="headerlink" href="#un-esempio-pratico" title="Link to this heading">#</a></h2>
+<p>Consideriamo i dati <code class="docutils literal notranslate"><span class="pre">SRS_data</span></code> forniti dal pacchetto <code class="docutils literal notranslate"><span class="pre">BifactorIndicesCalculator</span></code>. Il dataset contiene 500 risposte al test SRS-22r sulla qualità della vita legata alla scoliosi, composta da 20 item. La sottoscala “Function” è composta dagli item 5, 9, 12, 15 e 18. La sottoscala “Pain” è composta dagli item 1, 2, 8, 11 e 17. La sottoscala “SelfImage” è composta dagli item 4, 6, 10, 14 e 19. La sottoscala “MentalHealth” è composta dagli item 3, 7, 13, 16 e 20.</p>
+<p>Iniziamo esaminando le statistiche descrittive a livello di item e le correlazioni tra gli item.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">describe</span><span class="p">(</span><span class="n">SRS_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A psych: 20 × 13</caption>
+<thead>
+	<tr><th></th><th scope=col>vars</th><th scope=col>n</th><th scope=col>mean</th><th scope=col>sd</th><th scope=col>median</th><th scope=col>trimmed</th><th scope=col>mad</th><th scope=col>min</th><th scope=col>max</th><th scope=col>range</th><th scope=col>skew</th><th scope=col>kurtosis</th><th scope=col>se</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>SRS_1</th><td> 1</td><td>500</td><td>3.694</td><td>1.0651917</td><td>4</td><td>3.7775</td><td>1.4826</td><td>1</td><td>5</td><td>4</td><td>-0.55091527</td><td>-0.44128777</td><td>0.04763682</td></tr>
+	<tr><th scope=row>SRS_2</th><td> 2</td><td>500</td><td>3.810</td><td>1.0295727</td><td>4</td><td>3.9200</td><td>1.4826</td><td>1</td><td>5</td><td>4</td><td>-0.71482596</td><td>-0.06788341</td><td>0.04604389</td></tr>
+	<tr><th scope=row>SRS_3</th><td> 3</td><td>500</td><td>3.896</td><td>1.0897519</td><td>4</td><td>4.0375</td><td>1.4826</td><td>1</td><td>5</td><td>4</td><td>-0.83228535</td><td>-0.03970322</td><td>0.04873518</td></tr>
+	<tr><th scope=row>SRS_4</th><td> 4</td><td>500</td><td>3.232</td><td>1.2796292</td><td>3</td><td>3.2900</td><td>1.4826</td><td>1</td><td>5</td><td>4</td><td>-0.10588960</td><td>-1.02358475</td><td>0.05722676</td></tr>
+	<tr><th scope=row>SRS_5</th><td> 5</td><td>500</td><td>4.196</td><td>0.8939700</td><td>4</td><td>4.2975</td><td>1.4826</td><td>2</td><td>5</td><td>3</td><td>-0.74534622</td><td>-0.53845331</td><td>0.03997955</td></tr>
+	<tr><th scope=row>SRS_6</th><td> 6</td><td>500</td><td>3.914</td><td>0.8718510</td><td>4</td><td>3.9525</td><td>1.4826</td><td>1</td><td>5</td><td>4</td><td>-0.37669898</td><td>-0.38588958</td><td>0.03899036</td></tr>
+	<tr><th scope=row>SRS_7</th><td> 7</td><td>500</td><td>4.236</td><td>1.0111126</td><td>5</td><td>4.4025</td><td>0.0000</td><td>1</td><td>5</td><td>4</td><td>-1.28422859</td><td> 1.08068127</td><td>0.04521833</td></tr>
+	<tr><th scope=row>SRS_8</th><td> 8</td><td>500</td><td>3.796</td><td>1.1317888</td><td>4</td><td>3.9075</td><td>1.4826</td><td>1</td><td>5</td><td>4</td><td>-0.51397419</td><td>-0.69930792</td><td>0.05061513</td></tr>
+	<tr><th scope=row>SRS_9</th><td> 9</td><td>500</td><td>4.408</td><td>1.0037685</td><td>5</td><td>4.6275</td><td>0.0000</td><td>1</td><td>5</td><td>4</td><td>-1.77060059</td><td> 2.45174385</td><td>0.04488989</td></tr>
+	<tr><th scope=row>SRS_10</th><td>10</td><td>500</td><td>3.700</td><td>0.8552561</td><td>4</td><td>3.7150</td><td>1.4826</td><td>1</td><td>5</td><td>4</td><td>-0.23018341</td><td>-0.20973096</td><td>0.03824821</td></tr>
+	<tr><th scope=row>SRS_11</th><td>11</td><td>500</td><td>4.502</td><td>0.8386911</td><td>5</td><td>4.6900</td><td>0.0000</td><td>1</td><td>5</td><td>4</td><td>-2.03023472</td><td> 4.08617302</td><td>0.03750741</td></tr>
+	<tr><th scope=row>SRS_12</th><td>12</td><td>500</td><td>4.258</td><td>1.0283730</td><td>5</td><td>4.4425</td><td>0.0000</td><td>1</td><td>5</td><td>4</td><td>-1.34621075</td><td> 1.11920378</td><td>0.04599024</td></tr>
+	<tr><th scope=row>SRS_13</th><td>13</td><td>500</td><td>3.848</td><td>0.9266138</td><td>4</td><td>3.9375</td><td>1.4826</td><td>1</td><td>5</td><td>4</td><td>-0.64572868</td><td> 0.04974619</td><td>0.04143943</td></tr>
+	<tr><th scope=row>SRS_14</th><td>14</td><td>500</td><td>4.722</td><td>0.6764845</td><td>5</td><td>4.8950</td><td>0.0000</td><td>1</td><td>5</td><td>4</td><td>-2.81546817</td><td> 8.20685737</td><td>0.03025331</td></tr>
+	<tr><th scope=row>SRS_15</th><td>15</td><td>500</td><td>4.814</td><td>0.6294413</td><td>5</td><td>4.9875</td><td>0.0000</td><td>1</td><td>5</td><td>4</td><td>-4.11789192</td><td>18.04005703</td><td>0.02814947</td></tr>
+	<tr><th scope=row>SRS_16</th><td>16</td><td>500</td><td>4.242</td><td>0.9598326</td><td>5</td><td>4.3975</td><td>0.0000</td><td>1</td><td>5</td><td>4</td><td>-1.23003057</td><td> 0.98745880</td><td>0.04292502</td></tr>
+	<tr><th scope=row>SRS_17</th><td>17</td><td>500</td><td>4.736</td><td>0.8601067</td><td>5</td><td>4.9875</td><td>0.0000</td><td>1</td><td>5</td><td>4</td><td>-3.48403036</td><td>11.29870912</td><td>0.03846514</td></tr>
+	<tr><th scope=row>SRS_18</th><td>18</td><td>500</td><td>2.920</td><td>0.9226606</td><td>3</td><td>2.9175</td><td>0.0000</td><td>1</td><td>5</td><td>4</td><td> 0.05145498</td><td> 0.83635388</td><td>0.04126264</td></tr>
+	<tr><th scope=row>SRS_19</th><td>19</td><td>500</td><td>3.600</td><td>1.1074533</td><td>4</td><td>3.6950</td><td>1.4826</td><td>1</td><td>5</td><td>4</td><td>-0.54423397</td><td>-0.28182684</td><td>0.04952682</td></tr>
+	<tr><th scope=row>SRS_20</th><td>20</td><td>500</td><td>3.988</td><td>0.8997083</td><td>4</td><td>4.0900</td><td>1.4826</td><td>1</td><td>5</td><td>4</td><td>-0.89924932</td><td> 0.74798504</td><td>0.04023618</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">round</span><span class="p">(</span><span class="nf">cor</span><span class="p">(</span><span class="n">SRS_data</span><span class="p">,</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pairwise.complete.obs&quot;</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 20 × 20 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>SRS_1</th><th scope=col>SRS_2</th><th scope=col>SRS_3</th><th scope=col>SRS_4</th><th scope=col>SRS_5</th><th scope=col>SRS_6</th><th scope=col>SRS_7</th><th scope=col>SRS_8</th><th scope=col>SRS_9</th><th scope=col>SRS_10</th><th scope=col>SRS_11</th><th scope=col>SRS_12</th><th scope=col>SRS_13</th><th scope=col>SRS_14</th><th scope=col>SRS_15</th><th scope=col>SRS_16</th><th scope=col>SRS_17</th><th scope=col>SRS_18</th><th scope=col>SRS_19</th><th scope=col>SRS_20</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>SRS_1</th><td>1.00</td><td>0.88</td><td>0.43</td><td>0.36</td><td>0.36</td><td>0.39</td><td>0.34</td><td>0.70</td><td>0.31</td><td>0.37</td><td>0.46</td><td>0.59</td><td>0.37</td><td>0.36</td><td>0.19</td><td>0.40</td><td>0.38</td><td>0.30</td><td>0.27</td><td>0.33</td></tr>
+	<tr><th scope=row>SRS_2</th><td>0.88</td><td>1.00</td><td>0.40</td><td>0.38</td><td>0.35</td><td>0.42</td><td>0.35</td><td>0.70</td><td>0.34</td><td>0.40</td><td>0.49</td><td>0.58</td><td>0.35</td><td>0.38</td><td>0.20</td><td>0.37</td><td>0.39</td><td>0.29</td><td>0.31</td><td>0.32</td></tr>
+	<tr><th scope=row>SRS_3</th><td>0.43</td><td>0.40</td><td>1.00</td><td>0.32</td><td>0.33</td><td>0.39</td><td>0.50</td><td>0.46</td><td>0.30</td><td>0.32</td><td>0.24</td><td>0.46</td><td>0.55</td><td>0.34</td><td>0.19</td><td>0.55</td><td>0.25</td><td>0.25</td><td>0.28</td><td>0.41</td></tr>
+	<tr><th scope=row>SRS_4</th><td>0.36</td><td>0.38</td><td>0.32</td><td>1.00</td><td>0.23</td><td>0.43</td><td>0.32</td><td>0.33</td><td>0.19</td><td>0.43</td><td>0.20</td><td>0.30</td><td>0.30</td><td>0.20</td><td>0.23</td><td>0.32</td><td>0.10</td><td>0.21</td><td>0.54</td><td>0.32</td></tr>
+	<tr><th scope=row>SRS_5</th><td>0.36</td><td>0.35</td><td>0.33</td><td>0.23</td><td>1.00</td><td>0.33</td><td>0.39</td><td>0.33</td><td>0.47</td><td>0.34</td><td>0.23</td><td>0.52</td><td>0.31</td><td>0.29</td><td>0.20</td><td>0.42</td><td>0.28</td><td>0.31</td><td>0.25</td><td>0.40</td></tr>
+	<tr><th scope=row>SRS_6</th><td>0.39</td><td>0.42</td><td>0.39</td><td>0.43</td><td>0.33</td><td>1.00</td><td>0.48</td><td>0.37</td><td>0.25</td><td>0.64</td><td>0.28</td><td>0.37</td><td>0.41</td><td>0.38</td><td>0.22</td><td>0.47</td><td>0.22</td><td>0.31</td><td>0.62</td><td>0.41</td></tr>
+	<tr><th scope=row>SRS_7</th><td>0.34</td><td>0.35</td><td>0.50</td><td>0.32</td><td>0.39</td><td>0.48</td><td>1.00</td><td>0.40</td><td>0.24</td><td>0.37</td><td>0.22</td><td>0.42</td><td>0.53</td><td>0.44</td><td>0.23</td><td>0.78</td><td>0.19</td><td>0.39</td><td>0.39</td><td>0.56</td></tr>
+	<tr><th scope=row>SRS_8</th><td>0.70</td><td>0.70</td><td>0.46</td><td>0.33</td><td>0.33</td><td>0.37</td><td>0.40</td><td>1.00</td><td>0.30</td><td>0.37</td><td>0.36</td><td>0.52</td><td>0.40</td><td>0.28</td><td>0.14</td><td>0.42</td><td>0.31</td><td>0.32</td><td>0.28</td><td>0.34</td></tr>
+	<tr><th scope=row>SRS_9</th><td>0.31</td><td>0.34</td><td>0.30</td><td>0.19</td><td>0.47</td><td>0.25</td><td>0.24</td><td>0.30</td><td>1.00</td><td>0.36</td><td>0.26</td><td>0.49</td><td>0.32</td><td>0.29</td><td>0.22</td><td>0.32</td><td>0.35</td><td>0.27</td><td>0.20</td><td>0.31</td></tr>
+	<tr><th scope=row>SRS_10</th><td>0.37</td><td>0.40</td><td>0.32</td><td>0.43</td><td>0.34</td><td>0.64</td><td>0.37</td><td>0.37</td><td>0.36</td><td>1.00</td><td>0.26</td><td>0.37</td><td>0.30</td><td>0.34</td><td>0.22</td><td>0.39</td><td>0.19</td><td>0.28</td><td>0.54</td><td>0.35</td></tr>
+	<tr><th scope=row>SRS_11</th><td>0.46</td><td>0.49</td><td>0.24</td><td>0.20</td><td>0.23</td><td>0.28</td><td>0.22</td><td>0.36</td><td>0.26</td><td>0.26</td><td>1.00</td><td>0.42</td><td>0.19</td><td>0.33</td><td>0.20</td><td>0.23</td><td>0.39</td><td>0.18</td><td>0.24</td><td>0.19</td></tr>
+	<tr><th scope=row>SRS_12</th><td>0.59</td><td>0.58</td><td>0.46</td><td>0.30</td><td>0.52</td><td>0.37</td><td>0.42</td><td>0.52</td><td>0.49</td><td>0.37</td><td>0.42</td><td>1.00</td><td>0.43</td><td>0.46</td><td>0.23</td><td>0.46</td><td>0.44</td><td>0.33</td><td>0.32</td><td>0.43</td></tr>
+	<tr><th scope=row>SRS_13</th><td>0.37</td><td>0.35</td><td>0.55</td><td>0.30</td><td>0.31</td><td>0.41</td><td>0.53</td><td>0.40</td><td>0.32</td><td>0.30</td><td>0.19</td><td>0.43</td><td>1.00</td><td>0.35</td><td>0.17</td><td>0.57</td><td>0.21</td><td>0.30</td><td>0.35</td><td>0.60</td></tr>
+	<tr><th scope=row>SRS_14</th><td>0.36</td><td>0.38</td><td>0.34</td><td>0.20</td><td>0.29</td><td>0.38</td><td>0.44</td><td>0.28</td><td>0.29</td><td>0.34</td><td>0.33</td><td>0.46</td><td>0.35</td><td>1.00</td><td>0.33</td><td>0.46</td><td>0.38</td><td>0.30</td><td>0.32</td><td>0.34</td></tr>
+	<tr><th scope=row>SRS_15</th><td>0.19</td><td>0.20</td><td>0.19</td><td>0.23</td><td>0.20</td><td>0.22</td><td>0.23</td><td>0.14</td><td>0.22</td><td>0.22</td><td>0.20</td><td>0.23</td><td>0.17</td><td>0.33</td><td>1.00</td><td>0.27</td><td>0.20</td><td>0.17</td><td>0.29</td><td>0.24</td></tr>
+	<tr><th scope=row>SRS_16</th><td>0.40</td><td>0.37</td><td>0.55</td><td>0.32</td><td>0.42</td><td>0.47</td><td>0.78</td><td>0.42</td><td>0.32</td><td>0.39</td><td>0.23</td><td>0.46</td><td>0.57</td><td>0.46</td><td>0.27</td><td>1.00</td><td>0.19</td><td>0.38</td><td>0.36</td><td>0.59</td></tr>
+	<tr><th scope=row>SRS_17</th><td>0.38</td><td>0.39</td><td>0.25</td><td>0.10</td><td>0.28</td><td>0.22</td><td>0.19</td><td>0.31</td><td>0.35</td><td>0.19</td><td>0.39</td><td>0.44</td><td>0.21</td><td>0.38</td><td>0.20</td><td>0.19</td><td>1.00</td><td>0.25</td><td>0.15</td><td>0.16</td></tr>
+	<tr><th scope=row>SRS_18</th><td>0.30</td><td>0.29</td><td>0.25</td><td>0.21</td><td>0.31</td><td>0.31</td><td>0.39</td><td>0.32</td><td>0.27</td><td>0.28</td><td>0.18</td><td>0.33</td><td>0.30</td><td>0.30</td><td>0.17</td><td>0.38</td><td>0.25</td><td>1.00</td><td>0.25</td><td>0.31</td></tr>
+	<tr><th scope=row>SRS_19</th><td>0.27</td><td>0.31</td><td>0.28</td><td>0.54</td><td>0.25</td><td>0.62</td><td>0.39</td><td>0.28</td><td>0.20</td><td>0.54</td><td>0.24</td><td>0.32</td><td>0.35</td><td>0.32</td><td>0.29</td><td>0.36</td><td>0.15</td><td>0.25</td><td>1.00</td><td>0.41</td></tr>
+	<tr><th scope=row>SRS_20</th><td>0.33</td><td>0.32</td><td>0.41</td><td>0.32</td><td>0.40</td><td>0.41</td><td>0.56</td><td>0.34</td><td>0.31</td><td>0.35</td><td>0.19</td><td>0.43</td><td>0.60</td><td>0.34</td><td>0.24</td><td>0.59</td><td>0.16</td><td>0.31</td><td>0.41</td><td>1.00</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">SRS_UnidimensionalModel</span><span class="w"> </span><span class="o">&lt;-</span>
+<span class="s">&quot;</span>
+<span class="s">    SRS =~ SRS_1 + SRS_2 + SRS_3 + SRS_4 + SRS_5 +</span>
+<span class="s">    SRS_6 + SRS_7 + SRS_8 + SRS_9 + SRS_10 +</span>
+<span class="s">    SRS_11 + SRS_12 + SRS_13 + SRS_14 + SRS_15 +</span>
+<span class="s">    SRS_16 + SRS_17 + SRS_18 + SRS_19 + SRS_20</span>
+<span class="s">&quot;</span>
+
+<span class="n">SRS_Unidimensional</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">cfa</span><span class="p">(</span><span class="n">SRS_UnidimensionalModel</span><span class="p">,</span>
+<span class="w">    </span><span class="n">SRS_data</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ordered</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;SRS_&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">20</span><span class="p">),</span>
+<span class="w">    </span><span class="n">orthogonal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">semPaths</span><span class="p">(</span><span class="n">SRS_Unidimensional</span><span class="p">,</span><span class="w"> </span><span class="n">intercepts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/a0a598308d9a706a903f10925d12d34f6ad0f0577540b60f2a4e4758c3bc9d64.png"><img alt="../_images/a0a598308d9a706a903f10925d12d34f6ad0f0577540b60f2a4e4758c3bc9d64.png" src="../_images/a0a598308d9a706a903f10925d12d34f6ad0f0577540b60f2a4e4758c3bc9d64.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Esaminiamo la bontà di adattamento.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit.subset</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;chisq.scaled&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;df&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;pvalue.scaled&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;rmsea.scaled&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rmsea.pvalue.scale&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;rmsea.ci.lower.scaled&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rmsea.ci.upper.scaled&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;cfi&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;tli&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;srmr&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">fitmeasures</span><span class="p">(</span><span class="n">SRS_Unidimensional</span><span class="p">,</span><span class="w"> </span><span class="n">fit.subset</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         chisq.scaled                    df         pvalue.scaled 
+             2087.431               170.000                 0.000 
+         rmsea.scaled rmsea.ci.lower.scaled rmsea.ci.upper.scaled 
+                0.150                 0.145                 0.156 
+                  cfi                   tli                  srmr 
+                0.961                 0.956                 0.119 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">SRS_BifactorModel</span><span class="w"> </span><span class="o">&lt;-</span>
+<span class="s">&quot;</span>
+<span class="s">    SRS =~ SRS_1 + SRS_2 + SRS_3 + SRS_4 + SRS_5 + </span>
+<span class="s">           SRS_6 + SRS_7 + SRS_8 + SRS_9 + SRS_10 +</span>
+<span class="s">           SRS_11 + SRS_12 + SRS_13 + SRS_14 + SRS_15 +</span>
+<span class="s">           SRS_16 + SRS_17 + SRS_18 + SRS_19 + SRS_20</span>
+<span class="s">    Function =~ SRS_5 + SRS_9 + SRS_12 + SRS_15 + SRS_18</span>
+<span class="s">    Pain =~ SRS_1 + SRS_2 + SRS_8 + SRS_11 + SRS_17</span>
+<span class="s">    SelfImage =~ SRS_4 + SRS_6 + SRS_10 + SRS_14 + SRS_19</span>
+<span class="s">    MentalHealth =~ SRS_3 + SRS_7 + SRS_13 + SRS_16 + SRS_20</span>
+<span class="s">&quot;</span>
+
+<span class="n">SRS_bifactor</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">cfa</span><span class="p">(</span><span class="n">SRS_BifactorModel</span><span class="p">,</span>
+<span class="w">    </span><span class="n">SRS_data</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ordered</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;SRS_&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">20</span><span class="p">),</span>
+<span class="w">    </span><span class="n">orthogonal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">semPaths</span><span class="p">(</span><span class="n">SRS_bifactor</span><span class="p">,</span><span class="w"> </span><span class="n">intercepts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/f60dd9a827b2a04d362e5b3cc9df29baa0d9960a3aac12e1816bcf5b07155814.png"><img alt="../_images/f60dd9a827b2a04d362e5b3cc9df29baa0d9960a3aac12e1816bcf5b07155814.png" src="../_images/f60dd9a827b2a04d362e5b3cc9df29baa0d9960a3aac12e1816bcf5b07155814.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Esaminiamo la bontà di adattamento.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">fitmeasures</span><span class="p">(</span><span class="n">SRS_bifactor</span><span class="p">,</span><span class="w"> </span><span class="n">fit.subset</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         chisq.scaled                    df         pvalue.scaled 
+              468.648               150.000                 0.000 
+         rmsea.scaled rmsea.ci.lower.scaled rmsea.ci.upper.scaled 
+                0.065                 0.059                 0.072 
+                  cfi                   tli                  srmr 
+                0.997                 0.996                 0.055 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Confrontiamo i due modelli.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">lavTestLRT</span><span class="p">(</span><span class="n">SRS_Unidimensional</span><span class="p">,</span><span class="w"> </span><span class="n">SRS_bifactor</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scaled Chi-Squared Difference Test (method = “satorra.2000”)
+
+lavaan NOTE:
+    The “Chisq” column contains standard test statistics, not the
+    robust test that should be reported per model. A robust difference
+    test is a function of two standard (not robust) statistics.
+ 
+                    Df AIC BIC   Chisq Chisq diff Df diff Pr(&gt;Chisq)    
+SRS_bifactor       150          308.88                                  
+SRS_Unidimensional 170         1965.48     1007.2      20  &lt; 2.2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Consideriamo ora gli indici specifici per un modello bifattoriale.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">bifactorIndices</span><span class="p">(</span><span class="n">SRS_bifactor</span><span class="p">,</span><span class="w"> </span><span class="n">UniLambda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SRS_Unidimensional</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>$ModelLevelIndices
+   ECV.SRS        PUC  Omega.SRS OmegaH.SRS       ARPB 
+ 0.6728130  0.7894737  0.9423975  0.8338190  0.1209677 
+
+$FactorLevelIndices
+                ECV_SS     ECV_SG    ECV_GS     Omega    OmegaH         H
+SRS          0.6728130 0.67281303 0.6728130 0.9423975 0.8338190 0.9431669
+Function     0.1972990 0.04153902 0.8027010 0.7993085 0.0911757 0.4033325
+Pain         0.4123779 0.11147096 0.5876221 0.8817340 0.3426659 0.6964443
+SelfImage    0.3280132 0.08183383 0.6719868 0.8502075 0.2025235 0.5913544
+MentalHealth 0.3424358 0.09234316 0.6575642 0.8917832 0.2930342 0.6148062
+                    FD
+SRS          0.9522166
+Function     0.7096945
+Pain         0.9209793
+SelfImage    0.8297680
+MentalHealth 0.8543576
+
+$ItemLevelIndices
+            IECV RelParBias
+SRS_1  0.5104022 0.35337843
+SRS_2  0.4976737 0.36753956
+SRS_3  0.7980893 0.03657963
+SRS_4  0.6115286 0.05215399
+SRS_5  0.6353618 0.02256101
+SRS_6  0.6366985 0.08805866
+SRS_7  0.6318472 0.17893446
+SRS_8  0.6819609 0.10337122
+SRS_9  0.5875270 0.01921370
+SRS_10 0.6494275 0.06424335
+SRS_11 0.6329358 0.12172144
+SRS_12 0.9378875 0.10010668
+SRS_13 0.6242449 0.11788341
+SRS_14 0.9989633 0.09897585
+SRS_15 0.9995426 0.10107726
+SRS_16 0.6005105 0.18980832
+SRS_17 0.7498240 0.03921899
+SRS_18 0.9990197 0.09332424
+SRS_19 0.4582466 0.16640387
+SRS_20 0.6912559 0.10480062
+</pre></div>
+</div>
+</div>
+</div>
+<p>I <code class="docutils literal notranslate"><span class="pre">ModelLevelIndices</span></code> possono essere spiegati nel modo seguente:</p>
+<ol class="arabic simple">
+<li><p>ECV.SRS: Questo indica la proporzione di varianza spiegata dal fattore generale nel modello bifattoriale. ECV sta per “Explained Common Variance” (Varianza Comune Spiegata). Un valore più alto indica che una maggiore parte della varianza totale nei dati è spiegata dal fattore generale.</p></li>
+<li><p>PUC: Questo è l’acronimo di “Percentage of Uniqueness in Common” (Percentuale di Unicità nel Comune). Indica quanto della varianza unica (cioè quella non spiegata dal fattore generale) è presente nei fattori di gruppo. Un valore basso indica che i fattori di gruppo spiegano una maggiore parte della varianza unica nei dati.</p></li>
+<li><p>Omega.SRS: Questo indice rappresenta il coefficiente di affidabilità del fattore generale del modello bifattoriale. Indica quanto sia affidabile il fattore generale nel catturare la varianza comune tra tutti gli item del test. Un valore più alto indica maggiore affidabilità.</p></li>
+<li><p>OmegaH.SRS: Questo indice rappresenta il coefficiente di affidabilità dei fattori di gruppo nel modello bifattoriale. Indica quanto sia affidabile l’insieme dei fattori di gruppo nel catturare la varianza condivisa tra gli item del gruppo specifico. Anche qui, un valore più alto indica maggiore affidabilità.</p></li>
+<li><p>ARPB: Questo sta per “Average Reproducibility of Parameter Estimates” (Riproducibilità Media delle Stime dei Parametri). Rappresenta la riproducibilità media delle stime dei parametri del modello bifattoriale. In sostanza, valuta quanto le stime dei parametri del modello sono affidabili e riproducibili.</p></li>
+</ol>
+<p>La sezione dell’output <code class="docutils literal notranslate"><span class="pre">FactorLevelIndices</span></code> riguarda gli indici a livello di fattore del modello bifattoriale.</p>
+<ol class="arabic simple">
+<li><p>ECV_SS, ECV_SG, ECV_GS: Questi rappresentano rispettivamente la proporzione di varianza spiegata dal Fattore Generale (GG), dal Fattore Specifico (SS) e dall’Interazione tra Fattore Generale e Fattore Specifico (GS) per ciascun fattore. Indicano quanto ciascun tipo di varianza contribuisce alla spiegazione della varianza totale nell’insieme dei dati del fattore.</p></li>
+<li><p>Omega: Questo indice rappresenta il coefficiente di affidabilità dell’estratto del Fattore Generale per ciascun fattore. Indica quanto sia affidabile il Fattore Generale nel catturare la varianza comune tra gli item di quel particolare fattore. Un valore più alto indica maggiore affidabilità.</p></li>
+<li><p>OmegaH: Questo indice rappresenta il coefficiente di affidabilità dell’estratto del Fattore Specifico per ciascun fattore. Indica quanto sia affidabile l’insieme dei Fattori Specifici nel catturare la varianza condivisa tra gli item del gruppo specifico. Anche qui, un valore più alto indica maggiore affidabilità.</p></li>
+<li><p>H: Questo indice rappresenta la quota della varianza unica spiegata dal Fattore Generale per ciascun fattore. Indica quanto della varianza unica è spiegata dal Fattore Generale piuttosto che da fattori specifici.</p></li>
+<li><p>FD: Questo indice rappresenta la distorsione fattoriale, che è una misura di quanto i dati si adattino bene al modello bifattoriale. Valori vicini a 1 indicano un buon adattamento.</p></li>
+</ol>
+<p>Infine, l’output <code class="docutils literal notranslate"><span class="pre">ItemLevelIndices</span></code> riguarda gli indici a livello di item in un modello bifattoriale.</p>
+<ol class="arabic simple">
+<li><p>IECV: Questo indica la proporzione di varianza spiegata dal Fattore Generale per ciascun item. IECV sta per “Item Explained Common Variance” (Varianza Comune Spiegata dell’Item). Indica quanto della varianza totale dell’item può essere spiegata dal Fattore Generale del modello bifattoriale. Valori più alti indicano che il Fattore Generale contribuisce maggiormente a spiegare le variazioni osservate nell’item.</p></li>
+<li><p>RelParBias: Questo rappresenta il bias relativo dei parametri dell’item. Indica quanto i parametri dell’item sono influenzati dalla presenza del Fattore Generale e dai fattori specifici nel modello. Valori più alti indicano una maggiore influenza dei fattori specifici rispetto al Fattore Generale nell’item.</p></li>
+</ol>
+<p>Per i dati dell’esempio considerato, di seguito è riportata un’interpretazione succinta dei risultati chiave per ciascun gruppo principale di risultati:</p>
+<section id="model-level-indices">
+<h3><span class="section-number">43.2.1. </span>Model-Level Indices<a class="headerlink" href="#model-level-indices" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>ECV.SRS (Explained Common Variance):</strong> Il 67.28% della varianza osservata è spiegata dal modello.</p></li>
+<li><p><strong>PUC (Percentage of Uncontaminated Correlations):</strong> Il 78.95% delle correlazioni tra gli item è “puro”, cioè non contaminato da altri fattori oltre al fattore generale.</p></li>
+<li><p><strong>Omega.SRS:</strong> La consistenza interna complessiva del test è molto alta (0.942), indicando una buona affidabilità.</p></li>
+<li><p><strong>OmegaH.SRS:</strong> Il 83.38% della varianza totale standardizzata è attribuibile al fattore generale, confermando che è un fattore dominante nel modello.</p></li>
+<li><p><strong>ARPB (Average Relative Parameter Bias):</strong> Un bias relativo medio basso (0.121) suggerisce che le stime dei parametri sono relativamente poco distorte.</p></li>
+</ul>
+</section>
+<section id="factor-level-indices">
+<h3><span class="section-number">43.2.2. </span>Factor-Level Indices<a class="headerlink" href="#factor-level-indices" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>ECV (Explained Common Variance) per i fattori specifici:</strong></p>
+<ul>
+<li><p>Funzione: 19.73% della varianza è spiegata dal fattore specifico “Funzione”, con l’80.27% attribuibile al fattore generale.</p></li>
+<li><p>Dolore (Pain): 41.24% della varianza è spiegata dal fattore specifico “Dolore”.</p></li>
+<li><p>Autopercezione (SelfImage): 32.80% della varianza è spiegata dal fattore specifico “Autopercezione”.</p></li>
+<li><p>Salute Mentale (MentalHealth): 34.24% della varianza è spiegata dal fattore specifico “Salute Mentale”.</p></li>
+</ul>
+</li>
+<li><p><strong>Omega e OmegaH per ogni fattore specifico:</strong> Le misure Omega indicano la consistenza interna per ciascun sottogruppo di item, mentre OmegaH indica la proporzione della varianza attribuibile ai fattori specifici rispetto al fattore generale.</p></li>
+</ul>
+</section>
+<section id="item-level-indices">
+<h3><span class="section-number">43.2.3. </span>Item-Level Indices<a class="headerlink" href="#item-level-indices" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>IECV (Item Explained Common Variance):</strong> Valori come 0.937 per SRS_12 e quasi 1 per SRS_14, SRS_15 e SRS_18 indicano che questi item sono molto influenzati dal fattore generale.</p></li>
+<li><p><strong>RelParBias (Relative Parameter Bias):</strong> La maggior parte degli item mostra un bias relativo basso, suggerendo che gli effetti dei fattori specifici su questi item sono correttamente rappresentati senza grande distorsione.</p></li>
+</ul>
+<p>In sintesi, il modello bifattoriale sembra adattarsi bene ai dati, con un forte fattore generale che domina la struttura del test, supportato da alcuni fattori specifici che spiegano porzioni significative della varianza in diverse aree tematiche. Gli item individuati con alti valori di IECV sono particolarmente rappresentativi del fattore generale.</p>
+</section>
+</section>
+<section id="commenti-e-considerazioni-conclusive">
+<h2><span class="section-number">43.3. </span>Commenti e considerazioni conclusive<a class="headerlink" href="#commenti-e-considerazioni-conclusive" title="Link to this heading">#</a></h2>
+<p>In questo capitolo, abbiamo esplorato diversi indici derivati dall’analisi con un modello bifattoriale, ognuno dei quali rivela aspetti specifici delle proprietà psicometriche di uno strumento di misura. Questi indici sono di grande utilità per gli sviluppatori e i valutatori di scale, oltre a essere strumenti preziosi per i ricercatori e i professionisti che le impiegano nella pratica clinica e nella ricerca. Inoltre, contribuiscono allo sviluppo e alla comprensione dei costrutti psicologici che tali strumenti intendono misurare.</p>
+</section>
+<section id="session-info">
+<h2><span class="section-number">43.4. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.3.3 (2024-02-29)
+Platform: x86_64-apple-darwin20 (64-bit)
+Running under: macOS Sonoma 14.4.1
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
+
+locale:
+[1] en_US.UTF-8/UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: Europe/Rome
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] BifactorIndicesCalculator_0.2.2 ggokabeito_0.1.0               
+ [3] viridis_0.6.5                   viridisLite_0.4.2              
+ [5] ggpubr_0.6.0                    ggExtra_0.10.1                 
+ [7] bayesplot_1.11.1                gridExtra_2.3                  
+ [9] patchwork_1.2.0                 semTools_0.5-6.920             
+[11] semPlot_1.1.6                   lavaan_0.6-17                  
+[13] psych_2.4.3                     scales_1.3.0                   
+[15] markdown_1.12                   knitr_1.45                     
+[17] lubridate_1.9.3                 forcats_1.0.0                  
+[19] stringr_1.5.1                   dplyr_1.1.4                    
+[21] purrr_1.0.2                     readr_2.1.5                    
+[23] tidyr_1.3.1                     tibble_3.2.1                   
+[25] ggplot2_3.5.1                   tidyverse_2.0.0                
+[27] here_1.0.1                     
+
+loaded via a namespace (and not attached):
+  [1] rstudioapi_0.16.0  jsonlite_1.8.8     magrittr_2.0.3    
+  [4] TH.data_1.1-2      estimability_1.5   nloptr_2.0.3      
+  [7] rmarkdown_2.26     vctrs_0.6.5        minqa_1.2.6       
+ [10] base64enc_0.1-3    rstatix_0.7.2      htmltools_0.5.8.1 
+ [13] broom_1.0.5        Formula_1.2-5      htmlwidgets_1.6.4 
+ [16] plyr_1.8.9         sandwich_3.1-0     emmeans_1.10.0    
+ [19] zoo_1.8-12         uuid_1.2-0         igraph_2.0.3      
+ [22] mime_0.12          lifecycle_1.0.4    pkgconfig_2.0.3   
+ [25] Matrix_1.6-5       R6_2.5.1           fastmap_1.1.1     
+ [28] shiny_1.8.1.1      digest_0.6.35      OpenMx_2.21.11    
+ [31] fdrtool_1.2.17     colorspace_2.1-0   rprojroot_2.0.4   
+ [34] Hmisc_5.1-2        fansi_1.0.6        timechange_0.3.0  
+ [37] abind_1.4-5        compiler_4.3.3     withr_3.0.0       
+ [40] glasso_1.11        htmlTable_2.4.2    backports_1.4.1   
+ [43] carData_3.0-5      ggsignif_0.6.4     MASS_7.3-60.0.1   
+ [46] corpcor_1.6.10     gtools_3.9.5       tools_4.3.3       
+ [49] pbivnorm_0.6.0     foreign_0.8-86     zip_2.3.1         
+ [52] httpuv_1.6.15      nnet_7.3-19        glue_1.7.0        
+ [55] quadprog_1.5-8     nlme_3.1-164       promises_1.3.0    
+ [58] lisrelToR_0.3      grid_4.3.3         pbdZMQ_0.3-11     
+ [61] checkmate_2.3.1    cluster_2.1.6      reshape2_1.4.4    
+ [64] generics_0.1.3     gtable_0.3.5       tzdb_0.4.0        
+ [67] data.table_1.15.4  hms_1.1.3          car_3.1-2         
+ [70] utf8_1.2.4         sem_3.1-15         pillar_1.9.0      
+ [73] IRdisplay_1.1      rockchalk_1.8.157  later_1.3.2       
+ [76] splines_4.3.3      lattice_0.22-6     survival_3.5-8    
+ [79] kutils_1.73        tidyselect_1.2.1   miniUI_0.1.1.1    
+ [82] pbapply_1.7-2      stats4_4.3.3       xfun_0.43         
+ [85] qgraph_1.9.8       arm_1.13-1         stringi_1.8.3     
+ [88] boot_1.3-30        evaluate_0.23      codetools_0.2-19  
+ [91] mi_1.1             cli_3.6.2          RcppParallel_5.1.7
+ [94] IRkernel_1.3.2     rpart_4.1.23       xtable_1.8-4      
+ [97] repr_1.1.6         munsell_0.5.1      Rcpp_1.0.12       
+[100] coda_0.19-4.1      png_0.1-8          XML_3.99-0.16.1   
+[103] parallel_4.3.3     jpeg_0.1-10        lme4_1.1-35.3     
+[106] mvtnorm_1.2-4      openxlsx_4.2.5.2   crayon_1.5.2      
+[109] rlang_1.1.3        multcomp_1.4-25    mnormt_2.1.1      
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_cfa"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_mmm.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">42. </span>CFA per matrici multi-tratto multi-metodo</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="06_efa_lavaan.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">44. </span>Exploratory Structural Equation Modeling (ESEM)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struttura-fattoriale">43.1. Struttura Fattoriale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-pratico">43.2. Un esempio pratico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-level-indices">43.2.1. Model-Level Indices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-level-indices">43.2.2. Factor-Level Indices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#item-level-indices">43.2.3. Item-Level Indices</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commenti-e-considerazioni-conclusive">43.3. Commenti e considerazioni conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">43.4. Session Info</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1352 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>74. Invarianza Fattoriale Longitudinale &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css?v=ffeaf963" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6ba04eab" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VMXNE4BCDL"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_lgm/04_invariance';</script>
+    <script src="../_static/custom.js?v=3f5092eb"></script>
+    <link rel="canonical" href="https://ccaudek.github.io/psy_test/_lgm/04_invariance.html" />
+    <link rel="icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="75. Specificare e Interpretare un Modello Longitudinale" href="05_intro_panel.html" />
+    <link rel="prev" title="73. Dati longitudinali" href="03_time_effects.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Scaling psicometrico</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/01_expval_var.html">1. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/02_joint_prob.html">2. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/03_measurement.html">3. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/04_norms.html">4. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/05_regression.html">5. L’analisi di regressione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E1_likert.html">6. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E2_optimal_scoring.html">7. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E3_thurstone.html">8. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/01_ctt_1.html">9. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/02_ctt_2.html">10. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/03_ctt_3.html">11. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/04_err_std_mis.html">12. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/05_err_std_stima.html">13. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/06_applications_ctt.html">14. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E1_ctt.html">15. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E2_item_analyses.html">16. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/01_multilevel_1.html">17. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/02_interrater_reliability.html">18. L’affidabilità tra giudici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/E1_irr.html">19. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/01_gtheory.html">20. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/01_validity.html">21. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/02_relations_to_other_vars.html">22. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sviluppo degli item</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_items/01_item_development.html">23. Lo sviluppo degli item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_items/02_item_analysis.html">24. Analisi degli item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">25. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale esplorativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/01_intro_fa.html">26. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/02_analisi_fattoriale_1.html">27. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/03_analisi_fattoriale_2.html">28. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/04_analisi_fattoriale_3.html">29. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/05_factor_scores.html">30. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/06_constraints_on_parms.html">31. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/07_total_score.html">32. Punteggio totale e modello fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione strumenti</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">33. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">34. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">35. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">36. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">37. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/01_cfa.html">38. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/E_01.html">39. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/02_meanstructure.html">40. La struttura delle medie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/03_cat_data.html">41. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/04_mmm.html">42. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/05_bifactor.html">43. Modello bifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/06_efa_lavaan.html">44. Exploratory Structural Equation Modeling (ESEM)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/01_sem_intro.html">45. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/02_data_preparation.html">46. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/E_01.html">47. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/03_gof.html">48. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/04_mod_comp.html">49. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/05_cfa_mod_comp.html">50. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/06_refine_solution.html">51. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/07_group_invariance.html">52. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/08_multilevel_sem.html">53. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/09_structural_regr.html">54. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/10_missing_data.html">55. Dati mancanti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/11_small_samples.html">56. Modellizzazione SEM in Piccoli Campioni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/12_temp_reliability.html">57. Affidabilità longitudinale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_irt/01_logistic_regr.html">58. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/E_01.html">59. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/02_rasch_model.html">60. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/03_assumptions.html">61. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/04_estimation.html">62. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/05_1pl_2pl_3pl.html">63. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/06_implementation.html">64. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/07_polytomous_graded.html">65. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mokken Scales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/01_core_issues.html">66. Analisi della Scala di Mokken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/02_tutorial.html">67. Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/03_applications.html">68. Applicazione Pratica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/01_development.html">69. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/02_tutorial.html">70. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_lgm_intro.html">71. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_lgm_prelims.html">72. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_time_effects.html">73. Dati longitudinali</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">74. Invarianza Fattoriale Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_intro_panel.html">75. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_lgm_mixed.html">76. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_growth_1.html">77. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_growth_cont.html">78. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_time_inv_cov.html">79. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_growth_groups.html">80. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_bivariate_tvc_models.html">81. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_inv_measurement.html">82. Invarianza di Misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_latent_change.html">83. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="750_latent_change.html">84. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="751_biv_change.html">85. Modello LCS bivariato</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">86. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a1_intro_r.html">87. Linguaggio R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a2_sums.html">88. Simbolo di somma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a3_calculus.html">89. Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a4_linear_alg.html">90. Elementi di algebra lineare</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_lgm/04_invariance.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Invarianza Fattoriale Longitudinale</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-invarianza-delle-misure-nel-tempo">74.1. L’Invarianza delle Misure nel Tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduzione">74.1.1. Introduzione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concetto-di-invarianza-di-misurazione">74.1.2. Concetto di Invarianza di Misurazione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equazioni-fondamentali-della-sem-per-modelli-longitudinali">74.1.3. Equazioni Fondamentali della SEM per Modelli Longitudinali</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equazione-fondamentale-per-i-punteggi-degli-indicatori">74.1.4. Equazione Fondamentale per i Punteggi degli Indicatori</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#componenti-dell-equazione">74.1.4.1. Componenti dell’Equazione</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#esempio-concreto">74.1.4.2. Esempio Concreto</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#equazione-per-le-medie-previste">74.1.4.3. Equazione per le Medie Previste</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrice-delle-varianze-e-covarianze-implicite-dal-modello">74.1.4.4. Matrice delle Varianze e Covarianze Implicite dal Modello</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-delle-equazioni">74.1.5. Interpretazione delle Equazioni</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">74.1.6. Invarianza Fattoriale Longitudinale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#livelli-di-invarianza-fattoriale">74.1.7. Livelli di Invarianza Fattoriale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applicazione-nei-modelli-longitudinali">74.1.8. Applicazione nei Modelli Longitudinali</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invarianza-configurale-livello-0">74.1.9. Invarianza Configurale (Livello 0)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invarianza-fattoriale-debole-metrica-livello-1">74.1.10. Invarianza Fattoriale Debole (Metrica) (Livello 1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invarianza-fattoriale-forte-scalare-livello-2">74.1.11. Invarianza Fattoriale Forte (Scalare) (Livello 2)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invarianza-fattoriale-rigorosa-livello-3">74.1.12. Invarianza Fattoriale Rigorosa (Livello 3)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ruolo-delle-intercette">74.1.13. Ruolo delle Intercette</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusione">74.1.14. Conclusione</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-variazione-temporale-di-positive-affect">74.2. La Variazione Temporale di Positive Affect</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">74.3. Considerazioni Conclusive</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="invarianza-fattoriale-longitudinale">
+<span id="lgm-invariance-notebook"></span><h1><span class="section-number">74. </span>Invarianza Fattoriale Longitudinale<a class="headerlink" href="#invarianza-fattoriale-longitudinale" title="Link to this heading">#</a></h1>
+<p>L’obiettivo di questo capitolo è esaminare come è possibile estendere i modelli SEM per adattarli alle particolarità dei dati longitudinali. Per semplificare, cominciamo concentrandoci su due misurazioni temporali consecutive.</p>
+<section id="l-invarianza-delle-misure-nel-tempo">
+<h2><span class="section-number">74.1. </span>L’Invarianza delle Misure nel Tempo<a class="headerlink" href="#l-invarianza-delle-misure-nel-tempo" title="Link to this heading">#</a></h2>
+<section id="introduzione">
+<h3><span class="section-number">74.1.1. </span>Introduzione<a class="headerlink" href="#introduzione" title="Link to this heading">#</a></h3>
+<p>Quando si confrontano gli stessi costrutti nel tempo, è fondamentale assicurarsi che le misurazioni siano invarianti a livello fattoriale. Le tecniche di Modelli di Equazioni Strutturali (SEM) permettono di testare questa ipotesi, che è cruciale per qualsiasi analisi longitudinale.</p>
+</section>
+<section id="concetto-di-invarianza-di-misurazione">
+<h3><span class="section-number">74.1.2. </span>Concetto di Invarianza di Misurazione<a class="headerlink" href="#concetto-di-invarianza-di-misurazione" title="Link to this heading">#</a></h3>
+<p>L’invarianza di misurazione si riferisce alla capacità di uno strumento di misurazione di rilevare lo stesso costrutto nella stessa unità di misura in diverse occasioni. Questo garantisce che i punteggi ottenuti siano comparabili nel tempo. Ad esempio, se usi una bilancia per misurare il peso, devi assicurarti che sia tarata allo stesso modo in ogni misurazione. Senza questa invarianza, i punteggi non sarebbero quantitativamente comparabili.</p>
+<p>Tuttavia, garantire l’invarianza di misurazione è più complesso con strumenti psicologici rispetto a quelli fisici. Non possiamo calibrare strumenti psicologici come facciamo con dispositivi fisici. In questi casi, si assume l’invarianza (non ideale) o si testa utilizzando modelli formali che permettono di valutare se lo strumento mantiene la stessa metrica nel tempo.</p>
+</section>
+<section id="equazioni-fondamentali-della-sem-per-modelli-longitudinali">
+<h3><span class="section-number">74.1.3. </span>Equazioni Fondamentali della SEM per Modelli Longitudinali<a class="headerlink" href="#equazioni-fondamentali-della-sem-per-modelli-longitudinali" title="Link to this heading">#</a></h3>
+</section>
+<section id="equazione-fondamentale-per-i-punteggi-degli-indicatori">
+<h3><span class="section-number">74.1.4. </span>Equazione Fondamentale per i Punteggi degli Indicatori<a class="headerlink" href="#equazione-fondamentale-per-i-punteggi-degli-indicatori" title="Link to this heading">#</a></h3>
+<p>L’equazione fondamentale per i punteggi degli indicatori in un modello di equazioni strutturali (SEM) è:</p>
+<div class="math notranslate nohighlight">
+\[ y_{io} = \tau_{o} + \Lambda_{o} \eta_{o} + \Theta_{o} \]</div>
+<p>Per comprendere meglio questa equazione, analizziamo ogni componente e poi vediamo un esempio concreto.</p>
+<section id="componenti-dell-equazione">
+<h4><span class="section-number">74.1.4.1. </span>Componenti dell’Equazione<a class="headerlink" href="#componenti-dell-equazione" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\( y_{io} \)</span></strong>: Punteggi degli indicatori.</p>
+<ul>
+<li><p>Questi sono i valori osservati per un indicatore specifico (ad esempio, un item di un questionario) per l’individuo <span class="math notranslate nohighlight">\( i \)</span> al tempo <span class="math notranslate nohighlight">\( o \)</span>.</p></li>
+</ul>
+</li>
+<li><p><strong><span class="math notranslate nohighlight">\( o \)</span></strong>: Occasione di misurazione.</p>
+<ul>
+<li><p>Rappresenta i diversi momenti in cui vengono effettuate le misurazioni (ad esempio, T1, T2, T3).</p></li>
+</ul>
+</li>
+<li><p><strong><span class="math notranslate nohighlight">\( i \)</span></strong>: Deviazione individuale dai valori previsti (varianza residua).</p>
+<ul>
+<li><p>Indica la differenza tra il punteggio osservato dell’indicatore per un individuo e il valore previsto dal modello.</p></li>
+</ul>
+</li>
+<li><p><strong><span class="math notranslate nohighlight">\( \tau_{o} \)</span></strong>: Medie degli indicatori.</p>
+<ul>
+<li><p>È il valore medio atteso per l’indicatore in ogni occasione di misurazione. In altre parole, è l’intercetta della retta di regressione che rappresenta il valore atteso dell’indicatore quando il costrutto latente è zero.</p></li>
+</ul>
+</li>
+<li><p><strong><span class="math notranslate nohighlight">\( \eta_{o} \)</span></strong>: Punteggi del costrutto latente.</p>
+<ul>
+<li><p>Rappresenta il valore del costrutto latente per l’individuo <span class="math notranslate nohighlight">\( i \)</span> al tempo <span class="math notranslate nohighlight">\( o \)</span>. È la variabile che si intende misurare (ad esempio, la depressione, la soddisfazione lavorativa).</p></li>
+</ul>
+</li>
+<li><p><strong><span class="math notranslate nohighlight">\( \Lambda_{o} \)</span></strong>: Carichi fattoriali.</p>
+<ul>
+<li><p>Questa è la matrice dei carichi fattoriali che mostra la relazione tra gli indicatori e il costrutto latente. Indica quanto ogni indicatore rappresenti il costrutto latente.</p></li>
+</ul>
+</li>
+<li><p><strong><span class="math notranslate nohighlight">\( \Theta_{o} \)</span></strong>: Varianze residue.</p>
+<ul>
+<li><p>È la matrice delle varianze residue o degli errori unici degli indicatori. Indica quanto dell’errore non è spiegato dal costrutto latente.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="esempio-concreto">
+<h4><span class="section-number">74.1.4.2. </span>Esempio Concreto<a class="headerlink" href="#esempio-concreto" title="Link to this heading">#</a></h4>
+<p>Supponiamo di voler misurare il livello di ansia in un gruppo di persone utilizzando un questionario con tre domande (indicatori) in due momenti diversi (T1 e T2).</p>
+<ul class="simple">
+<li><p><strong>Indicatori (y)</strong>: Risposte alle domande del questionario.</p></li>
+<li><p><strong>Costrutto latente (<span class="math notranslate nohighlight">\(\eta\)</span>)</strong>: Livello di ansia.</p></li>
+<li><p><strong>Carichi fattoriali (<span class="math notranslate nohighlight">\(\Lambda\)</span>)</strong>: Quanto ogni domanda del questionario riflette il livello di ansia.</p></li>
+<li><p><strong>Intercette (<span class="math notranslate nohighlight">\(\tau\)</span>)</strong>: Il punteggio medio delle risposte alle domande quando l’ansia è zero.</p></li>
+<li><p><strong>Varianze residue (<span class="math notranslate nohighlight">\(\Theta\)</span>)</strong>: Errori specifici delle risposte alle domande che non sono spiegati dall’ansia.</p></li>
+</ul>
+<p>Per il momento T1, l’equazione per la prima domanda del questionario per un individuo specifico può essere scritta come:</p>
+<div class="math notranslate nohighlight">
+\[ y_{1iT1} = \tau_{T1} + \Lambda_{T1} \eta_{iT1} + \Theta_{1iT1} \]</div>
+<p>Supponiamo che:</p>
+<ul class="simple">
+<li><p><strong><span class="math notranslate nohighlight">\(\tau_{T1} = 2\)</span></strong>: Il punteggio medio atteso per la prima domanda quando l’ansia è zero è 2.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\Lambda_{T1} = 0.8\)</span></strong>: La prima domanda riflette l’ansia con un carico fattoriale di 0.8.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\eta_{iT1} = 3\)</span></strong>: Il livello di ansia per l’individuo <span class="math notranslate nohighlight">\( i \)</span> al tempo T1 è 3.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\Theta_{1iT1} = 0.5\)</span></strong>: L’errore residuo specifico per la risposta alla prima domanda è 0.5.</p></li>
+</ul>
+<p>Sostituendo questi valori nell’equazione, otteniamo:</p>
+<div class="math notranslate nohighlight">
+\[ y_{1iT1} = 2 + (0.8 \times 3) + 0.5 \]</div>
+<p>Calcolando il valore:</p>
+<div class="math notranslate nohighlight">
+\[ y_{1iT1} = 2 + 2.4 + 0.5 = 4.9 \]</div>
+<p>Quindi, il punteggio osservato per la prima domanda del questionario per l’individuo <span class="math notranslate nohighlight">\( i \)</span> al tempo T1 è 4.9.</p>
+<p>Questo processo viene ripetuto per ogni domanda e per ogni momento di misurazione, permettendo di modellare come i punteggi degli indicatori riflettano il costrutto latente di ansia nel tempo, tenendo conto degli errori specifici di ogni indicatore.</p>
+</section>
+<section id="equazione-per-le-medie-previste">
+<h4><span class="section-number">74.1.4.3. </span>Equazione per le Medie Previste<a class="headerlink" href="#equazione-per-le-medie-previste" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[ E(y_{io}) = \mu_{yo} = \tau_{o} + \Lambda_{o} \alpha_{o} \]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( E() \)</span>: operatore di aspettativa</p></li>
+<li><p><span class="math notranslate nohighlight">\( \mu_{y} \)</span>: medie degli indicatori</p></li>
+<li><p><span class="math notranslate nohighlight">\( \alpha \)</span>: medie dei costrutti latenti</p></li>
+</ul>
+</section>
+<section id="matrice-delle-varianze-e-covarianze-implicite-dal-modello">
+<h4><span class="section-number">74.1.4.4. </span>Matrice delle Varianze e Covarianze Implicite dal Modello<a class="headerlink" href="#matrice-delle-varianze-e-covarianze-implicite-dal-modello" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[ \Sigma_{o} = \Lambda_{o} \Psi_{o} \Lambda_{o}' + \Theta_{o} \]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( \Sigma \)</span>: varianze e covarianze implicite dal modello</p></li>
+<li><p><span class="math notranslate nohighlight">\( \Psi \)</span>: varianze e covarianze tra i costrutti</p></li>
+<li><p><span class="math notranslate nohighlight">\( \Lambda' \)</span>: trasposta della matrice <span class="math notranslate nohighlight">\( \Lambda \)</span></p></li>
+</ul>
+</section>
+</section>
+<section id="interpretazione-delle-equazioni">
+<h3><span class="section-number">74.1.5. </span>Interpretazione delle Equazioni<a class="headerlink" href="#interpretazione-delle-equazioni" title="Link to this heading">#</a></h3>
+<p>Nelle equazioni, la “o” indica le diverse occasioni di misurazione. Se una matrice ha il pedice “o”, significa che le stime sono uniche per ciascuna occasione (liberamente stimate). Se il pedice “o” non è presente, le stime sono vincolate ad essere uguali attraverso le diverse occasioni.</p>
+</section>
+<section id="id1">
+<h3><span class="section-number">74.1.6. </span>Invarianza Fattoriale Longitudinale<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Meredith (1964, 1993) ha analizzato le condizioni per mantenere l’invarianza fattoriale nei modelli statistici. L’invarianza è garantita quando le influenze esterne modificano solo i punteggi veri degli indicatori, senza alterare le specificità degli stessi. Ciò significa che le influenze dovrebbero cambiare solo le informazioni legate al costrutto di base, non quelle peculiari a ciascun indicatore. Se gli elementi unici degli indicatori sono influenzati, le relazioni tra gli indicatori possono essere compromesse, impedendo l’invarianza fattoriale.</p>
+<p>Meredith dimostra che l’invarianza fattoriale si preserva se le influenze esterne alterano solo la varianza del punteggio vero degli indicatori, lasciando inalterate le varianze specifiche. In contesti di ricerca longitudinale, fattori come età, esperienza, contesto e scelte personali possono influenzare le misure nel tempo. L’invarianza si preserva se queste influenze modificano solo i punteggi veri e non significativamente i fattori unici.</p>
+</section>
+<section id="livelli-di-invarianza-fattoriale">
+<h3><span class="section-number">74.1.7. </span>Livelli di Invarianza Fattoriale<a class="headerlink" href="#livelli-di-invarianza-fattoriale" title="Link to this heading">#</a></h3>
+<p>La letteratura categorizza diversi livelli di invarianza:</p>
+<ul class="simple">
+<li><p><strong>Invarianza Configurale</strong>: La struttura dei fattori è invariata.</p></li>
+<li><p><strong>Invarianza Debole (Metrica)</strong>: I carichi fattoriali sono invariati.</p></li>
+<li><p><strong>Invarianza Forte (Scalare)</strong>: Sia i carichi fattoriali sia le intercette sono invariati.</p></li>
+</ul>
+</section>
+<section id="applicazione-nei-modelli-longitudinali">
+<h3><span class="section-number">74.1.8. </span>Applicazione nei Modelli Longitudinali<a class="headerlink" href="#applicazione-nei-modelli-longitudinali" title="Link to this heading">#</a></h3>
+<p>Per i modelli longitudinali, l’invarianza si applica agli indicatori e ai costrutti misurati in più occasioni. I costrutti valutati in un unico momento non influenzano l’analisi dell’invarianza, essendo indipendenti e stimati liberamente.</p>
+<p>Le equazioni specificate e i livelli di invarianza fattoriale permettono di testare e valutare la costanza o i cambiamenti di un costrutto latente nel tempo.</p>
+</section>
+<section id="invarianza-configurale-livello-0">
+<h3><span class="section-number">74.1.9. </span>Invarianza Configurale (Livello 0)<a class="headerlink" href="#invarianza-configurale-livello-0" title="Link to this heading">#</a></h3>
+<p>L’invarianza configurale rappresenta il livello base di invarianza, dove si assume che la struttura dei fattori e i loro indicatori rimangano invariati nel tempo o tra gruppi. Non ci sono restrizioni sui parametri, quindi le intercette, i carichi fattoriali, le varianze e le covarianze dei residui possono variare. Le equazioni chiave sono:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( y_{o} = \tau_{o} + \Lambda_{o} \eta_{o} + \Theta_{o} \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( E(y_{o}) = \mu_{yo} = \tau_{o} + \Lambda_{o} \alpha_{o} \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( \Sigma_{o} = \Lambda_{o} \Psi_{o} \Lambda_{o}' + \Theta_{o} \)</span></p></li>
+</ul>
+<p>In questo livello, l’invarianza configurale richiede che lo schema complessivo dei carichi fattoriali sia lo stesso in ogni momento temporale, anche se i valori specifici di questi carichi possono variare. Questo livello è qualitativo e viene utilizzato come base per confrontare modelli con vincoli più restrittivi.</p>
+</section>
+<section id="invarianza-fattoriale-debole-metrica-livello-1">
+<h3><span class="section-number">74.1.10. </span>Invarianza Fattoriale Debole (Metrica) (Livello 1)<a class="headerlink" href="#invarianza-fattoriale-debole-metrica-livello-1" title="Link to this heading">#</a></h3>
+<p>Al livello di invarianza debole, i carichi fattoriali (<span class="math notranslate nohighlight">\(\Lambda\)</span>) sono costanti nel tempo o tra gruppi, il che implica che la relazione tra i costrutti latenti e gli indicatori rimane stabile. Le equazioni sono:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( y_{o} = \tau_{o} + \Lambda \eta_{o} + \Theta_{o} \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( E(y_{o}) = \mu_{yo} = \tau_{o} + \Lambda \alpha_{o} \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( \Sigma_{o} = \Lambda \Psi_{o} \Lambda' + \Theta_{o} \)</span></p></li>
+</ul>
+<p>In questo livello, le intercette (<span class="math notranslate nohighlight">\(\tau_{o}\)</span>) e le varianze dei residui (<span class="math notranslate nohighlight">\(\Theta_{o}\)</span>) possono ancora variare. L’importanza delle intercette qui non è centrale, poiché l’enfasi è sulla costanza dei carichi fattoriali.</p>
+</section>
+<section id="invarianza-fattoriale-forte-scalare-livello-2">
+<h3><span class="section-number">74.1.11. </span>Invarianza Fattoriale Forte (Scalare) (Livello 2)<a class="headerlink" href="#invarianza-fattoriale-forte-scalare-livello-2" title="Link to this heading">#</a></h3>
+<p>L’invarianza forte, o scalare, richiede che non solo i carichi fattoriali (<span class="math notranslate nohighlight">\(\Lambda\)</span>), ma anche le intercette (<span class="math notranslate nohighlight">\(\tau\)</span>) degli indicatori siano uguali nel tempo o tra gruppi. Le equazioni per questo livello sono:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( y_{o} = \tau + \Lambda \eta_{o} + \Theta_{o} \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( E(y_{o}) = \mu_{yo} = \tau + \Lambda \alpha_{o} \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( \Sigma_{o} = \Lambda \Psi_{o} \Lambda' + \Theta_{o} \)</span></p></li>
+</ul>
+<p>L’uguaglianza delle intercette è cruciale qui perché assicura che qualsiasi differenza osservata nei punteggi medi degli indicatori non sia dovuta a differenze nelle intercette, ma piuttosto a variazioni nei costrutti latenti (<span class="math notranslate nohighlight">\(\eta_{o}\)</span>).</p>
+</section>
+<section id="invarianza-fattoriale-rigorosa-livello-3">
+<h3><span class="section-number">74.1.12. </span>Invarianza Fattoriale Rigorosa (Livello 3)<a class="headerlink" href="#invarianza-fattoriale-rigorosa-livello-3" title="Link to this heading">#</a></h3>
+<p>L’invarianza fattoriale rigorosa aggiunge il vincolo che anche le varianze dei residui (<span class="math notranslate nohighlight">\(\Theta\)</span>) degli indicatori siano costanti nel tempo o tra gruppi. Le equazioni sono:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( y_{o} = \tau + \Lambda \eta_{o} + \Theta \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( E(y_{o}) = \mu_{yo} = \tau + \Lambda \alpha_{o} \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( \Sigma_{o} = \Lambda \Psi_{o} \Lambda' + \Theta \)</span></p></li>
+</ul>
+<p>Questo livello è molto restrittivo, in quanto presuppone</p>
+<p>che non solo i carichi fattoriali e le intercette, ma anche le varianze residue degli indicatori siano costanti. In pratica, questo significa che l’errore unico di ciascun indicatore non cambia nel tempo, il che è una condizione molto rigorosa e spesso non realistica.</p>
+</section>
+<section id="ruolo-delle-intercette">
+<h3><span class="section-number">74.1.13. </span>Ruolo delle Intercette<a class="headerlink" href="#ruolo-delle-intercette" title="Link to this heading">#</a></h3>
+<p>Le intercette (<span class="math notranslate nohighlight">\(\tau\)</span>) rappresentano i punti in cui la linea di regressione tra i costrutti latenti e i loro indicatori incontra l’asse delle ordinate. In altre parole, indicano il valore atteso degli indicatori quando il valore del costrutto latente è zero. L’uguaglianza delle intercette è importante nei livelli di invarianza forte e rigorosa, poiché garantisce che le differenze nei punteggi medi degli indicatori riflettano differenze nei costrutti latenti piuttosto che variazioni sistematiche non attribuibili a questi costrutti.</p>
+</section>
+<section id="conclusione">
+<h3><span class="section-number">74.1.14. </span>Conclusione<a class="headerlink" href="#conclusione" title="Link to this heading">#</a></h3>
+<p>Mentre l’invarianza configurale stabilisce la base qualitativa della struttura del modello, i livelli successivi introducono vincoli più restrittivi che richiedono la costanza dei carichi fattoriali, delle intercette e delle varianze residue. L’invarianza rigorosa rappresenta la condizione più stringente, assicurando che qualsiasi variazione osservata sia dovuta a cambiamenti reali nei costrutti latenti piuttosto che a distorsioni sistematiche o errori di misurazione.</p>
+</section>
+</section>
+<section id="la-variazione-temporale-di-positive-affect">
+<h2><span class="section-number">74.2. </span>La Variazione Temporale di Positive Affect<a class="headerlink" href="#la-variazione-temporale-di-positive-affect" title="Link to this heading">#</a></h2>
+<p>Esaminiamo un’applicazione concreta utilizzando nuovamente i dati relativi alla misurazione di Positive Affect (Glad, Cheerful, Happy) mediante tre indicatori in due momenti del tempo (<span id="id2">Little [<a class="reference internal" href="../z_biblio.html#id9" title="Todd D Little. Longitudinal structural equation modeling. Guilford Press, 2023.">Lit23</a>]</span>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.table</span><span class="p">(</span>
+<span class="w">    </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;../data/grade7and8.long.823.dat&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">col.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;PAT1P1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PAT1P2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PAT1P3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NAT1P1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NAT1P2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NAT1P3&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;PAT2P1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PAT2P2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PAT2P3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NAT2P1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NAT2P2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NAT2P3&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;PAT3P1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PAT3P2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PAT3P3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NAT3P1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NAT3P2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NAT3P3&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s">&quot;grade&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;female&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hispanic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;other&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">)</span>
+<span class="nf">glimpse</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rows: 823
+Columns: 23
+$ PAT1P1   &lt;dbl&gt; 1.50000, 2.98116, 3.50000, 3.00000, 3.00000, 3.00000, 3.00000…
+$ PAT1P2   &lt;dbl&gt; 1.50000, 2.98284, 4.00000, 3.50000, 2.50000, 2.50000, 2.50000…
+$ PAT1P3   &lt;dbl&gt; 2.00000, 2.98883, 4.00000, 2.50000, 3.00000, 3.00000, 4.00000…
+$ NAT1P1   &lt;dbl&gt; 2.50000, 1.56218, 1.50000, 1.50000, 1.00000, 1.50000, 1.00000…
+$ NAT1P2   &lt;dbl&gt; 3.50000, 1.45688, 1.00000, 2.00000, 1.00000, 2.50000, 1.00000…
+$ NAT1P3   &lt;dbl&gt; 3.00000, 1.65477, 1.00000, 1.50000, 1.00000, 2.50000, 1.00000…
+$ PAT2P1   &lt;dbl&gt; 4.00000, 4.00000, 4.00000, 2.95942, 3.17170, 2.00000, 3.00000…
+$ PAT2P2   &lt;dbl&gt; 4.00000, 4.00000, 2.50000, 2.99083, 2.87806, 2.00000, 3.00000…
+$ PAT2P3   &lt;dbl&gt; 4.00000, 4.00000, 4.00000, 3.06670, 3.11031, 3.00000, 4.00000…
+$ NAT2P1   &lt;dbl&gt; 2.00000, 1.00000, 1.00000, 1.65159, 1.65777, 2.00000, 1.00000…
+$ NAT2P2   &lt;dbl&gt; 1.00000, 1.00000, 1.00000, 1.42599, 1.44804, 2.00000, 1.00000…
+$ NAT2P3   &lt;dbl&gt; 2.00000, 1.00000, 1.00000, 1.67184, 1.56296, 2.00000, 1.00000…
+$ PAT3P1   &lt;dbl&gt; 4.00000, 4.00000, 4.00000, 4.00000, 2.67109, 3.00000, 2.50000…
+$ PAT3P2   &lt;dbl&gt; 4.00000, 4.00000, 4.00000, 3.50000, 2.85851, 2.00000, 2.00000…
+$ PAT3P3   &lt;dbl&gt; 4.00000, 4.00000, 3.48114, 3.50000, 3.28099, 2.50000, 3.50000…
+$ NAT3P1   &lt;dbl&gt; 1.00000, 1.00000, 1.18056, 1.00000, 1.19869, 2.00000, 1.00000…
+$ NAT3P2   &lt;dbl&gt; 1.00000, 1.00000, 1.00000, 1.50000, 1.00000, 2.00000, 1.00000…
+$ NAT3P3   &lt;dbl&gt; 2.50000, 1.00000, 1.62051, 1.00000, 1.00000, 3.00000, 1.00000…
+$ grade    &lt;int&gt; 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7…
+$ female   &lt;int&gt; 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 2, 2, 1, 1…
+$ black    &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0…
+$ hispanic &lt;int&gt; 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0…
+$ other    &lt;int&gt; 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0…
+</pre></div>
+</div>
+</div>
+</div>
+<p>Per questi dati, abbiamo visto che il modello di invarianza configurale (livello 0) viene espresso nel modo seguente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">  # Definizione dei fattori latenti al tempo T1</span>
+<span class="s">  Fattore_T1 =~ NA*PAT1P1 + PAT1P2 + PAT1P3</span>
+
+<span class="s">  # Definizione dei fattori latenti al tempo T2</span>
+<span class="s">  Fattore_T2 =~ NA*PAT2P1 + PAT2P2 + PAT2P3</span>
+
+<span class="s">  # Varianza dei fattori latenti</span>
+<span class="s">  Fattore_T1 ~~ 1*Fattore_T1</span>
+<span class="s">  Fattore_T2 ~~ 1*Fattore_T2</span>
+
+<span class="s">  # Covarianza tra i fattori latenti</span>
+<span class="s">  Fattore_T1 ~~ Fattore_T2</span>
+
+<span class="s">  # Definizione degli errori di misurazione per gli indicatori al tempo T1</span>
+<span class="s">  PAT1P1 ~~ PAT1P1</span>
+<span class="s">  PAT1P2 ~~ PAT1P2</span>
+<span class="s">  PAT1P3 ~~ PAT1P3</span>
+
+<span class="s">  # Definizione degli errori di misurazione per gli indicatori al tempo T2</span>
+<span class="s">  PAT2P1 ~~ PAT2P1</span>
+<span class="s">  PAT2P2 ~~ PAT2P2</span>
+<span class="s">  PAT2P3 ~~ PAT2P3</span>
+
+<span class="s">  # Covarianze tra i residui degli item tra T1 e T2</span>
+<span class="s">  PAT1P1 ~~ PAT2P1</span>
+<span class="s">  PAT1P2 ~~ PAT2P2</span>
+<span class="s">  PAT1P3 ~~ PAT2P3</span>
+
+
+<span class="s">  # Opzionale: Specifica delle medie degli indicatori (intercette)</span>
+<span class="s">  PAT1P1 ~ 1</span>
+<span class="s">  PAT1P2 ~ 1</span>
+<span class="s">  PAT1P3 ~ 1</span>
+<span class="s">  PAT2P1 ~ 1</span>
+<span class="s">  PAT2P2 ~ 1</span>
+<span class="s">  PAT2P3 ~ 1</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo il modello configurale ai dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">sem</span><span class="p">(</span><span class="n">mod_0</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat</span><span class="p">,</span><span class="w"> </span><span class="n">meanstructure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Definiamo il modello di invarianza fattoriale debole (Metrica) (Livello 1) e lo adattiamo ai dati. Per trasformare il modello configuralmente invariante (mod_0) in un modello che implementi l’invarianza debole (metrica) di livello 1, è necessario imporre l’uguaglianza dei carichi fattoriali tra i due momenti temporali. In pratica, ciò significa che i carichi fattoriali dei corrispondenti indicatori nei diversi momenti temporali (T1 e T2) devono essere uguali.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">  # Definizione dei fattori latenti al tempo T1 con carichi fattoriali uguali a T2</span>
+<span class="s">  Fattore_T1 =~ a1*PAT1P1 + a2*PAT1P2 + a3*PAT1P3</span>
+
+<span class="s">  # Definizione dei fattori latenti al tempo T2 con carichi fattoriali uguali a T1</span>
+<span class="s">  Fattore_T2 =~ a1*PAT2P1 + a2*PAT2P2 + a3*PAT2P3</span>
+
+<span class="s">  # Varianza dei fattori latenti</span>
+<span class="s">  Fattore_T1 ~~ 1*Fattore_T1</span>
+<span class="s">  Fattore_T2 ~~ 1*Fattore_T2</span>
+
+<span class="s">  # Covarianza tra i fattori latenti</span>
+<span class="s">  Fattore_T1 ~~ Fattore_T2</span>
+
+<span class="s">  # Definizione degli errori di misurazione per gli indicatori al tempo T1</span>
+<span class="s">  PAT1P1 ~~ PAT1P1</span>
+<span class="s">  PAT1P2 ~~ PAT1P2</span>
+<span class="s">  PAT1P3 ~~ PAT1P3</span>
+
+<span class="s">  # Definizione degli errori di misurazione per gli indicatori al tempo T2</span>
+<span class="s">  PAT2P1 ~~ PAT2P1</span>
+<span class="s">  PAT2P2 ~~ PAT2P2</span>
+<span class="s">  PAT2P3 ~~ PAT2P3</span>
+
+<span class="s">  # Covarianze tra i residui degli item tra T1 e T2</span>
+<span class="s">  PAT1P1 ~~ PAT2P1</span>
+<span class="s">  PAT1P2 ~~ PAT2P2</span>
+<span class="s">  PAT1P3 ~~ PAT2P3</span>
+
+<span class="s">  # Opzionale: Specifica delle medie degli indicatori (intercette)</span>
+<span class="s">  PAT1P1 ~ 1</span>
+<span class="s">  PAT1P2 ~ 1</span>
+<span class="s">  PAT1P3 ~ 1</span>
+<span class="s">  PAT2P1 ~ 1</span>
+<span class="s">  PAT2P2 ~ 1</span>
+<span class="s">  PAT2P3 ~ 1</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">sem</span><span class="p">(</span><span class="n">mod_1</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat</span><span class="p">,</span><span class="w"> </span><span class="n">meanstructure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Verifichiamo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">parameterEstimates</span><span class="p">(</span><span class="n">fit_1</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          lhs op        rhs label   est    se      z pvalue ci.lower ci.upper
+1  Fattore_T1 =~     PAT1P1    a1 1.000 0.000     NA     NA    1.000    1.000
+2  Fattore_T1 =~     PAT1P2    a2 0.909 0.012 76.344  0.000    0.885    0.932
+3  Fattore_T1 =~     PAT1P3    a3 0.868 0.012 70.562  0.000    0.844    0.892
+4  Fattore_T2 =~     PAT2P1    a1 1.000 0.000     NA     NA    1.000    1.000
+5  Fattore_T2 =~     PAT2P2    a2 0.909 0.012 76.344  0.000    0.885    0.932
+6  Fattore_T2 =~     PAT2P3    a3 0.868 0.012 70.562  0.000    0.844    0.892
+7  Fattore_T1 ~~ Fattore_T1       1.000 0.000     NA     NA    1.000    1.000
+8  Fattore_T2 ~~ Fattore_T2       1.000 0.000     NA     NA    1.000    1.000
+9  Fattore_T1 ~~ Fattore_T2       0.746 0.015 50.642  0.000    0.717    0.775
+10     PAT1P1 ~~     PAT1P1       0.127 0.011 12.027  0.000    0.107    0.148
+11     PAT1P2 ~~     PAT1P2       0.124 0.009 13.192  0.000    0.106    0.143
+12     PAT1P3 ~~     PAT1P3       0.150 0.010 15.039  0.000    0.130    0.169
+13     PAT2P1 ~~     PAT2P1       0.096 0.009 11.271  0.000    0.080    0.113
+14     PAT2P2 ~~     PAT2P2       0.103 0.008 13.167  0.000    0.088    0.119
+15     PAT2P3 ~~     PAT2P3       0.127 0.008 15.168  0.000    0.110    0.143
+16     PAT1P1 ~~     PAT2P1       0.015 0.007  2.216  0.027    0.002    0.028
+17     PAT1P2 ~~     PAT2P2       0.005 0.006  0.795  0.427   -0.007    0.017
+18     PAT1P3 ~~     PAT2P3       0.011 0.006  1.693  0.090   -0.002    0.023
+19     PAT1P1 ~1                  2.992 0.037 80.841  0.000    2.919    3.064
+20     PAT1P2 ~1                  2.896 0.034 85.230  0.000    2.829    2.962
+21     PAT1P3 ~1                  3.112 0.033 93.930  0.000    3.047    3.177
+22     PAT2P1 ~1                  3.002 0.036 82.243  0.000    2.930    3.073
+23     PAT2P2 ~1                  2.909 0.034 86.592  0.000    2.843    2.975
+24     PAT2P3 ~1                  3.127 0.033 95.593  0.000    3.063    3.191
+25 Fattore_T1 ~1                  0.000 0.000     NA     NA    0.000    0.000
+26 Fattore_T2 ~1                  0.000 0.000     NA     NA    0.000    0.000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">semPaths</span><span class="p">(</span><span class="n">fit_1</span><span class="p">,</span>
+<span class="w">    </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;est&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span>
+<span class="w">    </span><span class="n">edge.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.9</span><span class="p">,</span>
+<span class="w">    </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ram&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nCharNodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nCharEdges</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/224033c1a0df8005ea4a731d5883c37fe56cdd1140b17b3c1fbd83b9fc965772.png"><img alt="../_images/224033c1a0df8005ea4a731d5883c37fe56cdd1140b17b3c1fbd83b9fc965772.png" src="../_images/224033c1a0df8005ea4a731d5883c37fe56cdd1140b17b3c1fbd83b9fc965772.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Definiamo il modello di invarianza fattoriale forte (scalare) (Livello 2). Per trasformare il modello in modo da implementare l’invarianza forte, dobbiamo imporre l’uguaglianza sia dei carichi fattoriali sia delle intercette degli indicatori nei diversi momenti temporali. Questo significa che oltre ai carichi fattoriali, anche le intercette (o medie) degli indicatori devono essere uguali tra i due momenti del tempo (T1 e T2).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">  # Definizione dei fattori latenti al tempo T1 con carichi fattoriali e intercette uguali a T2</span>
+<span class="s">  Fattore_T1 =~ a1*PAT1P1 + a2*PAT1P2 + a3*PAT1P3</span>
+<span class="s">  PAT1P1 ~ b1*1</span>
+<span class="s">  PAT1P2 ~ b2*1</span>
+<span class="s">  PAT1P3 ~ b3*1</span>
+
+<span class="s">  # Definizione dei fattori latenti al tempo T2 con carichi fattoriali e intercette uguali a T1</span>
+<span class="s">  Fattore_T2 =~ a1*PAT2P1 + a2*PAT2P2 + a3*PAT2P3</span>
+<span class="s">  PAT2P1 ~ b1*1</span>
+<span class="s">  PAT2P2 ~ b2*1</span>
+<span class="s">  PAT2P3 ~ b3*1</span>
+
+<span class="s">  # Varianza dei fattori latenti</span>
+<span class="s">  Fattore_T1 ~~ 1*Fattore_T1</span>
+<span class="s">  Fattore_T2 ~~ 1*Fattore_T2</span>
+
+<span class="s">  # Covarianza tra i fattori latenti</span>
+<span class="s">  Fattore_T1 ~~ Fattore_T2</span>
+
+<span class="s">  # Definizione degli errori di misurazione per gli indicatori al tempo T1</span>
+<span class="s">  PAT1P1 ~~ PAT1P1</span>
+<span class="s">  PAT1P2 ~~ PAT1P2</span>
+<span class="s">  PAT1P3 ~~ PAT1P3</span>
+
+<span class="s">  # Definizione degli errori di misurazione per gli indicatori al tempo T2</span>
+<span class="s">  PAT2P1 ~~ PAT2P1</span>
+<span class="s">  PAT2P2 ~~ PAT2P2</span>
+<span class="s">  PAT2P3 ~~ PAT2P3</span>
+
+<span class="s">  # Covarianze tra i residui degli item tra T1 e T2</span>
+<span class="s">  PAT1P1 ~~ PAT2P1</span>
+<span class="s">  PAT1P2 ~~ PAT2P2</span>
+<span class="s">  PAT1P3 ~~ PAT2P3</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo il modello di invarianza fattoriale forte ai dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">sem</span><span class="p">(</span><span class="n">mod_2</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat</span><span class="p">,</span><span class="w"> </span><span class="n">meanstructure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Verifichiamo se i vincoli richiesti siano stati effetivamente implementati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">parameterEstimates</span><span class="p">(</span><span class="n">fit_2</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          lhs op        rhs label   est    se       z pvalue ci.lower ci.upper
+1  Fattore_T1 =~     PAT1P1    a1 1.000 0.000      NA     NA    1.000    1.000
+2  Fattore_T1 =~     PAT1P2    a2 0.909 0.012  76.346  0.000    0.885    0.932
+3  Fattore_T1 =~     PAT1P3    a3 0.868 0.012  70.565  0.000    0.844    0.892
+4      PAT1P1 ~1               b1 2.997 0.034  88.886  0.000    2.931    3.063
+5      PAT1P2 ~1               b2 2.902 0.031  94.305  0.000    2.842    2.963
+6      PAT1P3 ~1               b3 3.120 0.030 104.590  0.000    3.061    3.178
+7  Fattore_T2 =~     PAT2P1    a1 1.000 0.000      NA     NA    1.000    1.000
+8  Fattore_T2 =~     PAT2P2    a2 0.909 0.012  76.346  0.000    0.885    0.932
+9  Fattore_T2 =~     PAT2P3    a3 0.868 0.012  70.565  0.000    0.844    0.892
+10     PAT2P1 ~1               b1 2.997 0.034  88.886  0.000    2.931    3.063
+11     PAT2P2 ~1               b2 2.902 0.031  94.305  0.000    2.842    2.963
+12     PAT2P3 ~1               b3 3.120 0.030 104.590  0.000    3.061    3.178
+13 Fattore_T1 ~~ Fattore_T1       1.000 0.000      NA     NA    1.000    1.000
+14 Fattore_T2 ~~ Fattore_T2       1.000 0.000      NA     NA    1.000    1.000
+15 Fattore_T1 ~~ Fattore_T2       0.746 0.015  50.620  0.000    0.717    0.775
+16     PAT1P1 ~~     PAT1P1       0.127 0.011  12.027  0.000    0.107    0.148
+17     PAT1P2 ~~     PAT1P2       0.124 0.009  13.192  0.000    0.106    0.143
+18     PAT1P3 ~~     PAT1P3       0.150 0.010  15.039  0.000    0.130    0.169
+19     PAT2P1 ~~     PAT2P1       0.096 0.009  11.271  0.000    0.080    0.113
+20     PAT2P2 ~~     PAT2P2       0.103 0.008  13.166  0.000    0.088    0.119
+21     PAT2P3 ~~     PAT2P3       0.127 0.008  15.168  0.000    0.110    0.143
+22     PAT1P1 ~~     PAT2P1       0.015 0.007   2.216  0.027    0.002    0.028
+23     PAT1P2 ~~     PAT2P2       0.005 0.006   0.794  0.427   -0.007    0.017
+24     PAT1P3 ~~     PAT2P3       0.011 0.006   1.692  0.091   -0.002    0.023
+25 Fattore_T1 ~1                  0.000 0.000      NA     NA    0.000    0.000
+26 Fattore_T2 ~1                  0.000 0.000      NA     NA    0.000    0.000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">semPaths</span><span class="p">(</span><span class="n">fit_2</span><span class="p">,</span>
+<span class="w">    </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;est&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span>
+<span class="w">    </span><span class="n">edge.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.9</span><span class="p">,</span>
+<span class="w">    </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ram&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nCharNodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nCharEdges</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/b70fb78f52f619c3b6a7ee041c5b28cdc1a845beeb47e749b2fb6a7fc7912bee.png"><img alt="../_images/b70fb78f52f619c3b6a7ee041c5b28cdc1a845beeb47e749b2fb6a7fc7912bee.png" src="../_images/b70fb78f52f619c3b6a7ee041c5b28cdc1a845beeb47e749b2fb6a7fc7912bee.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Concludendo, procediamo ora a definire il modello di invarianza fattoriale rigorosa (Livello 3) nei modelli SEM longitudinali. Per ottenere l’invarianza fattoriale rigorosa, oltre a mantenere l’uguaglianza dei carichi fattoriali e delle intercette degli indicatori, come nel modello di invarianza forte, è altresì essenziale stabilire l’uguaglianza delle varianze degli errori degli indicatori tra i diversi punti temporali considerati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod_3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">  # Definizione dei fattori latenti al tempo T1 con carichi fattoriali e intercette uguali a T2</span>
+<span class="s">  Fattore_T1 =~ a1*PAT1P1 + a2*PAT1P2 + a3*PAT1P3</span>
+<span class="s">  PAT1P1 ~ b1*1</span>
+<span class="s">  PAT1P2 ~ b2*1</span>
+<span class="s">  PAT1P3 ~ b3*1</span>
+
+<span class="s">  # Definizione dei fattori latenti al tempo T2 con carichi fattoriali e intercette uguali a T1</span>
+<span class="s">  Fattore_T2 =~ a1*PAT2P1 + a2*PAT2P2 + a3*PAT2P3</span>
+<span class="s">  PAT2P1 ~ b1*1</span>
+<span class="s">  PAT2P2 ~ b2*1</span>
+<span class="s">  PAT2P3 ~ b3*1</span>
+
+<span class="s">  # Varianza dei fattori latenti</span>
+<span class="s">  Fattore_T1 ~~ 1*Fattore_T1</span>
+<span class="s">  Fattore_T2 ~~ 1*Fattore_T2</span>
+
+<span class="s">  # Covarianza tra i fattori latenti</span>
+<span class="s">  Fattore_T1 ~~ Fattore_T2</span>
+
+<span class="s">  # Definizione delle varianze degli errori di misurazione per gli indicatori, uguali tra T1 e T2</span>
+<span class="s">  PAT1P1 ~~ d1*PAT1P1</span>
+<span class="s">  PAT1P2 ~~ d2*PAT1P2</span>
+<span class="s">  PAT1P3 ~~ d3*PAT1P3</span>
+<span class="s">  PAT2P1 ~~ d1*PAT2P1</span>
+<span class="s">  PAT2P2 ~~ d2*PAT2P2</span>
+<span class="s">  PAT2P3 ~~ d3*PAT2P3</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo il modello di invarianza fattoriale rigorosa ai dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit_3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">sem</span><span class="p">(</span><span class="n">mod_3</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat</span><span class="p">,</span><span class="w"> </span><span class="n">meanstructure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Verifichiamo se i vincoli richiesti siano stati effetivamente implementati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">parameterEstimates</span><span class="p">(</span><span class="n">fit_3</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          lhs op        rhs label   est    se       z pvalue ci.lower ci.upper
+1  Fattore_T1 =~     PAT1P1    a1 1.000 0.000      NA     NA    1.000    1.000
+2  Fattore_T1 =~     PAT1P2    a2 0.911 0.012  78.398      0    0.888    0.934
+3  Fattore_T1 =~     PAT1P3    a3 0.873 0.012  73.112      0    0.850    0.896
+4      PAT1P1 ~1               b1 2.997 0.034  89.109      0    2.931    3.063
+5      PAT1P2 ~1               b2 2.902 0.031  94.029      0    2.842    2.963
+6      PAT1P3 ~1               b3 3.120 0.030 104.337      0    3.061    3.178
+7  Fattore_T2 =~     PAT2P1    a1 1.000 0.000      NA     NA    1.000    1.000
+8  Fattore_T2 =~     PAT2P2    a2 0.911 0.012  78.398      0    0.888    0.934
+9  Fattore_T2 =~     PAT2P3    a3 0.873 0.012  73.112      0    0.850    0.896
+10     PAT2P1 ~1               b1 2.997 0.034  89.109      0    2.931    3.063
+11     PAT2P2 ~1               b2 2.902 0.031  94.029      0    2.842    2.963
+12     PAT2P3 ~1               b3 3.120 0.030 104.337      0    3.061    3.178
+13 Fattore_T1 ~~ Fattore_T1       1.000 0.000      NA     NA    1.000    1.000
+14 Fattore_T2 ~~ Fattore_T2       1.000 0.000      NA     NA    1.000    1.000
+15 Fattore_T1 ~~ Fattore_T2       0.751 0.015  51.209      0    0.722    0.779
+16     PAT1P1 ~~     PAT1P1    d1 0.111 0.007  16.473      0    0.098    0.124
+17     PAT1P2 ~~     PAT1P2    d2 0.115 0.006  18.682      0    0.103    0.127
+18     PAT1P3 ~~     PAT1P3    d3 0.138 0.006  21.215      0    0.125    0.150
+19     PAT2P1 ~~     PAT2P1    d1 0.111 0.007  16.473      0    0.098    0.124
+20     PAT2P2 ~~     PAT2P2    d2 0.115 0.006  18.682      0    0.103    0.127
+21     PAT2P3 ~~     PAT2P3    d3 0.138 0.006  21.215      0    0.125    0.150
+22 Fattore_T1 ~1                  0.000 0.000      NA     NA    0.000    0.000
+23 Fattore_T2 ~1                  0.000 0.000      NA     NA    0.000    0.000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">semPaths</span><span class="p">(</span><span class="n">fit_3</span><span class="p">,</span>
+<span class="w">    </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;est&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span>
+<span class="w">    </span><span class="n">edge.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.9</span><span class="p">,</span>
+<span class="w">    </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ram&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nCharNodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">nCharEdges</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/89f5bb7682f0300b76974b218eade1a4311c7872f244fe67d1d3f605cb0d9c16.png"><img alt="../_images/89f5bb7682f0300b76974b218eade1a4311c7872f244fe67d1d3f605cb0d9c16.png" src="../_images/89f5bb7682f0300b76974b218eade1a4311c7872f244fe67d1d3f605cb0d9c16.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Indici di fit per il livello 0:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">fitMeasures</span><span class="p">(</span><span class="n">fit_0</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;chisq&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;df&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cfi&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;tli&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rmsea&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;srmr&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chisq    df   cfi   tli rmsea  srmr 
+6.065 5.000 1.000 0.999 0.016 0.010 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Indici di fit per il livello 1:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">fitMeasures</span><span class="p">(</span><span class="n">fit_1</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;chisq&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;df&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cfi&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;tli&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rmsea&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;srmr&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  chisq      df     cfi     tli   rmsea    srmr 
+218.564   9.000   0.944   0.907   0.168   0.645 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Indici di fit per il livello 2:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">fitMeasures</span><span class="p">(</span><span class="n">fit_2</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;chisq&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;df&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cfi&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;tli&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rmsea&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;srmr&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  chisq      df     cfi     tli   rmsea    srmr 
+218.892  12.000   0.945   0.931   0.145   0.645 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Indici di fit per il livello 3:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">fitMeasures</span><span class="p">(</span><span class="n">fit_3</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;chisq&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;df&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cfi&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;tli&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rmsea&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;srmr&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  chisq      df     cfi     tli   rmsea    srmr 
+249.876  18.000   0.938   0.949   0.125   0.651 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Eseguiamo ora il confronto tra modelli usando il test del rapporto tra verosimiglianze. Il test LRT confronta coppie di modelli per valutare se l’aggiunta di vincoli (come l’uguaglianza dei carichi o delle intercette) peggiora significativamente l’adattamento del modello ai dati.</p>
+<p>fit_0: Modello di base (configurale).
+fit_1: Modello con invarianza debole (metrica).
+fit_2: Modello con invarianza forte (scalare).
+fit_3: Modello con invarianza rigorosa.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">lavTestLRT</span><span class="p">(</span><span class="n">fit_0</span><span class="p">,</span><span class="w"> </span><span class="n">fit_1</span><span class="p">,</span><span class="w"> </span><span class="n">fit_2</span><span class="p">,</span><span class="w"> </span><span class="n">fit_3</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chi-Squared Difference Test
+
+      Df    AIC    BIC    Chisq Chisq diff    RMSEA Df diff Pr(&gt;Chisq)    
+fit_0  5 7427.8 7531.4   6.0645                                           
+fit_1  9 7632.3 7717.1 218.5642    212.500 0.251665       4  &lt; 2.2e-16 ***
+fit_2 12 7626.6 7697.3 218.8920      0.328 0.000000       3     0.9547    
+fit_3 18 7645.6 7688.0 249.8762     30.984 0.071131       6  2.553e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Passando dal modello <strong>fit_0</strong> al modello <strong>fit_1</strong>, si osserva un peggioramento significativo dell’adattamento del modello (p-value &lt; 0.05), indicando che l’ipotesi di invarianza debole non è sostenuta dai dati. Ciò implica che, per questi dati, l’unica forma di invarianza supportata è quella configurale. La validità del modello configurale è ulteriormente confermata dagli indici di adattamento, che risultano appropriati per questo livello di invarianza ma non per i livelli successivi di invarianza metrica, scalare e rigorosa.</p>
+<p>Nella pratica, ciò si traduce nel fatto che in base ai dati a disposizione, non possiamo affermare con sicurezza che stiamo misurando lo stesso costrutto nelle due diverse occasioni di misurazione. Di conseguenza, effettuare un confronto diretto delle medie dei punteggi ottenuti nelle due rilevazioni temporali non sarebbe giustificato. I risultati evidenziano che, sebbene ci sia un’equivalenza configurale tra i due momenti, ovvero una somiglianza qualitativa nella struttura di base del modello, non vi è una somiglianza sufficiente in termini quantitativi per consentire confronti validi. Ciò suggerisce che potrebbero essere stati misurati costrutti diversi nei due momenti temporali, o almeno costrutti che non mantengono una sufficiente costanza nelle loro relazioni quantitative nel tempo.</p>
+</section>
+<section id="considerazioni-conclusive">
+<h2><span class="section-number">74.3. </span>Considerazioni Conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h2>
+<p>In questo capitolo, abbiamo esplorato il modello di analisi fattoriale confermativa (CFA) longitudinale nella sua forma più semplice, cioè quando viene utilizzato per valutare la misurazione di un costrutto in due punti temporali distinti. Il modello CFA longitudinale svolge un ruolo fondamentale nell’assicurare la coerenza e l’affidabilità delle misurazioni nel corso del tempo. Uno degli aspetti chiave trattati è stato l’concetto di invarianza fattoriale, il quale riveste un ruolo cruciale nel garantire che i costrutti esaminati siano misurati in maniera uniforme e comparabile tra le diverse occasioni di misurazione. L’importanza dell’invarianza fattoriale non può essere enfatizzata abbastanza, poiché assicura che le variazioni osservate nei costrutti nel tempo siano effettivamente attribuibili a veri cambiamenti nei fenomeni studiati, piuttosto che a variazioni nelle modalità di misurazione o a potenziali fattori di confondimento.</p>
+<p>Oltre a consentire l’analisi dell’invarianza, il modello di analisi fattoriale confermativa longitudinale offre anche la possibilità di testare ipotesi specifiche e di fornire dettagliate informazioni descrittive riguardo ai cambiamenti dei costrutti nel corso del tempo. Questa analisi può comprenderne, per esempio, l’esplorazione delle tendenze di sviluppo di particolari tratti o comportamenti, la valutazione degli effetti di interventi nel corso del tempo o l’analisi delle relazioni tra variabili in momenti temporali differenti.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_lgm"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03_time_effects.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">73. </span>Dati longitudinali</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05_intro_panel.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">75. </span>Specificare e Interpretare un Modello Longitudinale</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-invarianza-delle-misure-nel-tempo">74.1. L’Invarianza delle Misure nel Tempo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduzione">74.1.1. Introduzione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concetto-di-invarianza-di-misurazione">74.1.2. Concetto di Invarianza di Misurazione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equazioni-fondamentali-della-sem-per-modelli-longitudinali">74.1.3. Equazioni Fondamentali della SEM per Modelli Longitudinali</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equazione-fondamentale-per-i-punteggi-degli-indicatori">74.1.4. Equazione Fondamentale per i Punteggi degli Indicatori</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#componenti-dell-equazione">74.1.4.1. Componenti dell’Equazione</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#esempio-concreto">74.1.4.2. Esempio Concreto</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#equazione-per-le-medie-previste">74.1.4.3. Equazione per le Medie Previste</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrice-delle-varianze-e-covarianze-implicite-dal-modello">74.1.4.4. Matrice delle Varianze e Covarianze Implicite dal Modello</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-delle-equazioni">74.1.5. Interpretazione delle Equazioni</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">74.1.6. Invarianza Fattoriale Longitudinale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#livelli-di-invarianza-fattoriale">74.1.7. Livelli di Invarianza Fattoriale</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applicazione-nei-modelli-longitudinali">74.1.8. Applicazione nei Modelli Longitudinali</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invarianza-configurale-livello-0">74.1.9. Invarianza Configurale (Livello 0)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invarianza-fattoriale-debole-metrica-livello-1">74.1.10. Invarianza Fattoriale Debole (Metrica) (Livello 1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invarianza-fattoriale-forte-scalare-livello-2">74.1.11. Invarianza Fattoriale Forte (Scalare) (Livello 2)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#invarianza-fattoriale-rigorosa-livello-3">74.1.12. Invarianza Fattoriale Rigorosa (Livello 3)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ruolo-delle-intercette">74.1.13. Ruolo delle Intercette</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusione">74.1.14. Conclusione</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-variazione-temporale-di-positive-affect">74.2. La Variazione Temporale di Positive Affect</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">74.3. Considerazioni Conclusive</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

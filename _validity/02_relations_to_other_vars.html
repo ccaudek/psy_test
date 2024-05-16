@@ -1,0 +1,1005 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>22. Relazioni test-criterio &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css?v=ffeaf963" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6ba04eab" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VMXNE4BCDL"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_validity/02_relations_to_other_vars';</script>
+    <script src="../_static/custom.js?v=3f5092eb"></script>
+    <link rel="canonical" href="https://ccaudek.github.io/psy_test/_validity/02_relations_to_other_vars.html" />
+    <link rel="icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="23. Lo sviluppo degli item" href="../_items/01_item_development.html" />
+    <link rel="prev" title="21. La validità del test" href="01_validity.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Scaling psicometrico</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/01_expval_var.html">1. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/02_joint_prob.html">2. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/03_measurement.html">3. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/04_norms.html">4. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/05_regression.html">5. L’analisi di regressione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E1_likert.html">6. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E2_optimal_scoring.html">7. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E3_thurstone.html">8. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/01_ctt_1.html">9. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/02_ctt_2.html">10. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/03_ctt_3.html">11. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/04_err_std_mis.html">12. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/05_err_std_stima.html">13. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/06_applications_ctt.html">14. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E1_ctt.html">15. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E2_item_analyses.html">16. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/01_multilevel_1.html">17. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/02_interrater_reliability.html">18. L’affidabilità tra giudici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/E1_irr.html">19. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/01_gtheory.html">20. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_validity.html">21. La validità del test</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">22. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sviluppo degli item</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_items/01_item_development.html">23. Lo sviluppo degli item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_items/02_item_analysis.html">24. Analisi degli item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">25. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale esplorativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/01_intro_fa.html">26. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/02_analisi_fattoriale_1.html">27. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/03_analisi_fattoriale_2.html">28. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/04_analisi_fattoriale_3.html">29. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/05_factor_scores.html">30. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/06_constraints_on_parms.html">31. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/07_total_score.html">32. Punteggio totale e modello fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione strumenti</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">33. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">34. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">35. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">36. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">37. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/01_cfa.html">38. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/E_01.html">39. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/02_meanstructure.html">40. La struttura delle medie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/03_cat_data.html">41. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/04_mmm.html">42. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/05_bifactor.html">43. Modello bifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/06_efa_lavaan.html">44. Exploratory Structural Equation Modeling (ESEM)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/01_sem_intro.html">45. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/02_data_preparation.html">46. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/E_01.html">47. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/03_gof.html">48. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/04_mod_comp.html">49. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/05_cfa_mod_comp.html">50. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/06_refine_solution.html">51. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/07_group_invariance.html">52. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/08_multilevel_sem.html">53. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/09_structural_regr.html">54. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/10_missing_data.html">55. Dati mancanti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/11_small_samples.html">56. Modellizzazione SEM in Piccoli Campioni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/12_temp_reliability.html">57. Affidabilità longitudinale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_irt/01_logistic_regr.html">58. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/E_01.html">59. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/02_rasch_model.html">60. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/03_assumptions.html">61. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/04_estimation.html">62. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/05_1pl_2pl_3pl.html">63. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/06_implementation.html">64. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/07_polytomous_graded.html">65. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mokken Scales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/01_core_issues.html">66. Analisi della Scala di Mokken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/02_tutorial.html">67. Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/03_applications.html">68. Applicazione Pratica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/01_development.html">69. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/02_tutorial.html">70. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/01_lgm_intro.html">71. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/02_lgm_prelims.html">72. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/03_time_effects.html">73. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/04_invariance.html">74. Invarianza Fattoriale Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/05_intro_panel.html">75. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/06_lgm_mixed.html">76. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/07_growth_1.html">77. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/08_growth_cont.html">78. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/09_time_inv_cov.html">79. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/10_growth_groups.html">80. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/11_bivariate_tvc_models.html">81. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/12_inv_measurement.html">82. Invarianza di Misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/13_latent_change.html">83. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/750_latent_change.html">84. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/751_biv_change.html">85. Modello LCS bivariato</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">86. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a1_intro_r.html">87. Linguaggio R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a2_sums.html">88. Simbolo di somma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a3_calculus.html">89. Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a4_linear_alg.html">90. Elementi di algebra lineare</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_validity/02_relations_to_other_vars.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Relazioni test-criterio</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-della-relazione-test-criterio-mediante-la-regressione-logistica">22.1. Analisi della Relazione Test-Criterio mediante la Regressione Logistica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#categorie-di-evidenze-basate-su-relazioni-con-altre-variabili">22.1.1. Categorie di Evidenze basate su Relazioni con Altre Variabili</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-pratico">22.1.2. Un Esempio Pratico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuratezza-della-classificazione">22.1.3. Accuratezza della classificazione</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pacchetto-rocit">22.1.3.1. Pacchetto ROCit</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">22.2. Considerazioni conclusive</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="relazioni-test-criterio">
+<span id="relations-to-other-variables-notebook"></span><h1><span class="section-number">22. </span>Relazioni test-criterio<a class="headerlink" href="#relazioni-test-criterio" title="Link to this heading">#</a></h1>
+<p>In questo capitolo, ci focalizziamo su un aspetto specifico della validità precedentemente menzionato: la relazione test-criterio. Per esplorare più a fondo questo concetto, adotteremo un approccio quantitativo, utilizzando la regressione logistica come strumento di indagine. Questo metodo ci permette di valutare in modo dettagliato e preciso come i punteggi di un test possano essere correlati o predittivi rispetto a un determinato criterio esterno, offrendo così una visione più approfondita della validità di un dato strumento di valutazione psicometrica.</p>
+<!-- [^2]: Vedremo in seguito -->
+<!--     (§ [\[ch:err_stnd_stima\]](#ch:err_stnd_stima){reference-type="ref" -->
+<!--     reference="ch:err_stnd_stima"}) come il livello di abilità latente -->
+<!--     (il punteggio vero) possa essere stimato con la formula di Kelley -->
+<!--     (1923), ovvero $$\begin{aligned} -->
+<!--     \hat{T}_i &= \rho_{XT} x_i + (1 - \rho_{XT})\mu_x\notag\\ -->
+<!--     &= \mu_x + \rho_{XT} (x_i - \mu_x),\notag\end{aligned}$$ dove -->
+<!--     $\mu_x$ è la media dei punteggio osservato e $\hat{T}_i$ è la stima -->
+<!--     del punteggio vero per l'$i$-esimo rispondente. -->
+<!-- [^3]:  --><section id="analisi-della-relazione-test-criterio-mediante-la-regressione-logistica">
+<h2><span class="section-number">22.1. </span>Analisi della Relazione Test-Criterio mediante la Regressione Logistica<a class="headerlink" href="#analisi-della-relazione-test-criterio-mediante-la-regressione-logistica" title="Link to this heading">#</a></h2>
+<p>In questo capitolo, esploriamo approfonditamente la relazione tra i punteggi dei test e vari criteri esterni, focalizzandoci su come i test possono predire o differenziare fenomeni specifici. Questo tipo di analisi è cruciale per valutare la validità dei test in contesti pratici e teorici.</p>
+<section id="categorie-di-evidenze-basate-su-relazioni-con-altre-variabili">
+<h3><span class="section-number">22.1.1. </span>Categorie di Evidenze basate su Relazioni con Altre Variabili<a class="headerlink" href="#categorie-di-evidenze-basate-su-relazioni-con-altre-variabili" title="Link to this heading">#</a></h3>
+<p>In psicometria, vengono utilizzate diverse categorie di prove per valutare le relazioni dei punteggi dei test con altre variabili:</p>
+<ol class="arabic simple">
+<li><p><strong>Relazioni Test-Criterio:</strong></p>
+<ul class="simple">
+<li><p>Queste si concentrano sull’uso dei punteggi dei test per prevedere il rendimento o lo stato attuale in vari ambiti, come l’adattamento accademico o lavorativo.</p></li>
+</ul>
+</li>
+<li><p><strong>Differenze tra Gruppi:</strong></p>
+<ul class="simple">
+<li><p>Analizziamo se i test evidenziano differenze significative nei punteggi tra gruppi definiti da criteri specifici, come la presenza o assenza di una diagnosi clinica.</p></li>
+</ul>
+</li>
+<li><p><strong>Prove di Convergenza e Discriminazione:</strong></p>
+<ul class="simple">
+<li><p>Esploriamo se i punteggi di un test sono correlati a quelli di altri test che misurano costrutti simili (validità convergente) e se sono meno correlati a test che misurano costrutti diversi (validità discriminante).</p></li>
+</ul>
+</li>
+</ol>
+<p>Quando si affronta la questione delle relazioni test-criterio, un aspetto cruciale è la selezione di un criterio appropriato e la valutazione quantitativa della relazione tra il test e il criterio. In situazioni dove il criterio è di natura categorica, come il superamento o il fallimento di un test, la regressione logistica diventa uno strumento essenziale.</p>
+<p>La regressione logistica è un metodo statistico usato per analizzare la relazione tra una variabile dipendente binaria e una o più variabili indipendenti. Questa tecnica stima la probabilità che un’osservazione appartenga a una delle categorie della variabile dipendente, basandosi sui valori delle variabili indipendenti.</p>
+<p>Supponiamo che una variabile risposta <span class="math notranslate nohighlight">\(Y_i\)</span> (per l’osservazione <span class="math notranslate nohighlight">\(i\)</span>-esima, con <span class="math notranslate nohighlight">\(i = 1, \dots, n\)</span>) assuma due modalità, definite come successo e insuccesso. Ogni osservazione può essere associata a un vettore di variabili esplicative (<span class="math notranslate nohighlight">\(x_1, \dots, x_p\)</span>), ma per semplicità, considereremo il caso di una singola variabile indipendente.</p>
+<p>Nella regressione logistica, il logaritmo delle probabilità delle due categorie è modellato come una funzione lineare delle variabili indipendenti. Questo ci permette di esaminare come i cambiamenti nelle variabili indipendenti influenzino la probabilità di successo o insuccesso.</p>
+<p>Nel contesto dei test psicometrici, la regressione logistica può essere usata per determinare il grado in cui i punteggi di un test sono predittivi di un risultato categorico. Ad esempio, possiamo valutare la probabilità che gli studenti con determinati punteggi ad un test di ammissione universitario riescano o meno nel loro primo anno accademico.</p>
+<p>Questo metodo fornisce un quadro più chiaro della validità di un test nel predire risultati specifici, migliorando così l’affidabilità e l’applicabilità dei test in vari contesti. Attraverso l’uso della regressione logistica, possiamo quindi formulare interpretazioni più precise e informate dei risultati dei test, contribuendo a una migliore comprensione della validità di uno strumento psicometrico.</p>
+<p>Nello specifico, possiamo dire che l’obiettivo della regressione logistica è studiare la relazione tra la probabilità di risposta</p>
+<div class="math notranslate nohighlight">
+\[
+Pr(Y=1 | X=x_i) \equiv Pr(Y_i) \equiv \pi_i
+\]</div>
+<p>e la variabile esplicativa <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>La componente sistematica del modello è espressa come funzione lineare del predittore</p>
+<div class="math notranslate nohighlight">
+\[
+\eta_i = logit(\pi_i) = \alpha + \beta x_i.
+\]</div>
+<p>La componente aleatoria del modello suppone l’esistenza di <span class="math notranslate nohighlight">\(k\)</span> osservazioni indipendenti <span class="math notranslate nohighlight">\(y_1, y_2, \dots, y_k\)</span>, ciascuna delle quali viene trattata come la realizzazione di una variabile casuale <span class="math notranslate nohighlight">\(Y_i\)</span>.
+Nel caso di dati ragruppati, si assume che <span class="math notranslate nohighlight">\(Y_i\)</span> abbia una distribuzione binomiale</p>
+<div class="math notranslate nohighlight">
+\[
+Y_i \sim Bin(n_i, \pi_i),
+\]</div>
+<p>con parametri <span class="math notranslate nohighlight">\(n_i\)</span> e <span class="math notranslate nohighlight">\(\pi_i\)</span>. Per dati individuali (uno per ciascun valore <span class="math notranslate nohighlight">\(x_i\)</span>), <span class="math notranslate nohighlight">\(n_i=1, \forall i\)</span>.</p>
+<p>La funzione link del modello trasforma il predittore lineare nel valore atteso della variabile risposta condizionato alla variabile <span class="math notranslate nohighlight">\(X\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-reg-logistic-prob">
+<span class="eqno">(22.1)<a class="headerlink" href="#equation-eq-reg-logistic-prob" title="Link to this equation">#</a></span>\[
+\begin{equation}
+\pi_i = g(\eta_i) = \frac{e^{\alpha + \beta x_i}}{1+e^{\alpha + \beta x_i}}.
+\end{equation}
+\]</div>
+<p>In sintesi, la regressione logistica è una tecnica statistica che stima la probabilità che l’evento <span class="math notranslate nohighlight">\(Y = 1\)</span> si verifichi per ciascun valore della variabile indipendente <span class="math notranslate nohighlight">\(X\)</span>.</p>
+</section>
+<section id="un-esempio-pratico">
+<h3><span class="section-number">22.1.2. </span>Un Esempio Pratico<a class="headerlink" href="#un-esempio-pratico" title="Link to this heading">#</a></h3>
+<p>Per fare un esempio pratico, consideriamo i dati dello studio <a class="reference external" href="https://journals.sagepub.com/doi/10.1177/07342829211067128">Pitfalls When Using Area Under the Curve to Evaluate Item Content for Early Screening Tests for Autism</a> di Lucas, Brewer e Young (2022).</p>
+<p>Il campione raccolto da Nah et al. (2018) include 270 bambini di età compresa tra 12 e 36 mesi (M = 25.4, SD = 7.0). Sulla base di una diagnosi clinica eseguita secondo il DSM-5, 106 bambini sono stati diagnosticati con ASD (<em>Autism Spectrum Disorder</em>, Disturbo dello Spettro Autistico), 86 erano in sviluppo non tipico (non-TD) e 78 erano considerati in sviluppo tipico (TD). Qui considereremo solo i gruppi ASD e non-TD.</p>
+<p>Il test di interesse è l’<em>Autism Detection in Early Childhood</em> (ADEC). Si tratta di una checklist comportamentale composta da 16 item, appositamente sviluppata per rilevare comportamenti pre-verbali che possono essere predittivi dell’autismo nei bambini di età inferiore ai tre anni (Young, 2007).</p>
+<p>Leggiamo i dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">tmp_path</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">tempfile</span><span class="p">(</span><span class="n">fileext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;xlsx&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># temporary file</span>
+<span class="nf">download.file</span><span class="p">(</span><span class="s">&quot;https://osf.io/download/tsm7x/&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">destfile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tmp_path</span><span class="p">)</span>
+<span class="n">dat1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">readxl</span><span class="o">::</span><span class="nf">read_xlsx</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">,</span><span class="w"> </span><span class="n">na</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;NA&quot;</span><span class="p">)</span>
+<span class="n">dat1</span><span class="o">$</span><span class="n">asd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">recode</span><span class="p">(</span>
+<span class="w">    </span><span class="n">dat1</span><span class="o">$</span><span class="n">`Diagnosis(1=Non-typically developing; 2=ASD; 3=Neurotypical)`</span><span class="p">,</span>
+<span class="w">    </span><span class="n">`1`</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Non-TD&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">`2`</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ASD&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">`3`</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;TD&quot;</span>
+<span class="p">)</span>
+<span class="c1"># Filter out Neurotypical</span>
+<span class="n">dat1_sub</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">dat1</span><span class="p">,</span><span class="w"> </span><span class="n">asd</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s">&quot;TD&quot;</span><span class="p">)</span>
+<span class="nf">glimpse</span><span class="p">(</span><span class="n">dat1_sub</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rows: 192
+Columns: 21
+$ ID                                                             &lt;dbl&gt; 2, 3, 4…
+$ `Sex (1=Male; 2=Female)`                                       &lt;dbl&gt; 1, 1, 2…
+$ `Age (in Months)`                                              &lt;dbl&gt; 12, 12,…
+$ ADEC_I01                                                       &lt;dbl&gt; 0, 2, 2…
+$ ADEC_I02                                                       &lt;dbl&gt; 0, 1, 2…
+$ ADEC_I03                                                       &lt;dbl&gt; 0, 0, 0…
+$ ADEC_I04                                                       &lt;dbl&gt; 0, 1, 2…
+$ ADEC_I05                                                       &lt;dbl&gt; 0, 1, 0…
+$ ADEC_I06                                                       &lt;dbl&gt; 0, 1, 2…
+$ ADEC_I07                                                       &lt;dbl&gt; 2, 2, 2…
+$ ADEC_I08                                                       &lt;dbl&gt; 0, 1, 1…
+$ ADEC_I09                                                       &lt;dbl&gt; 0, 0, 1…
+$ ADEC_I10                                                       &lt;dbl&gt; 0, 1, 2…
+$ ADEC_I11                                                       &lt;dbl&gt; 0, 1, 1…
+$ ADEC_I12                                                       &lt;dbl&gt; 1, 0, 0…
+$ ADEC_I13                                                       &lt;dbl&gt; 1, 1, 1…
+$ ADEC_I14                                                       &lt;dbl&gt; 1, 0, 1…
+$ ADEC_I15                                                       &lt;dbl&gt; 1, 2, 1…
+$ ADEC_I16                                                       &lt;dbl&gt; 0, 1, 1…
+$ `Diagnosis(1=Non-typically developing; 2=ASD; 3=Neurotypical)` &lt;dbl&gt; 1, 1, 1…
+$ asd                                                            &lt;chr&gt; &quot;Non-TD…
+</pre></div>
+</div>
+</div>
+</div>
+<p>Iniziamo trovando il punteggio totale ADEC. Si noti che la somma sarà NA se un item è NA.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dat1_sub</span><span class="o">$</span><span class="n">ADEC</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rowSums</span><span class="p">(</span><span class="nf">select</span><span class="p">(</span><span class="n">dat1_sub</span><span class="p">,</span><span class="w"> </span><span class="n">ADEC_I01</span><span class="o">:</span><span class="n">ADEC_I16</span><span class="p">))</span><span class="w"> </span><span class="c1"># NA if any item is NA</span>
+<span class="c1"># Or treat missing as 0</span>
+<span class="n">dat1_sub</span><span class="o">$</span><span class="n">ADEC_rm_na</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rowSums</span><span class="p">(</span><span class="nf">select</span><span class="p">(</span><span class="n">dat1_sub</span><span class="p">,</span><span class="w"> </span><span class="n">ADEC_I01</span><span class="o">:</span><span class="n">ADEC_I16</span><span class="p">),</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Utilizzeremo il modello di regressione logistica per esaminare la relazione tra il punteggio totale del test ADEC e la probabilità che il bambino appartenga al gruppo diagnostico ASD.</p>
+<p>Esaminiamo la distribuzione del punteggio totale di ADEC in base alla diagnosi:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">dat1_sub</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ADEC</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_histogram</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">asd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+“Removed 12 rows containing non-finite outside the scale range (`stat_bin()`).”
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/872fd04bd4011b0732fbebf3fc74032e12e5426b4d33eeef07d9be0b6d391e5e.png"><img alt="../_images/872fd04bd4011b0732fbebf3fc74032e12e5426b4d33eeef07d9be0b6d391e5e.png" src="../_images/872fd04bd4011b0732fbebf3fc74032e12e5426b4d33eeef07d9be0b6d391e5e.png" style="width: 420px; height: 259.5743px;" /></a>
+</div>
+</div>
+<p>Ricodifichiamo <code class="docutils literal notranslate"><span class="pre">asd</span></code> in modo tale che assuma valore 1 per i bambini con ASD e 0 altrimenti.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dat1_sub</span><span class="o">$</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">dat1_sub</span><span class="o">$</span><span class="n">asd</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;ASD&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+<span class="n">dat1_sub</span><span class="o">$</span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>1</li><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>1</li><li>1</li><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>1</li><li>1</li><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>0</li><li>1</li><li>0</li><li>0</li><li>1</li><li>1</li><li>0</li><li>1</li><li>1</li><li>0</li><li>1</li><li>1</li><li>1</li><li>0</li><li>1</li><li>1</li><li>0</li><li>0</li><li>1</li><li>0</li><li>0</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>0</li><li>1</li><li>0</li><li>1</li><li>1</li><li>1</li><li>1</li><li>0</li><li>0</li><li>0</li><li>1</li><li>1</li><li>1</li><li>0</li><li>0</li><li>1</li><li>1</li><li>1</li><li>1</li><li>0</li><li>0</li><li>0</li><li>1</li><li>1</li><li>0</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>0</li><li>1</li><li>0</li><li>1</li><li>1</li><li>0</li><li>1</li><li>1</li><li>1</li><li>1</li><li>0</li><li>0</li><li>1</li><li>1</li><li>1</li><li>1</li><li>0</li><li>0</li><li>0</li><li>0</li><li>1</li><li>0</li><li>1</li><li>1</li><li>1</li><li>0</li><li>1</li><li>0</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>0</li><li>1</li><li>1</li><li>1</li><li>0</li><li>1</li><li>0</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>0</li><li>1</li><li>1</li><li>0</li><li>0</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>0</li><li>1</li><li>1</li><li>1</li><li>0</li><li>1</li><li>0</li><li>0</li><li>0</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>0</li><li>0</li><li>1</li><li>0</li><li>0</li><li>0</li></ol>
+</div></div>
+</div>
+<p>Eseguiamo l’analisi di regressione logistica usando la funzione ´glm()´.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">glm</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">ADEC</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">binomial</span><span class="p">(</span><span class="n">link</span><span class="o">=</span><span class="s">&quot;logit&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat1_sub</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo i risultati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">fm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+glm(formula = y ~ ADEC, family = binomial(link = &quot;logit&quot;), data = dat1_sub)
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept) -3.76480    0.58071  -6.483 8.99e-11 ***
+ADEC         0.35447    0.05201   6.816 9.37e-12 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 247.73  on 179  degrees of freedom
+Residual deviance: 131.12  on 178  degrees of freedom
+  (12 observations deleted due to missingness)
+AIC: 135.12
+
+Number of Fisher Scoring iterations: 6
+</pre></div>
+</div>
+</div>
+</div>
+<p>Creiamo un grafico che mostri la relazione tra la probabilità che Y = 1 (cioè la diagnosi di ASD per il bambino), calcolata utilizzando i coefficienti del modello di regressione logistica, e il punteggio ottenuto nella scala ADEC.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter out rows with missing values in ADEC column</span>
+<span class="n">dat1_sub</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">na.omit</span><span class="p">(</span><span class="n">dat1_sub</span><span class="p">)</span>
+<span class="c1"># Predict the probabilities of y == 1 for the filtered data</span>
+<span class="n">predictions</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">fm</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;response&quot;</span><span class="p">)</span>
+<span class="c1"># Create a data frame with ADEC and the predicted probabilities</span>
+<span class="n">plot_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">ADEC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat1_sub</span><span class="o">$</span><span class="n">ADEC</span><span class="p">,</span><span class="w"> </span><span class="n">Prob_Y_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">predictions</span><span class="p">)</span>
+
+<span class="c1"># Plot the probability of y == 1 as a function of ADEC</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ADEC</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Prob_Y_1</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">xlab</span><span class="p">(</span><span class="s">&quot;ADEC&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">ylab</span><span class="p">(</span><span class="s">&quot;Probability of y == 1&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Probability of y == 1 vs. ADEC&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/5871db7e64d563c6d1c7507f82b6828d778ea3061c34bd0a497b7c825bc11d55.png"><img alt="../_images/5871db7e64d563c6d1c7507f82b6828d778ea3061c34bd0a497b7c825bc11d55.png" src="../_images/5871db7e64d563c6d1c7507f82b6828d778ea3061c34bd0a497b7c825bc11d55.png" style="width: 420px; height: 259.5743px;" /></a>
+</div>
+</div>
+<p>Il grafico presenta una curva sigmoidale che illustra come, per punteggi bassi nella scala ADEC, la probabilità di una diagnosi di autismo sia bassa, mentre per punteggi alti nella scala ADEC, la probabilità di una diagnosi di autismo sia alta.</p>
+</section>
+<section id="accuratezza-della-classificazione">
+<h3><span class="section-number">22.1.3. </span>Accuratezza della classificazione<a class="headerlink" href="#accuratezza-della-classificazione" title="Link to this heading">#</a></h3>
+<p>Una volta compreso come il modello di regressione logistica associa a ciascun valore di <span class="math notranslate nohighlight">\(x\)</span> la probabilità dell’evento <span class="math notranslate nohighlight">\(y = 1\)</span>, esaminiamo ora come sia possibile utilizzare questo modello per valutare l’accuratezza di una classificazione binaria. Nel nostro caso, la classificazione riguarda ciascuna osservazione nelle categorie ASD e Non-TD. In questo contesto, il modello di regressione logistica stima la probabilità di appartenenza a una delle due categorie basandosi sui valori di ADEC (eq. <a class="reference internal" href="#equation-eq-reg-logistic-prob">(22.1)</a>).</p>
+<p>Per effettuare la classificazione, dobbiamo stabilire un punto di taglio (cut-off) che separi le due categorie. Questo punto di taglio definisce il valore della variabile dipendente al di sopra del quale l’osservazione sarà assegnata alla categoria positiva (y = 1, ovvero ASD) e al di sotto del quale sarà assegnata alla categoria negativa (y = 0). La scelta del punto di taglio è critica poiché influisce sull’accuratezza delle previsioni del modello.</p>
+<p>I coefficienti di regressione stimati dalla regressione logistica sono i parametri del modello che descrivono la relazione tra la variabile indipendente ADEC e la probabilità di appartenenza alla categoria positiva (y = 1). Questi coefficienti ci consentono di calcolare la probabilità stimata di y = 1 per ciascuna osservazione, utilizzando l’eq. <a class="reference internal" href="#equation-eq-reg-logistic-prob">(22.1)</a>. Una volta calcolata la probabilità stimata di y = 1 per ogni osservazione, possiamo utilizzare un determinato punto di taglio (ad esempio, 0.5) per classificare le osservazioni nelle due categorie y = 0 e y = 1. Se la probabilità stimata è maggiore o uguale al punto di taglio, l’osservazione verrà classificata come y = 1 (positiva); altrimenti, verrà classificata come y = 0 (negativa).</p>
+<p>Tuttavia, la scelta del punto di taglio non è banale e ha un impatto diretto sulla sensibilità (la proporzione dei casi positivi effettivi che il test identifica correttamente come positivi) e specificità (la proporzione dei casi negativi effettivi che il test identifica correttamente come negativi) del modello. Un punto di taglio più alto potrebbe aumentare la specificità, ma ridurre la sensibilità, mentre un punto di taglio più basso avrebbe l’effetto opposto.</p>
+<p>Per ottenere una valutazione più completa delle prestazioni del modello, consideriamo tutti i possibili punti di taglio e visualizziamo la relazione tra sensibilità e specificità tramite la curva ROC (Receiver Operating Characteristic). Questa curva è un grafico che mostra come variano sensibilità e specificità al variare del punto di taglio. Un elemento chiave della curva ROC è l’<em>Area Under the Curve</em> (AUC), che rappresenta una misura aggregata dell’accuratezza complessiva del modello. L’AUC calcola l’area sottesa alla curva ROC e riflette la capacità del modello di discriminare tra le due categorie di risultato. L’AUC, dunque, fornisce una misura sintetica dell’accuratezza del modello su tutta la gamma di possibili punti di taglio. Un valore di AUC pari a 1 indica una perfetta capacità di discriminazione, mentre un valore pari a 0.5 indica una capacità di discriminazione casuale.</p>
+<p>Per mostrare come trovare l’AUC, iniziamo calcolando l’accuratezza della classificazione mediante un valore di cut-off pari a 0.5, ad esempio.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predict the probabilities of y == 1 for the filtered data</span>
+<span class="n">prob_pred</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">fm</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;response&quot;</span><span class="p">)</span>
+
+<span class="c1"># Use cut-off 0.5 for classification</span>
+<span class="n">classification</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">prob_pred</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+
+<span class="c1"># Classification accuracy</span>
+<span class="nf">mean</span><span class="p">(</span><span class="n">classification</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">dat1_sub</span><span class="o">$</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.855555555555556</div></div>
+</div>
+<p>Con il cut-off di 0.5, l’accuratezza è 0.855, ovvero l’86% dei casi è stato correttamente classificato dal test. Vogliamo però trovare l’accuratezza della classificazione per tutti i possibili valori di cut-off. Costruiamo dunque la curva ROC in R.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">compute_sens</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span>
+<span class="w">    </span><span class="n">cut</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat1_sub</span><span class="o">$</span><span class="n">ADEC</span><span class="p">,</span>
+<span class="w">    </span><span class="n">crit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat1_sub</span><span class="o">$</span><span class="n">asd</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;ASD&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">tp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">cut</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">crit</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="w">    </span><span class="n">fn</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">cut</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">crit</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="w">    </span><span class="n">tp</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">tp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fn</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">compute_spec</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span>
+<span class="w">    </span><span class="n">cut</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat1_sub</span><span class="o">$</span><span class="n">ADEC</span><span class="p">,</span>
+<span class="w">    </span><span class="n">crit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat1_sub</span><span class="o">$</span><span class="n">asd</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;ASD&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">tn</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">cut</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">crit</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="w">    </span><span class="n">fp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">cut</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">crit</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="w">    </span><span class="n">tn</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">tn</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fp</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">sensitivity</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lapply</span><span class="p">(</span><span class="m">32</span><span class="o">:</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">compute_sens</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">unlist</span><span class="p">()</span>
+<span class="n">specificity</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lapply</span><span class="p">(</span><span class="m">32</span><span class="o">:</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">compute_spec</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">unlist</span><span class="p">()</span>
+<span class="nf">data.frame</span><span class="p">(</span><span class="n">sensitivity</span><span class="p">,</span><span class="w"> </span><span class="n">fpr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">specificity</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fpr</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensitivity</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_line</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/9f3ba89b343f70982dae72487f746c28ad31a40f3c745e9d6ca556143f39f0a4.png"><img alt="../_images/9f3ba89b343f70982dae72487f746c28ad31a40f3c745e9d6ca556143f39f0a4.png" src="../_images/9f3ba89b343f70982dae72487f746c28ad31a40f3c745e9d6ca556143f39f0a4.png" style="width: 420px; height: 259.5743px;" /></a>
+</div>
+</div>
+<p>Una volta costruita la curva ROC possiamo calcolare l’area sottesa alla curva ROC.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># AUC</span>
+<span class="n">dfpr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">diff</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">specificity</span><span class="p">),</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+<span class="n">dsens</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">diff</span><span class="p">(</span><span class="n">sensitivity</span><span class="p">),</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+<span class="nf">sum</span><span class="p">(</span><span class="n">sensitivity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dfpr</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">dsens</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dfpr</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.920626013218606</div></div>
+</div>
+<p>Se consideriamo tutti i possibili valori di cut-off, l’accuratezza risulta uguale a 0.92. Questo valore indica un’ottima capacità del modello di regressione logistica nel discriminare con precisione i bambini con diagnosi di autismo da quelli senza.</p>
+<p>Questi risultati suggeriscono che la scala ADEC è uno strumento utile e valido per identificare precocemente i bambini a rischio di sviluppare un disturbo dello spettro autistico. La sua elevata accuratezza predittiva consente di fornire una valutazione tempestiva e accurata per l’intervento precoce e il supporto necessario ai bambini e alle loro famiglie. In conclusione, l’analisi di regressione logistica e il calcolo dell’AUC hanno fornito evidenze solide sulla validità predittiva della scala ADEC nella diagnosi precoce dell’autismo.</p>
+<section id="pacchetto-rocit">
+<h4><span class="section-number">22.1.3.1. </span>Pacchetto ROCit<a class="headerlink" href="#pacchetto-rocit" title="Link to this heading">#</a></h4>
+<p>Si noti che si possono ottenere gli stessi risultati trovati sopra usando le funzioni del pacchetto ROCit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">roc_adec</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rocit</span><span class="p">(</span><span class="n">dat1_sub</span><span class="o">$</span><span class="n">ADEC</span><span class="p">,</span><span class="w"> </span><span class="n">class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat1_sub</span><span class="o">$</span><span class="n">asd</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;ASD&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">roc_adec</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/5523018711c7a0550feab5a9ef6cb93d224400083a72898b0fb8b36a3db18062.png"><img alt="../_images/5523018711c7a0550feab5a9ef6cb93d224400083a72898b0fb8b36a3db18062.png" src="../_images/5523018711c7a0550feab5a9ef6cb93d224400083a72898b0fb8b36a3db18062.png" style="width: 420px; height: 259.5743px;" /></a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">roc_adec</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                          
+ Method used: empirical   
+ Number of positive(s): 99
+ Number of negative(s): 81
+ Area under curve: 0.9206 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ciAUC</span><span class="p">(</span><span class="n">roc_adec</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                          
+   estimated AUC : 0.920626013218606                      
+   AUC estimation method : empirical                      
+                                                          
+   CI of AUC                                              
+   confidence level = 95%                                 
+   lower = 0.880257283328194     upper = 0.960994743109017
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="considerazioni-conclusive">
+<h2><span class="section-number">22.2. </span>Considerazioni conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h2>
+<p>In conclusione, il capitolo ha dimostrato l’utilizzo dell’analisi di regressione logistica e del calcolo dell’Area Under the Curve (AUC) come strumenti importanti per valutare la validità di criterio di un test, specialmente quando il criterio riguarda l’appartenenza a un gruppo diagnostico specifico.</p>
+<p>L’analisi di regressione logistica e il calcolo dell’AUC forniscono una valutazione accurata della capacità del test di classificare correttamente i partecipanti in base al criterio diagnostico desiderato. Questa valutazione accurata offre una solida base per l’applicazione pratica del test, consentendo decisioni informate e mirate nell’identificazione di individui con particolari caratteristiche o condizioni. Inoltre, l’utilizzo di questi strumenti statistici rappresenta un passo importante verso la validazione dei test, garantendo la qualità delle diagnosi e facilitando l’implementazione di interventi mirati ed efficaci. La corretta valutazione della validità di criterio è essenziale per ottenere risultati affidabili e utili nella pratica clinica e nella ricerca.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_validity"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_validity.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">21. </span>La validità del test</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../_items/01_item_development.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">23. </span>Lo sviluppo degli item</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-della-relazione-test-criterio-mediante-la-regressione-logistica">22.1. Analisi della Relazione Test-Criterio mediante la Regressione Logistica</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#categorie-di-evidenze-basate-su-relazioni-con-altre-variabili">22.1.1. Categorie di Evidenze basate su Relazioni con Altre Variabili</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-pratico">22.1.2. Un Esempio Pratico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuratezza-della-classificazione">22.1.3. Accuratezza della classificazione</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pacchetto-rocit">22.1.3.1. Pacchetto ROCit</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">22.2. Considerazioni conclusive</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

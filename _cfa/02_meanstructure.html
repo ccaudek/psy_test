@@ -1,0 +1,1048 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>40. La struttura delle medie &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css?v=ffeaf963" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6ba04eab" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VMXNE4BCDL"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_cfa/02_meanstructure';</script>
+    <script src="../_static/custom.js?v=3f5092eb"></script>
+    <link rel="canonical" href="https://ccaudek.github.io/psy_test/_cfa/02_meanstructure.html" />
+    <link rel="icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="41. Dati non gaussiani e categoriali" href="03_cat_data.html" />
+    <link rel="prev" title="39. ✏️ Esercizi" href="E_01.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Scaling psicometrico</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/01_expval_var.html">1. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/02_joint_prob.html">2. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/03_measurement.html">3. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/04_norms.html">4. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/05_regression.html">5. L’analisi di regressione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E1_likert.html">6. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E2_optimal_scoring.html">7. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E3_thurstone.html">8. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/01_ctt_1.html">9. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/02_ctt_2.html">10. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/03_ctt_3.html">11. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/04_err_std_mis.html">12. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/05_err_std_stima.html">13. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/06_applications_ctt.html">14. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E1_ctt.html">15. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E2_item_analyses.html">16. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/01_multilevel_1.html">17. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/02_interrater_reliability.html">18. L’affidabilità tra giudici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/E1_irr.html">19. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/01_gtheory.html">20. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/01_validity.html">21. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/02_relations_to_other_vars.html">22. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sviluppo degli item</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_items/01_item_development.html">23. Lo sviluppo degli item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_items/02_item_analysis.html">24. Analisi degli item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">25. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale esplorativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/01_intro_fa.html">26. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/02_analisi_fattoriale_1.html">27. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/03_analisi_fattoriale_2.html">28. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/04_analisi_fattoriale_3.html">29. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/05_factor_scores.html">30. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/06_constraints_on_parms.html">31. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/07_total_score.html">32. Punteggio totale e modello fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione strumenti</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">33. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">34. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">35. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">36. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">37. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_cfa.html">38. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="E_01.html">39. ✏️ Esercizi</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">40. La struttura delle medie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_cat_data.html">41. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_mmm.html">42. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_bifactor.html">43. Modello bifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_efa_lavaan.html">44. Exploratory Structural Equation Modeling (ESEM)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/01_sem_intro.html">45. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/02_data_preparation.html">46. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/E_01.html">47. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/03_gof.html">48. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/04_mod_comp.html">49. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/05_cfa_mod_comp.html">50. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/06_refine_solution.html">51. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/07_group_invariance.html">52. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/08_multilevel_sem.html">53. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/09_structural_regr.html">54. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/10_missing_data.html">55. Dati mancanti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/11_small_samples.html">56. Modellizzazione SEM in Piccoli Campioni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/12_temp_reliability.html">57. Affidabilità longitudinale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_irt/01_logistic_regr.html">58. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/E_01.html">59. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/02_rasch_model.html">60. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/03_assumptions.html">61. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/04_estimation.html">62. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/05_1pl_2pl_3pl.html">63. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/06_implementation.html">64. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/07_polytomous_graded.html">65. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mokken Scales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/01_core_issues.html">66. Analisi della Scala di Mokken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/02_tutorial.html">67. Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/03_applications.html">68. Applicazione Pratica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/01_development.html">69. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/02_tutorial.html">70. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/01_lgm_intro.html">71. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/02_lgm_prelims.html">72. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/03_time_effects.html">73. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/04_invariance.html">74. Invarianza Fattoriale Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/05_intro_panel.html">75. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/06_lgm_mixed.html">76. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/07_growth_1.html">77. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/08_growth_cont.html">78. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/09_time_inv_cov.html">79. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/10_growth_groups.html">80. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/11_bivariate_tvc_models.html">81. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/12_inv_measurement.html">82. Invarianza di Misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/13_latent_change.html">83. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/750_latent_change.html">84. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/751_biv_change.html">85. Modello LCS bivariato</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">86. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a1_intro_r.html">87. Linguaggio R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a2_sums.html">88. Simbolo di somma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a3_calculus.html">89. Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a4_linear_alg.html">90. Elementi di algebra lineare</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_cfa/02_meanstructure.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>La struttura delle medie</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-impiego-delle-medie-nei-modelli-di-equazioni-strutturali-sem">40.1. L’impiego delle Medie nei Modelli di Equazioni Strutturali (SEM)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-delle-intercette-nei-modelli-sem">40.1.1. Interpretazione delle Intercette nei Modelli SEM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#struttura-delle-medie-nel-modello-cfa">40.1.2. Struttura delle Medie nel Modello CFA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizzo-delle-medie-nel-software-lavaan">40.1.3. Utilizzo delle Medie nel Software <code class="docutils literal notranslate"><span class="pre">lavaan</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-pratico">40.2. Un Esempio Pratico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-delle-medie-stimate">40.2.1. Interpretazione delle Medie Stimate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calcolo-delle-medie-osservate-e-predette-in-r">40.2.2. Calcolo delle Medie Osservate e Predette in R</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medie-di-costrutti-latenti-non-zero">40.2.3. Medie di Costrutti Latenti Non Zero</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">40.3. Session Info</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="la-struttura-delle-medie">
+<span id="meanstructure-notebook"></span><h1><span class="section-number">40. </span>La struttura delle medie<a class="headerlink" href="#la-struttura-delle-medie" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">source</span><span class="p">(</span><span class="s">&quot;../_common.R&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="l-impiego-delle-medie-nei-modelli-di-equazioni-strutturali-sem">
+<h2><span class="section-number">40.1. </span>L’impiego delle Medie nei Modelli di Equazioni Strutturali (SEM)<a class="headerlink" href="#l-impiego-delle-medie-nei-modelli-di-equazioni-strutturali-sem" title="Link to this heading">#</a></h2>
+<p>Nei modelli di equazioni strutturali (SEM), simili all’analisi fattoriale, esaminiamo principalmente le relazioni di covarianza tra le variabili. Una caratteristica distintiva dei modelli SEM rispetto all’analisi fattoriale tradizionale è la possibilità di includere le medie sia delle variabili osservate che di quelle latenti. Questo è particolarmente utile in modelli come quelli di analisi fattoriale confermativa (CFA) longitudinale, dove le ipotesi si concentrano sulle medie dei costrutti analizzati.</p>
+<section id="interpretazione-delle-intercette-nei-modelli-sem">
+<h3><span class="section-number">40.1.1. </span>Interpretazione delle Intercette nei Modelli SEM<a class="headerlink" href="#interpretazione-delle-intercette-nei-modelli-sem" title="Link to this heading">#</a></h3>
+<p>In un modello SEM, l’intercetta di una variabile indicatore (denotata con <span class="math notranslate nohighlight">\( \tau \)</span>) indica la media stimata di quella variabile. Il valore di <span class="math notranslate nohighlight">\( \tau \)</span> rappresenta il valore atteso dell’indicatore quando il fattore latente a cui è associato è zero. La relazione generale per un indicatore <span class="math notranslate nohighlight">\( y \)</span> in un modello SEM è data dalla formula:</p>
+<div class="math notranslate nohighlight">
+\[ 
+y = \tau + \lambda \cdot \text{fattore latente} + \varepsilon, 
+\]</div>
+<p>dove:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( y \)</span> è il punteggio osservato dell’indicatore.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \lambda \)</span> rappresenta il carico fattoriale, che indica quanto fortemente l’indicatore è influenzato dal fattore latente.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \tau \)</span> è l’intercetta, cioè la media stimata dell’indicatore.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \varepsilon \)</span> è l’errore di misura associato all’indicatore.</p></li>
+</ul>
+</section>
+<section id="struttura-delle-medie-nel-modello-cfa">
+<h3><span class="section-number">40.1.2. </span>Struttura delle Medie nel Modello CFA<a class="headerlink" href="#struttura-delle-medie-nel-modello-cfa" title="Link to this heading">#</a></h3>
+<p>Nel contesto di un modello CFA, la struttura delle medie è descritta dalla formula:</p>
+<div class="math notranslate nohighlight">
+\[ \text{media(variabile latente)} = \Lambda \mu_{\text{lat}} + \tau, \]</div>
+<p>qui:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( \Lambda \)</span> è la matrice dei carichi fattoriali.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \mu_{\text{lat}} \)</span> è il vettore che rappresenta le medie dei costrutti latenti.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \tau \)</span> è il vettore delle intercette degli indicatori.</p></li>
+</ul>
+</section>
+<section id="utilizzo-delle-medie-nel-software-lavaan">
+<h3><span class="section-number">40.1.3. </span>Utilizzo delle Medie nel Software <code class="docutils literal notranslate"><span class="pre">lavaan</span></code><a class="headerlink" href="#utilizzo-delle-medie-nel-software-lavaan" title="Link to this heading">#</a></h3>
+<p>Nel software <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>, utilizzato per l’analisi SEM, è possibile stimare le intercette inserendo l’opzione <code class="docutils literal notranslate"><span class="pre">meanstructure</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> nella sintassi del modello. Questo comando permette di includere automaticamente una costante “1” in tutte le equazioni del modello, facilitando così il calcolo delle intercette per le variabili endogene. È necessario fornire i dati originali o una matrice di covarianza, insieme alle medie di tutte le variabili interessate.</p>
+</section>
+</section>
+<section id="un-esempio-pratico">
+<h2><span class="section-number">40.2. </span>Un Esempio Pratico<a class="headerlink" href="#un-esempio-pratico" title="Link to this heading">#</a></h2>
+<p>Utilizziamo il dataset <code class="docutils literal notranslate"><span class="pre">HolzingerSwineford1939</span></code> per costruire un modello di misurazione con tre costrutti latenti (<code class="docutils literal notranslate"><span class="pre">visual</span></code>, <code class="docutils literal notranslate"><span class="pre">textual</span></code>, <code class="docutils literal notranslate"><span class="pre">speed</span></code>), ciascuno definito da tre indicatori (<code class="docutils literal notranslate"><span class="pre">x1</span></code>, <code class="docutils literal notranslate"><span class="pre">x2</span></code>, <code class="docutils literal notranslate"><span class="pre">x3</span></code>, ecc.).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">data</span><span class="p">(</span><span class="n">HolzingerSwineford1939</span><span class="p">)</span>
+<span class="nf">glimpse</span><span class="p">(</span><span class="n">HolzingerSwineford1939</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rows: 301
+Columns: 15
+$ id     &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 19, …
+$ sex    &lt;int&gt; 1, 2, 2, 1, 2, 2, 1, 2, 2, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2, 2, 1, …
+$ ageyr  &lt;int&gt; 13, 13, 13, 13, 12, 14, 12, 12, 13, 12, 12, 12, 12, 12, 12, 12,…
+$ agemo  &lt;int&gt; 1, 7, 1, 2, 2, 1, 1, 2, 0, 5, 2, 11, 7, 8, 6, 1, 11, 5, 8, 3, 1…
+$ school &lt;fct&gt; Pasteur, Pasteur, Pasteur, Pasteur, Pasteur, Pasteur, Pasteur, …
+$ grade  &lt;int&gt; 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, …
+$ x1     &lt;dbl&gt; 3.333333, 5.333333, 4.500000, 5.333333, 4.833333, 5.333333, 2.8…
+$ x2     &lt;dbl&gt; 7.75, 5.25, 5.25, 7.75, 4.75, 5.00, 6.00, 6.25, 5.75, 5.25, 5.7…
+$ x3     &lt;dbl&gt; 0.375, 2.125, 1.875, 3.000, 0.875, 2.250, 1.000, 1.875, 1.500, …
+$ x4     &lt;dbl&gt; 2.333333, 1.666667, 1.000000, 2.666667, 2.666667, 1.000000, 3.3…
+$ x5     &lt;dbl&gt; 5.75, 3.00, 1.75, 4.50, 4.00, 3.00, 6.00, 4.25, 5.75, 5.00, 3.5…
+$ x6     &lt;dbl&gt; 1.2857143, 1.2857143, 0.4285714, 2.4285714, 2.5714286, 0.857142…
+$ x7     &lt;dbl&gt; 3.391304, 3.782609, 3.260870, 3.000000, 3.695652, 4.347826, 4.6…
+$ x8     &lt;dbl&gt; 5.75, 6.25, 3.90, 5.30, 6.30, 6.65, 6.20, 5.15, 4.65, 4.55, 5.7…
+$ x9     &lt;dbl&gt; 6.361111, 7.916667, 4.416667, 4.861111, 5.916667, 7.500000, 4.8…
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">hs_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">    visual =~ NA*x1 + x2 + x3</span>
+<span class="s">    textual =~ NA*x4 + x5 + x6</span>
+<span class="s">    speed =~ NA*x7 + x8 + x9</span>
+
+<span class="s">    visual ~~ 1*visual</span>
+<span class="s">    textual ~~ 1 * textual</span>
+<span class="s">    speed ~~ 1 * speed</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Utilizziamo l’argomento <code class="docutils literal notranslate"><span class="pre">meanstructure</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> per richiedere la stima delle intercette degli indicatori <span class="math notranslate nohighlight">\( \tau \)</span>.</p>
+<ul class="simple">
+<li><p>Ogni costrutto latente è definito in relazione ai suoi indicatori, dove le intercette degli indicatori (<span class="math notranslate nohighlight">\(\tau\)</span>) non sono fissate a priori, ma stimate dal modello.</p></li>
+<li><p>Le varianze dei costrutti latenti sono fissate a 1, mentre le loro medie sono fissate a 0 (come evidenziato dall’output, righe 34-36).</p></li>
+<li><p>Nel caso presente, poiché le medie dei costrutti latenti sono fissate a zero, la media predetta per gli indicatori corrisponde alle intercette stimate.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cfa</span><span class="p">(</span><span class="n">hs_model</span><span class="p">,</span>
+<span class="w">    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HolzingerSwineford1939</span><span class="p">,</span>
+<span class="w">    </span><span class="n">meanstructure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">parameterEstimates</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       lhs op     rhs   est    se      z pvalue ci.lower ci.upper
+1   visual =~      x1 0.900 0.081 11.128      0    0.741    1.058
+2   visual =~      x2 0.498 0.077  6.429      0    0.346    0.650
+3   visual =~      x3 0.656 0.074  8.817      0    0.510    0.802
+4  textual =~      x4 0.990 0.057 17.474      0    0.879    1.101
+5  textual =~      x5 1.102 0.063 17.576      0    0.979    1.224
+6  textual =~      x6 0.917 0.054 17.082      0    0.811    1.022
+7    speed =~      x7 0.619 0.070  8.903      0    0.483    0.756
+8    speed =~      x8 0.731 0.066 11.090      0    0.602    0.860
+9    speed =~      x9 0.670 0.065 10.305      0    0.543    0.797
+10  visual ~~  visual 1.000 0.000     NA     NA    1.000    1.000
+11 textual ~~ textual 1.000 0.000     NA     NA    1.000    1.000
+12   speed ~~   speed 1.000 0.000     NA     NA    1.000    1.000
+13      x1 ~~      x1 0.549 0.114  4.833      0    0.326    0.772
+14      x2 ~~      x2 1.134 0.102 11.146      0    0.934    1.333
+15      x3 ~~      x3 0.844 0.091  9.317      0    0.667    1.022
+16      x4 ~~      x4 0.371 0.048  7.779      0    0.278    0.465
+17      x5 ~~      x5 0.446 0.058  7.642      0    0.332    0.561
+18      x6 ~~      x6 0.356 0.043  8.277      0    0.272    0.441
+19      x7 ~~      x7 0.799 0.081  9.823      0    0.640    0.959
+20      x8 ~~      x8 0.488 0.074  6.573      0    0.342    0.633
+21      x9 ~~      x9 0.566 0.071  8.003      0    0.427    0.705
+22  visual ~~ textual 0.459 0.064  7.189      0    0.334    0.584
+23  visual ~~   speed 0.471 0.073  6.461      0    0.328    0.613
+24 textual ~~   speed 0.283 0.069  4.117      0    0.148    0.418
+25      x1 ~1         4.936 0.067 73.473      0    4.804    5.067
+26      x2 ~1         6.088 0.068 89.855      0    5.955    6.221
+27      x3 ~1         2.250 0.065 34.579      0    2.123    2.378
+28      x4 ~1         3.061 0.067 45.694      0    2.930    3.192
+29      x5 ~1         4.341 0.074 58.452      0    4.195    4.486
+30      x6 ~1         2.186 0.063 34.667      0    2.062    2.309
+31      x7 ~1         4.186 0.063 66.766      0    4.063    4.309
+32      x8 ~1         5.527 0.058 94.854      0    5.413    5.641
+33      x9 ~1         5.374 0.058 92.546      0    5.260    5.488
+34  visual ~1         0.000 0.000     NA     NA    0.000    0.000
+35 textual ~1         0.000 0.000     NA     NA    0.000    0.000
+36   speed ~1         0.000 0.000     NA     NA    0.000    0.000
+</pre></div>
+</div>
+</div>
+</div>
+<section id="interpretazione-delle-medie-stimate">
+<h3><span class="section-number">40.2.1. </span>Interpretazione delle Medie Stimate<a class="headerlink" href="#interpretazione-delle-medie-stimate" title="Link to this heading">#</a></h3>
+<p>La media dei punteggi osservati per gli indicatori (<code class="docutils literal notranslate"><span class="pre">x1</span></code>, <code class="docutils literal notranslate"><span class="pre">x2</span></code>, <code class="docutils literal notranslate"><span class="pre">x3</span></code>, ecc.) viene calcolata attraverso le intercette stimate dal modello. È fondamentale distinguere tra la media empirica, calcolata direttamente dai dati, e la media predetta dal modello. La media predetta degli indicatori in un modello dove la media dei costrutti latenti è fissata a zero è influenzata esclusivamente dalle loro intercette.</p>
+</section>
+<section id="calcolo-delle-medie-osservate-e-predette-in-r">
+<h3><span class="section-number">40.2.2. </span>Calcolo delle Medie Osservate e Predette in R<a class="headerlink" href="#calcolo-delle-medie-osservate-e-predette-in-r" title="Link to this heading">#</a></h3>
+<p>Consideriamo gli indicatori <code class="docutils literal notranslate"><span class="pre">x1</span></code>, <code class="docutils literal notranslate"><span class="pre">x2</span></code>, <code class="docutils literal notranslate"><span class="pre">x3</span></code>. Per calcolare la media osservata di questi indicatori, usiamo le loro intercette stimate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">intercepts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">params</span><span class="o">$</span><span class="n">est</span><span class="p">[</span><span class="n">params</span><span class="o">$</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;~1&quot;</span><span class="p">][</span><span class="m">1</span><span class="o">:</span><span class="m">9</span><span class="p">]</span><span class="w"> </span><span class="c1"># Intercette degli indicatori (τ)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Questo ci fornisce le intercette degli indicatori:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">intercepts</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] 4.935770 6.088040 2.250415 3.060908 4.340532 2.185572 4.185902 5.527076
+[9] 5.374123
+</pre></div>
+</div>
+</div>
+</div>
+<p>Per ottenere la media osservata dei punteggi di <code class="docutils literal notranslate"><span class="pre">x1</span></code>, <code class="docutils literal notranslate"><span class="pre">x2</span></code>, <code class="docutils literal notranslate"><span class="pre">x3</span></code>, calcoliamo la media aritmetica delle loro intercette:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="n">mean_observed_scores</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">intercepts</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">])</span>
+<span class="w"> </span><span class="nf">print</span><span class="p">(</span><span class="n">mean_observed_scores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] 4.424742
+</pre></div>
+</div>
+</div>
+</div>
+<p>Questo valore rappresenta la media osservata calcolata come la media aritmetica delle intercette di <code class="docutils literal notranslate"><span class="pre">x1</span></code>, <code class="docutils literal notranslate"><span class="pre">x2</span></code>, <code class="docutils literal notranslate"><span class="pre">x3</span></code>. Nel contesto del nostro modello CFA, dove la media dei costrutti latenti è fissata a zero, la media predetta degli indicatori corrisponde alla media osservata:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">mean</span><span class="p">((</span><span class="n">HolzingerSwineford1939</span><span class="o">$</span><span class="n">x1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">HolzingerSwineford1939</span><span class="o">$</span><span class="n">x2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">HolzingerSwineford1939</span><span class="o">$</span><span class="n">x3</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">4.42474160196013</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mean_predicted_scores</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mean_observed_scores</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mean_predicted_scores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] 4.424742
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="medie-di-costrutti-latenti-non-zero">
+<h3><span class="section-number">40.2.3. </span>Medie di Costrutti Latenti Non Zero<a class="headerlink" href="#medie-di-costrutti-latenti-non-zero" title="Link to this heading">#</a></h3>
+<p>In situazioni in cui le medie dei costrutti latenti non sono fissate a zero, la media predetta degli indicatori è influenzata sia dalle intercette sia dai carichi fattoriali. Per esempio, se la media del costrutto latente fosse diversa da zero, l’equazione per calcolare la media di un indicatore (come <code class="docutils literal notranslate"><span class="pre">x1</span></code>) includerebbe il contributo del costrutto latente:</p>
+<div class="math notranslate nohighlight">
+\[ 
+\text{media predetta}(x1) = \mu_{\text{latente}} \cdot \lambda_{x1} + \tau_{x1}, 
+\]</div>
+<p>dove:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mu_{\text{latente}}\)</span> è la media stimata del costrutto latente.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda_{x1}\)</span> è il carico dell’indicatore <code class="docutils literal notranslate"><span class="pre">x1</span></code>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\tau_{x1}\)</span> è l’intercetta stimata dell’indicatore <code class="docutils literal notranslate"><span class="pre">x1</span></code>.</p></li>
+</ul>
+<p>Esaminiamo un esempio nel quale le medie dei fattori latenti non sono fissate a zero. Per ottenere questo risultato è necessario identificare il modello introducendo due vincoli:</p>
+<ul class="simple">
+<li><p>l’intercetta degli indicatori è fissata a zero;</p></li>
+<li><p>una delle intercette delle variabili latenti è fissata a zero.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">hs_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">    visual =~ NA*x1 + x2 + x3</span>
+<span class="s">    textual =~ NA*x4 + x5 + x6</span>
+<span class="s">    speed =~ NA*x7 + x8 + x9</span>
+
+<span class="s">    visual ~~ 1*visual</span>
+<span class="s">    textual ~~ 1*textual</span>
+<span class="s">    speed ~~ 1*speed</span>
+
+<span class="s">    x1 ~ 0*1 # Setting the intercepts of the manifest</span>
+<span class="s">    x4 ~ 0*1 # variables to zero</span>
+<span class="s">    x7 ~ 0*1</span>
+
+<span class="s">    visual ~ 0*1 # Setting the mean of visual to zero</span>
+<span class="s">    textual ~ 1 # freely estimating the mean of textual</span>
+<span class="s">    speed ~ 1 # freely estimating the mean of speed</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit del modello con la struttura delle medie</span>
+<span class="n">fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cfa</span><span class="p">(</span><span class="n">hs_model</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HolzingerSwineford1939</span><span class="p">,</span><span class="w"> </span><span class="n">meanstructure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">parameterEstimates</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       lhs op     rhs    est    se       z pvalue ci.lower ci.upper
+1   visual =~      x1  4.983 0.212  23.538  0.000    4.568    5.398
+2   visual =~      x2  1.702 0.093  18.248  0.000    1.519    1.885
+3   visual =~      x3  2.243 0.106  21.099  0.000    2.035    2.451
+4  textual =~      x4  1.783 0.081  21.945  0.000    1.624    1.942
+5  textual =~      x5  1.985 0.090  22.007  0.000    1.808    2.162
+6  textual =~      x6  1.652 0.076  21.702  0.000    1.502    1.801
+7    speed =~      x7  1.136 0.072  15.882  0.000    0.996    1.277
+8    speed =~      x8  1.341 0.070  19.127  0.000    1.204    1.478
+9    speed =~      x9  1.229 0.068  17.979  0.000    1.095    1.363
+10  visual ~~  visual  1.000 0.000      NA     NA    1.000    1.000
+11 textual ~~ textual  1.000 0.000      NA     NA    1.000    1.000
+12   speed ~~   speed  1.000 0.000      NA     NA    1.000    1.000
+13      x1 ~1          0.000 0.000      NA     NA    0.000    0.000
+14      x4 ~1          0.000 0.000      NA     NA    0.000    0.000
+15      x7 ~1          0.000 0.000      NA     NA    0.000    0.000
+16  visual ~1          0.000 0.000      NA     NA    0.000    0.000
+17 textual ~1          0.885 0.054  16.405  0.000    0.779    0.990
+18   speed ~1          2.845 0.187  15.207  0.000    2.478    3.211
+19      x1 ~~      x1  0.890 0.257   3.457  0.001    0.385    1.394
+20      x2 ~~      x2  1.134 0.100  11.368  0.000    0.938    1.329
+21      x3 ~~      x3  0.844 0.087   9.719  0.000    0.674    1.015
+22      x4 ~~      x4  0.371 0.045   8.239  0.000    0.283    0.459
+23      x5 ~~      x5  0.446 0.055   8.116  0.000    0.338    0.554
+24      x6 ~~      x6  0.356 0.041   8.679  0.000    0.276    0.437
+25      x7 ~~      x7  0.799 0.077  10.411  0.000    0.649    0.950
+26      x8 ~~      x8  0.488 0.062   7.915  0.000    0.367    0.608
+27      x9 ~~      x9  0.566 0.062   9.132  0.000    0.445    0.688
+28  visual ~~ textual  0.870 0.016  53.410  0.000    0.838    0.902
+29  visual ~~   speed  0.877 0.019  47.025  0.000    0.840    0.913
+30 textual ~~   speed  0.783 0.027  28.490  0.000    0.729    0.837
+31      x2 ~1          4.460 0.064  69.660  0.000    4.335    4.586
+32      x3 ~1          0.106 0.058   1.814  0.070   -0.008    0.220
+33      x5 ~1          0.934 0.075  12.485  0.000    0.787    1.080
+34      x6 ~1         -0.649 0.064 -10.085  0.000   -0.775   -0.523
+35      x8 ~1          0.588 0.236   2.496  0.013    0.126    1.050
+36      x9 ~1          0.847 0.226   3.742  0.000    0.403    1.291
+</pre></div>
+</div>
+</div>
+</div>
+<p>In sintesi, la media predetta degli indicatori in un modello SEM può variare a seconda della configurazione delle medie dei costrutti latenti e del contributo dei carichi fattoriali.</p>
+</section>
+</section>
+<section id="session-info">
+<h2><span class="section-number">40.3. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.3.3 (2024-02-29)
+Platform: x86_64-apple-darwin20 (64-bit)
+Running under: macOS Sonoma 14.3.1
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
+
+locale:
+[1] en_US.UTF-8/UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: Europe/Rome
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] ggokabeito_0.1.0   viridis_0.6.5      viridisLite_0.4.2  ggpubr_0.6.0      
+ [5] ggExtra_0.10.1     bayesplot_1.11.1   gridExtra_2.3      patchwork_1.2.0   
+ [9] semTools_0.5-6.920 semPlot_1.1.6      lavaan_0.6-17      psych_2.4.1       
+[13] scales_1.3.0       markdown_1.12      knitr_1.45         lubridate_1.9.3   
+[17] forcats_1.0.0      stringr_1.5.1      dplyr_1.1.4        purrr_1.0.2       
+[21] readr_2.1.5        tidyr_1.3.1        tibble_3.2.1       ggplot2_3.5.0     
+[25] tidyverse_2.0.0    here_1.0.1        
+
+loaded via a namespace (and not attached):
+  [1] rstudioapi_0.15.0  jsonlite_1.8.8     magrittr_2.0.3    
+  [4] TH.data_1.1-2      estimability_1.5   nloptr_2.0.3      
+  [7] rmarkdown_2.26     vctrs_0.6.5        minqa_1.2.6       
+ [10] base64enc_0.1-3    rstatix_0.7.2      htmltools_0.5.7   
+ [13] broom_1.0.5        Formula_1.2-5      htmlwidgets_1.6.4 
+ [16] plyr_1.8.9         sandwich_3.1-0     emmeans_1.10.0    
+ [19] zoo_1.8-12         uuid_1.2-0         igraph_2.0.2      
+ [22] mime_0.12          lifecycle_1.0.4    pkgconfig_2.0.3   
+ [25] Matrix_1.6-5       R6_2.5.1           fastmap_1.1.1     
+ [28] shiny_1.8.0        digest_0.6.34      OpenMx_2.21.11    
+ [31] fdrtool_1.2.17     colorspace_2.1-0   rprojroot_2.0.4   
+ [34] Hmisc_5.1-1        fansi_1.0.6        timechange_0.3.0  
+ [37] abind_1.4-5        compiler_4.3.3     withr_3.0.0       
+ [40] glasso_1.11        htmlTable_2.4.2    backports_1.4.1   
+ [43] carData_3.0-5      ggsignif_0.6.4     MASS_7.3-60.0.1   
+ [46] corpcor_1.6.10     gtools_3.9.5       tools_4.3.3       
+ [49] pbivnorm_0.6.0     foreign_0.8-86     zip_2.3.1         
+ [52] httpuv_1.6.14      nnet_7.3-19        glue_1.7.0        
+ [55] quadprog_1.5-8     nlme_3.1-164       promises_1.2.1    
+ [58] lisrelToR_0.3      grid_4.3.3         pbdZMQ_0.3-11     
+ [61] checkmate_2.3.1    cluster_2.1.6      reshape2_1.4.4    
+ [64] generics_0.1.3     gtable_0.3.4       tzdb_0.4.0        
+ [67] data.table_1.15.2  hms_1.1.3          car_3.1-2         
+ [70] utf8_1.2.4         sem_3.1-15         pillar_1.9.0      
+ [73] IRdisplay_1.1      rockchalk_1.8.157  later_1.3.2       
+ [76] splines_4.3.3      lattice_0.22-5     survival_3.5-8    
+ [79] kutils_1.73        tidyselect_1.2.0   miniUI_0.1.1.1    
+ [82] pbapply_1.7-2      stats4_4.3.3       xfun_0.42         
+ [85] qgraph_1.9.8       arm_1.13-1         stringi_1.8.3     
+ [88] boot_1.3-29        evaluate_0.23      codetools_0.2-19  
+ [91] mi_1.1             cli_3.6.2          RcppParallel_5.1.7
+ [94] IRkernel_1.3.2     rpart_4.1.23       xtable_1.8-4      
+ [97] repr_1.1.6         munsell_0.5.0      Rcpp_1.0.12       
+[100] coda_0.19-4.1      png_0.1-8          XML_3.99-0.16.1   
+[103] parallel_4.3.3     ellipsis_0.3.2     jpeg_0.1-10       
+[106] lme4_1.1-35.1      mvtnorm_1.2-4      openxlsx_4.2.5.2  
+[109] crayon_1.5.2       rlang_1.1.3        multcomp_1.4-25   
+[112] mnormt_2.1.1      
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_cfa"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="E_01.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">39. </span>✏️ Esercizi</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_cat_data.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">41. </span>Dati non gaussiani e categoriali</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#l-impiego-delle-medie-nei-modelli-di-equazioni-strutturali-sem">40.1. L’impiego delle Medie nei Modelli di Equazioni Strutturali (SEM)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-delle-intercette-nei-modelli-sem">40.1.1. Interpretazione delle Intercette nei Modelli SEM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#struttura-delle-medie-nel-modello-cfa">40.1.2. Struttura delle Medie nel Modello CFA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizzo-delle-medie-nel-software-lavaan">40.1.3. Utilizzo delle Medie nel Software <code class="docutils literal notranslate"><span class="pre">lavaan</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-pratico">40.2. Un Esempio Pratico</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-delle-medie-stimate">40.2.1. Interpretazione delle Medie Stimate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calcolo-delle-medie-osservate-e-predette-in-r">40.2.2. Calcolo delle Medie Osservate e Predette in R</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#medie-di-costrutti-latenti-non-zero">40.2.3. Medie di Costrutti Latenti Non Zero</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">40.3. Session Info</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/pymc_env/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/opt/anaconda3/envs/pymc_env/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/pymc_env/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/pymc_env/lib/python3.12/asyncio/base_events.py", line 685, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/pymc_env/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/opt/anaconda3/envs/pymc_env/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/anaconda3/envs/pymc_env/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+multilevelTools::iccMixed(
+  dv = "y1",
+  id = c("subject"),
+  data = d
+) |>
+  print()
+------------------
+
+
+Error in (function (cond) : errore durante la valutazione dell'argomento 'x' nella selezione di un metodo per la funzione 'print': non c'è alcun pacchetto chiamato ‘multilevelTools’
+Traceback:
+
+1. print(multilevelTools::iccMixed(dv = "y1", id = c("subject"), 
+ .     data = d))
+2. loadNamespace(x)
+3. withRestarts(stop(cond), retry_loadNamespace = function() NULL)
+4. withOneRestart(expr, restarts[[1L]])
+5. doWithOneRestart(return(expr), restart)
+6. stop(cond)
+7. (function (cond) 
+ . .Internal(C_tryCatchHelper(addr, 1L, cond)))(structure(list(message = "non c'è alcun pacchetto chiamato ‘multilevelTools’", 
+ .     call = loadNamespace(x), package = "multilevelTools", lib.loc = NULL), class = c("packageNotFoundError", 
+ . "error", "condition")))
+

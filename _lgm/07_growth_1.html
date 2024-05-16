@@ -1,0 +1,2011 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>77. Curve di crescita latente &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css?v=ffeaf963" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6ba04eab" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VMXNE4BCDL"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_lgm/07_growth_1';</script>
+    <script src="../_static/custom.js?v=3f5092eb"></script>
+    <link rel="canonical" href="https://ccaudek.github.io/psy_test/_lgm/07_growth_1.html" />
+    <link rel="icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="78. Il tempo su una metrica continua" href="08_growth_cont.html" />
+    <link rel="prev" title="76. LGM e modelli misti" href="06_lgm_mixed.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Scaling psicometrico</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/01_expval_var.html">1. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/02_joint_prob.html">2. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/03_measurement.html">3. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/04_norms.html">4. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/05_regression.html">5. L’analisi di regressione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E1_likert.html">6. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E2_optimal_scoring.html">7. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E3_thurstone.html">8. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/01_ctt_1.html">9. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/02_ctt_2.html">10. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/03_ctt_3.html">11. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/04_err_std_mis.html">12. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/05_err_std_stima.html">13. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/06_applications_ctt.html">14. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E1_ctt.html">15. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E2_item_analyses.html">16. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/01_multilevel_1.html">17. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/02_interrater_reliability.html">18. L’affidabilità tra giudici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/E1_irr.html">19. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/01_gtheory.html">20. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/01_validity.html">21. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/02_relations_to_other_vars.html">22. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sviluppo degli item</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_items/01_item_development.html">23. Lo sviluppo degli item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_items/02_item_analysis.html">24. Analisi degli item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">25. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale esplorativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/01_intro_fa.html">26. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/02_analisi_fattoriale_1.html">27. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/03_analisi_fattoriale_2.html">28. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/04_analisi_fattoriale_3.html">29. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/05_factor_scores.html">30. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/06_constraints_on_parms.html">31. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/07_total_score.html">32. Punteggio totale e modello fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione strumenti</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">33. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">34. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">35. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">36. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">37. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/01_cfa.html">38. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/E_01.html">39. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/02_meanstructure.html">40. La struttura delle medie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/03_cat_data.html">41. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/04_mmm.html">42. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/05_bifactor.html">43. Modello bifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/06_efa_lavaan.html">44. Exploratory Structural Equation Modeling (ESEM)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/01_sem_intro.html">45. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/02_data_preparation.html">46. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/E_01.html">47. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/03_gof.html">48. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/04_mod_comp.html">49. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/05_cfa_mod_comp.html">50. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/06_refine_solution.html">51. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/07_group_invariance.html">52. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/08_multilevel_sem.html">53. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/09_structural_regr.html">54. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/10_missing_data.html">55. Dati mancanti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/11_small_samples.html">56. Modellizzazione SEM in Piccoli Campioni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/12_temp_reliability.html">57. Affidabilità longitudinale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_irt/01_logistic_regr.html">58. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/E_01.html">59. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/02_rasch_model.html">60. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/03_assumptions.html">61. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/04_estimation.html">62. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/05_1pl_2pl_3pl.html">63. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/06_implementation.html">64. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/07_polytomous_graded.html">65. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mokken Scales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/01_core_issues.html">66. Analisi della Scala di Mokken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/02_tutorial.html">67. Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/03_applications.html">68. Applicazione Pratica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/01_development.html">69. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/02_tutorial.html">70. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_lgm_intro.html">71. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_lgm_prelims.html">72. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_time_effects.html">73. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_invariance.html">74. Invarianza Fattoriale Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_intro_panel.html">75. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_lgm_mixed.html">76. LGM e modelli misti</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">77. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_growth_cont.html">78. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_time_inv_cov.html">79. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_growth_groups.html">80. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_bivariate_tvc_models.html">81. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_inv_measurement.html">82. Invarianza di Misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_latent_change.html">83. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="750_latent_change.html">84. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="751_biv_change.html">85. Modello LCS bivariato</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">86. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a1_intro_r.html">87. Linguaggio R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a2_sums.html">88. Simbolo di somma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a3_calculus.html">89. Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a4_linear_alg.html">90. Elementi di algebra lineare</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_lgm/07_growth_1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Curve di crescita latente</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#una-applicazione-concreta">77.1. Una applicazione concreta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-assenza-di-crescita">77.2. Modello di assenza di crescita</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-crescita-lineare">77.3. Modello di crescita lineare</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sintassi-alternativa">77.3.1. Sintassi alternativa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-dei-parametri-del-modello">77.3.2. Interpretazione dei Parametri del Modello</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confronto-con-il-modello-a-effetti-misti">77.4. Confronto con il Modello a Effetti Misti</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-crescita-non-lineare">77.5. Modello di Crescita Non Lineare</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#riflessioni-finali-sul-modello-di-crescita-lineare">77.6. Riflessioni Finali sul Modello di Crescita Lineare</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="curve-di-crescita-latente">
+<span id="lgm1-notebook"></span><h1><span class="section-number">77. </span>Curve di crescita latente<a class="headerlink" href="#curve-di-crescita-latente" title="Link to this heading">#</a></h1>
+<p>Nel capitolo precedente, abbiamo esplorato come i modelli di Crescita Latente (LGM) possano essere correlati e confrontati con i modelli lineari ad effetti misti attraverso l’uso di dati simulati. In particolare, abbiamo osservato come sia possibile strutturare un modello LGM che incorpori un fattore latente per la variazione delle intercette individuali, il quale cattura le dinamiche del cambiamento delle medie nel tempo, e un secondo fattore latente che riflette le variazioni individuali nelle pendenze delle rette di regressione.</p>
+<p>Abbiamo esaminato in dettaglio il processo di definizione di questi fattori latenti, mettendo in atto una serie di vincoli sugli indicatori che identificano le variabili latenti. In particolare, abbiamo visto come l’applicazione dei vincoli 0, 1, 2, 3 alle saturazioni fattoriali per il fattore “pendenza” determini una relazione lineare tra la media del costrutto e il tempo. Questo approccio è particolarmente efficace quando le misurazioni del costrutto sono state effettuate a intervalli regolari.</p>
+<p>In questo capitolo, ci dedicheremo all’approfondimento di questo argomento, spostando la nostra attenzione dall’ambito teorico e simulato all’analisi di un set di dati reali. Questo passaggio ci fornirà una visione più chiara e concreta di come questi modelli possano essere impiegati nell’analisi di dati longitudinali reali, con tutti le loro sfaccettature e sfide.</p>
+<section id="una-applicazione-concreta">
+<h2><span class="section-number">77.1. </span>Una applicazione concreta<a class="headerlink" href="#una-applicazione-concreta" title="Link to this heading">#</a></h2>
+<p>Esaminiamo l’adattamento di un modello LGM ad un campione di dati reali. In questo tutorial, considereremo il cambiamento nel rendimento in matematica dei bambini durante la scuola elementare e media utilizzando il set di dati NLSY-CYA <span id="id1">[<a class="reference internal" href="../z_biblio.html#id27" title="Kevin J Grimm, Nilam Ram, and Ryne Estabrook. Growth modeling: Structural equation and multilevel modeling approaches. Guilford Publications, 2016.">GRE16</a>]</span>. Iniziamo a leggere i dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#set filepath for data file</span>
+<span class="n">filepath</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;https://raw.githubusercontent.com/LRI-2/Data/main/GrowthModeling/nlsy_math_wide_R.dat&quot;</span>
+<span class="c1"># read in the text data file using the url() function</span>
+<span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.table</span><span class="p">(</span>
+<span class="w">  </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">url</span><span class="p">(</span><span class="n">filepath</span><span class="p">),</span>
+<span class="w">  </span><span class="n">na.strings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;.&quot;</span>
+<span class="p">)</span><span class="w"> </span><span class="c1"># indicates the missing data designator</span>
+<span class="c1"># copy data with new name</span>
+<span class="n">nlsy_math_wide</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dat</span>
+
+<span class="c1"># Give the variable names</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">nlsy_math_wide</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">  </span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;female&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lb_wght&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti_k1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;math2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;age2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;age3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;age4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;age5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;age6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;age7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;age8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;men2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;men3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;men4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;men5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;men6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;men7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;men8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;spring2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;anti2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti8&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># view the first few observations (and columns) in the data set</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">nlsy_math_wide</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">11</span><span class="p">],</span><span class="w"> </span><span class="m">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 10 × 11</caption>
+<thead>
+	<tr><th></th><th scope=col>id</th><th scope=col>female</th><th scope=col>lb_wght</th><th scope=col>anti_k1</th><th scope=col>math2</th><th scope=col>math3</th><th scope=col>math4</th><th scope=col>math5</th><th scope=col>math6</th><th scope=col>math7</th><th scope=col>math8</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td> 201</td><td>1</td><td>0</td><td>0</td><td>NA</td><td>38</td><td>NA</td><td>55</td><td>NA</td><td>NA</td><td>NA</td></tr>
+	<tr><th scope=row>2</th><td> 303</td><td>1</td><td>0</td><td>1</td><td>26</td><td>NA</td><td>NA</td><td>33</td><td>NA</td><td>NA</td><td>NA</td></tr>
+	<tr><th scope=row>3</th><td>2702</td><td>0</td><td>0</td><td>0</td><td>56</td><td>NA</td><td>58</td><td>NA</td><td>NA</td><td>NA</td><td>80</td></tr>
+	<tr><th scope=row>4</th><td>4303</td><td>1</td><td>0</td><td>0</td><td>NA</td><td>41</td><td>58</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>
+	<tr><th scope=row>5</th><td>5002</td><td>0</td><td>0</td><td>4</td><td>NA</td><td>NA</td><td>46</td><td>NA</td><td>54</td><td>NA</td><td>66</td></tr>
+	<tr><th scope=row>6</th><td>5005</td><td>1</td><td>0</td><td>0</td><td>35</td><td>NA</td><td>50</td><td>NA</td><td>60</td><td>NA</td><td>59</td></tr>
+	<tr><th scope=row>7</th><td>5701</td><td>0</td><td>0</td><td>2</td><td>NA</td><td>62</td><td>61</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>
+	<tr><th scope=row>8</th><td>6102</td><td>0</td><td>0</td><td>0</td><td>NA</td><td>NA</td><td>55</td><td>67</td><td>NA</td><td>81</td><td>NA</td></tr>
+	<tr><th scope=row>9</th><td>6801</td><td>1</td><td>0</td><td>0</td><td>NA</td><td>54</td><td>NA</td><td>62</td><td>NA</td><td>66</td><td>NA</td></tr>
+	<tr><th scope=row>10</th><td>6802</td><td>0</td><td>0</td><td>0</td><td>NA</td><td>55</td><td>NA</td><td>66</td><td>NA</td><td>68</td><td>NA</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Il nostro interesse specifico riguarda il cambiamento relativo alle misure ripetute di matematica, da <code class="docutils literal notranslate"><span class="pre">math2</span></code> a <code class="docutils literal notranslate"><span class="pre">math8</span></code>. Selezioniamo dunque le variabili di interesse.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nlsy_math_sub</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nlsy_math_wide</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="n">dplyr</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math8&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Trasformiamo i dati in formato <em>long</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nlsy_math_long</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">reshape</span><span class="p">(</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_sub</span><span class="p">,</span>
+<span class="w">  </span><span class="n">timevar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;grade&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">idvar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">varying</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;math2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math4&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;math5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math8&quot;</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="w">  </span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;long&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ordiniamo i dati in base alle variabili <code class="docutils literal notranslate"><span class="pre">id</span></code> e <code class="docutils literal notranslate"><span class="pre">grade</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nlsy_math_long</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nlsy_math_long</span><span class="p">[</span><span class="nf">order</span><span class="p">(</span><span class="n">nlsy_math_long</span><span class="o">$</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">nlsy_math_long</span><span class="o">$</span><span class="n">grade</span><span class="p">),</span><span class="w"> </span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Rimuoviamo gli NA dalla variabile <code class="docutils literal notranslate"><span class="pre">math</span></code> per potere generare il grafico con le traiettorie individuali di sviluppo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nlsy_math_long</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nlsy_math_long</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">nlsy_math_long</span><span class="o">$</span><span class="n">math</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">),</span><span class="w"> </span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo i dati grezzi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nlsy_math_long</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grade</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">math</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span>
+<span class="w">    </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.2</span><span class="p">,</span>
+<span class="w">    </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">8</span><span class="p">,</span>
+<span class="w">    </span><span class="c1"># to add some random noise for plotting purposes</span>
+<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;jitter&quot;</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;PAT Mathematics as a function of Grade&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/75b9646b3fcf43cee6cf99149ae927b80a6153de647c52bb4e58db27223b7020.png"><img alt="../_images/75b9646b3fcf43cee6cf99149ae927b80a6153de647c52bb4e58db27223b7020.png" src="../_images/75b9646b3fcf43cee6cf99149ae927b80a6153de647c52bb4e58db27223b7020.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Aggiungiamo al grafico le retta dei minimi quadrati calcolata su tutti i dati (ignorando il ragruppamento dei dati in funzione dei partecipanti).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nlsy_math_long</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grade</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">math</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span>
+<span class="w">        </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.2</span><span class="p">,</span>
+<span class="w">        </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">8</span><span class="p">,</span>
+<span class="w">        </span><span class="c1"># to add some random noise for plotting purposes</span>
+<span class="w">        </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;jitter&quot;</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_smooth</span><span class="p">(</span>
+<span class="w">        </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lm</span><span class="p">,</span>
+<span class="w">        </span><span class="n">se</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span>
+<span class="w">        </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span>
+<span class="w">        </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">8</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># to add regression line</span>
+<span class="w">    </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;PAT Mathematics as a function of Grade&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`geom_smooth()` using formula = &#39;y ~ x&#39;
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/0a2624f1dfa5e5329fc23a986d4699c4e1cbaaef9f4d656b2b39a61f958ad47c.png"><img alt="../_images/0a2624f1dfa5e5329fc23a986d4699c4e1cbaaef9f4d656b2b39a61f958ad47c.png" src="../_images/0a2624f1dfa5e5329fc23a986d4699c4e1cbaaef9f4d656b2b39a61f958ad47c.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Esaminiamo le traiettorie di cambiamento intra-individuale.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># intraindividual change trajetories</span>
+<span class="n">nlsy_math_long</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">(</span>
+<span class="w">    </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grade</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">math</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># setting variables</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># adding points to plot</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># adding lines to plot</span>
+<span class="w">  </span><span class="c1"># setting the x-axis with breaks and labels</span>
+<span class="w">  </span><span class="nf">scale_x_continuous</span><span class="p">(</span>
+<span class="w">    </span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">),</span>
+<span class="w">    </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">),</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Grade at Testing&quot;</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="c1"># setting the y-axis with limits breaks and labels</span>
+<span class="w">  </span><span class="nf">scale_y_continuous</span><span class="p">(</span>
+<span class="w">    </span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">90</span><span class="p">),</span>
+<span class="w">    </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">70</span><span class="p">,</span><span class="w"> </span><span class="m">90</span><span class="p">),</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;PIAT Mathematics&quot;</span>
+<span class="w">  </span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/d91ad2f3dea2580d88a8737ec8029334cf7c25304f1c72412c21272e5427e96e.png"><img alt="../_images/d91ad2f3dea2580d88a8737ec8029334cf7c25304f1c72412c21272e5427e96e.png" src="../_images/d91ad2f3dea2580d88a8737ec8029334cf7c25304f1c72412c21272e5427e96e.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+</section>
+<section id="modello-di-assenza-di-crescita">
+<h2><span class="section-number">77.2. </span>Modello di assenza di crescita<a class="headerlink" href="#modello-di-assenza-di-crescita" title="Link to this heading">#</a></h2>
+<p>Dall’analisi dei grafici precedenti, si osserva che i punteggi di matematica mostrano un incremento sistematico nel tempo. Per iniziare l’analisi, adotteremo un modello di assenza di crescita come benchmark di base per il confronto con modelli più complessi successivi.</p>
+<p>In questo modello si assume che i punteggi di matematica degli studenti rimangano invariati nel corso del tempo. Esso mira a stimare, per ogni studente, il “valore vero” dei loro punteggi in matematica, senza prendere in considerazione eventuali variazioni nel tempo. Poiché non contempla la dinamica temporale dei punteggi, questo modello rappresenta una situazione di assenza di sviluppo, risultando spesso di limitato interesse e pertanto generalmente non viene adottato in analisi più approfondite.</p>
+<p>Il modello di assenza di crescita è caratterizzato dalla presenza di una variabile latente e di un’intercetta, la quale rappresenta un livello medio di performance che si mantiene costante nel tempo. Questa configurazione del modello permette di stabilire un punto di partenza per comprendere se e in che misura i punteggi di matematica variano effettivamente nel corso del tempo, quando confrontati con modelli che considerano la crescita o l’evoluzione dei punteggi.</p>
+<p>Per definire il modello di assenza di crescita, utilizziamo la seguente sintassi di lavaan.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ng_math_lavaan_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39; </span>
+<span class="s">  # latent variable definitions</span>
+<span class="s">      #intercept</span>
+<span class="s">      eta_1 =~ 1*math2</span>
+<span class="s">      eta_1 =~ 1*math3</span>
+<span class="s">      eta_1 =~ 1*math4</span>
+<span class="s">      eta_1 =~ 1*math5</span>
+<span class="s">      eta_1 =~ 1*math6</span>
+<span class="s">      eta_1 =~ 1*math7</span>
+<span class="s">      eta_1 =~ 1*math8</span>
+
+<span class="s">  # factor variances</span>
+<span class="s">      eta_1 ~~ eta_1</span>
+
+<span class="s">  # covariances among factors </span>
+<span class="s">      #none (only 1 factor)</span>
+
+<span class="s">  # factor means </span>
+<span class="s">      eta_1 ~ start(30)*1</span>
+
+<span class="s">  # manifest variances (made equivalent by naming theta)</span>
+<span class="s">      math2 ~~ theta*math2</span>
+<span class="s">      math3 ~~ theta*math3</span>
+<span class="s">      math4 ~~ theta*math4</span>
+<span class="s">      math5 ~~ theta*math5</span>
+<span class="s">      math6 ~~ theta*math6</span>
+<span class="s">      math7 ~~ theta*math7</span>
+<span class="s">      math8 ~~ theta*math8</span>
+<span class="s">  # manifest means (fixed at zero)</span>
+<span class="s">      math2 ~ 0*1</span>
+<span class="s">      math3 ~ 0*1</span>
+<span class="s">      math4 ~ 0*1</span>
+<span class="s">      math5 ~ 0*1</span>
+<span class="s">      math6 ~ 0*1</span>
+<span class="s">      math7 ~ 0*1</span>
+<span class="s">      math8 ~ 0*1</span>
+<span class="s">&#39;</span><span class="w"> </span><span class="c1">#end of model definition</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo il modello ai dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ng_math_lavaan_fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sem</span><span class="p">(</span><span class="n">ng_math_lavaan_model</span><span class="p">,</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_wide</span><span class="p">,</span>
+<span class="w">  </span><span class="n">meanstructure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">  </span><span class="n">estimator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ML&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">missing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;fiml&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+“lavaan WARNING: some cases are empty and will be ignored:
+  741”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+“lavaan WARNING:
+    due to missing values, some pairwise combinations have less than
+    10% coverage; use lavInspect(fit, &quot;coverage&quot;) to investigate.”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g]], :
+“lavaan WARNING:
+    Maximum number of iterations reached when computing the sample
+    moments using EM; use the em.h1.iter.max= argument to increase the
+    number of iterations”
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nel codice fornito, l’opzione <code class="docutils literal notranslate"><span class="pre">missing</span> <span class="pre">=</span> <span class="pre">&quot;fiml&quot;</span></code> utilizzata nella funzione <code class="docutils literal notranslate"><span class="pre">sem()</span></code> specifica il metodo “Full Information Maximum Likelihood” (FIML) per gestire i dati mancanti nel dataset. FIML è un approccio sofisticato per la gestione dei dati mancanti in analisi statistiche complesse come i modelli SEM. A differenza di metodi più semplici come l’eliminazione lista per lista o l’imputazione media, FIML utilizza tutte le informazioni disponibili nel dataset, inclusi i pattern dei dati mancanti, per produrre stime dei parametri. Questo metodo è particolarmente utile quando si lavora con dataset longitudinali o complessi dove i dati mancanti sono comuni. FIML è considerato un approccio più accurato e meno distorto rispetto ad altri metodi, in quanto non si limita a utilizzare solo i casi completi, ma incorpora l’intero insieme di dati disponibili, comprese le osservazioni parziali.</p>
+<p>Esaminiamo la soluzione.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">ng_math_lavaan_fit</span><span class="p">,</span><span class="w"> </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">standardized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 18 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                         9
+  Number of equality constraints                     6
+
+                                                  Used       Total
+  Number of observations                           932         933
+  Number of missing patterns                        60            
+
+Model Test User Model:
+                                                      
+  Test statistic                              1759.002
+  Degrees of freedom                                32
+  P-value (Chi-square)                           0.000
+
+Model Test Baseline Model:
+
+  Test statistic                               862.334
+  Degrees of freedom                                21
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.000
+  Tucker-Lewis Index (TLI)                      -0.347
+                                                      
+  Robust Comparative Fit Index (CFI)             0.000
+  Robust Tucker-Lewis Index (TLI)                0.093
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -8745.952
+  Loglikelihood unrestricted model (H1)      -7866.451
+                                                      
+  Akaike (AIC)                               17497.903
+  Bayesian (BIC)                             17512.415
+  Sample-size adjusted Bayesian (SABIC)      17502.888
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.241
+  90 Percent confidence interval - lower         0.231
+  90 Percent confidence interval - upper         0.250
+  P-value H_0: RMSEA &lt;= 0.050                    0.000
+  P-value H_0: RMSEA &gt;= 0.080                    1.000
+                                                      
+  Robust RMSEA                                   0.467
+  90 Percent confidence interval - lower         0.402
+  90 Percent confidence interval - upper         0.534
+  P-value H_0: Robust RMSEA &lt;= 0.050             0.000
+  P-value H_0: Robust RMSEA &gt;= 0.080             1.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.480
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Observed
+  Observed information based on                Hessian
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  eta_1 =~                                                              
+    math2             1.000                               6.850    0.536
+    math3             1.000                               6.850    0.536
+    math4             1.000                               6.850    0.536
+    math5             1.000                               6.850    0.536
+    math6             1.000                               6.850    0.536
+    math7             1.000                               6.850    0.536
+    math8             1.000                               6.850    0.536
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    eta_1            45.915    0.324  141.721    0.000    6.703    6.703
+   .math2             0.000                               0.000    0.000
+   .math3             0.000                               0.000    0.000
+   .math4             0.000                               0.000    0.000
+   .math5             0.000                               0.000    0.000
+   .math6             0.000                               0.000    0.000
+   .math7             0.000                               0.000    0.000
+   .math8             0.000                               0.000    0.000
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    eta_1            46.917    4.832    9.709    0.000    1.000    1.000
+   .math2   (thet)  116.682    4.548   25.656    0.000  116.682    0.713
+   .math3   (thet)  116.682    4.548   25.656    0.000  116.682    0.713
+   .math4   (thet)  116.682    4.548   25.656    0.000  116.682    0.713
+   .math5   (thet)  116.682    4.548   25.656    0.000  116.682    0.713
+   .math6   (thet)  116.682    4.548   25.656    0.000  116.682    0.713
+   .math7   (thet)  116.682    4.548   25.656    0.000  116.682    0.713
+   .math8   (thet)  116.682    4.548   25.656    0.000  116.682    0.713
+</pre></div>
+</div>
+</div>
+</div>
+<p>Generiamo il diagramma di percorso.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">semPaths</span><span class="p">(</span><span class="n">ng_math_lavaan_fit</span><span class="p">,</span><span class="w"> </span><span class="n">what</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;path&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;par&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/1829f4ede1129f8c4e407c8162e6366b875b370270d3d4ceb2a80e79d93f4ba5.png"><img alt="../_images/1829f4ede1129f8c4e407c8162e6366b875b370270d3d4ceb2a80e79d93f4ba5.png" src="../_images/1829f4ede1129f8c4e407c8162e6366b875b370270d3d4ceb2a80e79d93f4ba5.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Calcoliamo le traiettorie predette.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#obtaining predicted factor scores for individuals</span>
+<span class="n">nlsy_math_predicted</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span><span class="n">nlsy_math_wide</span><span class="o">$</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="nf">lavPredict</span><span class="p">(</span><span class="n">ng_math_lavaan_fit</span><span class="p">)))</span>
+
+<span class="c1">#naming columns</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">nlsy_math_predicted</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;eta_1&quot;</span><span class="p">)</span>
+
+<span class="c1">#looking at data</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">nlsy_math_predicted</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 2</caption>
+<thead>
+	<tr><th></th><th scope=col>id</th><th scope=col>eta_1</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td> 201</td><td>46.17558</td></tr>
+	<tr><th scope=row>2</th><td> 303</td><td>38.59816</td></tr>
+	<tr><th scope=row>3</th><td>2702</td><td>56.16725</td></tr>
+	<tr><th scope=row>4</th><td>4303</td><td>47.51278</td></tr>
+	<tr><th scope=row>5</th><td>5002</td><td>51.06429</td></tr>
+	<tr><th scope=row>6</th><td>5005</td><td>49.05038</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculating implied manifest scores</span>
+<span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">math2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">eta_1</span>
+<span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">math3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">eta_1</span>
+<span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">math4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">eta_1</span>
+<span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">math5</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">eta_1</span>
+<span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">math6</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">eta_1</span>
+<span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">math7</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">eta_1</span>
+<span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">math8</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">eta_1</span>
+
+<span class="c1"># reshaping wide to long</span>
+<span class="n">nlsy_math_predicted_long</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">reshape</span><span class="p">(</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="p">,</span>
+<span class="w">  </span><span class="n">timevar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;grade&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">idvar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">varying</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;math2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math4&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;math5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math8&quot;</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="w">  </span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;long&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="p">)</span>
+<span class="c1"># sorting for easy viewing</span>
+<span class="c1"># order by id and time</span>
+<span class="n">nlsy_math_predicted_long</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nlsy_math_predicted_long</span><span class="p">[</span><span class="nf">order</span><span class="p">(</span><span class="n">nlsy_math_predicted_long</span><span class="o">$</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">nlsy_math_predicted_long</span><span class="o">$</span><span class="n">grade</span><span class="p">),</span><span class="w"> </span><span class="p">]</span>
+
+<span class="c1"># intraindividual change trajetories</span>
+<span class="nf">ggplot</span><span class="p">(</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_predicted_long</span><span class="p">,</span><span class="w"> </span><span class="c1"># data set</span>
+<span class="w">  </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grade</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">math</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># setting variables</span>
+<span class="w">  </span><span class="c1"># geom_point(size=.5) + #adding points to plot</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># adding lines to plot</span>
+<span class="w">  </span><span class="c1"># setting the x-axis with breaks and labels</span>
+<span class="w">  </span><span class="nf">scale_x_continuous</span><span class="p">(</span>
+<span class="w">    </span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">),</span>
+<span class="w">    </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">),</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Grade at Testing&quot;</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="c1"># setting the y-axis with limits breaks and labels</span>
+<span class="w">  </span><span class="nf">scale_y_continuous</span><span class="p">(</span>
+<span class="w">    </span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">90</span><span class="p">),</span>
+<span class="w">    </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">70</span><span class="p">,</span><span class="w"> </span><span class="m">90</span><span class="p">),</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Predicted PIAT Mathematics&quot;</span>
+<span class="w">  </span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+“Removed 7 rows containing missing values or values outside the scale range (`geom_line()`).”
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/519ffda9745773db14cf2adc67cf3c652abee36132bab001fd9ede763a7eec9f.png"><img alt="../_images/519ffda9745773db14cf2adc67cf3c652abee36132bab001fd9ede763a7eec9f.png" src="../_images/519ffda9745773db14cf2adc67cf3c652abee36132bab001fd9ede763a7eec9f.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Dal grafico risulta evidente che il modello impiegato genera una serie di linee orizzontali, ognuna rappresentante la traiettoria statica dell’abilità matematica per ogni individuo. In questo modello, l’intercetta associata a ciascuna di queste linee orizzontali corrisponde al “valore vero” dell’abilità matematica di ogni bambino. Conformemente alle ipotesi del modello, questo valore si mantiene invariato nel corso del tempo, suggerendo che, secondo il modello, l’abilità matematica di ciascun individuo non subisce variazioni o sviluppi significativi nel periodo osservato.</p>
+</section>
+<section id="modello-di-crescita-lineare">
+<h2><span class="section-number">77.3. </span>Modello di crescita lineare<a class="headerlink" href="#modello-di-crescita-lineare" title="Link to this heading">#</a></h2>
+<p>Nella discussione dei modelli di crescita, il modello di assenza di crescita viene sempre seguito dall’esame del modello di crescita lineare. Infatti, i modelli di crescita lineare rappresentano spesso il punto di partenza quando si cerca di comprendere il cambiamento all’interno dell’individuo. Successivamente, possono essere considerati anche modelli di crescita non lineare. Procediamo dunque all’implementazione di un modello di crescita latente lineare.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lg_math_lavaan_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;</span>
+<span class="s">  # latent variable definitions</span>
+<span class="s">      #intercept (note intercept is a reserved term)</span>
+<span class="s">      eta_1 =~ 1*math2</span>
+<span class="s">      eta_1 =~ 1*math3</span>
+<span class="s">      eta_1 =~ 1*math4</span>
+<span class="s">      eta_1 =~ 1*math5</span>
+<span class="s">      eta_1 =~ 1*math6</span>
+<span class="s">      eta_1 =~ 1*math7</span>
+<span class="s">      eta_1 =~ 1*math8</span>
+
+<span class="s">      #linear slope </span>
+<span class="s">      eta_2 =~ 0*math2</span>
+<span class="s">      eta_2 =~ 1*math3</span>
+<span class="s">      eta_2 =~ 2*math4</span>
+<span class="s">      eta_2 =~ 3*math5</span>
+<span class="s">      eta_2 =~ 4*math6</span>
+<span class="s">      eta_2 =~ 5*math7</span>
+<span class="s">      eta_2 =~ 6*math8</span>
+
+<span class="s">  # factor variances</span>
+<span class="s">      eta_1 ~~ eta_1</span>
+<span class="s">      eta_2 ~~ eta_2</span>
+
+<span class="s">  # covariances among factors </span>
+<span class="s">      eta_1 ~~ eta_2</span>
+
+<span class="s">  # factor means </span>
+<span class="s">      eta_1 ~ 1</span>
+<span class="s">      eta_2 ~ 1</span>
+
+<span class="s">  # manifest variances (made equivalent by naming theta)</span>
+<span class="s">      math2 ~~ theta*math2</span>
+<span class="s">      math3 ~~ theta*math3</span>
+<span class="s">      math4 ~~ theta*math4</span>
+<span class="s">      math5 ~~ theta*math5</span>
+<span class="s">      math6 ~~ theta*math6</span>
+<span class="s">      math7 ~~ theta*math7</span>
+<span class="s">      math8 ~~ theta*math8</span>
+<span class="s">  # manifest means (fixed at zero)</span>
+<span class="s">      math2 ~ 0*1</span>
+<span class="s">      math3 ~ 0*1</span>
+<span class="s">      math4 ~ 0*1</span>
+<span class="s">      math5 ~ 0*1</span>
+<span class="s">      math6 ~ 0*1</span>
+<span class="s">      math7 ~ 0*1</span>
+<span class="s">      math8 ~ 0*1</span>
+<span class="s">&#39;</span><span class="w"> </span><span class="c1">#end of model definition</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo il modello ai dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lg_math_lavaan_fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sem</span><span class="p">(</span><span class="n">lg_math_lavaan_model</span><span class="p">,</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_wide</span><span class="p">,</span>
+<span class="w">  </span><span class="n">meanstructure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">  </span><span class="n">estimator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ML&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">missing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;fiml&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+“lavaan WARNING: some cases are empty and will be ignored:
+  741”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+“lavaan WARNING:
+    due to missing values, some pairwise combinations have less than
+    10% coverage; use lavInspect(fit, &quot;coverage&quot;) to investigate.”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g]], :
+“lavaan WARNING:
+    Maximum number of iterations reached when computing the sample
+    moments using EM; use the em.h1.iter.max= argument to increase the
+    number of iterations”
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo il risultato ottenuto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">lg_math_lavaan_fit</span><span class="p">,</span><span class="w"> </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">standardized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 38 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        12
+  Number of equality constraints                     6
+
+                                                  Used       Total
+  Number of observations                           932         933
+  Number of missing patterns                        60            
+
+Model Test User Model:
+                                                      
+  Test statistic                               204.484
+  Degrees of freedom                                29
+  P-value (Chi-square)                           0.000
+
+Model Test Baseline Model:
+
+  Test statistic                               862.334
+  Degrees of freedom                                21
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.791
+  Tucker-Lewis Index (TLI)                       0.849
+                                                      
+  Robust Comparative Fit Index (CFI)             0.896
+  Robust Tucker-Lewis Index (TLI)                0.925
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -7968.693
+  Loglikelihood unrestricted model (H1)      -7866.451
+                                                      
+  Akaike (AIC)                               15949.386
+  Bayesian (BIC)                             15978.410
+  Sample-size adjusted Bayesian (SABIC)      15959.354
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.081
+  90 Percent confidence interval - lower         0.070
+  90 Percent confidence interval - upper         0.091
+  P-value H_0: RMSEA &lt;= 0.050                    0.000
+  P-value H_0: RMSEA &gt;= 0.080                    0.550
+                                                      
+  Robust RMSEA                                   0.134
+  90 Percent confidence interval - lower         0.000
+  90 Percent confidence interval - upper         0.233
+  P-value H_0: Robust RMSEA &lt;= 0.050             0.136
+  P-value H_0: Robust RMSEA &gt;= 0.080             0.792
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.121
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Observed
+  Observed information based on                Hessian
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  eta_1 =~                                                              
+    math2             1.000                               8.035    0.800
+    math3             1.000                               8.035    0.799
+    math4             1.000                               8.035    0.792
+    math5             1.000                               8.035    0.779
+    math6             1.000                               8.035    0.762
+    math7             1.000                               8.035    0.742
+    math8             1.000                               8.035    0.719
+  eta_2 =~                                                              
+    math2             0.000                               0.000    0.000
+    math3             1.000                               0.856    0.085
+    math4             2.000                               1.712    0.169
+    math5             3.000                               2.568    0.249
+    math6             4.000                               3.424    0.325
+    math7             5.000                               4.279    0.395
+    math8             6.000                               5.135    0.459
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  eta_1 ~~                                                              
+    eta_2            -0.181    1.150   -0.158    0.875   -0.026   -0.026
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    eta_1            35.267    0.355   99.229    0.000    4.389    4.389
+    eta_2             4.339    0.088   49.136    0.000    5.070    5.070
+   .math2             0.000                               0.000    0.000
+   .math3             0.000                               0.000    0.000
+   .math4             0.000                               0.000    0.000
+   .math5             0.000                               0.000    0.000
+   .math6             0.000                               0.000    0.000
+   .math7             0.000                               0.000    0.000
+   .math8             0.000                               0.000    0.000
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    eta_1            64.562    5.659   11.408    0.000    1.000    1.000
+    eta_2             0.733    0.327    2.238    0.025    1.000    1.000
+   .math2   (thet)   36.230    1.867   19.410    0.000   36.230    0.359
+   .math3   (thet)   36.230    1.867   19.410    0.000   36.230    0.358
+   .math4   (thet)   36.230    1.867   19.410    0.000   36.230    0.352
+   .math5   (thet)   36.230    1.867   19.410    0.000   36.230    0.341
+   .math6   (thet)   36.230    1.867   19.410    0.000   36.230    0.326
+   .math7   (thet)   36.230    1.867   19.410    0.000   36.230    0.309
+   .math8   (thet)   36.230    1.867   19.410    0.000   36.230    0.290
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">fitMeasures</span><span class="p">(</span><span class="n">lg_math_lavaan_fit</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;chisq&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;df&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;pvalue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cfi&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rmsea&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  chisq      df  pvalue     cfi   rmsea 
+204.484  29.000   0.000   0.791   0.081 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Generiamo un diagramma di percorso.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">semPaths</span><span class="p">(</span><span class="n">lg_math_lavaan_fit</span><span class="p">,</span><span class="w"> </span><span class="n">what</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;path&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;par&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/94a2e1239b282bc7993aa0e03ebb4f21db99693f1cc5d9fb52f717794b17ce8e.png"><img alt="../_images/94a2e1239b282bc7993aa0e03ebb4f21db99693f1cc5d9fb52f717794b17ce8e.png" src="../_images/94a2e1239b282bc7993aa0e03ebb4f21db99693f1cc5d9fb52f717794b17ce8e.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Esaminiamo le traiettorie di crescita.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nlsy_math_predicted</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span>
+<span class="w">    </span><span class="nf">cbind</span><span class="p">(</span><span class="n">nlsy_math_wide</span><span class="o">$</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="nf">lavPredict</span><span class="p">(</span><span class="n">lg_math_lavaan_fit</span><span class="p">))</span>
+<span class="p">)</span>
+
+<span class="c1">#naming columns</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">nlsy_math_predicted</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;eta_1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;eta_2&quot;</span><span class="p">)</span>
+
+<span class="nf">head</span><span class="p">(</span><span class="n">nlsy_math_predicted</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>id</th><th scope=col>eta_1</th><th scope=col>eta_2</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td> 201</td><td>36.94675</td><td>4.534084</td></tr>
+	<tr><th scope=row>2</th><td> 303</td><td>26.03589</td><td>4.050780</td></tr>
+	<tr><th scope=row>3</th><td>2702</td><td>49.70187</td><td>4.594149</td></tr>
+	<tr><th scope=row>4</th><td>4303</td><td>41.04200</td><td>4.548064</td></tr>
+	<tr><th scope=row>5</th><td>5002</td><td>37.01240</td><td>4.496746</td></tr>
+	<tr><th scope=row>6</th><td>5005</td><td>37.68809</td><td>4.324198</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#calculating implied manifest scores</span>
+<span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">math2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">eta_1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">eta_2</span>
+<span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">math3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">eta_1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">eta_2</span>
+<span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">math4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">eta_1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">eta_2</span>
+<span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">math5</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">eta_1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">eta_2</span>
+<span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">math6</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">eta_1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">eta_2</span>
+<span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">math7</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">eta_1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">eta_2</span>
+<span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">math8</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">eta_1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="o">$</span><span class="n">eta_2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># reshaping wide to long</span>
+<span class="n">nlsy_math_predicted_long</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">reshape</span><span class="p">(</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_predicted</span><span class="p">,</span>
+<span class="w">  </span><span class="n">timevar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;grade&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">idvar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">varying</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;math2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math8&quot;</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="w">  </span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;long&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">nlsy_math_predicted_long</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 5</caption>
+<thead>
+	<tr><th></th><th scope=col>id</th><th scope=col>eta_1</th><th scope=col>eta_2</th><th scope=col>grade</th><th scope=col>math</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>201.2</th><td> 201</td><td>36.94675</td><td>4.534084</td><td>2</td><td>36.94675</td></tr>
+	<tr><th scope=row>303.2</th><td> 303</td><td>26.03589</td><td>4.050780</td><td>2</td><td>26.03589</td></tr>
+	<tr><th scope=row>2702.2</th><td>2702</td><td>49.70187</td><td>4.594149</td><td>2</td><td>49.70187</td></tr>
+	<tr><th scope=row>4303.2</th><td>4303</td><td>41.04200</td><td>4.548064</td><td>2</td><td>41.04200</td></tr>
+	<tr><th scope=row>5002.2</th><td>5002</td><td>37.01240</td><td>4.496746</td><td>2</td><td>37.01240</td></tr>
+	<tr><th scope=row>5005.2</th><td>5005</td><td>37.68809</td><td>4.324198</td><td>2</td><td>37.68809</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># sorting for easy viewing</span>
+<span class="c1"># order by id and time</span>
+<span class="n">nlsy_math_predicted_long</span><span class="w"> </span><span class="o">&lt;-</span>
+<span class="w">  </span><span class="n">nlsy_math_predicted_long</span><span class="p">[</span><span class="nf">order</span><span class="p">(</span><span class="n">nlsy_math_predicted_long</span><span class="o">$</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">nlsy_math_predicted_long</span><span class="o">$</span><span class="n">grade</span><span class="p">),</span><span class="w"> </span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">nlsy_math_predicted_long</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 5</caption>
+<thead>
+	<tr><th></th><th scope=col>id</th><th scope=col>eta_1</th><th scope=col>eta_2</th><th scope=col>grade</th><th scope=col>math</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>201.2</th><td>201</td><td>36.94675</td><td>4.534084</td><td>2</td><td>36.94675</td></tr>
+	<tr><th scope=row>201.3</th><td>201</td><td>36.94675</td><td>4.534084</td><td>3</td><td>41.48083</td></tr>
+	<tr><th scope=row>201.4</th><td>201</td><td>36.94675</td><td>4.534084</td><td>4</td><td>46.01492</td></tr>
+	<tr><th scope=row>201.5</th><td>201</td><td>36.94675</td><td>4.534084</td><td>5</td><td>50.54900</td></tr>
+	<tr><th scope=row>201.6</th><td>201</td><td>36.94675</td><td>4.534084</td><td>6</td><td>55.08309</td></tr>
+	<tr><th scope=row>201.7</th><td>201</td><td>36.94675</td><td>4.534084</td><td>7</td><td>59.61717</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_predicted_long</span><span class="p">,</span><span class="w"> </span><span class="c1"># data set</span>
+<span class="w">  </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grade</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">math</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># setting variables</span>
+<span class="w">  </span><span class="c1"># geom_point(size=.5) + #adding points to plot</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.15</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># adding lines to plot</span>
+<span class="w">  </span><span class="c1"># setting the x-axis with breaks and labels</span>
+<span class="w">  </span><span class="nf">scale_x_continuous</span><span class="p">(</span>
+<span class="w">    </span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">),</span>
+<span class="w">    </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">),</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Grade at Testing&quot;</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="c1"># setting the y-axis with limits breaks and labels</span>
+<span class="w">  </span><span class="nf">scale_y_continuous</span><span class="p">(</span>
+<span class="w">    </span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">90</span><span class="p">),</span>
+<span class="w">    </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">70</span><span class="p">,</span><span class="w"> </span><span class="m">90</span><span class="p">),</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Predicted PIAT Mathematics&quot;</span>
+<span class="w">  </span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+“Removed 7 rows containing missing values or values outside the scale range (`geom_line()`).”
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/df7bea918b5d5f324eb85c8e56d856d4e841c3b0abdde4f704d533e1900578b5.png"><img alt="../_images/df7bea918b5d5f324eb85c8e56d856d4e841c3b0abdde4f704d533e1900578b5.png" src="../_images/df7bea918b5d5f324eb85c8e56d856d4e841c3b0abdde4f704d533e1900578b5.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Il modello di crescita latente lineare descrive la traiettoria di sviluppo di ogni bambino attraverso una linea retta, mettendo in luce le variazioni individuali nelle competenze matematiche nel corso del tempo. Il grafico illustra che, per ciascun bambino, si registra un incremento “reale” di circa 5 punti nell’abilità matematica per ogni anno scolastico. Questo modello, quindi, non solo traccia la progressione lineare delle competenze matematiche, ma rivela anche un pattern di crescita coerente e uniforme tra i bambini nel periodo considerato.</p>
+<section id="sintassi-alternativa">
+<h3><span class="section-number">77.3.1. </span>Sintassi alternativa<a class="headerlink" href="#sintassi-alternativa" title="Link to this heading">#</a></h3>
+<p>Per semplificare la scrittura del modello possiamo usare la funzione <code class="docutils literal notranslate"><span class="pre">growth</span></code>. Tuttavia, per il modello discusso in precedenza, è necessario specificare un parametro aggiuntivo rispetto ai default di <code class="docutils literal notranslate"><span class="pre">growth</span></code>: vogliamo che le varianze residue di <code class="docutils literal notranslate"><span class="pre">math</span></code> siano costanti nel tempo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">m1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">   </span><span class="s">&#39;</span>
+<span class="s">  i =~ 1*math2 + 1*math3 + 1*math4 + 1*math5 + 1*math6 + 1*math7 + 1*math8  </span>
+<span class="s">  s =~ 0 * math2 + 1 * math3 + 2 * math4 + 3 * math5 + 4 * math6 + 5 * math7 + 6 * math8</span>
+<span class="s">  </span>
+<span class="s">  # manifest variances (made equivalent by naming theta)</span>
+<span class="s">  math2 ~~ theta*math2</span>
+<span class="s">  math3 ~~ theta*math3</span>
+<span class="s">  math4 ~~ theta*math4</span>
+<span class="s">  math5 ~~ theta*math5</span>
+<span class="s">  math6 ~~ theta*math6</span>
+<span class="s">  math7 ~~ theta*math7</span>
+<span class="s">  math8 ~~ theta*math8</span>
+<span class="s">&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo il  modello.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit_m1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">growth</span><span class="p">(</span>
+<span class="w">  </span><span class="n">m1</span><span class="p">,</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_wide</span><span class="p">,</span>
+<span class="w">  </span><span class="n">estimator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ML&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">missing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;fiml&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+“lavaan WARNING: some cases are empty and will be ignored:
+  741”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+“lavaan WARNING:
+    due to missing values, some pairwise combinations have less than
+    10% coverage; use lavInspect(fit, &quot;coverage&quot;) to investigate.”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g]], :
+“lavaan WARNING:
+    Maximum number of iterations reached when computing the sample
+    moments using EM; use the em.h1.iter.max= argument to increase the
+    number of iterations”
+</pre></div>
+</div>
+</div>
+</div>
+<p>Otteniamo in questo modo lo stesso risultato trovato con la precedente specificazione del modello.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">fitMeasures</span><span class="p">(</span><span class="n">fit_m1</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;chisq&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;df&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;pvalue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cfi&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rmsea&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  chisq      df  pvalue     cfi   rmsea 
+204.484  29.000   0.000   0.791   0.081 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="interpretazione-dei-parametri-del-modello">
+<h3><span class="section-number">77.3.2. </span>Interpretazione dei Parametri del Modello<a class="headerlink" href="#interpretazione-dei-parametri-del-modello" title="Link to this heading">#</a></h3>
+<p>Nell’output relativo alla sezione <code class="docutils literal notranslate"><span class="pre">Intercepts</span></code>, il parametro <code class="docutils literal notranslate"><span class="pre">eta_1</span></code>, con un valore di 35.267, rappresenta la previsione del punteggio in matematica al tempo iniziale <span class="math notranslate nohighlight">\( t_0 \)</span>. Questo valore indica la media iniziale dei punteggi in matematica per gli studenti. Per quanto riguarda il parametro <code class="docutils literal notranslate"><span class="pre">eta_2</span></code>, il suo valore di 4.339 suggerisce che, ad ogni incremento unitario nell’arco temporale considerato, ci si aspetta un aumento medio di 4.339 punti nel punteggio predetto di matematica.</p>
+<p>Passando alla sezione <code class="docutils literal notranslate"><span class="pre">Variances</span></code>, il valore di <code class="docutils literal notranslate"><span class="pre">eta_1</span></code> pari a 64.562 indica la varianza tra gli studenti nelle intercette, cioè la variabilità dei valori iniziali di matematica tra i diversi studenti. Il valore di <code class="docutils literal notranslate"><span class="pre">eta_2</span></code>, pari a 0.733, rappresenta invece la varianza tra gli studenti nelle pendenze, ossia la variabilità dei tassi di crescita dei punteggi in matematica tra gli studenti. Calcolando l’intervallo <span class="math notranslate nohighlight">\( 35.267 \pm 1.96 \sqrt{64.562} \)</span> e assumendo una distribuzione normale, otteniamo una stima dell’intervallo al 95% per i valori plausibili delle medie dei punteggi in matematica tra gli studenti. Questo intervallo non rappresenta un intervallo di fiducia frequentista, ma piuttosto un intervallo attorno alla stima del valore vero. Analogamente, l’intervallo <span class="math notranslate nohighlight">\( 4.339 \pm 1.96 \sqrt{0.733} \)</span> fornisce una stima dell’intervallo al 95% per i valori plausibili delle pendenze dei punteggi in matematica tra gli studenti.</p>
+<p>La covarianza stimata di -0.181 (con <em>SE</em> = 1.150) suggerisce che non vi è una relazione significativa tra intercette e pendenze. Se la covarianza fosse stata positiva, avremmo potuto interpretarla come un’indicazione che studenti con un punteggio iniziale più alto in matematica tendono a mostrare un maggiore incremento dei punteggi nel tempo. Al contrario, una covarianza negativa tra intercetta e pendenza implicherebbe che studenti con punteggi iniziali più alti tendono a mostrare un aumento meno marcato dei punteggi nel tempo.</p>
+</section>
+</section>
+<section id="confronto-con-il-modello-a-effetti-misti">
+<h2><span class="section-number">77.4. </span>Confronto con il Modello a Effetti Misti<a class="headerlink" href="#confronto-con-il-modello-a-effetti-misti" title="Link to this heading">#</a></h2>
+<p>Procediamo ora all’analisi degli stessi dati impiegando un modello a effetti misti. Dobbiamo però tenere presente che, in questo contesto, non saremo in grado di replicare esattamente gli stessi risultati ottenuti con il modello di crescita latente (LGM), a causa della presenza di dati mancanti. Nel modello LGM, abbiamo adottato l’approccio della massima verosimiglianza (ML) per la stima dei parametri, gestendo i dati mancanti attraverso l’uso del metodo <code class="docutils literal notranslate"><span class="pre">fiml</span></code> (Full Information Maximum Likelihood) implementato nel software <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>. Questo metodo non comporta l’imputazione dei dati mancanti, ma sfrutta le informazioni disponibili in ciascun caso per stimare i parametri secondo il criterio della massima verosimiglianza.</p>
+<p>Tuttavia, quando si tratta di modelli a effetti misti, il metodo FIML non è generalmente una strategia applicabile. Di conseguenza, per procedere con l’analisi in questo contesto, adotteremo una soluzione alternativa, consistente nell’eliminazione dei casi che presentano dati mancanti. Questo approccio, sebbene meno sofisticato rispetto al FIML, ci permetterà di procedere con l’analisi del modello a effetti misti, pur con una certa limitazione dovuta alla riduzione del campione di dati disponibili.</p>
+<p>In formato <em>long</em>, i dati sono i seguenti.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nlsy_math_long</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>id</th><th scope=col>grade</th><th scope=col>math</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>201.3</th><td> 201</td><td>3</td><td>38</td></tr>
+	<tr><th scope=row>201.5</th><td> 201</td><td>5</td><td>55</td></tr>
+	<tr><th scope=row>303.2</th><td> 303</td><td>2</td><td>26</td></tr>
+	<tr><th scope=row>303.5</th><td> 303</td><td>5</td><td>33</td></tr>
+	<tr><th scope=row>2702.2</th><td>2702</td><td>2</td><td>56</td></tr>
+	<tr><th scope=row>2702.4</th><td>2702</td><td>4</td><td>58</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Sottraiamo 2 dalla variabile <code class="docutils literal notranslate"><span class="pre">grade</span></code> in modo che il valore 0 corrisponda alla prima rilevazione temporale. In questo modo, l’intercetta rappresenterà il valore atteso del punteggio di matematica per la prima rilevazione temporale (quando <code class="docutils literal notranslate"><span class="pre">grade</span></code> è pari a 2).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nlsy_math_long</span><span class="o">$</span><span class="n">grade_c2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nlsy_math_long</span><span class="o">$</span><span class="n">grade</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nel contesto del modello a effetti misti, utilizziamo la funzione <code class="docutils literal notranslate"><span class="pre">lmer</span></code> per adattare il modello. In questa configurazione (<code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">|</span> <span class="pre">id)</span></code>), adottiamo un modello con intercette casuali che prevede una pendenza uniforme per tutti gli individui, implicando un tasso di crescita costante per ciascuno. Questa scelta è coerente con le traiettorie di crescita illustrate nella figura precedente.</p>
+<p>L’utilizzo dell’opzione <code class="docutils literal notranslate"><span class="pre">REML</span> <span class="pre">=</span> <span class="pre">FALSE</span></code> nel modello specifica che stiamo applicando il metodo della massima verosimiglianza (ML) per la stima dei parametri, anziché l’approccio REML (Restricted Maximum Likelihood), che è il metodo predefinito nella funzione <code class="docutils literal notranslate"><span class="pre">lmer</span></code>.</p>
+<p>In aggiunta, l’opzione <code class="docutils literal notranslate"><span class="pre">na.action</span> <span class="pre">=</span> <span class="pre">na.exclude</span></code> viene utilizzata per indicare che le osservazioni contenenti dati mancanti saranno escluse dall’analisi. Questo significa che tali osservazioni non contribuiranno alla stima dei parametri del modello, permettendoci di procedere con l’analisi nonostante la presenza di dati incompleti. Questo approccio, benché pratico, può avere implicazioni sulla rappresentatività e sulla generalizzabilità dei risultati, specialmente se la quantità di dati mancanti è sostanziale.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit_lmer</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lmer</span><span class="p">(</span>
+<span class="w">    </span><span class="n">math</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">grade_c2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="p">),</span>
+<span class="w">    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_long</span><span class="p">,</span>
+<span class="w">    </span><span class="n">REML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">na.action</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">na.exclude</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">fit_lmer</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Linear mixed model fit by maximum likelihood  [&#39;lmerMod&#39;]
+Formula: math ~ 1 + grade_c2 + (1 | id)
+   Data: nlsy_math_long
+
+     AIC      BIC   logLik deviance df.resid 
+ 15957.7  15980.5  -7974.8  15949.7     2217 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-3.2082 -0.5265  0.0081  0.5456  2.5651 
+
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ id       (Intercept) 67.30    8.204   
+ Residual             39.31    6.270   
+Number of obs: 2221, groups:  id, 932
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept) 35.33081    0.36264   97.43
+grade_c2     4.29352    0.08266   51.94
+
+Correlation of Fixed Effects:
+         (Intr)
+grade_c2 -0.555
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dall’output vediamo che il punteggio di matematica in corrispondenza del secondo grado scolastico (codificato qui con 0) è uguale a 35.33 (0.36). Il tasso di crescita, ovvero l’aumento atteso dei punteggi di matematica per ciascun grado scolastico è uguale a 4.29 (0.08).</p>
+<p>Una rappresentazione grafica dei punteggi predetti dal modello misto può essere ottenuta nel modo seguente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">gr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">emmeans</span><span class="o">::</span><span class="nf">ref_grid</span><span class="p">(</span><span class="n">fit_lmer</span><span class="p">,</span><span class="w"> </span><span class="n">cov.keep</span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;grade_c2&#39;</span><span class="p">))</span>
+<span class="n">emm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">emmeans</span><span class="p">(</span><span class="n">gr</span><span class="p">,</span><span class="w"> </span><span class="n">spec</span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;grade_c2&#39;</span><span class="p">),</span><span class="w"> </span><span class="n">level</span><span class="o">=</span><span class="w"> </span><span class="m">0.95</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nlsy_math_long</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="w"> </span><span class="n">grade_c2</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="w"> </span><span class="n">math</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">        </span><span class="nf">geom_ribbon</span><span class="p">(</span>
+<span class="w">            </span><span class="n">data</span><span class="o">=</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">emm</span><span class="p">),</span><span class="w"> </span>
+<span class="w">            </span><span class="nf">aes</span><span class="p">(</span><span class="n">ymin</span><span class="o">=</span><span class="w"> </span><span class="n">lower.CL</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="o">=</span><span class="w"> </span><span class="n">upper.CL</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">),</span><span class="w"> </span><span class="n">fill</span><span class="o">=</span><span class="w"> </span><span class="s">&#39;grey80&#39;</span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">        </span><span class="nf">geom_line</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">emm</span><span class="p">),</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="w"> </span><span class="n">emmean</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">        </span><span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/5451dafaead9e32d170547d9f304ee6dbdabb88f01df6b68bc80218ace3feadb.png"><img alt="../_images/5451dafaead9e32d170547d9f304ee6dbdabb88f01df6b68bc80218ace3feadb.png" src="../_images/5451dafaead9e32d170547d9f304ee6dbdabb88f01df6b68bc80218ace3feadb.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Questi risultati, ottenuti escludendo tutte le osservazioni con dati mancanti, sono comunque molto simili ai risultati ottenuti usando <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> (si veda la figura con le traiettorie di crescita del modello LGM).</p>
+</section>
+<section id="modello-di-crescita-non-lineare">
+<h2><span class="section-number">77.5. </span>Modello di Crescita Non Lineare<a class="headerlink" href="#modello-di-crescita-non-lineare" title="Link to this heading">#</a></h2>
+<p>In alcuni casi, può essere utile esplorare la possibilità che il cambiamento osservato segua una traiettoria non lineare. Il metodo adottato per costruire un modello di crescita non lineare può essere paragonato all’utilizzo di variabili dummy in un modello di regressione lineare. Tuttavia, in questo contesto, apportiamo una modifica specifica ai carichi fattoriali associati alla variabile latente che rappresenta la pendenza.</p>
+<p>Nel modello di crescita non lineare, fissiamo il primo carico fattoriale a 0 e l’ultimo a 1. Questa configurazione implica che il primo punto temporale rappresenta il punto di partenza, mentre l’ultimo indica la conclusione dell’intervallo temporale considerato. I carichi fattoriali intermedi, invece, non sono fissi e vengono stimati liberamente dal modello. Questa impostazione permette di interpretare la pendenza come l’entità complessiva del cambiamento che si verifica tra l’inizio e la fine dell’intervallo temporale considerato.</p>
+<p>I carichi fattoriali che vengono stimati rappresentano la proporzione del cambiamento complessivo che si è verificato fino a quel particolare punto temporale, rispetto al cambiamento totale osservato durante l’intero intervallo. In altre parole, questi carichi fattoriali intermedi offrono una misura di quanto il cambiamento si sia sviluppato a ogni punto temporale intermedio, in rapporto al cambiamento totale che si è verificato dall’inizio alla fine del periodo considerato.</p>
+<p>Attraverso questo approccio, il modello di crescita non lineare fornisce una comprensione più dettagliata e flessibile della dinamica del cambiamento, permettendo di catturare traiettorie che potrebbero non essere adeguatamente descritte da un modello lineare.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod_nl</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">    i =~ 1*math2 + 1*math3 + 1*math4 + 1*math5 + 1*math6 + 1*math7 + 1*math8</span>
+<span class="s">    s = ~ 0 * math2 + math3 + math4 + math5 + math6 + math7 + 1*math8</span>
+<span class="s">    math2 ~~ theta*math2</span>
+<span class="s">    math3 ~~ theta*math3</span>
+<span class="s">    math4 ~~ theta*math4</span>
+<span class="s">    math5 ~~ theta*math5</span>
+<span class="s">    math6 ~~ theta*math6</span>
+<span class="s">    math7 ~~ theta*math7</span>
+<span class="s">    math8 ~~ theta*math8</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo il modello ai dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit_nl</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">growth</span><span class="p">(</span>
+<span class="w">  </span><span class="n">mod_nl</span><span class="p">,</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_wide</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">estimator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ML&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">missing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;fiml&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+“lavaan WARNING: some cases are empty and will be ignored:
+  741”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+“lavaan WARNING:
+    due to missing values, some pairwise combinations have less than
+    10% coverage; use lavInspect(fit, &quot;coverage&quot;) to investigate.”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g]], :
+“lavaan WARNING:
+    Maximum number of iterations reached when computing the sample
+    moments using EM; use the em.h1.iter.max= argument to increase the
+    number of iterations”
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo la soluzione.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">fit_nl</span><span class="p">,</span><span class="w"> </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">standardized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 100 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        17
+  Number of equality constraints                     6
+
+                                                  Used       Total
+  Number of observations                           932         933
+  Number of missing patterns                        60            
+
+Model Test User Model:
+                                                      
+  Test statistic                                52.947
+  Degrees of freedom                                24
+  P-value (Chi-square)                           0.001
+
+Model Test Baseline Model:
+
+  Test statistic                               862.334
+  Degrees of freedom                                21
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.966
+  Tucker-Lewis Index (TLI)                       0.970
+                                                      
+  Robust Comparative Fit Index (CFI)             1.000
+  Robust Tucker-Lewis Index (TLI)                1.023
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -7892.924
+  Loglikelihood unrestricted model (H1)      -7866.451
+                                                      
+  Akaike (AIC)                               15807.848
+  Bayesian (BIC)                             15861.059
+  Sample-size adjusted Bayesian (SABIC)      15826.124
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.036
+  90 Percent confidence interval - lower         0.023
+  90 Percent confidence interval - upper         0.049
+  P-value H_0: RMSEA &lt;= 0.050                    0.961
+  P-value H_0: RMSEA &gt;= 0.080                    0.000
+                                                      
+  Robust RMSEA                                   0.000
+  90 Percent confidence interval - lower         0.000
+  90 Percent confidence interval - upper         0.177
+  P-value H_0: Robust RMSEA &lt;= 0.050             0.644
+  P-value H_0: Robust RMSEA &gt;= 0.080             0.284
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.094
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Observed
+  Observed information based on                Hessian
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  i =~                                                                  
+    math2             1.000                               8.509    0.839
+    math3             1.000                               8.509    0.857
+    math4             1.000                               8.509    0.851
+    math5             1.000                               8.509    0.840
+    math6             1.000                               8.509    0.823
+    math7             1.000                               8.509    0.808
+    math8             1.000                               8.509    0.791
+  s =~                                                                  
+    math2             0.000                               0.000    0.000
+    math3             0.295    0.019   15.783    0.000    1.849    0.186
+    math4             0.533    0.019   28.588    0.000    3.346    0.335
+    math5             0.664    0.021   31.083    0.000    4.167    0.411
+    math6             0.799    0.022   36.470    0.000    5.016    0.485
+    math7             0.901    0.030   30.314    0.000    5.656    0.537
+    math8             1.000                               6.276    0.583
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  i ~~                                                                  
+    s               -13.303    7.281   -1.827    0.068   -0.249   -0.249
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    i                32.400    0.474   68.399    0.000    3.808    3.808
+    s                25.539    0.731   34.916    0.000    4.070    4.070
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .math2   (thet)   30.502    1.678   18.182    0.000   30.502    0.296
+   .math3   (thet)   30.502    1.678   18.182    0.000   30.502    0.310
+   .math4   (thet)   30.502    1.678   18.182    0.000   30.502    0.305
+   .math5   (thet)   30.502    1.678   18.182    0.000   30.502    0.297
+   .math6   (thet)   30.502    1.678   18.182    0.000   30.502    0.286
+   .math7   (thet)   30.502    1.678   18.182    0.000   30.502    0.275
+   .math8   (thet)   30.502    1.678   18.182    0.000   30.502    0.264
+    i                72.408    6.590   10.988    0.000    1.000    1.000
+    s                39.385   11.371    3.464    0.001    1.000    1.000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Effettuiamo il test del rapporto di verosimiglianze per confrontare il modello di crescita lineare con quello che assume una crescita non lineare.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">lavTestLRT</span><span class="p">(</span><span class="n">fit_m1</span><span class="p">,</span><span class="w"> </span><span class="n">fit_nl</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chi-Squared Difference Test
+
+       Df   AIC   BIC   Chisq Chisq diff   RMSEA Df diff Pr(&gt;Chisq)    
+fit_nl 24 15808 15861  52.947                                          
+fit_m1 29 15949 15978 204.484     151.54 0.17733       5  &lt; 2.2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il risultato indica che il modello che assume un cambiamento non lineare si adatta meglio ai dati. Possiamo visualizzare il cambiamento nel modo seguente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract just th eloadings of the slopes</span>
+<span class="n">loadings</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">parameterestimates</span><span class="p">(</span><span class="n">fit_nl</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># get estimates</span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="n">lhs</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;=~&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># filter the rows we want</span>
+<span class="w">  </span><span class="n">.</span><span class="p">[[</span><span class="s">&quot;est&quot;</span><span class="p">]]</span><span class="w"> </span><span class="c1"># extract &quot;est&quot; variable</span>
+<span class="c1"># print result</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">loadings</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] 0.0000000 0.2946469 0.5331543 0.6640286 0.7992432 0.9012768 1.0000000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># predict scores</span>
+<span class="n">pred_lgm3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">fit_nl</span><span class="p">)</span>
+<span class="c1"># create long data for each individual</span>
+<span class="n">pred_lgm3_long</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">map</span><span class="p">(</span><span class="n">loadings</span><span class="p">,</span><span class="w"> </span><span class="c1"># loop over time</span>
+<span class="w">                      </span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">pred_lgm3</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">                        </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pred_lgm3</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="p">])</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">reduce</span><span class="p">(</span><span class="n">cbind</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># bring together the wave predictions </span>
+<span class="w">  </span><span class="nf">as.data.frame</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># predict scores</span>
+<span class="n">pred_lgm3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">fit_nl</span><span class="p">)</span>
+<span class="c1"># create long data for each individual</span>
+<span class="n">pred_lgm3_long</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">map</span><span class="p">(</span><span class="n">loadings</span><span class="p">,</span><span class="w"> </span><span class="c1"># loop over time</span>
+<span class="w">                      </span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">pred_lgm3</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">                        </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pred_lgm3</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="p">])</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">reduce</span><span class="p">(</span><span class="n">cbind</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># bring together the wave predictions </span>
+<span class="w">  </span><span class="nf">as.data.frame</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># make data frame</span>
+<span class="w">  </span><span class="nf">setNames</span><span class="p">(</span><span class="nf">str_c</span><span class="p">(</span><span class="s">&quot;Grade &quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">7</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># give names to variables</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">row_number</span><span class="p">())</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># make unique id</span>
+<span class="w">  </span><span class="nf">gather</span><span class="p">(</span><span class="o">-</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grade</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pred</span><span class="p">)</span><span class="w"> </span><span class="c1"># make long format</span>
+<span class="n">pred_lgm3_long</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">grade</span><span class="p">,</span><span class="w"> </span><span class="n">pred</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># what variables to plot?</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># add a transparent line for each person</span>
+<span class="w">  </span><span class="nf">stat_summary</span><span class="p">(</span><span class="w"> </span><span class="c1"># add average line</span>
+<span class="w">    </span><span class="nf">aes</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">    </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">,</span>
+<span class="w">    </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;line&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span>
+<span class="w">    </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;green&quot;</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">stat_summary</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pred_lgm3_long</span><span class="p">,</span><span class="w"> </span><span class="c1"># add average from linear model</span>
+<span class="w">               </span><span class="nf">aes</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">               </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">,</span>
+<span class="w">               </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;line&quot;</span><span class="p">,</span>
+<span class="w">               </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span>
+<span class="w">               </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">,</span>
+<span class="w">               </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">stat_summary</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pred_lgm3_long</span><span class="p">,</span><span class="w"> </span><span class="c1"># add average from squared model</span>
+<span class="w">               </span><span class="nf">aes</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">               </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">,</span>
+<span class="w">               </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;line&quot;</span><span class="p">,</span>
+<span class="w">               </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span>
+<span class="w">               </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">,</span>
+<span class="w">               </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Predicted PIAT Mathematics&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1"># labels</span>
+<span class="w">       </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Grade at Testing&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+“Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+<span class=" -Color -Color-Cyan">ℹ</span> Please use `linewidth` instead.”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+“Removed 7 rows containing non-finite outside the scale range (`stat_summary()`).”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+“Removed 7 rows containing non-finite outside the scale range (`stat_summary()`).”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+“Removed 7 rows containing non-finite outside the scale range (`stat_summary()`).”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+“Removed 7 rows containing missing values or values outside the scale range (`geom_line()`).”
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/b7be69dad6bcffd443c7d60da9245f9c68a8c135a01bdb2960530553a3a282cd.png"><img alt="../_images/b7be69dad6bcffd443c7d60da9245f9c68a8c135a01bdb2960530553a3a282cd.png" src="../_images/b7be69dad6bcffd443c7d60da9245f9c68a8c135a01bdb2960530553a3a282cd.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">fitMeasures</span><span class="p">(</span><span class="n">fit_nl</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;chisq&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;df&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;pvalue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cfi&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rmsea&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> chisq     df pvalue    cfi  rmsea 
+52.947 24.000  0.001  0.966  0.036 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="riflessioni-finali-sul-modello-di-crescita-lineare">
+<h2><span class="section-number">77.6. </span>Riflessioni Finali sul Modello di Crescita Lineare<a class="headerlink" href="#riflessioni-finali-sul-modello-di-crescita-lineare" title="Link to this heading">#</a></h2>
+<p>Questo capitolo ha esplorato l’implementazione e l’adattamento dei modelli di crescita lineare all’interno del framework della modellizzazione delle equazioni strutturali (SEM), utilizzando il pacchetto <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> in R. Abbiamo illustrato come calcolare e visualizzare graficamente le traiettorie di crescita predette da questi modelli.</p>
+<p>I modelli di crescita lineare rappresentano un punto di partenza essenziale per analizzare il cambiamento individuale nel tempo. Tuttavia, possono non essere sempre in grado di descrivere accuratamente il processo di cambiamento. Per questa ragione, è opportuno valutare anche altri modelli e, eventualmente, esaminare le variazioni tra diversi gruppi. L’impiego dei modelli di crescita all’interno dei framework SEM e dei modelli a effetti misti presenta sia vantaggi sia limitazioni. Ad esempio, i modelli SEM offrono indici di adattamento globale quali RMSEA, CFI e TLI, che non sono disponibili nell’approccio dei modelli a effetti misti, i quali si basano piuttosto su criteri come AIC e BIC e su strumenti diagnostici quali i grafici dei residui.</p>
+<p>Un aspetto cruciale nell’adattamento dei modelli di crescita lineare è la scelta della metrica temporale. Nel nostro esempio, abbiamo utilizzato il grado scolastico come indicatore temporale, ma esistono altre opzioni possibili. Ad esempio, l’età al momento del test potrebbe essere una metrica più appropriata, in quanto potrebbe riflettere più accuratamente gli intervalli tra le misurazioni. Si deve inoltre considerare che l’utilizzo del grado scolastico può avere delle limitazioni, ad esempio in casi di studenti che ripetono o saltano un anno.</p>
+<p>La posizione dell’intercetta può essere scelta in qualsiasi punto del continuum temporale. Nel nostro esempio, abbiamo centrato l’intercetta sulla valutazione della seconda elementare, in quanto era il primo dato disponibile. Tuttavia, è importante selezionare un punto di origine che sia significativo per lo studio specifico. Per esempio, posizionare l’intercetta alla fine dell’ottava elementare potrebbe essere rilevante per studi che mirano a valutare la preparazione degli studenti per la scuola superiore.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_lgm"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="06_lgm_mixed.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">76. </span>LGM e modelli misti</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="08_growth_cont.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">78. </span>Il tempo su una metrica continua</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#una-applicazione-concreta">77.1. Una applicazione concreta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-assenza-di-crescita">77.2. Modello di assenza di crescita</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-crescita-lineare">77.3. Modello di crescita lineare</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sintassi-alternativa">77.3.1. Sintassi alternativa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione-dei-parametri-del-modello">77.3.2. Interpretazione dei Parametri del Modello</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confronto-con-il-modello-a-effetti-misti">77.4. Confronto con il Modello a Effetti Misti</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-crescita-non-lineare">77.5. Modello di Crescita Non Lineare</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#riflessioni-finali-sul-modello-di-crescita-lineare">77.6. Riflessioni Finali sul Modello di Crescita Lineare</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

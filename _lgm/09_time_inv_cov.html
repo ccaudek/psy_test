@@ -1,0 +1,1558 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>79. Covariate indipendenti dal tempo &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css?v=ffeaf963" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6ba04eab" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VMXNE4BCDL"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_lgm/09_time_inv_cov';</script>
+    <script src="../_static/custom.js?v=3f5092eb"></script>
+    <link rel="canonical" href="https://ccaudek.github.io/psy_test/_lgm/09_time_inv_cov.html" />
+    <link rel="icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="80. Modelli di crescita latenti a gruppi multipli" href="10_growth_groups.html" />
+    <link rel="prev" title="78. Il tempo su una metrica continua" href="08_growth_cont.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Scaling psicometrico</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/01_expval_var.html">1. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/02_joint_prob.html">2. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/03_measurement.html">3. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/04_norms.html">4. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/05_regression.html">5. L’analisi di regressione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E1_likert.html">6. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E2_optimal_scoring.html">7. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E3_thurstone.html">8. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/01_ctt_1.html">9. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/02_ctt_2.html">10. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/03_ctt_3.html">11. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/04_err_std_mis.html">12. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/05_err_std_stima.html">13. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/06_applications_ctt.html">14. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E1_ctt.html">15. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E2_item_analyses.html">16. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/01_multilevel_1.html">17. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/02_interrater_reliability.html">18. L’affidabilità tra giudici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/E1_irr.html">19. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/01_gtheory.html">20. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/01_validity.html">21. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/02_relations_to_other_vars.html">22. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sviluppo degli item</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_items/01_item_development.html">23. Lo sviluppo degli item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_items/02_item_analysis.html">24. Analisi degli item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">25. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale esplorativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/01_intro_fa.html">26. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/02_analisi_fattoriale_1.html">27. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/03_analisi_fattoriale_2.html">28. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/04_analisi_fattoriale_3.html">29. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/05_factor_scores.html">30. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/06_constraints_on_parms.html">31. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/07_total_score.html">32. Punteggio totale e modello fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione strumenti</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">33. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">34. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">35. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">36. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">37. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/01_cfa.html">38. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/E_01.html">39. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/02_meanstructure.html">40. La struttura delle medie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/03_cat_data.html">41. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/04_mmm.html">42. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/05_bifactor.html">43. Modello bifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/06_efa_lavaan.html">44. Exploratory Structural Equation Modeling (ESEM)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/01_sem_intro.html">45. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/02_data_preparation.html">46. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/E_01.html">47. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/03_gof.html">48. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/04_mod_comp.html">49. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/05_cfa_mod_comp.html">50. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/06_refine_solution.html">51. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/07_group_invariance.html">52. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/08_multilevel_sem.html">53. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/09_structural_regr.html">54. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/10_missing_data.html">55. Dati mancanti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/11_small_samples.html">56. Modellizzazione SEM in Piccoli Campioni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/12_temp_reliability.html">57. Affidabilità longitudinale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_irt/01_logistic_regr.html">58. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/E_01.html">59. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/02_rasch_model.html">60. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/03_assumptions.html">61. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/04_estimation.html">62. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/05_1pl_2pl_3pl.html">63. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/06_implementation.html">64. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/07_polytomous_graded.html">65. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mokken Scales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/01_core_issues.html">66. Analisi della Scala di Mokken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/02_tutorial.html">67. Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/03_applications.html">68. Applicazione Pratica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/01_development.html">69. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/02_tutorial.html">70. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_lgm_intro.html">71. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_lgm_prelims.html">72. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_time_effects.html">73. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_invariance.html">74. Invarianza Fattoriale Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_intro_panel.html">75. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_lgm_mixed.html">76. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_growth_1.html">77. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_growth_cont.html">78. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">79. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_growth_groups.html">80. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_bivariate_tvc_models.html">81. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_inv_measurement.html">82. Invarianza di Misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_latent_change.html">83. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="750_latent_change.html">84. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="751_biv_change.html">85. Modello LCS bivariato</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">86. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a1_intro_r.html">87. Linguaggio R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a2_sums.html">88. Simbolo di somma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a3_calculus.html">89. Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a4_linear_alg.html">90. Elementi di algebra lineare</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_lgm/09_time_inv_cov.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Covariate indipendenti dal tempo</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definizione-delle-variabili-latenti">79.1. Definizione delle Variabili Latenti:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vincoli-sui-carichi-fattoriali">79.2. Vincoli sui Carichi Fattoriali:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scopo-di-questi-vincoli">79.3. Scopo di Questi Vincoli:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valutare-il-contributo-delle-covariate">79.4. Valutare il contributo delle covariate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confronto-con-il-modello-misto">79.5. Confronto con il modello misto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-importanti">79.6. Considerazioni Importanti</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varianza-spiegata">79.6.1. Varianza Spiegata</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficienti-standardizzati">79.6.2. Coefficienti Standardizzati</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">79.6.3. Considerazioni Conclusive</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="covariate-indipendenti-dal-tempo">
+<span id="cov-ind-time-notebook"></span><h1><span class="section-number">79. </span>Covariate indipendenti dal tempo<a class="headerlink" href="#covariate-indipendenti-dal-tempo" title="Link to this heading">#</a></h1>
+<p>Nell’ambito degli studi sui modelli di crescita lineare, una questione rilevante è capire in che modo le differenze individuali nelle traiettorie di cambiamento siano influenzate da altre variabili. Il presente capitolo si dedica all’integrazione di covariate invarianti nel tempo in questi modelli di crescita.</p>
+<p>Le covariate invarianti nel tempo sono quelle variabili che rimangono costanti per ogni individuo durante il periodo di studio. Esempi tipici includono il genere, le condizioni sperimentali, lo stato socio-economico, e altri attributi che non subiscono modifiche nel tempo. In termini di modellazione, queste variabili vengono trattate come fattori indipendenti in un modello di regressione multipla, dove l’intercetta e la pendenza del modello di crescita lineare fungono da variabili dipendenti. Le covariate possono assumere vari formati: possono essere continue (es. età), ordinali (es. livelli di istruzione) o categoriche (es. genere).</p>
+<p>Includere covariate invarianti nel tempo permette di esplorare come le differenze individuali nella traiettoria di crescita (sia in termini di intercetta che di pendenza) siano associate a queste variabili. Questo approccio offre la possibilità di indagare le ragioni sottostanti le diverse modalità di cambiamento tra gli individui.</p>
+<ul class="simple">
+<li><p>È importante sottolineare che, pur fornendo insights significativi, i risultati ottenuti da questi modelli non implicano relazioni causali. Questi modelli hanno limitazioni simili a quelle dei modelli di regressione standard in termini di inferenza causale.</p></li>
+<li><p>È cruciale considerare il contesto nel quale le covariate invarianti nel tempo sono state raccolte. Se queste provengono da un contesto sperimentale con assegnazione casuale, le inferenze potrebbero essere più robuste. Tuttavia, nel caso di dati osservazionali, è necessario un’attenta considerazione per evitare interpretazioni errate o eccessivamente assertive riguardo la causalità.</p></li>
+</ul>
+<p>In sintesi, l’integrazione di covariate invarianti nel tempo nei modelli di crescita lineare fornisce una visione più dettagliata delle dinamiche individuali e del modo in cui vari fattori possono influenzare le traiettorie di crescita. Questo approccio arricchisce la comprensione dei fenomeni studiati, pur richiedendo un’interpretazione cauta e informata dei risultati ottenuti.</p>
+<p>Per questo esempio considereremo i dati di prestazione matematica dal data set NLSY-CYA Long Data [si veda <span id="id1">Grimm <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id27" title="Kevin J Grimm, Nilam Ram, and Ryne Estabrook. Growth modeling: Structural equation and multilevel modeling approaches. Guilford Publications, 2016.">GRE16</a>]</span>]. Iniziamo a leggere i dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># set filepath for data file</span>
+<span class="n">filepath</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;https://raw.githubusercontent.com/LRI-2/Data/main/GrowthModeling/nlsy_math_long_R.dat&quot;</span>
+<span class="c1"># read in the text data file using the url() function</span>
+<span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.table</span><span class="p">(</span>
+<span class="w">  </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">url</span><span class="p">(</span><span class="n">filepath</span><span class="p">),</span>
+<span class="w">  </span><span class="n">na.strings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;.&quot;</span>
+<span class="p">)</span><span class="w"> </span><span class="c1"># indicates the missing data designator</span>
+<span class="c1"># copy data with new name</span>
+<span class="n">nlsy_math_long</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dat</span>
+
+<span class="c1"># Add names the columns of the data set</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">nlsy_math_long</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">  </span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;female&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lb_wght&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;anti_k1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;grade&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;occ&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;age&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;men&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;spring&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># view the first few observations in the data set</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">nlsy_math_long</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 10 × 11</caption>
+<thead>
+	<tr><th></th><th scope=col>id</th><th scope=col>female</th><th scope=col>lb_wght</th><th scope=col>anti_k1</th><th scope=col>math</th><th scope=col>grade</th><th scope=col>occ</th><th scope=col>age</th><th scope=col>men</th><th scope=col>spring</th><th scope=col>anti</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td> 201</td><td>1</td><td>0</td><td>0</td><td>38</td><td>3</td><td>2</td><td>111</td><td> 0</td><td>1</td><td>0</td></tr>
+	<tr><th scope=row>2</th><td> 201</td><td>1</td><td>0</td><td>0</td><td>55</td><td>5</td><td>3</td><td>135</td><td> 1</td><td>1</td><td>0</td></tr>
+	<tr><th scope=row>3</th><td> 303</td><td>1</td><td>0</td><td>1</td><td>26</td><td>2</td><td>2</td><td>121</td><td> 0</td><td>1</td><td>2</td></tr>
+	<tr><th scope=row>4</th><td> 303</td><td>1</td><td>0</td><td>1</td><td>33</td><td>5</td><td>3</td><td>145</td><td> 0</td><td>1</td><td>2</td></tr>
+	<tr><th scope=row>5</th><td>2702</td><td>0</td><td>0</td><td>0</td><td>56</td><td>2</td><td>2</td><td>100</td><td>NA</td><td>1</td><td>0</td></tr>
+	<tr><th scope=row>6</th><td>2702</td><td>0</td><td>0</td><td>0</td><td>58</td><td>4</td><td>3</td><td>125</td><td>NA</td><td>1</td><td>2</td></tr>
+	<tr><th scope=row>7</th><td>2702</td><td>0</td><td>0</td><td>0</td><td>80</td><td>8</td><td>4</td><td>173</td><td>NA</td><td>1</td><td>2</td></tr>
+	<tr><th scope=row>8</th><td>4303</td><td>1</td><td>0</td><td>0</td><td>41</td><td>3</td><td>2</td><td>115</td><td> 0</td><td>0</td><td>1</td></tr>
+	<tr><th scope=row>9</th><td>4303</td><td>1</td><td>0</td><td>0</td><td>58</td><td>4</td><td>3</td><td>135</td><td> 0</td><td>1</td><td>2</td></tr>
+	<tr><th scope=row>10</th><td>5002</td><td>0</td><td>0</td><td>4</td><td>46</td><td>4</td><td>2</td><td>117</td><td>NA</td><td>1</td><td>4</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nlsy_math_long</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">(</span>
+<span class="w">    </span><span class="nf">aes</span><span class="p">(</span><span class="n">grade</span><span class="p">,</span><span class="w"> </span><span class="n">math</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># add individual line with transparency</span>
+<span class="w">  </span><span class="nf">stat_summary</span><span class="p">(</span><span class="w"> </span><span class="c1"># add average line</span>
+<span class="w">    </span><span class="nf">aes</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">    </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">,</span>
+<span class="w">    </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;line&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span>
+<span class="w">    </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Grade at testing&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;PAT Mathematics&quot;</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/c4be8ca3b6c061c6c982ccf899a4fd50d2c69cd81dd181c6815a939acc78a697.png"><img alt="../_images/c4be8ca3b6c061c6c982ccf899a4fd50d2c69cd81dd181c6815a939acc78a697.png" src="../_images/c4be8ca3b6c061c6c982ccf899a4fd50d2c69cd81dd181c6815a939acc78a697.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Per ottenere una visione più dettagliata dei cambiamenti a livello individuale, possiamo selezionare casualmente un campione di 20 individui e registrare, per ciascuno di essi, l’evoluzione dei loro punteggi in matematica nel tempo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># sample 20 ids</span>
+<span class="n">people</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">unique</span><span class="p">(</span><span class="n">nlsy_math_long</span><span class="o">$</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="m">20</span><span class="p">)</span>
+<span class="c1"># do separate graph for each individual</span>
+<span class="n">nlsy_math_long</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">people</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">  </span><span class="c1"># filter only sampled cases</span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">grade</span><span class="p">,</span><span class="w"> </span><span class="n">math</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># a graph for each individual</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Grade at testing&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;PAT Mathematics&quot;</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`geom_line()`: Each group consists of only one observation.
+<span class=" -Color -Color-Cyan">ℹ</span> Do you need to adjust the <span class=" -Color -Color-Green">group</span> aesthetic?
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`geom_line()`: Each group consists of only one observation.
+<span class=" -Color -Color-Cyan">ℹ</span> Do you need to adjust the <span class=" -Color -Color-Green">group</span> aesthetic?
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/1ef3689cabbcd8da93a60a8ed9c0c11b74cb99b051fc362aca8247656a33de25.png"><img alt="../_images/1ef3689cabbcd8da93a60a8ed9c0c11b74cb99b051fc362aca8247656a33de25.png" src="../_images/1ef3689cabbcd8da93a60a8ed9c0c11b74cb99b051fc362aca8247656a33de25.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Per semplicità, leggiamo gli stessi dati in formato wide da un file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># set filepath for data file</span>
+<span class="n">filepath</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;https://raw.githubusercontent.com/LRI-2/Data/main/GrowthModeling/nlsy_math_wide_R.dat&quot;</span>
+<span class="c1"># read in the text data file using the url() function</span>
+<span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.table</span><span class="p">(</span>
+<span class="w">  </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">url</span><span class="p">(</span><span class="n">filepath</span><span class="p">),</span>
+<span class="w">  </span><span class="n">na.strings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;.&quot;</span>
+<span class="p">)</span><span class="w"> </span><span class="c1"># indicates the missing data designator</span>
+<span class="c1"># copy data with new name</span>
+<span class="n">nlsy_math_wide</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dat</span>
+
+<span class="c1"># Give the variable names</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">nlsy_math_wide</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">  </span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;female&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lb_wght&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti_k1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;math2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;math8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;age2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;age3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;age4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;age5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;age6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;age7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;age8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;men2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;men3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;men4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;men5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;men6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;men7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;men8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;spring2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;spring8&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;anti2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti7&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;anti8&quot;</span>
+<span class="p">)</span>
+
+
+<span class="c1"># view the first few observations (and columns) in the data set</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">nlsy_math_wide</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">11</span><span class="p">],</span><span class="w"> </span><span class="m">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 10 × 11</caption>
+<thead>
+	<tr><th></th><th scope=col>id</th><th scope=col>female</th><th scope=col>lb_wght</th><th scope=col>anti_k1</th><th scope=col>math2</th><th scope=col>math3</th><th scope=col>math4</th><th scope=col>math5</th><th scope=col>math6</th><th scope=col>math7</th><th scope=col>math8</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td> 201</td><td>1</td><td>0</td><td>0</td><td>NA</td><td>38</td><td>NA</td><td>55</td><td>NA</td><td>NA</td><td>NA</td></tr>
+	<tr><th scope=row>2</th><td> 303</td><td>1</td><td>0</td><td>1</td><td>26</td><td>NA</td><td>NA</td><td>33</td><td>NA</td><td>NA</td><td>NA</td></tr>
+	<tr><th scope=row>3</th><td>2702</td><td>0</td><td>0</td><td>0</td><td>56</td><td>NA</td><td>58</td><td>NA</td><td>NA</td><td>NA</td><td>80</td></tr>
+	<tr><th scope=row>4</th><td>4303</td><td>1</td><td>0</td><td>0</td><td>NA</td><td>41</td><td>58</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>
+	<tr><th scope=row>5</th><td>5002</td><td>0</td><td>0</td><td>4</td><td>NA</td><td>NA</td><td>46</td><td>NA</td><td>54</td><td>NA</td><td>66</td></tr>
+	<tr><th scope=row>6</th><td>5005</td><td>1</td><td>0</td><td>0</td><td>35</td><td>NA</td><td>50</td><td>NA</td><td>60</td><td>NA</td><td>59</td></tr>
+	<tr><th scope=row>7</th><td>5701</td><td>0</td><td>0</td><td>2</td><td>NA</td><td>62</td><td>61</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>
+	<tr><th scope=row>8</th><td>6102</td><td>0</td><td>0</td><td>0</td><td>NA</td><td>NA</td><td>55</td><td>67</td><td>NA</td><td>81</td><td>NA</td></tr>
+	<tr><th scope=row>9</th><td>6801</td><td>1</td><td>0</td><td>0</td><td>NA</td><td>54</td><td>NA</td><td>62</td><td>NA</td><td>66</td><td>NA</td></tr>
+	<tr><th scope=row>10</th><td>6802</td><td>0</td><td>0</td><td>0</td><td>NA</td><td>55</td><td>NA</td><td>66</td><td>NA</td><td>68</td><td>NA</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Specifichiamo il modello SEM (si noti che, anche in questo caso, la scrittura del modello può essere semplificata usando la funzione <code class="docutils literal notranslate"><span class="pre">growth</span></code>).</p>
+<p>I covarianti invarianti nel tempo valutati qui includono <code class="docutils literal notranslate"><span class="pre">lb_wght</span></code>, una variabile dicotomica codificata come dummy che indica se il bambino aveva un peso alla nascita normale (codificato 0) o basso (codificato 1), e <code class="docutils literal notranslate"><span class="pre">anti_k1</span></code>, una variabile continua con valori che variano da 0 a 8 indicando il grado in cui il bambino manifestava comportamenti antisociali all’asilo o in prima elementare (punteggi più alti indicano un comportamento più antisociale).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#writing out linear growth model with tic in full SEM way </span>
+<span class="n">lg_math_tic_lavaan_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;</span>
+<span class="s">    #latent variable definitions</span>
+<span class="s">            #intercept</span>
+<span class="s">              eta1 =~ 1*math2+</span>
+<span class="s">                      1*math3+</span>
+<span class="s">                      1*math4+</span>
+<span class="s">                      1*math5+</span>
+<span class="s">                      1*math6+</span>
+<span class="s">                      1*math7+</span>
+<span class="s">                      1*math8</span>
+<span class="s">            #linear slope</span>
+<span class="s">              eta2 =~ 0*math2+</span>
+<span class="s">                      1*math3+</span>
+<span class="s">                      2*math4+</span>
+<span class="s">                      3*math5+</span>
+<span class="s">                      4*math6+</span>
+<span class="s">                      5*math7+</span>
+<span class="s">                      6*math8</span>
+
+<span class="s">          #factor variances</span>
+<span class="s">            eta1 ~~ eta1</span>
+<span class="s">            eta2 ~~ eta2</span>
+
+<span class="s">          #factor covariance</span>
+<span class="s">            eta1 ~~ eta2</span>
+
+<span class="s">          #manifest variances (set equal by naming theta)</span>
+<span class="s">            math2 ~~ theta*math2</span>
+<span class="s">            math3 ~~ theta*math3</span>
+<span class="s">            math4 ~~ theta*math4</span>
+<span class="s">            math5 ~~ theta*math5</span>
+<span class="s">            math6 ~~ theta*math6</span>
+<span class="s">            math7 ~~ theta*math7</span>
+<span class="s">            math8 ~~ theta*math8</span>
+
+<span class="s">          #latent means (freely estimated)</span>
+<span class="s">            eta1 ~ 1</span>
+<span class="s">            eta2 ~ 1</span>
+
+<span class="s">          #manifest means (fixed to zero)</span>
+<span class="s">            math2 ~ 0*1</span>
+<span class="s">            math3 ~ 0*1</span>
+<span class="s">            math4 ~ 0*1</span>
+<span class="s">            math5 ~ 0*1</span>
+<span class="s">            math6 ~ 0*1</span>
+<span class="s">            math7 ~ 0*1</span>
+<span class="s">            math8 ~ 0*1</span>
+
+<span class="s">        #Time invariant covaraite</span>
+<span class="s">        #regression of time-invariant covariate on intercept and slope factors</span>
+<span class="s">            eta1 ~ lb_wght + anti_k1</span>
+<span class="s">            eta2 ~ lb_wght + anti_k1</span>
+
+<span class="s">        #variance of TIV covariates</span>
+<span class="s">            lb_wght ~~ lb_wght</span>
+<span class="s">            anti_k1 ~~ anti_k1</span>
+
+<span class="s">        #covariance of TIV covariates</span>
+<span class="s">            lb_wght ~~ anti_k1</span>
+
+<span class="s">        #means of TIV covariates (freely estimated)</span>
+<span class="s">            lb_wght ~ 1</span>
+<span class="s">            anti_k1 ~ 1</span>
+<span class="s">&#39;</span><span class="w"> </span><span class="c1">#end of model definition</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nel modello di crescita lineare qui definito, la parte delle intercette riguarda la definizione di una variabile latente che rappresenta il punto di partenza (intercetta) delle misurazioni ripetute nel tempo. L’intercetta, in questo contesto, è essenzialmente il livello iniziale da cui parte la traiettoria di crescita individuale.</p>
+<section id="definizione-delle-variabili-latenti">
+<h2><span class="section-number">79.1. </span>Definizione delle Variabili Latenti:<a class="headerlink" href="#definizione-delle-variabili-latenti" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Intercept (<code class="docutils literal notranslate"><span class="pre">eta1</span></code>)</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">eta1</span></code> è la variabile latente che rappresenta l’intercetta del modello di crescita lineare.</p></li>
+<li><p>La formula <code class="docutils literal notranslate"><span class="pre">eta1</span> <span class="pre">=~</span> <span class="pre">1*math2</span> <span class="pre">+</span> <span class="pre">1*math3</span> <span class="pre">+</span> <span class="pre">1*math4</span> <span class="pre">+</span> <span class="pre">1*math5</span> <span class="pre">+</span> <span class="pre">1*math6</span> <span class="pre">+</span> <span class="pre">1*math7</span> <span class="pre">+</span> <span class="pre">1*math8</span></code> significa che <code class="docutils literal notranslate"><span class="pre">eta1</span></code> è definita come un fattore che ha un carico fattoriale di <code class="docutils literal notranslate"><span class="pre">1</span></code> per ciascuna delle misure temporali (<code class="docutils literal notranslate"><span class="pre">math2</span></code> a <code class="docutils literal notranslate"><span class="pre">math8</span></code>). Questo implica che l’intercetta è costante attraverso tutte le misure temporali, rappresentando il livello iniziale comune per tutte le osservazioni.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="vincoli-sui-carichi-fattoriali">
+<h2><span class="section-number">79.2. </span>Vincoli sui Carichi Fattoriali:<a class="headerlink" href="#vincoli-sui-carichi-fattoriali" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>I carichi fattoriali fissati a <code class="docutils literal notranslate"><span class="pre">1</span></code> per l’intercetta indicano che il cambiamento nel punteggio matematico da un’osservazione all’altra è attribuito esclusivamente alla pendenza (slope) e non all’intercetta. L’intercetta rimane costante come il valore di partenza.</p></li>
+</ul>
+</section>
+<section id="scopo-di-questi-vincoli">
+<h2><span class="section-number">79.3. </span>Scopo di Questi Vincoli:<a class="headerlink" href="#scopo-di-questi-vincoli" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Controllo delle Stime</strong>: Fissare i carichi dell’intercetta permette di separare l’effetto dell’intercetta (punto di partenza) dall’effetto della pendenza (cambiamento nel tempo). Questo è cruciale in studi longitudinali dove si desidera distinguere tra il livello iniziale e la velocità di crescita.</p></li>
+<li><p><strong>Identificabilità del Modello</strong>: In modelli di equazioni strutturali, particolarmente in quelli con variabili latenti, è necessario imporre alcuni vincoli per rendere il modello statisticamente identificabile. Fissare i carichi fattoriali dell’intercetta a <code class="docutils literal notranslate"><span class="pre">1</span></code> è un modo comune per assicurare che il modello abbia una soluzione unica.</p></li>
+</ul>
+<p>Il vincolo sui carichi fattoriali dell’intercetta nel tuo modello di crescita lineare assicura che l’intercetta rappresenti un effetto costante attraverso tutte le misurazioni, focalizzando l’analisi sulla variazione attribuibile alla pendenza e altri covariati nel tempo. Questo rende più chiara l’interpretazione dei risultati e migliora la precisione delle stime relative agli effetti longitudinali studiati.</p>
+<p>Adattiamo il modello ai dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lg_math_tic_lavaan_fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sem</span><span class="p">(</span><span class="n">lg_math_tic_lavaan_model</span><span class="p">,</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_wide</span><span class="p">,</span>
+<span class="w">  </span><span class="n">meanstructure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">  </span><span class="n">estimator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ML&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">missing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;fiml&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+“lavaan WARNING: some observed variances are (at least) a factor 1000 times larger than others; use varTable(fit) to investigate”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+“lavaan WARNING:
+    due to missing values, some pairwise combinations have less than
+    10% coverage; use lavInspect(fit, &quot;coverage&quot;) to investigate.”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g]], :
+“lavaan WARNING:
+    Maximum number of iterations reached when computing the sample
+    moments using EM; use the em.h1.iter.max= argument to increase the
+    number of iterations”
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo la soluzione ottenuta.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">lg_math_tic_lavaan_fit</span><span class="p">,</span><span class="w"> </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 107 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        21
+  Number of equality constraints                     6
+
+  Number of observations                           933
+  Number of missing patterns                        61
+
+Model Test User Model:
+                                                      
+  Test statistic                               220.221
+  Degrees of freedom                                39
+  P-value (Chi-square)                           0.000
+
+Model Test Baseline Model:
+
+  Test statistic                               892.616
+  Degrees of freedom                                36
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.788
+  Tucker-Lewis Index (TLI)                       0.805
+                                                      
+  Robust Comparative Fit Index (CFI)             0.920
+  Robust Tucker-Lewis Index (TLI)                0.926
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -9785.085
+  Loglikelihood unrestricted model (H1)      -9674.975
+                                                      
+  Akaike (AIC)                               19600.171
+  Bayesian (BIC)                             19672.747
+  Sample-size adjusted Bayesian (SABIC)      19625.108
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.071
+  90 Percent confidence interval - lower         0.062
+  90 Percent confidence interval - upper         0.080
+  P-value H_0: RMSEA &lt;= 0.050                    0.000
+  P-value H_0: RMSEA &gt;= 0.080                    0.046
+                                                      
+  Robust RMSEA                                   0.100
+  90 Percent confidence interval - lower         0.000
+  90 Percent confidence interval - upper         0.183
+  P-value H_0: Robust RMSEA &lt;= 0.050             0.218
+  P-value H_0: Robust RMSEA &gt;= 0.080             0.654
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.097
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Observed
+  Observed information based on                Hessian
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  eta1 =~                                             
+    math2             1.000                           
+    math3             1.000                           
+    math4             1.000                           
+    math5             1.000                           
+    math6             1.000                           
+    math7             1.000                           
+    math8             1.000                           
+  eta2 =~                                             
+    math2             0.000                           
+    math3             1.000                           
+    math4             2.000                           
+    math5             3.000                           
+    math6             4.000                           
+    math7             5.000                           
+    math8             6.000                           
+
+Regressions:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  eta1 ~                                              
+    lb_wght          -2.716    1.294   -2.099    0.036
+    anti_k1          -0.551    0.232   -2.369    0.018
+  eta2 ~                                              
+    lb_wght           0.625    0.333    1.873    0.061
+    anti_k1          -0.019    0.059   -0.327    0.743
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+ .eta1 ~~                                             
+   .eta2             -0.078    1.145   -0.068    0.945
+  lb_wght ~~                                          
+    anti_k1           0.007    0.014    0.548    0.584
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+   .eta1             36.290    0.497   73.052    0.000
+   .eta2              4.315    0.122   35.420    0.000
+   .math2             0.000                           
+   .math3             0.000                           
+   .math4             0.000                           
+   .math5             0.000                           
+   .math6             0.000                           
+   .math7             0.000                           
+   .math8             0.000                           
+    lb_wght           0.080    0.009    9.031    0.000
+    anti_k1           1.454    0.050   29.216    0.000
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+   .eta1             63.064    5.609   11.242    0.000
+   .eta2              0.713    0.326    2.185    0.029
+   .math2   (thet)   36.257    1.868   19.406    0.000
+   .math3   (thet)   36.257    1.868   19.406    0.000
+   .math4   (thet)   36.257    1.868   19.406    0.000
+   .math5   (thet)   36.257    1.868   19.406    0.000
+   .math6   (thet)   36.257    1.868   19.406    0.000
+   .math7   (thet)   36.257    1.868   19.406    0.000
+   .math8   (thet)   36.257    1.868   19.406    0.000
+    lb_wght           0.074    0.003   21.599    0.000
+    anti_k1           2.312    0.107   21.599    0.000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Interpretazione dei risultati per <code class="docutils literal notranslate"><span class="pre">eta1</span></code> (Intercetta).</p>
+<ul class="simple">
+<li><p><strong>lb_wght</strong>: L’effetto stimato di <code class="docutils literal notranslate"><span class="pre">lb_wght</span></code> sull’intercetta (eta1) è di -2.716 con uno standard error di 1.294. Questo valore di -2.716 indica che avere un peso alla nascita basso (codificato come 1) è associato ad una riduzione media di 2.716 unità nel valore iniziale di <code class="docutils literal notranslate"><span class="pre">eta1</span></code>, rispetto a un peso alla nascita normale (codificato come 0). Questo risultato è degno di nota, come indicato dal valore di P (0.036), che è inferiore a 0.05.</p></li>
+<li><p><strong>anti_k1</strong>: Per <code class="docutils literal notranslate"><span class="pre">anti_k1</span></code>, l’effetto stimato sull’intercetta è di -0.551 con uno standard error di 0.232. Questo suggerisce che per ogni unità di aumento nel punteggio di comportamento antisociale (anti_k1), il valore iniziale di <code class="docutils literal notranslate"><span class="pre">eta1</span></code> diminuisce in media di 0.551 unità. Anche questo risultato è statisticamente significativo, con un valore di P di 0.018.</p></li>
+</ul>
+<p>Interpretazione dei risultati per <code class="docutils literal notranslate"><span class="pre">eta2</span></code> (Pendenza).</p>
+<ul class="simple">
+<li><p><strong>lb_wght</strong>: Per la pendenza (eta2), l’effetto stimato di <code class="docutils literal notranslate"><span class="pre">lb_wght</span></code> è di 0.625 con uno standard error di 0.333. Ciò indica che avere un peso alla nascita basso è associato ad un aumento medio di 0.625 unità nella pendenza di <code class="docutils literal notranslate"><span class="pre">eta2</span></code>, rispetto a un peso normale alla nascita. Tuttavia, questo risultato non è statisticamente significativo al livello del 5%, dato che il valore di P è 0.061, che è leggermente superiore a 0.05.</p></li>
+<li><p><strong>anti_k1</strong>: L’effetto stimato di <code class="docutils literal notranslate"><span class="pre">anti_k1</span></code> sulla pendenza è molto piccolo (-0.019) e non è statisticamente significativo (valore di P = 0.743), suggerendo che non c’è una relazione chiara tra il comportamento antisociale in età precoce e il cambiamento nel tempo di <code class="docutils literal notranslate"><span class="pre">eta2</span></code>.</p></li>
+</ul>
+<p>In sintesi, il peso alla nascita basso e i comportamenti antisociali sembrano influenzare negativamente il valore iniziale (intercetta) del costrutto misurato. Il peso alla nascita e i comportamenti antisociali non sembrano avere un impatto robusto sulla pendenza, ovvero sul tasso di cambiamento del costrutto misurato.</p>
+<p>Creiamo un diagramma di percorso.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lg_math_tic_lavaan_fit</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">semPaths</span><span class="p">(</span>
+<span class="w">        </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lisrel&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;std&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">edge.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">6</span><span class="p">,</span>
+<span class="w">        </span><span class="n">label.prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.9</span><span class="p">,</span><span class="w"> </span><span class="n">edge.label.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">        </span><span class="n">equalizeManifests</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">optimizeLatRes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">node.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span>
+<span class="w">        </span><span class="n">edge.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">shapeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rectangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">shapeLat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ellipse&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">shapeInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;triangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">sizeInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">sizeLat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">        </span><span class="n">curve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">unCol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#070b8c&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/1d2df745cb26e90b9d1ecef46c4e2fd514308ccf0b2524cbc5aab872a102cf22.png"><img alt="../_images/1d2df745cb26e90b9d1ecef46c4e2fd514308ccf0b2524cbc5aab872a102cf22.png" src="../_images/1d2df745cb26e90b9d1ecef46c4e2fd514308ccf0b2524cbc5aab872a102cf22.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+</section>
+<section id="valutare-il-contributo-delle-covariate">
+<h2><span class="section-number">79.4. </span>Valutare il contributo delle covariate<a class="headerlink" href="#valutare-il-contributo-delle-covariate" title="Link to this heading">#</a></h2>
+<p>Una questione frequente nell’analisi delle associazioni tra covariate invarianti nel tempo e le traiettorie di crescita individuali riguarda l’utilità dell’inclusione di tali covariate nei modelli. Nel contesto della modellazione multilivello, è possibile confrontare direttamente i valori del log-likelihood negativo (-2LL) dei modelli che includono o escludono le covariate invarianti nel tempo. Questo confronto è fattibile solo se tutti i partecipanti sono inclusi nell’analisi, senza esclusioni dovute a dati mancanti sulle covariate invarianti nel tempo. Tale confronto fornisce un metodo valido per valutare l’adeguatezza relativa dei modelli. In particolare, possiamo esaminare la differenza tra i valori di -2LL in relazione alla differenza nel numero di parametri stimati, ovvero la differenza nei gradi di libertà del modello.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#writing out linear growth model with tic in full SEM way </span>
+<span class="n">lg_math_ticZERO_lavaan_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;</span>
+<span class="s">    #latent variable definitions</span>
+<span class="s">            #intercept</span>
+<span class="s">              eta1 =~ 1*math2+</span>
+<span class="s">                      1*math3+</span>
+<span class="s">                      1*math4+</span>
+<span class="s">                      1*math5+</span>
+<span class="s">                      1*math6+</span>
+<span class="s">                      1*math7+</span>
+<span class="s">                      1*math8</span>
+<span class="s">            #linear slope</span>
+<span class="s">              eta2 =~ 0*math2+</span>
+<span class="s">                      1*math3+</span>
+<span class="s">                      2*math4+</span>
+<span class="s">                      3*math5+</span>
+<span class="s">                      4*math6+</span>
+<span class="s">                      5*math7+</span>
+<span class="s">                      6*math8</span>
+
+<span class="s">          #factor variances</span>
+<span class="s">            eta1 ~~ eta1</span>
+<span class="s">            eta2 ~~ eta2</span>
+
+<span class="s">          #factor covariance</span>
+<span class="s">            eta1 ~~ eta2</span>
+
+<span class="s">          #manifest variances (set equal by naming theta)</span>
+<span class="s">            math2 ~~ theta*math2</span>
+<span class="s">            math3 ~~ theta*math3</span>
+<span class="s">            math4 ~~ theta*math4</span>
+<span class="s">            math5 ~~ theta*math5</span>
+<span class="s">            math6 ~~ theta*math6</span>
+<span class="s">            math7 ~~ theta*math7</span>
+<span class="s">            math8 ~~ theta*math8</span>
+
+<span class="s">          #latent means (freely estimated)</span>
+<span class="s">            eta1 ~ 1</span>
+<span class="s">            eta2 ~ 1</span>
+
+<span class="s">          #manifest means (fixed to zero)</span>
+<span class="s">            math2 ~ 0*1</span>
+<span class="s">            math3 ~ 0*1</span>
+<span class="s">            math4 ~ 0*1</span>
+<span class="s">            math5 ~ 0*1</span>
+<span class="s">            math6 ~ 0*1</span>
+<span class="s">            math7 ~ 0*1</span>
+<span class="s">            math8 ~ 0*1</span>
+
+<span class="s">        #Time invariant covaraite</span>
+<span class="s">          #regression of time-invariant covariate on intercept and slope factors</span>
+<span class="s">          #FIXED to 0</span>
+<span class="s">            eta1 ~ 0*lb_wght + 0*anti_k1</span>
+<span class="s">            eta2 ~ 0*lb_wght + 0*anti_k1</span>
+
+<span class="s">        #variance of TIV covariates</span>
+<span class="s">            lb_wght ~~ lb_wght</span>
+<span class="s">            anti_k1 ~~ anti_k1</span>
+
+<span class="s">        #covariance of TIV covaraites</span>
+<span class="s">            lb_wght ~~ anti_k1</span>
+
+<span class="s">        #means of TIV covariates (freely estimated)</span>
+<span class="s">            lb_wght ~ 1</span>
+<span class="s">            anti_k1 ~ 1</span>
+<span class="s">&#39;</span><span class="w"> </span><span class="c1">#end of model definition</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo il modello ai dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lg_math_ticZERO_lavaan_fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sem</span><span class="p">(</span><span class="n">lg_math_ticZERO_lavaan_model</span><span class="p">,</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_wide</span><span class="p">,</span>
+<span class="w">  </span><span class="n">meanstructure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">  </span><span class="n">estimator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ML&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">missing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;fiml&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+“lavaan WARNING: some observed variances are (at least) a factor 1000 times larger than others; use varTable(fit) to investigate”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_data_full(data = data, group = group, cluster = cluster, :
+“lavaan WARNING:
+    due to missing values, some pairwise combinations have less than
+    10% coverage; use lavInspect(fit, &quot;coverage&quot;) to investigate.”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_mvnorm_missing_h1_estimate_moments(Y = X[[g]], wt = WT[[g]], :
+“lavaan WARNING:
+    Maximum number of iterations reached when computing the sample
+    moments using EM; use the em.h1.iter.max= argument to increase the
+    number of iterations”
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo il risultato ottenuto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">lg_math_ticZERO_lavaan_fit</span><span class="p">,</span><span class="w"> </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 92 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        17
+  Number of equality constraints                     6
+
+  Number of observations                           933
+  Number of missing patterns                        61
+
+Model Test User Model:
+                                                      
+  Test statistic                               234.467
+  Degrees of freedom                                43
+  P-value (Chi-square)                           0.000
+
+Model Test Baseline Model:
+
+  Test statistic                               892.616
+  Degrees of freedom                                36
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.776
+  Tucker-Lewis Index (TLI)                       0.813
+                                                      
+  Robust Comparative Fit Index (CFI)             0.917
+  Robust Tucker-Lewis Index (TLI)                0.931
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -9792.208
+  Loglikelihood unrestricted model (H1)      -9674.975
+                                                      
+  Akaike (AIC)                               19606.416
+  Bayesian (BIC)                             19659.638
+  Sample-size adjusted Bayesian (SABIC)      19624.703
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.069
+  90 Percent confidence interval - lower         0.061
+  90 Percent confidence interval - upper         0.078
+  P-value H_0: RMSEA &lt;= 0.050                    0.000
+  P-value H_0: RMSEA &gt;= 0.080                    0.020
+                                                      
+  Robust RMSEA                                   0.097
+  90 Percent confidence interval - lower         0.000
+  90 Percent confidence interval - upper         0.173
+  P-value H_0: Robust RMSEA &lt;= 0.050             0.208
+  P-value H_0: Robust RMSEA &gt;= 0.080             0.646
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.103
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Observed
+  Observed information based on                Hessian
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  eta1 =~                                             
+    math2             1.000                           
+    math3             1.000                           
+    math4             1.000                           
+    math5             1.000                           
+    math6             1.000                           
+    math7             1.000                           
+    math8             1.000                           
+  eta2 =~                                             
+    math2             0.000                           
+    math3             1.000                           
+    math4             2.000                           
+    math5             3.000                           
+    math6             4.000                           
+    math7             5.000                           
+    math8             6.000                           
+
+Regressions:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  eta1 ~                                              
+    lb_wght           0.000                           
+    anti_k1           0.000                           
+  eta2 ~                                              
+    lb_wght           0.000                           
+    anti_k1           0.000                           
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+ .eta1 ~~                                             
+   .eta2             -0.181    1.150   -0.158    0.875
+  lb_wght ~~                                          
+    anti_k1           0.007    0.014    0.548    0.584
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+   .eta1             35.267    0.355   99.229    0.000
+   .eta2              4.339    0.088   49.136    0.000
+   .math2             0.000                           
+   .math3             0.000                           
+   .math4             0.000                           
+   .math5             0.000                           
+   .math6             0.000                           
+   .math7             0.000                           
+   .math8             0.000                           
+    lb_wght           0.080    0.009    9.031    0.000
+    anti_k1           1.454    0.050   29.216    0.000
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+   .eta1             64.562    5.659   11.408    0.000
+   .eta2              0.733    0.327    2.238    0.025
+   .math2   (thet)   36.230    1.867   19.410    0.000
+   .math3   (thet)   36.230    1.867   19.410    0.000
+   .math4   (thet)   36.230    1.867   19.410    0.000
+   .math5   (thet)   36.230    1.867   19.410    0.000
+   .math6   (thet)   36.230    1.867   19.410    0.000
+   .math7   (thet)   36.230    1.867   19.410    0.000
+   .math8   (thet)   36.230    1.867   19.410    0.000
+    lb_wght           0.074    0.003   21.599    0.000
+    anti_k1           2.312    0.107   21.599    0.000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Generiamo il diagramma di percorso.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lg_math_ticZERO_lavaan_fit</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">semPaths</span><span class="p">(</span>
+<span class="w">        </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lisrel&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;std&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">edge.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">6</span><span class="p">,</span>
+<span class="w">        </span><span class="n">label.prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.9</span><span class="p">,</span><span class="w"> </span><span class="n">edge.label.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">        </span><span class="n">equalizeManifests</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">optimizeLatRes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">node.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span>
+<span class="w">        </span><span class="n">edge.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">shapeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rectangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">shapeLat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ellipse&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">shapeInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;triangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">sizeInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">sizeLat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">        </span><span class="n">curve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">unCol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#070b8c&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/cf02428da4733318a762fe435e45947b50dc3d33313d773f8016ce9a7fd4ff96.png"><img alt="../_images/cf02428da4733318a762fe435e45947b50dc3d33313d773f8016ce9a7fd4ff96.png" src="../_images/cf02428da4733318a762fe435e45947b50dc3d33313d773f8016ce9a7fd4ff96.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Eseguiamo il confronto tra i due modelli mediante il test del rapporto tra verosimiglianze.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">lavTestLRT</span><span class="p">(</span><span class="n">lg_math_tic_lavaan_fit</span><span class="p">,</span><span class="w"> </span><span class="n">lg_math_ticZERO_lavaan_fit</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Chi-Squared Difference Test
+
+                           Df   AIC   BIC  Chisq Chisq diff    RMSEA Df diff
+lg_math_tic_lavaan_fit     39 19600 19673 220.22                            
+lg_math_ticZERO_lavaan_fit 43 19606 19660 234.47     14.245 0.052395       4
+                           Pr(&gt;Chisq)   
+lg_math_tic_lavaan_fit                  
+lg_math_ticZERO_lavaan_fit   0.006552 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nel nostro esempio, il test del rapport tra verosimiglianze produce un risultato di 14.245 con 4 gradi di libertà. Quindi, il miglioramento dell’adattamento dipendente dall’aggiunta delle covariate è degno di nota (χ2(4) = 14.24, p &lt; .001), indicando che basso peso alla nascita e comportamenti antisociali sono predittori utili.</p>
+<p>Nell’ambito delle equazioni strutturali, si valuta tipicamente l’adattamento globale del modello attraverso indici come RMSEA, CFI e TLI. Tuttavia, l’inclusione di covariate invarianti nel tempo raramente altera significativamente questi indici. Nonostante ciò, l’adattamento relativo tra i modelli può fornire informazioni preziose, simili a quelle ottenibili nella modellazione multilivello. Come accennato, le differenze nei -2LL (o nei valori di χ2) possono essere utilizzate per verificare se l’aggiunta di covariate invarianti nel tempo migliora significativamente l’adattamento del modello. È importante notare che, nel contesto delle equazioni strutturali, il modello di confronto (o baseline) non è semplicemente privo di covariate invarianti nel tempo, ma piuttosto include tali covariate con i loro effetti su intercetta e pendenza vincolati a zero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">fitMeasures</span><span class="p">(</span><span class="n">lg_math_tic_lavaan_fit</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;chisq&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;df&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;pvalue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cfi&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rmsea&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  chisq      df  pvalue     cfi   rmsea 
+220.221  39.000   0.000   0.788   0.071 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="confronto-con-il-modello-misto">
+<h2><span class="section-number">79.5. </span>Confronto con il modello misto<a class="headerlink" href="#confronto-con-il-modello-misto" title="Link to this heading">#</a></h2>
+<p>Eseguiamo ora l’analisi statistica utilizzando un modello misto con intercetta e pendenza casuale. Confronteremo un modello ridotto, che include solo l’effetto del tempo, con un modello completo che include le covariate esaminate in precedenza. Il modello completo include gli effetti principali delle covariate e l’interazione tra le covariate e il tempo.</p>
+<p>Adattiamo il modello “completo”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nlsy_math_long</span><span class="o">$</span><span class="n">grade_c2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nlsy_math_long</span><span class="o">$</span><span class="n">grade</span><span class="m">-2</span>
+
+<span class="n">fit2_lmer</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lmer</span><span class="p">(</span>
+<span class="w">    </span><span class="n">math</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">grade_c2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lb_wght</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">anti_k1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">I</span><span class="p">(</span><span class="n">grade_c2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">lb_wght</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">I</span><span class="p">(</span><span class="n">grade_c2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">anti_k1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">        </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">grade_c2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="p">),</span>
+<span class="w">    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_long</span><span class="p">,</span>
+<span class="w">    </span><span class="n">REML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">na.action</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">na.exclude</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in checkConv(attr(opt, &quot;derivs&quot;), opt$par, ctrl = control$checkConv, :
+“Model failed to converge with max|grad| = 0.0057725 (tol = 0.002, component 1)”
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo i risultati ottenuti.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">fit2_lmer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Linear mixed model fit by maximum likelihood  [&#39;lmerMod&#39;]
+Formula: math ~ 1 + grade_c2 + lb_wght + anti_k1 + I(grade_c2 * lb_wght) +  
+    I(grade_c2 * anti_k1) + (1 + grade_c2 | id)
+   Data: nlsy_math_long
+
+     AIC      BIC   logLik deviance df.resid 
+ 15943.1  16000.2  -7961.6  15923.1     2211 
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-3.07986 -0.52517 -0.00867  0.53079  2.53455 
+
+Random effects:
+ Groups   Name        Variance Std.Dev. Corr 
+ id       (Intercept) 63.0653  7.9414        
+          grade_c2     0.7141  0.8451   -0.01
+ Residual             36.2543  6.0212        
+Number of obs: 2221, groups:  id, 932
+
+Fixed effects:
+                      Estimate Std. Error t value
+(Intercept)           36.28983    0.49630  73.120
+grade_c2               4.31521    0.12060  35.782
+lb_wght               -2.71621    1.29359  -2.100
+anti_k1               -0.55087    0.23246  -2.370
+I(grade_c2 * lb_wght)  0.62463    0.33314   1.875
+I(grade_c2 * anti_k1) -0.01930    0.05886  -0.328
+
+Correlation of Fixed Effects:
+            (Intr) grd_c2 lb_wgh ant_k1 I(_2*l
+grade_c2    -0.529                            
+lb_wght     -0.194  0.096                     
+anti_k1     -0.671  0.358 -0.025              
+I(grd_2*l_)  0.091 -0.168 -0.532  0.026       
+I(gr_2*a_1)  0.343 -0.660  0.026 -0.529 -0.055
+optimizer (nloptwrap) convergence code: 0 (OK)
+Model failed to converge with max|grad| = 0.0057725 (tol = 0.002, component 1)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo un modello misto vincolato senza covariate, utilizzando un modello con intercetta e pendenza casuale.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit3_lmer</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lmer</span><span class="p">(</span>
+<span class="w">    </span><span class="n">math</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">grade_c2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">grade_c2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="p">),</span>
+<span class="w">    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsy_math_long</span><span class="p">,</span>
+<span class="w">    </span><span class="n">REML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">na.action</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">na.exclude</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Confrontiamo i due modelli utilizzando il test del rapporto di verosimiglianza.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">anova</span><span class="p">(</span><span class="n">fit2_lmer</span><span class="p">,</span><span class="w"> </span><span class="n">fit3_lmer</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data: nlsy_math_long
+Models:
+fit3_lmer: math ~ 1 + grade_c2 + (1 + grade_c2 | id)
+fit2_lmer: math ~ 1 + grade_c2 + lb_wght + anti_k1 + I(grade_c2 * lb_wght) + I(grade_c2 * anti_k1) + (1 + grade_c2 | id)
+          npar   AIC   BIC  logLik deviance  Chisq Df Pr(&gt;Chisq)   
+fit3_lmer    6 15949 15984 -7968.7    15937                        
+fit2_lmer   10 15943 16000 -7961.6    15923 14.245  4   0.006552 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+</pre></div>
+</div>
+</div>
+</div>
+<p>La differenza nei -2LL tra i due modelli analizzati è di 14.25, con una differenza di 4 gradi di libertà, risultando in un valore di χ2(4) = 14.25 e un p-value inferiore a .001. Questa differenza è coerente con quella osservata nei precedenti confronti tra modelli nel contesto della modellazione di crescita latente (LGM). Di conseguenza, arriviamo alla stessa conclusione sull’importanza del basso peso alla nascita e dei comportamenti antisociali, sia nel framework di modellazione multilivello che nell’analisi delle differenze nelle traiettorie latenti matematiche nei bambini.</p>
+</section>
+<section id="considerazioni-importanti">
+<h2><span class="section-number">79.6. </span>Considerazioni Importanti<a class="headerlink" href="#considerazioni-importanti" title="Link to this heading">#</a></h2>
+<p>La maggior parte delle ricerche nel modello di crescita cerca di comprendere come le caratteristiche interpersonali (ovvero, i covarianti invarianti nel tempo) siano associate a differenze interpersonali nei cambiamenti intrapersonali catturati dai dati longitudinali. Nel nostro esempio illustrativo, ci siamo limitati a due covarianti invarianti nel tempo per semplicità. Tuttavia, è possibile includere contemporaneamente nel modello diversi covarianti invarianti nel tempo e le interazioni tra di essi. Come in tutte le analisi di regressione, è essenziale un’adeguata scala e centratura dei covarianti invarianti nel tempo per ottenere stime di parametri interpretabili. Tutte le pratiche comuni nella regressione, come l’esame delle interazioni (moderazione) tra i covarianti invarianti nel tempo, relazioni non lineari e test di mediazione, sono possibili e implementate in modi tipici. Ad esempio, è possibile calcolare variabili prodotto, includerle nel dataset e inserirle come predittori aggiuntivi per esaminare effetti interattivi. Inoltre, gli effetti dei covarianti invarianti nel tempo possono essere aggiunti al modello in modo gerarchico per determinare se il loro inserimento ha migliorato in maniera rilevante l’adattamento del modello (una procedura simile all’esame del cambiamento in R^2).</p>
+<section id="varianza-spiegata">
+<h3><span class="section-number">79.6.1. </span>Varianza Spiegata<a class="headerlink" href="#varianza-spiegata" title="Link to this heading">#</a></h3>
+<p>Nell’ambito della ricerca sulle covariate invarianti nel tempo, un aspetto cruciale è determinare quanto della varianza nelle intercette e nelle pendenze sia spiegata da queste covariate. In altre parole, si cerca di quantificare quale percentuale delle differenze interpersonali nelle intercette e pendenze sia attribuibile alle covariate invarianti nel tempo. Sia nei framework di modellazione multilivello che nelle equazioni strutturali, è possibile confrontare le stime di varianza per intercette e pendenze ottenute da modelli con e senza le covariate invarianti nel tempo.</p>
+<p>Nel nostro esempio, la varianza dell’intercetta stimata era di 64.562 nel modello di crescita lineare senza covariate, e si riduceva a 63.064 quando il basso peso alla nascita e i comportamenti antisociali erano inclusi come covariate. La differenza di varianza stimata è di 1.498. Convertendo questa differenza in una proporzione della varianza originale, troviamo che le covariate invarianti nel tempo spiegano il 2.3% (1.498/64.562) delle differenze interpersonali nell’intercetta. Calcoli simili per la pendenza indicano che queste covariate spiegano il 2.7% della varianza. Questi risultati suggeriscono che la quota di varianza delle differenze individuali nelle variabili latenti delle intercette e delle pendenze delle traiettorie di sviluppo latente delle abilità matematiche, attribuibili al basso peso alla nascita e ai comportamenti antisociali, è relativamente modesta.</p>
+</section>
+<section id="coefficienti-standardizzati">
+<h3><span class="section-number">79.6.2. </span>Coefficienti Standardizzati<a class="headerlink" href="#coefficienti-standardizzati" title="Link to this heading">#</a></h3>
+<p>Nel campo della ricerca, oltre all’analisi della varianza spiegata, è spesso utile calcolare i coefficienti standardizzati. Questi coefficienti forniscono una misura dell’importanza relativa di ciascun predittore, agendo come indicatori della grandezza dell’effetto. I coefficienti di regressione di secondo livello, che legano i covarianti invarianti nel tempo all’intercetta e alla pendenza, sono inizialmente calcolati in forma non standardizzata. Per ottenere i coefficienti standardizzati, è necessario moltiplicare il coefficiente non standardizzato per il rapporto tra la deviazione standard del predittore e quella del risultato.</p>
+<p>La formula generale per calcolare un coefficiente standardizzato è la seguente:</p>
+<div class="math notranslate nohighlight">
+\[ 
+\beta^* = \frac{b \cdot \sigma_x}{\sigma_y} 
+\]</div>
+<p>dove:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\beta^*\)</span> è il coefficiente standardizzato.</p></li>
+<li><p><span class="math notranslate nohighlight">\(b\)</span> è il coefficiente non standardizzato.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_x\)</span> è la deviazione standard del predittore, come ad esempio i comportamenti antisociali.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_y\)</span> è la deviazione standard del risultato, come l’intercetta.</p></li>
+</ul>
+<p>Applicando questa formula, il coefficiente standardizzato per l’effetto dei comportamenti antisociali sull’intercetta è dato da:</p>
+<div class="math notranslate nohighlight">
+\[ 
+\beta^* = \frac{-0.551 \times \sigma_{\text{anti\_k1}}}{\sqrt{63.065 + (0.080 \times \sigma_{\text{X1}}^2) + (-0.551 \times \sigma_{\text{anti\_k1}}^2) + 2 \times (0.080 \times \sigma_{\text{X1,anti\_k1}} \times -0.551)}} 
+\]</div>
+<p>Qui, <span class="math notranslate nohighlight">\(\sigma_{\text{anti\_k1}}\)</span> rappresenta la deviazione standard dei comportamenti antisociali, <span class="math notranslate nohighlight">\(\sigma_{\text{X1}}\)</span> è la deviazione standard di un altro predittore, se presente, e <span class="math notranslate nohighlight">\(\sigma_{\text{X1,anti\_k1}}\)</span> è la covarianza tra i due predittori.</p>
+<p>Semplificando i calcoli, si ottiene:</p>
+<div class="math notranslate nohighlight">
+\[ 
+-0.551 \times 2.312 / \sqrt{63.065 + (0.080 \times 0.074^2) + (-0.551 \times 2.312^2) + 2 \times (0.080 \times 0.007 \times -0.551)} = -0.105 
+\]</div>
+<p>Quindi, l’effetto dei comportamenti antisociali sui punteggi di matematica a livello di seconda elementare risulta essere di piccola entità.</p>
+</section>
+<section id="considerazioni-conclusive">
+<h3><span class="section-number">79.6.3. </span>Considerazioni Conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h3>
+<p>In questo capitolo, abbiamo esaminato il modello di crescita lineare con covarianti invarianti nel tempo, un modello spesso utilizzato per esaminare le differenze individuali nella crescita e nel cambiamento. L’uso di questo modello implica una serie di assunzioni. Innanzitutto, il modello presume l’invarianza della struttura del cambiamento per tutte le persone. Ciò significa che si assume che tutti i bambini, indipendentemente dai loro punteggi sui covarianti invarianti nel tempo, seguano una traiettoria di crescita lineare. Inoltre, abbiamo ipotizzato che la grandezza della varianza residua nell’intercetta e nella pendenza, così come la covarianza residua tra l’intercetta e la pendenza, siano le stesse per i bambini con valori diversi sui covarianti invarianti nel tempo.</p>
+<p>Assumiamo anche che la varianza residua dei punteggi osservati sia equivalente per tutti i bambini. In altre parole, indipendentemente dai valori dei covarianti invarianti nel tempo, l’inadeguatezza del modello lineare è identica. Nel nostro esempio, abbiamo ipotizzato che la grandezza delle fluttuazioni annuali nelle prestazioni matematiche dei bambini con livelli inferiori o superiori di comportamento antisociale fosse equivalente. Dato che queste assunzioni potrebbero essere vere o meno, esse dovrebbero essere attentamente considerate prima di intraprendere tali analisi.</p>
+<p>Nel prossimo capitolo, discuteremo i modelli di crescita per gruppi multipli che facilitano un esame approfondito di queste assunzioni per determinati tipi di covarianti invarianti nel tempo, in particolare quelli che sono variabili categoriche, ordinali o variabili continue che sono state categorizzate (ad esempio, tramite uno split mediano). Questo approccio permette una verifica più accurata e specifica delle ipotesi del modello in contesti diversi e con differenti tipologie di dati.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_lgm"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="08_growth_cont.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">78. </span>Il tempo su una metrica continua</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="10_growth_groups.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">80. </span>Modelli di crescita latenti a gruppi multipli</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definizione-delle-variabili-latenti">79.1. Definizione delle Variabili Latenti:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vincoli-sui-carichi-fattoriali">79.2. Vincoli sui Carichi Fattoriali:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scopo-di-questi-vincoli">79.3. Scopo di Questi Vincoli:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valutare-il-contributo-delle-covariate">79.4. Valutare il contributo delle covariate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confronto-con-il-modello-misto">79.5. Confronto con il modello misto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-importanti">79.6. Considerazioni Importanti</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varianza-spiegata">79.6.1. Varianza Spiegata</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficienti-standardizzati">79.6.2. Coefficienti Standardizzati</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">79.6.3. Considerazioni Conclusive</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

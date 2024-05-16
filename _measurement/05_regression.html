@@ -1,0 +1,1574 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>5. L’analisi di regressione &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css?v=ffeaf963" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6ba04eab" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VMXNE4BCDL"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_measurement/05_regression';</script>
+    <script src="../_static/custom.js?v=3f5092eb"></script>
+    <link rel="canonical" href="https://ccaudek.github.io/psy_test/_measurement/05_regression.html" />
+    <link rel="icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. ✏️ Esercizi" href="E1_likert.html" />
+    <link rel="prev" title="4. Valutazioni normative e criteriali" href="04_norms.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Scaling psicometrico</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_expval_var.html">1. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_joint_prob.html">2. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_measurement.html">3. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_norms.html">4. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. L’analisi di regressione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="E1_likert.html">6. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="E2_optimal_scoring.html">7. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="E3_thurstone.html">8. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/01_ctt_1.html">9. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/02_ctt_2.html">10. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/03_ctt_3.html">11. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/04_err_std_mis.html">12. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/05_err_std_stima.html">13. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/06_applications_ctt.html">14. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E1_ctt.html">15. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E2_item_analyses.html">16. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/01_multilevel_1.html">17. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/02_interrater_reliability.html">18. L’affidabilità tra giudici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/E1_irr.html">19. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/01_gtheory.html">20. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/01_validity.html">21. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/02_relations_to_other_vars.html">22. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sviluppo degli item</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_items/01_item_development.html">23. Lo sviluppo degli item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_items/02_item_analysis.html">24. Analisi degli item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">25. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale esplorativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/01_intro_fa.html">26. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/02_analisi_fattoriale_1.html">27. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/03_analisi_fattoriale_2.html">28. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/04_analisi_fattoriale_3.html">29. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/05_factor_scores.html">30. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/06_constraints_on_parms.html">31. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/07_total_score.html">32. Punteggio totale e modello fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione strumenti</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">33. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">34. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">35. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">36. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">37. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/01_cfa.html">38. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/E_01.html">39. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/02_meanstructure.html">40. La struttura delle medie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/03_cat_data.html">41. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/04_mmm.html">42. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/05_bifactor.html">43. Modello bifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/06_efa_lavaan.html">44. Exploratory Structural Equation Modeling (ESEM)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/01_sem_intro.html">45. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/02_data_preparation.html">46. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/E_01.html">47. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/03_gof.html">48. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/04_mod_comp.html">49. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/05_cfa_mod_comp.html">50. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/06_refine_solution.html">51. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/07_group_invariance.html">52. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/08_multilevel_sem.html">53. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/09_structural_regr.html">54. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/10_missing_data.html">55. Dati mancanti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/11_small_samples.html">56. Modellizzazione SEM in Piccoli Campioni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/12_temp_reliability.html">57. Affidabilità longitudinale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_irt/01_logistic_regr.html">58. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/E_01.html">59. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/02_rasch_model.html">60. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/03_assumptions.html">61. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/04_estimation.html">62. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/05_1pl_2pl_3pl.html">63. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/06_implementation.html">64. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/07_polytomous_graded.html">65. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mokken Scales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/01_core_issues.html">66. Analisi della Scala di Mokken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/02_tutorial.html">67. Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/03_applications.html">68. Applicazione Pratica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/01_development.html">69. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/02_tutorial.html">70. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/01_lgm_intro.html">71. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/02_lgm_prelims.html">72. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/03_time_effects.html">73. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/04_invariance.html">74. Invarianza Fattoriale Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/05_intro_panel.html">75. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/06_lgm_mixed.html">76. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/07_growth_1.html">77. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/08_growth_cont.html">78. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/09_time_inv_cov.html">79. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/10_growth_groups.html">80. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/11_bivariate_tvc_models.html">81. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/12_inv_measurement.html">82. Invarianza di Misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/13_latent_change.html">83. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/750_latent_change.html">84. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/751_biv_change.html">85. Modello LCS bivariato</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">86. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a1_intro_r.html">87. Linguaggio R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a2_sums.html">88. Simbolo di somma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a3_calculus.html">89. Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a4_linear_alg.html">90. Elementi di algebra lineare</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_measurement/05_regression.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>L’analisi di regressione</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#covarianza-e-correlazione">5.1. Covarianza e correlazione</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlazione">5.1.1. Correlazione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione">5.1.2. Interpretazione</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regressione-bivariata">5.2. Regressione bivariata</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regressori-centrati">5.2.1. Regressori centrati</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimi-quadrati">5.2.2. Minimi quadrati</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relazione-tra-b-e-r">5.2.3. Relazione tra <span class="math notranslate nohighlight">\(b\)</span> e <span class="math notranslate nohighlight">\(r\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attenuazione">5.2.4. Attenuazione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effetti-dell-errore-di-misurazione-nella-x">5.2.5. Effetti dell’Errore di Misurazione nella X</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valori-predetti-e-residui">5.2.6. Valori predetti e residui</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficiente-di-determinazione">5.2.7. Coefficiente di determinazione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#errore-standard-della-regressione">5.2.8. Errore standard della regressione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficienti-dei-minimi-quadrati-con-l-algebra-lineare">5.2.9. Coefficienti dei minimi quadrati con l’algebra lineare</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regressione-multipla">5.3. Regressione multipla</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#significato-dei-coefficienti-parziali-di-regressione">5.3.1. Significato dei coefficienti parziali di regressione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relazioni-causali">5.3.2. Relazioni causali</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proprieta-degli-stimatori-dei-minimi-quadrati">5.4. Proprietà degli stimatori dei minimi quadrati</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ipotesi-statistiche-e-statistica-test">5.4.1. Ipotesi statistiche e statistica test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#riportare-i-risultati">5.4.2. Riportare i risultati</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#regola-di-decisione">5.4.2.1. Regola di decisione</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">5.5. Considerazioni conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">5.6. Session Info</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="l-analisi-di-regressione">
+<h1><span class="section-number">5. </span>L’analisi di regressione<a class="headerlink" href="#l-analisi-di-regressione" title="Link to this heading">#</a></h1>
+<p>La padronanza dell’analisi di regressione è fondamentale per comprendere la teoria classica dei test, l’analisi fattoriale e i modelli di equazioni strutturali. Sebbene le tecniche di analisi di regressione si concentrino esclusivamente sulle variabili osservate, i principi della regressione costituiscono la base per tecniche più avanzate che incorporano anche le variabili latenti. Questo capitolo fornisce una sintesi dei concetti fondamentali.</p>
+<section id="covarianza-e-correlazione">
+<h2><span class="section-number">5.1. </span>Covarianza e correlazione<a class="headerlink" href="#covarianza-e-correlazione" title="Link to this heading">#</a></h2>
+<p>La discussione sull’associazione tra variabili inizia con il concetto di covarianza, che misura quanto due variabili casuali variano insieme. Se le variazioni sono nella stessa direzione, la covarianza è positiva; se variano in direzioni opposte, la covarianza è negativa. Una covarianza di zero indica l’assenza di una relazione lineare tra le variabili.</p>
+<p>La covarianza tra due variabili <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span> si calcola con la formula:</p>
+<div class="math notranslate nohighlight">
+\[ \text{Cov}(X, Y) = \frac{\sum_{i=1}^{n} (X_i - \bar{X})(Y_i - \bar{Y})}{n-1}, \]</div>
+<p>dove <span class="math notranslate nohighlight">\(\bar{X}\)</span> e <span class="math notranslate nohighlight">\(\bar{Y}\)</span> rappresentano le medie di <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span>, e <span class="math notranslate nohighlight">\(n\)</span> è il numero totale di osservazioni.</p>
+<section id="correlazione">
+<h3><span class="section-number">5.1.1. </span>Correlazione<a class="headerlink" href="#correlazione" title="Link to this heading">#</a></h3>
+<p>A differenza della covarianza, la correlazione fornisce una misura standardizzata che quantifica la relazione lineare tra due variabili in termini di forza e direzione. Importante, la correlazione è indipendente dalle unità di misura delle variabili, rendendola una metrica più universale e facilmente interpretabile.</p>
+<p>Il coefficiente di correlazione di Pearson, denotato con <span class="math notranslate nohighlight">\(r\)</span>, si calcola come:</p>
+<div class="math notranslate nohighlight">
+\[ r = \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y}, \]</div>
+<p>dove <span class="math notranslate nohighlight">\(\sigma_X\)</span> e <span class="math notranslate nohighlight">\(\sigma_Y\)</span> sono le deviazioni standard di <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span>, rispettivamente. Il valore di <span class="math notranslate nohighlight">\(r\)</span> si muove in un intervallo da -1 a 1, dove un valore vicino a 1 indica una forte correlazione positiva, vicino a -1 indica una forte correlazione negativa, e un valore vicino a 0 suggerisce l’assenza di correlazione lineare significativa tra le variabili.</p>
+</section>
+<section id="interpretazione">
+<h3><span class="section-number">5.1.2. </span>Interpretazione<a class="headerlink" href="#interpretazione" title="Link to this heading">#</a></h3>
+<p>È cruciale notare che una correlazione elevata tra due variabili non implica automaticamente un rapporto di causa ed effetto tra esse. La correlazione indica semplicemente che esiste una relazione lineare, ma non fornisce informazioni sulla direzione di questa relazione o sulla presenza di eventuali variabili intermedie o confondenti che possono influenzare entrambe le variabili in studio.</p>
+<p>Esaminiamo un esempio numerico proposto da Bolin (2022).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rio</span><span class="o">::</span><span class="nf">import</span><span class="p">(</span><span class="s">&quot;../data/bolin/chapter2ex.sav&quot;</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>effort</th><th scope=col>distraction</th><th scope=col>performance</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>14.76928</td><td>5.863615</td><td>2.560827</td></tr>
+	<tr><th scope=row>2</th><td>15.37905</td><td>6.473276</td><td>3.040385</td></tr>
+	<tr><th scope=row>3</th><td>15.03329</td><td>4.939044</td><td>4.610505</td></tr>
+	<tr><th scope=row>4</th><td>14.43418</td><td>5.216717</td><td>2.315265</td></tr>
+	<tr><th scope=row>5</th><td>13.89848</td><td>3.496717</td><td>1.130678</td></tr>
+	<tr><th scope=row>6</th><td>15.46183</td><td>4.489045</td><td>3.021215</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">chart.Correlation</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="n">histogram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;pearson&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in par(usr):
+“argument 1 does not name a graphical parameter”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in par(usr):
+“argument 1 does not name a graphical parameter”
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in par(usr):
+“argument 1 does not name a graphical parameter”
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/632cbf9203407b85b268d186ae43b858530788e9da5eb5169e7295ce5d561f85.png"><img alt="../_images/632cbf9203407b85b268d186ae43b858530788e9da5eb5169e7295ce5d561f85.png" src="../_images/632cbf9203407b85b268d186ae43b858530788e9da5eb5169e7295ce5d561f85.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+</section>
+</section>
+<section id="regressione-bivariata">
+<h2><span class="section-number">5.2. </span>Regressione bivariata<a class="headerlink" href="#regressione-bivariata" title="Link to this heading">#</a></h2>
+<p>Il modello statistico della regressione bivariata descrive l’associazione tra il valore atteso di <span class="math notranslate nohighlight">\(Y \mid x_i\)</span> e <span class="math notranslate nohighlight">\(x\)</span> nei termini di una relazione lineare:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb{E}(Y \mid x_i) = \alpha + \beta x_i,
+\]</div>
+<p>dove i valori <span class="math notranslate nohighlight">\(x_i\)</span> sono considerati fissi per disegno. Nel modello “classico”, si assume che le distribuzioni <span class="math notranslate nohighlight">\(Y \mid x_i\)</span> siano Normali con deviazione standard <span class="math notranslate nohighlight">\(\sigma_\varepsilon\)</span>.</p>
+<p>Il significato dei coefficienti di regressione è semplice:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> è il valore atteso di <span class="math notranslate nohighlight">\(Y\)</span> quando <span class="math notranslate nohighlight">\(X = 0\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span> è l’incremento atteso nel valore atteso di <span class="math notranslate nohighlight">\(Y\)</span> quando <span class="math notranslate nohighlight">\(X\)</span> aumenta di un’unità.</p></li>
+</ul>
+<p>Il modello statistico della regressione bivariata è rappresentato nella figura seguente.</p>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/16d427517fa063fcecd3100f630c2b4922e74e252447c75be3a7f71c33804ca2.png"><img alt="../_images/16d427517fa063fcecd3100f630c2b4922e74e252447c75be3a7f71c33804ca2.png" src="../_images/16d427517fa063fcecd3100f630c2b4922e74e252447c75be3a7f71c33804ca2.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Per fare un esempio pratico, consideriamo i dati dell’antropologo Sahlins, il quale si è chiesto se esiste un’associazione tra l’ampiezza del clan (<code class="docutils literal notranslate"><span class="pre">consumers</span></code>) e l’area occupata da quel clan (<code class="docutils literal notranslate"><span class="pre">acres</span></code>) in una popolazione di cacciatori-raccoglitori. I dati sono i seguenti:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">data</span><span class="p">(</span><span class="n">Sahlins</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">Sahlins</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 2</caption>
+<thead>
+	<tr><th></th><th scope=col>consumers</th><th scope=col>acres</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>1.00</td><td>1.71</td></tr>
+	<tr><th scope=row>2</th><td>1.08</td><td>1.52</td></tr>
+	<tr><th scope=row>3</th><td>1.15</td><td>1.29</td></tr>
+	<tr><th scope=row>4</th><td>1.15</td><td>3.09</td></tr>
+	<tr><th scope=row>5</th><td>1.20</td><td>2.21</td></tr>
+	<tr><th scope=row>6</th><td>1.30</td><td>2.26</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Sahlins</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">consumers</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acres</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">lm</span><span class="p">,</span><span class="w"> </span><span class="n">se</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`geom_smooth()` using formula = &#39;y ~ x&#39;
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/8990fa25f43f47e616c46b072c3df8c30421a2ade6481c1613593de9d9f03f3d.png"><img alt="../_images/8990fa25f43f47e616c46b072c3df8c30421a2ade6481c1613593de9d9f03f3d.png" src="../_images/8990fa25f43f47e616c46b072c3df8c30421a2ade6481c1613593de9d9f03f3d.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Eseguiamo l’analisi statistica con <code class="docutils literal notranslate"><span class="pre">lm()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">acres</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">consumers</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sahlins</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">fm</span><span class="o">$</span><span class="n">coef</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Intercept)   consumers 
+  1.3756445   0.5163201 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dalla figura notiamo che, se <code class="docutils literal notranslate"><span class="pre">consumers</span></code> aumenta di un’unità (da 1.2 a 2.2), allora la retta di regressione (ovvero, il valore atteso di <span class="math notranslate nohighlight">\(Y\)</span>) aumenta di circa 0.5 punti – esattamente, aumenta di 0.5163 punti, come indicato dalla stima del coefficiente <span class="math notranslate nohighlight">\(\beta\)</span>. L’interpretazione del coefficiente <span class="math notranslate nohighlight">\(\alpha\)</span> è più problematica, perché non ha senso pensare ad un clan di ampiezza 0. Per affrontare questo problema, centriamo il predittore.</p>
+<section id="regressori-centrati">
+<h3><span class="section-number">5.2.1. </span>Regressori centrati<a class="headerlink" href="#regressori-centrati" title="Link to this heading">#</a></h3>
+<p>Esprimiamo la variabile <code class="docutils literal notranslate"><span class="pre">consumers</span></code> nei termini degli scarti dalla media:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Sahlins</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sahlins</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span>
+<span class="w">    </span><span class="n">xc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">consumers</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">consumers</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Svolgiamo nuovamente l’analisi di regressione con il nuovo predittore:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fm1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">acres</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">xc</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sahlins</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">fm1</span><span class="o">$</span><span class="n">coef</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Intercept)          xc 
+  2.1620000   0.5163201 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Sahlins</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xc</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acres</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">lm</span><span class="p">,</span><span class="w"> </span><span class="n">se</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`geom_smooth()` using formula = &#39;y ~ x&#39;
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/187537895a69dbd4f81085d24f47e5034b32dfbce5a6e7743e01a03fe09ec99c.png"><img alt="../_images/187537895a69dbd4f81085d24f47e5034b32dfbce5a6e7743e01a03fe09ec99c.png" src="../_images/187537895a69dbd4f81085d24f47e5034b32dfbce5a6e7743e01a03fe09ec99c.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>La stima di <span class="math notranslate nohighlight">\(\beta\)</span> è rimasta invariata ma ora possiamo attribuire un significato alla stima di <span class="math notranslate nohighlight">\(\alpha\)</span>: questo coefficiente indica il valore atteso della <span class="math notranslate nohighlight">\(Y\)</span> quando <span class="math notranslate nohighlight">\(X\)</span> assume il suo valore medio.</p>
+</section>
+<section id="minimi-quadrati">
+<h3><span class="section-number">5.2.2. </span>Minimi quadrati<a class="headerlink" href="#minimi-quadrati" title="Link to this heading">#</a></h3>
+<p>La stima dei coefficienti del modello di regressione può essere effettuata in modi diversi: massima verosimiglianza o metodi bayesiani. Se ci limitiamo qui alla massima verosimiglianza possiamo semplificare il problema assumento che le distribuzioni condizionate <span class="math notranslate nohighlight">\(Y \mid x\)</span> siano Normali. In tali circostanze, la stima dei coefficienti del modello di regressione può essere trovata con il metodo dei minimi quadrati.</p>
+<p>In pratica, questo significa trovare i coefficienti <span class="math notranslate nohighlight">\(a\)</span> e <span class="math notranslate nohighlight">\(b\)</span> che minimizzano</p>
+<div class="math notranslate nohighlight">
+\[
+SS_{\text{res}} = \sum(y_i - \hat{y}_i)^2,
+\]</div>
+<p>con <span class="math notranslate nohighlight">\(\hat{y}_i = a + b x_i\)</span>.</p>
+<p>Per fornire un’idea di come questo viene fatto, usiamo una simulazione. Per semplicità, supponiamo di conoscere <span class="math notranslate nohighlight">\(a = 1.3756445\)</span> e di volere stimare <span class="math notranslate nohighlight">\(b\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sahlins</span><span class="o">$</span><span class="n">consumers</span>
+<span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sahlins</span><span class="o">$</span><span class="n">acres</span>
+<span class="n">a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1.3756445</span>
+
+<span class="n">nrep</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1e3</span>
+<span class="n">b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nrep</span><span class="p">)</span>
+
+<span class="n">ssres</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">nrep</span><span class="p">)</span>
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nrep</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">yhat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span>
+<span class="w">  </span><span class="n">ssres</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">((</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">yhat</span><span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Un grafico di <span class="math notranslate nohighlight">\(SS_{\text{res}}\)</span> in funzione di <span class="math notranslate nohighlight">\(b\)</span> mostra che il valore <span class="math notranslate nohighlight">\(b\)</span> che minimizza <span class="math notranslate nohighlight">\(SS_{\text{res}}\)</span> corrisponde, appunto, a 0.5163.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">tibble</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">ssres</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ssres</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/936b89b9f15593a3451523d84deae54cf615951aba9bdfcbf4d78e87d99f1b46.png"><img alt="../_images/936b89b9f15593a3451523d84deae54cf615951aba9bdfcbf4d78e87d99f1b46.png" src="../_images/936b89b9f15593a3451523d84deae54cf615951aba9bdfcbf4d78e87d99f1b46.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Possiamo trovare il minimo della funzione rappresentata nella figura usando <code class="docutils literal notranslate"><span class="pre">optim()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the function to calculate SSR</span>
+<span class="n">ssr_function</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">yhat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span>
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="nf">sum</span><span class="p">((</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">yhat</span><span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="c1"># Use optim to find the value of b that minimizes the SSR</span>
+<span class="n">result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">optim</span><span class="p">(</span>
+<span class="w">    </span><span class="n">par</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="c1"># starting value for b</span>
+<span class="w">    </span><span class="n">fn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ssr_function</span><span class="p">,</span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span>
+<span class="w">    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">,</span>
+<span class="w">    </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;BFGS&quot;</span>
+<span class="p">)</span><span class="w"> </span><span class="c1"># optimization method, BFGS is a good default</span>
+
+<span class="c1"># The optimal value of b</span>
+<span class="n">optimal_b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">result</span><span class="o">$</span><span class="n">par</span>
+<span class="n">optimal_b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.516320090426761</div></div>
+</div>
+<p>In altre parole, il coefficiente dei minimi quadrati <span class="math notranslate nohighlight">\(\hat{b}\)</span> indica il valore del parametro <span class="math notranslate nohighlight">\(b\)</span> nel modello di regressione lineare che è stato calibrato per minimizzare la somma dei quadrati degli errori.</p>
+<p>Una proprietà del modello di regressione lineare è che gli errori hanno media uguale a zero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sum</span><span class="p">(</span><span class="n">fm</span><span class="o">$</span><span class="n">residuals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">2.15105711021124e-16</div></div>
+</div>
+<p>Una seconda proprietà della soluzione dei minimi quadrati è che la retta di regressione passa per il punto (<span class="math notranslate nohighlight">\(\bar{X}\)</span>, <span class="math notranslate nohighlight">\(\bar{Y}\)</span>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Sahlins</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">consumers</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acres</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">lm</span><span class="p">,</span><span class="w"> </span><span class="n">se</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">Sahlins</span><span class="o">$</span><span class="n">consumers</span><span class="p">),</span><span class="w"> </span><span class="n">linetype</span><span class="o">=</span><span class="s">&quot;dashed&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">Sahlins</span><span class="o">$</span><span class="n">acres</span><span class="p">),</span><span class="w"> </span><span class="n">linetype</span><span class="o">=</span><span class="s">&quot;dashed&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`geom_smooth()` using formula = &#39;y ~ x&#39;
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/9aba3a7fb356533055c1e9489d59acf58e3075e2b9f40c96e50dbf10cb50e6e7.png"><img alt="../_images/9aba3a7fb356533055c1e9489d59acf58e3075e2b9f40c96e50dbf10cb50e6e7.png" src="../_images/9aba3a7fb356533055c1e9489d59acf58e3075e2b9f40c96e50dbf10cb50e6e7.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+</section>
+<section id="relazione-tra-b-e-r">
+<h3><span class="section-number">5.2.3. </span>Relazione tra <span class="math notranslate nohighlight">\(b\)</span> e <span class="math notranslate nohighlight">\(r\)</span><a class="headerlink" href="#relazione-tra-b-e-r" title="Link to this heading">#</a></h3>
+<p>Un altro modo per interpretare <span class="math notranslate nohighlight">\(b\)</span> è quello di considerare la relazione tra la pendenza della retta di regressione e il coefficiente di correlazione:</p>
+<div class="math notranslate nohighlight">
+\[
+b_X = r_{XY} \frac{S_X}{S_Y}.
+\]</div>
+<p>L’equazione precedente rende chiaro che, se i dati sono standardizzati, <span class="math notranslate nohighlight">\(b = r\)</span>. Dunque, possiamo attribuire a <span class="math notranslate nohighlight">\(b\)</span> la seguente interpretazione: il coefficiente dei minimi quadrati <span class="math notranslate nohighlight">\(\hat{b}\)</span> corrisponde alla correlazione tra <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span>, quando i dati sono standardizzati.</p>
+<p>Verifichiamo il principio precedente calcolando la correlazione tra <code class="docutils literal notranslate"><span class="pre">acres</span></code> e <code class="docutils literal notranslate"><span class="pre">consumers</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Sahlins</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="n">dplyr</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span><span class="n">acres</span><span class="p">,</span><span class="w"> </span><span class="n">consumers</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">cor</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 2 × 2 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>acres</th><th scope=col>consumers</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>acres</th><td>1.0000000</td><td>0.3756561</td></tr>
+	<tr><th scope=row>consumers</th><td>0.3756561</td><td>1.0000000</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Eseguiamo ora l’analisi di regressione sui dati standardizzati:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fm2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="nf">scale</span><span class="p">(</span><span class="n">acres</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">consumers</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sahlins</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">fm2</span><span class="o">$</span><span class="n">coef</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     (Intercept) scale(consumers) 
+    9.917106e-17     3.756561e-01 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si vede the otteniamo lo stesso risultato.</p>
+</section>
+<section id="attenuazione">
+<h3><span class="section-number">5.2.4. </span>Attenuazione<a class="headerlink" href="#attenuazione" title="Link to this heading">#</a></h3>
+<p>Nel contesto della regressione lineare classica, è abbastanza noto che l’errore nella variabile dipendente <span class="math notranslate nohighlight">\(Y\)</span> (cioè, l’errore di misurazione associato alla variabile che si sta cercando di prevedere) può portare a una stima imprecisa dei coefficienti di regressione. Tuttavia, la questione dell’errore nelle variabili indipendenti (X), nota anche come errore di misurazione nella X, è altrettanto importante ma spesso meno intuitiva.</p>
+<p>Nel modello di regressione classico, è supposto che le variabili indipendenti <span class="math notranslate nohighlight">\(X\)</span> siano misurate senza errore. Questa assunzione è nota come assunzione di non errori nelle variabili esplicative. La realtà, però, è che nelle ricerche empiriche spesso ciò non accade, e le <span class="math notranslate nohighlight">\(X\)</span> possono essere misurate con errore. Quando ciò si verifica, le conseguenze sulla stima dei parametri del modello di regressione possono essere sostanziali, portando a quello che è noto come “errore di attenuazione”.</p>
+</section>
+<section id="effetti-dell-errore-di-misurazione-nella-x">
+<h3><span class="section-number">5.2.5. </span>Effetti dell’Errore di Misurazione nella X<a class="headerlink" href="#effetti-dell-errore-di-misurazione-nella-x" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Attenuazione dei coefficienti</strong>: L’errore nella variabile indipendente tende a “attenuare” la stima del coefficiente di regressione verso lo zero. Questo significa che la relazione tra <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span> sembrerà meno forte di quanto sia in realtà, a causa della variazione “extra” introdotta dall’errore di misurazione in <span class="math notranslate nohighlight">\(X\)</span>.</p></li>
+<li><p><strong>Bias nella stima dei coefficienti</strong>: A differenza dell’errore in <span class="math notranslate nohighlight">\(Y\)</span>, che influisce principalmente sulla varianza delle stime dei coefficienti ma non sui loro valori attesi (se l’errore è casuale), l’errore in <span class="math notranslate nohighlight">\(X\)</span> introduce un bias nei coefficienti. Questo significa che le stime dei coefficienti non saranno solo variabili ma sistematicamente distorte.</p></li>
+<li><p><strong>Variazione delle stime</strong>: Oltre all’attenuazione, l’errore in <span class="math notranslate nohighlight">\(X\)</span> aumenta anche la varianza delle stime dei coefficienti, rendendo meno precisi i risultati della regressione.</p></li>
+</ol>
+<p>In sintesi, l’errore di misurazione nelle variabili indipendenti <span class="math notranslate nohighlight">\(X\)</span> può effettivamente portare a un’attenuazione dei coefficienti di regressione, simile all’effetto dell’errore in <span class="math notranslate nohighlight">\(Y\)</span>, ma con implicazioni che possono essere più profonde a causa del bias introdotto. La consapevolezza di questa problematica e l’adozione di tecniche appropriate per affrontarla sono essenziali per garantire l’affidabilità e la validità delle inferenze tratte dai modelli di regressione.</p>
+<p>Esaminiamo la seguente simulazione.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">1234</span><span class="p">)</span>
+<span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">100</span>
+<span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span>
+<span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="nf">tibble</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/55d92defdcd698f4a3ca504ceb75ca4ca52108f42a12bda210c7397d762f8ed8.png"><img alt="../_images/55d92defdcd698f4a3ca504ceb75ca4ca52108f42a12bda210c7397d762f8ed8.png" src="../_images/55d92defdcd698f4a3ca504ceb75ca4ca52108f42a12bda210c7397d762f8ed8.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sim_dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">tibble</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="n">fm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">sim_dat</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">fm</span><span class="o">$</span><span class="n">coef</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Intercept)           x 
+  0.4221074   1.4652201 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aggiungendo una componente d’errore su <span class="math notranslate nohighlight">\(X\)</span>, la grandezza del coefficiente <span class="math notranslate nohighlight">\(b\)</span> diminuisce.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sim_dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sim_dat</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span>
+<span class="w">    </span><span class="n">x1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="n">fm1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">sim_dat</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">fm1</span><span class="o">$</span><span class="n">coef</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Intercept)          x1 
+  8.3872176   0.6295924 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="valori-predetti-e-residui">
+<h3><span class="section-number">5.2.6. </span>Valori predetti e residui<a class="headerlink" href="#valori-predetti-e-residui" title="Link to this heading">#</a></h3>
+<p>Il modello lineare di regressione è caratterizzato dalla scomposizione dei punteggi oservati <span class="math notranslate nohighlight">\(Y\)</span> in una componente deterministica, predetta dal modello, ovvero <span class="math notranslate nohighlight">\(\hat{y}_i = a + b x_i\)</span> e una componente casuale di errore: <span class="math notranslate nohighlight">\(e_i = y_i - \hat{y}_i\)</span>.</p>
+<p>Nel caso dei dati di Sahlins, i valori predetti sono i seguenti:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">acres</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">consumers</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sahlins</span><span class="p">)</span>
+<span class="n">a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fm</span><span class="o">$</span><span class="n">coef</span><span class="p">[</span><span class="m">1</span><span class="p">]</span>
+<span class="n">b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fm</span><span class="o">$</span><span class="n">coef</span><span class="p">[</span><span class="m">2</span><span class="p">]</span>
+<span class="n">yhat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Sahlins</span><span class="o">$</span><span class="n">consumers</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>I residui sono i seguenti:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sahlins</span><span class="o">$</span><span class="n">consumers</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">yhat</span>
+
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sahlins</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">consumers</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acres</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;blue&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># Punti osservati</span>
+<span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">yhat</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># Punti predetti</span>
+<span class="w">    </span><span class="nf">geom_segment</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">xend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">consumers</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">yhat</span><span class="p">,</span><span class="w"> </span><span class="n">yend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acres</span><span class="p">),</span><span class="w"> </span>
+<span class="w">               </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="c1"># Segmenti dei residui</span>
+<span class="w">    </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Acres&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Consumers&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Grafico dei residui della regressione&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/b7b4f8272c20726e2c3ff560ff92e4444b31d72b082f5eca846fd476bd99fc68.png"><img alt="../_images/b7b4f8272c20726e2c3ff560ff92e4444b31d72b082f5eca846fd476bd99fc68.png" src="../_images/b7b4f8272c20726e2c3ff560ff92e4444b31d72b082f5eca846fd476bd99fc68.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+</section>
+<section id="coefficiente-di-determinazione">
+<h3><span class="section-number">5.2.7. </span>Coefficiente di determinazione<a class="headerlink" href="#coefficiente-di-determinazione" title="Link to this heading">#</a></h3>
+<p>Il coefficiente di determinazione misura il quadrato della correlazione tra i valori osservati e i valori predetti: <span class="math notranslate nohighlight">\(r_{y, \hat{y}}^2\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cor</span><span class="p">(</span><span class="n">Sahlins</span><span class="o">$</span><span class="n">acres</span><span class="p">,</span><span class="w"> </span><span class="n">yhat</span><span class="p">)</span><span class="o">^</span><span class="m">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.141117520469573</div></div>
+</div>
+<p>ovvero, il rapporto tra la devianza attribuibile alla retta di regressione,  <span class="math notranslate nohighlight">\(\sum_i(\hat{u}_i - \bar{y})^2\)</span>, e la devianza totale, <span class="math notranslate nohighlight">\(\sum_i (y_i - \bar{y})^2\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># devianza della regressione</span>
+<span class="n">ssr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">((</span><span class="n">yhat</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">Sahlins</span><span class="o">$</span><span class="n">acres</span><span class="p">))</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<span class="c1"># devianza totale</span>
+<span class="n">sst</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">((</span><span class="n">Sahlins</span><span class="o">$</span><span class="n">acres</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">Sahlins</span><span class="o">$</span><span class="n">acres</span><span class="p">))</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<span class="c1"># coefficiente di determinazione</span>
+<span class="n">ssr</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sst</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.141117520469573</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">fm</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+lm(formula = acres ~ consumers, data = Sahlins)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.8763 -0.1873 -0.0211  0.2135  1.1206 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)   
+(Intercept)   1.3756     0.4684   2.937  0.00881 **
+consumers     0.5163     0.3002   1.720  0.10263   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.4543 on 18 degrees of freedom
+Multiple R-squared:  0.1411,	Adjusted R-squared:  0.0934 
+F-statistic: 2.957 on 1 and 18 DF,  p-value: 0.1026
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="errore-standard-della-regressione">
+<h3><span class="section-number">5.2.8. </span>Errore standard della regressione<a class="headerlink" href="#errore-standard-della-regressione" title="Link to this heading">#</a></h3>
+<p>L’errore standard della regressione è una stima della dispersione di <span class="math notranslate nohighlight">\(y \mid x_i\)</span> nella popolazione.  Non è altro che la deviazione standard dei residui</p>
+<div class="math notranslate nohighlight">
+\[
+e = y_i - \hat{y}_i
+\]</div>
+<p>che, al denominatore, riporta <span class="math notranslate nohighlight">\(n-2\)</span>. La ragione è che, per calcolare <span class="math notranslate nohighlight">\(\hat{y}\)</span>, vengono “perduti” due gradi di libertà – il calcolo di <span class="math notranslate nohighlight">\(\hat{y}\)</span> è basato sulla stima di due coefficienti: <span class="math notranslate nohighlight">\(a\)</span> e <span class="math notranslate nohighlight">\(b\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sahlins</span><span class="o">$</span><span class="n">acres</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">yhat</span>
+<span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">e</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">Sahlins</span><span class="o">$</span><span class="n">acres</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">2</span><span class="p">))</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">sqrt</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.454317872037872</div></div>
+</div>
+<p>Il valore trovato corrisponde a quello riportato nell’output di <code class="docutils literal notranslate"><span class="pre">lm()</span></code>.</p>
+</section>
+<section id="coefficienti-dei-minimi-quadrati-con-l-algebra-lineare">
+<h3><span class="section-number">5.2.9. </span>Coefficienti dei minimi quadrati con l’algebra lineare<a class="headerlink" href="#coefficienti-dei-minimi-quadrati-con-l-algebra-lineare" title="Link to this heading">#</a></h3>
+<p>Per derivare i coefficienti di una regressione lineare mediante l’approccio dei minimi quadrati usando l’algebra lineare, possiamo utilizzare la formula ben nota:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\beta} = (X^TX)^{-1}X^Ty,
+\]</div>
+<p>dove:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{\beta}\)</span> è il vettore dei coefficienti stimati della regressione (incluso l’intercetta se <span class="math notranslate nohighlight">\(X\)</span> include una colonna di uni),</p></li>
+<li><p><span class="math notranslate nohighlight">\(X\)</span> è la matrice di design che include i valori delle variabili indipendenti, con una colonna aggiuntiva di uni se si include l’intercetta nella regressione,</p></li>
+<li><p><span class="math notranslate nohighlight">\(y\)</span> è il vettore delle osservazioni della variabile dipendente.</p></li>
+</ul>
+<p>Facciamo un esempio in R, utilizzando il set di dati di Sahlins.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sahlins</span><span class="o">$</span><span class="n">consumers</span>
+<span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Sahlins</span><span class="o">$</span><span class="n">acres</span>
+
+<span class="c1"># Costruzione della matrice di design X</span>
+<span class="n">X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cbind</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="c1"># Aggiungiamo una colonna di uni per l&#39;intercetta</span>
+
+<span class="c1"># Applicazione della formula dei minimi quadrati</span>
+<span class="n">beta_hat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="nf">t</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">y</span>
+
+<span class="c1"># Stampa dei coefficienti stimati</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">beta_hat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       [,1]
+  1.3756445
+x 0.5163201
+</pre></div>
+</div>
+</div>
+</div>
+<p>In questo esempio:</p>
+<ul class="simple">
+<li><p>Costruiamo la matrice di design <span class="math notranslate nohighlight">\(X\)</span>, includendo una colonna di uni per permettere la stima dell’intercetta.</p></li>
+<li><p>Applichiamo la formula dei minimi quadrati per calcolare <span class="math notranslate nohighlight">\(\hat{\beta}\)</span>, che ci dà i coefficienti stimati per l’intercetta e la pendenza.</p></li>
+</ul>
+<p>Questo metodo ci permette di ottenere una stima dei coefficienti della regressione lineare che minimizza la somma dei quadrati degli errori tra i valori osservati di <span class="math notranslate nohighlight">\(y\)</span> e quelli predetti dal modello.</p>
+</section>
+</section>
+<section id="regressione-multipla">
+<h2><span class="section-number">5.3. </span>Regressione multipla<a class="headerlink" href="#regressione-multipla" title="Link to this heading">#</a></h2>
+<p>Nella regressione multipla vengono utilizzati <span class="math notranslate nohighlight">\(k &gt; 1\)</span> predittori:</p>
+<div class="math notranslate nohighlight">
+\[
+y_i = \alpha + \sum_{j=1}^k \beta_j x_i + \varepsilon_i.
+\]</div>
+<p>L’interpretazione geometrica è simile a quella del modello bivariato. Nel caso di due predittori, il valore atteso della <span class="math notranslate nohighlight">\(y\)</span> può essere rappresentato da un piano; nel caso di <span class="math notranslate nohighlight">\(k &gt; 2\)</span> predittori, da un iper-piano. Nel caso di <span class="math notranslate nohighlight">\(k=2\)</span>, tale piano è posto in uno spazio di dimensioni <span class="math notranslate nohighlight">\(x_1\)</span>, <span class="math notranslate nohighlight">\(x_2\)</span> (che possiamo immaginare definire un piano orizzontale) e <span class="math notranslate nohighlight">\(y\)</span> (ortogonale a tale piano). La superficie piana che rappresenta <span class="math notranslate nohighlight">\(\mathbb{E}(y)\)</span> è inclinata in maniera tale che l’angolo tra il piano e l’asse <span class="math notranslate nohighlight">\(x_1\)</span> corrisponde a <span class="math notranslate nohighlight">\(\beta_1\)</span> e l’angolo tra il piano e l’asse <span class="math notranslate nohighlight">\(x_2\)</span> corrisponde a <span class="math notranslate nohighlight">\(\beta_2\)</span>.</p>
+<section id="significato-dei-coefficienti-parziali-di-regressione">
+<h3><span class="section-number">5.3.1. </span>Significato dei coefficienti parziali di regressione<a class="headerlink" href="#significato-dei-coefficienti-parziali-di-regressione" title="Link to this heading">#</a></h3>
+<p>Ai coefficienti parziali del modello di regressione multipla possiamo assegnare la seguente interpretazione:</p>
+<p><em>Il coefficiente parziale di regressione <span class="math notranslate nohighlight">\(\beta_j\)</span> rappresenta l’incremento atteso della <span class="math notranslate nohighlight">\(y\)</span> se <span class="math notranslate nohighlight">\(x_j\)</span> viene incrementata di un’unità, tenendo costante il valore delle altre variabili indipendenti.</em></p>
+<p>Un modo per interpretare la locuzione “al netto dell’effetto delle altre variabili indipendenti” è quello di esaminare la relazione tra la <span class="math notranslate nohighlight">\(y\)</span> parzializzata e la <span class="math notranslate nohighlight">\(x_j\)</span> parzializzata. In questo contesto, parzializzare significa decomporre una variabile di due componenti: una componente che è linearmente predicibile da una o più altre variabili e una componente che è linearmente incorrelata con tali varibili “terze”.</p>
+<p>Se eseguiamo questa “depurazione” dell’effetto delle variabili “terze” sia sulla <span class="math notranslate nohighlight">\(y\)</span> sia su <span class="math notranslate nohighlight">\(x_j\)</span>, possiamo poi esaminare la relazione bivariata che intercorre tra la componente della <span class="math notranslate nohighlight">\(y\)</span> linearmente indipendente dalle variabili “terze” e la componente della <span class="math notranslate nohighlight">\(x_j\)</span> linearmente indipendente dalle variabili “terze”. Il coefficiente di regressione bivariato così ottenuto sarà identico al coefficiente parziale di regressione nel modello di regressione multipla. Questa procedura ci consente di assegnare un’interpretazione “intuitiva” al coefficiente parziale di regressione <span class="math notranslate nohighlight">\(\beta_j\)</span>.</p>
+<p>Esaminiamo un caso concreto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rio</span><span class="o">::</span><span class="nf">import</span><span class="p">(</span><span class="s">&quot;../data/kidiq.dta&quot;</span><span class="p">)</span>
+<span class="nf">glimpse</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rows: 434
+Columns: 5
+$ kid_score &lt;dbl&gt; 65, 98, 85, 83, 115, 98, 69, 106, 102, 95, 91, 58, 84, 78, 1…
+$ mom_hs    &lt;dbl&gt; 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, …
+$ mom_iq    &lt;dbl&gt; 121.11753, 89.36188, 115.44316, 99.44964, 92.74571, 107.9018…
+$ mom_work  &lt;dbl&gt; 4, 4, 4, 3, 4, 1, 4, 3, 1, 1, 1, 4, 4, 4, 2, 1, 3, 3, 4, 3, …
+$ mom_age   &lt;dbl&gt; 27, 25, 27, 25, 27, 18, 20, 23, 24, 19, 23, 24, 27, 26, 24, …
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span>
+<span class="w">  </span><span class="n">kid_score</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">mom_iq</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mom_work</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mom_age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mom_hs</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span>
+<span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">fm</span><span class="o">$</span><span class="n">coef</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Intercept)      mom_iq    mom_work     mom_age      mom_hs 
+ 20.8226117   0.5620814   0.1337287   0.2198599   5.5611781 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Eseguiamo la parzializzazione della <span class="math notranslate nohighlight">\(y\)</span> in funzione delle variabili <code class="docutils literal notranslate"><span class="pre">mom_work</span></code>, <code class="docutils literal notranslate"><span class="pre">mom_age</span></code> e <code class="docutils literal notranslate"><span class="pre">mom_hs</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fm_y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">kid_score</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">mom_work</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mom_age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mom_hs</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lo stesso per <code class="docutils literal notranslate"><span class="pre">mom_iq</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fm_x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">mom_iq</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">mom_work</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mom_age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mom_hs</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo ora la regressione bivariata tra le componenti parzializzate della <span class="math notranslate nohighlight">\(y\)</span> e di <span class="math notranslate nohighlight">\(x_j\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">fm_y</span><span class="o">$</span><span class="n">residuals</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">fm_x</span><span class="o">$</span><span class="n">residuals</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">mod</span><span class="o">$</span><span class="n">coef</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   (Intercept) fm_x$residuals 
+ -2.738587e-15   5.620814e-01 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si vede come il coefficiente di regressione bivariato risulta identico al corrispondente coefficiente parziale di regressione.</p>
+<p>Si può quindi affermare che il coefficiente di regressione parziale <span class="math notranslate nohighlight">\(b_j\)</span> è equivalente al coefficiente di regressione ottenuto in un modello bivariato che prende in considerazione esclusivamente le componenti residuali di <span class="math notranslate nohighlight">\(y\)</span> e <span class="math notranslate nohighlight">\(x_j\)</span>, una volta rimosse le influenze delle altre variabili indipendenti. Questo significa che <span class="math notranslate nohighlight">\(b_j\)</span> riflette la relazione diretta tra <span class="math notranslate nohighlight">\(y\)</span> e <span class="math notranslate nohighlight">\(x_j\)</span>, depurata dall’effetto di tutte le altre variabili incluse nel modello.</p>
+</section>
+<section id="relazioni-causali">
+<h3><span class="section-number">5.3.2. </span>Relazioni causali<a class="headerlink" href="#relazioni-causali" title="Link to this heading">#</a></h3>
+<p>Un altro modo per comprendere i coefficienti di regressione parziale è attraverso l’uso dei diagrammi di percorso, un concetto che verrà esplorato più dettagliatamente più avanti e che qui introduciamo brevemente. Questi diagrammi visualizzano le relazioni presumibilmente causali tra variabili, delineando le cause esogene all’inizio del percorso e le conseguenze o variabili endogene alla fine. Nel diagramma, le variabili causali sono collegate alle loro conseguenze attraverso frecce che rappresentano l’effetto diretto di una variabile sull’altra. Queste frecce simboleggiano i coefficienti di percorso, che corrispondono esattamente ai coefficienti di regressione parziale in un modello di regressione multipla. In questa rappresentazione, i coefficienti di percorso illustrano l’effetto diretto che si prevede su una variabile endogena a seguito dell’aumento di una unità nella variabile esogena, mantenendo inalterate tutte le altre relazioni strutturali all’interno del modello.</p>
+<p>Per illustrare questo concetto, usiamo la funzione <code class="docutils literal notranslate"><span class="pre">sem()</span></code> del pacchetto <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> per definire il modello rappresentato nel successivo diagramma di percorso:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">  kid_score ~ mom_hs + mom_iq + mom_work + mom_age</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo il modello ai dati</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sem</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il diagramma di percorso si ottiene con le seguenti istruzioni:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">semPaths</span><span class="p">(</span>
+<span class="w">  </span><span class="n">fit</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;est&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">posCol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;black&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">edge.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.9</span><span class="p">,</span>
+<span class="w">  </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">what</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;path&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/92a402b40d9ab5607af89058a011354274719e94844003868c445b600d3bd242.png"><img alt="../_images/92a402b40d9ab5607af89058a011354274719e94844003868c445b600d3bd242.png" src="../_images/92a402b40d9ab5607af89058a011354274719e94844003868c445b600d3bd242.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Come indicato nel diagramma, l’effetto diretto di <code class="docutils literal notranslate"><span class="pre">mom_iq</span></code> su <code class="docutils literal notranslate"><span class="pre">kid_score</span></code> è identico al corrispondente coefficiente parziale di regressione.</p>
+</section>
+</section>
+<section id="proprieta-degli-stimatori-dei-minimi-quadrati">
+<h2><span class="section-number">5.4. </span>Proprietà degli stimatori dei minimi quadrati<a class="headerlink" href="#proprieta-degli-stimatori-dei-minimi-quadrati" title="Link to this heading">#</a></h2>
+<p>Consideriamo ora il problema dell’inferenza statistica frequentista nel caso più semplice, quello della regressione bivariata. Il caso generale della regressione multipla segue lo stesso approccio, anche se le formule sono più complesse in quanto vengono formulate nei termini dell’albebra matriciale.</p>
+<p>Per il caso bivariato, si può dire che il coefficiente dei minimi quadrati <span class="math notranslate nohighlight">\(b\)</span> è una combinazione lineare delle osservazioni <span class="math notranslate nohighlight">\(y_i\)</span>. Tale proprietà è importante perché consente di derivare la distribuzione di <span class="math notranslate nohighlight">\(b\)</span> dalla distribuzione delle <span class="math notranslate nohighlight">\(y_i\)</span>.
+Può essere dimostrato che la formula per il calcolo di <span class="math notranslate nohighlight">\(b\)</span> si può scrivere nel modo seguente:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+b &amp;= \sum_i \left[\frac{x_i-\bar{x}}{\sum_j(x_j-\bar{x})^2}\right]y_i = \textstyle\sum m_i y_i,
+\end{align}
+\]</div>
+<p>dove <span class="math notranslate nohighlight">\(m_i \triangleq (x_i-\bar{x}) / \sum (x_j-\bar{x})^2\)</span> è il peso associato a ciascun valore <span class="math notranslate nohighlight">\(y_i\)</span>. Dato che i valori <span class="math notranslate nohighlight">\(x_i\)</span> sono fissi e <span class="math notranslate nohighlight">\(m_i\)</span> dipende solo da <span class="math notranslate nohighlight">\(x_i\)</span>, anche i pesi <span class="math notranslate nohighlight">\(m_i\)</span> sono fissi.</p>
+<p>Il valore atteso di <span class="math notranslate nohighlight">\(b\)</span> è uguale a</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+E(b) &amp;= \textstyle\sum m_i E(y_i)\notag\\ 
+&amp;= \textstyle\sum m_i (\alpha + \beta x_i)\notag\\ 
+&amp;= \textstyle\alpha\sum m_i + \beta \sum m_i x_i\notag\\
+&amp;= \frac{\alpha \sum(x_i-\bar{x})}{\sum(x_i-\bar{x})^2} + \beta \frac{\sum(x_i-\bar{x})x_i}{\sum(x_i-\bar{x})^2}\notag\\
+&amp;= 0 + \beta \frac{\sum x_i^2 -\bar{x}\sum x_i}{\sum(x_i-\bar{x})^2}\notag\\ 
+&amp;= \beta \frac{\sum x_i^2 - n\bar{x}^2}{\sum(x_i-\bar{x})^2}\notag\\ 
+&amp;= \beta.
+\end{align}
+\end{split}\]</div>
+<p>Questo dimostra che il valore atteso del coefficiente stimato <span class="math notranslate nohighlight">\(b\)</span> in una regressione lineare semplice è uguale al vero valore del parametro <span class="math notranslate nohighlight">\(\beta\)</span>, dimostrando così che la stima del coefficiente è non distorta (o “unbiased”). Andiamo a vedere in dettaglio il passaggio dalla penultima all’ultima riga. Dalla penultima riga, abbiamo:</p>
+<div class="math notranslate nohighlight">
+\[E(b) = \beta \frac{\sum x_i^2 - n\bar{x}^2}{\sum(x_i-\bar{x})^2}.\]</div>
+<p>L’ultimo passaggio si basa sulla manipolazione algebrica e sull’identità che definisce la varianza. La varianza di <span class="math notranslate nohighlight">\(x\)</span>, denotata come <span class="math notranslate nohighlight">\(Var(x)\)</span>, è data da:</p>
+<div class="math notranslate nohighlight">
+\[Var(x) = \frac{1}{n}\sum (x_i - \bar{x})^2 = \frac{\sum x_i^2}{n} - \bar{x}^2.\]</div>
+<p>Moltiplicando entrambi i lati per <span class="math notranslate nohighlight">\(n\)</span>, otteniamo:</p>
+<div class="math notranslate nohighlight">
+\[nVar(x) = \sum x_i^2 - n\bar{x}^2.\]</div>
+<p>Riconosciamo ora che il numeratore dell’espressione di <span class="math notranslate nohighlight">\(E(b)\)</span> corrisponde a <span class="math notranslate nohighlight">\(nVar(x)\)</span>, e il denominatore è proprio la definizione della somma dei quadrati delle deviazioni (<span class="math notranslate nohighlight">\(\sum (x_i - \bar{x})^2\)</span>, che è <span class="math notranslate nohighlight">\(n\)</span> volte la varianza di <span class="math notranslate nohighlight">\(x\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[E(b) = \beta \frac{nVar(x)}{nVar(x)} = \beta.\]</div>
+<p>Quindi, questa manipolazione dimostra che il valore atteso del coefficiente di regressione stimato <span class="math notranslate nohighlight">\(b\)</span> è effettivamente il vero valore <span class="math notranslate nohighlight">\(\beta\)</span>, mostrando che la stima del coefficiente di regressione in una regressione lineare semplice è non distorta rispetto al vero valore del parametro.</p>
+<p>In maniera equivalente si può dimostrare che <span class="math notranslate nohighlight">\(E(a) = \alpha\)</span>.</p>
+<p>Sotto le ipotesi di omoschedasticità <span class="math notranslate nohighlight">\(\big[ Var(y_i) = Var(\varepsilon_i)=\sigma^2_{\varepsilon}\big]\)</span> e indipendenza, la varianza di <span class="math notranslate nohighlight">\(b\)</span> è</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+Var(b) &amp;= \textstyle Var\big(\sum m_i y_i\big)\notag\\
+&amp;= \textstyle\mathop{\sum m_i^2} Var(y_i)\notag\\ 
+&amp;= \textstyle\mathop{\sum m_i^2} \sigma^2_{\varepsilon}\notag\\
+&amp;= \frac{\mathop{\sigma^2_{\varepsilon}} \textstyle\sum(x_i-\bar{x})^2}{\big[\textstyle\sum(x_i-\bar{x})^2\big]^2}\notag\\
+&amp;= \frac{\sigma^2_{\varepsilon}}{\sum(x_i-\bar{x})^2}.
+\end{align}
+\end{split}\]</div>
+<p>In maniera simile si dimostra che la varianza di <span class="math notranslate nohighlight">\(a\)</span> è</p>
+<div class="math notranslate nohighlight">
+\[
+Var(a)= \frac{\sigma^2_{\varepsilon} \textstyle\sum x_i^2}{n \textstyle\sum (x_i-\bar{x})^2}.
+\]</div>
+<p>Dato che sia <span class="math notranslate nohighlight">\(a\)</span> che <span class="math notranslate nohighlight">\(b\)</span> sono funzioni lineari di <span class="math notranslate nohighlight">\(y_i\)</span>, se i valori <span class="math notranslate nohighlight">\(y_i\)</span> seguono la distribuzione gaussiana, allora anche  <span class="math notranslate nohighlight">\(a\)</span> e <span class="math notranslate nohighlight">\(b\)</span> saranno distribuiti secondo una distribuzione normale. In conclusione,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+b &amp;\sim \mathcal{N}\bigg(\beta,  \frac{\sigma^2_{\varepsilon}}{\sum(x_i-\bar{x})^2}\bigg),\\
+a &amp;\sim \mathcal{N}\bigg(\alpha, \frac{\sigma^2_{\varepsilon}\textstyle\sum x_i^2}{n \textstyle\sum (x_i-\bar{x})^2} \bigg).
+\end{align}
+\end{split}\]</div>
+<section id="ipotesi-statistiche-e-statistica-test">
+<h3><span class="section-number">5.4.1. </span>Ipotesi statistiche e statistica test<a class="headerlink" href="#ipotesi-statistiche-e-statistica-test" title="Link to this heading">#</a></h3>
+<p>Una volta definite le proprietà delle distribuzioni degli stimatori dei minimi quadrati è possibile procedere con l’inferenza sui parametri del modello di regressione.
+L’inferenza statistica si articola nella formulazione degli intervalli di confidenza per i parametri di interesse e nei test di significatività statistica.</p>
+<p>Un’ipotesi che viene frequentemente sottoposta a verifica è quella di significatività, cioè l’ipotesi che alla variabile esplicativa sia associato un coefficiente nullo.
+In tal caso, l’ipotesi nulla è</p>
+<div class="math notranslate nohighlight">
+\[H_0:\beta=0\]</div>
+<p>e l’ipotesi alternativa è</p>
+<div class="math notranslate nohighlight">
+\[H_1:\beta \neq 0.\]</div>
+<p>Sotto l’ipotesi nulla <span class="math notranslate nohighlight">\(H_0: \beta = 0\)</span> la statistica</p>
+<div class="math notranslate nohighlight">
+\[
+ t_{\hat{\beta}} = \frac{\hat{\beta}}{s_{\hat{\beta}}}
+\]</div>
+<p>si distribuisce come una variabile aleatoria <span class="math notranslate nohighlight">\(t\)</span> di Student con <span class="math notranslate nohighlight">\(n-2\)</span> gradi di libert{`a}.</p>
+<p>Di fronte al problema di decidere se il valore stimato <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> sia sufficientemente “distante” da zero, in modo da respingere l’ipotesi nulla che il vero valore <span class="math notranslate nohighlight">\(\beta\)</span> sia nullo, non è sufficiente basarsi soltanto sul valore numerico assunto da <span class="math notranslate nohighlight">\(\hat{\beta}\)</span>, ma occorre tener conto della variabilità campionaria.
+La statistica ottenuta dividendo <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> per la stima del suo errore standard, <span class="math notranslate nohighlight">\(s_{\hat{\beta}}\)</span>, ci permette di utilizzare la distribuzione <span class="math notranslate nohighlight">\(t\)</span> di  Student come metrica per stabilire se la stima trovata si debba considerare “diversa” da quanto ipotizzato sotto <span class="math notranslate nohighlight">\(H_0\)</span>.</p>
+<p>L’ipotesi nulla viene rifiutata quando il valore assoluto del rapporto è esterno alla regione di accettazione, i cui limiti sono definiti dai valori critici della distribuzione <span class="math notranslate nohighlight">\(t\)</span> di Student con <span class="math notranslate nohighlight">\(n - 2\)</span> gradi di libertà per il livello di significatività <span class="math notranslate nohighlight">\(\alpha\)</span> prescelto.
+Se l’ipotesi nulla viene rifiutata si dice che il coefficiente <span class="math notranslate nohighlight">\(\hat{\beta}\)</span> è “statisticamente significativo” ammettendo così la possibilità di descrivere con un modello lineare la relazione esistente tra le  variabili <span class="math notranslate nohighlight">\(X\)</span> e <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<p>Quando non si può rifiutare l’ipotesi nulla nel modello di regressione, si conclude che il coefficiente angolare della retta non risulta significativamente diverso da zero, individuando  così nella popolazione una retta parallela all’asse delle</p>
+</section>
+<section id="riportare-i-risultati">
+<h3><span class="section-number">5.4.2. </span>Riportare i risultati<a class="headerlink" href="#riportare-i-risultati" title="Link to this heading">#</a></h3>
+<p>È consuetudine riportare i risultati dell’analisi di regressione in modo che insieme alle stime dei coefficienti vengano riportati i rispettivi errori standard stimati. Il valore-<span class="math notranslate nohighlight">\(p\)</span> esprime la probabilità di ottenere un valore del test uguale o superiore a quello ottenuto nel campione esaminato, utilizzando la distribuzione campionaria del test sotto l’ipotesi nulla.
+Se <span class="math notranslate nohighlight">\(t_{\hat{\beta}}\)</span> è il valore osservato del rapporto <span class="math notranslate nohighlight">\(t\)</span> per il coefficiente angolare della retta di regressione, allora il { <span class="math notranslate nohighlight">\(p\)</span>-valore} è dato da</p>
+<div class="math notranslate nohighlight">
+\[
+p = 2 \times Pr(t \geq |t_{\hat{\beta}}|),
+\]</div>
+<p>dove <span class="math notranslate nohighlight">\(t\)</span> è il valore di una variabile aleatoria <span class="math notranslate nohighlight">\(t\)</span> di Student con <span class="math notranslate nohighlight">\((n-2)\)</span> gradi di libertà.</p>
+<section id="regola-di-decisione">
+<h4><span class="section-number">5.4.2.1. </span>Regola di decisione<a class="headerlink" href="#regola-di-decisione" title="Link to this heading">#</a></h4>
+<p>Ogni volta che il <span class="math notranslate nohighlight">\(p\)</span>-valore del test è inferiore al livello di significatività che si è scelto per <span class="math notranslate nohighlight">\(H_0\)</span>, il test porta al rifiuto dell’ipotesi nulla. Solitamente si sceglie un livello <span class="math notranslate nohighlight">\(\alpha\)</span> pari a 0.05 o 0.01.</p>
+<p>I test di significatività possono essere eseguiti con R, utilizzando la funzione <span class="math notranslate nohighlight">\(\texttt{summary()}\)</span> applicata all’oggetto creato da <span class="math notranslate nohighlight">\(\texttt{lm()}\)</span>.</p>
+<p>Il test statistico sul parametro <span class="math notranslate nohighlight">\(\beta\)</span> del modello di regressione verifica l’ipotesi nulla di indipendenza, ovvero l’ipotesi che, nella popolazione, la pendenza della retta di regressione sia uguale a zero. Più informativo del test statistico <span class="math notranslate nohighlight">\(H_0: \beta=0\)</span> è  l’intervallo di confidenza per il parametro <span class="math notranslate nohighlight">\(\beta\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\beta} \pm t_{\alpha/2} s_{\hat{\beta}}.
+\]</div>
+</section>
+</section>
+</section>
+<section id="considerazioni-conclusive">
+<h2><span class="section-number">5.5. </span>Considerazioni conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h2>
+<p>Il modello di regressione lineare semplice è un metodo per studiare la relazione tra due variabili e per prevedere il valore della variabile dipendente in base alla variabile indipendente. Tuttavia, questo modello è limitato poiché si concentra solo sulla relazione tra una singola variabile indipendente e la variabile dipendente. Quando ci sono più variabili indipendenti, il modello di regressione diventa più complesso e richiede l’uso dell’algebra matriciale. Questo modello può includere variabili indipendenti sia quantitative che qualitative e può essere utilizzato anche per l’analisi della varianza. Il modello lineare è alla base dell’analisi fattoriale, una tecnica ampiamente utilizzata per la costruzione e la validazione dei test psicometrici.</p>
+</section>
+<section id="session-info">
+<h2><span class="section-number">5.6. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.3.3 (2024-02-29)
+Platform: x86_64-apple-darwin20 (64-bit)
+Running under: macOS Sonoma 14.4
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
+
+locale:
+[1] en_US.UTF-8/UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: Europe/Rome
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] PerformanceAnalytics_2.0.4 xts_0.13.2                
+ [3] zoo_1.8-12                 repr_1.1.6                
+ [5] car_3.1-2                  carData_3.0-5             
+ [7] rio_1.0.1                  ggokabeito_0.1.0          
+ [9] viridis_0.6.5              viridisLite_0.4.2         
+[11] ggpubr_0.6.0               ggExtra_0.10.1            
+[13] bayesplot_1.11.1           gridExtra_2.3             
+[15] patchwork_1.2.0            semTools_0.5-6.920        
+[17] semPlot_1.1.6              lavaan_0.6-17             
+[19] psych_2.4.3                scales_1.3.0              
+[21] markdown_1.12              knitr_1.45                
+[23] lubridate_1.9.3            forcats_1.0.0             
+[25] stringr_1.5.1              dplyr_1.1.4               
+[27] purrr_1.0.2                readr_2.1.5               
+[29] tidyr_1.3.1                tibble_3.2.1              
+[31] ggplot2_3.5.0              tidyverse_2.0.0           
+[33] here_1.0.1                
+
+loaded via a namespace (and not attached):
+  [1] rstudioapi_0.15.0  jsonlite_1.8.8     magrittr_2.0.3    
+  [4] TH.data_1.1-2      estimability_1.5   farver_2.1.1      
+  [7] nloptr_2.0.3       rmarkdown_2.26     vctrs_0.6.5       
+ [10] minqa_1.2.6        base64enc_0.1-3    rstatix_0.7.2     
+ [13] htmltools_0.5.7    haven_2.5.4        broom_1.0.5       
+ [16] Formula_1.2-5      htmlwidgets_1.6.4  plyr_1.8.9        
+ [19] sandwich_3.1-0     emmeans_1.10.0     uuid_1.2-0        
+ [22] igraph_2.0.3       mime_0.12          lifecycle_1.0.4   
+ [25] pkgconfig_2.0.3    Matrix_1.6-5       R6_2.5.1          
+ [28] fastmap_1.1.1      shiny_1.8.0        digest_0.6.35     
+ [31] OpenMx_2.21.11     fdrtool_1.2.17     colorspace_2.1-0  
+ [34] rprojroot_2.0.4    Hmisc_5.1-2        labeling_0.4.3    
+ [37] fansi_1.0.6        timechange_0.3.0   mgcv_1.9-1        
+ [40] abind_1.4-5        compiler_4.3.3     withr_3.0.0       
+ [43] glasso_1.11        htmlTable_2.4.2    backports_1.4.1   
+ [46] R.utils_2.12.3     ggsignif_0.6.4     MASS_7.3-60.0.1   
+ [49] corpcor_1.6.10     gtools_3.9.5       tools_4.3.3       
+ [52] pbivnorm_0.6.0     foreign_0.8-86     zip_2.3.1         
+ [55] httpuv_1.6.14      nnet_7.3-19        R.oo_1.26.0       
+ [58] glue_1.7.0         quadprog_1.5-8     nlme_3.1-164      
+ [61] promises_1.2.1     lisrelToR_0.3      grid_4.3.3        
+ [64] pbdZMQ_0.3-11      checkmate_2.3.1    cluster_2.1.6     
+ [67] reshape2_1.4.4     generics_0.1.3     gtable_0.3.4      
+ [70] tzdb_0.4.0         R.methodsS3_1.8.2  data.table_1.15.2 
+ [73] hms_1.1.3          utf8_1.2.4         sem_3.1-15        
+ [76] pillar_1.9.0       IRdisplay_1.1      rockchalk_1.8.157 
+ [79] later_1.3.2        splines_4.3.3      lattice_0.22-6    
+ [82] survival_3.5-8     kutils_1.73        tidyselect_1.2.1  
+ [85] miniUI_0.1.1.1     pbapply_1.7-2      stats4_4.3.3      
+ [88] xfun_0.42          qgraph_1.9.8       arm_1.13-1        
+ [91] stringi_1.8.3      boot_1.3-30        evaluate_0.23     
+ [94] codetools_0.2-19   mi_1.1             cli_3.6.2         
+ [97] RcppParallel_5.1.7 IRkernel_1.3.2     rpart_4.1.23      
+[100] xtable_1.8-4       munsell_0.5.0      Rcpp_1.0.12       
+[103] coda_0.19-4.1      png_0.1-8          XML_3.99-0.16.1   
+[106] parallel_4.3.3     ellipsis_0.3.2     jpeg_0.1-10       
+[109] lme4_1.1-35.1      mvtnorm_1.2-4      openxlsx_4.2.5.2  
+[112] crayon_1.5.2       rlang_1.1.3        multcomp_1.4-25   
+[115] mnormt_2.1.1      
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_measurement"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_norms.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Valutazioni normative e criteriali</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="E1_likert.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>✏️ Esercizi</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#covarianza-e-correlazione">5.1. Covarianza e correlazione</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlazione">5.1.1. Correlazione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretazione">5.1.2. Interpretazione</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regressione-bivariata">5.2. Regressione bivariata</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regressori-centrati">5.2.1. Regressori centrati</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimi-quadrati">5.2.2. Minimi quadrati</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relazione-tra-b-e-r">5.2.3. Relazione tra <span class="math notranslate nohighlight">\(b\)</span> e <span class="math notranslate nohighlight">\(r\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attenuazione">5.2.4. Attenuazione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effetti-dell-errore-di-misurazione-nella-x">5.2.5. Effetti dell’Errore di Misurazione nella X</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valori-predetti-e-residui">5.2.6. Valori predetti e residui</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficiente-di-determinazione">5.2.7. Coefficiente di determinazione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#errore-standard-della-regressione">5.2.8. Errore standard della regressione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficienti-dei-minimi-quadrati-con-l-algebra-lineare">5.2.9. Coefficienti dei minimi quadrati con l’algebra lineare</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regressione-multipla">5.3. Regressione multipla</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#significato-dei-coefficienti-parziali-di-regressione">5.3.1. Significato dei coefficienti parziali di regressione</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relazioni-causali">5.3.2. Relazioni causali</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proprieta-degli-stimatori-dei-minimi-quadrati">5.4. Proprietà degli stimatori dei minimi quadrati</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ipotesi-statistiche-e-statistica-test">5.4.1. Ipotesi statistiche e statistica test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#riportare-i-risultati">5.4.2. Riportare i risultati</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#regola-di-decisione">5.4.2.1. Regola di decisione</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">5.5. Considerazioni conclusive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">5.6. Session Info</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

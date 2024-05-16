@@ -1,0 +1,1442 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>56. Modellizzazione SEM in Piccoli Campioni &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css?v=ffeaf963" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6ba04eab" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VMXNE4BCDL"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_sem/11_small_samples';</script>
+    <script src="../_static/custom.js?v=3f5092eb"></script>
+    <link rel="canonical" href="https://ccaudek.github.io/psy_test/_sem/11_small_samples.html" />
+    <link rel="icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="57. Affidabilità longitudinale" href="12_temp_reliability.html" />
+    <link rel="prev" title="55. Dati mancanti" href="10_missing_data.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Scaling psicometrico</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/01_expval_var.html">1. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/02_joint_prob.html">2. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/03_measurement.html">3. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/04_norms.html">4. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/05_regression.html">5. L’analisi di regressione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E1_likert.html">6. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E2_optimal_scoring.html">7. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E3_thurstone.html">8. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/01_ctt_1.html">9. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/02_ctt_2.html">10. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/03_ctt_3.html">11. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/04_err_std_mis.html">12. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/05_err_std_stima.html">13. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/06_applications_ctt.html">14. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E1_ctt.html">15. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E2_item_analyses.html">16. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/01_multilevel_1.html">17. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/02_interrater_reliability.html">18. L’affidabilità tra giudici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/E1_irr.html">19. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/01_gtheory.html">20. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/01_validity.html">21. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/02_relations_to_other_vars.html">22. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sviluppo degli item</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_items/01_item_development.html">23. Lo sviluppo degli item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_items/02_item_analysis.html">24. Analisi degli item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">25. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale esplorativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/01_intro_fa.html">26. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/02_analisi_fattoriale_1.html">27. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/03_analisi_fattoriale_2.html">28. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/04_analisi_fattoriale_3.html">29. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/05_factor_scores.html">30. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/06_constraints_on_parms.html">31. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/07_total_score.html">32. Punteggio totale e modello fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione strumenti</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">33. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">34. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">35. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">36. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">37. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/01_cfa.html">38. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/E_01.html">39. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/02_meanstructure.html">40. La struttura delle medie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/03_cat_data.html">41. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/04_mmm.html">42. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/05_bifactor.html">43. Modello bifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/06_efa_lavaan.html">44. Exploratory Structural Equation Modeling (ESEM)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_sem_intro.html">45. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_preparation.html">46. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="E_01.html">47. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_gof.html">48. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_mod_comp.html">49. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_cfa_mod_comp.html">50. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_refine_solution.html">51. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_group_invariance.html">52. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_multilevel_sem.html">53. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_structural_regr.html">54. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_missing_data.html">55. Dati mancanti</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">56. Modellizzazione SEM in Piccoli Campioni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_temp_reliability.html">57. Affidabilità longitudinale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_irt/01_logistic_regr.html">58. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/E_01.html">59. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/02_rasch_model.html">60. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/03_assumptions.html">61. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/04_estimation.html">62. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/05_1pl_2pl_3pl.html">63. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/06_implementation.html">64. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/07_polytomous_graded.html">65. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mokken Scales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/01_core_issues.html">66. Analisi della Scala di Mokken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/02_tutorial.html">67. Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/03_applications.html">68. Applicazione Pratica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/01_development.html">69. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/02_tutorial.html">70. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/01_lgm_intro.html">71. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/02_lgm_prelims.html">72. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/03_time_effects.html">73. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/04_invariance.html">74. Invarianza Fattoriale Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/05_intro_panel.html">75. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/06_lgm_mixed.html">76. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/07_growth_1.html">77. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/08_growth_cont.html">78. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/09_time_inv_cov.html">79. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/10_growth_groups.html">80. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/11_bivariate_tvc_models.html">81. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/12_inv_measurement.html">82. Invarianza di Misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/13_latent_change.html">83. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/750_latent_change.html">84. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/751_biv_change.html">85. Modello LCS bivariato</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">86. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a1_intro_r.html">87. Linguaggio R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a2_sums.html">88. Simbolo di somma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a3_calculus.html">89. Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a4_linear_alg.html">90. Elementi di algebra lineare</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_sem/11_small_samples.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modellizzazione SEM in Piccoli Campioni</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problemi-con-le-piccole-dimensioni-del-campione-nella-sem">56.1. Problemi con le Piccole Dimensioni del Campione nella SEM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#soluzioni-possibili-per-la-stima-dei-parametri">56.2. Soluzioni Possibili per la Stima dei Parametri</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stima-di-verosimiglianza-penalizzata">56.2.1. Stima di Verosimiglianza Penalizzata</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-implied-instrumental-variables">56.2.2. Model-implied instrumental variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stima-a-due-fasi">56.2.3. Stima a Due Fasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regressione-del-punteggio-dei-fattori">56.2.4. Regressione del Punteggio dei Fattori</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discussione">56.2.5. Discussione</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inferenze-per-modelli-sem-in-piccoli-campioni">56.3. Inferenze per Modelli SEM in Piccoli Campioni</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#migliorare-la-statistica-test-del-chi-quadrato">56.3.1. Migliorare la statistica test del chi-quadrato</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#una-migliore-stima-degli-errori-standard-e-degli-intervalli-di-confidenza">56.3.2. Una migliore stima degli Errori Standard e degli Intervalli di Confidenza</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strategie-alternative">56.3.3. Strategie Alternative</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#parceling">56.3.3.1. Parceling</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sem-in-un-piccolo-campione">56.4. SEM in un Piccolo Campione</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stimatore-miiv-2sls">56.4.1. Stimatore MIIV-2SLS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">56.5. Considerazioni Conclusive</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modellizzazione-sem-in-piccoli-campioni">
+<span id="small-samples-notebook"></span><h1><span class="section-number">56. </span>Modellizzazione SEM in Piccoli Campioni<a class="headerlink" href="#modellizzazione-sem-in-piccoli-campioni" title="Link to this heading">#</a></h1>
+<p>Questo capitolo si concentra sull’applicazione dei modelli SEM in contesti caratterizzati da campioni di piccole dimensioni e sintetizza l’esposizione di  <span id="id1">Rosseel [<a class="reference internal" href="../z_biblio.html#id4" title="Yves Rosseel. Small sample solutions for structural equation modeling. In Small sample size solutions: A guide for applied researchers and practitioners, pages 226–238. Routledge, 2020.">Ros20</a>]</span> su questo argomento, mentre si avvale di esempi numerici tratti dai principi di  <span id="id2">Kline [<a class="reference internal" href="../z_biblio.html#id8" title="Rex B Kline. Principles and practice of structural equation modeling. Guilford publications, 2023.">Kli23</a>]</span>.</p>
+<p>È risaputo che la maggior parte dei metodi di stima e inferenza in SEM si basa su presupposti asintotici, presupponendo la presenza di campioni casuali di grandi dimensioni. Tuttavia, nei casi di campioni più limitati, come quelli con N &lt; 200, emergono specifiche problematiche: i metodi iterativi possono non convergere, si possono verificare soluzioni non valide a causa dei casi di Heywood o di altri risultati anomali difficili da interpretare, e le stime dei parametri possono risultare fortemente distorte.</p>
+<p>Innanzitutto, i modelli strutturali possono diventare molto complessi, coinvolgendo numerose variabili (sia osservate che latenti), rendendo necessaria l’analisi di numerosi parametri e richiedendo un adeguato volume di dati per ottenere stime accurate. Inoltre, il framework statistico alla base della SEM tradizionale si fonda sulla teoria dei grandi campioni, suggerendo che una buona precisione nelle stime dei parametri e nell’inferenza sia garantita solo con campioni di dimensioni considerevoli. Alcuni studi di simulazione hanno addirittura suggerito che dimensioni del campione enormi siano necessarie per risultati affidabili, sebbene tali conclusioni siano rilevanti solo in specifici contesti e abbiano contribuito alla convinzione generalizzata che la SEM sia applicabile solo con campioni di dimensioni considerevoli (ad es. n &gt; 500) o addirittura molto grandi (n &gt; 2000).</p>
+<p>Tuttavia, la realtà delle dimensioni ridotte dei campioni è una situazione comune per molte ragioni. In tali casi, molti ricercatori esitano ad utilizzare la SEM e si affidano a metodologie subottimali, come l’analisi di regressione o l’analisi di percorso basate su punteggi sommati. Tuttavia, è importante notare che il bias associato alle dimensioni ridotte del campione può essere ancora più accentuato in tecniche come la regressione multipla o l’analisi di percorso con variabili manifeste, soprattutto in assenza di considerazioni sull’errore di misurazione. Una strategia più efficace potrebbe essere quella di adottare l’approccio della SEM, pur cercando soluzioni per affrontare le sfide poste dalle dimensioni ridotte del campione.</p>
+<p>Questo capitolo si propone di esplorare diverse strategie per superare tali sfide nell’utilizzo della SEM con campioni di piccole dimensioni. Sarà organizzato in tre sezioni: innanzitutto, verranno esaminate le problematiche comuni associate alle dimensioni ridotte del campione nella SEM. Successivamente, saranno presentati quattro approcci alternativi di stima che possono essere impiegati quando le dimensioni del campione sono limitate, anziché ricorrere alla SEM tradizionale. Infine, saranno discussi alcuni possibili correttivi per le statistiche di test e gli errori standard nelle situazioni di piccoli campioni. L’efficacia di alcune di queste tecniche sarà illustrata tramite l’analisi di un modello di fattore comune applicato a un campione di dimensioni ridotte.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">source</span><span class="p">(</span><span class="s">&quot;../_common.R&quot;</span><span class="p">)</span>
+<span class="nf">suppressPackageStartupMessages</span><span class="p">({</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;semTools&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;lme4&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;here&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">library</span><span class="p">(</span><span class="s">&quot;MIIVsem&quot;</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">library</span><span class="p">(</span><span class="s2">&quot;MIIVsem&quot;</span><span class="p">):</span> <span class="n">there</span> <span class="ow">is</span> <span class="n">no</span> <span class="n">package</span> <span class="n">called</span> <span class="err">‘</span><span class="n">MIIVsem</span><span class="err">’</span>
+<span class="ne">Traceback</span>:
+
+<span class="mi">1</span><span class="o">.</span> <span class="n">suppressPackageStartupMessages</span><span class="p">({</span>
+ <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;semTools&quot;</span><span class="p">)</span>
+ <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;lme4&quot;</span><span class="p">)</span>
+ <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;here&quot;</span><span class="p">)</span>
+ <span class="o">.</span>     <span class="n">library</span><span class="p">(</span><span class="s2">&quot;MIIVsem&quot;</span><span class="p">)</span>
+ <span class="o">.</span> <span class="p">})</span>
+<span class="mi">2</span><span class="o">.</span> <span class="n">withCallingHandlers</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">packageStartupMessage</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">tryInvokeRestart</span><span class="p">(</span><span class="s2">&quot;muffleMessage&quot;</span><span class="p">))</span>
+<span class="mi">3</span><span class="o">.</span> <span class="n">library</span><span class="p">(</span><span class="s2">&quot;MIIVsem&quot;</span><span class="p">)</span>   <span class="c1"># at line 6 of file &lt;text&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="problemi-con-le-piccole-dimensioni-del-campione-nella-sem">
+<h2><span class="section-number">56.1. </span>Problemi con le Piccole Dimensioni del Campione nella SEM<a class="headerlink" href="#problemi-con-le-piccole-dimensioni-del-campione-nella-sem" title="Link to this heading">#</a></h2>
+<p>Consideriamo un modello SEM con almeno 4 indicatori continui per ciascuna variabile latente. Se tutte le variabili osservate sono continue, lo stimatore di default nella maggior parte (se non in tutti) dei pacchetti software SEM è il metodo della massima verosimiglianza. Generalmente, lo stimatore della massima verosimiglianza è una buona scelta perché presenta molte proprietà statistiche desiderabili. Inoltre, l’approccio della massima verosimiglianza può essere adattato per gestire dati mancanti (sotto l’assunzione che i dati siano mancanti casualmente) e sono stati sviluppati errori standard e statistiche di test “robusti” per trattare dati non normali e modelli mal specificati.</p>
+<p>Tuttavia, se la dimensione del campione è relativamente piccola (ad esempio, n &lt; 200), possono sorgere diversi problemi. Innanzitutto, il modello potrebbe non convergere, il che significa che l’ottimizzatore (l’algoritmo che cerca di trovare i valori dei parametri del modello che massimizzano la verosimiglianza dei dati) non è riuscito a trovare una soluzione che soddisfi uno o più criteri di convergenza. In rare occasioni, l’ottimizzatore potrebbe semplicemente sbagliare. In questo caso, modificare i criteri di convergenza, passare a un altro algoritmo di ottimizzazione o fornire valori iniziali migliori potrebbe risolvere il problema. Ma se la dimensione del campione è piccola, potrebbe benissimo essere che il set di dati non contenga informazioni sufficienti per trovare una soluzione unica per il modello.</p>
+<p>Un secondo problema potrebbe essere che il modello ottenga la convergenza ma produca una soluzione non ammissibile. Ciò significa che alcuni parametri assumono valori inamissibili. L’esempio più comune è una varianza negativa. Un altro esempio è un valore di correlazione che supera 1 (in valore assoluto). È importante rendersi conto che alcuni approcci di stima (sia frequentisti che bayesiani) potrebbero, per progettazione, non produrre mai soluzioni fuori gamma. Sebbene ciò possa sembrare una caratteristica desiderabile, maschera potenziali problemi con il modello o i dati. È importante che gli utenti notino varianze negative (o altri parametri fuori gamma). Le varianze negative sono spesso innocue, ma possono essere un sintomo di una cattiva specificazione strutturale.</p>
+<p>Un terzo problema riguarda il fatto che la massima verosimiglianza è una tecnica per grandi campioni. Questo implica che lavorare con piccole dimensioni del campione può portare a stime puntuali distorte, errori standard troppo piccoli, intervalli di confidenza non sufficientemente ampi e p-valori per test di ipotesi non affidabili.</p>
+</section>
+<section id="soluzioni-possibili-per-la-stima-dei-parametri">
+<h2><span class="section-number">56.2. </span>Soluzioni Possibili per la Stima dei Parametri<a class="headerlink" href="#soluzioni-possibili-per-la-stima-dei-parametri" title="Link to this heading">#</a></h2>
+<p>In questa sezione, consideriamo brevemente quattro approcci alternativi per stimare i parametri in un contesto SEM con dimensioni di campione piccole. Ci limitiamo ai metodi frequentisti e alle soluzioni disponibili in software gratuiti e open-source.</p>
+<section id="stima-di-verosimiglianza-penalizzata">
+<h3><span class="section-number">56.2.1. </span>Stima di Verosimiglianza Penalizzata<a class="headerlink" href="#stima-di-verosimiglianza-penalizzata" title="Link to this heading">#</a></h3>
+<p>I metodi di stima di verosimiglianza penalizzata (o metodi di regolarizzazione) sono stati sviluppati nella letteratura del machine learning statistico e sono particolarmente utili quando la dimensione del campione è piccola rispetto al numero di variabili nel modello. Questi metodi sono simili ai metodi di verosimiglianza ordinari (come la massima verosimiglianza) ma includono un termine di penalità aggiuntivo per controllare la complessità del modello. Il termine di penalità può essere formulato per incorporare conoscenze pregresse sui parametri o per scoraggiare valori dei parametri meno realistici (ad esempio, lontani da zero). Due termini di penalità popolari sono la penalità <em>ridge</em> e la penalità <em>lasso</em> (least absolute shrinkage and selection operator).</p>
+<p>Per illustrare come funziona questa penalizzazione, immaginate un modello di regressione univariata con un gran numero di predittori. Senza penalizzazione, tutti i coefficienti di regressione sono calcolati nel modo usuale. Tuttavia, il termine di penalità <em>ridge</em> ridurrà tutti i coefficienti verso zero, mentre la penalità <em>lasso</em> ridurrà ulteriormente i piccoli coefficienti fino a zero. In quest’ultimo approccio, sopravvivono solo i predittori “forti” (per i quali c’è un forte supporto nei dati), mentre i predittori “deboli” che possono essere difficilmente distinti dal rumore vengono eliminati. In generale, l’aggiunta di termini di penalità porta a modelli meno complessi, il che è particolarmente vantaggioso se la dimensione del campione è piccola.</p>
+<p>Sebbene queste approcci di penalizzazione siano esistiti da alcuni decenni, sono stati applicati solo di recente alla SEM. Due esempi nel software <code class="docutils literal notranslate"><span class="pre">R</span></code> sono il pacchetto <code class="docutils literal notranslate"><span class="pre">regsem</span></code> (Jacobucci, Grimm, Brandmaier, Serang e Kievit, 2018) e il pacchetto <code class="docutils literal notranslate"><span class="pre">lslx</span></code> (Huang e Hu, 2018).</p>
+<p>Uno svantaggio di questi metodi di penalizzazione è che l’utente deve indicare quali parametri richiedono la penalizzazione e in che misura. In un’analisi esplorativa, può essere utile e persino vantaggioso penalizzare i parametri verso zero se nel dati non si trova un forte supporto per essi. Tuttavia, la SEM è di solito un approccio confermativo, e l’utente deve assicurarsi che tutti i parametri inizialmente postulati nel modello non vengano rimossi dalla penalizzazione.</p>
+</section>
+<section id="model-implied-instrumental-variables">
+<h3><span class="section-number">56.2.2. </span>Model-implied instrumental variables<a class="headerlink" href="#model-implied-instrumental-variables" title="Link to this heading">#</a></h3>
+<p>Bollen (1996) ha proposto un approccio alternativo di stima per i modelli SEM basato sull’utilizzo di variabili strumentali implicite nel modello in combinazione con il metodo dei minimi quadrati a due stadi (MIIV-2SLS). In questo approccio, il modello viene tradotto in un insieme di equazioni (di regressione). Successivamente, ogni variabile latente in queste equazioni viene sostituita con il suo indicatore principale (solitamente il primo indicatore, dove il carico fattoriale è fissato a uno e l’intercetta a zero) meno il suo termine di errore residuo. Le equazioni risultanti non contengono più variabili latenti ma hanno una struttura dell’errore più complessa. È importante notare che la stima dei minimi quadrati ordinari non è più adatta per risolvere queste equazioni poiché alcuni predittori sono ora correlati con il termine di errore nell’equazione. Qui entrano in gioco le variabili strumentali (anche chiamate strumenti). Per ogni equazione, è necessario trovare un insieme di variabili strumentali. Una variabile strumentale deve essere non correlata con il termine di errore dell’equazione ma fortemente correlata con il predittore problematico. Di solito, le variabili strumentali sono ricercate al di fuori del modello, ma nell’approccio di Bollen, le variabili strumentali sono selezionate tra le variabili osservate che fanno parte del modello. Sono stati sviluppati diversi procedimenti automatizzati per trovare queste variabili strumentali all’interno del modello. Una volta selezionati gli strumenti, è necessaria una procedura di stima per stimare tutti i coefficienti delle equazioni, come il metodo dei minimi quadrati a due stadi (2SLS).</p>
+<p>Una motivazione principale per MIIV-2SLS è che è robusto: non si basa sulla normalità ed è meno probabile che diffonda il bias (che può derivare da errate specificazioni strutturali) in una parte del modello ad altre parti del modello. Un’altra caratteristica attraente di MIIV-2SLS è che non è iterativo. Ciò significa che non possono esserci problemi di convergenza e MIIV-2SLS può fornire una soluzione ragionevole per modelli in cui il massimo verosimigliante fallisce nella convergenza.</p>
+<p>Sono necessarie ulteriori ricerche per valutare le prestazioni di questo stimatore in contesti in cui la dimensione del campione è (molto) piccola. L’approccio MIIV-2SLS è disponibile nel pacchetto <code class="docutils literal notranslate"><span class="pre">R</span></code> <code class="docutils literal notranslate"><span class="pre">MIIVsem</span></code> (Fisher, Bollen, Gates, &amp; Rönkkö, 2017).</p>
+</section>
+<section id="stima-a-due-fasi">
+<h3><span class="section-number">56.2.3. </span>Stima a Due Fasi<a class="headerlink" href="#stima-a-due-fasi" title="Link to this heading">#</a></h3>
+<p>Nel metodo di stima a due fasi, si effettua una distinzione tra la parte di misurazione e la parte strutturale (di regressione) del modello, e la stima avviene in due passaggi distinti. Nel primo passo, vengono adattati uno per uno tutti i modelli di misurazione. Nel secondo passo, viene adattato il modello completo, inclusa la parte strutturale, ma i parametri dei modelli di misurazione vengono mantenuti fissi ai valori trovati nel primo passo. La principale motivazione per l’approccio a due fasi è quella di separare il modello (o i modelli) di misurazione dalla parte strutturale durante la stima in modo che non possano influenzarsi reciprocamente. Nel tradizionale framework della massima verosimiglianza, invece, tutti i parametri vengono adattati simultaneamente. Di conseguenza, errori nella specificazione del modello strutturale possono influenzare i pesi fattoriali stimati di uno o più modelli di misurazione, e ciò può causare problemi di interpretazione per le variabili latenti.</p>
+<p>L’approccio a due fasi è stato recentemente implementato nel pacchetto <code class="docutils literal notranslate"><span class="pre">R</span></code> <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> (Rosseel, 2012).</p>
+</section>
+<section id="regressione-del-punteggio-dei-fattori">
+<h3><span class="section-number">56.2.4. </span>Regressione del Punteggio dei Fattori<a class="headerlink" href="#regressione-del-punteggio-dei-fattori" title="Link to this heading">#</a></h3>
+<p>L’idea fondamentale della regressione del punteggio dei fattori è quella di sostituire tutte le variabili latenti con i loro punteggi. Questo processo è simile al metodo in due fasi, dove ciascun modello di misurazione viene adattato individualmente. Successivamente, si calcolano i punteggi dei fattori per tutte le variabili latenti nel modo consueto. Una volta che le variabili latenti sono sostituite dai loro punteggi, tutte le variabili diventano osservabili. In un passaggio finale, si stima la parte strutturale del modello. Questa stima può consistere in un’analisi di regressione o in un’analisi dei percorsi. Il termine “regressione del punteggio dei fattori” si riferisce a entrambi gli scenari.</p>
+<p>Se usata in modo ingenuo, questa regressione potrebbe portare a un notevole bias nelle stime dei parametri della parte strutturale, anche con campioni di grandi dimensioni. Questo si verifica perché i punteggi dei fattori vengono trattati come se fossero osservati senza errore di misurazione. Esistono però diversi metodi per correggere questo bias. Ad esempio, il metodo di Croon (2002) procede come segue: prima, si calcola la matrice di varianza-covarianza dei punteggi dei fattori. Poi, sulla base delle informazioni dei modelli di misurazione, gli elementi di questa matrice vengono corretti per approssimare le varianze e covarianze implicite dal modello delle variabili latenti. Questa matrice di varianza-covarianza corretta diventa poi l’input per un’analisi di regressione o dei percorsi regolare.</p>
+<p>Simile al metodo in due fasi, la regressione del punteggio dei fattori (combinata con la correzione di Croon) può essere un’alternativa utile per modelli piuttosto grandi in combinazione con una dimensione campionaria relativamente piccola. Inoltre, è possibile adattare i modelli di misurazione utilizzando un stimatore non iterativo, evitando problemi di convergenza. Tuttavia, la correzione di Croon può produrre una matrice di varianza-covarianza (per le variabili appartenenti alla parte strutturale) che non è definita positiva, specialmente se l’errore di misurazione è sostanziale. Pertanto, la correzione di Croon non è esente da problemi di stima. In questo caso, l’unica soluzione potrebbe essere quella di creare un punteggio somma per ogni variabile latente e stimare un modello in cui ogni variabile latente ha un unico indicatore (il punteggio somma) con la sua affidabilità fissata a un valore realistico fornito dall’utente.</p>
+</section>
+<section id="discussione">
+<h3><span class="section-number">56.2.5. </span>Discussione<a class="headerlink" href="#discussione" title="Link to this heading">#</a></h3>
+<p>Tutti i metodi descritti in questa sezione hanno vantaggi e svantaggi. L’approccio della verosimiglianza penalizzata è forse l’unico metodo specificamente progettato per gestire campioni (molto) piccoli. Gli altri tre metodi utilizzano un approccio di “divide et impera”; scompongono il modello completo in parti più piccole e stimano i parametri di ciascuna parte in successione. Oltre a ridurre la complessità e a essere meno vulnerabili a problemi di convergenza, gli ultimi tre metodi hanno il vantaggio di essere efficaci nel localizzare le parti problematiche all’interno di un modello ampio.</p>
+</section>
+</section>
+<section id="inferenze-per-modelli-sem-in-piccoli-campioni">
+<h2><span class="section-number">56.3. </span>Inferenze per Modelli SEM in Piccoli Campioni<a class="headerlink" href="#inferenze-per-modelli-sem-in-piccoli-campioni" title="Link to this heading">#</a></h2>
+<p>Molti autori hanno documentato che quando la dimensione del campione è piccola, il test del chi-quadrato porta ad un inflezione degli errori di Tipo I anche nelle circostanze ideali (cioè, modello correttamente specificato, dati normali). Allo stesso modo, gli errori standard sono spesso attenuati (troppo piccoli) e gli intervalli di confidenza non sono sufficientemente ampi.</p>
+<p>Nelle due sottosezioni successive, <span id="id3">Rosseel [<a class="reference internal" href="../z_biblio.html#id4" title="Yves Rosseel. Small sample solutions for structural equation modeling. In Small sample size solutions: A guide for applied researchers and practitioners, pages 226–238. Routledge, 2020.">Ros20</a>]</span> discute brevemente alcuni tentativi per affrontare questi problemi di inferenza su campioni piccoli nella modellizzazione SEM.</p>
+<section id="migliorare-la-statistica-test-del-chi-quadrato">
+<h3><span class="section-number">56.3.1. </span>Migliorare la statistica test del chi-quadrato<a class="headerlink" href="#migliorare-la-statistica-test-del-chi-quadrato" title="Link to this heading">#</a></h3>
+<p>Sono state suggerite diverse correzioni per migliorare le prestazioni della statistica del test del chi-quadrato, come la correzione di Bartlett. I risultati di studi di simulazione su questo tema, però, non sono coerenti e, secondo <span id="id4">Rosseel [<a class="reference internal" href="../z_biblio.html#id4" title="Yves Rosseel. Small sample solutions for structural equation modeling. In Small sample size solutions: A guide for applied researchers and practitioners, pages 226–238. Routledge, 2020.">Ros20</a>]</span>, per valutare i modelli quando la dimensione del campione è piccola, potrebbe essere opportuno abbandonare del tutto il test del chi-quadrato e esplorare approcci alternativi.</p>
+<p>Un approccio è quello di considerare gli intervalli di confidenza e i test di aderenza basati sull’indice SRMR (standardized root mean square residuals; Maydeu-Olivares, Shi, &amp; Rosseel, 2018). Questi test sembrano funzionare bene anche quando n = 100 (la dimensione del campione più piccola considerata in Maydeu-Olivares et al., 2018) e il modello non è troppo grande. Questi test sono stati implementati come parte della funzione <code class="docutils literal notranslate"><span class="pre">lavResiduals()</span></code> del pacchetto <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>.</p>
+</section>
+<section id="una-migliore-stima-degli-errori-standard-e-degli-intervalli-di-confidenza">
+<h3><span class="section-number">56.3.2. </span>Una migliore stima degli Errori Standard e degli Intervalli di Confidenza<a class="headerlink" href="#una-migliore-stima-degli-errori-standard-e-degli-intervalli-di-confidenza" title="Link to this heading">#</a></h3>
+<p>In generale, è ben noto che se si utilizza la teoria dei grandi campioni per costruire espressioni analitiche al fine di calcolare gli errori standard, questi possono avere prestazioni scadenti in campioni di piccole dimensioni.</p>
+<p>Quando le assunzioni alla base degli errori standard analitici non sono soddisfatte, spesso si suggerisce di utilizzare un approccio di resampling. Un metodo popolare è il bootstrap (Efron &amp; Tibshirani, 1993): viene generato un campione bootstrap (o campione di replica) e si stima un nuovo set di parametri per questo campione bootstrap. Questo processo viene ripetuto un gran numero di volte (ad esempio, 1.000), e la deviazione standard di un parametro su tutti i campioni bootstrap replicati viene utilizzata come stima dell’errore standard per quel parametro. Purtroppo, nonostante molti altri vantaggi, sembra che il bootstrap non sia una soluzione affidabile quando la dimensione del campione è (molto) piccola (Yung &amp; Bentler, 1996).</p>
+<p>In alternativa, sono state sviluppate correzioni per dimensioni di campione piccole sugli errori standard (robusti) e sono state recentemente adattate al contesto SEM. Tuttavia, questa tecnologia non è ancora disponibile nei software SEM.</p>
+</section>
+<section id="strategie-alternative">
+<h3><span class="section-number">56.3.3. </span>Strategie Alternative<a class="headerlink" href="#strategie-alternative" title="Link to this heading">#</a></h3>
+<p>Oltre ai metodi precedenti suggeriti da <span id="id5">Rosseel [<a class="reference internal" href="../z_biblio.html#id4" title="Yves Rosseel. Small sample solutions for structural equation modeling. In Small sample size solutions: A guide for applied researchers and practitioners, pages 226–238. Routledge, 2020.">Ros20</a>]</span>, altre strategie possibili sono stati indicate da <span id="id6">Kline [<a class="reference internal" href="../z_biblio.html#id8" title="Rex B Kline. Principles and practice of structural equation modeling. Guilford publications, 2023.">Kli23</a>]</span>.</p>
+<ol class="arabic simple">
+<li><p><strong>Selezione di Indicatori con Elevate Caratteristiche Psicometriche</strong>: <span id="id7">Kline [<a class="reference internal" href="../z_biblio.html#id8" title="Rex B Kline. Principles and practice of structural equation modeling. Guilford publications, 2023.">Kli23</a>]</span> consiglia di utilizzare indicatori che mostrino eccellenti proprietà psicometriche, idealmente con carichi standardizzati superiori a .70 per gli indicatori continui. Questa pratica riduce il rischio di incorrere in casi di Heywood.</p></li>
+<li><p><strong>Applicazione di Restrizioni di Uguaglianza sui Carichi Non Standardizzati</strong>: Imponendo vincoli di uguaglianza sulle saturazioni degli indicatori relativi allo stesso fattore si possono evitare soluzioni inammissibili. Questo approccio è particolarmente valido quando gli indicatori sono sulla stessa scala. Un’alternativa valida consiste nel fissare le saturazioni degli indicatori dello stesso fattore a valori costanti non nulli, che riflettano le variazioni nelle loro deviazioni standard.</p></li>
+<li><p><strong>SEM Basato su Compositi per Modelli Complessi in Campioni Piccoli</strong>: Questo approccio implica l’utilizzo di metodi basati su compositi, che sono combinazioni lineari di variabili osservate. In pratica, le variabili osservate vengono combinate in modi specifici per formare indicatori composti che rappresentano i costrutti latenti nel modello. Questi indicatori composti vengono quindi utilizzati per stimare i parametri del modello SEM. L’obiettivo è ottenere risultati per modelli complessi che richiederebbero campioni molto più ampi con il tradizionale approccio SEM. Tuttavia, è importante notare che i risultati del SEM basato su compositi possono essere soggetti a distorsioni anche nei campioni di piccole dimensioni.</p></li>
+<li><p><strong>Parceling</strong>: Questa strategia coinvolge la creazione di “parcel” o aggregati di due o più indicatori a livello di item attraverso la media dei singoli item. In altre parole, gli indicatori originali sono raggruppati in insiemi più piccoli e i loro valori sono combinati per creare nuovi indicatori aggregati. Questi nuovi indicatori vengono quindi utilizzati per rappresentare i costrutti latenti nel modello SEM. Sebbene il parceling possa ridurre la varianza dell’errore e migliorare la stabilità dei modelli, è importante considerare le sue limitazioni, tra cui la possibile perdita di informazioni e la sensibilità alle scelte fatte durante il processo di parceling. I risultati ottenuti con il parceling possono variare notevolmente in base alle decisioni prese dal ricercatore durante l’analisi.</p></li>
+</ol>
+<section id="parceling">
+<h4><span class="section-number">56.3.3.1. </span>Parceling<a class="headerlink" href="#parceling" title="Link to this heading">#</a></h4>
+<p>Approfondiamo brevemente la strategia del parceling. Il parceling è una strategia che comporta la suddivisione di un set di item in gruppi più piccoli, o “parcel”, per semplificare i modelli e migliorare la loro stima e adattamento.</p>
+<p>Un esempio, citato in <span id="id8">Kline [<a class="reference internal" href="../z_biblio.html#id8" title="Rex B Kline. Principles and practice of structural equation modeling. Guilford publications, 2023.">Kli23</a>]</span>, illustra come il parceling possa essere utilizzato in una CFA per ridurre il numero di indicatori e semplificare il modello. <span id="id9">Kline [<a class="reference internal" href="../z_biblio.html#id8" title="Rex B Kline. Principles and practice of structural equation modeling. Guilford publications, 2023.">Kli23</a>]</span> considera un questionario di 120 item diviso in tre gruppi distinti di 40 item ciascuno, ognuno mirato a misurare un dominio specifico di un costrutto. In un campione di 150 partecipanti, un’analisi fattoriale confermativa (CFA) con tre fattori e 40 indicatori per fattore, con 120 indicatori totali, può presentare sfide notevoli nella stima del modello a causa della ridotta dimensione del campione. Per affrontare questi problemi, il ricercatore può suddividere ogni gruppo di 40 item in 4 gruppi minori (o “parcel”) di 10 item ciascuno, sommando i punteggi all’interno di ogni “parcel”. Questi punteggi aggregati sostituiscono poi gli item singoli come indicatori in un modello CFA a 3 fattori che avrà quindi solo 12 indicatori in totale (4 indicatori parcellizzati per fattore). Se gli indicatori parcellizzati hanno una distribuzione normale, per la stima si può ricorrere al metodo dei minimi quadrati (ML); altrimenti, si può utilizzare un estimatore ML robusto.</p>
+<p>Questo metodo è particolarmente utile in situazioni dove si hanno molti item e campioni di dimensioni ridotte, e offre diversi benefici, tra cui:</p>
+<ol class="arabic simple">
+<li><p><strong>Maggiore Affidabilità</strong>: Il parceling può aumentare l’affidabilità di una scala psicometrica, poiché gli item aggregati tendono ad avere maggior coerenza interna rispetto agli item singoli.</p></li>
+<li><p><strong>Rapporto Varianza Comune/Varianza Unica</strong>: Utilizzando il parceling, si può ottenere un rapporto più favorevole tra la varianza comune (quella spiegata dai fattori comuni) e la varianza unica (quella non spiegata).</p></li>
+<li><p><strong>Minore Probabilità di Violazioni Distribuzionali</strong>: La pratica del parceling riduce la probabilità che le assunzioni distribuzionali siano violate, il che è importante per l’applicazione di certe tecniche statistiche.</p></li>
+</ol>
+<p>Nonostante i suoi benefici, il parceling ha anche limitazioni. La metodologia utilizzata per formare i parcel può influenzare i risultati. Inoltre, il parceling non è consigliabile quando gli item all’interno di un parcel non sono unidimensionali, poiché ciò può distorcere i risultati. È fondamentale verificare l’unidimensionalità prima di procedere con il parceling.</p>
+<p>In studi con campioni di piccole dimensioni, il parceling ha dimostrato diversi vantaggi, come mostrato nello studio di simulazione di Orçan e Yanyun (2016). Questi includono una riduzione della complessità del modello, tassi di errore di Tipo I più ragionevoli e tassi di errore di Tipo I più bassi quando si utilizza il metodo di stima della massima verosimiglianza con errori standard robusti (MLR) a livello di parcel.</p>
+<p>In conclusione, il parceling è una tecnica utile che può migliorare l’affidabilità e la validità dei modelli psicometrici, specialmente in presenza di grandi set di item e campioni di piccole dimensioni. Tuttavia, è essenziale valutare attentamente la sua applicabilità e procedere con cautela, specialmente per quanto riguarda l’unidimensionalità dei parcel.</p>
+</section>
+</section>
+</section>
+<section id="sem-in-un-piccolo-campione">
+<h2><span class="section-number">56.4. </span>SEM in un Piccolo Campione<a class="headerlink" href="#sem-in-un-piccolo-campione" title="Link to this heading">#</a></h2>
+<p><span id="id10">Kline [<a class="reference internal" href="../z_biblio.html#id8" title="Rex B Kline. Principles and practice of structural equation modeling. Guilford publications, 2023.">Kli23</a>]</span> discute uno studio in cui è stato applicato un modello CFA a due fattori ad un campione di 103 donne, le quali hanno compilato questionari su esperienze di origine familiare e adattamento coniugale <span id="id11">[<a class="reference internal" href="../z_biblio.html#id10" title="Ronald M Sabatelli and Suzanne Bartle-Haring. Family-of-origin experiences and adjustment in married couples. Journal of Marriage and Family, 65(1):159–169, 2003.">SBH03</a>]</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># input the correlations in lower diagnonal form</span>
+<span class="n">sabatelliLower.cor</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s"> 1.000</span>
+<span class="s">  .740 1.000</span>
+<span class="s">  .265  .422 1.000</span>
+<span class="s">  .305  .401  .791 1.000</span>
+<span class="s">  .315  .351  .662  .587 1.000 &quot;</span>
+
+<span class="c1"># name the variables and convert to full correlation matrix</span>
+<span class="n">sabatelli.cor</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">getCov</span><span class="p">(</span><span class="n">sabatelliLower.cor</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;problems&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;intimacy&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;father&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;mother&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;both&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># add the standard deviations and convert to covariances</span>
+<span class="n">sabatelli.cov</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">cor2cov</span><span class="p">(</span><span class="n">sabatelli.cor</span><span class="p">,</span><span class="w"> </span><span class="n">sds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="m">32.936</span><span class="p">,</span><span class="w"> </span><span class="m">22.749</span><span class="p">,</span><span class="w"> </span><span class="m">13.390</span><span class="p">,</span><span class="w"> </span><span class="m">13.679</span><span class="p">,</span><span class="w"> </span><span class="m">14.382</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il modello proposto dagli autori è specificato di seguito:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sabatelli_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">    # common factors</span>
+<span class="s">    # loading for intimacy constrained to equal .691</span>
+<span class="s">    Marital =~ problems + intimacy</span>
+<span class="s">    FOE =~ father + mother + both</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In riferimento al modello specificato sopra, la soluzione fornita da <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> risulta inammissibile a causa di un caso di Heywood, evidenziato da una varianza d’errore negativa per la variabile “intimità”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">original</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">sem</span><span class="p">(</span><span class="n">sabatelli_model</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.cov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sabatelli.cov</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.nobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">103</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in lav_object_post_check(object):
+&quot;lavaan WARNING: some estimated ov variances are negative&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lavaan</span><span class="o">::</span><span class="nf">summary</span><span class="p">(</span><span class="n">original</span><span class="p">,</span>
+<span class="w">    </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">standardized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">rsquare</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span>
+<span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 141 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        11
+
+  Number of observations                           103
+
+Model Test User Model:
+                                                      
+  Test statistic                                 4.688
+  Degrees of freedom                                 4
+  P-value (Chi-square)                           0.321
+
+Model Test Baseline Model:
+
+  Test statistic                               271.302
+  Degrees of freedom                                10
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.997
+  Tucker-Lewis Index (TLI)                       0.993
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -2087.964
+  Loglikelihood unrestricted model (H1)      -2085.620
+                                                      
+  Akaike (AIC)                                4197.928
+  Bayesian (BIC)                              4226.910
+  Sample-size adjusted Bayesian (SABIC)       4192.163
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.041
+  90 Percent confidence interval - lower         0.000
+  90 Percent confidence interval - upper         0.159
+  P-value H_0: RMSEA &lt;= 0.050                    0.448
+  P-value H_0: RMSEA &gt;= 0.080                    0.387
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.028
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  Marital =~                                                            
+    problems          1.000                              23.362    0.713
+    intimacy          1.006    0.221    4.547    0.000   23.503    1.038
+  FOE =~                                                                
+    father            1.000                              12.488    0.937
+    mother            0.919    0.089   10.320    0.000   11.480    0.843
+    both              0.808    0.098    8.206    0.000   10.088    0.705
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  Marital ~~                                                            
+    FOE             129.409   44.216    2.927    0.003    0.444    0.444
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .problems        528.472  130.514    4.049    0.000  528.472    0.492
+   .intimacy        -39.892  109.200   -0.365    0.715  -39.892   -0.078
+   .father           21.613   10.983    1.968    0.049   21.613    0.122
+   .mother           53.509   11.710    4.570    0.000   53.509    0.289
+   .both            103.075   16.168    6.375    0.000  103.075    0.503
+    Marital         545.776  169.103    3.227    0.001    1.000    1.000
+    FOE             155.939   26.732    5.833    0.000    1.000    1.000
+
+R-Square:
+                   Estimate
+    problems          0.508
+    intimacy             NA
+    father            0.878
+    mother            0.711
+    both              0.497
+</pre></div>
+</div>
+</div>
+</div>
+<p>Per ovviare ad un tale problema, in una nuova analisi del modello di adattamento coniugale è stato applicato un vincolo specifico ai carichi non standardizzati degli indicatori. A causa delle differenze sostanziali nelle metriche tra le due variabili, ovvero “intimacy” (con una deviazione standard di 22.749) e “problems” (con una deviazione standard di 32.936), sono state fissate le seguenti saturazioni fattoriali: il carico per la variabile “problemi” è stato fissato a 1, mentre il carico per la variabile “intimità” è stato fissato a 0.691. Questi valori sono stati calcolati in modo da riflettere proporzionalmente la differenza nelle deviazioni standard tra le due variabili.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># analysis with constrained loadings for indicators of marital adjustment</span>
+<span class="c1"># model df = 5</span>
+
+<span class="c1"># standard deviations for both indicators</span>
+<span class="c1"># of the marital factor are listed next</span>
+<span class="c1"># intimacy, sd = 22.749</span>
+<span class="c1"># problems, sd = 32.936</span>
+<span class="c1"># ratio = 22.749/32.936 = .691</span>
+
+<span class="c1"># specify model with constrained loadings for problems, intimacy</span>
+
+<span class="n">proportional.model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">    # common factors</span>
+<span class="s">    # loading for intimacy constrained to equal .691</span>
+<span class="s">    Marital =~ 1*problems + .691*intimacy</span>
+<span class="s">    FOE =~ father + mother + both </span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">proportional</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">sem</span><span class="p">(</span><span class="n">proportional.model</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.cov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sabatelli.cov</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.nobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">103</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">semPlot</span><span class="o">::</span><span class="nf">semPaths</span><span class="p">(</span><span class="n">proportional</span><span class="p">,</span>
+<span class="w">    </span><span class="n">what</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;col&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;par&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mx&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;tree2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nCharNodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">,</span>
+<span class="w">    </span><span class="n">shapeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rectangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/6fb758cd25aa721f4f5354d976037704c0b14ec7c4e79424d9e34a16d565a05f.png"><img alt="../_images/6fb758cd25aa721f4f5354d976037704c0b14ec7c4e79424d9e34a16d565a05f.png" src="../_images/6fb758cd25aa721f4f5354d976037704c0b14ec7c4e79424d9e34a16d565a05f.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lavaan</span><span class="o">::</span><span class="nf">summary</span><span class="p">(</span><span class="n">proportional</span><span class="p">,</span>
+<span class="w">    </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">standardized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">rsquare</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span>
+<span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 110 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        10
+
+  Number of observations                           103
+
+Model Test User Model:
+                                                      
+  Test statistic                                 8.449
+  Degrees of freedom                                 5
+  P-value (Chi-square)                           0.133
+
+Model Test Baseline Model:
+
+  Test statistic                               271.302
+  Degrees of freedom                                10
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.987
+  Tucker-Lewis Index (TLI)                       0.974
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -2089.845
+  Loglikelihood unrestricted model (H1)      -2085.620
+                                                      
+  Akaike (AIC)                                4199.690
+  Bayesian (BIC)                              4226.037
+  Sample-size adjusted Bayesian (SABIC)       4194.449
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.082
+  90 Percent confidence interval - lower         0.000
+  90 Percent confidence interval - upper         0.174
+  P-value H_0: RMSEA &lt;= 0.050                    0.242
+  P-value H_0: RMSEA &gt;= 0.080                    0.584
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.045
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  Marital =~                                                            
+    problems          1.000                              28.391    0.840
+    intimacy          0.691                              19.618    0.885
+  FOE =~                                                                
+    father            1.000                              12.373    0.929
+    mother            0.935    0.091   10.279    0.000   11.568    0.850
+    both              0.821    0.100    8.235    0.000   10.155    0.710
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  Marital ~~                                                            
+    FOE             164.822   42.788    3.852    0.000    0.469    0.469
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .problems        335.923   80.080    4.195    0.000  335.923    0.294
+   .intimacy        106.214   34.373    3.090    0.002  106.214    0.216
+   .father           24.457   11.060    2.211    0.027   24.457    0.138
+   .mother           51.489   11.730    4.389    0.000   51.489    0.278
+   .both            101.712   16.070    6.329    0.000  101.712    0.497
+    Marital         806.040  132.946    6.063    0.000    1.000    1.000
+    FOE             153.095   26.669    5.741    0.000    1.000    1.000
+
+R-Square:
+                   Estimate
+    problems          0.706
+    intimacy          0.784
+    father            0.862
+    mother            0.722
+    both              0.503
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">fitMeasures</span><span class="p">(</span><span class="n">proportional</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;chisq&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;df&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cfi&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;tli&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rmsea&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;srmr&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>chisq    df   cfi   tli rmsea  srmr 
+8.449 5.000 0.987 0.974 0.082 0.045 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lavaan</span><span class="o">::</span><span class="nf">parameterEstimates</span><span class="p">(</span><span class="n">proportional</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        lhs op      rhs     est      se      z pvalue ci.lower ci.upper
+1   Marital =~ problems   1.000   0.000     NA     NA    1.000    1.000
+2   Marital =~ intimacy   0.691   0.000     NA     NA    0.691    0.691
+3       FOE =~   father   1.000   0.000     NA     NA    1.000    1.000
+4       FOE =~   mother   0.935   0.091 10.279  0.000    0.757    1.113
+5       FOE =~     both   0.821   0.100  8.235  0.000    0.625    1.016
+6  problems ~~ problems 335.923  80.080  4.195  0.000  178.970  492.877
+7  intimacy ~~ intimacy 106.214  34.373  3.090  0.002   38.843  173.584
+8    father ~~   father  24.457  11.060  2.211  0.027    2.779   46.134
+9    mother ~~   mother  51.489  11.730  4.389  0.000   28.498   74.481
+10     both ~~     both 101.712  16.070  6.329  0.000   70.216  133.208
+11  Marital ~~  Marital 806.040 132.946  6.063  0.000  545.471 1066.608
+12      FOE ~~      FOE 153.095  26.669  5.741  0.000  100.825  205.365
+13  Marital ~~      FOE 164.822  42.788  3.852  0.000   80.959  248.684
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lavaan</span><span class="o">::</span><span class="nf">standardizedSolution</span><span class="p">(</span><span class="n">proportional</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        lhs op      rhs est.std    se      z pvalue ci.lower ci.upper
+1   Marital =~ problems   0.840 0.036 23.439  0.000    0.770    0.910
+2   Marital =~ intimacy   0.885 0.037 24.040  0.000    0.813    0.957
+3       FOE =~   father   0.929 0.035 26.779  0.000    0.861    0.997
+4       FOE =~   mother   0.850 0.040 21.126  0.000    0.771    0.929
+5       FOE =~     both   0.710 0.055 12.800  0.000    0.601    0.818
+6  problems ~~ problems   0.294 0.060  4.884  0.000    0.176    0.412
+7  intimacy ~~ intimacy   0.216 0.065  3.317  0.001    0.088    0.344
+8    father ~~   father   0.138 0.064  2.139  0.032    0.012    0.264
+9    mother ~~   mother   0.278 0.068  4.065  0.000    0.144    0.412
+10     both ~~     both   0.497 0.079  6.313  0.000    0.342    0.651
+11  Marital ~~  Marital   1.000 0.000     NA     NA    1.000    1.000
+12      FOE ~~      FOE   1.000 0.000     NA     NA    1.000    1.000
+13  Marital ~~      FOE   0.469 0.091  5.177  0.000    0.292    0.647
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nonostante gli indici di bontà di adattamento siano eccellenti, la potenza di questa analisi statistica risulta estremamente limitata. Per valutare questa limitazione, è possibile utilizzare la funzione <code class="docutils literal notranslate"><span class="pre">semTools::findRMSEAsamplesize()</span></code>. Questa funzione calcola la dimensione del campione necessaria per rilevare una differenza significativa tra RMSEA_0 e RMSEA_A, considerando un modello con <code class="docutils literal notranslate"><span class="pre">df</span></code> gradi di libertà.</p>
+<p>Per esempio, se desideriamo distinguere tra RMSEA_0=0.05 e RMSEA_A=0.10 utilizzando il modello attuale con 5 gradi di libertà, la funzione ci indica che sono necessarie 561 osservazioni per ottenere una potenza statistica di 0.8:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">semTools</span><span class="o">::</span><span class="nf">findRMSEAsamplesize</span><span class="p">(</span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">80</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">05</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">561</div></div>
+</div>
+<p>Per creare un grafico che rappresenti la potenza statistica per rilevare la differenza tra RMSEA_0=0.05 e RMSEA_A=0.10 (utilizzati qui come esempio) al variare della dimensione del campione, è possibile seguire la seguente procedura:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">semTools</span><span class="o">::</span><span class="nf">plotRMSEApower</span><span class="p">(</span><span class="n">rmsea0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">05</span><span class="p">,</span><span class="w"> </span><span class="n">rmseaA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/cadcfe05f4018188d478921a3ba4507309b16e35fa9b74a68782e931979bf4fa.png"><img alt="../_images/cadcfe05f4018188d478921a3ba4507309b16e35fa9b74a68782e931979bf4fa.png" src="../_images/cadcfe05f4018188d478921a3ba4507309b16e35fa9b74a68782e931979bf4fa.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Questa analisi di potenza indica che la dimensione del campione utilizzato (<span class="math notranslate nohighlight">\(n\)</span> = 103) è del tutto inadeguata.</p>
+<p>Per migliorare il nostro giudizio sull’adattamento del modello consideriamo l’analisi dei residui.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lavaan</span><span class="o">::</span><span class="nf">residuals</span><span class="p">(</span><span class="n">proportional</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;standardized.mplus&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>$type
+[1] &quot;standardized.mplus&quot;
+
+$cov
+         prblms intmcy father mother   both
+problems     NA                            
+intimacy     NA  0.918                     
+father   -3.994  1.039  0.002              
+mother   -0.871  1.049  0.328  0.000       
+both      0.407  0.930  0.352 -2.776     NA
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lavaan</span><span class="o">::</span><span class="nf">lavResiduals</span><span class="p">(</span><span class="n">proportional</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;cor.bollen&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">summary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>$type
+[1] &quot;cor.bollen&quot;
+
+$cov
+         prblms intmcy father mother   both
+problems  0.000                            
+intimacy -0.004  0.000                     
+father   -0.101  0.036  0.000              
+mother   -0.030  0.048  0.002  0.000       
+both      0.035  0.056  0.003 -0.016  0.000
+
+$cov.z
+         prblms intmcy father mother   both
+problems  0.000                            
+intimacy -2.524  0.000                     
+father   -2.386  1.245  0.000              
+mother   -0.586  1.134  0.881  0.000       
+both      0.523  0.936  0.507 -1.143  0.000
+
+$summary
+                           cov
+crmr                     0.044
+crmr.se                  0.015
+crmr.exactfit.z          0.504
+crmr.exactfit.pvalue     0.307
+ucrmr                    0.023
+ucrmr.se                 0.029
+ucrmr.ci.lower          -0.024
+ucrmr.cilupper           0.071
+ucrmr.closefit.h0.value  0.050
+ucrmr.closefit.z        -0.928
+ucrmr.closefit.pvalue    0.823
+</pre></div>
+</div>
+</div>
+</div>
+<p>Questi sono risultati relativamente scarsi per un modello così piccolo. Il computer non è stato in grado di calcolare tutti i residui standardizzati possibili, il che non è sorprendente in un campione così ridotto.</p>
+<section id="stimatore-miiv-2sls">
+<h3><span class="section-number">56.4.1. </span>Stimatore MIIV-2SLS<a class="headerlink" href="#stimatore-miiv-2sls" title="Link to this heading">#</a></h3>
+<p>Una seconda analisi viene condotta utilizzando lo stimatore MIIV-2SLS. Il pacchetto MIIVsem non calcola statistiche globali di bontà di adattamento. Al contrario, calcola il test di Sargan per ciascun indicatore previsto dal modello. Le statistiche del test di Sargan approssimano distribuzioni chi-quadro centrali con gradi di libertà equivalenti al numero di item meno uno, quindi df = 2. L’ipotesi nulla è che ogni insieme di strumenti multipli sia incorrelato con il termine di errore per l’equazione. Il mancato rifiuto dell’ipotesi nulla per il test di Sargan suggerisce una buona corrispondenza del modello con i dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">MIIVsem</span><span class="o">::</span><span class="nf">miivs</span><span class="p">(</span><span class="n">sabatelli_model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model Equation Information 
+
+ LHS        RHS        MIIVs                     
+ intimacy   problems   father, mother, both      
+ mother     father     problems, intimacy, both  
+ both       father     problems, intimacy, mother
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sabatelli</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">MIIVsem</span><span class="o">::</span><span class="nf">miive</span><span class="p">(</span><span class="n">sabatelli_model</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.cov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sabatelli.cov</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.nobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">103</span><span class="p">,</span><span class="w"> </span><span class="n">var.cov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span>
+<span class="p">)</span>
+
+<span class="n">lavaan</span><span class="o">::</span><span class="nf">summary</span><span class="p">(</span><span class="n">sabatelli</span><span class="p">,</span><span class="w"> </span><span class="n">rsquare</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MIIVsem (0.5.8) results 
+
+Number of observations                                                    103
+Number of equations                                                         3
+Estimator                                                           MIIV-2SLS
+Standard Errors                                                      standard
+Missing                                                              listwise
+
+
+Parameter Estimates:
+
+
+STRUCTURAL COEFFICIENTS:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Sargan   df   P(Chi)
+  FOE =~                                                                     
+    father            1.000                                                  
+    mother            0.899    0.089   10.149    0.000    1.763    2    0.414
+    both              0.787    0.099    7.935    0.000    3.590    2    0.166
+  Marital =~                                                                 
+    problems          1.000                                                  
+    intimacy          0.805    0.155    5.195    0.000    4.980    2    0.083
+
+INTERCEPTS:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   
+    both              0.000                              
+    father            0.000                              
+    intimacy          0.000                              
+    mother            0.000                              
+    problems          0.000                              
+
+VARIANCES:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   
+    FOE             158.501                              
+    Marital         702.393                              
+    both            103.301                              
+    father           20.856                              
+    intimacy         50.871                              
+    mother           54.195                              
+    problems        422.427                              
+
+COVARIANCES:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   
+  Marital ~~                                             
+    FOE             157.495                              
+
+R-SQUARE:
+                   Estimate
+    problems          0.624
+    intimacy          0.900
+    father            0.884
+    mother            0.703
+    both              0.487
+NULL
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si noti che le stime standardizzate non sono calcolate nella versione del pacchetto MIIVsem utilizzata in questa analisi. I valori non standardizzati delle saturazioni fattoriali sono simili a quelli ottenuti in precedenza.</p>
+<p>Il pacchetto <code class="docutils literal notranslate"><span class="pre">MIIVsem</span></code> non fornisce né le correlazioni previste dal modello per gli indicatori né i residui di correlazione. Per ottenere i residui di correlazione per l’estimatore 2SLS, è possibile utilizzare il pacchetto <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> per specificare nuovamente il modello precedentemente adattato, ma con l’importante modifica di fissare tutti i parametri non standardizzati in modo che siano identici alle loro controparti 2SLS. Successivamente, è possibile adattare nuovamente il modello con questi parametri fissati alla matrice di covarianza. La matrice di correlazione prevista in questa analisi si basa sulle stime dei parametri 2SLS, consentendo così di ottenere i residui di correlazione desiderati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sabatelliFixed.model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">    # common factors</span>
+<span class="s">    Marital =~ 1.0*problems + .805*intimacy</span>
+<span class="s">    FOE =~ 1.0*father + .899*mother + .787*both</span>
+<span class="s">    # factor variances, covariances</span>
+<span class="s">    FOE ~~ 158.501*FOE</span>
+<span class="s">    Marital ~~ 157.495*FOE</span>
+<span class="s">    Marital ~~ 702.393*Marital</span>
+<span class="s">    # indicator error variances</span>
+<span class="s">    father ~~ 20.856*father</span>
+<span class="s">    mother ~~ 54.195*mother</span>
+<span class="s">    both ~~ 103.301*both</span>
+<span class="s">    problems ~~ 422.427*problems</span>
+<span class="s">    intimacy ~~ 50.781*intimacy </span>
+<span class="s"> &quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sabatelliFixed</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">sem</span><span class="p">(</span><span class="n">sabatelliFixed.model</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.cov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sabatelli.cov</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sample.nobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">103</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># standardized parameter &quot;estimates&quot; listed</span>
+<span class="c1"># next are fixed to nonzero constants, and</span>
+<span class="c1"># standard errors are undefined</span>
+<span class="n">lavaan</span><span class="o">::</span><span class="nf">parameterEstimates</span><span class="p">(</span><span class="n">sabatelliFixed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A lavaan.data.frame: 13 x 9</caption>
+<thead>
+	<tr><th scope=col>lhs</th><th scope=col>op</th><th scope=col>rhs</th><th scope=col>est</th><th scope=col>se</th><th scope=col>z</th><th scope=col>pvalue</th><th scope=col>ci.lower</th><th scope=col>ci.upper</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>Marital </td><td>=~</td><td>problems</td><td>  1.000</td><td>0</td><td>NA</td><td>NA</td><td>  1.000</td><td>  1.000</td></tr>
+	<tr><td>Marital </td><td>=~</td><td>intimacy</td><td>  0.805</td><td>0</td><td>NA</td><td>NA</td><td>  0.805</td><td>  0.805</td></tr>
+	<tr><td>FOE     </td><td>=~</td><td>father  </td><td>  1.000</td><td>0</td><td>NA</td><td>NA</td><td>  1.000</td><td>  1.000</td></tr>
+	<tr><td>FOE     </td><td>=~</td><td>mother  </td><td>  0.899</td><td>0</td><td>NA</td><td>NA</td><td>  0.899</td><td>  0.899</td></tr>
+	<tr><td>FOE     </td><td>=~</td><td>both    </td><td>  0.787</td><td>0</td><td>NA</td><td>NA</td><td>  0.787</td><td>  0.787</td></tr>
+	<tr><td>FOE     </td><td>~~</td><td>FOE     </td><td>158.501</td><td>0</td><td>NA</td><td>NA</td><td>158.501</td><td>158.501</td></tr>
+	<tr><td>Marital </td><td>~~</td><td>FOE     </td><td>157.495</td><td>0</td><td>NA</td><td>NA</td><td>157.495</td><td>157.495</td></tr>
+	<tr><td>Marital </td><td>~~</td><td>Marital </td><td>702.393</td><td>0</td><td>NA</td><td>NA</td><td>702.393</td><td>702.393</td></tr>
+	<tr><td>father  </td><td>~~</td><td>father  </td><td> 20.856</td><td>0</td><td>NA</td><td>NA</td><td> 20.856</td><td> 20.856</td></tr>
+	<tr><td>mother  </td><td>~~</td><td>mother  </td><td> 54.195</td><td>0</td><td>NA</td><td>NA</td><td> 54.195</td><td> 54.195</td></tr>
+	<tr><td>both    </td><td>~~</td><td>both    </td><td>103.301</td><td>0</td><td>NA</td><td>NA</td><td>103.301</td><td>103.301</td></tr>
+	<tr><td>problems</td><td>~~</td><td>problems</td><td>422.427</td><td>0</td><td>NA</td><td>NA</td><td>422.427</td><td>422.427</td></tr>
+	<tr><td>intimacy</td><td>~~</td><td>intimacy</td><td> 50.781</td><td>0</td><td>NA</td><td>NA</td><td> 50.781</td><td> 50.781</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lavaan</span><span class="o">::</span><span class="nf">residuals</span><span class="p">(</span><span class="n">sabatelliFixed</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;standardized.mplus&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>$type
+[1] &quot;standardized.mplus&quot;
+
+$cov
+         prblms intmcy father mother   both
+problems -0.338                            
+intimacy -0.180  0.092                     
+father   -0.938  0.016 -0.073              
+mother   -0.120  0.293  0.043  0.116       
+both      0.491  0.412  0.067  0.100  0.118
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">lavaan</span><span class="o">::</span><span class="nf">residuals</span><span class="p">(</span><span class="n">sabatelliFixed</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;cor.bollen&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>$type
+[1] &quot;cor.bollen&quot;
+
+$cov
+         prblms intmcy father mother   both
+problems  0.000                            
+intimacy -0.010  0.000                     
+father   -0.086  0.001  0.000              
+mother   -0.008  0.026  0.003  0.000       
+both      0.055  0.038  0.006  0.002  0.000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si noti che nessuno dei residui di correlazione assoluti basati sui risultati 2SLS supera lo 0.10, compreso il residuo per la coppia di indicatori “problems” e “father”. In termini di adattamento locale, dunque, in questo esempio i risultati dello stimatore 2SLS sono da preferire rispetto a quelli dello stimatore ML.</p>
+</section>
+</section>
+<section id="considerazioni-conclusive">
+<h2><span class="section-number">56.5. </span>Considerazioni Conclusive<a class="headerlink" href="#considerazioni-conclusive" title="Link to this heading">#</a></h2>
+<p>In questo capitolo abbiamo discusso diversi problemi nel contesto della SEM quando le dimensioni del campione sono ridotte e vengono utilizzati metodi di stima standard (massima verosimiglianza), come la mancata convergenza, le soluzioni non ammissibili, il bias, le statistiche di test poco performanti e gli intervalli di confidenza e gli errori standard inaccurati. Come possibili soluzioni per ottenere stime puntuali migliori, <span id="id12">Rosseel [<a class="reference internal" href="../z_biblio.html#id4" title="Yves Rosseel. Small sample solutions for structural equation modeling. In Small sample size solutions: A guide for applied researchers and practitioners, pages 226–238. Routledge, 2020.">Ros20</a>]</span> presenta quattro approcci alternativi alla stima: la stima della verosimiglianza penalizzata, le variabili strumentali derivanti dal modello, la stima a due fasi e la regressione dei punteggi fattoriali. Solo il primo metodo è stato specificamente progettato per gestire campioni ridotti. Gli altri approcci sono stati sviluppati con altre preoccupazioni in mente, ma potrebbero essere alternative valide per la stima quando le dimensioni del campione sono ridotte.</p>
+<p>Per quanto riguarda l’inferenza, <span id="id13">Rosseel [<a class="reference internal" href="../z_biblio.html#id4" title="Yves Rosseel. Small sample solutions for structural equation modeling. In Small sample size solutions: A guide for applied researchers and practitioners, pages 226–238. Routledge, 2020.">Ros20</a>]</span> discute vari tentativi per migliorare le prestazioni della statistica del chi-quadro per valutare l’adattamento globale in presenza di campioni ridotti. Per quanto riguarda gli errori standard, sottolinea che il bootstrapping potrebbe non essere la soluzione che stiamo cercando. Per ottenere errori standard (e intervalli di confidenza) migliori nel contesto di campioni ridotti, <span id="id14">Rosseel [<a class="reference internal" href="../z_biblio.html#id4" title="Yves Rosseel. Small sample solutions for structural equation modeling. In Small sample size solutions: A guide for applied researchers and practitioners, pages 226–238. Routledge, 2020.">Ros20</a>]</span> ritiene che sia necessario aspettare fino a quando nuove tecnologie saranno disponibili. Altri suggerimenti sono stati forniti da <span id="id15">Kline [<a class="reference internal" href="../z_biblio.html#id8" title="Rex B Kline. Principles and practice of structural equation modeling. Guilford publications, 2023.">Kli23</a>]</span>. La tecnica del “parceling” è stata presentata in relazione alla discussione fornita da <span id="id16">Rioux <em>et al.</em> [<a class="reference internal" href="../z_biblio.html#id5" title="Charlie Rioux, Zachary L Stickley, Omolola A Odejimi, and Todd D Little. Item parcels as indicators: why, when, and how to use them in small sample research. In Small sample size solutions, pages 203–214. Routledge, 2020.">RSOL20</a>]</span>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_sem"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="10_missing_data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">55. </span>Dati mancanti</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="12_temp_reliability.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">57. </span>Affidabilità longitudinale</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problemi-con-le-piccole-dimensioni-del-campione-nella-sem">56.1. Problemi con le Piccole Dimensioni del Campione nella SEM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#soluzioni-possibili-per-la-stima-dei-parametri">56.2. Soluzioni Possibili per la Stima dei Parametri</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stima-di-verosimiglianza-penalizzata">56.2.1. Stima di Verosimiglianza Penalizzata</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-implied-instrumental-variables">56.2.2. Model-implied instrumental variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stima-a-due-fasi">56.2.3. Stima a Due Fasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regressione-del-punteggio-dei-fattori">56.2.4. Regressione del Punteggio dei Fattori</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discussione">56.2.5. Discussione</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inferenze-per-modelli-sem-in-piccoli-campioni">56.3. Inferenze per Modelli SEM in Piccoli Campioni</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#migliorare-la-statistica-test-del-chi-quadrato">56.3.1. Migliorare la statistica test del chi-quadrato</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#una-migliore-stima-degli-errori-standard-e-degli-intervalli-di-confidenza">56.3.2. Una migliore stima degli Errori Standard e degli Intervalli di Confidenza</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strategie-alternative">56.3.3. Strategie Alternative</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#parceling">56.3.3.1. Parceling</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sem-in-un-piccolo-campione">56.4. SEM in un Piccolo Campione</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stimatore-miiv-2sls">56.4.1. Stimatore MIIV-2SLS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considerazioni-conclusive">56.5. Considerazioni Conclusive</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

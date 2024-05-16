@@ -1,0 +1,1667 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>27. Il modello unifattoriale &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css?v=ffeaf963" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6ba04eab" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VMXNE4BCDL"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_fa/02_analisi_fattoriale_1';</script>
+    <script src="../_static/custom.js?v=3f5092eb"></script>
+    <link rel="canonical" href="https://ccaudek.github.io/psy_test/_fa/02_analisi_fattoriale_1.html" />
+    <link rel="icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="28. Il modello statistico dell’analisi fattoriale" href="03_analisi_fattoriale_2.html" />
+    <link rel="prev" title="26. Introduzione all’analisi fattoriale" href="01_intro_fa.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Scaling psicometrico</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/01_expval_var.html">1. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/02_joint_prob.html">2. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/03_measurement.html">3. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/04_norms.html">4. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/05_regression.html">5. L’analisi di regressione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E1_likert.html">6. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E2_optimal_scoring.html">7. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E3_thurstone.html">8. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/01_ctt_1.html">9. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/02_ctt_2.html">10. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/03_ctt_3.html">11. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/04_err_std_mis.html">12. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/05_err_std_stima.html">13. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/06_applications_ctt.html">14. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E1_ctt.html">15. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E2_item_analyses.html">16. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/01_multilevel_1.html">17. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/02_interrater_reliability.html">18. L’affidabilità tra giudici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/E1_irr.html">19. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/01_gtheory.html">20. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/01_validity.html">21. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/02_relations_to_other_vars.html">22. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sviluppo degli item</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_items/01_item_development.html">23. Lo sviluppo degli item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_items/02_item_analysis.html">24. Analisi degli item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">25. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale esplorativa</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_intro_fa.html">26. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">27. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_analisi_fattoriale_2.html">28. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_analisi_fattoriale_3.html">29. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_factor_scores.html">30. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_constraints_on_parms.html">31. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_total_score.html">32. Punteggio totale e modello fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione strumenti</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">33. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">34. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">35. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">36. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">37. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/01_cfa.html">38. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/E_01.html">39. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/02_meanstructure.html">40. La struttura delle medie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/03_cat_data.html">41. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/04_mmm.html">42. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/05_bifactor.html">43. Modello bifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/06_efa_lavaan.html">44. Exploratory Structural Equation Modeling (ESEM)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/01_sem_intro.html">45. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/02_data_preparation.html">46. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/E_01.html">47. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/03_gof.html">48. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/04_mod_comp.html">49. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/05_cfa_mod_comp.html">50. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/06_refine_solution.html">51. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/07_group_invariance.html">52. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/08_multilevel_sem.html">53. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/09_structural_regr.html">54. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/10_missing_data.html">55. Dati mancanti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/11_small_samples.html">56. Modellizzazione SEM in Piccoli Campioni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/12_temp_reliability.html">57. Affidabilità longitudinale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_irt/01_logistic_regr.html">58. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/E_01.html">59. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/02_rasch_model.html">60. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/03_assumptions.html">61. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/04_estimation.html">62. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/05_1pl_2pl_3pl.html">63. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/06_implementation.html">64. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/07_polytomous_graded.html">65. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mokken Scales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/01_core_issues.html">66. Analisi della Scala di Mokken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/02_tutorial.html">67. Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/03_applications.html">68. Applicazione Pratica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/01_development.html">69. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/02_tutorial.html">70. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/01_lgm_intro.html">71. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/02_lgm_prelims.html">72. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/03_time_effects.html">73. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/04_invariance.html">74. Invarianza Fattoriale Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/05_intro_panel.html">75. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/06_lgm_mixed.html">76. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/07_growth_1.html">77. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/08_growth_cont.html">78. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/09_time_inv_cov.html">79. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/10_growth_groups.html">80. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/11_bivariate_tvc_models.html">81. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/12_inv_measurement.html">82. Invarianza di Misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/13_latent_change.html">83. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/750_latent_change.html">84. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_lgm/751_biv_change.html">85. Modello LCS bivariato</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">86. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a1_intro_r.html">87. Linguaggio R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a2_sums.html">88. Simbolo di somma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a3_calculus.html">89. Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a4_linear_alg.html">90. Elementi di algebra lineare</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_fa/02_analisi_fattoriale_1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Il modello unifattoriale</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errore-di-misura">27.1. Errore di misura</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-monofattoriale">27.2. Modello monofattoriale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlazione-parziale">27.3. Correlazione parziale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principio-base-dell-analisi-fattoriale">27.4. Principio base dell’analisi fattoriale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vincoli-sulle-correlazioni">27.5. Vincoli sulle correlazioni</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teoria-dei-due-fattori">27.6. Teoria dei Due Fattori</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#annullamento-della-tetrade">27.7. Annullamento della tetrade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-del-centroide">27.8. Metodo del centroide</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduzione-a-lavaan">27.9. Introduzione a <code class="docutils literal notranslate"><span class="pre">lavaan</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sintassi-del-modello">27.9.1. Sintassi del modello</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">27.9.2. Un esempio concreto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagrammi-di-percorso">27.9.3. Diagrammi di percorso</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-fattoriale-esplorativa">27.9.4. Analisi fattoriale esplorativa</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusioni">27.10. Conclusioni</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">27.11. Session Info</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="il-modello-unifattoriale">
+<span id="fa-model-1-notebook"></span><h1><span class="section-number">27. </span>Il modello unifattoriale<a class="headerlink" href="#il-modello-unifattoriale" title="Link to this heading">#</a></h1>
+<p>Questo capitolo presenta le nozioni fondamentali dell’analisi fattoriale, un modello statistico che consente di spiegare le correlazioni tra variabili osservate mediante la loro saturazione in uno o più fattori generali. In questo modello, le <span class="math notranslate nohighlight">\(p\)</span> variabili osservate (item) sono considerate condizionalmente indipendenti rispetto a <span class="math notranslate nohighlight">\(m\)</span> variabili latenti chiamate fattori. L’obiettivo dell’analisi fattoriale è di interpretare questi fattori come costrutti teorici inosservabili. Ad esempio, l’analisi fattoriale può essere utilizzata per spiegare le correlazioni tra le prestazioni di un gruppo di individui in una serie di compiti mediante il concetto di intelligenza. In questo modo, l’analisi fattoriale aiuta a identificare i costrutti cui gli item si riferiscono e a stabilire in che misura ciascun item rappresenta il costrutto. Il modello può essere unifattoriale (<span class="math notranslate nohighlight">\(m = 1\)</span>) o multifattoriale (<span class="math notranslate nohighlight">\(m &gt; 1\)</span>), e in questo capitolo si introdurrà il modello unifattoriale che assume l’esistenza di un unico fattore comune latente.</p>
+<section id="errore-di-misura">
+<h2><span class="section-number">27.1. </span>Errore di misura<a class="headerlink" href="#errore-di-misura" title="Link to this heading">#</a></h2>
+<p>L’analisi fattoriale concettualizza ogni misura osservabile <span class="math notranslate nohighlight">\(y\)</span> come risultante dalla combinazione lineare del punteggio reale associato al costrutto latente <span class="math notranslate nohighlight">\(\xi\)</span>, e di un elemento di errore di misura non osservato <span class="math notranslate nohighlight">\(\delta\)</span>. In questo contesto, il valore misurato di <span class="math notranslate nohighlight">\(y\)</span> è interpretato come il prodotto del punteggio reale latente, ponderato da un coefficiente di carico fattoriale <span class="math notranslate nohighlight">\(\lambda\)</span>, a cui si aggiunge un termine di errore specifico di misura <span class="math notranslate nohighlight">\(\delta_y\)</span>. Per illustrare con un esempio pratico, nel caso di una bilancia non completamente affidabile, ogni lettura del peso corporeo riflette sia il peso effettivo che un errore di misura intrinseco alla bilancia, che si manifesta con variazioni aleatorie da una lettura all’altra. In questa situazione, il modello fattoriale può essere formalizzato attraverso l’equazione:</p>
+<div class="math notranslate nohighlight">
+\[
+y = \lambda\xi + \delta_{y}.
+\]</div>
+<p>Quando si analizzano multiple misure osservabili <span class="math notranslate nohighlight">\(y\)</span> che rappresentano lo stesso costrutto latente <span class="math notranslate nohighlight">\(\xi\)</span>, diventa fattibile la stima del punteggio reale latente <span class="math notranslate nohighlight">\(\xi\)</span> insieme alla componente di errore di misura <span class="math notranslate nohighlight">\(\delta\)</span>, migliorando così la comprensione e l’accuratezza dell’interpretazione dei dati.</p>
+</section>
+<section id="modello-monofattoriale">
+<h2><span class="section-number">27.2. </span>Modello monofattoriale<a class="headerlink" href="#modello-monofattoriale" title="Link to this heading">#</a></h2>
+<p>Con <span class="math notranslate nohighlight">\(p\)</span> variabili manifeste <span class="math notranslate nohighlight">\(y_i\)</span>, il caso più semplice è quello di un solo fattore comune:</p>
+<div class="math notranslate nohighlight" id="equation-eq-mod-unifattoriale">
+<span class="eqno">(27.1)<a class="headerlink" href="#equation-eq-mod-unifattoriale" title="Link to this equation">#</a></span>\[
+\begin{equation}
+y_i = \mu_i + \lambda_{i} \xi +  1 \cdot \delta_i \qquad i=1, \dots, p,
+\end{equation}
+\]</div>
+<p>dove <span class="math notranslate nohighlight">\(\xi\)</span> rappresenta il fattore comune a tutte le <span class="math notranslate nohighlight">\(y_i\)</span>, <span class="math notranslate nohighlight">\(\delta_i\)</span> sono i fattori specifici o unici di ogni variabile osservata e <span class="math notranslate nohighlight">\(\lambda_i\)</span> sono le saturazioni (o pesi) fattoriali le quali stabiliscono il peso del fattore latente su ciascuna variabile osservata.</p>
+<p>Il modello di analisi fattoriale e il modello di regressione possono sembrare simili, ma presentano alcune differenze importanti. In primo luogo, sia il fattore comune <span class="math notranslate nohighlight">\(\xi\)</span> sia i fattori specifici <span class="math notranslate nohighlight">\(\delta_i\)</span> sono inosservabili, il che rende tutto ciò che si trova a destra dell’uguaglianza incognito. In secondo luogo, l’analisi di regressione e l’analisi fattoriale hanno obiettivi diversi. L’analisi di regressione mira a individuare le variabili esplicative, osservabili direttamente, che sono in grado di spiegare la maggior parte della varianza della variabile dipendente. Al contrario, il problema dell’analisi unifattoriale consiste nell’identificare la variabile esplicativa inosservabile che è in grado di spiegare la maggior parte della covarianza tra le variabili osservate.</p>
+<p>Solitamente, per comodità, si assume che la media delle variabili osservate <span class="math notranslate nohighlight">\(y_i\)</span> sia zero, ovvero <span class="math notranslate nohighlight">\(\mu_i=0\)</span>. Ciò equivale a considerare gli scarti delle variabili rispetto alle rispettive medie. Il modello unifattoriale assume che le variabili osservate siano il risultato della combinazione lineare di un fattore comune <span class="math notranslate nohighlight">\(\xi\)</span> e dei fattori specifici <span class="math notranslate nohighlight">\(\delta_i\)</span>, ovvero:</p>
+<div class="math notranslate nohighlight" id="equation-eq-mod-monofattoriale">
+<span class="eqno">(27.2)<a class="headerlink" href="#equation-eq-mod-monofattoriale" title="Link to this equation">#</a></span>\[
+\begin{equation}
+y_i -\mu_i = \lambda_i \xi + 1 \cdot \delta_i,
+\end{equation}
+\]</div>
+<p>dove <span class="math notranslate nohighlight">\(\lambda_i\)</span> è la saturazione o il peso della variabile <span class="math notranslate nohighlight">\(i\)</span>-esima sul fattore comune e <span class="math notranslate nohighlight">\(\delta_i\)</span> rappresenta il fattore specifico della variabile <span class="math notranslate nohighlight">\(i\)</span>-esima. Si assume che il fattore comune abbia media zero e varianza unitaria, mentre i fattori specifici abbiano media zero, varianza <span class="math notranslate nohighlight">\(\psi_{i}\)</span> e siano incorrelati tra loro e con il fattore comune. Nel modello unifattoriale, l’interdipendenza tra le variabili è completamente spiegata dal fattore comune.</p>
+<p>Le ipotesi precedenti consentono di ricavare la covarianza tra la variabile osservata <span class="math notranslate nohighlight">\(y_i\)</span> e il fattore comune, la varianza della variabile osservata <span class="math notranslate nohighlight">\(y_i\)</span> e la covarianza tra due variabili osservate <span class="math notranslate nohighlight">\(y_i\)</span> e <span class="math notranslate nohighlight">\(y_k\)</span>. L’obiettivo della discussione in questo capitolo è appunto quello di analizzare tali grandezze statistiche.</p>
+</section>
+<section id="correlazione-parziale">
+<h2><span class="section-number">27.3. </span>Correlazione parziale<a class="headerlink" href="#correlazione-parziale" title="Link to this heading">#</a></h2>
+<p>Prima di entrare nel dettaglio del modello statistico dell’analisi fattoriale, è importante chiarire il concetto di correlazione parziale. Si attribuisce spesso a Charles Spearman la nascita dell’analisi fattoriale. Nel 1904, Spearman pubblicò un articolo intitolato “General Intelligence, Objectively Determined and Measured” in cui propose la Teoria dei Due Fattori. In questo articolo, dimostrò come fosse possibile identificare un fattore inosservabile a partire da una matrice di correlazioni, utilizzando il metodo dell’annullamento della tetrade (<em>tetrad differences</em>). L’annullamento della tetrade è un’applicazione della teoria della correlazione parziale che mira a stabilire se, controllando un insieme di variabili inosservabili chiamate fattori <span class="math notranslate nohighlight">\(\xi_j\)</span>, le correlazioni tra le variabili osservabili <span class="math notranslate nohighlight">\(Y_i\)</span>, al netto degli effetti lineari delle <span class="math notranslate nohighlight">\(\xi_j\)</span>, diventino statisticamente nulle.</p>
+<p>Possiamo considerare un esempio con tre variabili: <span class="math notranslate nohighlight">\(Y_1\)</span>, <span class="math notranslate nohighlight">\(Y_2\)</span> e <span class="math notranslate nohighlight">\(F\)</span>. La correlazione tra <span class="math notranslate nohighlight">\(Y_1\)</span> e <span class="math notranslate nohighlight">\(Y_2\)</span>, <span class="math notranslate nohighlight">\(r_{1,2}\)</span>, può essere influenzata dalla presenza di <span class="math notranslate nohighlight">\(F\)</span>. Per calcolare la correlazione parziale tra <span class="math notranslate nohighlight">\(Y_1\)</span> e <span class="math notranslate nohighlight">\(Y_2\)</span> al netto dell’effetto lineare di <span class="math notranslate nohighlight">\(F\)</span>, dobbiamo trovare le componenti di <span class="math notranslate nohighlight">\(Y_1\)</span> e <span class="math notranslate nohighlight">\(Y_2\)</span> che sono linearmente indipendenti da <span class="math notranslate nohighlight">\(F\)</span>.</p>
+<p>Per fare ciò, dobbiamo trovare la componente di <span class="math notranslate nohighlight">\(Y_1\)</span> che è ortogonale a <span class="math notranslate nohighlight">\(F\)</span>. Possiamo calcolare i residui <span class="math notranslate nohighlight">\(E_1\)</span> del modello:</p>
+<div class="math notranslate nohighlight">
+\[
+Y_1 = b_{01} + b_{11}F + E_1.
+\]</div>
+<p>La componente di <span class="math notranslate nohighlight">\(Y_1\)</span> linearmente indipendente da <span class="math notranslate nohighlight">\(F\)</span> è quindi data dai residui <span class="math notranslate nohighlight">\(E_1\)</span>. Possiamo eseguire un’operazione analoga per <span class="math notranslate nohighlight">\(Y_2\)</span> per trovare la sua componente ortogonale a <span class="math notranslate nohighlight">\(F\)</span>. Calcolando la correlazione tra le due componenti così ottenute si ottiene la correlazione parziale tra <span class="math notranslate nohighlight">\(Y_1\)</span> e <span class="math notranslate nohighlight">\(Y_2\)</span> al netto dell’effetto lineare di <span class="math notranslate nohighlight">\(F\)</span>.</p>
+<p>L’eq. <a class="reference internal" href="#equation-eq-corr-parz">(27.3)</a> consente di calcolare la correlazione parziale tra <span class="math notranslate nohighlight">\(Y_1\)</span> e <span class="math notranslate nohighlight">\(Y_2\)</span> al netto dell’effetto di <span class="math notranslate nohighlight">\(F\)</span> a partire dalle correlazioni semplici tra le tre variabili <span class="math notranslate nohighlight">\(Y_1\)</span>, <span class="math notranslate nohighlight">\(Y_2\)</span> e <span class="math notranslate nohighlight">\(F\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-corr-parz">
+<span class="eqno">(27.3)<a class="headerlink" href="#equation-eq-corr-parz" title="Link to this equation">#</a></span>\[
+\begin{equation}
+r_{1,2 \mid F} = \frac{r_{12} - r_{1F}r_{2F}}{\sqrt{(1-r_{1F}^2)(1-r_{2F}^2)}}.
+\end{equation}
+\]</div>
+<p>In particolare, la correlazione parziale <span class="math notranslate nohighlight">\(r_{1,2 \mid F}\)</span> è data dalla differenza tra la correlazione <span class="math notranslate nohighlight">\(r_{12}\)</span> tra <span class="math notranslate nohighlight">\(Y_1\)</span> e <span class="math notranslate nohighlight">\(Y_2\)</span> e il prodotto tra le correlazioni <span class="math notranslate nohighlight">\(r_{1F}\)</span> e <span class="math notranslate nohighlight">\(r_{2F}\)</span> tra ciascuna delle due variabili e <span class="math notranslate nohighlight">\(F\)</span>, il tutto diviso per la radice quadrata del prodotto delle differenze tra 1 e i quadrati delle correlazioni tra <span class="math notranslate nohighlight">\(Y_1\)</span> e <span class="math notranslate nohighlight">\(F\)</span> e tra <span class="math notranslate nohighlight">\(Y_2\)</span> e <span class="math notranslate nohighlight">\(F\)</span>. In altre parole, la formula tiene conto dell’effetto di <span class="math notranslate nohighlight">\(F\)</span> sulle correlazioni tra <span class="math notranslate nohighlight">\(Y_1\)</span> e <span class="math notranslate nohighlight">\(Y_2\)</span> per ottenere una stima della relazione diretta tra le due variabili, eliminando l’effetto del fattore comune.</p>
+<p>Consideriamo un esempio numerico. Sia <span class="math notranslate nohighlight">\(f\)</span> una variabile su cui misuriamo <span class="math notranslate nohighlight">\(n\)</span> valori</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span>
+<span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1000</span>
+<span class="n">f</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="m">24</span><span class="p">,</span><span class="w"> </span><span class="m">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Siano <span class="math notranslate nohighlight">\(y_1\)</span> e <span class="math notranslate nohighlight">\(y_2\)</span> funzioni lineari di <span class="math notranslate nohighlight">\(f\)</span>, a cui viene aggiunta una componente d’errore gaussiano:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">)</span>
+<span class="n">y2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">3</span><span class="w">  </span><span class="o">+</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La correlazione tra <span class="math notranslate nohighlight">\(y_1\)</span> e <span class="math notranslate nohighlight">\(y_2\)</span> (<span class="math notranslate nohighlight">\(r_{12}= 0.355\)</span>) deriva dal fatto che <span class="math notranslate nohighlight">\(\hat{y}_1\)</span> e <span class="math notranslate nohighlight">\(\hat{y}_2\)</span> sono entrambe funzioni lineari di <span class="math notranslate nohighlight">\(f\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cbind</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span><span class="w"> </span><span class="n">y2</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">)</span>
+<span class="n">R</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cor</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="nf">round</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 3 × 3 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>y1</th><th scope=col>y2</th><th scope=col>f</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>y1</th><td>1.000</td><td>0.380</td><td>0.867</td></tr>
+	<tr><th scope=row>y2</th><td>0.380</td><td>1.000</td><td>0.423</td></tr>
+	<tr><th scope=row>f</th><td>0.867</td><td>0.423</td><td>1.000</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Eseguiamo le regressioni di <span class="math notranslate nohighlight">\(y_1\)</span> su <span class="math notranslate nohighlight">\(f\)</span> e di <span class="math notranslate nohighlight">\(y_2\)</span> su <span class="math notranslate nohighlight">\(F\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fm1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">y1</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">f</span><span class="p">)</span>
+<span class="n">fm2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">y2</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nella regressione, ciascuna osservazione <span class="math notranslate nohighlight">\(y_{i1}\)</span> viene scomposta in due componenti linearmente indipendenti, i valori adattati <span class="math notranslate nohighlight">\(\hat{y}_{i}\)</span> e i residui, <span class="math notranslate nohighlight">\(e_{i}\)</span>: <span class="math notranslate nohighlight">\(y_i = \hat{y}_i + e_1\)</span>. Nel caso di <span class="math notranslate nohighlight">\(y_1\)</span> abbiamo</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">round</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span><span class="w"> </span><span class="n">y1.hat</span><span class="o">=</span><span class="n">fm1</span><span class="o">$</span><span class="n">fit</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="o">=</span><span class="n">fm1</span><span class="o">$</span><span class="n">res</span><span class="p">,</span><span class="w"> </span><span class="n">fm1</span><span class="o">$</span><span class="n">fit</span><span class="o">+</span><span class="n">fm1</span><span class="o">$</span><span class="n">res</span><span class="p">)),</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 6 × 4 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>y1</th><th scope=col>y1.hat</th><th scope=col>e</th><th scope=col></th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td> 81.130</td><td>130.505</td><td> -49.375</td><td> 81.130</td></tr>
+	<tr><th scope=row>2</th><td>106.667</td><td>159.704</td><td> -53.037</td><td>106.667</td></tr>
+	<tr><th scope=row>3</th><td>308.032</td><td>317.846</td><td>  -9.813</td><td>308.032</td></tr>
+	<tr><th scope=row>4</th><td>177.314</td><td>186.285</td><td>  -8.971</td><td>177.314</td></tr>
+	<tr><th scope=row>5</th><td> 61.393</td><td>191.482</td><td>-130.089</td><td> 61.393</td></tr>
+	<tr><th scope=row>6</th><td>374.094</td><td>331.668</td><td>  42.426</td><td>374.094</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Lo stesso può dirsi di <span class="math notranslate nohighlight">\(y_2\)</span>. La correlazione parziale <span class="math notranslate nohighlight">\(r_{12 \mid f}\)</span>
+tra <span class="math notranslate nohighlight">\(y_1\)</span> e <span class="math notranslate nohighlight">\(y_2\)</span> dato <span class="math notranslate nohighlight">\(f\)</span> è uguale alla correlazione di Pearson tra i
+residui <span class="math notranslate nohighlight">\(e_1\)</span> e <span class="math notranslate nohighlight">\(e_2\)</span> calcolati mediante i due modelli di regressione
+descritti sopra:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">cor</span><span class="p">(</span><span class="n">fm1</span><span class="o">$</span><span class="n">res</span><span class="p">,</span><span class="w"> </span><span class="n">fm2</span><span class="o">$</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.0282861771586006</div></div>
+</div>
+<p>La correlazione parziale tra <span class="math notranslate nohighlight">\(y_1\)</span> e <span class="math notranslate nohighlight">\(y_2\)</span> al netto di <span class="math notranslate nohighlight">\(f\)</span> è .02829.</p>
+<p>Per i dati esaminati sopra, dunque, la correlazione parziale tra le
+variabili <span class="math notranslate nohighlight">\(y_1\)</span> e <span class="math notranslate nohighlight">\(y_2\)</span> diventa uguale a zero se la variabile <span class="math notranslate nohighlight">\(f\)</span> viene
+controllata (ovvero, se escludiamo da <span class="math notranslate nohighlight">\(y_1\)</span> e da <span class="math notranslate nohighlight">\(y_2\)</span> l’effetto lineare
+di <span class="math notranslate nohighlight">\(f\)</span>). Il fatto che la correlazione parziale sia zero significa che la
+correlazione che abbiamo osservato tra <span class="math notranslate nohighlight">\(y_1\)</span> e <span class="math notranslate nohighlight">\(y_2\)</span> (<span class="math notranslate nohighlight">\(r = 0.355\)</span>) non
+dipendeva dall’effetto che una variabile <span class="math notranslate nohighlight">\(y\)</span> esercitava sull’altra, ma
+bensì dal fatto che c’era una terza variabile, <span class="math notranslate nohighlight">\(f\)</span>, che influenzava sia
+<span class="math notranslate nohighlight">\(y_1\)</span> sia <span class="math notranslate nohighlight">\(y_2\)</span>. In altre parole, le variabili <span class="math notranslate nohighlight">\(y_1\)</span> e <span class="math notranslate nohighlight">\(y_2\)</span> sono
+condizionalmente indipendenti dato <span class="math notranslate nohighlight">\(f\)</span>. Ciò significa, come abbiamo
+visto sopra, che la componente di <span class="math notranslate nohighlight">\(y_1\)</span> linearmente indipendente da <span class="math notranslate nohighlight">\(f\)</span>
+è incorrelata con la componente di <span class="math notranslate nohighlight">\(y_2\)</span> linearmente indipendente da
+<span class="math notranslate nohighlight">\(f\)</span>.</p>
+<p>La correlazione che abbiamo calcolato tra i residui di due modelli di
+regressione è identica alla correlazione che viene calcolata
+applicando l’eq. <a class="reference internal" href="#equation-eq-corr-parz">(27.3)</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">])</span><span class="w"> </span><span class="o">/</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">sqrt</span><span class="p">((</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">]</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="w"> </span><span class="n">R</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">]</span><span class="o">^</span><span class="m">2</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">round</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.0282751285315647</div></div>
+</div>
+</section>
+<section id="principio-base-dell-analisi-fattoriale">
+<h2><span class="section-number">27.4. </span>Principio base dell’analisi fattoriale<a class="headerlink" href="#principio-base-dell-analisi-fattoriale" title="Link to this heading">#</a></h2>
+<p>Attualmente, l’inferenza statistica nell’analisi fattoriale spesso si svolge mediante il calcolo di stime della massima verosimiglianza ottenute mediante procedure iterative. All’inizio dell’analisi fattoriale, tuttavia, la procedura di estrazione dei fattori faceva leva sulle relazioni invarianti che il modello fattoriale impone agli elementi della matrice di covarianza delle variabili osservate. Il più conosciuto tra tali invarianti è la <em>tetrade</em> che si presenta nei modelli ad un fattore.</p>
+<p>La tetrade è una combinazione di quattro correlazioni. Se l’associazione osservata tra le variabili dipende effettivamente dal fatto che le  variabili in questione sono state causalmente generate da un fattore comune inosservabile, allora è possibile generare una combinazione delle correlazioni tra le variabili che porta all’annullamento della tetrade. In altre parole, l’analisi fattoriale si chiede se esiste un insieme esiguo di <span class="math notranslate nohighlight">\(m&lt;p\)</span> variabili inosservabili che rendono significativamente nulle tutte le correlazioni parziali tra le <span class="math notranslate nohighlight">\(p\)</span> variabili osservate al netto dei fattori comuni. Se il metodo della correlazione parziale consente di identificare <span class="math notranslate nohighlight">\(m\)</span> variabili latenti, allora lo psicologo conclude che tali fattori corrispondono agli <span class="math notranslate nohighlight">\(m\)</span> costrutti che intende misurare.</p>
+<p>Per chiarire il metodo dell’annullamento della tetrade consideriamo la matrice di correlazioni riportata nella Tabella successiva. Nella tabella, la correlazione parziale tra ciascuna coppia di variabili
+<span class="math notranslate nohighlight">\(y_i\)</span>, <span class="math notranslate nohighlight">\(y_j\)</span> (con <span class="math notranslate nohighlight">\(i \neq j\)</span>) dato <span class="math notranslate nohighlight">\(\xi\)</span> è sempre uguale a zero. Ad esempio, la correlazione parziale tra <span class="math notranslate nohighlight">\(y_3\)</span> e <span class="math notranslate nohighlight">\(y_5\)</span> dato <span class="math notranslate nohighlight">\(\xi\)</span> è:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+  r_{35 \mid \xi} &amp;= \frac{r_{35} - r_{3\xi}r_{5\xi}}
+  {\sqrt{(1-r_{3\xi}^2)(1-r_{5\xi}^2)}} \notag \\[12pt]
+  &amp;= \frac{0.35 - 0.7 \times 0.5}
+  {\sqrt{(1-0.7^2)(1-0.5^2)}} = 0. \notag
+\end{align}
+\end{split}\]</div>
+<p>Lo stesso risultato si trova per qualunque altra coppia di variabili <span class="math notranslate nohighlight">\(y_i\)</span> e <span class="math notranslate nohighlight">\(y_j\)</span>, ovvero <span class="math notranslate nohighlight">\(r_{ij \mid \xi} = 0\)</span>.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\xi\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(y_1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(y_2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(y_3\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(y_4\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(y_5\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\xi\)</span></p></td>
+<td><p><strong>1.00</strong></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(y_1\)</span></p></td>
+<td><p><strong>0.90</strong></p></td>
+<td><p>1.00</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(y_2\)</span></p></td>
+<td><p><strong>0.80</strong></p></td>
+<td><p>0.72</p></td>
+<td><p>1.00</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(y_3\)</span></p></td>
+<td><p><strong>0.70</strong></p></td>
+<td><p>0.63</p></td>
+<td><p>0.56</p></td>
+<td><p>1.00</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(y_4\)</span></p></td>
+<td><p><strong>0.60</strong></p></td>
+<td><p>0.54</p></td>
+<td><p>0.48</p></td>
+<td><p>0.42</p></td>
+<td><p>1.00</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(y_5\)</span></p></td>
+<td><p><strong>0.50</strong></p></td>
+<td><p>0.45</p></td>
+<td><p>0.40</p></td>
+<td><p>0.35</p></td>
+<td><p>0.30</p></td>
+<td><p>1.00</p></td>
+</tr>
+</tbody>
+</table>
+<p>Possiamo dunque dire che, per la matrice di correlazioni della Tabella, esiste un’unica variabile <span class="math notranslate nohighlight">\(\xi\)</span> la quale, quando viene controllata, spiega tutte le</p>
+<div class="math notranslate nohighlight">
+\[p(p-1)/2 = 5(5-1)/2=10\]</div>
+<p>correlazioni tra le variabili <span class="math notranslate nohighlight">\(y\)</span>. Questo risultato non è sorprendente, in quanto la  matrice di correlazioni della Tabella è stata costruita in modo tale da possedere tale proprietà.</p>
+<p>Ma supponiamo di essere in una situazione diversa, ovvero di avere osservato soltanto le variabili <span class="math notranslate nohighlight">\(y_i\)</span> e di non conoscere <span class="math notranslate nohighlight">\(\xi\)</span>. In tali circostanze ci possiamo porre la seguente domanda: Esiste una variabile inosservabile <span class="math notranslate nohighlight">\(\xi\)</span> la quale, se venisse controllata, renderebbe uguali a zero tutte le correlazioni parziali tra le variabili <span class="math notranslate nohighlight">\(y\)</span>? Se una tale variabile inosservabile esiste, ed è in grado di spiegare tutte le correlazioni tra le variabili osservate <span class="math notranslate nohighlight">\(y\)</span>, allora essa viene chiamata <em>fattore</em>. Arriviamo dunque alla seguente definizione:</p>
+<p>Un fattore è una variabile inosservabile in grado di rendere significativamente nulle tutte le correlazioni parziali tra le variabili manifeste.</p>
+</section>
+<section id="vincoli-sulle-correlazioni">
+<h2><span class="section-number">27.5. </span>Vincoli sulle correlazioni<a class="headerlink" href="#vincoli-sulle-correlazioni" title="Link to this heading">#</a></h2>
+<p>Come si può stabilire se esiste una variabile inosservabile in grado di rendere nulle tutte le correlazioni parziali tra le variabili osservate? Riscriviamo l’Eq. <a class="reference internal" href="#equation-eq-corr-parz">(27.3)</a> per specificare la correlazione parziale tra le variabili <span class="math notranslate nohighlight">\(y_i\)</span> e <span class="math notranslate nohighlight">\(y_j\)</span> dato <span class="math notranslate nohighlight">\(\xi\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+  r_{ij \mid \xi} &amp;= \frac{r_{ij} - r_{i\xi}r_{j\xi}}
+  {\sqrt{(1-r_{i\xi}^2)(1-r_{j\xi}^2)}} 
+\end{align}
+\]</div>
+<p>Affinché <span class="math notranslate nohighlight">\(r_{ij \mid \xi}\)</span> sia uguale a zero è necessario che</p>
+<div class="math notranslate nohighlight">
+\[
+r_{ij} - r_{i\xi}r_{j\xi}=0
+\]</div>
+<p>ovvero</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+r_{ij} = r_{i\xi}r_{j\xi}.
+\end{equation}
+\]</div>
+<p>In altri termini, se esiste un fattore non osservato <span class="math notranslate nohighlight">\(\xi\)</span> in grado di rendere uguali a zero tutte le correlazioni parziali <span class="math notranslate nohighlight">\(r_{ih \mid \xi}\)</span>, allora la correlazione tra ciascuna coppia di variabili <span class="math notranslate nohighlight">\(y\)</span> deve essere uguale al prodotto delle correlazioni tra ciascuna <span class="math notranslate nohighlight">\(y\)</span> e il fattore latente <span class="math notranslate nohighlight">\(\xi\)</span>. Questo è il principio base dell’analisi fattoriale.</p>
+</section>
+<section id="teoria-dei-due-fattori">
+<h2><span class="section-number">27.6. </span>Teoria dei Due Fattori<a class="headerlink" href="#teoria-dei-due-fattori" title="Link to this heading">#</a></h2>
+<p>Per fare un esempio concreto relativo al metodo dell’annullamento della tetrade, esaminiamo la matrice di correlazioni originariamente analizzata da Spearman. Spearman (1904) raccolse alcune misure di capacità intellettuale su un piccolo numero di studenti di una scuola superiore. Nello specifico, esaminò i voti di tali studenti nelle seguenti materie: studio dei classici (<span class="math notranslate nohighlight">\(c\)</span>), letteratura inglese (<span class="math notranslate nohighlight">\(e\)</span>) e abilità matematiche (<span class="math notranslate nohighlight">\(m\)</span>). Considerò anche la prestazione in un compito di discriminazione dell’altezza di suoni (“pitch discrimination”) (<span class="math notranslate nohighlight">\(p\)</span>), ovvero un’abilità diversa da quelle richieste nei test scolastici.</p>
+<p>Secondo la Teoria dei Due Fattori, le prestazioni relative ad un determinato compito intellettuale possiedono una componente comune (detta fattore ‘g’) con le prestazioni in un qualunque altro compito intellettuale e una componente specifica a quel determinato compito. Il modello dell’intelligenza di Spearman prevede dunque due fattori, uno generale e uno specifico (detto fattore ‘s’). Il fattore ‘g’ costituisce la componente invariante dell’abilità intellettiva, mente il fattore ‘s’ è una componente che varia da condizione a condizione.</p>
+<p>Come è possibile stabilire se esiste una variabile latente in grado di spiegare le correlazioni tra le variabili osservate da Spearman? Lo strumento proposto da Spearman per rispondere a questa domanda è <em>l’annullamento della tetrade</em>. L’annullamento della tetrade utilizza i vincoli sulle correlazioni che derivano dalla definizione di correlazione parziale. In precedenza abbiamo visto che la correlazione parziale tra le variabili <span class="math notranslate nohighlight">\(y\)</span> indicizzate da <span class="math notranslate nohighlight">\(i\)</span> e <span class="math notranslate nohighlight">\(j\)</span>, al netto dell’effetto di <span class="math notranslate nohighlight">\(\xi\)</span>, è nulla se</p>
+<div class="math notranslate nohighlight">
+\[
+r_{ij} = r_{i\xi}r_{j\xi}.
+\]</div>
+<p>Nel caso dei dati di Spearman, dunque, le correlazioni parziali sono nulle se
+la correlazione tra ‘’studi classici’’ e ‘’letteratura inglese’’ è uguale al prodotto della correlazione tra ‘’studi classici’’ e il fattore <span class="math notranslate nohighlight">\(\xi\)</span> e della correlazione tra ‘’letteratura inglese’’ e il fattore <span class="math notranslate nohighlight">\(\xi\)</span>. Inoltre, la correlazione tra ‘’studi classici’’ e ‘’abilità matematica’’ deve essere uguale al prodotto della correlazione tra ‘’studi classici’’ e il fattore <span class="math notranslate nohighlight">\(\xi\)</span> e della correlazione tra ‘’abilità matematica’’ e il fattore <span class="math notranslate nohighlight">\(\xi\)</span>; e così via.</p>
+<p>Le correlazioni tra le variabili manifeste e il fattore latente sono dette \textit{saturazioni fattoriali} e vengono denotate con la lettera <span class="math notranslate nohighlight">\(\lambda\)</span>. Se il modello di Spearman è corretto, avremo che</p>
+<div class="math notranslate nohighlight">
+\[r_{ec}=\lambda_e \times \lambda_{c},\]</div>
+<p>dove <span class="math notranslate nohighlight">\(r_{ec}\)</span> è la correlazione tra ‘’letteratura inglese’’ (e) e ‘’studi classici’’ (c), <span class="math notranslate nohighlight">\(\lambda_e\)</span> è la correlazione tra ‘’letteratura inglese’’ e <span class="math notranslate nohighlight">\(\xi\)</span>, e <span class="math notranslate nohighlight">\(\lambda_{c}\)</span> è la correlazione tra ‘’studi classici’’ e <span class="math notranslate nohighlight">\(\xi\)</span>.</p>
+<p>Allo stesso modo, la correlazione tra ‘’studi classici’’ e ‘’matematica’’ (m) dovrà essere uguale a</p>
+<div class="math notranslate nohighlight">
+\[\lambda_c \times \lambda_m,\]</div>
+<p>eccetera.</p>
+</section>
+<section id="annullamento-della-tetrade">
+<h2><span class="section-number">27.7. </span>Annullamento della tetrade<a class="headerlink" href="#annullamento-della-tetrade" title="Link to this heading">#</a></h2>
+<p>Date le correlazioni tra tre coppie di variabili manifeste, il metodo dell’annullamento della tetrade</p>
+<blockquote>
+<div><p>in una matrice di correlazione, si selezionino quattro coefficienti nelle posizioni che marcano gli angoli di un rettangolo. La differenza tra i prodotti dei coefficienti che giacciono sulle due diagonali di tale rettangolo costituisce la differenza delle tetradi e deve essere uguale a zero.</p>
+</div></blockquote>
+<p>rende possibile stimare i valori delle saturazioni fattoriali <span class="math notranslate nohighlight">\(\lambda\)</span>. Ad esempio, per le variabili <span class="math notranslate nohighlight">\(c\)</span>, <span class="math notranslate nohighlight">\(m\)</span> ed <span class="math notranslate nohighlight">\(e\)</span>, possiamo scrivere le seguenti tre equazioni in tre incognite:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+  r_{cm} &amp;= \lambda_c \times \lambda_m, \notag \\
+  r_{em} &amp;= \lambda_e \times \lambda_m,  \\
+  r_{ce} &amp;= \lambda_c \times \lambda_e. \notag
+\end{align}
+\end{split}\]</div>
+<p>Risolvendo il precedente sistema di equazioni lineari, il coefficiente di saturazione <span class="math notranslate nohighlight">\(\lambda_m\)</span> della variabile <span class="math notranslate nohighlight">\(y_m\)</span> nel fattore comune <span class="math notranslate nohighlight">\(\xi\)</span>, ad esempio, pu{`o} essere calcolato a partire dalle correlazioni tra le variabili manifeste <span class="math notranslate nohighlight">\(c\)</span>, <span class="math notranslate nohighlight">\(m\)</span>, ed <span class="math notranslate nohighlight">\(e\)</span> nel modo seguente\footnote{
+La terza delle equazioni del sistema lineare può essere riscritta come <span class="math notranslate nohighlight">\(\lambda_c = \frac{r_{ce}}{\lambda_e}\)</span>.</p>
+<p>Utilizzando tale risultato, la prima equazione diventa <span class="math notranslate nohighlight">\(r_{cm} = \frac{r_{ce}}{\lambda_e}\lambda_m\)</span>.
+Dalla seconda equazione otteniamo <span class="math notranslate nohighlight">\(\lambda_e = \frac{r_{em}}{\lambda_m}\)</span>. Sostituendo questo risultato nell’equazione precedente otteniamo <span class="math notranslate nohighlight">\(r_{cm} = \frac{r_{ce}}{r_{em}}\lambda_m^2\)</span>, quindi <span class="math notranslate nohighlight">\(\lambda_m^2 = \frac{r_{cm} r_{em} }{r_{ce}}\)</span>.</p>
+<p>Verifichiamo: <span class="math notranslate nohighlight">\(\frac{r_{cm} r_{em}}{r_{ce}} = \frac{\lambda_c \lambda_m \lambda_e \lambda_m}{\lambda_c \lambda_e} = \lambda_m^2\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-tetradi">
+<span class="eqno">(27.4)<a class="headerlink" href="#equation-eq-tetradi" title="Link to this equation">#</a></span>\[
+\begin{align}
+  \lambda_m &amp;= \sqrt{
+    \frac{r_{cm} r_{em}}{r_{ce}}
+    }. 
+\end{align}
+\]</div>
+<p>Lo stesso vale per le altre due saturazioni <span class="math notranslate nohighlight">\(\lambda_c\)</span> e <span class="math notranslate nohighlight">\(\lambda_e\)</span>.</p>
+<p>Nel suo articolo del 1904, Spearman osservò le seguenti correlazioni tra
+le variabili <span class="math notranslate nohighlight">\(Y_c\)</span>, <span class="math notranslate nohighlight">\(Y_e\)</span>, <span class="math notranslate nohighlight">\(Y_m\)</span> e <span class="math notranslate nohighlight">\(Y_p\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{ccccc}
+  \hline
+    &amp; Y_C &amp; Y_E &amp; Y_M &amp; Y_P \\
+  \hline
+  Y_C &amp; 1.00 &amp; 0.78 &amp; 0.70 &amp; 0.66 \\
+  Y_E &amp;   &amp; 1.00 &amp; 0.64 &amp; 0.54 \\
+  Y_M &amp;   &amp;   &amp; 1.00 &amp; 0.45 \\
+  Y_P &amp;   &amp;   &amp;   &amp; 1.00 \\
+  \hline
+\end{array}
+\end{split}\]</div>
+<p>Utilizzando l’Eq. <a class="reference internal" href="#equation-eq-tetradi">(27.4)</a>, mediante le correlazioni <span class="math notranslate nohighlight">\(r_{cm}\)</span>, <span class="math notranslate nohighlight">\(r_{em}\)</span>, e <span class="math notranslate nohighlight">\(r_{ce}\)</span> fornite dalla tabella precedente, la saturazione <span class="math notranslate nohighlight">\(\lambda_m\)</span> diventa uguale a:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+  \hat{\lambda}_m &amp;= \sqrt{ \frac{r_{cm} r_{em}}{r_{ce}} } = \sqrt{
+    \frac{0.70 \times 0.64}{0.78} } = 0.76. \notag
+\end{align}
+\]</div>
+<p>È importante notare che il metodo dell’annullamento della tetrade produce risultati falsificabili.
+Infatti, ci sono modi diversi per calcolare la stessa saturazione fattoriale.
+Se il modello fattoriale è corretto si deve ottenere lo stesso risultato in tutti i casi.<br />
+Nel caso presente, la saturazione fattoriale <span class="math notranslate nohighlight">\(\lambda_m\)</span> può essere calcolata in altri due modi:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+  \hat{\lambda}_m &amp;= \sqrt{ \frac{r_{cm} r_{mp}}{r_{cp}} } = \sqrt{ \frac{0.78 \times 0.45}{0.66} } = 0.69, \notag \\
+  \hat{\lambda}_m &amp;= \sqrt{ \frac{r_{em} r_{mp}}{r_{ep}} } = \sqrt{
+    \frac{0.64 \times 0.45}{0.54} } = 0.73. \notag
+\end{align}
+\end{split}\]</div>
+<p>I tre valori che sono stati ottenuti sono molto simili. Qual è allora la stima migliore di  <span class="math notranslate nohighlight">\(\lambda_m\)</span>?</p>
+</section>
+<section id="metodo-del-centroide">
+<h2><span class="section-number">27.8. </span>Metodo del centroide<a class="headerlink" href="#metodo-del-centroide" title="Link to this heading">#</a></h2>
+<p>La soluzione più semplice è quella di fare la media di questi tre valori (<span class="math notranslate nohighlight">\(\bar{\lambda}_m = 0.73\)</span>).
+Un metodo migliore (meno vulnerabile ai valori anomali) è dato dal rapporto tra la
+somma dei numeratori e dei denominatori:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+  \hat{\lambda}_m &amp;= \sqrt{ \frac{0.70 \times 0.64 + 0.78 \times 0.45 + 0.64
+      \times 0.45}{0.78+0.66+0.54} } = 0.73 \notag
+\end{align}
+\]</div>
+<p>In questo caso, i due metodi danno lo stesso risultato. Le altre tre saturazioni fattoriali
+trovate mediante il metodo del centroide sono:</p>
+<div class="math notranslate nohighlight">
+\[\hat{\lambda}_c = 0.97, \quad \hat{\lambda}_e = 0.84, \quad \hat{\lambda}_p = 0.65.\]</div>
+<p>In conclusione,</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{\hat{\Lambda}}'=
+(\hat{\lambda}_c, \hat{\lambda}_e, \hat{\lambda}_m, \hat{\lambda}_p) = (0.97, 0.84, 0.73, 0.65).
+\]</div>
+<p>Questo risultato è la soluzione proposta da Spearman nel suo articolo del 1904 per risolvere il problema di determinare le saturazioni fattoriali di un modello con un fattore comune latente.</p>
+</section>
+<section id="introduzione-a-lavaan">
+<h2><span class="section-number">27.9. </span>Introduzione a <code class="docutils literal notranslate"><span class="pre">lavaan</span></code><a class="headerlink" href="#introduzione-a-lavaan" title="Link to this heading">#</a></h2>
+<p>Attualmente, l’analisi fattoriale viene svolta mediante software. Il pacchetto R più ampiamente utilizzato per condurre l’analisi fattoriale è <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>.</p>
+<section id="sintassi-del-modello">
+<h3><span class="section-number">27.9.1. </span>Sintassi del modello<a class="headerlink" href="#sintassi-del-modello" title="Link to this heading">#</a></h3>
+<p>Al cuore del pacchetto <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> si trova la “sintassi del modello”. La sintassi del modello è una descrizione del modello da stimare. In questa sezione, spieghiamo brevemente gli elementi della sintassi del modello <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>.</p>
+<p>Nell’ambiente R, una formula di regressione ha la seguente forma:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">~</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">+</span> <span class="n">x3</span> <span class="o">+</span> <span class="n">x4</span>
+</pre></div>
+</div>
+<p>In questa formula, la tilde (“~”) è l’operatore di regressione. Sul lato sinistro dell’operatore, abbiamo la variabile dipendente (y), e sul lato destro abbiamo le variabili indipendenti, separate dall’operatore “+” . In <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>, un modello tipico è semplicemente un insieme (o sistema) di formule di regressione, in cui alcune variabili (che iniziano con una ‘f’ qui sotto) possono essere latenti. Ad esempio:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">~</span> <span class="n">f1</span> <span class="o">+</span> <span class="n">f2</span> <span class="o">+</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span>
+<span class="n">f1</span> <span class="o">~</span> <span class="n">f2</span> <span class="o">+</span> <span class="n">f3</span>
+<span class="n">f2</span> <span class="o">~</span> <span class="n">f3</span> <span class="o">+</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span>
+</pre></div>
+</div>
+<p>Se abbiamo variabili latenti in una qualsiasi delle formule di regressione, dobbiamo “definirle” elencando i loro indicatori (manifesti o latenti). Lo facciamo utilizzando l’operatore speciale “=~”, che può essere letto come “è misurato da”. Ad esempio, per definire le tre variabili latenti f1, f2 e f3, possiamo usare la sintassi seguente:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f1</span> <span class="o">=~</span> <span class="n">y1</span> <span class="o">+</span> <span class="n">y2</span> <span class="o">+</span> <span class="n">y3</span>
+<span class="n">f2</span> <span class="o">=~</span> <span class="n">y4</span> <span class="o">+</span> <span class="n">y5</span> <span class="o">+</span> <span class="n">y6</span>
+<span class="n">f3</span> <span class="o">=~</span> <span class="n">y7</span> <span class="o">+</span> <span class="n">y8</span> <span class="o">+</span> <span class="n">y9</span> <span class="o">+</span> <span class="n">y10</span>
+</pre></div>
+</div>
+<p>Inoltre, le varianze e le covarianze sono specificate utilizzando un operatore “doppia tilde”, ad esempio:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y1</span> <span class="o">~~</span> <span class="n">y1</span> <span class="c1"># varianza</span>
+<span class="n">y1</span> <span class="o">~~</span> <span class="n">y2</span> <span class="c1"># covarianza</span>
+<span class="n">f1</span> <span class="o">~~</span> <span class="n">f2</span> <span class="c1"># covarianza</span>
+</pre></div>
+</div>
+<p>E infine, le intercette per le variabili osservate e latenti sono semplici formule di regressione con solo una intercetta (esplicitamente indicato dal numero “1”) come unico predittore:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y1</span> <span class="o">~</span> <span class="mi">1</span>
+<span class="n">f1</span> <span class="o">~</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Utilizzando questi quattro tipi di formule, è possibile descrivere una vasta gamma di modelli di variabili latenti. L’attuale insieme di tipi di formula è riassunto nella tabella sottostante.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>tipo di formula</p></th>
+<th class="head"><p>operatore</p></th>
+<th class="head"><p>mnemonic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>definizione variabile latente</p></td>
+<td><p>=~</p></td>
+<td><p>è misurato da</p></td>
+</tr>
+<tr class="row-odd"><td><p>regressione</p></td>
+<td><p>~</p></td>
+<td><p>viene regredito su</p></td>
+</tr>
+<tr class="row-even"><td><p>(co)varianza (residuale)</p></td>
+<td><p>~~</p></td>
+<td><p>è correlato con</p></td>
+</tr>
+<tr class="row-odd"><td><p>intercetta</p></td>
+<td><p>~ 1</p></td>
+<td><p>intercetta</p></td>
+</tr>
+</tbody>
+</table>
+<p>Una sintassi completa del modello lavaan è semplicemente una combinazione di questi tipi di formule, racchiusi tra virgolette singole. Ad esempio:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_model</span> <span class="o">&lt;-</span> <span class="s1">&#39; </span>
+  <span class="c1"># regressions</span>
+  <span class="n">y1</span> <span class="o">+</span> <span class="n">y2</span> <span class="o">~</span> <span class="n">f1</span> <span class="o">+</span> <span class="n">f2</span> <span class="o">+</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span>
+  <span class="n">f1</span> <span class="o">~</span> <span class="n">f2</span> <span class="o">+</span> <span class="n">f3</span>
+  <span class="n">f2</span> <span class="o">~</span> <span class="n">f3</span> <span class="o">+</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span>
+
+  <span class="c1"># latent variable definitions </span>
+  <span class="n">f1</span> <span class="o">=~</span> <span class="n">y1</span> <span class="o">+</span> <span class="n">y2</span> <span class="o">+</span> <span class="n">y3</span> 
+  <span class="n">f2</span> <span class="o">=~</span> <span class="n">y4</span> <span class="o">+</span> <span class="n">y5</span> <span class="o">+</span> <span class="n">y6</span> 
+  <span class="n">f3</span> <span class="o">=~</span> <span class="n">y7</span> <span class="o">+</span> <span class="n">y8</span> <span class="o">+</span> <span class="n">y9</span>
+  
+  <span class="c1"># variances and covariances </span>
+  <span class="n">y1</span> <span class="o">~~</span> <span class="n">y1</span> 
+  <span class="n">y1</span> <span class="o">~~</span> <span class="n">y2</span> 
+  <span class="n">f1</span> <span class="o">~~</span> <span class="n">f2</span>
+
+  <span class="c1"># intercepts </span>
+  <span class="n">y1</span> <span class="o">~</span> <span class="mi">1</span> 
+  <span class="n">f1</span> <span class="o">~</span> <span class="mi">1</span>
+<span class="s1">&#39;</span>
+</pre></div>
+</div>
+<p>Per adattare il modello ai dati usiamo la seguente sintassi.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span> <span class="o">&lt;-</span> <span class="n">cfa</span><span class="p">(</span><span class="n">model</span> <span class="o">=</span> <span class="n">my_model</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">my_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="un-esempio-concreto">
+<h3><span class="section-number">27.9.2. </span>Un esempio concreto<a class="headerlink" href="#un-esempio-concreto" title="Link to this heading">#</a></h3>
+<p>Analizziamo nuovamente i dati di Spearman che abbiamo esaminato in precedenza usando <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>. La matrice completa dei dati di Spearman è messa a disposizione da &#64;kan2019extending.</p>
+<p>Specifichiamo il nome delle variabili manifeste</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">varnames</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">  </span><span class="s">&quot;Classics&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;French&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;English&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Math&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Pitch&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Music&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>e il loro numero</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ny</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">varnames</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Creiamo la matrice di correlazione:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">spearman_cor_mat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span>
+<span class="w">  </span><span class="nf">c</span><span class="p">(</span>
+<span class="w">    </span><span class="m">1.00</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">83</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">78</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">70</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">66</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">63</span><span class="p">,</span>
+<span class="w">     </span><span class="n">.</span><span class="m">83</span><span class="p">,</span><span class="w"> </span><span class="m">1.00</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">67</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">67</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">65</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">57</span><span class="p">,</span>
+<span class="w">     </span><span class="n">.</span><span class="m">78</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">67</span><span class="p">,</span><span class="w"> </span><span class="m">1.00</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">64</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">54</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">51</span><span class="p">,</span>
+<span class="w">     </span><span class="n">.</span><span class="m">70</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">67</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">64</span><span class="p">,</span><span class="w"> </span><span class="m">1.00</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">45</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">51</span><span class="p">,</span>
+<span class="w">     </span><span class="n">.</span><span class="m">66</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">65</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">54</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="m">1.00</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">40</span><span class="p">,</span>
+<span class="w">     </span><span class="n">.</span><span class="m">63</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">57</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">51</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">51</span><span class="p">,</span><span class="w">  </span><span class="n">.</span><span class="m">40</span><span class="p">,</span><span class="w"> </span><span class="m">1.00</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="w">  </span><span class="n">ny</span><span class="p">,</span><span class="w"> </span><span class="n">ny</span><span class="p">,</span>
+<span class="w">  </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">  </span><span class="n">dimnames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">varnames</span><span class="p">,</span><span class="w"> </span><span class="n">varnames</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Specifichiamo l’ampiezza campionaria:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">33</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Definiamo il modello unifattoriale in <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>. L’operatore <code class="docutils literal notranslate"><span class="pre">=~</span></code> si può leggere dicendo che la variabile latente a sinistra dell’operatore viene identificata dalle variabili manifeste elencate a destra dell’operatore e separate dal segno <code class="docutils literal notranslate"><span class="pre">+</span></code>. Per il caso presente, il modello dei due fattori di Spearman può essere specificato come segue.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">spearman_mod</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">  g =~ Classics + French + English + Math + Pitch + Music</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo il modello ai dati con la funzione <code class="docutils literal notranslate"><span class="pre">cfa()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">cfa</span><span class="p">(</span>
+<span class="w">  </span><span class="n">spearman_mod</span><span class="p">,</span>
+<span class="w">  </span><span class="n">sample.cov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spearman_cor_mat</span><span class="p">,</span>
+<span class="w">  </span><span class="n">sample.nobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">,</span>
+<span class="w">  </span><span class="n">std.lv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La funzione cfa() è una funzione dedicata per adattare modelli di analisi fattoriale confermativa. Il primo argomento è il modello specificato dall’utente. Il secondo argomento è il dataset che contiene le variabili osservate. L’argomento <code class="docutils literal notranslate"><span class="pre">std.lv</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> specifica che imponiamo una varianza pari a 1 a tutte le variabili latenti comuni (nel caso presente, solo una). Ciò consente di  stimare le saturazioni fattoriali.</p>
+<p>Una volta adattato il modello, la funzione summary() ci consente di esaminare la soluzione ottenuta:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span>
+<span class="w">  </span><span class="n">fit1</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">fit.measures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">standardized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span>
+<span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 23 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        12
+
+  Number of observations                            33
+
+Model Test User Model:
+                                                      
+  Test statistic                                 2.913
+  Degrees of freedom                                 9
+  P-value (Chi-square)                           0.968
+
+Model Test Baseline Model:
+
+  Test statistic                               133.625
+  Degrees of freedom                                15
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    1.000
+  Tucker-Lewis Index (TLI)                       1.086
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)               -212.547
+  Loglikelihood unrestricted model (H1)       -211.091
+                                                      
+  Akaike (AIC)                                 449.094
+  Bayesian (BIC)                               467.052
+  Sample-size adjusted Bayesian (SABIC)        429.622
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.000
+  90 Percent confidence interval - lower         0.000
+  90 Percent confidence interval - upper         0.000
+  P-value H_0: RMSEA &lt;= 0.050                    0.976
+  P-value H_0: RMSEA &gt;= 0.080                    0.016
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.025
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  g =~                                                                  
+    Classics          0.942    0.129    7.314    0.000    0.942    0.956
+    French            0.857    0.137    6.239    0.000    0.857    0.871
+    English           0.795    0.143    5.545    0.000    0.795    0.807
+    Math              0.732    0.149    4.923    0.000    0.732    0.743
+    Pitch             0.678    0.153    4.438    0.000    0.678    0.689
+    Music             0.643    0.155    4.142    0.000    0.643    0.653
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .Classics          0.083    0.051    1.629    0.103    0.083    0.086
+   .French            0.234    0.072    3.244    0.001    0.234    0.242
+   .English           0.338    0.094    3.610    0.000    0.338    0.349
+   .Math              0.434    0.115    3.773    0.000    0.434    0.447
+   .Pitch             0.510    0.132    3.855    0.000    0.510    0.526
+   .Music             0.556    0.143    3.893    0.000    0.556    0.573
+    g                 1.000                               1.000    1.000
+</pre></div>
+</div>
+</div>
+</div>
+<p>L’output consiste in tre parti. Le prime nove righe sono chiamate intestazione. L’intestazione contiene le seguenti informazioni:</p>
+<ul class="simple">
+<li><p>il numero di versione di lavaan</p></li>
+<li><p>se l’ottimizzazione è terminata normalmente o meno e quante iterazioni sono state necessarie</p></li>
+<li><p>lo stimatore utilizzato (qui: ML, per la massima verosimiglianza)</p></li>
+<li><p>l’ottimizzatore utilizzato per trovare i valori dei parametri di adattamento migliori per questo stimatore (qui: NLMINB)</p></li>
+<li><p>il numero di parametri del modello (qui: 12)</p></li>
+<li><p>il numero di osservazioni che sono state effettivamente utilizzate nell’analisi (qui: 33)</p></li>
+<li><p>una sezione chiamata “Model Test User Model”: che fornisce una statistica di test, i gradi di libertà e un valore p per il modello specificato dall’utente.</p></li>
+</ul>
+<p>La sezione successiva contiene ulteriori misure di adattamento e viene mostrata solo se si utilizza l’argomento opzionale fit.measures = TRUE. Inizia con la riga Model Test Baseline Model: e termina con il valore per l’SRMR. L’ultima sezione contiene le stime dei parametri. Inizia con informazioni (tecniche) sul metodo utilizzato per calcolare gli errori standard. Quindi, vengono elencati tutti i parametri liberi (e fissati) inclusi nel modello. Di solito, prima vengono mostrate le variabili latenti, seguite dalle covarianze e dalle varianze (residui). La prima colonna (Stima) contiene il valore del parametro (stimato o fisso) per ogni parametro del modello; la seconda colonna (Std.err) contiene l’errore standard per ogni parametro stimato; la terza colonna (Z-value) contiene la statistica di Wald (che viene semplicemente ottenuta dividendo il valore del parametro per il suo errore standard), e l’ultima colonna (P(&gt;|z|)) contiene il valore p per testare l’ipotesi nulla che il valore del parametro sia uguale a zero nella popolazione.</p>
+<ol class="arabic simple">
+<li><p><strong>Estimate</strong>: Questo valore rappresenta lo <strong>stimatore di massima verosimiglianza</strong> per i pesi dei percorsi tra il costrutto latente (nel caso presente, il costrutto <code class="docutils literal notranslate"><span class="pre">g</span></code>) e le variabili osservate (le variabili manifeste: <code class="docutils literal notranslate"><span class="pre">Classics</span></code>, <code class="docutils literal notranslate"><span class="pre">French</span></code>, <code class="docutils literal notranslate"><span class="pre">English</span></code>, <code class="docutils literal notranslate"><span class="pre">Math</span></code>, <code class="docutils literal notranslate"><span class="pre">Pitch</span></code>, <code class="docutils literal notranslate"><span class="pre">Music</span></code>). In sostanza, è il peso del collegamento tra il costrutto latente e ciascuna delle variabili osservate nel modello.</p></li>
+<li><p><strong><a class="reference external" href="http://Std.lv">Std.lv</a></strong>: Questi valori rappresentano le stime dei coefficienti standardizzate rispetto alle variabili latenti. La standardizzazione avviene dividendo la stima del coefficiente non standardizzato per la deviazione standard della variabile latente. Ciò rende possibile confrontare direttamente i coefficienti all’interno del modello perché rimuove le unità di misura, facendo in modo che i coefficienti siano espressi in termini di deviazioni standard. Tuttavia, questa standardizzazione è parziale perché considera solo la varianza della variabile latente.</p></li>
+<li><p><strong>Std.all</strong>: Questi valori rappresentano le stime dei coefficienti completamente standardizzate, cioè standardizzate sia rispetto alle variabili latenti che a quelle osservate. Ciò significa che sia la variabile dipendente (latente) sia le variabili indipendenti (osservate) sono state standardizzate prima di calcolare i coefficienti. Questo processo di standardizzazione completa permette un confronto diretto dei coefficienti all’interno del modello indipendentemente dalle unità di misura originali, rendendoli espressi in termini di quanti deviazioni standard la variabile dipendente cambia per ogni deviazione standard di cambiamento nella variabile indipendente.</p></li>
+</ol>
+<p>Si noti che nella sezione Varianze: c’è un punto prima dei nomi delle variabili osservate. Ciò perché sono variabili dipendenti (o endogene) (predette dalle variabili latenti) e quindi il valore della varianza stampato in output è una stima della varianza residua: la varianza rimanente che non è spiegata dal/i predittore/i. Al contrario, non c’è un punto prima dei nomi delle variabili latenti, perché in questo modello sono variabili esogene. I valori delle varianze qui sono le varianze totali stimate delle variabili latenti.</p>
+<p>È possibile semplificare l’output dalla funzione <code class="docutils literal notranslate"><span class="pre">summary()</span></code> in maniera tale da stampare solo la tabella completa delle stime dei parametri e degli errori standard. Qui usiamo <code class="docutils literal notranslate"><span class="pre">coef(fit1)</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">round</span><span class="p">(</span><span class="nf">coef</span><span class="p">(</span><span class="n">fit1</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       g=~Classics          g=~French         g=~English            g=~Math 
+              0.94               0.86               0.79               0.73 
+          g=~Pitch           g=~Music Classics~~Classics     French~~French 
+              0.68               0.64               0.08               0.23 
+  English~~English         Math~~Math       Pitch~~Pitch       Music~~Music 
+              0.34               0.43               0.51               0.56 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Usando <code class="docutils literal notranslate"><span class="pre">parameterEstimates</span></code>, l’output diventa il seguente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">parameterEstimates</span><span class="p">(</span><span class="n">fit1</span><span class="p">,</span><span class="w"> </span><span class="n">standardized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        lhs op      rhs   est    se     z pvalue ci.lower ci.upper std.lv
+1         g =~ Classics 0.942 0.129 7.314  0.000    0.689    1.194  0.942
+2         g =~   French 0.857 0.137 6.239  0.000    0.588    1.127  0.857
+3         g =~  English 0.795 0.143 5.545  0.000    0.514    1.076  0.795
+4         g =~     Math 0.732 0.149 4.923  0.000    0.441    1.024  0.732
+5         g =~    Pitch 0.678 0.153 4.438  0.000    0.379    0.978  0.678
+6         g =~    Music 0.643 0.155 4.142  0.000    0.339    0.948  0.643
+7  Classics ~~ Classics 0.083 0.051 1.629  0.103   -0.017    0.183  0.083
+8    French ~~   French 0.234 0.072 3.244  0.001    0.093    0.376  0.234
+9   English ~~  English 0.338 0.094 3.610  0.000    0.154    0.522  0.338
+10     Math ~~     Math 0.434 0.115 3.773  0.000    0.208    0.659  0.434
+11    Pitch ~~    Pitch 0.510 0.132 3.855  0.000    0.251    0.769  0.510
+12    Music ~~    Music 0.556 0.143 3.893  0.000    0.276    0.836  0.556
+13        g ~~        g 1.000 0.000    NA     NA    1.000    1.000  1.000
+   std.all std.nox
+1    0.956   0.956
+2    0.871   0.871
+3    0.807   0.807
+4    0.743   0.743
+5    0.689   0.689
+6    0.653   0.653
+7    0.086   0.086
+8    0.242   0.242
+9    0.349   0.349
+10   0.447   0.447
+11   0.526   0.526
+12   0.573   0.573
+13   1.000   1.000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Con opportuni parametri possiamo semplificare l’output nel modo seguente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">parameterEstimates</span><span class="p">(</span><span class="n">fit1</span><span class="p">,</span><span class="w"> </span><span class="n">standardized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="n">dplyr</span><span class="o">::</span><span class="nf">filter</span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;=~&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="n">dplyr</span><span class="o">::</span><span class="nf">select</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;Latent Factor&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lhs</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Indicator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rhs</span><span class="p">,</span>
+<span class="w">    </span><span class="n">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">est</span><span class="p">,</span>
+<span class="w">    </span><span class="n">SE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">se</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;p-value&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pvalue</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std.all</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Latent.Factor Indicator     B    SE     Z p.value  Beta
+1             g  Classics 0.942 0.129 7.314       0 0.956
+2             g    French 0.857 0.137 6.239       0 0.871
+3             g   English 0.795 0.143 5.545       0 0.807
+4             g      Math 0.732 0.149 4.923       0 0.743
+5             g     Pitch 0.678 0.153 4.438       0 0.689
+6             g     Music 0.643 0.155 4.142       0 0.653
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo la matrice delle correlazioni residue:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">cor_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">residuals</span><span class="p">(</span><span class="n">fit1</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;cor&quot;</span><span class="p">)</span><span class="o">$</span><span class="n">cov</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">cor_table</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         Clsscs French Englsh   Math  Pitch  Music
+Classics  0.000                                   
+French   -0.003  0.000                            
+English   0.008 -0.033  0.000                     
+Math     -0.011  0.023  0.040  0.000              
+Pitch     0.001  0.050 -0.016 -0.062  0.000       
+Music     0.005  0.001 -0.017  0.024 -0.050  0.000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Creiamo un qq-plot dei residui:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">res1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">residuals</span><span class="p">(</span><span class="n">fit1</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;cor&quot;</span><span class="p">)</span><span class="o">$</span><span class="n">cov</span>
+<span class="n">res1</span><span class="p">[</span><span class="nf">upper.tri</span><span class="p">(</span><span class="n">res1</span><span class="p">,</span><span class="w"> </span><span class="n">diag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NA</span>
+<span class="n">v1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.vector</span><span class="p">(</span><span class="n">res1</span><span class="p">)</span>
+<span class="n">v2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">v1</span><span class="p">[</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">v1</span><span class="p">)]</span>
+
+<span class="nf">tibble</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v2</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">stat_qq</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">stat_qq_line</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/09234e457746f4541bbd99edfab418f60d72b980b3d28f3c78f38be8536f6f1f.png"><img alt="../_images/09234e457746f4541bbd99edfab418f60d72b980b3d28f3c78f38be8536f6f1f.png" src="../_images/09234e457746f4541bbd99edfab418f60d72b980b3d28f3c78f38be8536f6f1f.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+</section>
+<section id="diagrammi-di-percorso">
+<h3><span class="section-number">27.9.3. </span>Diagrammi di percorso<a class="headerlink" href="#diagrammi-di-percorso" title="Link to this heading">#</a></h3>
+<p>Il pacchetto <code class="docutils literal notranslate"><span class="pre">semPlot</span></code> consente di disegnare diagrammi di percorso per vari modelli SEM. La funzione <code class="docutils literal notranslate"><span class="pre">semPaths</span></code> prende in input un oggetto creato da <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> e disegna il diagramma, con diverse opzioni disponibili. Il diagramma prodotto controlla le dimensioni dei caratteri/etichette, la visualizzazione dei residui e il colore dei percorsi/coefficienti. Sono disponibili queste e molte altre opzioni di controllo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">semPaths</span><span class="p">(</span>
+<span class="w">    </span><span class="n">fit1</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;std&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">posCol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;black&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">edge.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.2</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/c6a85836138e7113486a54c648016db2c879a6afba98a4878d207aeeabd5cce4.png"><img alt="../_images/c6a85836138e7113486a54c648016db2c879a6afba98a4878d207aeeabd5cce4.png" src="../_images/c6a85836138e7113486a54c648016db2c879a6afba98a4878d207aeeabd5cce4.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Il calcolo delle saturazioni fattoriali con il metodo del centroide aveva prodotto il seguente risultato:</p>
+<ul class="simple">
+<li><p>classici (Cls): 0.97</p></li>
+<li><p>inglese (Eng): 0.84</p></li>
+<li><p>matematica (Mth): 0.73</p></li>
+<li><p>pitch discrimination (Ptc): 0.65</p></li>
+</ul>
+<p>Si noti la somiglianza con i valori ottenuti mediante il metodo di massima verosimiglianza riportati nella figura.</p>
+</section>
+<section id="analisi-fattoriale-esplorativa">
+<h3><span class="section-number">27.9.4. </span>Analisi fattoriale esplorativa<a class="headerlink" href="#analisi-fattoriale-esplorativa" title="Link to this heading">#</a></h3>
+<p>Quando abbiamo un’unica variabile latente, l’analisi fattoriale confermativa si riduce al caso dell’analisi fattoriale esplorativa. Esaminiamo qui sotto la sintassi per l’analisi fattoriale esplorativa in <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>.</p>
+<p>Specifichiamo il modello.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">efa_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;</span>
+<span class="s">    efa(&quot;efa&quot;)*g =~ Classics + French + English + Math + Pitch + Music</span>
+<span class="s">&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo il modello ai dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lavaan</span><span class="o">::</span><span class="nf">cfa</span><span class="p">(</span>
+<span class="w">  </span><span class="n">efa_model</span><span class="p">,</span>
+<span class="w">  </span><span class="n">sample.cov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spearman_cor_mat</span><span class="p">,</span>
+<span class="w">  </span><span class="n">sample.nobs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">,</span>
+<span class="w">  </span><span class="n">std.lv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo la soluzione ottenuta.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="n">fit2</span><span class="p">,</span><span class="w"> </span><span class="n">standardized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 3 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        12
+
+  Rotation method                       GEOMIN OBLIQUE
+  Geomin epsilon                                 0.001
+  Rotation algorithm (rstarts)                GPA (30)
+  Standardized metric                             TRUE
+  Row weights                                     None
+
+  Number of observations                            33
+
+Model Test User Model:
+                                                      
+  Test statistic                                 2.913
+  Degrees of freedom                                 9
+  P-value (Chi-square)                           0.968
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  g =~ efa                                                              
+    Classics          0.942    0.129    7.314    0.000    0.942    0.956
+    French            0.857    0.137    6.239    0.000    0.857    0.871
+    English           0.795    0.143    5.545    0.000    0.795    0.807
+    Math              0.732    0.149    4.923    0.000    0.732    0.743
+    Pitch             0.678    0.153    4.438    0.000    0.678    0.689
+    Music             0.643    0.155    4.142    0.000    0.643    0.653
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .Classics          0.083    0.051    1.629    0.103    0.083    0.086
+   .French            0.234    0.072    3.244    0.001    0.234    0.242
+   .English           0.338    0.094    3.610    0.000    0.338    0.349
+   .Math              0.434    0.115    3.773    0.000    0.434    0.447
+   .Pitch             0.510    0.132    3.855    0.000    0.510    0.526
+   .Music             0.556    0.143    3.893    0.000    0.556    0.573
+    g                 1.000                               1.000    1.000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">semPaths</span><span class="p">(</span>
+<span class="w">    </span><span class="n">fit2</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;std&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">posCol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;black&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">edge.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.2</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/c6a85836138e7113486a54c648016db2c879a6afba98a4878d207aeeabd5cce4.png"><img alt="../_images/c6a85836138e7113486a54c648016db2c879a6afba98a4878d207aeeabd5cce4.png" src="../_images/c6a85836138e7113486a54c648016db2c879a6afba98a4878d207aeeabd5cce4.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+</section>
+</section>
+<section id="conclusioni">
+<h2><span class="section-number">27.10. </span>Conclusioni<a class="headerlink" href="#conclusioni" title="Link to this heading">#</a></h2>
+<p>Nel presente capitolo abbiamo introdotto il metodo dell’annullamento
+della tetrade che consente di stimare le saturazioni di un modello
+monofattoriale. Abbiamo anche visto che il metodo dell’annullamento
+della tetrade non è altro che un’applicazione della correlazione
+parziale.</p>
+<p>Possiamo dire che un tema cruciale nella costruzione dei test
+psicologici è quello di stabilire il numero di fattori/tratti che sono
+soggiacenti all’insieme degli indicatori che vengono considerati. La
+teoria classica dei test richiede che il test sia monofattoriale, ovvero
+che gli indicatori considerati siano l’espressione di un unico tratto
+latente. La violazione della monodimensionalità rende problematica
+l’applicazione dei principi della teoria classica dei test ai punteggi
+di un test che non possiede tale proprietà. L’esame della dimensionalità
+di un gruppo di indicatori rappresenta dunque una fase cruciale nel
+processo di costruzione di un test e, solitamente, questo esame è
+affrontato mediante l’analisi fattoriale. In questo capitolo abbiamo
+presentato le proprietà di base del modello unifattoriale.</p>
+</section>
+<section id="session-info">
+<h2><span class="section-number">27.11. </span>Session Info<a class="headerlink" href="#session-info" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.3.3 (2024-02-29)
+Platform: x86_64-apple-darwin20 (64-bit)
+Running under: macOS Sonoma 14.4.1
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
+
+locale:
+[1] en_US.UTF-8/UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: Europe/Rome
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] corrplot_0.92      kableExtra_1.4.0   lavaanExtra_0.2.0  lavaanPlot_0.8.1  
+ [5] ggokabeito_0.1.0   viridis_0.6.5      viridisLite_0.4.2  ggpubr_0.6.0      
+ [9] ggExtra_0.10.1     bayesplot_1.11.1   gridExtra_2.3      patchwork_1.2.0   
+[13] semTools_0.5-6.920 semPlot_1.1.6      lavaan_0.6-17      psych_2.4.3       
+[17] scales_1.3.0       markdown_1.12      knitr_1.45         lubridate_1.9.3   
+[21] forcats_1.0.0      stringr_1.5.1      dplyr_1.1.4        purrr_1.0.2       
+[25] readr_2.1.5        tidyr_1.3.1        tibble_3.2.1       ggplot2_3.5.1     
+[29] tidyverse_2.0.0    here_1.0.1        
+
+loaded via a namespace (and not attached):
+  [1] RColorBrewer_1.1-3  rstudioapi_0.16.0   jsonlite_1.8.8     
+  [4] magrittr_2.0.3      TH.data_1.1-2       estimability_1.5   
+  [7] farver_2.1.1        nloptr_2.0.3        rmarkdown_2.26     
+ [10] vctrs_0.6.5         minqa_1.2.6         base64enc_0.1-3    
+ [13] rstatix_0.7.2       htmltools_0.5.8.1   broom_1.0.5        
+ [16] Formula_1.2-5       htmlwidgets_1.6.4   plyr_1.8.9         
+ [19] sandwich_3.1-0      emmeans_1.10.0      zoo_1.8-12         
+ [22] uuid_1.2-0          igraph_2.0.3        mime_0.12          
+ [25] lifecycle_1.0.4     pkgconfig_2.0.3     Matrix_1.6-5       
+ [28] R6_2.5.1            fastmap_1.1.1       shiny_1.8.1.1      
+ [31] numDeriv_2016.8-1.1 digest_0.6.35       OpenMx_2.21.11     
+ [34] fdrtool_1.2.17      colorspace_2.1-0    rprojroot_2.0.4    
+ [37] Hmisc_5.1-2         labeling_0.4.3      fansi_1.0.6        
+ [40] timechange_0.3.0    abind_1.4-5         compiler_4.3.3     
+ [43] withr_3.0.0         glasso_1.11         htmlTable_2.4.2    
+ [46] backports_1.4.1     carData_3.0-5       ggsignif_0.6.4     
+ [49] MASS_7.3-60.0.1     corpcor_1.6.10      gtools_3.9.5       
+ [52] tools_4.3.3         pbivnorm_0.6.0      foreign_0.8-86     
+ [55] zip_2.3.1           httpuv_1.6.15       nnet_7.3-19        
+ [58] glue_1.7.0          quadprog_1.5-8      DiagrammeR_1.0.11  
+ [61] nlme_3.1-164        promises_1.3.0      lisrelToR_0.3      
+ [64] grid_4.3.3          pbdZMQ_0.3-11       checkmate_2.3.1    
+ [67] cluster_2.1.6       reshape2_1.4.4      generics_0.1.3     
+ [70] gtable_0.3.5        tzdb_0.4.0          data.table_1.15.4  
+ [73] hms_1.1.3           xml2_1.3.6          car_3.1-2          
+ [76] utf8_1.2.4          sem_3.1-15          pillar_1.9.0       
+ [79] IRdisplay_1.1       rockchalk_1.8.157   later_1.3.2        
+ [82] splines_4.3.3       lattice_0.22-6      survival_3.5-8     
+ [85] kutils_1.73         tidyselect_1.2.1    miniUI_0.1.1.1     
+ [88] pbapply_1.7-2       svglite_2.1.3       stats4_4.3.3       
+ [91] xfun_0.43           qgraph_1.9.8        arm_1.13-1         
+ [94] visNetwork_2.1.2    stringi_1.8.3       boot_1.3-30        
+ [97] evaluate_0.23       codetools_0.2-19    mi_1.1             
+[100] cli_3.6.2           RcppParallel_5.1.7  IRkernel_1.3.2     
+[103] rpart_4.1.23        systemfonts_1.0.6   xtable_1.8-4       
+[106] repr_1.1.6          munsell_0.5.1       Rcpp_1.0.12        
+[109] coda_0.19-4.1       png_0.1-8           XML_3.99-0.16.1    
+[112] parallel_4.3.3      jpeg_0.1-10         lme4_1.1-35.3      
+[115] mvtnorm_1.2-4       openxlsx_4.2.5.2    crayon_1.5.2       
+[118] rlang_1.1.3         multcomp_1.4-25     mnormt_2.1.1       
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_fa"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_intro_fa.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">26. </span>Introduzione all’analisi fattoriale</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_analisi_fattoriale_2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">28. </span>Il modello statistico dell’analisi fattoriale</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errore-di-misura">27.1. Errore di misura</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-monofattoriale">27.2. Modello monofattoriale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlazione-parziale">27.3. Correlazione parziale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principio-base-dell-analisi-fattoriale">27.4. Principio base dell’analisi fattoriale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vincoli-sulle-correlazioni">27.5. Vincoli sulle correlazioni</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teoria-dei-due-fattori">27.6. Teoria dei Due Fattori</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#annullamento-della-tetrade">27.7. Annullamento della tetrade</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-del-centroide">27.8. Metodo del centroide</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduzione-a-lavaan">27.9. Introduzione a <code class="docutils literal notranslate"><span class="pre">lavaan</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sintassi-del-modello">27.9.1. Sintassi del modello</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#un-esempio-concreto">27.9.2. Un esempio concreto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagrammi-di-percorso">27.9.3. Diagrammi di percorso</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-fattoriale-esplorativa">27.9.4. Analisi fattoriale esplorativa</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusioni">27.10. Conclusioni</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-info">27.11. Session Info</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

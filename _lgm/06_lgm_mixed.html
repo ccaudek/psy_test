@@ -1,0 +1,1339 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>76. LGM e modelli misti &#8212; psy_test</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/exercise.css?v=20b57f81" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/a11y.css?v=ffeaf963" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=6ba04eab" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VMXNE4BCDL"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VMXNE4BCDL');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_lgm/06_lgm_mixed';</script>
+    <script src="../_static/custom.js?v=3f5092eb"></script>
+    <link rel="canonical" href="https://ccaudek.github.io/psy_test/_lgm/06_lgm_mixed.html" />
+    <link rel="icon" href="../_static/increasing.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="77. Curve di crescita latente" href="07_growth_1.html" />
+    <link rel="prev" title="75. Specificare e Interpretare un Modello Longitudinale" href="05_intro_panel.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="psy_test - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="psy_test - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Benvenuti
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Scaling psicometrico</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/01_expval_var.html">1. Variabili casuali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/02_joint_prob.html">2. Probabilità congiunta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/03_measurement.html">3. La misurazione psicologica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/04_norms.html">4. Valutazioni normative e criteriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/05_regression.html">5. L’analisi di regressione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E1_likert.html">6. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E2_optimal_scoring.html">7. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_measurement/E3_thurstone.html">8. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria classica dei test</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/01_ctt_1.html">9. Fondamenti teorici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/02_ctt_2.html">10. L’affidabilità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/03_ctt_3.html">11. Metodi di stima dell’affidabilità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/04_err_std_mis.html">12. L’errore standard della misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/05_err_std_stima.html">13. La stima del punteggio vero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/06_applications_ctt.html">14. Applicazioni della CTT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E1_ctt.html">15. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_ctt/E2_item_analyses.html">16. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Affidabilità tra giudici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_raters/01_multilevel_1.html">17. Modelli multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/02_interrater_reliability.html">18. L’affidabilità tra giudici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_raters/E1_irr.html">19. ✏️ Esercizi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teoria della Generalizzabilità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_gtheory/01_gtheory.html">20. Teoria della generalizzabilità</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Validità</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_validity/01_validity.html">21. La validità del test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_validity/02_relations_to_other_vars.html">22. Relazioni test-criterio</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sviluppo degli item</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_items/01_item_development.html">23. Lo sviluppo degli item</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_items/02_item_analysis.html">24. Analisi degli item</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi dei percorsi</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_path_analysis/01_path_analysis.html">25. Analisi dei percorsi</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale esplorativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_fa/01_intro_fa.html">26. Introduzione all’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/02_analisi_fattoriale_1.html">27. Il modello unifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/03_analisi_fattoriale_2.html">28. Il modello statistico dell’analisi fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/04_analisi_fattoriale_3.html">29. Il modello multifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/05_factor_scores.html">30. I punteggi fattoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/06_constraints_on_parms.html">31. Attendibilità e modello fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_fa/07_total_score.html">32. Punteggio totale e modello fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Costruzione strumenti</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/01_valutare_le_matrici.html">33. Valutazione della matrice di correlazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/02_estrazione.html">34. L’estrazione dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/03_numero_fattori.html">35. Il numero dei fattori</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/04_rotazione.html">36. La rotazione fattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_psychometric_methods/05_valutare_sol_fattoriale.html">37. Valutare e rifinire la soluzione fattoriale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Analisi fattoriale confermativa</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/01_cfa.html">38. Analisti Fattoriale Confermativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/E_01.html">39. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/02_meanstructure.html">40. La struttura delle medie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/03_cat_data.html">41. Dati non gaussiani e categoriali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/04_mmm.html">42. CFA per matrici multi-tratto multi-metodo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/05_bifactor.html">43. Modello bifattoriale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_cfa/06_efa_lavaan.html">44. Exploratory Structural Equation Modeling (ESEM)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli di equazioni strutturali</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_sem/01_sem_intro.html">45. Introduzione ai Modelli SEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/02_data_preparation.html">46. Preparazione dei Dati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/E_01.html">47. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/03_gof.html">48. Test del Modello e Indicizzazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/04_mod_comp.html">49. Confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/05_cfa_mod_comp.html">50. CFA: confronto tra modelli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/06_refine_solution.html">51. La revisione del modello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/07_group_invariance.html">52. Invarianza di misura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/08_multilevel_sem.html">53. Modelli di Equazioni Strutturali Multilivello</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/09_structural_regr.html">54. Modelli di Regressione Strutturale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/10_missing_data.html">55. Dati mancanti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/11_small_samples.html">56. Modellizzazione SEM in Piccoli Campioni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_sem/12_temp_reliability.html">57. Affidabilità longitudinale</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelli IRT</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_irt/01_logistic_regr.html">58. Modello di Regressione Logistica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/E_01.html">59. ✏️ Esercizi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/02_rasch_model.html">60. Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/03_assumptions.html">61. Assunzioni e Proprietà del Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/04_estimation.html">62. Stima</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/05_1pl_2pl_3pl.html">63. Oltre il Modello di Rasch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/06_implementation.html">64. Implementazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_irt/07_polytomous_graded.html">65. Modelli per Risposte Politomiche</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mokken Scales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/01_core_issues.html">66. Analisi della Scala di Mokken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/02_tutorial.html">67. Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_mokken/03_applications.html">68. Applicazione Pratica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_development/01_development.html">69. Sviluppo dello strumento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_development/02_tutorial.html">70. Tutorial</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Curve di crescita latente</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_lgm_intro.html">71. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_lgm_prelims.html">72. Considerazioni Preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_time_effects.html">73. Dati longitudinali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_invariance.html">74. Invarianza Fattoriale Longitudinale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_intro_panel.html">75. Specificare e Interpretare un Modello Longitudinale</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">76. LGM e modelli misti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_growth_1.html">77. Curve di crescita latente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_growth_cont.html">78. Il tempo su una metrica continua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_time_inv_cov.html">79. Covariate indipendenti dal tempo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_growth_groups.html">80. Modelli di crescita latenti a gruppi multipli</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_bivariate_tvc_models.html">81. Modelli di crescita latenti bivariati</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_inv_measurement.html">82. Invarianza di Misurazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_latent_change.html">83. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="750_latent_change.html">84. Modello LCS univariato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="751_biv_change.html">85. Modello LCS bivariato</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Bibliografia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../z_biblio.html">86. Bibliografia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendici</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a1_intro_r.html">87. Linguaggio R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a2_sums.html">88. Simbolo di somma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a3_calculus.html">89. Per liberarvi dai terrori preliminari</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_appendix/a4_linear_alg.html">90. Elementi di algebra lineare</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_lgm/06_lgm_mixed.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>LGM e modelli misti</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelli-misti">76.1. Modelli misti</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulare-effetti-casuali">76.2. Simulare effetti casuali</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-crescita-latente">76.3. Modello di crescita latente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparazione-tra-modelli-a-effetti-misti-e-modelli-di-crescita-latente">76.4. Comparazione tra Modelli a Effetti Misti e Modelli di Crescita Latente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusioni">76.5. Conclusioni</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lgm-e-modelli-misti">
+<span id="lgm-mixed-notebook"></span><h1><span class="section-number">76. </span>LGM e modelli misti<a class="headerlink" href="#lgm-e-modelli-misti" title="Link to this heading">#</a></h1>
+<p>I modelli di crescita latente (LGM, Latent Growth Models) rappresentano una forma specializzata di analisi fattoriale confermativa (CFA) che si focalizza sull’evoluzione di costrutti nel tempo. Questi modelli si distinguono per la loro capacità di fissare le saturazioni fattoriali a valori predefiniti. Questo significa che si imposta in anticipo come ciascun fattore contribuisca alla varianza osservata nei dati raccolti in diversi momenti. In molti casi, la traiettoria di crescita nel tempo può essere descritta utilizzando una funzione lineare o quadratica, permettendo di modellare diversi tipi di evoluzioni, come un aumento costante o un cambiamento accelerato.</p>
+<p>Un aspetto centrale dei LGM è il concetto di fattori di crescita, che rappresentano le differenze individuali all’interno dei dati longitudinali. Questi fattori di crescita sono rappresentati da variabili latenti continue, denominate <em>growth factors</em>. In pratica, permettono di catturare e quantificare variazioni individuali nel modo in cui i soggetti cambiano nel tempo, ad esempio, in termini di sviluppo delle competenze o dell’andamento di un sintomo.</p>
+<p>Per facilitare una comprensione più approfondita dei modelli LGM, nel presente capitolo si propone un confronto con i modelli misti <span id="id1">[<a class="reference internal" href="../z_biblio.html#id22" title="Lesa Hoffman and Ryan W Walters. Catching up on multilevel modeling. Annual Review of Psychology, 73:659–689, 2022.">HW22</a>]</span>. Questo confronto mira a evidenziare le differenze e le somiglianze tra i due approcci, aiutando a discernere quando e perché scegliere un modello rispetto all’altro. Mentre i modelli misti possono essere utilizzati per analizzare dati gerarchici o nidificati, i modelli LGM si concentrano specificamente sull’analisi della traiettoria di crescita nel tempo, rendendoli particolarmente utili in studi longitudinali dove l’interesse primario è capire come un costrutto si sviluppa o cambia nel corso del tempo.</p>
+<section id="modelli-misti">
+<h2><span class="section-number">76.1. </span>Modelli misti<a class="headerlink" href="#modelli-misti" title="Link to this heading">#</a></h2>
+<p>I modelli lineari generalizzati classici presuppongono l’indipendenza delle osservazioni, un’ipotesi che può non essere valida in contesti dove si effettuano misurazioni ripetute sullo stesso soggetto nel tempo, portando a osservazioni correlate. In questi scenari, si ricorre all’uso di modelli lineari a effetti misti (o modelli gerarchici lineari), che consentono di gestire adeguatamente la correlazione intragruppo.</p>
+<p>Nei modelli a effetti misti, si realizza un equilibrio tra i due approcci estremi di modellazione: la modellazione aggregata (o pooled) e la modellazione separata (o per gruppo). La modellazione aggregata tratta l’insieme dei dati come un unico gruppo, ignorando le differenze intergruppo e potenzialmente perdendo informazioni rilevanti sulla variabilità tra i gruppi. La modellazione separata, d’altra parte, adatta un modello distinto per ciascun gruppo, potendo portare a sovrapparametrizzazione e ridotta capacità di generalizzazione.</p>
+<p>I modelli a effetti misti superano queste limitazioni integrando elementi sia della modellazione aggregata sia della modellazione separata. Ciò consente di considerare sia le differenze tra gruppi (variabilità intergruppo) sia l’informazione comune (variabilità intragruppo), migliorando la precisione delle stime dei parametri. Tradizionalmente, i dati rilevati all’interno di un soggetto sono classificati come dati di <em>Livello 1</em>, mentre i dati raccolti tra soggetti diversi sono definiti dati di <em>Livello 2</em>.</p>
+<p>Analogamente ai modelli di regressione lineari tradizionali, i modelli a effetti misti includono un’intercetta fissa, coefficienti fissi per i predittori e un termine di errore per la deviazione tra i valori osservati e quelli predetti dal modello. Tuttavia, a differenza dei modelli lineari standard, in un modello a effetti misti, l’intercetta e i coefficienti dei predittori possono variare tra le unità di analisi, permettendo una maggiore flessibilità e adattabilità nel rappresentare la struttura dei dati. Questo approccio rende i modelli a effetti misti particolarmente adatti per l’analisi di dati longitudinali o gerarchici, dove è necessario tener conto della correlazione tra osservazioni all’interno dello stesso gruppo o soggetto.</p>
+<p>Il modello lineare multilivello, applicato all’analisi di dati strutturati in gruppi o cluster, permette una comprensione dettagliata della variazione sia all’interno dei gruppi (within-group variation) sia tra i gruppi (between-group variation). Formalmente, consideriamo un’unità statistica <span class="math notranslate nohighlight">\(i\)</span> all’interno di un gruppo <span class="math notranslate nohighlight">\(j\)</span> (dove <span class="math notranslate nohighlight">\(i = 1, ..., n_j\)</span> e <span class="math notranslate nohighlight">\(j = 1, ..., N\)</span>), per un totale di <span class="math notranslate nohighlight">\(N\)</span> gruppi ciascuno con numerosità <span class="math notranslate nohighlight">\(n_j\)</span>.</p>
+<p>Per una variabile dipendente <span class="math notranslate nohighlight">\(Y\)</span>, una variabile indipendente a livello individuale <span class="math notranslate nohighlight">\(x\)</span> e una variabile di gruppo <span class="math notranslate nohighlight">\(z\)</span>, il modello si articola su due livelli. Il primo livello è rappresentato dalla seguente equazione lineare:</p>
+<div class="math notranslate nohighlight">
+\[
+Y_{ij} = \beta_{0j} + \beta_{1j}x_{ij} + \varepsilon_{ij}.
+\]</div>
+<p>Questa equazione descrive la relazione tra <span class="math notranslate nohighlight">\(Y\)</span> e <span class="math notranslate nohighlight">\(x\)</span> per ogni unità <span class="math notranslate nohighlight">\(i\)</span> nel gruppo <span class="math notranslate nohighlight">\(j\)</span>, dove <span class="math notranslate nohighlight">\(\beta_{0j}\)</span> è l’intercetta e <span class="math notranslate nohighlight">\(\beta_{1j}\)</span> la pendenza, specifiche per ciascun gruppo <span class="math notranslate nohighlight">\(j\)</span>. Il termine d’errore <span class="math notranslate nohighlight">\(\varepsilon_{ij}\)</span> è assunto normalmente distribuito con media zero e varianza costante <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p>
+<p>Il secondo livello del modello esplicita come l’intercetta <span class="math notranslate nohighlight">\(\beta_{0j}\)</span> e la pendenza <span class="math notranslate nohighlight">\(\beta_{1j}\)</span> varino tra i gruppi in relazione alla variabile di gruppo <span class="math notranslate nohighlight">\(z\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\beta_{0j} = \gamma_{00} + \gamma_{01}z_j + U_{0j}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\beta_{1j} = \gamma_{10} + \gamma_{11}z_j + U_{1j}
+\]</div>
+<p>dove:</p>
+<ol class="arabic simple">
+<li><p><strong><span class="math notranslate nohighlight">\(\gamma_{00}\)</span></strong> rappresenta l’intercetta media a livello di gruppo. In altre parole, è il valore previsto di <span class="math notranslate nohighlight">\(Y\)</span> quando tutte le variabili indipendenti (<span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(z\)</span>) sono pari a zero. È una sorta di “punto di partenza” medio per i vari gruppi nel modello.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\gamma_{01}\)</span></strong> è il coefficiente di pendenza che descrive come l’intercetta varia tra i gruppi in relazione alla variabile di gruppo <span class="math notranslate nohighlight">\(z\)</span>. In pratica, <span class="math notranslate nohighlight">\(\gamma_{01}\)</span> moltiplica la variabile di gruppo <span class="math notranslate nohighlight">\(z_j\)</span> (per ogni gruppo <span class="math notranslate nohighlight">\(j\)</span>) per quantificare l’influenza di questa variabile sulla variazione dell’intercetta tra i gruppi. Un valore positivo di <span class="math notranslate nohighlight">\(\gamma_{01}\)</span> indica che un aumento in <span class="math notranslate nohighlight">\(z_j\)</span> è associato a un aumento dell’intercetta di <span class="math notranslate nohighlight">\(Y\)</span>, mentre un valore negativo indica il contrario.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\gamma_{10}\)</span></strong> rappresenta il valore medio della pendenza della relazione tra <span class="math notranslate nohighlight">\(Y\)</span> e <span class="math notranslate nohighlight">\(x\)</span> attraverso tutti i gruppi, quando la variabile di gruppo <span class="math notranslate nohighlight">\(z\)</span> è zero. Indica come, in media, la variabile indipendente a livello individuale <span class="math notranslate nohighlight">\(x\)</span> si relaziona con <span class="math notranslate nohighlight">\(Y\)</span> nei diversi gruppi.</p></li>
+<li><p><strong><span class="math notranslate nohighlight">\(\gamma_{11}\)</span></strong> modella come la relazione (pendenza) tra <span class="math notranslate nohighlight">\(Y\)</span> e <span class="math notranslate nohighlight">\(x\)</span> varia tra i gruppi in funzione della variabile di gruppo <span class="math notranslate nohighlight">\(z\)</span>. Analogamente a <span class="math notranslate nohighlight">\(\gamma_{01}\)</span>, questo coefficiente moltiplica <span class="math notranslate nohighlight">\(z_j\)</span> per mostrare l’effetto di <span class="math notranslate nohighlight">\(z\)</span> sulla pendenza di <span class="math notranslate nohighlight">\(Y\)</span> rispetto a <span class="math notranslate nohighlight">\(x\)</span> tra i gruppi. Se <span class="math notranslate nohighlight">\(\gamma_{11}\)</span> è significativo, indica che l’effetto di <span class="math notranslate nohighlight">\(x\)</span> su <span class="math notranslate nohighlight">\(Y\)</span> non è costante tra i gruppi, ma varia in base al valore di <span class="math notranslate nohighlight">\(z\)</span>.</p></li>
+</ol>
+<p>In sintesi, questi coefficienti permettono di comprendere non solo come varia la relazione tra <span class="math notranslate nohighlight">\(Y\)</span> e <span class="math notranslate nohighlight">\(x\)</span> all’interno di ciascun gruppo (grazie a <span class="math notranslate nohighlight">\(\gamma_{10}\)</span>), ma anche come questa relazione sia influenzata dalla variabile di gruppo <span class="math notranslate nohighlight">\(z\)</span> (mediante <span class="math notranslate nohighlight">\(\gamma_{11}\)</span>). Allo stesso modo, essi illustrano come l’intercetta di <span class="math notranslate nohighlight">\(Y\)</span> varia tra i gruppi in base a <span class="math notranslate nohighlight">\(z\)</span> (<span class="math notranslate nohighlight">\(\gamma_{01}\)</span>), oltre a fornire un valore di intercetta medio (<span class="math notranslate nohighlight">\(\gamma_{00}\)</span>).</p>
+<p>Queste equazioni legano le variazioni di <span class="math notranslate nohighlight">\(\beta_{0j}\)</span> e <span class="math notranslate nohighlight">\(\beta_{1j}\)</span> tra i gruppi alla variabile <span class="math notranslate nohighlight">\(z\)</span>. I termini <span class="math notranslate nohighlight">\(U_{0j}\)</span> e <span class="math notranslate nohighlight">\(U_{1j}\)</span> rappresentano l’errore a livello di gruppo, anch’essi assunti normalmente distribuiti con media zero e varianze costanti <span class="math notranslate nohighlight">\(\tau_0^2\)</span> e <span class="math notranslate nohighlight">\(\tau_1^2\)</span>, rispettivamente, e indipendenti dall’errore a livello individuale <span class="math notranslate nohighlight">\(\varepsilon_{ij}\)</span>.</p>
+<p>Il modello multilivello permette così di analizzare come le caratteristiche di gruppo (come <span class="math notranslate nohighlight">\(z\)</span>) influenzano non solo l’intercetta (il livello di base di <span class="math notranslate nohighlight">\(Y\)</span>) ma anche la relazione tra <span class="math notranslate nohighlight">\(Y\)</span> e <span class="math notranslate nohighlight">\(x\)</span> (la pendenza). In altre parole, consente di esplorare come la relazione tra una variabile dipendente e indipendente possa cambiare da un gruppo all’altro.</p>
+<p>Un elemento chiave di questo approccio è il coefficiente di correlazione intragruppo <span class="math notranslate nohighlight">\(\rho(Y \mid x)\)</span>, definito come:</p>
+<div class="math notranslate nohighlight">
+\[
+\rho(Y \mid x) = \frac{\tau_0^2}{\tau_0^2 + \sigma^2}
+\]</div>
+<p>Il coefficiente di correlazione intragruppo misura la proporzione della varianza totale di <span class="math notranslate nohighlight">\(Y\)</span> attribuibile alle differenze tra i gruppi. Un valore di <span class="math notranslate nohighlight">\(\rho\)</span> vicino a 1 indica che la maggior parte della varianza di <span class="math notranslate nohighlight">\(Y\)</span> è spiegata dalle differenze tra i gruppi, mentre un valore vicino a 0 suggerisce che la varianza è prevalentemente dovuta a differenze all’interno dei singoli gruppi. Questo coefficiente fornisce quindi una misura quantitativa dell’importanza relativa delle variazioni tra e all’interno dei gruppi nel modello.</p>
+</section>
+<section id="simulare-effetti-casuali">
+<h2><span class="section-number">76.2. </span>Simulare effetti casuali<a class="headerlink" href="#simulare-effetti-casuali" title="Link to this heading">#</a></h2>
+<p>Esaminiamo con una simulazione una dimostrazione del funzionamento dei modelli misti. Ciò ci permetterà di meglio comprendere i modelli a crescita latente. Simuleremo dei dati bilanciati, con punteggi su quattro rilevazioni temporali per 500 individui (soggetti). Esamineremo il tasso di crescita (‘growth’) e consentiremo la presenza di intercette e pendenze specifiche per i diversi soggetti.</p>
+<p>Le istruzioni seguenti generano i dati (per i nostri scopi, non è importante capire i dettagli di questa porzione di codice).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">12345</span><span class="p">)</span>
+<span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">500</span>
+<span class="n">timepoints</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">4</span>
+<span class="n">time</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="n">subject</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">each</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
+
+<span class="n">intercept</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">.</span><span class="m">5</span>
+<span class="n">slope</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">.</span><span class="m">25</span>
+<span class="n">randomEffectsCorr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">.</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+
+<span class="n">randomEffects</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">MASS</span><span class="o">::</span><span class="nf">mvrnorm</span><span class="p">(</span>
+<span class="w">  </span><span class="n">n</span><span class="p">,</span>
+<span class="w">  </span><span class="n">mu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">Sigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">randomEffectsCorr</span><span class="p">,</span><span class="w"> </span><span class="n">empirical</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">T</span>
+<span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">data.frame</span><span class="p">()</span>
+
+<span class="nf">colnames</span><span class="p">(</span><span class="n">randomEffects</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Int&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Slope&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nella simulazione, abbiamo impostato gli effetti fissi, che comprendono l’intercetta e la pendenza della regressione lineare standard, ai valori di 0.5 e 0.25 rispettivamente. Inoltre, è stata simulata una correlazione di 0.2 tra l’intercetta e la pendenza che sono specifiche per ogni singolo soggetto. A causa di questa correlazione, i dati sono stati generati utilizzando una distribuzione normale multivariata. In questo contesto, abbiamo assegnato una varianza di 1 sia per l’intercetta sia per la pendenza.</p>
+<p>Procediamo ora con l’analisi dei dati risultanti dalla simulazione. Questo passaggio è fondamentale per comprendere le implicazioni dei parametri scelti nella simulazione e per verificare se i dati generati rispecchiano le aspettative teoriche stabilite inizialmente.</p>
+<p>I dati prodotti fino ad ora sono i seguenti:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Subject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">subject</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">time</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">randomEffects</span><span class="p">[</span><span class="n">subject</span><span class="p">,</span><span class="w"> </span><span class="p">]</span>
+<span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">head</span><span class="p">(</span><span class="m">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 10 × 4</caption>
+<thead>
+	<tr><th></th><th scope=col>Subject</th><th scope=col>time</th><th scope=col>Int</th><th scope=col>Slope</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>1</td><td>0</td><td>-1.3322902</td><td>-0.9548087</td></tr>
+	<tr><th scope=row>1.1</th><td>1</td><td>1</td><td>-1.3322902</td><td>-0.9548087</td></tr>
+	<tr><th scope=row>1.2</th><td>1</td><td>2</td><td>-1.3322902</td><td>-0.9548087</td></tr>
+	<tr><th scope=row>1.3</th><td>1</td><td>3</td><td>-1.3322902</td><td>-0.9548087</td></tr>
+	<tr><th scope=row>2</th><td>2</td><td>0</td><td>-2.1261548</td><td>-1.7813625</td></tr>
+	<tr><th scope=row>2.1</th><td>2</td><td>1</td><td>-2.1261548</td><td>-1.7813625</td></tr>
+	<tr><th scope=row>2.2</th><td>2</td><td>2</td><td>-2.1261548</td><td>-1.7813625</td></tr>
+	<tr><th scope=row>2.3</th><td>2</td><td>3</td><td>-2.1261548</td><td>-1.7813625</td></tr>
+	<tr><th scope=row>3</th><td>3</td><td>0</td><td> 0.4606242</td><td> 0.3039838</td></tr>
+	<tr><th scope=row>3.1</th><td>3</td><td>1</td><td> 0.4606242</td><td> 0.3039838</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Per generare la variabile target, procediamo sommando gli effetti casuali, precedentemente calcolati, all’intercetta globale e applichiamo un analogo procedimento alle pendenze. In aggiunta, introduciamo un rumore gaussiano ai dati, caratterizzato da una deviazione standard <span class="math notranslate nohighlight">\(\sigma\)</span> pari a 0.5. Questa operazione ha lo scopo di aggiungere un livello di variabilità realistica e di incertezza ai dati, rendendo la simulazione più vicina a scenari osservati nella realtà pratica.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">12345</span><span class="p">)</span>
+<span class="n">sigma</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">.</span><span class="m">5</span>
+<span class="n">y1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span>
+<span class="w">  </span><span class="p">(</span><span class="n">intercept</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">randomEffects</span><span class="o">$</span><span class="n">Int</span><span class="p">[</span><span class="n">subject</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># random intercepts</span>
+<span class="w">  </span><span class="p">(</span><span class="n">slope</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">randomEffects</span><span class="o">$</span><span class="n">Slope</span><span class="p">[</span><span class="n">subject</span><span class="p">])</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># random slopes</span>
+<span class="w">  </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">timepoints</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sigma</span><span class="p">)</span><span class="w"> </span><span class="c1"># noise</span>
+
+<span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="n">y1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">head</span><span class="p">(</span><span class="m">10</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 10 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>subject</th><th scope=col>time</th><th scope=col>y1</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>1</td><td>0</td><td>-0.5395258</td></tr>
+	<tr><th scope=row>2</th><td>1</td><td>1</td><td>-1.1823659</td></tr>
+	<tr><th scope=row>3</th><td>1</td><td>2</td><td>-2.2965593</td></tr>
+	<tr><th scope=row>4</th><td>1</td><td>3</td><td>-3.1734649</td></tr>
+	<tr><th scope=row>5</th><td>2</td><td>0</td><td>-1.3232110</td></tr>
+	<tr><th scope=row>6</th><td>2</td><td>1</td><td>-4.0664952</td></tr>
+	<tr><th scope=row>7</th><td>2</td><td>2</td><td>-4.3738304</td></tr>
+	<tr><th scope=row>8</th><td>2</td><td>3</td><td>-6.3583342</td></tr>
+	<tr><th scope=row>9</th><td>3</td><td>0</td><td> 0.8185443</td></tr>
+	<tr><th scope=row>10</th><td>3</td><td>1</td><td> 1.0549470</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Il grafico seguente mostra le rette di regressione per ciascuno dei 500 soggetti.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y1</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_path</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">subject</span><span class="p">),</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lm&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`geom_smooth()` using formula = &#39;y ~ x&#39;
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/2ca22b9aa6526646964d6cc4dcc768cee913873004fb4c1ac9a3735f649f5f85.png"><img alt="../_images/2ca22b9aa6526646964d6cc4dcc768cee913873004fb4c1ac9a3735f649f5f85.png" src="../_images/2ca22b9aa6526646964d6cc4dcc768cee913873004fb4c1ac9a3735f649f5f85.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Adattiamo ai dati un modello misto utilizzando la funzione <code class="docutils literal notranslate"><span class="pre">lmer</span></code> del pacchetto <code class="docutils literal notranslate"><span class="pre">lme4</span></code>. Si noti che questo è un modello in cui solo le intercette sono consentite variare tra i cluster.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">m0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lmer</span><span class="p">(</span><span class="n">y1</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">subject</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Le componenti di varianza del modello si estraggono con la funzione <code class="docutils literal notranslate"><span class="pre">VarCorr()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">VarCorr</span><span class="p">(</span><span class="n">m0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Groups   Name        Std.Dev.
+ subject  (Intercept) 1.8306  
+ Residual             1.4352  
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calcoliamo il coefficiente di correlazione intraclasse.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="m">1.8306</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">1.8306</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1.4352</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.619323810990691</div></div>
+</div>
+<p>Laddove</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="m">1.8306</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1.4352</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">5.4108954</div></div>
+</div>
+<p>è uguale alla varianza della variabile risposta</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">var</span><span class="p">(</span><span class="n">d</span><span class="o">$</span><span class="n">y1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">5.40584388269804</div></div>
+</div>
+<p>Lo stesso risultato si ottiene utilizzando una funzione <code class="docutils literal notranslate"><span class="pre">R</span></code> per il calcolo della correlazione intraclasse.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">multilevelTools</span><span class="o">::</span><span class="nf">iccMixed</span><span class="p">(</span>
+<span class="w">  </span><span class="n">dv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;y1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;subject&quot;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span>
+<span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        Var    Sigma       ICC
+     &lt;char&gt;    &lt;num&gt;     &lt;num&gt;
+1:  subject 3.350987 0.6193062
+2: Residual 2.059886 0.3806938
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="m">0.6193062</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.3806938</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">1</div></div>
+</div>
+<p>Esaminiamo ora un modello in cui sia le intercette sia le pendenze variano tra i cluster.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mix_mod</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lmer</span><span class="p">(</span><span class="n">y1</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">subject</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">mix_mod</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Linear mixed model fit by REML [&#39;lmerMod&#39;]
+Formula: y1 ~ time + (1 + time | subject)
+   Data: d
+
+REML criterion at convergence: 5881.3
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-3.03499 -0.46249  0.00414  0.48241  2.74992 
+
+Random effects:
+ Groups   Name        Variance Std.Dev. Corr
+ subject  (Intercept) 1.0245   1.0122       
+          time        1.0301   1.0149   0.15
+ Residual             0.2412   0.4911       
+Number of obs: 2000, groups:  subject, 500
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)  0.50159    0.04885  10.267
+time         0.25157    0.04644   5.417
+
+Correlation of Fixed Effects:
+     (Intr)
+time 0.072 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Gli effetti fissi che abbiamo ottenuto (<span class="math notranslate nohighlight">\(\alpha\)</span> = 0.50159, <span class="math notranslate nohighlight">\(\beta\)</span> = 0.25157) sono simili ai valori che abbiamo impostato nella simulazione per l’intercetta e la pendenza globale.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">VarCorr</span><span class="p">(</span><span class="n">mix_mod</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Groups   Name        Std.Dev. Corr 
+ subject  (Intercept) 1.01217       
+          time        1.01494  0.150
+ Residual             0.49108       
+</pre></div>
+</div>
+</div>
+</div>
+<p>Le varianze degli effetti casuali stimati (<span class="math notranslate nohighlight">\(1.0122^2\)</span>, <span class="math notranslate nohighlight">\(1.0149^2\)</span>) sono molto simili al valore impostato di 1 nella simulazione, la correlazione (0.15) è simile al valore impostato di 0.2 e la deviazione standard dei residui (0.4911) è simile al valore impostato di 0.5.</p>
+</section>
+<section id="modello-di-crescita-latente">
+<h2><span class="section-number">76.3. </span>Modello di crescita latente<a class="headerlink" href="#modello-di-crescita-latente" title="Link to this heading">#</a></h2>
+<!-- https://github.com/m-clark/sem/blob/master/growth-curves.Rmd -->
+<p>Esploriamo ora l’analisi degli stessi dati tramite un modello di crescita latente (LGM). I modelli LGM possono essere considerati come un’estensione dei modelli CFA, in cui si ipotizzano due fattori latenti principali: il primo è una variabile latente associata alle intercette casuali, cioè rappresenta la variazione delle intercette individuali dei partecipanti; il secondo è una variabile latente relativa alle pendenze casuali, che descrive la variazione delle pendenze individuali dei partecipanti. Queste intercette e pendenze si riferiscono alla linea di regressione che descrive per ciascun partecipante la relazione tra la variabile in esame e il tempo.</p>
+<p>In quanto il modello mira a spiegare la relazione tra le medie dei punteggi dei partecipanti nel tempo, è necessario analizzare i dati grezzi piuttosto che la matrice di covarianza campionaria. Ciò significa utilizzare le osservazioni individuali per ciascun partecipante come input.</p>
+<p>Per l’analisi, utilizzeremo nuovamente il software <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>, ma con una sintassi differente per poter fissare le saturazioni fattoriali a valori specifici, come richiesto dai vincoli del modello LGM. Di conseguenza, l’output che otterremo sarà diverso da quello dei modelli SEM standard, poiché i parametri relativi alle saturazioni fattoriali sono fissi e non stimati.</p>
+<p>Per il fattore che rappresenta le intercette, le saturazioni fattoriali sono impostate a 1. Questo valore può essere interpretato come l’equivalente della colonna dell’intercetta nella matrice <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span> di un modello di regressione multipla.</p>
+<p>Le saturazioni per il fattore che definisce le pendenze casuali sono stabilite in base alla sequenza temporale delle misurazioni <span class="math notranslate nohighlight">\(y\)</span>, con valori <span class="math notranslate nohighlight">\(\lambda\)</span> che vanno da 0 a 3. Questi riflettono gli intervalli temporali delle misurazioni. Iniziare la codifica da 0 conferisce un significato interpretabile allo zero, analogamente ai valori che, nella matrice <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span> di un modello di regressione multipla, corrisponderebbero alla colonna della pendenza.</p>
+<p>Il modello di crescita latente (LGM) espresso dalla formula</p>
+<div class="math notranslate nohighlight">
+\[
+y_j = \alpha_0 + \alpha_1 \lambda_j + \zeta_{00} + \zeta_{11} \lambda_j + \epsilon_j
+\]</div>
+<p>può essere messo in relazione con il modello lineare ad effetti misti precedentemente descritto attraverso la comprensione della struttura dei due modelli e delle loro componenti.</p>
+<ol class="arabic simple">
+<li><p><strong>Interpretazione dei Componenti del Modello LGM</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( \alpha_0 \)</span>: Rappresenta l’intercetta media del modello di crescita.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \alpha_1 \lambda_j \)</span>: Rappresenta il tasso medio di crescita nel tempo, dove <span class="math notranslate nohighlight">\( \lambda_j \)</span> sono i valori che descrivono l’intervallo temporale delle misurazioni.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \zeta_{00} \)</span>: Indica la variazione delle intercette individuali tra i soggetti rispetto all’intercetta media <span class="math notranslate nohighlight">\( \alpha_0 \)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \zeta_{11} \lambda_j \)</span>: Esprime la variazione nelle pendenze individuali (tassi di crescita) tra i soggetti rispetto al tasso medio di crescita <span class="math notranslate nohighlight">\( \alpha_1 \)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( \epsilon_j \)</span>: Rappresenta l’errore di misurazione per ogni singolo soggetto.</p></li>
+</ul>
+</li>
+<li><p><strong>Confronto con il Modello Lineare ad Effetti Misti</strong>:</p>
+<ul class="simple">
+<li><p>Nel modello lineare ad effetti misti, si considerano sia effetti fissi (come l’intercetta e la pendenza media del modello) sia effetti casuali (variazione delle intercette e delle pendenze tra i soggetti). In maniera simile, il modello LGM considera l’intercetta media e il tasso medio di crescita (effetti fissi) e permette la variazione individuale in queste componenti (effetti casuali).</p></li>
+<li><p>La componente <span class="math notranslate nohighlight">\( \zeta_{00} \)</span> nel modello LGM è analoga alla variazione casuale delle intercette nel modello ad effetti misti, mentre <span class="math notranslate nohighlight">\( \zeta_{11} \)</span> corrisponde alla variazione casuale delle pendenze.</p></li>
+<li><p>Entrambi i modelli permettono di analizzare dati strutturati longitudinalmente, offrendo la flessibilità di modellare non solo la tendenza generale (effetti fissi) ma anche la variazione individuale intorno a questa tendenza (effetti casuali).</p></li>
+</ul>
+</li>
+</ol>
+<p>In sintesi, il modello LGM può essere visto come un caso speciale o un’estensione del modello lineare ad effetti misti, con un’enfasi particolare sulla modellazione del cambiamento nel tempo e sulla relazione di questa dinamica con variabili latenti. Entrambi i modelli sono strumenti potenti nell’analisi di dati longitudinali, permettendo di esaminare sia la tendenza centrale sia la variabilità individuale all’interno dei dati.</p>
+<p>Un requisito degli LGM è che i dati devono essere forniti del formato <em>wide</em> (mentre per il precedente modello misto abbiamo usato il formato <em>long</em>), il che significa che ogni colonna rappresenta la variabile di esito in un diverso momento nel tempo. Si presume che ogni osservazione o riga sia indipendente dalle altre; le colonne mostrano invece una dipendenza temporale. Trasformiamo dunque i dati nel formato richiesto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">dwide</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">spread</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="n">y1</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">rename_at</span><span class="p">(</span><span class="nf">vars</span><span class="p">(</span><span class="o">-</span><span class="n">subject</span><span class="p">),</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;y&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">dwide</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 5</caption>
+<thead>
+	<tr><th></th><th scope=col>subject</th><th scope=col>y0</th><th scope=col>y1</th><th scope=col>y2</th><th scope=col>y3</th></tr>
+	<tr><th></th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>1</td><td>-0.5395258</td><td>-1.1823659</td><td>-2.2965593</td><td>-3.173465</td></tr>
+	<tr><th scope=row>2</th><td>2</td><td>-1.3232110</td><td>-4.0664952</td><td>-4.3738304</td><td>-6.358334</td></tr>
+	<tr><th scope=row>3</th><td>3</td><td> 0.8185443</td><td> 1.0549470</td><td> 2.0104678</td><td> 3.531232</td></tr>
+	<tr><th scope=row>4</th><td>4</td><td> 0.4469440</td><td>-0.3162615</td><td>-1.7896354</td><td>-1.843919</td></tr>
+	<tr><th scope=row>5</th><td>5</td><td> 1.8959902</td><td> 5.5259110</td><td> 9.6045869</td><td>12.546123</td></tr>
+	<tr><th scope=row>6</th><td>6</td><td> 2.1829579</td><td> 1.6287374</td><td>-0.3136214</td><td>-1.660328</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Il modello misto che abbiamo descritto in precedenza corrisponde dunque ad un modello fattoriale con due variabili latenti: un fattore (<span class="math notranslate nohighlight">\(\eta_0\)</span>) che rappresenta il “punteggio vero” delle intercette individuali e un fattore (<span class="math notranslate nohighlight">\(\eta_1\)</span>) che rappresenta il “punteggio vero” delle pendenze delle rette di regressione per i singoli individui.</p>
+<p>Nella sintassi di <code class="docutils literal notranslate"><span class="pre">lavaan</span></code> il modello diventa:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">    i =~ 1*y0 + 1*y1 + 1*y2 + 1*y3</span>
+<span class="s">    s =~ 0*y0 + 1*y1 + 2*y2 + 3*y3</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Possiamo adattare il modello ai dati usando una funzione specifica di <code class="docutils literal notranslate"><span class="pre">lavaan</span></code>, ovvero <code class="docutils literal notranslate"><span class="pre">growth</span></code>, che può essere usata per questa classe di modelli.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">growth_curve_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">growth</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dwide</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">growth_curve_model</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 41 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                         9
+
+  Number of observations                           500
+
+Model Test User Model:
+                                                      
+  Test statistic                                 4.212
+  Degrees of freedom                                 5
+  P-value (Chi-square)                           0.519
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  i =~                                                
+    y0                1.000                           
+    y1                1.000                           
+    y2                1.000                           
+    y3                1.000                           
+  s =~                                                
+    y0                0.000                           
+    y1                1.000                           
+    y2                2.000                           
+    y3                3.000                           
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  i ~~                                                
+    s                 0.162    0.051    3.137    0.002
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+    i                 0.501    0.049   10.263    0.000
+    s                 0.252    0.046    5.428    0.000
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+   .y0                0.268    0.042    6.356    0.000
+   .y1                0.237    0.022   10.713    0.000
+   .y2                0.209    0.029    7.262    0.000
+   .y3                0.299    0.066    4.556    0.000
+    i                 1.007    0.078   12.996    0.000
+    s                 1.021    0.068   14.953    0.000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">growth_curve_model</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">semPaths</span><span class="p">(</span>
+<span class="w">        </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ram&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">whatLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;par&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">edge.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="m">6</span><span class="p">,</span>
+<span class="w">        </span><span class="n">label.prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.9</span><span class="p">,</span><span class="w"> </span><span class="n">edge.label.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">        </span><span class="n">equalizeManifests</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">optimizeLatRes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">        </span><span class="n">node.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span>
+<span class="w">        </span><span class="n">edge.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">shapeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rectangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">shapeLat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ellipse&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">shapeInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;triangle&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sizeMan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">sizeInt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">sizeLat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">        </span><span class="n">curve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">unCol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#070b8c&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/0a49f440efdeb9427c7da3f03164e70114bbd57861485746fec8f526fa4aa741.png"><img alt="../_images/0a49f440efdeb9427c7da3f03164e70114bbd57861485746fec8f526fa4aa741.png" src="../_images/0a49f440efdeb9427c7da3f03164e70114bbd57861485746fec8f526fa4aa741.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>Usiamo l’oggetto creato da <code class="docutils literal notranslate"><span class="pre">growth</span></code> per creare un diagramma di percorso.</p>
+</section>
+<section id="comparazione-tra-modelli-a-effetti-misti-e-modelli-di-crescita-latente">
+<h2><span class="section-number">76.4. </span>Comparazione tra Modelli a Effetti Misti e Modelli di Crescita Latente<a class="headerlink" href="#comparazione-tra-modelli-a-effetti-misti-e-modelli-di-crescita-latente" title="Link to this heading">#</a></h2>
+<p>Nell’output del metodo <code class="docutils literal notranslate"><span class="pre">growth()</span></code>, la sezione denominata <code class="docutils literal notranslate"><span class="pre">Intercepts</span></code> rappresenta in realtà gli effetti fissi all’interno del contesto di un modello a effetti misti:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Intercepts</span><span class="p">:</span>
+                   <span class="n">Estimate</span>  <span class="n">Std</span><span class="o">.</span><span class="n">Err</span>  <span class="n">z</span><span class="o">-</span><span class="n">value</span>  <span class="n">P</span><span class="p">(</span><span class="o">&gt;|</span><span class="n">z</span><span class="o">|</span><span class="p">)</span>
+    <span class="n">i</span>                 <span class="mf">0.510</span>    <span class="mf">0.048</span>   <span class="mf">10.542</span>    <span class="mf">0.000</span>
+    <span class="n">s</span>                 <span class="mf">0.234</span>    <span class="mf">0.046</span>    <span class="mf">5.133</span>    <span class="mf">0.000</span>
+</pre></div>
+</div>
+<p>Può apparire inizialmente non intuitivo riferirsi agli effetti fissi come ‘intercette’ in un modello a effetti misti. Tuttavia, questa terminologia diventa più chiara quando consideriamo la parametrizzazione del modello di crescita latente (LGM). In un modello LGM, ‘i’ rappresenta l’intercetta generale del modello (cioè, il punto di partenza medio per tutti i soggetti), mentre ‘s’ indica la pendenza media, ovvero il tasso di crescita o di cambiamento nel tempo.</p>
+<p>È interessante notare come le stime riportate qui siano molto vicine a quelle che si ottengono in un modello a effetti misti. Questa similitudine dimostra l’affinità tra i due approcci di modellazione: entrambi mirano a comprendere e quantificare sia gli effetti generali (come la tendenza media di crescita) sia le variazioni individuali all’interno di un insieme di dati longitudinali. In entrambi i casi, l’intercetta e la pendenza giocano ruoli cruciali nell’interpretazione dei modelli e nella comprensione di come i valori della variabile dipendente evolvano nel tempo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">fixef</span><span class="p">(</span><span class="n">mix_mod</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Intercept)        time 
+  0.5015932   0.2515722 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si noti inoltre che le stime degli effetti fissi del modello misto sono identiche a quelle che vengono trovate usando un modello di regressione standard:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">lm</span><span class="p">(</span><span class="n">y1</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Call:
+lm(formula = y1 ~ time, data = d)
+
+Coefficients:
+(Intercept)         time  
+     0.5016       0.2516  
+</pre></div>
+</div>
+</div>
+</div>
+<p>Consideriamo ora le stime della varianza nel modello a crescita latente.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Covariances</span><span class="p">:</span>
+                   <span class="n">Estimate</span>  <span class="n">Std</span><span class="o">.</span><span class="n">Err</span>  <span class="n">z</span><span class="o">-</span><span class="n">value</span>  <span class="n">P</span><span class="p">(</span><span class="o">&gt;|</span><span class="n">z</span><span class="o">|</span><span class="p">)</span>
+  <span class="n">i</span> <span class="o">~~</span>                                                
+    <span class="n">s</span>                 <span class="mf">0.220</span>    <span class="mf">0.050</span>    <span class="mf">4.371</span>    <span class="mf">0.000</span>
+<span class="n">Variances</span><span class="p">:</span>
+                   <span class="n">Estimate</span>  <span class="n">Std</span><span class="o">.</span><span class="n">Err</span>  <span class="n">z</span><span class="o">-</span><span class="n">value</span>  <span class="n">P</span><span class="p">(</span><span class="o">&gt;|</span><span class="n">z</span><span class="o">|</span><span class="p">)</span>
+   <span class="o">.</span><span class="n">y0</span>                <span class="mf">0.310</span>    <span class="mf">0.042</span>    <span class="mf">7.308</span>    <span class="mf">0.000</span>
+   <span class="o">.</span><span class="n">y1</span>                <span class="mf">0.220</span>    <span class="mf">0.021</span>   <span class="mf">10.338</span>    <span class="mf">0.000</span>
+   <span class="o">.</span><span class="n">y2</span>                <span class="mf">0.230</span>    <span class="mf">0.029</span>    <span class="mf">7.935</span>    <span class="mf">0.000</span>
+   <span class="o">.</span><span class="n">y3</span>                <span class="mf">0.275</span>    <span class="mf">0.064</span>    <span class="mf">4.295</span>    <span class="mf">0.000</span>
+    <span class="n">i</span>                 <span class="mf">0.973</span>    <span class="mf">0.076</span>   <span class="mf">12.854</span>    <span class="mf">0.000</span>
+    <span class="n">s</span>                 <span class="mf">0.986</span>    <span class="mf">0.066</span>   <span class="mf">14.889</span>    <span class="mf">0.000</span>
+</pre></div>
+</div>
+<p>Confrontiamo questi valori con quelli ottenuti dal modello misto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">VarCorr</span><span class="p">(</span><span class="n">mix_mod</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Groups   Name        Std.Dev. Corr 
+ subject  (Intercept) 1.01217       
+          time        1.01494  0.150
+ Residual             0.49108       
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si noti che il modello a crescita latente, per impostazione predefinita, assume una varianza eterogenea per ogni rilevazione temporale. I modelli misti, invece, per impostazione predefinita assumono la stessa varianza per ogni punto temporale. È però possibile specificare una stima separata della varianza nelle diverse rilevazioni temporali.</p>
+<p>Se però vincoliamo le varianze ad essere uguali per ciascuna rilevazione temporale nel modello LGM, i due modelli producono delle stime identiche. La sintassi seguente viene utilizzata per forzare l’uguaglianza delle varianze in ciascuna rilevazione temporale.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;</span>
+<span class="s">    # intercept and slope with fixed coefficients</span>
+<span class="s">    i =~ 1*y0 + 1*y1 + 1*y2 + 1*y3</span>
+<span class="s">    s =~ 0*y0 + 1*y1 + 2*y2 + 3*y3</span>
+<span class="s">    y0 ~~ resvar*y0</span>
+<span class="s">    y1 ~~ resvar*y1</span>
+<span class="s">    y2 ~~ resvar*y2</span>
+<span class="s">    y3 ~~ resvar*y3</span>
+<span class="s">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Adattiamo il nuovo modello ai dati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">growth_curve_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">growth</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dwide</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esaminiamo i risultati.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">growth_curve_model</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lavaan 0.6.17 ended normally after 27 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                         9
+  Number of equality constraints                     3
+
+  Number of observations                           500
+
+Model Test User Model:
+                                                      
+  Test statistic                                 6.180
+  Degrees of freedom                                 8
+  P-value (Chi-square)                           0.627
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  i =~                                                
+    y0                1.000                           
+    y1                1.000                           
+    y2                1.000                           
+    y3                1.000                           
+  s =~                                                
+    y0                0.000                           
+    y1                1.000                           
+    y2                2.000                           
+    y3                3.000                           
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  i ~~                                                
+    s                 0.154    0.051    3.034    0.002
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+    i                 0.502    0.049   10.278    0.000
+    s                 0.252    0.046    5.423    0.000
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+   .y0      (rsvr)    0.241    0.011   22.361    0.000
+   .y1      (rsvr)    0.241    0.011   22.361    0.000
+   .y2      (rsvr)    0.241    0.011   22.361    0.000
+   .y3      (rsvr)    0.241    0.011   22.361    0.000
+    i                 1.022    0.076   13.502    0.000
+    s                 1.028    0.068   15.095    0.000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Per <code class="docutils literal notranslate"><span class="pre">lme4</span></code> abbiamo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">VarCorr</span><span class="p">(</span><span class="n">mix_mod</span><span class="p">),</span><span class="w"> </span><span class="n">comp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Var&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Groups   Name        Variance Cov  
+ subject  (Intercept) 1.02448       
+          time        1.03011  0.154
+ Residual             0.24116       
+</pre></div>
+</div>
+</div>
+</div>
+<p>In entrambi i casi, la varianza residua è uguale a 0.241 e la correlazione tra intercette e pendenze casuali è uguale a 0.154.</p>
+<p>Inoltre, le stime dei coefficienti casuali del modello misto sono identiche a quelle delle variabili latenti.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">coef</span><span class="p">(</span><span class="n">mix_mod</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span>
+<span class="w">    </span><span class="nf">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 6 × 2</caption>
+<thead>
+	<tr><th></th><th scope=col>(Intercept)</th><th scope=col>time</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>-0.3967486</td><td>-0.9050565</td></tr>
+	<tr><th scope=row>2</th><td>-1.5328622</td><td>-1.5945199</td></tr>
+	<tr><th scope=row>3</th><td> 0.5429873</td><td> 0.8759706</td></tr>
+	<tr><th scope=row>4</th><td> 0.3095727</td><td>-0.7887484</td></tr>
+	<tr><th scope=row>5</th><td> 2.0327226</td><td> 3.5319068</td></tr>
+	<tr><th scope=row>6</th><td> 2.0645454</td><td>-1.1411935</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">lavPredict</span><span class="p">(</span><span class="n">growth_curve_model</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">    </span><span class="nf">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 6 × 2 of type dbl</caption>
+<thead>
+	<tr><th scope=col>i</th><th scope=col>s</th></tr>
+</thead>
+<tbody>
+	<tr><td>-0.3966515</td><td>-0.9050631</td></tr>
+	<tr><td>-1.5324914</td><td>-1.5946260</td></tr>
+	<tr><td> 0.5430942</td><td> 0.8759036</td></tr>
+	<tr><td> 0.3094388</td><td>-0.7886563</td></tr>
+	<tr><td> 2.0328124</td><td> 3.5317637</td></tr>
+	<tr><td> 2.0637121</td><td>-1.1407804</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="conclusioni">
+<h2><span class="section-number">76.5. </span>Conclusioni<a class="headerlink" href="#conclusioni" title="Link to this heading">#</a></h2>
+<p>In conclusione, abbiamo visto che, nel caso più semplice in cui viene assunta la stessa varianza per ogni punto temporale, i modelli LGM producono risultati identici ai modelli misti. Tuttavia, la concettualizzazione del cambiamento nei termini di un modello a crescita latente offre molti vantaggi rispetto alla descrizione dei dati nei termini dei modelli misti in quanto i modelli LGM sono più flessibili e consentono la verifica di ipotesi statistiche che non possono essere esaminate nel contesto dei modelli misti.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./_lgm"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="05_intro_panel.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">75. </span>Specificare e Interpretare un Modello Longitudinale</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="07_growth_1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">77. </span>Curve di crescita latente</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelli-misti">76.1. Modelli misti</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulare-effetti-casuali">76.2. Simulare effetti casuali</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modello-di-crescita-latente">76.3. Modello di crescita latente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparazione-tra-modelli-a-effetti-misti-e-modelli-di-crescita-latente">76.4. Comparazione tra Modelli a Effetti Misti e Modelli di Crescita Latente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusioni">76.5. Conclusioni</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Corrado Caudek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
